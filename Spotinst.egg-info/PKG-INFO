@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: Spotinst
+Version: 1.0.24
+Summary: A Python SDK for Spotinst
+Home-page: https://github.com/spotinst/spotinst-sdk-python
+Author: Spotinst
+Author-email: service@spotinst.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: This SDK will allow you to manage your resources in Spotinst easily with Python
+Keywords: spotinst spot instances aws ec2 cloud infrastructure development elastigroup
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7

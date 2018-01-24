@@ -1,0 +1,12 @@
+LICENSE.txt
+MANIFEST.in
+README
+setup.py
+Spotinst.egg-info/PKG-INFO
+Spotinst.egg-info/SOURCES.txt
+Spotinst.egg-info/dependency_links.txt
+Spotinst.egg-info/requires.txt
+Spotinst.egg-info/top_level.txt
+spotinst/__init__.py
+spotinst/aws_elastigroup.py
+spotinst/spotinst_functions.py

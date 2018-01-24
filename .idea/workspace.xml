@@ -1,0 +1,1703 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4d4f49bf-f6e3-4df3-b3e3-d5865ff70cf6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.10.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.11.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.12.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.14.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.15.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.16.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.17.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.18.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.19.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.20.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.21.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.22.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.23.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.24.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.3.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.4.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.5.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.6.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.7.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.8.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/Spotinst-1.0.9.tar.gz" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/preferred-vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/spotinst-sdk-python.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MANIFEST.in" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Spotinst.egg-info/PKG-INFO" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Spotinst.egg-info/SOURCES.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Spotinst.egg-info/dependency_links.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Spotinst.egg-info/requires.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Spotinst.egg-info/top_level.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/lib/spotinst/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/lib/spotinst/elastigroup.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spotinst/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spotinst/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spotinst/aws_elastigroup.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spotinst/example/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spotinst/example/usage.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spotinst/example/usage_functions.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spotinst/spotinst_functions.py" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.idea/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/spotinst-sdk-python$properties.coverage" NAME="properties Coverage Results" MODIFIED="1496647401928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spotinst-sdk-python$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1501089253171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spotinst" />
+    <SUITE FILE_PATH="coverage/spotinst-sdk-python$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1495537192601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spotc" />
+    <SUITE FILE_PATH="coverage/spotinst-sdk-python$test.coverage" NAME="test Coverage Results" MODIFIED="1515494762704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="spotinst-sdk-python" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="aws_elastigroup.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spotinst/aws_elastigroup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7140">
+              <caret line="476" column="39" lean-forward="false" selection-start-line="476" selection-start-column="6" selection-end-line="476" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spotinst/example/usage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1005">
+              <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spotinst/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1035">
+              <caret line="161" column="57" lean-forward="false" selection-start-line="161" selection-start-column="57" selection-end-line="161" selection-end-column="57" />
+              <folding>
+                <element signature="e#392#412#0" expanded="false" />
+                <element signature="e#493#606#0" expanded="false" />
+                <element signature="e#700#1308#0" expanded="false" />
+                <element signature="e#1376#1887#0" expanded="false" />
+                <element signature="e#1957#2472#0" expanded="false" />
+                <element signature="e#2541#3237#0" expanded="false" />
+                <element signature="e#3291#3443#0" expanded="false" />
+                <element signature="e#3538#4064#0" expanded="false" />
+                <element signature="e#4115#4379#0" expanded="false" />
+                <element signature="e#4421#4641#0" expanded="false" />
+                <element signature="e#4709#5000#0" expanded="false" />
+                <element signature="e#6761#7373#0" expanded="false" />
+                <element signature="e#7423#8031#0" expanded="false" />
+                <element signature="e#8077#8799#0" expanded="false" />
+                <element signature="e#8822#8836#0" expanded="false" />
+                <element signature="e#8881#8942#0" expanded="false" />
+                <element signature="e#8994#9548#0" expanded="false" />
+                <element signature="e#9360#9458#0" expanded="false" />
+                <element signature="e#9603#10120#0" expanded="false" />
+                <element signature="e#9977#10029#0" expanded="false" />
+                <element signature="e#10191#10719#0" expanded="false" />
+                <element signature="e#10576#10628#0" expanded="false" />
+                <element signature="e#10778#11346#0" expanded="false" />
+                <element signature="e#11157#11255#0" expanded="false" />
+                <element signature="e#11404#11971#0" expanded="false" />
+                <element signature="e#11782#11880#0" expanded="false" />
+                <element signature="e#12060#12655#0" expanded="false" />
+                <element signature="e#12466#12564#0" expanded="false" />
+                <element signature="e#12720#12990#0" expanded="false" />
+                <element signature="e#13042#13823#0" expanded="false" />
+                <element signature="e#13220#13584#0" expanded="false" />
+                <element signature="e#13264#13561#0" expanded="false" />
+                <element signature="e#13315#13561#0" expanded="false" />
+                <element signature="e#13629#13823#0" expanded="false" />
+                <element signature="e#13710#13795#0" expanded="false" />
+                <element signature="e#13869#14690#0" expanded="false" />
+                <element signature="e#13869#13934#0" expanded="false" />
+                <element signature="e#14022#14652#0" expanded="false" />
+                <element signature="e#14070#14652#0" expanded="false" />
+                <element signature="e#14408#14652#0" expanded="false" />
+                <element signature="e#14455#14652#0" expanded="false" />
+                <element signature="e#14732#14858#0" expanded="false" />
+                <element signature="e#14902#15064#0" expanded="false" />
+                <element signature="e#15132#15408#0" expanded="false" />
+                <element signature="e#15467#15604#0" expanded="false" />
+                <element signature="e#15655#15722#0" expanded="false" />
+                <element signature="e#15773#15834#0" expanded="false" />
+                <element signature="e#15890#15992#0" expanded="false" />
+                <element signature="e#16041#16257#0" expanded="false" />
+                <element signature="e#16088#16257#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usage_functions.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spotinst/example/usage_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>_list</find>
+      <find>json.load</find>
+      <find>json.dumps</find>
+      <find>balancer_id</find>
+      <find>taskType</find>
+      <find>is_seque</find>
+      <find>spotinst_convert</find>
+      <find>spotinst_convert.co</find>
+      <find>spotinst_convert.</find>
+      <find>send_post</find>
+      <find>i_am</find>
+      <find>iam</find>
+      <find>urlencode</find>
+      <find>account_id</find>
+      <find>url</find>
+      <find>30 iteration</find>
+      <find>print</find>
+      <find>ScalingPolicy</find>
+      <find>.up</find>
+      <find>TargetTrackingPolicy</find>
+      <find>Subscrip</find>
+      <find>Elastigroup</find>
+      <find>query</find>
+      <find>send_put</find>
+      <find>count</find>
+      <find>scale_group</find>
+      <find>Roll</find>
+      <find>batch_size_percentage</find>
+      <find>sg-</find>
+      <find>instance</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>=None,</replace>
+      <replace>#print</replace>
+      <replace>if self.print_output is True:             print</replace>
+      <replace>print_output</replace>
+      <replace>print_output(</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/elastigroup.py" />
+        <option value="$PROJECT_DIR$/spotinst-sdk-python/elastigroup.py" />
+        <option value="$PROJECT_DIR$/spotinst-sdk-python/License" />
+        <option value="$PROJECT_DIR$/elastigroup/__init__.py" />
+        <option value="$PROJECT_DIR$/client/__init__.py" />
+        <option value="$PROJECT_DIR$/etst/__init__.py" />
+        <option value="$PROJECT_DIR$/spotc/__init__.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/spotinst/Elastigroup.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/usage.py" />
+        <option value="$PROJECT_DIR$/MANIFEST.in" />
+        <option value="$PROJECT_DIR$/spotinst/elastigroup.py" />
+        <option value="$PROJECT_DIR$/spotinst/exception.py" />
+        <option value="$PROJECT_DIR$/spotinst/spotinst_convert.py" />
+        <option value="$PROJECT_DIR$/spotinst/spotconverter.py" />
+        <option value="$PROJECT_DIR$/properties.py" />
+        <option value="$PROJECT_DIR$/spotinst/aws_elastigroup.py" />
+        <option value="$PROJECT_DIR$/spotinst/__init__.py" />
+        <option value="$PROJECT_DIR$/spotinst/example/usage.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/spotinst/example/usage_functions.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupGrunt">
+      <scroll-view-position x="0" y="0" />
+    </layout>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="example" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spotinst-sdk-python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="SearchEverywhereHistoryKey" value="usage&#9;FILE&#9;file:///Users/talzur/PycharmProjects/spotinst-sdk-python/spotinst/example/usage.py&#10;test&#9;FILE&#9;file:///Users/talzur/PycharmProjects/spotinst-sdk-python/test.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="FullScreen" value="true" />
+    <property name="TF_FMT" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spotinst" />
+      <recent name="$PROJECT_DIR$/spotinst/example" />
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.test">
+    <configuration default="false" name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spotinst/example/usage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spotc" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spotc/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="__init__ (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spotinst" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spotinst/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="properties" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/properties.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.intellij.plugins.hcl.terraform.run.TerraformConfigurationType" factoryName="Terraform Apply">
+      <option name="PROGRAM_PARAMETERS" value="apply" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.intellij.plugins.hcl.terraform.run.TerraformConfigurationType" factoryName="Terraform Plan">
+      <option name="PROGRAM_PARAMETERS" value="plan" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ApexTest" factoryName="Apex Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <module name="spotinst-sdk-python" />
+      <method />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="spotinst-sdk-python" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Python.test" />
+      <item index="1" class="java.lang.String" itemvalue="Python.__init__" />
+      <item index="2" class="java.lang.String" itemvalue="Python.__init__ (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.properties" />
+    </list>
+    <recent_temporary>
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.__init__ (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.properties" />
+        <item index="3" class="java.lang.String" itemvalue="Python.__init__" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d4f49bf-f6e3-4df3-b3e3-d5865ff70cf6" name="Default" comment="" />
+      <created>1495111846411</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1495111846411</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[src] Spotinst SDK Python">
+      <created>1495632665659</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1495632665659</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[src] Spotinst SDK Python">
+      <created>1495635358637</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1495635358637</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[src] Spotinst SDK Python">
+      <created>1495636896156</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1495636896156</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Starting version 1.0.2">
+      <created>1495636968332</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1495636968332</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[src] Changes to project structure&#10;Starting version 1.0.3">
+      <created>1495637910945</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1495637910945</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[src] Changes to project structure">
+      <created>1495641163787</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1495641163787</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Starting version 1.0.4">
+      <created>1495641188684</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1495641188684</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[src] Group update support">
+      <created>1495710883920</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1495710883920</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Starting version 1.0.5">
+      <created>1495719052995</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1495719052995</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[src] Changed elastigroup package to aws_elastigroup">
+      <created>1496040407694</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1496040407694</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Starting version 1.0.6">
+      <created>1496040542929</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1496040542929</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[src] printing the output to the console can now be turned on or off, to support the ansible module">
+      <created>1496156799759</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1496156799759</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Starting version 1.0.7">
+      <created>1496156918167</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1496156918167</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[fix] Get output str / int concatenation bug solved">
+      <created>1496307588306</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1496307588306</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Starting version 1.0.8">
+      <created>1496307649679</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1496307649679</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[src] Change naming convention in all crud methods">
+      <created>1496310280688</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1496310280688</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Starting version 1.0.9">
+      <created>1496310529777</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1496310529777</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[src] Wrap exceptions with SpotinstClientException">
+      <created>1496324038351</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1496324038351</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[src] Wrap exceptions with SpotinstClientException">
+      <created>1496324059693</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1496324059693</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Starting version 1.0.10">
+      <created>1496324294501</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1496324294501</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[src] changes to exception handling">
+      <created>1496325151167</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1496325151167</updated>
+    </task>
+    <task id="LOCAL-00026" summary="[src] changes to exception handling">
+      <created>1496325619492</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1496325619492</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Starting version 1.0.11">
+      <created>1496325670738</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1496325670738</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[src] Naming convention changes&#10;Starting version 1.0.12">
+      <created>1496587751211</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1496587751211</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[src] Additional naming convention changes&#10;[src] Serialization changes to support serializing underscore_case to camelCase and back">
+      <created>1496605695971</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1496605695971</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[src] Additional naming convention changes&#10;[src] Serialization changes to support serializing underscore_case to camelCase and back">
+      <created>1496616861470</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1496616861470</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Starting version 1.0.13">
+      <created>1496617139734</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1496617139734</updated>
+    </task>
+    <task id="LOCAL-00032" summary="[src] some usage example changes">
+      <created>1496638701353</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1496638701353</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Starting version 1.0.15">
+      <created>1499878081572</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1499878081572</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Fix Iam Role">
+      <created>1500020436678</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1500020436678</updated>
+    </task>
+    <task id="LOCAL-00035" summary="starting version 1.0.16">
+      <created>1500021093252</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1500021093252</updated>
+    </task>
+    <task id="LOCAL-00036" summary="[src] Added support for retrieving group active instances">
+      <created>1500216473704</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1500216473704</updated>
+    </task>
+    <task id="LOCAL-00037" summary="[src] Bump version to 1.0.17">
+      <created>1500216546996</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1500216546996</updated>
+    </task>
+    <task id="LOCAL-00038" summary="[src] Remove unnecessary account_id url encoding">
+      <created>1500302187223</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1500302187223</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Starting version 1.0.18">
+      <created>1500302243521</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1500302243521</updated>
+    </task>
+    <task id="LOCAL-00040" summary="[src] Spotinst SDK Python - Add group roll support">
+      <created>1501089946493</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1501089946493</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Starting version 1.0.19">
+      <created>1501090005715</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1501090005715</updated>
+    </task>
+    <task id="LOCAL-00042" summary="[src] Remove unnecessary printing of group roll">
+      <created>1501680661333</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1501680661333</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Starting version 1.0.20">
+      <created>1501680808535</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1501680808535</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Added target tracking policy support">
+      <created>1509628328797</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1509628328797</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Starting version 1.0.21">
+      <created>1509628420603</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1509628420603</updated>
+    </task>
+    <task id="LOCAL-00046" summary="[src] Added target tracking to scaling object">
+      <created>1509628726345</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1509628726345</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Starting version 1.0.22">
+      <created>1509628774925</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1509628774925</updated>
+    </task>
+    <task id="LOCAL-00048" summary="[src] Added deallocation of stateful resources on group delete">
+      <created>1513692964526</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1513692964526</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Starting version 1.0.23">
+      <created>1513693040068</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1513693040068</updated>
+    </task>
+    <task id="LOCAL-00050" summary="[src] Added example to update only ami">
+      <created>1514461096670</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1514461096670</updated>
+    </task>
+    <task id="LOCAL-00051" summary="[src] Added support for scale up, scale down, detach">
+      <created>1515494973018</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1515494973019</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Starting version 1.0.25">
+      <created>1515495106210</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1515495106210</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Starting version 1.0.25">
+      <created>1516788569269</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1516788569269</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.386747" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28674698" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3566265" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17238913" sideWeight="0.48947367" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5625" sideWeight="0.5105263" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39759037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32409638" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3650568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20390625" sideWeight="0.48947367" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5625" sideWeight="0.5105263" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Starting version 1.0.11" />
+    <MESSAGE value="[src] Naming convention changes&#10;Starting version 1.0.12" />
+    <MESSAGE value="[src] Additional naming convention changes&#10;[src] Serialization changes to support serializing underscore_case to camelCase and back" />
+    <MESSAGE value="Starting version 1.0.13" />
+    <MESSAGE value="[src] some usage example changes" />
+    <MESSAGE value="Starting version 1.0.15" />
+    <MESSAGE value="Fix Iam Role" />
+    <MESSAGE value="starting version 1.0.16" />
+    <MESSAGE value="[src] Added support for retrieving group active instances" />
+    <MESSAGE value="[src] Bump version to 1.0.17" />
+    <MESSAGE value="[src] Remove unnecessary account_id url encoding" />
+    <MESSAGE value="Starting version 1.0.18" />
+    <MESSAGE value="[src] Spotinst SDK Python - Add group roll support" />
+    <MESSAGE value="Starting version 1.0.19" />
+    <MESSAGE value="[src] Remove unnecessary printing of group roll" />
+    <MESSAGE value="Starting version 1.0.20" />
+    <MESSAGE value="Added target tracking policy support" />
+    <MESSAGE value="Starting version 1.0.21" />
+    <MESSAGE value="[src] Added target tracking to scaling object" />
+    <MESSAGE value="Starting version 1.0.22" />
+    <MESSAGE value="[src] Added deallocation of stateful resources on group delete" />
+    <MESSAGE value="Starting version 1.0.23" />
+    <MESSAGE value="[src] Added example to update only ami" />
+    <MESSAGE value="[src] Added support for scale up, scale down, detach" />
+    <MESSAGE value="Starting version 1.0.25" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting version 1.0.25" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/spotinst/__init__.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="33" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/spotinst/aws_elastigroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7140">
+          <caret line="476" column="39" lean-forward="false" selection-start-line="476" selection-start-column="6" selection-end-line="476" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="161" column="57" lean-forward="false" selection-start-line="161" selection-start-column="57" selection-end-line="161" selection-end-column="57" />
+          <folding>
+            <element signature="e#392#412#0" expanded="false" />
+            <element signature="e#493#606#0" expanded="false" />
+            <element signature="e#700#1308#0" expanded="false" />
+            <element signature="e#1376#1887#0" expanded="false" />
+            <element signature="e#1957#2472#0" expanded="false" />
+            <element signature="e#2541#3237#0" expanded="false" />
+            <element signature="e#3291#3443#0" expanded="false" />
+            <element signature="e#3538#4064#0" expanded="false" />
+            <element signature="e#4115#4379#0" expanded="false" />
+            <element signature="e#4421#4641#0" expanded="false" />
+            <element signature="e#4709#5000#0" expanded="false" />
+            <element signature="e#6761#7373#0" expanded="false" />
+            <element signature="e#7423#8031#0" expanded="false" />
+            <element signature="e#8077#8799#0" expanded="false" />
+            <element signature="e#8822#8836#0" expanded="false" />
+            <element signature="e#8881#8942#0" expanded="false" />
+            <element signature="e#8994#9548#0" expanded="false" />
+            <element signature="e#9360#9458#0" expanded="false" />
+            <element signature="e#9603#10120#0" expanded="false" />
+            <element signature="e#9977#10029#0" expanded="false" />
+            <element signature="e#10191#10719#0" expanded="false" />
+            <element signature="e#10576#10628#0" expanded="false" />
+            <element signature="e#10778#11346#0" expanded="false" />
+            <element signature="e#11157#11255#0" expanded="false" />
+            <element signature="e#11404#11971#0" expanded="false" />
+            <element signature="e#11782#11880#0" expanded="false" />
+            <element signature="e#12060#12655#0" expanded="false" />
+            <element signature="e#12466#12564#0" expanded="false" />
+            <element signature="e#12720#12990#0" expanded="false" />
+            <element signature="e#13042#13823#0" expanded="false" />
+            <element signature="e#13220#13584#0" expanded="false" />
+            <element signature="e#13264#13561#0" expanded="false" />
+            <element signature="e#13315#13561#0" expanded="false" />
+            <element signature="e#13629#13823#0" expanded="false" />
+            <element signature="e#13710#13795#0" expanded="false" />
+            <element signature="e#13869#14690#0" expanded="false" />
+            <element signature="e#13869#13934#0" expanded="false" />
+            <element signature="e#14022#14652#0" expanded="false" />
+            <element signature="e#14070#14652#0" expanded="false" />
+            <element signature="e#14408#14652#0" expanded="false" />
+            <element signature="e#14455#14652#0" expanded="false" />
+            <element signature="e#14732#14858#0" expanded="false" />
+            <element signature="e#14902#15064#0" expanded="false" />
+            <element signature="e#15132#15408#0" expanded="false" />
+            <element signature="e#15467#15604#0" expanded="false" />
+            <element signature="e#15655#15722#0" expanded="false" />
+            <element signature="e#15773#15834#0" expanded="false" />
+            <element signature="e#15890#15992#0" expanded="false" />
+            <element signature="e#16041#16257#0" expanded="false" />
+            <element signature="e#16088#16257#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="64" lean-forward="false" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/aws_elastigroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7140">
+          <caret line="476" column="39" lean-forward="false" selection-start-line="476" selection-start-column="6" selection-end-line="476" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="161" column="57" lean-forward="true" selection-start-line="161" selection-start-column="57" selection-end-line="161" selection-end-column="57" />
+          <folding>
+            <element signature="e#392#412#0" expanded="false" />
+            <element signature="e#493#606#0" expanded="false" />
+            <element signature="e#700#1308#0" expanded="false" />
+            <element signature="e#1376#1887#0" expanded="false" />
+            <element signature="e#1957#2472#0" expanded="false" />
+            <element signature="e#2541#3237#0" expanded="false" />
+            <element signature="e#3291#3443#0" expanded="false" />
+            <element signature="e#3538#4064#0" expanded="false" />
+            <element signature="e#4115#4379#0" expanded="false" />
+            <element signature="e#4421#4641#0" expanded="false" />
+            <element signature="e#4709#5000#0" expanded="false" />
+            <element signature="e#6761#7373#0" expanded="false" />
+            <element signature="e#7423#8031#0" expanded="false" />
+            <element signature="e#8077#8799#0" expanded="false" />
+            <element signature="e#8822#8836#0" expanded="false" />
+            <element signature="e#8881#8942#0" expanded="false" />
+            <element signature="e#8994#9548#0" expanded="false" />
+            <element signature="e#9360#9458#0" expanded="false" />
+            <element signature="e#9603#10120#0" expanded="false" />
+            <element signature="e#9977#10029#0" expanded="false" />
+            <element signature="e#10191#10719#0" expanded="false" />
+            <element signature="e#10576#10628#0" expanded="false" />
+            <element signature="e#10778#11346#0" expanded="false" />
+            <element signature="e#11157#11255#0" expanded="false" />
+            <element signature="e#11404#11971#0" expanded="false" />
+            <element signature="e#11782#11880#0" expanded="false" />
+            <element signature="e#12060#12655#0" expanded="false" />
+            <element signature="e#12466#12564#0" expanded="false" />
+            <element signature="e#12720#12990#0" expanded="false" />
+            <element signature="e#13042#13823#0" expanded="false" />
+            <element signature="e#13220#13584#0" expanded="false" />
+            <element signature="e#13264#13561#0" expanded="false" />
+            <element signature="e#13315#13561#0" expanded="false" />
+            <element signature="e#13629#13823#0" expanded="false" />
+            <element signature="e#13710#13795#0" expanded="false" />
+            <element signature="e#13869#14690#0" expanded="false" />
+            <element signature="e#13869#13934#0" expanded="false" />
+            <element signature="e#14022#14652#0" expanded="false" />
+            <element signature="e#14070#14652#0" expanded="false" />
+            <element signature="e#14408#14652#0" expanded="false" />
+            <element signature="e#14455#14652#0" expanded="false" />
+            <element signature="e#14732#14858#0" expanded="false" />
+            <element signature="e#14902#15064#0" expanded="false" />
+            <element signature="e#15132#15408#0" expanded="false" />
+            <element signature="e#15467#15604#0" expanded="false" />
+            <element signature="e#15655#15722#0" expanded="false" />
+            <element signature="e#15773#15834#0" expanded="false" />
+            <element signature="e#15890#15992#0" expanded="false" />
+            <element signature="e#16041#16257#0" expanded="false" />
+            <element signature="e#16088#16257#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="64" lean-forward="false" selection-start-line="3" selection-start-column="64" selection-end-line="3" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/aws_elastigroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6450">
+          <caret line="430" column="17" lean-forward="false" selection-start-line="430" selection-start-column="6" selection-end-line="430" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+          <folding>
+            <element signature="e#392#412#0" expanded="false" />
+            <element signature="e#493#606#0" expanded="false" />
+            <element signature="e#700#1308#0" expanded="false" />
+            <element signature="e#1376#1887#0" expanded="false" />
+            <element signature="e#1957#2472#0" expanded="false" />
+            <element signature="e#2541#3237#0" expanded="false" />
+            <element signature="e#3291#3443#0" expanded="false" />
+            <element signature="e#3538#4064#0" expanded="false" />
+            <element signature="e#4115#4379#0" expanded="false" />
+            <element signature="e#4421#4641#0" expanded="false" />
+            <element signature="e#4709#5000#0" expanded="false" />
+            <element signature="e#6761#7373#0" expanded="false" />
+            <element signature="e#7423#8031#0" expanded="false" />
+            <element signature="e#8077#8799#0" expanded="false" />
+            <element signature="e#8822#8836#0" expanded="false" />
+            <element signature="e#8881#8942#0" expanded="false" />
+            <element signature="e#8994#9548#0" expanded="false" />
+            <element signature="e#9360#9458#0" expanded="false" />
+            <element signature="e#9603#10120#0" expanded="false" />
+            <element signature="e#9977#10029#0" expanded="false" />
+            <element signature="e#10191#10719#0" expanded="false" />
+            <element signature="e#10576#10628#0" expanded="false" />
+            <element signature="e#10778#11346#0" expanded="false" />
+            <element signature="e#11157#11255#0" expanded="false" />
+            <element signature="e#11404#11971#0" expanded="false" />
+            <element signature="e#11782#11880#0" expanded="false" />
+            <element signature="e#12060#12655#0" expanded="false" />
+            <element signature="e#12466#12564#0" expanded="false" />
+            <element signature="e#12720#12990#0" expanded="false" />
+            <element signature="e#13042#13823#0" expanded="false" />
+            <element signature="e#13220#13584#0" expanded="false" />
+            <element signature="e#13264#13561#0" expanded="false" />
+            <element signature="e#13315#13561#0" expanded="false" />
+            <element signature="e#13629#13823#0" expanded="false" />
+            <element signature="e#13710#13795#0" expanded="false" />
+            <element signature="e#13869#14690#0" expanded="false" />
+            <element signature="e#13869#13934#0" expanded="false" />
+            <element signature="e#14022#14652#0" expanded="false" />
+            <element signature="e#14070#14652#0" expanded="false" />
+            <element signature="e#14408#14652#0" expanded="false" />
+            <element signature="e#14455#14652#0" expanded="false" />
+            <element signature="e#14732#14858#0" expanded="false" />
+            <element signature="e#14902#15064#0" expanded="false" />
+            <element signature="e#15132#15408#0" expanded="false" />
+            <element signature="e#15467#15604#0" expanded="false" />
+            <element signature="e#15655#15722#0" expanded="false" />
+            <element signature="e#15773#15834#0" expanded="false" />
+            <element signature="e#15890#15992#0" expanded="false" />
+            <element signature="e#16041#16257#0" expanded="false" />
+            <element signature="e#16088#16257#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/aws_elastigroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6450">
+          <caret line="430" column="17" lean-forward="false" selection-start-line="430" selection-start-column="6" selection-end-line="430" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+          <folding>
+            <element signature="e#392#412#0" expanded="false" />
+            <element signature="e#493#606#0" expanded="false" />
+            <element signature="e#700#1308#0" expanded="false" />
+            <element signature="e#1376#1887#0" expanded="false" />
+            <element signature="e#1957#2472#0" expanded="false" />
+            <element signature="e#2541#3237#0" expanded="false" />
+            <element signature="e#3291#3443#0" expanded="false" />
+            <element signature="e#3538#4064#0" expanded="false" />
+            <element signature="e#4115#4379#0" expanded="false" />
+            <element signature="e#4421#4641#0" expanded="false" />
+            <element signature="e#4709#5000#0" expanded="false" />
+            <element signature="e#6761#7373#0" expanded="false" />
+            <element signature="e#7423#8031#0" expanded="false" />
+            <element signature="e#8077#8799#0" expanded="false" />
+            <element signature="e#8822#8836#0" expanded="false" />
+            <element signature="e#8881#8942#0" expanded="false" />
+            <element signature="e#8994#9548#0" expanded="false" />
+            <element signature="e#9360#9458#0" expanded="false" />
+            <element signature="e#9603#10120#0" expanded="false" />
+            <element signature="e#9977#10029#0" expanded="false" />
+            <element signature="e#10191#10719#0" expanded="false" />
+            <element signature="e#10576#10628#0" expanded="false" />
+            <element signature="e#10778#11346#0" expanded="false" />
+            <element signature="e#11157#11255#0" expanded="false" />
+            <element signature="e#11404#11971#0" expanded="false" />
+            <element signature="e#11782#11880#0" expanded="false" />
+            <element signature="e#12060#12655#0" expanded="false" />
+            <element signature="e#12466#12564#0" expanded="false" />
+            <element signature="e#12720#12990#0" expanded="false" />
+            <element signature="e#13042#13823#0" expanded="false" />
+            <element signature="e#13220#13584#0" expanded="false" />
+            <element signature="e#13264#13561#0" expanded="false" />
+            <element signature="e#13315#13561#0" expanded="false" />
+            <element signature="e#13629#13823#0" expanded="false" />
+            <element signature="e#13710#13795#0" expanded="false" />
+            <element signature="e#13869#14690#0" expanded="false" />
+            <element signature="e#13869#13934#0" expanded="false" />
+            <element signature="e#14022#14652#0" expanded="false" />
+            <element signature="e#14070#14652#0" expanded="false" />
+            <element signature="e#14408#14652#0" expanded="false" />
+            <element signature="e#14455#14652#0" expanded="false" />
+            <element signature="e#14732#14858#0" expanded="false" />
+            <element signature="e#14902#15064#0" expanded="false" />
+            <element signature="e#15132#15408#0" expanded="false" />
+            <element signature="e#15467#15604#0" expanded="false" />
+            <element signature="e#15655#15722#0" expanded="false" />
+            <element signature="e#15773#15834#0" expanded="false" />
+            <element signature="e#15890#15992#0" expanded="false" />
+            <element signature="e#16041#16257#0" expanded="false" />
+            <element signature="e#16088#16257#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/aws_elastigroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6570">
+          <caret line="438" column="21" lean-forward="false" selection-start-line="438" selection-start-column="21" selection-end-line="438" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="92" lean-forward="false" selection-start-line="3" selection-start-column="92" selection-end-line="3" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+          <folding>
+            <element signature="e#392#412#0" expanded="false" />
+            <element signature="e#493#606#0" expanded="false" />
+            <element signature="e#700#1308#0" expanded="false" />
+            <element signature="e#1376#1887#0" expanded="false" />
+            <element signature="e#1957#2472#0" expanded="false" />
+            <element signature="e#2541#3237#0" expanded="false" />
+            <element signature="e#3291#3443#0" expanded="false" />
+            <element signature="e#3538#4064#0" expanded="false" />
+            <element signature="e#4115#4379#0" expanded="false" />
+            <element signature="e#4421#4641#0" expanded="false" />
+            <element signature="e#4709#5000#0" expanded="false" />
+            <element signature="e#6761#7373#0" expanded="false" />
+            <element signature="e#7423#8031#0" expanded="false" />
+            <element signature="e#8077#8799#0" expanded="false" />
+            <element signature="e#8822#8836#0" expanded="false" />
+            <element signature="e#8881#8942#0" expanded="false" />
+            <element signature="e#8994#9548#0" expanded="false" />
+            <element signature="e#9360#9458#0" expanded="false" />
+            <element signature="e#9603#10120#0" expanded="false" />
+            <element signature="e#9977#10029#0" expanded="false" />
+            <element signature="e#10191#10719#0" expanded="false" />
+            <element signature="e#10576#10628#0" expanded="false" />
+            <element signature="e#10778#11346#0" expanded="false" />
+            <element signature="e#11157#11255#0" expanded="false" />
+            <element signature="e#11404#11971#0" expanded="false" />
+            <element signature="e#11782#11880#0" expanded="false" />
+            <element signature="e#12060#12655#0" expanded="false" />
+            <element signature="e#12466#12564#0" expanded="false" />
+            <element signature="e#12720#12990#0" expanded="false" />
+            <element signature="e#13042#13823#0" expanded="false" />
+            <element signature="e#13220#13584#0" expanded="false" />
+            <element signature="e#13264#13561#0" expanded="false" />
+            <element signature="e#13315#13561#0" expanded="false" />
+            <element signature="e#13629#13823#0" expanded="false" />
+            <element signature="e#13710#13795#0" expanded="false" />
+            <element signature="e#13869#14690#0" expanded="false" />
+            <element signature="e#13869#13934#0" expanded="false" />
+            <element signature="e#14022#14652#0" expanded="false" />
+            <element signature="e#14070#14652#0" expanded="false" />
+            <element signature="e#14408#14652#0" expanded="false" />
+            <element signature="e#14455#14652#0" expanded="false" />
+            <element signature="e#14732#14858#0" expanded="false" />
+            <element signature="e#14902#15064#0" expanded="false" />
+            <element signature="e#15132#15408#0" expanded="false" />
+            <element signature="e#15467#15604#0" expanded="false" />
+            <element signature="e#15655#15722#0" expanded="false" />
+            <element signature="e#15773#15834#0" expanded="false" />
+            <element signature="e#15890#15992#0" expanded="false" />
+            <element signature="e#16041#16257#0" expanded="false" />
+            <element signature="e#16088#16257#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/aws_elastigroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7140">
+          <caret line="476" column="39" lean-forward="false" selection-start-line="476" selection-start-column="6" selection-end-line="476" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="161" column="57" lean-forward="false" selection-start-line="161" selection-start-column="57" selection-end-line="161" selection-end-column="57" />
+          <folding>
+            <element signature="e#392#412#0" expanded="false" />
+            <element signature="e#493#606#0" expanded="false" />
+            <element signature="e#700#1308#0" expanded="false" />
+            <element signature="e#1376#1887#0" expanded="false" />
+            <element signature="e#1957#2472#0" expanded="false" />
+            <element signature="e#2541#3237#0" expanded="false" />
+            <element signature="e#3291#3443#0" expanded="false" />
+            <element signature="e#3538#4064#0" expanded="false" />
+            <element signature="e#4115#4379#0" expanded="false" />
+            <element signature="e#4421#4641#0" expanded="false" />
+            <element signature="e#4709#5000#0" expanded="false" />
+            <element signature="e#6761#7373#0" expanded="false" />
+            <element signature="e#7423#8031#0" expanded="false" />
+            <element signature="e#8077#8799#0" expanded="false" />
+            <element signature="e#8822#8836#0" expanded="false" />
+            <element signature="e#8881#8942#0" expanded="false" />
+            <element signature="e#8994#9548#0" expanded="false" />
+            <element signature="e#9360#9458#0" expanded="false" />
+            <element signature="e#9603#10120#0" expanded="false" />
+            <element signature="e#9977#10029#0" expanded="false" />
+            <element signature="e#10191#10719#0" expanded="false" />
+            <element signature="e#10576#10628#0" expanded="false" />
+            <element signature="e#10778#11346#0" expanded="false" />
+            <element signature="e#11157#11255#0" expanded="false" />
+            <element signature="e#11404#11971#0" expanded="false" />
+            <element signature="e#11782#11880#0" expanded="false" />
+            <element signature="e#12060#12655#0" expanded="false" />
+            <element signature="e#12466#12564#0" expanded="false" />
+            <element signature="e#12720#12990#0" expanded="false" />
+            <element signature="e#13042#13823#0" expanded="false" />
+            <element signature="e#13220#13584#0" expanded="false" />
+            <element signature="e#13264#13561#0" expanded="false" />
+            <element signature="e#13315#13561#0" expanded="false" />
+            <element signature="e#13629#13823#0" expanded="false" />
+            <element signature="e#13710#13795#0" expanded="false" />
+            <element signature="e#13869#14690#0" expanded="false" />
+            <element signature="e#13869#13934#0" expanded="false" />
+            <element signature="e#14022#14652#0" expanded="false" />
+            <element signature="e#14070#14652#0" expanded="false" />
+            <element signature="e#14408#14652#0" expanded="false" />
+            <element signature="e#14455#14652#0" expanded="false" />
+            <element signature="e#14732#14858#0" expanded="false" />
+            <element signature="e#14902#15064#0" expanded="false" />
+            <element signature="e#15132#15408#0" expanded="false" />
+            <element signature="e#15467#15604#0" expanded="false" />
+            <element signature="e#15655#15722#0" expanded="false" />
+            <element signature="e#15773#15834#0" expanded="false" />
+            <element signature="e#15890#15992#0" expanded="false" />
+            <element signature="e#16041#16257#0" expanded="false" />
+            <element signature="e#16088#16257#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spotinst/example/usage_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
