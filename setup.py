@@ -13,7 +13,7 @@ with open(path.join(here, 'README'), encoding='utf-8') as f:
 setup(
     name='Spotinst',
 
-    version='1.0.25',
+    version='1.0.24-crittercism',
 
     description='A Python SDK for Spotinst',
     long_description='This SDK will allow you to manage your resources in Spotinst easily with Python',
