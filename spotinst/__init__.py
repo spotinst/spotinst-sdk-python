@@ -10,6 +10,7 @@ from spotinst import spotinst_functions
 class SpotinstClient:
     __account_id_key = "accountId"
     __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
+    __base_instance_url = "https://api.spotinst.io/aws/ec2/instance"
     __base_functions_url = "https://api.spotinst.io/functions"
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
@@ -20,6 +21,14 @@ class SpotinstClient:
         self.account_id = account_id
         self.should_print_output = print_output
 
+    # endregion
+
+    # region Instance
+    def get_instance_status(self, instance_id):
+        content = self.send_get(url=self.__base_instance_url + "/" + str(instance_id),
+                                entity_name='instance status')
+        formatted_response = self.convert_json(content, self.camel_to_underscore)
+        return formatted_response["response"]["items"][0]
     # endregion
 
     # region Elastigroup
