@@ -6,7 +6,7 @@ import requests
 from spotinst import aws_elastigroup
 from spotinst import spotinst_functions
 
-__version__ = '1.0.25'
+__version__ = '1.0.26'
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(_SpotinstClient__spotinst_sdk_python_agent_name, __version__)
 
