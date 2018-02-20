@@ -3,6 +3,7 @@ from codecs import open
 from os import path
 
 from setuptools import setup, find_packages
+import spotinst
 
 here = path.abspath(path.dirname(__file__))
 
@@ -13,7 +14,7 @@ with open(path.join(here, 'README'), encoding='utf-8') as f:
 setup(
     name='Spotinst',
 
-    version='1.0.25',
+    version=spotinst.__version__,
 
     description='A Python SDK for Spotinst',
     long_description='This SDK will allow you to manage your resources in Spotinst easily with Python',

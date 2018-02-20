@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: Spotinst
-Version: 1.0.24
+Version: 1.0.25
 Summary: A Python SDK for Spotinst
 Home-page: https://github.com/spotinst/spotinst-sdk-python
 Author: Spotinst

@@ -6,6 +6,9 @@ import requests
 from spotinst import aws_elastigroup
 from spotinst import spotinst_functions
 
+__version__ = '1.0.25'
+_SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
+_SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(_SpotinstClient__spotinst_sdk_python_agent_name, __version__)
 
 class SpotinstClient:
     __account_id_key = "accountId"
@@ -15,11 +18,14 @@ class SpotinstClient:
     under_pat = re.compile(r'_([a-z])')
 
     # region Constructor
-    def __init__(self, auth_token, account_id=None, print_output=True):
+    def __init__(self, auth_token,
+                 account_id=None,
+                 print_output=True,
+                 user_agent=None):
         self.auth_token = auth_token
         self.account_id = account_id
         self.should_print_output = print_output
-
+        self.user_agent = user_agent
     # endregion
 
     # region Elastigroup
@@ -235,8 +241,15 @@ class SpotinstClient:
             print output
 
     def send_get(self, url, entity_name):
+        agent = self.resolve_user_agent()
         query_params = self.build_query_params()
-        headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.auth_token})
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
 
         self.print_output("Sending get request to spotinst API.")
         result = requests.get(url, params=query_params, headers=headers)
@@ -249,8 +262,15 @@ class SpotinstClient:
             self.handle_exception("getting {}".format(entity_name), result)
 
     def send_delete(self, url, entity_name):
+        agent = self.resolve_user_agent()
         query_params = self.build_query_params()
-        headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.auth_token})
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
 
         self.print_output("Sending deletion request to spotinst API.")
         result = requests.delete(url, params=query_params, headers=headers)
@@ -262,8 +282,15 @@ class SpotinstClient:
             self.handle_exception("deleting {}".format(entity_name), result)
 
     def send_delete_with_body(self, body, url, entity_name):
+        agent = self.resolve_user_agent()
         query_params = self.build_query_params()
-        headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.auth_token})
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
 
         self.print_output("Sending deletion request to spotinst API.")
         result = requests.delete(url, params=query_params, headers=headers, data=body)
@@ -275,8 +302,15 @@ class SpotinstClient:
             self.handle_exception("deleting {}".format(entity_name), result)
 
     def send_post(self, body, url, entity_name):
+        agent = self.resolve_user_agent()
         query_params = self.build_query_params()
-        headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.auth_token})
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
 
         self.print_output("Sending post request to spotinst API.")
         result = requests.post(url, params=query_params, data=body, headers=headers)
@@ -289,9 +323,15 @@ class SpotinstClient:
             self.handle_exception("creating {}".format(entity_name), result)
 
     def send_put(self, body, url, entity_name):
+        agent = self.resolve_user_agent()
         query_params = self.build_query_params()
-
-        headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.auth_token})
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
 
         self.print_output("Sending put request to spotinst API.")
         result = requests.put(url, params=query_params, data=body, headers=headers)
@@ -304,9 +344,16 @@ class SpotinstClient:
             self.handle_exception("updating {}".format(entity_name), result)
 
     def send_put_with_params(self, body, url, entity_name, user_query_params):
+        agent = self.resolve_user_agent()
         query_params = self.build_query_params_with_input(user_query_params)
 
-        headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.auth_token})
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
 
         self.print_output("Sending put request to spotinst API.")
         result = requests.put(url, params=query_params, data=body, headers=headers)
@@ -317,6 +364,13 @@ class SpotinstClient:
             return data
         else:
             self.handle_exception("updating {}".format(entity_name), result)
+
+    def resolve_user_agent(self):
+        global _SpotinstClient__spotinst_sdk_user_agent
+        agent = _SpotinstClient__spotinst_sdk_user_agent
+        if self.user_agent is not None:
+            agent = '{}+{}'.format(self.user_agent, agent)
+        return agent
 
     def handle_exception(self, action_string, result):
         self.print_output(result.status_code)
