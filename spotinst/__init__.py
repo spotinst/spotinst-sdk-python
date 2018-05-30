@@ -238,7 +238,7 @@ class SpotinstClient:
     # region Utils
     def print_output(self, output):
         if self.should_print_output is True:
-            print output
+            print(output)
 
     def send_get(self, url, entity_name):
         agent = self.resolve_user_agent()
@@ -382,11 +382,11 @@ class SpotinstClient:
     def convert_json(self, val, convert):
         if val is None:
             return val
-        elif type(val) in (int, float, bool, basestring, str, unicode):
+        elif type(val) in (int, float, bool, str, str, str):
             return val
         elif type(val) is dict:
-            if val.items() is not None:
-                for key, value in val.items():
+            if list(val.items()) is not None:
+                for key, value in list(val.items()):
                     # IF it is an object, convert key and iterate
                     new_value = self.convert_json(value, convert)
                     val[convert(key)] = new_value
@@ -405,8 +405,8 @@ class SpotinstClient:
         # Delete keys with the value 'none' in a dictionary, recursively.
 
         # if obj.items() is not None:
-        if obj.items() is not None:
-            for key, value in obj.items():
+        if list(obj.items()) is not None:
+            for key, value in list(obj.items()):
 
                 # Remove none values
                 if value == aws_elastigroup.none:

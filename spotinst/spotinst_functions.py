@@ -65,7 +65,7 @@ class FunctionCreationRequest:
 
     def print_output(self, output):
         if self.should_print_output is True:
-            print output
+            print(output)
 
     def rebuildFunctionInlineCode(self, function):
         directory = function.directory
