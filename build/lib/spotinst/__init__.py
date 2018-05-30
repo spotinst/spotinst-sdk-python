@@ -1,5 +1,5 @@
 import json
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 import requests
 
@@ -20,7 +20,7 @@ class SpotinstClient:
         excluded_group = self.exclude_missing(json.loads(group.toJSON()))
         body = json.dumps(excluded_group)
 
-        print body
+        print(body)
         groupResponse = self.sendPost(body, self.__base_elastigroup_url)
 
         retVal = groupResponse["response"]["items"][0]
@@ -33,7 +33,7 @@ class SpotinstClient:
         excluded_group_update = self.exclude_missing(json.loads(group.toJSON()))
         body = json.dumps(excluded_group_update)
 
-        print body
+        print(body)
         groupResponse = self.sendPut(body, self.__base_elastigroup_url + "/" + groupId)
 
         retVal = groupResponse["response"]["items"][0]
@@ -57,11 +57,11 @@ class SpotinstClient:
     def send_get(self, url):
         queryParams = None
         if self.account_id is not None:
-            queryParams = urllib.urlencode(dict({self.__account_id_key: self.account_id}))
+            queryParams = urllib.parse.urlencode(dict({self.__account_id_key: self.account_id}))
 
         headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.authToken})
 
-        print "Sending get request to spotinst API."
+        print("Sending get request to spotinst API.")
 
         result = requests.get(url, params=queryParams, headers=headers)
 
@@ -69,68 +69,68 @@ class SpotinstClient:
             data = json.loads(result.content)
             return data
         else:
-            print result.status_code
+            print(result.status_code)
             data = json.loads(result.content)
             return data
 
     def sendDelete(self, url):
         queryParams = None
         if self.account_id is not None:
-            queryParams = urllib.urlencode(dict({self.__account_id_key: self.account_id}))
+            queryParams = urllib.parse.urlencode(dict({self.__account_id_key: self.account_id}))
 
         headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.authToken})
 
-        print "Sending deletion request to spotinst API."
+        print("Sending deletion request to spotinst API.")
 
         result = requests.delete(url, params=queryParams, headers=headers)
 
         if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
             return True
         else:
-            print result.status_code
+            print(result.status_code)
             data = json.loads(result.content)
-            print json.dumps(data["response"])
+            print(json.dumps(data["response"]))
             return False
 
     def sendPost(self, body, url):
         queryParams = None
         if self.account_id is not None:
-            queryParams = urllib.urlencode(dict({self.__account_id_key: self.account_id}))
+            queryParams = urllib.parse.urlencode(dict({self.__account_id_key: self.account_id}))
 
         headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.authToken})
 
-        print "Sending post request to spotinst API."
+        print("Sending post request to spotinst API.")
 
         result = requests.post(url, params=queryParams, data=body, headers=headers)
 
         if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
-            print "Success"
+            print("Success")
             data = json.loads(result.content)
         else:
-            print result.status_code
+            print(result.status_code)
             data = json.loads(result.content)
-            print json.dumps(data["response"])
+            print(json.dumps(data["response"]))
 
         return data
 
     def sendPut(self, body, url):
         query_params = None
         if self.account_id is not None:
-            query_params = urllib.urlencode(dict({self.__account_id_key: self.account_id}))
+            query_params = urllib.parse.urlencode(dict({self.__account_id_key: self.account_id}))
 
         headers = dict({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.authToken})
 
-        print "Sending put request to spotinst API."
+        print("Sending put request to spotinst API.")
 
         result = requests.put(url, params=query_params, data=body, headers=headers)
 
         if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
-            print "Success"
+            print("Success")
             data = json.loads(result.content)
         else:
-            print result.status_code
+            print(result.status_code)
             data = json.loads(result.content)
-            print json.dumps(data["response"])
+            print(json.dumps(data["response"]))
 
         return data
 
@@ -144,8 +144,8 @@ class SpotinstClient:
         # Delete keys with the value 'none' in a dictionary, recursively.
 
         # if obj.items() is not None:
-        if obj.items() is not None:
-            for key, value in obj.items():
+        if list(obj.items()) is not None:
+            for key, value in list(obj.items()):
 
                 # Remove none values
                 if value == aws_elastigroup.none:

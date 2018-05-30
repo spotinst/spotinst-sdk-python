@@ -10,8 +10,8 @@ application = spotinst.spotinst_functions.Application("my_great_application")
 app = client.create_application(application)
 app_id = app['id']
 
-print "-------Create Functions Application-------"
-print app_id
+print("-------Create Functions Application-------")
+print(app_id)
 
 # Initialize providers
 providers = ['aws', 'azure']
@@ -26,8 +26,8 @@ environment = spotinst.spotinst_functions.Environment("testings", app_id, provid
 env = client.create_environment(environment)
 env_id = env['id']
 
-print "-------Create Functions Environment-------"
-print env_id
+print("-------Create Functions Environment-------")
+print(env_id)
 
 # Initialize function
 function = spotinst.spotinst_functions.Function("ping", env_id, '/development/my_project/ping', 'main',
@@ -37,5 +37,5 @@ function = spotinst.spotinst_functions.Function("ping", env_id, '/development/my
 fx = client.create_function(function)
 fx_url = fx['url']
 
-print "-------Create Functions function-------"
-print fx_url
+print("-------Create Functions function-------")
+print(fx_url)
