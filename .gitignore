@@ -135,6 +135,7 @@ cmake-build-release/
 
 # IntelliJ
 out/
+spotinst-sdk-python.iml
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
