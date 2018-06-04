@@ -6,9 +6,10 @@ import requests
 from spotinst import aws_elastigroup
 from spotinst import spotinst_functions
 
-__version__ = '1.0.26'
+__version__ = '1.0.27'
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(_SpotinstClient__spotinst_sdk_python_agent_name, __version__)
+
 
 class SpotinstClient:
     __account_id_key = "accountId"
@@ -26,6 +27,7 @@ class SpotinstClient:
         self.account_id = account_id
         self.should_print_output = print_output
         self.user_agent = user_agent
+
     # endregion
 
     # region Elastigroup
@@ -150,7 +152,8 @@ class SpotinstClient:
 
     def detach_elastigroup_instances(self, group_id, detach_configuration):
 
-        group_detach_request = aws_elastigroup.ElastigroupDetachInstancesRequest(detach_configuration=detach_configuration)
+        group_detach_request = aws_elastigroup.ElastigroupDetachInstancesRequest(
+            detach_configuration=detach_configuration)
 
         excluded_group_detach_dict = self.exclude_missing(json.loads(group_detach_request.toJSON()))
 
@@ -161,7 +164,7 @@ class SpotinstClient:
         self.print_output(body_json)
 
         detach_response = self.send_put(url=self.__base_elastigroup_url + "/" + str(group_id) + "/detachInstances",
-                                      body=body_json, entity_name='detach')
+                                        body=body_json, entity_name='detach')
 
         formatted_response = self.convert_json(detach_response, self.camel_to_underscore)
 
@@ -238,7 +241,7 @@ class SpotinstClient:
     # region Utils
     def print_output(self, output):
         if self.should_print_output is True:
-            print output
+            print(output)
 
     def send_get(self, url, entity_name):
         agent = self.resolve_user_agent()
@@ -382,7 +385,7 @@ class SpotinstClient:
     def convert_json(self, val, convert):
         if val is None:
             return val
-        elif type(val) in (int, float, bool, basestring, str, unicode):
+        elif type(val) in (int, float, bool, "".__class__, u"".__class__):
             return val
         elif type(val) is dict:
             if val.items() is not None:
@@ -406,7 +409,7 @@ class SpotinstClient:
 
         # if obj.items() is not None:
         if obj.items() is not None:
-            for key, value in obj.items():
+            for key, value in list(obj.items()):
 
                 # Remove none values
                 if value == aws_elastigroup.none:

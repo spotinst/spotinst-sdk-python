@@ -1,3 +1,7 @@
+# README for travis-lab
+
+[![Build status](https://travis-ci.org/daniel.d/travis-lab.svg?dev)](https://travis-ci.org/daniel.d)
+
 # spotinst-sdk-python
 Spotinst SDK for the Python programming language
 

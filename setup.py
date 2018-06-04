@@ -2,7 +2,8 @@
 from codecs import open
 from os import path
 
-from setuptools import setup, find_packages
+from setuptools import setup
+
 import spotinst
 
 here = path.abspath(path.dirname(__file__))
@@ -34,10 +35,14 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2.7'
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.6'
     ],
 
     keywords='spotinst spot instances aws ec2 cloud infrastructure development elastigroup',
     packages=["spotinst"],
-    install_requires=['requests']
+    install_requires=['requests'],
+
+    setup_requires=["pytest-runner"],
+    tests_require=["pytest"]
 )
