@@ -4,7 +4,7 @@ from os import path
 
 from setuptools import setup
 
-import spotinst
+import spotinst_sdk
 
 here = path.abspath(path.dirname(__file__))
 
@@ -13,9 +13,9 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='Spotinst',
+    name='spotinst-sdk',
 
-    version=spotinst.__version__,
+    version=spotinst_sdk.__version__,
 
     description='A Python SDK for Spotinst',
     long_description='This SDK will allow you to manage your resources in Spotinst easily with Python',
@@ -40,7 +40,7 @@ setup(
     ],
 
     keywords='spotinst spot instances aws ec2 cloud infrastructure development elastigroup',
-    packages=["spotinst"],
+    packages=["spotinst_sdk"],
     install_requires=['requests'],
 
     setup_requires=["pytest-runner"],

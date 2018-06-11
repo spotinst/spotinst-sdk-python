@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from spotinst_sdk import SpotinstClient
@@ -18,7 +19,7 @@ class AwsElastigroupTestCase(unittest.TestCase):
 
     @staticmethod
     def load_group_json():
-        with open('group.json') as group_json:
+        with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'group.json')) as group_json:
             return json.load(group_json)
 
 

@@ -3,8 +3,8 @@ import re
 
 import requests
 
-from spotinst import aws_elastigroup
-from spotinst import spotinst_functions
+from spotinst_sdk import aws_elastigroup
+from spotinst_sdk import spotinst_functions
 
 __version__ = '1.0.29'
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
