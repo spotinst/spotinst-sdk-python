@@ -8,7 +8,7 @@ from spotinst_sdk.aws_elastigroup import *
 class AwsElastigroupTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.client = SpotinstClient()
+        self.client = SpotinstClient(auth_token='dummy-token', account_id='dummy-account')
         self.mock_group_json = self.load_group_json()
 
     def create_formatted_group_request(self, group):
