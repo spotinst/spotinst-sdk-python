@@ -7,14 +7,15 @@
 Spotinst SDK for the Python programming language
 
 ## Table of contents
+<!--ts-->
    * [Installation](#Installation)
-   * [Configuring Credentials](#Configuring Credentials)
+   * [Configuring Credentials](#Configuring-Credentials)
    * [Usage](#Usage)
       * [Elastigroup](#Elastigroup)
-        * [Getting Started With Elastigroup](#Getting Started With Elastigroup)
-        * [Scaling Policies](#Scaling Policies)
+        * [Getting Started With Elastigroup](#Getting-Started-With-Elastigroup)
+        * [Scaling Policies](#Scaling-Policies)
         * [Scheduling](#Scheduling)
-        * [Third Party Integrations](#Third Party Integrations)
+        * [Third Party Integrations](#Third-Party-Integrations)
           * [ECS](#ECS)
           * [Kubernetes](#Kubernetes)
           * [Nomad](#Nomad)
@@ -22,7 +23,8 @@ Spotinst SDK for the Python programming language
           * [CodeDeploy](#CodeDeploy)
           * [Route53](#Route53)
       * [Functions](#Functions)
-        * [Getting Started With Functions](#Getting Started With Functions)
+        * [Getting Started With Functions](#Getting-Started-With-Functions)
+<!--te-->
 
 
 ## Installation
