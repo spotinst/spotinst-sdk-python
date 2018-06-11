@@ -149,6 +149,13 @@
             {
               "name": "MyClassicLB",
               "type": "CLASSIC"
+            },
+            {
+              "targetSetId": "ts-123456789",
+              "balancerId": "lb-123456789",
+              "autoWeight": true,
+              "azAwareness": false,
+              "type": "MULTAI_TARGET_SET"
             }
           ]
         },

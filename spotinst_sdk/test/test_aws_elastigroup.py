@@ -56,10 +56,10 @@ class AwsElastigroupTestKubernetesIntegration(AwsElastigroupTestCase):
             evaluation_periods=5)
         kubernetes_auto_scale_headroom = KubernetesAutoScalerHeadroomConfiguration(
             cpu_per_unit=2000, memory_per_unit=4000, num_of_units=2)
-        kubernetes_auto_scale = EcsAutoScaleConfiguration(is_enabled=True, cooldown=300,
-                                                          headroom=kubernetes_auto_scale_headroom,
-                                                          down=kubernetes_auto_scale_down,
-                                                          is_auto_config=False)
+        kubernetes_auto_scale = KubernetesAutoScalerConfiguration(is_enabled=True, cooldown=300,
+                                                                  headroom=kubernetes_auto_scale_headroom,
+                                                                  down=kubernetes_auto_scale_down,
+                                                                  is_auto_config=False)
         kubernetes = KubernetesConfiguration(integration_mode='pod',
                                              cluster_identifier='test-k8s',
                                              auto_scale=kubernetes_auto_scale)
