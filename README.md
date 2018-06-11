@@ -3,12 +3,27 @@
 [![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)](https://www.python.org/downloads/release/python-270/)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
-# spotinst-sdk-python
-
+spotinst-sdk-python
+===================
 Spotinst SDK for the Python programming language
 
-## Installation
+## Table of contents
 
+   * [Installation](#Installation)
+   * [Usage](#Usage)
+      * [Getting Started](#Getting Started)
+      * [Scaling Policies](#Scaling Policies)
+      * [Scheduling](#Scheduling)
+      * [Third Party Integrations](#Third Party Integrations)
+        * [ECS](#ECS)
+        * [Kubernetes](#Kubernetes)
+        * [Nomad](#Nomad)
+        * [Docker Swarm](#DockerSwarm)
+        * [CodeDeploy](#CodeDeploy)
+        * [Route53](#Route53)
+
+
+## Installation
 ```bash
 $ sudo pip install --upgrade spotinst-sdk
 ```
@@ -100,7 +115,7 @@ group = Elastigroup(name="TestGroup", description="Created by the Python SDK", c
 
 ```
 
-### Third Party Integration
+### Third Party Integrations
 
 #### ECS
 ```python
