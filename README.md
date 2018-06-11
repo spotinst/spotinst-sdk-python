@@ -3,24 +3,26 @@
 [![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)](https://www.python.org/downloads/release/python-270/)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
-spotinst-sdk-python
-===================
+# spotinst-sdk-python
 Spotinst SDK for the Python programming language
 
 ## Table of contents
-
    * [Installation](#Installation)
+   * [Configuring Credentials](#Configuring Credentials)
    * [Usage](#Usage)
-      * [Getting Started](#Getting Started)
-      * [Scaling Policies](#Scaling Policies)
-      * [Scheduling](#Scheduling)
-      * [Third Party Integrations](#Third Party Integrations)
-        * [ECS](#ECS)
-        * [Kubernetes](#Kubernetes)
-        * [Nomad](#Nomad)
-        * [Docker Swarm](#DockerSwarm)
-        * [CodeDeploy](#CodeDeploy)
-        * [Route53](#Route53)
+      * [Elastigroup](#Elastigroup)
+        * [Getting Started With Elastigroup](#Getting Started With Elastigroup)
+        * [Scaling Policies](#Scaling Policies)
+        * [Scheduling](#Scheduling)
+        * [Third Party Integrations](#Third Party Integrations)
+          * [ECS](#ECS)
+          * [Kubernetes](#Kubernetes)
+          * [Nomad](#Nomad)
+          * [Docker Swarm](#DockerSwarm)
+          * [CodeDeploy](#CodeDeploy)
+          * [Route53](#Route53)
+      * [Functions](#Functions)
+        * [Getting Started With Functions](#Getting Started With Functions)
 
 
 ## Installation
@@ -28,15 +30,22 @@ Spotinst SDK for the Python programming language
 $ sudo pip install --upgrade spotinst-sdk
 ```
 
+## Configuring Credentials
+The mechanism in which the sdk looks for credentials is to search through a list of possible locations and stop as soon as it finds credentials. The order in which the sdk searches for credentials is:
+  - Passing credentials as parameters in the `SpotinstClient()` constructor
+  - Environment variables in `SPOTINST_ACCOUNT` & `SPOTINST_TOKEN`
+  - Shared credential file `~/.spotinst/credentials`
+
 ## Usage
 
-### Getting Started
+## Elastigroup
 
+### Getting Started With Elastigroup
 ```python
 from spotinst_sdk import SpotinstClient
 from spotinst_sdk.aws_elastigroup import *
 
-client = SpotinstClient(auth_token="${SPOTINST_TOKEN}", account_id="${SPOTINST_ACCOUNT_ID}")
+client = SpotinstClient()
 
 # Initialize group strategy
 strategy = Strategy(risk=100, utilize_reserved_instances=False, fallback_to_od=True, availability_vs_cost="balanced")
@@ -83,13 +92,10 @@ print('update result: %s' % update_result)
 # Delete Elastigroup
 deletion_success = client.delete_elastigroup(group_id=group_id)
 print('delete result: %s' % deletion_success)
-
 ```
 
 ### Scaling Policies
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 scaling_policy_action = ScalingPolicyAction(type='percentageAdjustment', adjustment=20)
 scaling_policy_dimension = ScalingPolicyDimension(name='InstanceId')
 scaling_policy = ScalingPolicy(metric_name='CPUUtilization', statistic='average',
@@ -100,27 +106,20 @@ scaling_policy = ScalingPolicy(metric_name='CPUUtilization', statistic='average'
 scaling = Scaling(up=[scaling_policy])                                                            
                                                             
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, scaling=scaling)
-
 ```
 
 ### Scheduling
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 scheduled_ami_backup = ScheduledTask(frequency='hourly', task_type='backup_ami')
 scheduled_roll = ScheduledTask(cron_expression='00 17 * * 3', task_type='roll', batch_size_percentage=30)
 scheduling = Scheduling(tasks=[scheduled_ami_backup, scheduled_roll])                                                            
                                                             
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, scheduling=scheduling)
-
 ```
 
 ### Third Party Integrations
-
 #### ECS
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 ecs_auto_scale_down = EcsAutoScalerDownConfiguration(evaluation_periods=3)
 ecs_auto_scale_attribute = EcsAutoScalerAttributeConfiguration(key='the_key', value='the_value')
 ecs_auto_scale_headroom = EcsAutoScalerHeadroomConfiguration(cpu_per_unit=4096, memory_per_unit=4096, num_of_units=30)
@@ -129,13 +128,10 @@ ecs = EcsConfiguration(cluster_name='test-ecs', auto_scale=ecs_auto_scale)
 third_party_integrations = ThirdPartyIntegrations(ecs=ecs)
 
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-
 ```
 
 #### Kubernetes
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 kubernetes_auto_scale_down = KubernetesAutoScalerDownConfiguration(evaluation_periods=5)
 kubernetes_auto_scale_headroom = KubernetesAutoScalerHeadroomConfiguration(cpu_per_unit=2000, memory_per_unit=4000, num_of_units=2)
 kubernetes_auto_scale = KubernetesAutoScalerConfiguration(is_enabled=True, cooldown=300, headroom=kubernetes_auto_scale_headroom, down=kubernetes_auto_scale_down, is_auto_config=False)
@@ -143,13 +139,10 @@ kubernetes = KubernetesConfiguration(integration_mode='pod', cluster_identifier=
 third_party_integrations = ThirdPartyIntegrations(kubernetes=kubernetes)
 
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-
 ```
 
 #### Nomad
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 nomad_down = NomadAutoScalerDownConfiguration(evaluation_periods=3)
 nomad_constraints = NomadAutoScalerConstraintsConfiguration(key='${node.class}', value='value')
 nomad_scale_headroom = NomadAutoScalerHeadroomConfiguration(cpu_per_unit=10, memory_per_unit=1000, num_of_units=2)
@@ -158,13 +151,10 @@ nomad = NomadConfiguration(master_host="https://master.host.com", master_port=44
 third_party_integrations = ThirdPartyIntegrations(nomad=nomad)
 
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-
 ```
 
 #### DockerSwarm
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 docker_swarm_down = DockerSwarmAutoScalerDownConfiguration(evaluation_periods=4)
 docker_swarm_headroom = DockerSwarmAutoScalerHeadroomConfiguration(cpu_per_unit=1000000000, memory_per_unit=800000000, num_of_units=3)
 docker_swarm_auto_scale = DockerSwarmAutoScalerConfiguration(is_enabled=True, cooldown=300, headroom=docker_swarm_headroom, down=docker_swarm_down)
@@ -172,30 +162,62 @@ docker_swarm = DockerSwarmConfiguration(master_host='10.10.10.10', master_port=1
 third_party_integrations = ThirdPartyIntegrations(docker_swarm=docker_swarm)
 
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-
 ```
 
 #### CodeDeploy
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 code_deploy_deployment_groups = CodeDeployDeploymentGroupsConfiguration(application_name='test-app', deployment_group_name='test-grp')
 code_deploy = CodeDeployConfiguration(clean_up_on_failure=False, terminate_instance_on_failure=False, deployment_groups=[code_deploy_deployment_groups])
 third_party_integrations = ThirdPartyIntegrations(code_deploy=code_deploy)
 
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-
 ```
 
 #### Route53
 ```python
-from spotinst_sdk.aws_elastigroup import *
-
 route53_record_set = Route53RecordSetsConfiguration(use_public_ip=True, name='test-domain.com')
 route53_domains = Route53DomainsConfiguration(hosted_zone_id='Z3UFMBCGJMYLUT', record_sets=[route53_record_set])
 route53 = Route53Configuration(domains=[route53_domains])
 third_party_integrations = ThirdPartyIntegrations(route53=route53)
 
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
+
+## Functions
+### Getting Started With Functions
+```python
+from spotinst_sdk import SpotinstClient
+from spotinst_sdk.spotinst_functions import *
+
+client = SpotinstClient()
+
+# Initialize application
+application = Application("example_application")
+
+# Create application and retrieve application_id
+app = client.create_application(application)
+app_id = app['id']
+print('app id: %s' % app_id)
+
+# Initialize providers
+providers = ['aws']
+
+# Initialize locations
+locations = ['us-east-1']
+
+# Initialize environment
+environment_config = Environment("test-environment", app_id, providers, locations)
+environment = client.create_environment(environment_config)
+environment_id = environment['id']
+print('env id: %s' % environment_id)
+
+# Initialize function
+function_config = Function("ping", env_id, '/development/my_project/ping', 'main', 'nodejs83', 128, 30)
+
+# Create function and retrieve invocation URL
+function = client.create_function(function_config)
+function_url = function['url']
+print('function url: %s' % function_url)
+
 
 ```

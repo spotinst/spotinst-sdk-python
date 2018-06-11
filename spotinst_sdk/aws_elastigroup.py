@@ -623,7 +623,7 @@ class NomadConfiguration:
         :type acl_token: str
         :type auto_scale: NomadAutoScalerConfiguration
         """
-        self.master_host = master_host
+        self.masterHost = master_host
         self.master_port = master_port
         self.acl_token = acl_token
         self.auto_scale = auto_scale
@@ -802,7 +802,7 @@ class ThirdPartyIntegrations:
 class Compute:
     def __init__(self, launch_specification=none, instance_types=none, product=none,
                  availability_zones=none,
-                 elastic_ips=none, private_ips=none, subnet_ids=none):
+                 elastic_ips=none, private_ips=none, subnet_ids=none, preferred_availability_zones=none):
         """
         
         :type launch_specification: 
@@ -812,6 +812,7 @@ class Compute:
         :type elastic_ips: list[str]
         :type private_ips: list[str]
         :type subnet_ids: list[str]
+        :type preferred_availability_zones: list[str]
         """
         self.elastic_ips = elastic_ips
         self.private_ips = private_ips
@@ -820,6 +821,7 @@ class Compute:
         self.availability_zones = availability_zones
         self.product = product
         self.launch_specification = launch_specification
+        self.preferred_availability_zones = preferred_availability_zones
 
 
 class AvailabilityZone:

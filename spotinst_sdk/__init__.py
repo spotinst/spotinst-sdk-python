@@ -1,10 +1,14 @@
 import json
+import os
 import re
 
 import requests
+import yaml
 
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
+
+CREDENTIALS_FILE = os.path.join(os.path.expanduser("~"), '.spotinst', 'credentials')
 
 __version__ = '1.0.29'
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
@@ -19,15 +23,24 @@ class SpotinstClient:
     under_pat = re.compile(r'_([a-z])')
 
     # region Constructor
-    def __init__(self, auth_token,
+    def __init__(self, auth_token=None,
                  account_id=None,
+                 profile='default',
                  print_output=True,
                  user_agent=None):
+        """
+
+        :type auth_token: str
+        :type account_id: str
+        :type profile: str
+        :type print_output: bool
+        :type user_agent: str
+        """
         self.auth_token = auth_token
         self.account_id = account_id
 
-        if not self.auth_token or not self.account_id:
-            self.load_credentials()
+        if not auth_token or not account_id:
+            self.load_credentials(profile=profile)
 
         self.should_print_output = print_output
         self.user_agent = user_agent
@@ -467,27 +480,20 @@ class SpotinstClient:
     def underscore_to_camel(self, name):
         return self.under_pat.sub(lambda x: x.group(1).upper(), name)
 
-    def load_credentials(self):
-        print('loading credentials from file')
+    def load_credentials(self, profile):
+        self.account_id = os.environ.get('SPOTINST_ACCOUNT', None)
+        self.auth_token = os.environ.get('SPOTINST_TOKEN', None)
 
-        with open(CREDENTIALS_FILE, 'r') as credentials_file:
+        if not self.account_id or not self.auth_token:
+            with open(CREDENTIALS_FILE, 'r') as credentials_file:
+                config = yaml.load(credentials_file)
 
-            for line in credentials_file:
-                stripped_line = line.strip().split("=")
+                if config:
+                    self.account_id = config.get(profile, {}).get("account", None)
+                    self.auth_token = config.get(profile, {}).get("token", None)
 
-                if len(stripped_line) == 2:
-                    key = stripped_line[0]
-                    val = stripped_line[1]
-
-                    if key == 'account_id':
-                        self.account_id = val
-                    elif key == 'token':
-                        self.auth_token = val
-
-            if not self.account_id or not self.auth_token:
-                raise SpotinstClientException("failed to load credentials from file")
-
-
+                if not self.account_id or not self.auth_token:
+                    raise SpotinstClientException("failed to load credentials")
     # endregion
 
     class HTTP_STATUS_CODES:
