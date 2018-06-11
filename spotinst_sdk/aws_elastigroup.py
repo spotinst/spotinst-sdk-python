@@ -203,7 +203,7 @@ class ScalingPolicy:
         :type statistic: str
         :type evaluation_periods: int
         :type period: int
-        :type threshold: int
+        :type threshold: float
         :type cooldown: int
         :type action: ScalingPolicyAction
         :type unit: str

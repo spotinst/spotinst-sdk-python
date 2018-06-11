@@ -52,28 +52,6 @@
       ],
       "down": [
         {
-          "metricName": "CPUUtilization",
-          "statistic": "average",
-          "unit": "percent",
-          "threshold": 10,
-          "namespace": "AWS/EC2",
-          "dimensions": [
-            {
-              "name": "InstanceId"
-            }
-          ],
-          "period": 300,
-          "evaluationPeriods": 1,
-          "cooldown": 300,
-          "action": {
-            "type": "updateCapacity",
-            "target": 10,
-            "minimum": 5,
-            "maximum": 20
-          },
-          "operator": "lte"
-        },
-        {
           "metricName": "overhead",
           "statistic": "average",
           "unit": "milliseconds",
@@ -128,15 +106,15 @@
           "startTime": "2018-05-23T10:55:09Z",
           "cronExpression": "00 22 * * 3",
           "scaleTargetCapacity": 0,
-          "scaleMinCapcity": 0,
-          "scaleMaxCapcity": 3
+          "scaleMinCapacity": 0,
+          "scaleMaxCapacity": 3
         },
         {
           "taskType": "scale",
           "startTime": "2018-05-25T10:55:09Z",
           "scaleTargetCapacity": 3,
-          "scaleMinCapcity": 3,
-          "scaleMaxCapcity": 3
+          "scaleMinCapacity": 3,
+          "scaleMaxCapacity": 3
         }
       ]
     },
