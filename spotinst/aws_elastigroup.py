@@ -5,10 +5,23 @@ none = "d3043820717d74d9a17694c176d39733"
 
 # region Elastigroup
 class Elastigroup:
+
     def __init__(self, name=none, description=none, capacity=none, strategy=none,
                  compute=none, scaling=none,
                  scheduling=none, multai=none,
                  third_parties_integration=none):
+        """
+
+        :param name: str
+        :type description: str
+        :type capacity: Capacity
+        :type strategy: Strategy
+        :type compute: Compute
+        :type scaling: Scaling
+        :type scheduling: Scheduling
+        :type multai: Multai
+        :type third_parties_integration: ThirdPartyIntegrations
+        """
         self.name = name
         self.description = description
         self.capacity = capacity
@@ -24,11 +37,27 @@ class Elastigroup:
 
 # region Strategy
 class Strategy:
+
     def __init__(self, availability_vs_cost=none, risk=none, utilize_reserved_instances=none,
                  fallback_to_od=none,
                  on_demand_count=none, draining_timeout=none,
                  spin_up_time=none, lifetime_period=none, signals=none,
-                 scaling_strategy=none, persistence=none):
+                 scaling_strategy=none, persistence=none, revert_to_spot=none):
+        """
+
+        :type availability_vs_cost:  str
+        :type risk: int
+        :type utilize_reserved_instances: bool
+        :type fallback_to_od: bool
+        :type on_demand_count: int
+        :type draining_timeout: int
+        :type spin_up_time: int
+        :type lifetime_period: int
+        :type signals: list[Signal]
+        :type scaling_strategy: ScalingStrategy
+        :type persistence: Persistence
+        :type revert_to_spot: RevertToSpot
+        """
         self.risk = risk
         self.utilize_reserved_instances = utilize_reserved_instances
         self.fallback_to_od = fallback_to_od
@@ -41,25 +70,55 @@ class Strategy:
         self.signals = signals
         self.scaling_strategy = scaling_strategy
         self.persistence = persistence
+        self.revert_to_spot = revert_to_spot
 
 
 class Signal:
+
     def __init__(self, name=none, timeout=none):
+        """
+
+        :type name: str
+        :type timeout: int
+        """
         self.name = name
         self.timeout = timeout
 
 
 class ScalingStrategy:
     def __init__(self, terminate_at_end_of_billing_hour):
+        """
+
+        :type terminate_at_end_of_billing_hour: bool
+        """
         self.terminate_at_end_of_billing_hour = terminate_at_end_of_billing_hour
 
 
 class Persistence:
     def __init__(self, should_persist_block_devices=none, should_persist_root_device=none,
-                 should_persist_private_ip=none):
+                 should_persist_private_ip=none, block_device_mode=none):
+        """
+
+        :type should_persist_block_devices: bool
+        :type should_persist_root_device: bool
+        :type should_persist_private_ip: bool
+        :type block_device_mode: str
+        """
         self.should_persist_block_devices = should_persist_block_devices
         self.should_persist_root_device = should_persist_root_device
         self.should_persist_private_ip = should_persist_private_ip
+        self.block_device_mode = block_device_mode
+
+
+class RevertToSpot:
+    def __init__(self, perform_at=none, time_windows=none):
+        """
+        
+        :type perform_at: str
+        :type time_windows: list[str]
+        """
+        self.perform_at = perform_at
+        self.time_windows = time_windows
 
 
 # endregion
@@ -67,6 +126,13 @@ class Persistence:
 # region Capacity
 class Capacity:
     def __init__(self, minimum=none, maximum=none, target=none, unit=none):
+        """
+        
+        :type minimum: int 
+        :type maximum: int
+        :type target: int
+        :type unit: str
+        """
         self.minimum = minimum
         self.maximum = maximum
         self.target = target
@@ -78,6 +144,12 @@ class Capacity:
 # region Scaling
 class Scaling:
     def __init__(self, up=none, down=none, target=none):
+        """
+        
+        :type up:  list[ScalingPolicy]
+        :type down: list[ScalingPolicy]
+        :type target: list[TargetTrackingPolicy]
+        """
         self.up = up
         self.down = down
         self.target = target
@@ -85,6 +157,11 @@ class Scaling:
 
 class ScalingPolicyDimension:
     def __init__(self, name=none, value=none):
+        """
+        
+        :type name: str 
+        :type value: str
+        """
         self.name = name
         self.value = value
 
@@ -94,6 +171,16 @@ class ScalingPolicyAction:
                  max_target_capacity=none, target=none,
                  minimum=none,
                  maximum=none):
+        """
+        
+        :type type: str
+        :type adjustment: int
+        :type min_target_capacity: int
+        :type max_target_capacity: int
+        :type target: int
+        :type minimum: int
+        :type maximum: int
+        """
         self.type = type
         self.adjustment = adjustment
         self.min_target_capacity = min_target_capacity
@@ -108,7 +195,24 @@ class ScalingPolicy:
                  evaluation_periods=none, period=none,
                  threshold=none,
                  cooldown=none, action=none, unit=none, operator=none,
-                 dimensions=none, policy_name=none):
+                 dimensions=none, policy_name=none, source=none, extended_statistic=none):
+        """
+        
+        :type namespace: str
+        :type metric_name: str
+        :type statistic: str
+        :type evaluation_periods: int
+        :type period: int
+        :type threshold: int
+        :type cooldown: int
+        :type action: ScalingPolicyAction
+        :type unit: str
+        :type operator: str
+        :type dimensions: list[ScalingPolicyDimension]
+        :type policy_name: str
+        :type source: str
+        :type extended_statistic: str 
+        """
         self.policy_name = policy_name
         self.namespace = namespace
         self.metric_name = metric_name
@@ -121,12 +225,26 @@ class ScalingPolicy:
         self.action = action
         self.unit = unit
         self.operator = operator
+        self.source = source
+        self.extended_statistic = extended_statistic
 
 
 class TargetTrackingPolicy:
     def __init__(self, namespace=none, metric_name=none, statistic=none,
                  cooldown=none, target=none, unit=none,
                  dimensions=none, policy_name=none, source=none):
+        """
+        
+        :type namespace: str
+        :type metric_name: str
+        :type statistic: str
+        :type cooldown: int
+        :type target: int
+        :type unit: str
+        :type dimensions: list[ScalingPolicyDimension] 
+        :type policy_name: str
+        :type source: str
+        """
         self.policy_name = policy_name
         self.namespace = namespace
         self.source = source
@@ -143,6 +261,10 @@ class TargetTrackingPolicy:
 # region Scheduling
 class Scheduling:
     def __init__(self, tasks=none):
+        """
+        
+        :type tasks: list[ScheduledTask]
+        """
         self.tasks = tasks
 
 
@@ -152,7 +274,7 @@ class ScheduledTask:
                  scale_max_capacity=none, batch_size_percentage=none, grace_period=none,
                  adjustment=none,
                  adjustment_percentage=none, is_enabled=none,
-                 frequency=none, cron_expression=none, ):
+                 frequency=none, cron_expression=none, start_time=none):
         self.is_enabled = is_enabled
         self.frequency = frequency
         self.cron_expression = cron_expression
@@ -164,6 +286,7 @@ class ScheduledTask:
         self.grace_period = grace_period
         self.adjustment = adjustment
         self.adjustment_percentage = adjustment_percentage
+        self.start_time = start_time
 
 
 # endregion
@@ -222,25 +345,95 @@ class BeanstalkDeploymentStrategy:
 
 
 class EcsConfiguration:
-    def __init__(self, cluster_name=none):
+    def __init__(self, cluster_name=none, auto_scale=none):
         self.cluster_name = cluster_name
+        self.auto_scale = auto_scale
+
+
+class EcsAutoScaleConfiguration:
+    def __init__(self, is_enabled=none, is_auto_config=none, cooldown=none, headroom=none, attributes=none, down=none):
+        self.is_enabled = is_enabled
+        self.is_auto_config = is_auto_config
+        self.cooldown = cooldown
+        self.headroom = headroom
+        self.attributes = attributes
+        self.down = down
+
+
+class EcsAutoScalerHeadroomConfiguration:
+    def __init__(self, cpu_per_unit=none, memory_per_unit=none, num_of_units=none):
+        self.cpu_per_unit = cpu_per_unit
+        self.memory_per_unit = memory_per_unit
+        self.num_of_units = num_of_units
+
+
+class EcsAutoScalerAttributeConfiguration:
+    def __init__(self, key=none, value=none):
+        self.key = key
+        self.value = value
+
+
+class EcsAutoScalerDownConfiguration:
+    def __init__(self, evaluation_periods=none):
+        self.evaluation_periods = evaluation_periods
+
+
+class MlbRuntimeConfiguration:
+    def __init__(self, deployment_id=none):
+        self.deployment_id = deployment_id
 
 
 class KubernetesConfiguration:
-    def __init__(self, api_server=none, token=none):
+    def __init__(self, api_server=none, token=none, integration_mode=none, cluster_identifier=none, auto_scale=none,
+                 headroom=none, down=none):
         self.api_server = api_server
         self.token = token
+        self.integration_mode = integration_mode
+        self.cluster_identifier = cluster_identifier
+        self.auto_scale = auto_scale
+        self.headroom = headroom
+        self.down = down
+
+
+class KubernetesAutoScalerConfiguration:
+    def __init__(self, is_enabled=none, is_auto_config=none, cooldown=none, headroom=none, labels=none, down=none):
+        self.is_enabled = is_enabled
+        self.is_auto_config = is_auto_config
+        self.cooldown = cooldown
+        self.headroom = headroom
+        self.labels = labels
+        self.down = down
+
+
+class KubernetesAutoScalerHeadroomConfiguration:
+    def __init__(self, cpu_per_unit=none, memory_per_unit=none, num_of_units=none):
+        self.cpu_per_unit = cpu_per_unit
+        self.memory_per_unit = memory_per_unit
+        self.num_of_units = num_of_units
+
+
+class KubernetesAutoScalerLabelsConfiguration:
+    def __init__(self, key=none, value=none):
+        self.key = key
+        self.value = value
+
+
+class KubernetesAutoScalerDownConfiguration:
+    def __init__(self, evaluation_periods=none):
+        self.evaluation_periods = evaluation_periods
 
 
 class RightScaleConfiguration:
-    def __init__(self, account_id=none, refresh_token=none):
+    def __init__(self, account_id=none, refresh_token=none, region=none):
         self.account_id = account_id
         self.refresh_token = refresh_token
+        self.region = region
 
 
 class OpsWorksConfiguration:
-    def __init__(self, layer_id=none):
+    def __init__(self, layer_id=none, stack_type=none):
         self.layer_id = layer_id
+        self.stack_type = stack_type
 
 
 class ChefConfiguration:
@@ -253,10 +446,103 @@ class ChefConfiguration:
         self.chef_version = chef_version
 
 
+class CodeDeployConfiguration:
+    def __init__(self, deployment_groups=none, clean_up_on_failure=none, terminate_instance_on_failure=none):
+        self.deployment_groups = deployment_groups
+        self.clean_up_on_failure = clean_up_on_failure
+        self.terminate_instance_on_failure = terminate_instance_on_failure
+
+
+class CodeDeployDeploymentGroupsConfiguration:
+    def __init__(self, application_name=none, deployment_group_name=none):
+        self.application_name = application_name
+        self.deployment_group_name = deployment_group_name
+
+
+class NomadConfiguration:
+    def __init__(self, master_host=none, master_port=none, acl_token=none, auto_scale=none):
+        self.master_host = master_host
+        self.master_port = master_port
+        self.acl_token = acl_token
+        self.auto_scale = auto_scale
+
+
+class NomadAutoScalerConfiguration:
+    def __init__(self, is_enabled=none, cooldown=none, headroom=none, constraints=none, down=none):
+        self.is_enabled = is_enabled
+        self.cooldown = cooldown
+        self.headroom = headroom
+        self.constraints = constraints
+        self.down = down
+
+
+class NomadAutoScalerHeadroomConfiguration:
+    def __init__(self, cpu_per_unit=none, memory_per_unit=none, num_of_units=none):
+        self.cpu_per_unit = cpu_per_unit
+        self.memory_per_unit = memory_per_unit
+        self.num_of_units = num_of_units
+
+
+class NomadAutoScalerConstraintsConfiguration:
+    def __init__(self, key=none, value=none):
+        self.key = key
+        self.value = value
+
+
+class NomadAutoScalerDownConfiguration:
+    def __init__(self, evaluation_periods=none):
+        self.evaluation_periods = evaluation_periods
+
+
+class DockerSwarmConfiguration:
+    def __init__(self, master_host=none, master_port=none, auto_scale=none):
+        self.master_host = master_host
+        self.master_port = master_port
+        self.auto_scale = auto_scale
+
+
+class DockerSwarmAutoScalerConfiguration:
+    def __init__(self, is_enabled=none, cooldown=none, headroom=none, down=none):
+        self.is_enabled = is_enabled
+        self.cooldown = cooldown
+        self.headroom = headroom
+        self.down = down
+
+
+class DockerSwarmAutoScalerHeadroomConfiguration:
+    def __init__(self, cpu_per_unit=none, memory_per_unit=none, num_of_units=none):
+        self.cpu_per_unit = cpu_per_unit
+        self.memory_per_unit = memory_per_unit
+        self.num_of_units = num_of_units
+
+
+class DockerSwarmAutoScalerDownConfiguration:
+    def __init__(self, evaluation_periods=none):
+        self.evaluation_periods = evaluation_periods
+
+
+class Route53Configuration:
+    def __init__(self, domains=none):
+        self.domains = domains
+
+
+class Route53DomainsConfiguration:
+    def __init__(self, hosted_zone_id=none, record_sets=none):
+        self.hosted_zone_id = hosted_zone_id
+        self.record_sets = record_sets
+
+
+class Route53RecordSetsConfiguration:
+    def __init__(self, name=none, use_public_ip=none):
+        self.name = name
+        self.use_public_ip = use_public_ip
+
+
 class ThirdPartyIntegrations:
     def __init__(self, rancher=none, mesosphere=none, elastic_beanstalk=none, ecs=none,
                  kubernetes=none, right_scale=none,
-                 ops_works=none, chef=none):
+                 ops_works=none, chef=none, mlb_runtime=none, code_deploy=none, nomad=none, docker_swarm=none,
+                 route53=none):
         self.rancher = rancher
         self.mesosphere = mesosphere
         self.elastic_beanstalk = elastic_beanstalk
@@ -265,6 +551,11 @@ class ThirdPartyIntegrations:
         self.right_scale = right_scale
         self.ops_works = ops_works
         self.chef = chef
+        self.mlb_runtime = mlb_runtime
+        self.code_deploy = code_deploy
+        self.nomad = nomad
+        self.docker_swarm = docker_swarm
+        self.route53 = route53
 
 
 # endregion
@@ -273,9 +564,11 @@ class ThirdPartyIntegrations:
 class Compute:
     def __init__(self, launch_specification=none, instance_types=none, product=none,
                  availability_zones=none,
-                 elastic_ips=none,
+                 elastic_ips=none, private_ips=none, subnet_ids=none,
                  ebs_volume_pool=none):
         self.elastic_ips = elastic_ips
+        self.private_ips = private_ips
+        self.subnet_ids = subnet_ids
         self.instance_types = instance_types
         self.availability_zones = availability_zones
         self.product = product
@@ -292,10 +585,11 @@ class AvailabilityZone:
 
 
 class InstanceTypes:
-    def __init__(self, ondemand=none, spot=none, weights=none):
+    def __init__(self, ondemand=none, spot=none, weights=none, preferred_spot=none):
         self.ondemand = ondemand
         self.spot = spot
         self.weights = weights
+        self.preferred_spot = preferred_spot
 
 
 class Weight:

@@ -6,7 +6,7 @@ import requests
 from spotinst import aws_elastigroup
 from spotinst import spotinst_functions
 
-__version__ = '1.0.27'
+__version__ = '1.0.29'
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(_SpotinstClient__spotinst_sdk_python_agent_name, __version__)
 
@@ -25,6 +25,10 @@ class SpotinstClient:
                  user_agent=None):
         self.auth_token = auth_token
         self.account_id = account_id
+
+        if not self.auth_token or not self.account_id:
+            self.load_credentials()
+
         self.should_print_output = print_output
         self.user_agent = user_agent
 
@@ -462,6 +466,27 @@ class SpotinstClient:
 
     def underscore_to_camel(self, name):
         return self.under_pat.sub(lambda x: x.group(1).upper(), name)
+
+    def load_credentials(self):
+        print('loading credentials from file')
+
+        with open(CREDENTIALS_FILE, 'r') as credentials_file:
+
+            for line in credentials_file:
+                stripped_line = line.strip().split("=")
+
+                if len(stripped_line) == 2:
+                    key = stripped_line[0]
+                    val = stripped_line[1]
+
+                    if key == 'account_id':
+                        self.account_id = val
+                    elif key == 'token':
+                        self.auth_token = val
+
+            if not self.account_id or not self.auth_token:
+                raise SpotinstClientException("failed to load credentials from file")
+
 
     # endregion
 

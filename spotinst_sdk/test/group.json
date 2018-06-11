@@ -1,0 +1,364 @@
+{
+  "group": {
+    "name": "spotinst-group",
+    "description": "Development",
+    "region": "us-east-1",
+    "capacity": {
+      "target": 2,
+      "minimum": 2,
+      "maximum": 10
+    },
+    "strategy": {
+      "risk": 100,
+      "onDemandCount": null,
+      "availabilityVsCost": "costOriented",
+      "utilizeReservedInstances": false,
+      "fallbackToOd": true,
+      "persistence": {
+        "blockDevicesMode": "reattach",
+        "shouldPersistRootDevice": true,
+        "shouldPersistBlockDevices": true,
+        "shouldPersistPrivateIp": true
+      },
+      "revertToSpot": {
+        "performAt": "timeWindow",
+        "timeWindows": [
+          "Mon:03:00-Wed:02:30"
+        ]
+      }
+    },
+    "scaling": {
+      "up": [
+        {
+          "metricName": "CPUUtilization",
+          "statistic": "average",
+          "unit": "percent",
+          "threshold": 90,
+          "namespace": "AWS/EC2",
+          "dimensions": [
+            {
+              "name": "InstanceId"
+            }
+          ],
+          "period": 300,
+          "evaluationPeriods": 1,
+          "cooldown": 300,
+          "action": {
+            "type": "percentageAdjustment",
+            "adjustment": 20
+          },
+          "operator": "gte"
+        }
+      ],
+      "down": [
+        {
+          "metricName": "CPUUtilization",
+          "statistic": "average",
+          "unit": "percent",
+          "threshold": 10,
+          "namespace": "AWS/EC2",
+          "dimensions": [
+            {
+              "name": "InstanceId"
+            }
+          ],
+          "period": 300,
+          "evaluationPeriods": 1,
+          "cooldown": 300,
+          "action": {
+            "type": "updateCapacity",
+            "target": 10,
+            "minimum": 5,
+            "maximum": 20
+          },
+          "operator": "lte"
+        },
+        {
+          "metricName": "overhead",
+          "statistic": "average",
+          "unit": "milliseconds",
+          "threshold": 0.8,
+          "namespace": "Monitoring",
+          "dimensions": [
+            {
+              "name": "Cluster",
+              "value": "M2M"
+            },
+            {
+              "name": "Environment",
+              "value": "ia-staging"
+            }
+          ],
+          "period": 300,
+          "evaluationPeriods": 1,
+          "cooldown": 300,
+          "action": {
+            "type": "adjustment",
+            "adjustment": 1
+          },
+          "operator": "lt"
+        }
+      ],
+      "target": [
+        {
+          "policyName": "target_policy_1",
+          "metricName": "CPUUtilization",
+          "statistic": "average",
+          "source": "cloudWatch",
+          "unit": "percent",
+          "target": 50,
+          "namespace": "AWS/EC2",
+          "cooldown": 300
+        }
+      ]
+    },
+    "scheduling": {
+      "tasks": [
+        {
+          "frequency": "hourly",
+          "taskType": "backup_ami"
+        },
+        {
+          "taskType": "roll",
+          "cronExpression": "00 17 * * 3",
+          "batchSizePercentage": 30
+        },
+        {
+          "taskType": "scale",
+          "startTime": "2018-05-23T10:55:09Z",
+          "cronExpression": "00 22 * * 3",
+          "scaleTargetCapacity": 0,
+          "scaleMinCapcity": 0,
+          "scaleMaxCapcity": 3
+        },
+        {
+          "taskType": "scale",
+          "startTime": "2018-05-25T10:55:09Z",
+          "scaleTargetCapacity": 3,
+          "scaleMinCapcity": 3,
+          "scaleMaxCapcity": 3
+        }
+      ]
+    },
+    "compute": {
+      "instanceTypes": {
+        "ondemand": "m3.medium",
+        "spot": [
+          "c3.large",
+          "c4.large",
+          "m3.large",
+          "r3.large"
+        ]
+      },
+      "subnetIds": [
+        "subnet-4c1d1538",
+        "subnet-2791bb61",
+        "subnet-703a6f58",
+        "subnet-c62846fc"
+      ],
+      "product": "Linux/UNIX",
+      "elasticIps": [
+        "eipalloc-9d4e1234"
+      ],
+      "launchSpecification": {
+        "loadBalancersConfig": {
+          "loadBalancers": [
+            {
+              "name": "MyTargetGroup",
+              "arn": "arn:aws:elasticloadbalancing:us-west-2:922761411234:targetgroup/MyTargetGroup/1fe63217f8ff1234",
+              "type": "TARGET_GROUP"
+            },
+            {
+              "name": "MyClassicLB",
+              "type": "CLASSIC"
+            }
+          ]
+        },
+        "healthCheckType": "ELB",
+        "healthCheckGracePeriod": 300,
+        "securityGroupIds": [
+          "sg-af18c4ca"
+        ],
+        "monitoring": false,
+        "ebsOptimized": true,
+        "imageId": "ami-1ecae776",
+        "keyPair": "spotinst",
+        "blockDeviceMappings": [
+          {
+            "deviceName": "/dev/sdm",
+            "ebs": {
+              "deleteOnTermination": "true",
+              "volumeSize": "80",
+              "volumeType": "gp2"
+            }
+          },
+          {
+            "deviceName": "/dev/sda1",
+            "ebs": {
+              "deleteOnTermination": "true",
+              "volumeSize": "24",
+              "volumeType": "gp2"
+            }
+          }
+        ],
+        "networkInterfaces": [
+          {
+            "deviceIndex": 0,
+            "associatePublicIpAddress": true,
+            "deleteOnTermination": true,
+            "associateIpv6Address": false
+          }
+        ],
+        "userData": "IyEvYmluL2Jhc2gNCnRvdWNoIHRlc3Qiquwhq38",
+        "tags": [
+          {
+            "tagKey": "allow",
+            "tagValue": "allow-ssh"
+          }
+        ]
+      }
+    },
+    "thirdPartiesIntegration": {
+      "ecs": {
+        "clusterName": "test-ecs",
+        "autoScale": {
+          "isEnabled": true,
+          "isAutoConfig": false,
+          "cooldown": 900,
+          "attributes": [
+            {
+              "key": "the_key",
+              "value": "the_value"
+            }
+          ],
+          "down": {
+            "evaluationPeriods": 3
+          },
+          "headroom": {
+            "cpuPerUnit": 4096,
+            "memoryPerUnit": 4096,
+            "numOfUnits": 30
+          }
+        }
+      },
+      "elasticBeanstalk": {
+        "environmentId": "123",
+        "deploymentPreferences": {
+          "automaticRoll": true,
+          "batchSizePercentage": 50,
+          "gracePeriod": 600,
+          "strategy": {
+            "action": "REPLACE_SERVER",
+            "shouldDrainInstances": true
+          }
+        }
+      },
+      "rancher": {
+        "masterHost": "https://master.host.com",
+        "accessKey": "KEY",
+        "secretKey": "SECRET"
+      },
+      "kubernetes": {
+        "integrationMode": "pod",
+        "clusterIdentifier": "test-k8s",
+        "autoScale": {
+          "isEnabled": true,
+          "cooldown": 300,
+          "down": {
+            "evaluationPeriods": 5
+          },
+          "headroom": {
+            "cpuPerUnit": 2000,
+            "memoryPerUnit": 4000,
+            "numOfUnits": 2
+          },
+          "isAutoConfig": false
+        }
+      },
+      "mesosphere": {
+        "apiServer": "1.2.3.4"
+      },
+      "mlbRuntime": {
+        "deploymentId": "dp-rm0f5b912345"
+      },
+      "nomad": {
+        "masterHost": "https://master.host.com",
+        "masterPort": 443,
+        "autoScale": {
+          "isEnabled": true,
+          "cooldown": 180,
+          "down": {
+            "evaluationPeriods": 3
+          },
+          "headroom": {
+            "cpuPerUnit": 10,
+            "memoryPerUnit": 1000,
+            "numOfUnits": 2
+          },
+          "constraints": [
+            {
+              "key": "${node.class}",
+              "value": "value"
+            }
+          ]
+        },
+        "aclToken": "123"
+      },
+      "chef": {
+        "chefServer": "https://master.host.com",
+        "organization": "ORGNAME",
+        "chefVersion": "12.1",
+        "user": "User",
+        "pemKey": "Key"
+      },
+      "rightScale": {
+        "accountId": "ID",
+        "refreshToken": "TOKEN",
+        "region": "us-east-1"
+      },
+      "opsWorks": {
+        "layerId": "00d9m815-8aac-62b7-cc01-123456",
+        "stackType": "REGIONAL"
+      },
+      "codeDeploy": {
+        "cleanUpOnFailure": false,
+        "terminateInstanceOnFailure": false,
+        "deploymentGroups": [
+          {
+            "applicationName": "test-app",
+            "deploymentGroupName": "test-grp"
+          }
+        ]
+      },
+      "dockerSwarm": {
+        "masterHost": "10.10.10.10",
+        "masterPort": 1234,
+        "autoScale": {
+          "isEnabled": true,
+          "cooldown": 300,
+          "down": {
+            "evaluationPeriods": 4
+          },
+          "headroom": {
+            "cpuPerUnit": 1000000000,
+            "memoryPerUnit": 800000000,
+            "numOfUnits": 3
+          }
+        }
+      },
+      "route53": {
+        "domains": [
+          {
+            "hostedZoneId": "Z3UFMBCGJMYLUT",
+            "recordSets": [
+              {
+                "usePublicIp": true,
+                "name": "test-domain.com"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
