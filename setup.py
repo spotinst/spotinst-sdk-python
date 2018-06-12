@@ -41,7 +41,7 @@ setup(
 
     keywords='spotinst spot instances aws ec2 cloud infrastructure development elastigroup',
     packages=["spotinst_sdk"],
-    install_requires=['requests'],
+    install_requires=['requests', 'PyYaml'],
 
     setup_requires=["pytest-runner"],
     tests_require=["pytest"]
