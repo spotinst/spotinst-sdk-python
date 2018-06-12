@@ -8,22 +8,22 @@ Spotinst SDK for the Python programming language
 
 ## Table of contents
 <!--ts-->
-   * [Installation](#Installation)
-   * [Configuring Credentials](#Configuring-Credentials)
-   * [Usage](#Usage)
-      * [Elastigroup](#Elastigroup)
-        * [Getting Started With Elastigroup](#Getting-Started-With-Elastigroup)
-        * [Scaling Policies](#Scaling-Policies)
-        * [Scheduling](#Scheduling)
-        * [Third Party Integrations](#Third-Party-Integrations)
-          * [ECS](#ECS)
-          * [Kubernetes](#Kubernetes)
-          * [Nomad](#Nomad)
-          * [Docker Swarm](#DockerSwarm)
-          * [CodeDeploy](#CodeDeploy)
-          * [Route53](#Route53)
-      * [Functions](#Functions)
-        * [Getting Started With Functions](#Getting-Started-With-Functions)
+   * [Installation](#installation)
+   * [Configuring Credentials](#configuring-credentials)
+   * [Usage](#usage)
+      * [Elastigroup](#elastigroup)
+        * [Getting Started With Elastigroup](#getting-started-with-elastigroup)
+        * [Scaling Policies](#scaling-policies)
+        * [Scheduling](#scheduling)
+        * [Third Party Integrations](#third-party-integrations)
+          * [ECS](#ecs)
+          * [Kubernetes](#kubernetes)
+          * [Nomad](#nomad)
+          * [Docker Swarm](#dockerswarm)
+          * [CodeDeploy](#codedeploy)
+          * [Route53](#route53)
+      * [Functions](#functions)
+        * [Getting Started With Functions](#getting-started-with-functions)
 <!--te-->
 
 
