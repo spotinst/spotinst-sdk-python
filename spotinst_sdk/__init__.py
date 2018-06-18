@@ -8,11 +8,19 @@ import yaml
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
 
-CREDENTIALS_FILE = os.path.join(os.path.expanduser("~"), '.spotinst', 'credentials')
+VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
+VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
+VAR_SPOTINST_TOKEN = 'SPOTINST_TOKEN'
+VAR_SPOTINST_ACCOUNT = 'SPOTINST_ACCOUNT'
+
+DEFAULT_PROFILE = 'default'
+DEFAULT_CREDENTIALS_FILE = os.path.join(
+    os.path.expanduser("~"), '.spotinst', 'credentials')
 
 __version__ = '1.0.29'
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
-_SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(_SpotinstClient__spotinst_sdk_python_agent_name, __version__)
+_SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
+    _SpotinstClient__spotinst_sdk_python_agent_name, __version__)
 
 
 class SpotinstClient:
@@ -25,7 +33,8 @@ class SpotinstClient:
     # region Constructor
     def __init__(self, auth_token=None,
                  account_id=None,
-                 profile='default',
+                 profile=None,
+                 credentials_file=None,
                  print_output=True,
                  user_agent=None):
         """
@@ -33,14 +42,16 @@ class SpotinstClient:
         :type auth_token: str
         :type account_id: str
         :type profile: str
+        :type credentials_file: str
         :type print_output: bool
         :type user_agent: str
         """
-        self.auth_token = auth_token
-        self.account_id = account_id
 
-        if not auth_token or not account_id:
-            self.load_credentials(profile=profile)
+        if not auth_token:
+            self.load_credentials(profile, credentials_file)
+        else:
+            self.auth_token = auth_token
+            self.account_id = account_id
 
         self.should_print_output = print_output
         self.user_agent = user_agent
@@ -54,15 +65,20 @@ class SpotinstClient:
 
         excluded_group_dict = self.exclude_missing(json.loads(group.toJSON()))
 
-        formatted_group_dict = self.convert_json(excluded_group_dict, self.underscore_to_camel)
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
 
         self.print_output(body_json)
 
-        group_response = self.send_post(body_json, self.__base_elastigroup_url, entity_name='elastigroup')
+        group_response = self.send_post(
+            body_json,
+            self.__base_elastigroup_url,
+            entity_name='elastigroup')
 
-        formatted_response = self.convert_json(group_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["items"][0]
 
@@ -70,40 +86,57 @@ class SpotinstClient:
 
     def scale_elastigroup_up(self, group_id, adjustment):
         query_params = dict({"adjustment": adjustment})
-        content = self.send_put_with_params(url=self.__base_elastigroup_url + "/" + str(group_id) + "/scale/up",
-                                            entity_name='elastigroup (scale up)',
-                                            body=None,
-                                            user_query_params=query_params)
+        content = self.send_put_with_params(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/scale/up",
+            entity_name='elastigroup (scale up)',
+            body=None,
+            user_query_params=query_params)
 
-        formatted_response = self.convert_json(content, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
     def scale_elastigroup_down(self, group_id, adjustment):
         query_params = dict({"adjustment": adjustment})
-        content = self.send_put_with_params(url=self.__base_elastigroup_url + "/" + str(group_id) + "/scale/down",
-                                            entity_name='elastigroup (scale down)',
-                                            body=None,
-                                            user_query_params=query_params)
+        content = self.send_put_with_params(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/scale/down",
+            entity_name='elastigroup (scale down)',
+            body=None,
+            user_query_params=query_params)
 
-        formatted_response = self.convert_json(content, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
     def update_elastigroup(self, group_update, group_id):
 
         group = aws_elastigroup.ElastigroupUpdateRequest(group_update)
 
-        excluded_group_update_dict = self.exclude_missing(json.loads(group.toJSON()))
+        excluded_group_update_dict = self.exclude_missing(
+            json.loads(group.toJSON()))
 
-        formatted_group_update_dict = self.convert_json(excluded_group_update_dict, self.underscore_to_camel)
+        formatted_group_update_dict = self.convert_json(
+            excluded_group_update_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_update_dict)
 
         self.print_output(body_json)
 
-        group_response = self.send_put(body_json, self.__base_elastigroup_url + "/" + group_id,
-                                       entity_name='elastigroup')
+        group_response = self.send_put(
+            body_json,
+            self.__base_elastigroup_url +
+            "/" +
+            group_id,
+            entity_name='elastigroup')
 
-        formatted_response = self.convert_json(group_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["items"][0]
 
@@ -114,16 +147,21 @@ class SpotinstClient:
         response = self.send_delete(url=delurl, entity_name='elastigroup')
         return response
 
-    def delete_elastigroup_with_deallocation(self, group_id, stateful_deallocation):
+    def delete_elastigroup_with_deallocation(
+            self, group_id, stateful_deallocation):
         delurl = self.__base_elastigroup_url + "/" + group_id
 
-        deletion_request = aws_elastigroup.ElastigroupDeletionRequest(stateful_deallocation)
+        deletion_request = aws_elastigroup.ElastigroupDeletionRequest(
+            stateful_deallocation)
 
-        excluded_deletion_dict = self.exclude_missing(json.loads(deletion_request.toJSON()))
-        formatted_deletion_dict = self.convert_json(excluded_deletion_dict, self.underscore_to_camel)
+        excluded_deletion_dict = self.exclude_missing(
+            json.loads(deletion_request.toJSON()))
+        formatted_deletion_dict = self.convert_json(
+            excluded_deletion_dict, self.underscore_to_camel)
         body_json = json.dumps(formatted_deletion_dict)
 
-        response = self.send_delete_with_body(body=body_json, url=delurl, entity_name='elastigroup')
+        response = self.send_delete_with_body(
+            body=body_json, url=delurl, entity_name='elastigroup')
 
         return response
 
@@ -131,37 +169,55 @@ class SpotinstClient:
         geturl = self.__base_elastigroup_url + "/" + group_id
         result = self.send_get(url=geturl, entity_name='elastigroup')
 
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
     def get_elastigroups(self):
-        content = self.send_get(url=self.__base_elastigroup_url, entity_name='elastigroup')
-        formatted_response = self.convert_json(content, self.camel_to_underscore)
+        content = self.send_get(
+            url=self.__base_elastigroup_url,
+            entity_name='elastigroup')
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
     def get_elastigroup_active_instances(self, group_id):
-        content = self.send_get(url=self.__base_elastigroup_url + "/" + str(group_id) + "/status",
-                                entity_name='active instances')
-        formatted_response = self.convert_json(content, self.camel_to_underscore)
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/status",
+            entity_name='active instances')
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
     def roll_group(self, group_id, group_roll):
 
-        group_roll_request = aws_elastigroup.ElastigroupRollRequest(group_roll=group_roll)
+        group_roll_request = aws_elastigroup.ElastigroupRollRequest(
+            group_roll=group_roll)
 
-        excluded_group_roll_dict = self.exclude_missing(json.loads(group_roll_request.toJSON()))
+        excluded_group_roll_dict = self.exclude_missing(
+            json.loads(group_roll_request.toJSON()))
 
-        formatted_group_roll_dict = self.convert_json(excluded_group_roll_dict, self.underscore_to_camel)
+        formatted_group_roll_dict = self.convert_json(
+            excluded_group_roll_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_roll_dict)
 
         self.print_output(body_json)
 
-        roll_response = self.send_put(url=self.__base_elastigroup_url + "/" + str(group_id) + "/roll",
-                                      body=body_json, entity_name='roll')
+        roll_response = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll",
+            body=body_json,
+            entity_name='roll')
 
-        formatted_response = self.convert_json(roll_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            roll_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["items"]
 
@@ -172,18 +228,26 @@ class SpotinstClient:
         group_detach_request = aws_elastigroup.ElastigroupDetachInstancesRequest(
             detach_configuration=detach_configuration)
 
-        excluded_group_detach_dict = self.exclude_missing(json.loads(group_detach_request.toJSON()))
+        excluded_group_detach_dict = self.exclude_missing(
+            json.loads(group_detach_request.toJSON()))
 
-        formatted_group_detach_dict = self.convert_json(excluded_group_detach_dict, self.underscore_to_camel)
+        formatted_group_detach_dict = self.convert_json(
+            excluded_group_detach_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_detach_dict)
 
         self.print_output(body_json)
 
-        detach_response = self.send_put(url=self.__base_elastigroup_url + "/" + str(group_id) + "/detachInstances",
-                                        body=body_json, entity_name='detach')
+        detach_response = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/detachInstances",
+            body=body_json,
+            entity_name='detach')
 
-        formatted_response = self.convert_json(detach_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            detach_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["status"]
 
@@ -198,15 +262,21 @@ class SpotinstClient:
 
         excluded_group_dict = self.exclude_missing(json.loads(app.toJSON()))
 
-        formatted_app_dict = self.convert_json(excluded_group_dict, self.underscore_to_camel)
+        formatted_app_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_app_dict)
 
         self.print_output(body_json)
 
-        app_response = self.send_post(body_json, self.__base_functions_url + '/application', entity_name='application')
+        app_response = self.send_post(
+            body_json,
+            self.__base_functions_url +
+            '/application',
+            entity_name='application')
 
-        formatted_response = self.convert_json(app_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            app_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["items"][0]
 
@@ -218,15 +288,21 @@ class SpotinstClient:
 
         excluded_env_dict = self.exclude_missing(json.loads(env.toJSON()))
 
-        formatted_env_dict = self.convert_json(excluded_env_dict, self.underscore_to_camel)
+        formatted_env_dict = self.convert_json(
+            excluded_env_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_env_dict)
 
         self.print_output(body_json)
 
-        env_response = self.send_post(body_json, self.__base_functions_url + '/environment', entity_name='environment')
+        env_response = self.send_post(
+            body_json,
+            self.__base_functions_url +
+            '/environment',
+            entity_name='environment')
 
-        formatted_response = self.convert_json(env_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            env_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["items"][0]
 
@@ -234,20 +310,27 @@ class SpotinstClient:
 
     def create_function(self, fx):
 
-        fx = spotinst_functions.FunctionCreationRequest(fx, self.should_print_output)
+        fx = spotinst_functions.FunctionCreationRequest(
+            fx, self.should_print_output)
 
         excluded_fx_dict = self.exclude_missing(json.loads(fx.toJSON()))
 
-        formatted_fx_dict = self.convert_json(excluded_fx_dict, self.underscore_to_camel)
+        formatted_fx_dict = self.convert_json(
+            excluded_fx_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_fx_dict)
 
         formatted_fx_dict['function']['code']['source'] = 'INLINE_BASE64_SOURCE_CODE'
         self.print_output(json.dumps(formatted_fx_dict))
 
-        fx_response = self.send_post(body_json, self.__base_functions_url + '/function', entity_name='function')
+        fx_response = self.send_post(
+            body_json,
+            self.__base_functions_url +
+            '/function',
+            entity_name='function')
 
-        formatted_response = self.convert_json(fx_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            fx_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["items"][0]
 
@@ -274,7 +357,7 @@ class SpotinstClient:
         self.print_output("Sending get request to spotinst API.")
         result = requests.get(url, params=query_params, headers=headers)
 
-        if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
+        if result.status_code == requests.codes.ok:
             self.print_output("Success")
             data = json.loads(result.content)
             return data
@@ -295,7 +378,7 @@ class SpotinstClient:
         self.print_output("Sending deletion request to spotinst API.")
         result = requests.delete(url, params=query_params, headers=headers)
 
-        if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
+        if result.status_code == requests.codes.ok:
             self.print_output("Success")
             return True
         else:
@@ -313,9 +396,13 @@ class SpotinstClient:
         )
 
         self.print_output("Sending deletion request to spotinst API.")
-        result = requests.delete(url, params=query_params, headers=headers, data=body)
+        result = requests.delete(
+            url,
+            params=query_params,
+            headers=headers,
+            data=body)
 
-        if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
+        if result.status_code == requests.codes.ok:
             self.print_output("Success")
             return True
         else:
@@ -333,9 +420,13 @@ class SpotinstClient:
         )
 
         self.print_output("Sending post request to spotinst API.")
-        result = requests.post(url, params=query_params, data=body, headers=headers)
+        result = requests.post(
+            url,
+            params=query_params,
+            data=body,
+            headers=headers)
 
-        if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
+        if result.status_code == requests.codes.ok:
             self.print_output("Success")
             data = json.loads(result.content)
             return data
@@ -354,9 +445,13 @@ class SpotinstClient:
         )
 
         self.print_output("Sending put request to spotinst API.")
-        result = requests.put(url, params=query_params, data=body, headers=headers)
+        result = requests.put(
+            url,
+            params=query_params,
+            data=body,
+            headers=headers)
 
-        if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
+        if result.status_code == requests.codes.ok:
             self.print_output("Success")
             data = json.loads(result.content)
             return data
@@ -376,9 +471,13 @@ class SpotinstClient:
         )
 
         self.print_output("Sending put request to spotinst API.")
-        result = requests.put(url, params=query_params, data=body, headers=headers)
+        result = requests.put(
+            url,
+            params=query_params,
+            data=body,
+            headers=headers)
 
-        if result.status_code == self.HTTP_STATUS_CODES.SUCCESS:
+        if result.status_code == requests.codes.ok:
             self.print_output("Success")
             data = json.loads(result.content)
             return data
@@ -397,29 +496,27 @@ class SpotinstClient:
         data = json.loads(result.content)
         response_json = json.dumps(data["response"])
         self.print_output(response_json)
-        raise SpotinstClientException("Error encountered while " + action_string, response_json)
+        raise SpotinstClientException(
+            "Error encountered while " +
+            action_string,
+            response_json)
 
     def convert_json(self, val, convert):
+        new_json = {}
         if val is None:
             return val
         elif type(val) in (int, float, bool, "".__class__, u"".__class__):
             return val
-        elif type(val) is dict:
-            if val.items() is not None:
-                for key, value in val.items():
-                    # IF it is an object, convert key and iterate
-                    new_value = self.convert_json(value, convert)
-                    val[convert(key)] = new_value
-                    if convert(key) is not key:
-                        del val[key]
-            return val
-        elif type(val) is list:
-            # If list
-            new_list = []
-            for item in val:
-                new_item = self.convert_json(item, convert)
-                new_list.append(new_item)
-            return new_list
+        for k, v in list(val.items()):
+            new_v = v
+            if isinstance(v, dict):
+                new_v = self.convert_json(v, convert)
+            elif isinstance(v, list):
+                new_v = list()
+                for x in v:
+                    new_v.append(self.convert_json(x, convert))
+            new_json[convert(k)] = new_v
+        return new_json
 
     def exclude_missing(self, obj):
         # Delete keys with the value 'none' in a dictionary, recursively.
@@ -480,27 +577,33 @@ class SpotinstClient:
     def underscore_to_camel(self, name):
         return self.under_pat.sub(lambda x: x.group(1).upper(), name)
 
-    def load_credentials(self, profile):
-        self.account_id = os.environ.get('SPOTINST_ACCOUNT', None)
-        self.auth_token = os.environ.get('SPOTINST_TOKEN', None)
+    def load_credentials(self, profile, credentials_file):
+        self.account_id = os.environ.get(VAR_SPOTINST_ACCOUNT, None)
+        self.auth_token = os.environ.get(VAR_SPOTINST_TOKEN, None)
 
-        if not self.account_id or not self.auth_token:
-            with open(CREDENTIALS_FILE, 'r') as credentials_file:
+        if not self.auth_token:
+            if not profile:
+                profile = os.environ.get(VAR_SPOTINST_PROFILE, DEFAULT_PROFILE)
+
+            if not credentials_file:
+                credentials_file = os.environ.get(
+                    VAR_SPOTINST_SHARED_CREDENTIALS_FILE,
+                    DEFAULT_CREDENTIALS_FILE)
+
+            with open(credentials_file, 'r') as credentials_file:
                 config = yaml.load(credentials_file)
 
                 if config:
-                    self.account_id = config.get(profile, {}).get("account", None)
-                    self.auth_token = config.get(profile, {}).get("token", None)
+                    self.account_id = config.get(
+                        profile, {}).get(
+                        "account", None)
+                    self.auth_token = config.get(
+                        profile, {}).get("token", None)
 
-                if not self.account_id or not self.auth_token:
-                    raise SpotinstClientException("failed to load credentials")
+            if not self.auth_token:
+                raise SpotinstClientException("failed to load credentials")
+
     # endregion
-
-    class HTTP_STATUS_CODES:
-        SUCCESS = 200
-        BAD_REQUEST = 400
-        UNAUTHORIZED = 401
-        INTERNAL_SERVER_ERROR = 500
 
 
 class SpotinstClientException(Exception):

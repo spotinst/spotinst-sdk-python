@@ -13,8 +13,9 @@ Spotinst SDK for the Python programming language
    * [Usage](#usage)
       * [Elastigroup](#elastigroup)
         * [Getting Started With Elastigroup](#getting-started-with-elastigroup)
-        * [Scaling Policies](#scaling-policies)
-        * [Scheduling](#scheduling)
+        * [Elastigroup Additional Configurations](#elastigroup-additional-configurations)
+          * [Scaling Policies](#scaling-policies)
+          * [Scheduling](#scheduling)
         * [Third Party Integrations](#third-party-integrations)
           * [ECS](#ecs)
           * [Kubernetes](#kubernetes)
@@ -22,21 +23,29 @@ Spotinst SDK for the Python programming language
           * [Docker Swarm](#dockerswarm)
           * [CodeDeploy](#codedeploy)
           * [Route53](#route53)
+          * [ElasticBeanstalk](#elasticbeanstalk)
       * [Functions](#functions)
         * [Getting Started With Functions](#getting-started-with-functions)
 <!--te-->
 
-
 ## Installation
 ```bash
-$ sudo pip install --upgrade spotinst-sdk
+pip install --upgrade spotinst-sdk
 ```
 
 ## Configuring Credentials
 The mechanism in which the sdk looks for credentials is to search through a list of possible locations and stop as soon as it finds credentials. The order in which the sdk searches for credentials is:
   - Passing credentials as parameters in the `SpotinstClient()` constructor
   - Environment variables in `SPOTINST_ACCOUNT` & `SPOTINST_TOKEN`
+  - Environment variables in `SPOTINST_PROFILE` & `SPOTINST_SHARED_CREDENTIALS_FILE`
   - Shared credential file `~/.spotinst/credentials`
+  
+>- example credentials file
+```yaml
+default:
+  token: token
+  account: account
+```
 
 ## Usage
 
@@ -96,25 +105,47 @@ deletion_success = client.delete_elastigroup(group_id=group_id)
 print('delete result: %s' % deletion_success)
 ```
 
-### Scaling Policies
+### Elastigroup Additional Configurations
+#### Scaling Policies
 ```python
-scaling_policy_action = ScalingPolicyAction(type='percentageAdjustment', adjustment=20)
-scaling_policy_dimension = ScalingPolicyDimension(name='InstanceId')
-scaling_policy = ScalingPolicy(metric_name='CPUUtilization', statistic='average',
-                                                            unit='percent', namespace='AWS/EC2', threshold=90,
-                                                            period=300, evaluation_periods=1, cooldown=300,
-                                                            operator='gte', action=scaling_policy_action,
-                                                            dimensions=[scaling_policy_dimension], source='cloudWatch')
-scaling = Scaling(up=[scaling_policy])                                                            
+scaling_policy_up_action = ScalingPolicyAction(type='percentageAdjustment', adjustment=20)
+scaling_policy_up_instance_dimension = ScalingPolicyDimension(name='InstanceId')
+scaling_policy_up = ScalingPolicy(metric_name='CPUUtilization', statistic='average',
+                                  unit='percent', namespace='AWS/EC2', threshold=90,
+                                  period=300, evaluation_periods=1, cooldown=300,
+                                  operator='gte', action=scaling_policy_up_action,
+                                  dimensions=[scaling_policy_up_instance_dimension])
+
+scaling_policy_down_action = ScalingPolicyAction(type='adjustment', adjustment=1)
+scaling_policy_down_cluster_dimension = ScalingPolicyDimension(name='Cluster', value='M2M')
+scaling_policy_down_env_dimension = ScalingPolicyDimension(name='Environment', value='ia-staging')
+scaling_policy_down = ScalingPolicy(metric_name='overhead', statistic='average',
+                                    unit='milliseconds', namespace='Monitoring', threshold=0.8,
+                                    period=300, evaluation_periods=1, cooldown=300,
+                                    operator='lt', action=scaling_policy_down_action,
+                                    dimensions=[scaling_policy_down_cluster_dimension,
+                                                scaling_policy_down_env_dimension]
+                                    )
+
+target_tracking = TargetTrackingPolicy(policy_name='target_policy_1', metric_name='CPUUtilization',
+                                       statistic='average', source='cloudWatch', unit='percent', target=50,
+                                       namespace='AWS/EC2', cooldown=300)
+
+scaling = Scaling(up=[scaling_policy_up], down=[scaling_policy_down], target=[target_tracking])                                                           
                                                             
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, scaling=scaling)
 ```
 
-### Scheduling
+#### Scheduling
 ```python
 scheduled_ami_backup = ScheduledTask(frequency='hourly', task_type='backup_ami')
 scheduled_roll = ScheduledTask(cron_expression='00 17 * * 3', task_type='roll', batch_size_percentage=30)
-scheduling = Scheduling(tasks=[scheduled_ami_backup, scheduled_roll])                                                            
+scheduled_scale = ScheduledTask(cron_expression='00 22 * * 3', task_type='scale',
+                                start_time='2018-05-23T10:55:09Z', scale_target_capacity=0,
+                                scale_min_capacity=0,
+                                scale_max_capacity=3)
+
+scheduling = Scheduling(tasks=[scheduled_ami_backup, scheduled_roll, scheduled_scale])                                                            
                                                             
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, scheduling=scheduling)
 ```
@@ -185,6 +216,17 @@ third_party_integrations = ThirdPartyIntegrations(route53=route53)
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
 ```
 
+#### ElasticBeanstalk
+```python
+deployment_strategy = BeanstalkDeploymentStrategy(action='REPLACE_SERVER', should_drain_instances=True)
+deployment_preferences = DeploymentPreferences(automatic_roll=True, batch_size_percentage=50, grace_period=600,
+                                               strategy=deployment_strategy)
+elastic_beanstalk = ElasticBeanstalk(environment_id='123', deployment_preferences=deployment_preferences)
+third_party_integrations = ThirdPartyIntegrations(elastic_beanstalk=elastic_beanstalk)
+
+group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
+
 ## Functions
 ### Getting Started With Functions
 ```python
@@ -214,12 +256,10 @@ environment_id = environment['id']
 print('env id: %s' % environment_id)
 
 # Initialize function
-function_config = Function("ping", env_id, '/development/my_project/ping', 'main', 'nodejs83', 128, 30)
+function_config = Function("ping", environment_id, '/development/my_project/ping', 'main', 'nodejs83', 128, 30)
 
 # Create function and retrieve invocation URL
 function = client.create_function(function_config)
 function_url = function['url']
 print('function url: %s' % function_url)
-
-
 ```

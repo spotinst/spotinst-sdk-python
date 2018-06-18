@@ -27,7 +27,15 @@ class Environment:
 
 # region Environment
 class Function:
-    def __init__(self, name, environment_id, directory, handler, runtime, memory, timeout):
+    def __init__(
+            self,
+            name,
+            environment_id,
+            directory,
+            handler,
+            runtime,
+            memory,
+            timeout):
         self.name = name
         self.environment_id = environment_id
         self.directory = directory
@@ -89,7 +97,10 @@ class FunctionCreationRequest:
             for filename in files:
                 absname = os.path.abspath(os.path.join(dirname, filename))
                 arcname = absname[len(abs_src) + 1:]
-                self.print_output("collecting file {}".format(os.path.join(dirname, filename)))
+                self.print_output(
+                    "collecting file {}".format(
+                        os.path.join(
+                            dirname, filename)))
                 zf.write(absname, arcname)
         zf.close()
 

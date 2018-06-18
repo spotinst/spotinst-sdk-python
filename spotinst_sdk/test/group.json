@@ -108,13 +108,6 @@
           "scaleTargetCapacity": 0,
           "scaleMinCapacity": 0,
           "scaleMaxCapacity": 3
-        },
-        {
-          "taskType": "scale",
-          "startTime": "2018-05-25T10:55:09Z",
-          "scaleTargetCapacity": 3,
-          "scaleMinCapacity": 3,
-          "scaleMaxCapacity": 3
         }
       ]
     },
@@ -126,6 +119,10 @@
           "c4.large",
           "m3.large",
           "r3.large"
+        ],
+        "preferredSpot": [
+          "c3.large",
+          "c4.large"
         ]
       },
       "subnetIds": [
