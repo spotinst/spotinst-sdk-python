@@ -17,7 +17,7 @@ DEFAULT_PROFILE = 'default'
 DEFAULT_CREDENTIALS_FILE = os.path.join(
     os.path.expanduser("~"), '.spotinst', 'credentials')
 
-__version__ = '1.0.29'
+__version__ = '1.0.30'
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
     _SpotinstClient__spotinst_sdk_python_agent_name, __version__)
