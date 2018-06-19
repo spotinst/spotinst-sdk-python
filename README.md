@@ -72,8 +72,11 @@ tags = [tag_creator, tag_name]
 # Initialize group security group id list
 securityGroupIds = ["sg-46e6b33d"]
 
+# Initialize group instances iam roles
+iam_role = IamRole(name='s3ReadOnly', arn='arn:aws:iam:us-east-1:123456789012:environment/s3ReadOnly')
+
 # Initialize Launch Specification
-launchSpec = LaunchSpecification(image_id="ami-f173cc91", key_pair="spotinst-oregon", tags=tags, security_group_ids=securityGroupIds, monitoring=True)
+launchSpec = LaunchSpecification(image_id="ami-f173cc91", key_pair="spotinst-oregon", tags=tags, security_group_ids=securityGroupIds, monitoring=True, iam_role=[iam_role])
 
 # Initialize Availability Zones
 az_list = [AvailabilityZone(name="us-west-2a", subnet_ids=["subnet-5df28914"])]
