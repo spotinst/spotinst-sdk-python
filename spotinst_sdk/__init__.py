@@ -17,10 +17,13 @@ DEFAULT_PROFILE = 'default'
 DEFAULT_CREDENTIALS_FILE = os.path.join(
     os.path.expanduser("~"), '.spotinst', 'credentials')
 
-__version__ = '1.0.30'
+version = {}
+with open(os.path.join(os.path.dirname(__file__), "./version.py")) as fp:
+    exec(fp.read(), version)
+
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
-    _SpotinstClient__spotinst_sdk_python_agent_name, __version__)
+    _SpotinstClient__spotinst_sdk_python_agent_name, version['__version__'])
 
 
 class SpotinstClient:

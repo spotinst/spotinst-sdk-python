@@ -4,21 +4,24 @@ from os import path
 
 from setuptools import setup
 
-import spotinst_sdk
-
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README.md file
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
+version = {}
+with open("spotinst_sdk/version.py") as fp:
+    exec(fp.read(), version)
+
 setup(
     name='spotinst-sdk',
 
-    version=spotinst_sdk.__version__,
+    version=version['__version__'],
 
     description='A Python SDK for Spotinst',
-    long_description='This SDK will allow you to manage your resources in Spotinst easily with Python',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
 
     # The project's main homepage.
     url='https://github.com/spotinst/spotinst-sdk-python',
