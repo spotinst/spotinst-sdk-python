@@ -34,19 +34,37 @@ pip install --upgrade spotinst-sdk
 ```
 
 ## Configuring Credentials
-The mechanism in which the sdk looks for credentials is to search through a list of possible locations and stop as soon as it finds credentials. The order in which the sdk searches for credentials is:
-  - Passing credentials as parameters in the `SpotinstClient()` constructor
-  - Environment variables in `SPOTINST_ACCOUNT` & `SPOTINST_TOKEN`
-  - Environment variables in `SPOTINST_PROFILE` & `SPOTINST_SHARED_CREDENTIALS_FILE`
-  - Shared credential file `~/.spotinst/credentials`
-  
->- example credentials file
-```yaml
-default:
-  token: token
-  account: account
+The mechanism in which the sdk looks for credentials is to search through a list of possible locations and stop as soon as it finds credentials. 
+The order in which the sdk searches for credentials is:
+  1. Passing credentials as parameters to the `SpotinstClient()` constructor
+- example
+```python
+client = SpotinstClient(auth_token='token', account_id='act-123')
 ```
 
+  2. Fetching the account and token from environment variables under `SPOTINST_ACCOUNT` & `SPOTINST_TOKEN`
+
+If you choose to not pass your credentials directly you configure a credentials file, this file should be a valid `.yml` file.
+The default shared credential file location is `~/.spotinst/credentials` and the default profile is `default`
+- example
+```yaml
+default: #profile
+  token: $defaul_spotinst_token
+  account: $default_spotinst-account-id
+my_profle:
+  token: $my_spotinst_token
+  account: $my_spotinst-account-id
+```
+
+  3. You can overwrite the credentials file location and the profile used as parameters in the `SpotinstClient()` constructor
+- example
+```python
+client = SpotinstClient(credentials_file='/path/to/file', profile='my_profile')
+```
+  
+  4. You can overwrite the credentials file location and the profile used as environment variables `SPOTINST_PROFILE` and/or `SPOTINST_SHARED_CREDENTIALS_FILE`
+  5. Fetching from the default location with the default profile
+  
 ## Usage
 
 ## Elastigroup
