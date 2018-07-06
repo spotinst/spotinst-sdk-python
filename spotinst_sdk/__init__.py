@@ -29,6 +29,7 @@ _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
 class SpotinstClient:
     __account_id_key = "accountId"
     __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
+    __base_instance_url = "https://api.spotinst.io/aws/ec2/instance"
     __base_functions_url = "https://api.spotinst.io/functions"
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
