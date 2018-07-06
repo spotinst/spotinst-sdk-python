@@ -1,0 +1,10 @@
+language: python
+python:
+  - "2.7"
+  - "3.6"
+install:
+  - pip install coveralls PyYaml requests
+script:
+  - coverage run --source spotinst_sdk setup.py test
+after_success:
+    coveralls
