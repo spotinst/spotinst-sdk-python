@@ -8,6 +8,29 @@ import argparse
 
 none = "d3043820717d74d9a17694c176d39733"
 
+logger = logging.getLogger(__name__)
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+parser = argparse.ArgumentParser(description='Options for Spotinst python-sdk')
+parser.add_argument('--log-level',
+                    choices=["debug", "info", "warn", "error", "critical"],
+                    help='set log level: debug, info, warn, error, critical')
+args = parser.parse_args()
+
+level = vars(args)['log_level']
+if level == "info":
+    logger.setLevel(logging.INFO)
+if level == "debug":
+    logger.setLevel(logging.DEBUG)
+if level == "warn":
+    logger.setLevel(logging.WARN)
+if level == "error":
+    logger.setLevel(logging.ERROR)
+if level == "critical":
+    logger.setLevel(logging.CRITICAL)
+
 
 # region Application
 class Application:
@@ -45,38 +68,6 @@ class Function:
         self.runtime = runtime
         self.memory = memory
         self.timeout = timeout
-        self.logger = self.init_logger()
-
-    @staticmethod
-    def init_logger():
-        logger = logging.getLogger(__name__)
-        handler = logging.StreamHandler()
-        formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
-        return logger
-
-    @staticmethod
-    def get_args():
-        parser = argparse.ArgumentParser(description='Options for Spotinst python-sdk')
-        parser.add_argument('--log-level',
-                            choices=["debug", "info", "warn", "error", "critical"],
-                            help='set log level: debug, info, warn, error, critical')
-        args = parser.parse_args()
-        return args
-
-    def set_log_level(self, args):
-        level = vars(args)['log_level']
-        if level == "info":
-            self.logger.setLevel(logging.INFO)
-        if level == "debug":
-            self.logger.setLevel(logging.DEBUG)
-        if level == "warn":
-            self.logger.setLevel(logging.WARN)
-        if level == "error":
-            self.logger.setLevel(logging.ERROR)
-        if level == "critical":
-            self.logger.setLevel(logging.CRITICAL)
 
 
 # endregion
@@ -103,6 +94,7 @@ class EnvironmentCreationRequest:
 class FunctionCreationRequest:
     def __init__(self, function):
         self.function = self.rebuildFunctionInlineCode(function)
+        logger.setLevel(args)
 
     def rebuildFunctionInlineCode(self, function):
         directory = function.directory
@@ -126,7 +118,7 @@ class FunctionCreationRequest:
             for filename in files:
                 absname = os.path.abspath(os.path.join(dirname, filename))
                 arcname = absname[len(abs_src) + 1:]
-                self.logger.debug("collecting file {}".format(
+                logger.debug("collecting file {}".format(
                         os.path.join(
                             dirname, filename)))
                 zf.write(absname, arcname)
