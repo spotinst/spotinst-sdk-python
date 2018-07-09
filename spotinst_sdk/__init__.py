@@ -4,6 +4,8 @@ import re
 
 import requests
 import yaml
+import logging
+import argparse
 
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
@@ -38,7 +40,6 @@ class SpotinstClient:
                  account_id=None,
                  profile=None,
                  credentials_file=None,
-                 print_output=True,
                  user_agent=None):
         """
 
@@ -46,7 +47,6 @@ class SpotinstClient:
         :type account_id: str
         :type profile: str
         :type credentials_file: str
-        :type print_output: bool
         :type user_agent: str
         """
 
@@ -56,8 +56,12 @@ class SpotinstClient:
             self.auth_token = auth_token
             self.account_id = account_id
 
-        self.should_print_output = print_output
         self.user_agent = user_agent
+
+        # initialize logger
+        self.logger = self.init_logger()
+        options = self.get_args()
+        self.set_log_level(options)
 
     # endregion
 
@@ -73,7 +77,7 @@ class SpotinstClient:
 
         body_json = json.dumps(formatted_group_dict)
 
-        self.print_output(body_json)
+        self.logger.info(body_json)
 
         group_response = self.send_post(
             body_json,
@@ -129,7 +133,7 @@ class SpotinstClient:
 
         body_json = json.dumps(formatted_group_update_dict)
 
-        self.print_output(body_json)
+        self.logger.info(body_json)
 
         group_response = self.send_put(
             body_json,
@@ -209,7 +213,7 @@ class SpotinstClient:
 
         body_json = json.dumps(formatted_group_roll_dict)
 
-        self.print_output(body_json)
+        self.logger.info(body_json)
 
         roll_response = self.send_put(
             url=self.__base_elastigroup_url +
@@ -239,7 +243,7 @@ class SpotinstClient:
 
         body_json = json.dumps(formatted_group_detach_dict)
 
-        self.print_output(body_json)
+        self.logger.info(body_json)
 
         detach_response = self.send_put(
             url=self.__base_elastigroup_url +
@@ -270,7 +274,7 @@ class SpotinstClient:
 
         body_json = json.dumps(formatted_app_dict)
 
-        self.print_output(body_json)
+        self.logger.info(body_json)
 
         app_response = self.send_post(
             body_json,
@@ -296,7 +300,7 @@ class SpotinstClient:
 
         body_json = json.dumps(formatted_env_dict)
 
-        self.print_output(body_json)
+        self.logger.info(body_json)
 
         env_response = self.send_post(
             body_json,
@@ -313,8 +317,7 @@ class SpotinstClient:
 
     def create_function(self, fx):
 
-        fx = spotinst_functions.FunctionCreationRequest(
-            fx, self.should_print_output)
+        fx = spotinst_functions.FunctionCreationRequest(fx)
 
         excluded_fx_dict = self.exclude_missing(json.loads(fx.toJSON()))
 
@@ -324,7 +327,7 @@ class SpotinstClient:
         body_json = json.dumps(formatted_fx_dict)
 
         formatted_fx_dict['function']['code']['source'] = 'INLINE_BASE64_SOURCE_CODE'
-        self.print_output(json.dumps(formatted_fx_dict))
+        self.logger.info(json.dumps(formatted_fx_dict))
 
         fx_response = self.send_post(
             body_json,
@@ -342,10 +345,6 @@ class SpotinstClient:
     # endregion
 
     # region Utils
-    def print_output(self, output):
-        if self.should_print_output is True:
-            print(output)
-
     def send_get(self, url, entity_name):
         agent = self.resolve_user_agent()
         query_params = self.build_query_params()
@@ -357,11 +356,13 @@ class SpotinstClient:
             }
         )
 
-        self.print_output("Sending get request to spotinst API.")
+        self.logger.info("Sending get request to spotinst API.")
+
         result = requests.get(url, params=query_params, headers=headers)
 
         if result.status_code == requests.codes.ok:
-            self.print_output("Success")
+            self.logger.info("Success")
+
             data = json.loads(result.content)
             return data
         else:
@@ -378,11 +379,12 @@ class SpotinstClient:
             }
         )
 
-        self.print_output("Sending deletion request to spotinst API.")
+        self.logger.info("Sending deletion request to spotinst API.")
+
         result = requests.delete(url, params=query_params, headers=headers)
 
         if result.status_code == requests.codes.ok:
-            self.print_output("Success")
+            self.logger.info("Success")
             return True
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
@@ -398,7 +400,8 @@ class SpotinstClient:
             }
         )
 
-        self.print_output("Sending deletion request to spotinst API.")
+        self.logger.info("Sending deletion request to spotinst API.")
+
         result = requests.delete(
             url,
             params=query_params,
@@ -406,7 +409,7 @@ class SpotinstClient:
             data=body)
 
         if result.status_code == requests.codes.ok:
-            self.print_output("Success")
+            self.logger.info("Success")
             return True
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
@@ -422,7 +425,8 @@ class SpotinstClient:
             }
         )
 
-        self.print_output("Sending post request to spotinst API.")
+        self.logger.info("Sending post request to spotinst API.")
+
         result = requests.post(
             url,
             params=query_params,
@@ -430,7 +434,7 @@ class SpotinstClient:
             headers=headers)
 
         if result.status_code == requests.codes.ok:
-            self.print_output("Success")
+            self.logger.info("Success")
             data = json.loads(result.content)
             return data
         else:
@@ -447,7 +451,7 @@ class SpotinstClient:
             }
         )
 
-        self.print_output("Sending put request to spotinst API.")
+        self.logger.info("Sending put request to spotinst API.")
         result = requests.put(
             url,
             params=query_params,
@@ -455,7 +459,7 @@ class SpotinstClient:
             headers=headers)
 
         if result.status_code == requests.codes.ok:
-            self.print_output("Success")
+            self.logger.info("Success")
             data = json.loads(result.content)
             return data
         else:
@@ -473,7 +477,8 @@ class SpotinstClient:
             }
         )
 
-        self.print_output("Sending put request to spotinst API.")
+        self.logger.info("Sending put request to spotinst API.")
+
         result = requests.put(
             url,
             params=query_params,
@@ -481,7 +486,7 @@ class SpotinstClient:
             headers=headers)
 
         if result.status_code == requests.codes.ok:
-            self.print_output("Success")
+            self.logger.info("Success")
             data = json.loads(result.content)
             return data
         else:
@@ -495,10 +500,12 @@ class SpotinstClient:
         return agent
 
     def handle_exception(self, action_string, result):
-        self.print_output(result.status_code)
+        self.logger.info(result.status_code)
+
         data = json.loads(result.content)
         response_json = json.dumps(data["response"])
-        self.print_output(response_json)
+        self.logger.info(response_json)
+
         raise SpotinstClientException(
             "Error encountered while " +
             action_string,
@@ -567,6 +574,38 @@ class SpotinstClient:
             query_params = self.merge_two_dicts(query_params, user_params)
 
         return query_params
+
+    @staticmethod
+    def init_logger():
+        logger = logging.getLogger(__name__)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        return logger
+
+    @staticmethod
+    def get_args():
+        parser = argparse.ArgumentParser(description='Options for Spotinst python-sdk')
+        parser.add_argument('--log-level',
+                            choices=["debug", "info", "warn", "error", "critical"],
+                            help='set log level: debug, info, warn, error, critical')
+        args = parser.parse_args()
+        return args
+
+    def set_log_level(self, args):
+        level = vars(args)['log_level']
+
+        if level == "info":
+            self.logger.setLevel(logging.INFO)
+        if level == "debug":
+            self.logger.setLevel(logging.DEBUG)
+        if level == "warn":
+            self.logger.setLevel(logging.WARN)
+        if level == "error":
+            self.logger.setLevel(logging.ERROR)
+        if level == "critical":
+            self.logger.setLevel(logging.CRITICAL)
 
     @staticmethod
     def merge_two_dicts(x, y):
