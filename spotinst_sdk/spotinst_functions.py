@@ -4,32 +4,9 @@ import os
 import tempfile
 import zipfile
 import logging
-import argparse
 
 none = "d3043820717d74d9a17694c176d39733"
-
 logger = logging.getLogger(__name__)
-handler = logging.StreamHandler()
-formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-parser = argparse.ArgumentParser(description='Options for Spotinst python-sdk')
-parser.add_argument('--log-level',
-                    choices=["debug", "info", "warn", "error", "critical"],
-                    help='set log level: debug, info, warn, error, critical')
-args = parser.parse_args()
-
-level = vars(args)['log_level']
-if level == "info":
-    logger.setLevel(logging.INFO)
-if level == "debug":
-    logger.setLevel(logging.DEBUG)
-if level == "warn":
-    logger.setLevel(logging.WARN)
-if level == "error":
-    logger.setLevel(logging.ERROR)
-if level == "critical":
-    logger.setLevel(logging.CRITICAL)
 
 
 # region Application
@@ -94,7 +71,6 @@ class EnvironmentCreationRequest:
 class FunctionCreationRequest:
     def __init__(self, function):
         self.function = self.rebuildFunctionInlineCode(function)
-        logger.setLevel(args)
 
     def rebuildFunctionInlineCode(self, function):
         directory = function.directory
