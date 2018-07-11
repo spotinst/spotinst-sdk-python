@@ -69,10 +69,24 @@ class EnvironmentCreationRequest:
 
 
 class FunctionCreationRequest:
-    def __init__(self, function):
+    def __init__(self, function, print_output=True):
+        self.should_print_output = print_output
         self.function = self.rebuildFunctionInlineCode(function)
 
-    def rebuildFunctionInlineCode(self, function):
+    def print_output(self, output, level="debug"):
+        if self.should_print_output is True:
+            if level == "debug":
+                logger.debug(output)
+            if level == "info":
+                logger.info(output)
+            if level == "warn":
+                logger.warn(output)
+            if level == "error":
+                logger.error(output)
+            if level == "critical":
+                logger.critical(output)
+
+    def rebuildFunctionInlineCode(self, function, ):
         directory = function.directory
         handler = function.handler
 
@@ -88,13 +102,15 @@ class FunctionCreationRequest:
         return function
 
     def zip(self, src, dst):
+        self.print_output("info level", "info")
         zf = zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED)
         abs_src = os.path.abspath(src)
         for dirname, subdirs, files in os.walk(src):
             for filename in files:
                 absname = os.path.abspath(os.path.join(dirname, filename))
                 arcname = absname[len(abs_src) + 1:]
-                logger.debug("collecting file {}".format(
+
+                self.print_output("collecting file {}".format(
                         os.path.join(
                             dirname, filename)))
                 zf.write(absname, arcname)
