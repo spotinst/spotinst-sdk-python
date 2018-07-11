@@ -36,7 +36,6 @@ class SpotinstClient:
     under_pat = re.compile(r'_([a-z])')
 
     # region Constructor
-    # todo: add back in print_output
     def __init__(self, auth_token=None,
                  account_id=None,
                  profile=None,
