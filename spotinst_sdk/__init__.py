@@ -7,6 +7,7 @@ import yaml
 
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
+from spotinst_sdk import spotinst_emr
 
 VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
@@ -29,6 +30,7 @@ _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
 class SpotinstClient:
     __account_id_key = "accountId"
     __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
+    __base_emr_url = "https://api.spotinst.io/aws/emr/mrScaler"
     __base_functions_url = "https://api.spotinst.io/functions"
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
@@ -61,9 +63,41 @@ class SpotinstClient:
 
     # endregion
 
-    # region Elastigroup
-    def create_elastigroup(self, group):
 
+
+
+    # region EMR
+    def create_emr(self, emr):
+        emr = spotinst_emr.EMRCreationRequest(emr)
+
+        excluded_group_dict = self.exclude_missing(json.loads(emr.toJSON()))
+        
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+        
+        group_response = self.send_post(
+            body_json,
+            self.__base_emr_url,
+            entity_name='emr')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    # endregion
+
+
+
+
+    # region Elastigroup
+    def create_elastigroup(self, group):        
         group = aws_elastigroup.ElastigroupCreationRequest(group)
 
         excluded_group_dict = self.exclude_missing(json.loads(group.toJSON()))
@@ -255,6 +289,61 @@ class SpotinstClient:
         retVal = formatted_response["response"]["status"]
 
         return retVal
+
+
+    def beanstalk_maintenance_status(self, group_id):
+        
+        status_response = self.send_get(
+            url=self.__base_elastigroup_url+
+            "/" +
+            str(group_id) + 
+            "/beanstalk/maintenance/status",
+            entity_name="beanstalk maintenance start")
+
+        formatted_response = self.convert_json(
+            status_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal
+
+
+    def beanstalk_maintenance_start(self, group_id):
+
+        start_response = self.send_put(
+            url=self.__base_elastigroup_url+
+            "/" +
+            str(group_id) + 
+            "/beanstalk/maintenance/start",
+            body={},
+            entity_name="beanstalk maintenance start")
+
+        formatted_response = self.convert_json(
+            start_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal
+
+    def beanstalk_maintenance_finish(self, group_id):   
+
+        finish_response = self.send_put(
+            url=self.__base_elastigroup_url+
+            "/" +
+            str(group_id) + 
+            "/beanstalk/maintenance/finish",
+            body={},
+            entity_name="beanstalk maintenance start")
+
+        formatted_response = self.convert_json(
+            finish_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal
+
+
+
 
     # endregion
 
