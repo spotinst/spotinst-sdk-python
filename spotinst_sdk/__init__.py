@@ -451,7 +451,7 @@ class SpotinstClient:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            data = json.loads(result.content)
+            data = json.loads(result.content.decode('utf-8'))
             return data
         else:
             self.handle_exception("getting {}".format(entity_name), result)
@@ -520,7 +520,7 @@ class SpotinstClient:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            data = json.loads(result.content)
+            data = json.loads(result.content.decode('utf-8'))
             return data
         else:
             self.handle_exception("creating {}".format(entity_name), result)
@@ -545,7 +545,7 @@ class SpotinstClient:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            data = json.loads(result.content)
+            data = json.loads(result.content.decode('utf-8'))
             return data
         else:
             self.handle_exception("updating {}".format(entity_name), result)
@@ -571,7 +571,7 @@ class SpotinstClient:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            data = json.loads(result.content)
+            data = json.loads(result.content.decode('utf-8'))
             return data
         else:
             self.handle_exception("updating {}".format(entity_name), result)
@@ -585,7 +585,7 @@ class SpotinstClient:
 
     def handle_exception(self, action_string, result):
         self.print_output(result.status_code)
-        data = json.loads(result.content)
+        data = json.loads(result.content.decode('utf-8'))
         response_json = json.dumps(data["response"])
         self.print_output(response_json)
         raise SpotinstClientException(
