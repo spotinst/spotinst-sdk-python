@@ -185,7 +185,7 @@ third_party_integrations = ThirdPartyIntegrations(ecs=ecs)
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
 ```
 
-#### ECS
+#### EMRz
 ```python
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), "PythonSpotinstSDK"))
