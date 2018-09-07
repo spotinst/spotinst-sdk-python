@@ -195,6 +195,9 @@ from spotinst_sdk.spotinst_emr import *
 
 client = SpotinstClient()
 
+
+################ Scaling ################
+
 action = Action(    
   type="adjustment",
   adjustment=2,
@@ -233,6 +236,8 @@ down = Metric(
 
 scaling = Scaling(up=[up], down=[down])
 
+################ Copmute ################
+
 c_file = File(bucket="test_bucket", key="test_key")
 
 configurations = Configurations(file=c_file)
@@ -267,6 +272,8 @@ bootstrap_actions = BootstrapActions(file=ba_file)
 
 
 compute = Compute(ebs_root_volume_size=10, availability_zones=[{"name": "us-west-2a","subnetId": "subnet-79da021e"}], instance_groups=instance_groups)
+
+################ Strategy ################
 
 cloning = Cloning(origin_cluster_id="j-6T5B467690OT", include_steps=False)
 
