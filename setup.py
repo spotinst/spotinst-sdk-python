@@ -2,7 +2,12 @@
 from codecs import open
 from os import path
 
+import sys
+
 from setuptools import setup
+
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+pytest_runner = ['pytest-runner'] if needs_pytest else []
 
 here = path.abspath(path.dirname(__file__))
 
@@ -46,6 +51,6 @@ setup(
     packages=["spotinst_sdk"],
     install_requires=['requests', 'PyYaml'],
 
-    setup_requires=["pytest-runner"],
+    setup_requires=[] + pytest_runner,
     tests_require=["pytest"]
 )
