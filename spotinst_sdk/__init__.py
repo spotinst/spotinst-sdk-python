@@ -61,10 +61,6 @@ class SpotinstClient:
         self.should_print_output = print_output
         self.user_agent = user_agent
 
-    # endregion
-
-
-
 
     # region EMR
     def create_emr(self, emr):
@@ -230,6 +226,22 @@ class SpotinstClient:
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
+    def get_elastigroup_activity(self, group_id, start_date):
+        query_params = self.build_query_params_with_input({"fromDate":start_date})
+
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/events",
+            query_params=query_params,
+            entity_name='active events')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+
     def roll_group(self, group_id, group_roll):
 
         group_roll_request = aws_elastigroup.ElastigroupRollRequest(
@@ -259,6 +271,19 @@ class SpotinstClient:
         retVal = formatted_response["response"]["items"]
 
         return retVal
+
+    def get_deployment_status(self, group_id):
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll",
+            entity_name='active events')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
 
     def detach_elastigroup_instances(self, group_id, detach_configuration):
 
@@ -435,9 +460,9 @@ class SpotinstClient:
         if self.should_print_output is True:
             print(output)
 
-    def send_get(self, url, entity_name):
+    def send_get(self, url,entity_name,query_params=None):
         agent = self.resolve_user_agent()
-        query_params = self.build_query_params()
+        query_params = query_params or self.build_query_params()
         headers = dict(
             {
                 'User-Agent': agent,
