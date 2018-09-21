@@ -26,7 +26,7 @@ class SpotinstEMRTestCase(unittest.TestCase):
 
     @staticmethod
     def load_emr_json():
-        with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib/emr.json')) as emr_json:
+        with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_lib/emr.json')) as emr_json:
             return json.load(emr_json)
 
 class SpotinstEMRCreate(SpotinstEMRTestCase):

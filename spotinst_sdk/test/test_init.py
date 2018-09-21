@@ -1,10 +1,23 @@
 import os
 import unittest
 import json
-from unittest.mock import patch
-from types import SimpleNamespace
+from mock import patch
 
 from spotinst_sdk import SpotinstClient
+
+
+class SimpleNamespace:
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+    def __repr__(self):
+        keys = sorted(self.__dict__)
+        items = ("{}={!r}".format(k, self.__dict__[k]) for k in keys)
+        return "{}({})".format(type(self).__name__, ", ".join(items))
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
 
 class AwsInitTestCase(unittest.TestCase):
 
@@ -13,19 +26,19 @@ class AwsInitTestCase(unittest.TestCase):
 			auth_token='dummy-token',
 			account_id='dummy-account')
 
-		self.mock_group_json = self.load_json(path='lib/group.json')
-		self.mock_emr = self.load_json('lib/emr.json')
-		self.mock_stateful_json = self.load_json(path='lib/stateful/import_stateful.json')
+		self.mock_group_json = self.load_json(path='test_lib/group.json')
+		self.mock_emr = self.load_json('test_lib/emr.json')
+		self.mock_stateful_json = self.load_json(path='test_lib/stateful/import_stateful.json')
 
-		self.mock_group_response = self.load_json(path='lib/group_res.json')
-		self.mock_statful_res = self.load_json(path='lib/stateful/import_stateful_res.json')
-		self.mock_get_stateful_import_res = self.load_json(path='lib/stateful/get_import_res.json')
-		self.mock_ok_res = self.load_json('lib/res_ok.json')
-		self.mock_get_instances_res = self.load_json('lib/stateful/get_instances_res.json')
-		self.mock_get_group_activity_res = self.load_json('lib/get_group_activity_res.json')
-		self.mock_get_deployment_status_res = self.load_json('lib/get_deployment_status_res.json')
+		self.mock_group_response = self.load_json(path='test_lib/group_res.json')
+		self.mock_statful_res = self.load_json(path='test_lib/stateful/import_stateful_res.json')
+		self.mock_get_stateful_import_res = self.load_json(path='test_lib/stateful/get_import_res.json')
+		self.mock_ok_res = self.load_json('test_lib/res_ok.json')
+		self.mock_get_instances_res = self.load_json('test_lib/stateful/get_instances_res.json')
+		self.mock_get_group_activity_res = self.load_json('test_lib/get_group_activity_res.json')
+		self.mock_get_deployment_status_res = self.load_json('test_lib/get_deployment_status_res.json')
 
-		self.mock_api_call =  SimpleNamespace(**self.load_json('lib/api_res.json'))
+		self.mock_api_call =  SimpleNamespace(**self.load_json('test_lib/api_res.json'))
 
 
 	@staticmethod
