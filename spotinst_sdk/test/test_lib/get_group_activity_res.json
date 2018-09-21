@@ -1,0 +1,36 @@
+{
+	"request": {
+		"url": "/aws/ec2/group/sig-fdb91e77/events?fromDate=2016-10-01", 
+		"timestamp": "2018-09-21T00:11:44.920Z", 
+		"id": "039de6c7-45ef-479a-8363-a2dfca6e086b", 
+		"method": "GET"
+	}, 
+		"response": {
+			"status": {"message": "OK", "code": 200}, 
+			"items": [
+				{
+					"eventType": "DetachInstances", 
+					"subEvents": [{"instanceId": "i-06d2e12aa29daab6e", "type": "detachedInstance"}], 
+					"groupId": "sig-fdb91e77", 
+					"createdAt": "2018-07-29T16:00:43.000+0000"
+				}, {
+					"eventType": "InstanceReplacement", 
+					"subEvents": [{"newSpotRequestIds": ["sir-gqwib1iq"], "oldInstanceIds": [], "type": "recoverInstances", "oldSpotRequestIds": ["sir-5gk89gcp"], "newInstanceIds": null}], 
+					"groupId": "sig-fdb91e77", 
+					"createdAt": "2018-07-29T15:51:24.000+0000"
+				}, {
+					"eventType": "Create", 
+					"subEvents": [], 
+					"groupId": "sig-fdb91e77", 
+					"createdAt": "2018-07-29T14:30:09.000+0000"
+				}
+			], 
+		"kind": "spotinst:aws:ec2:group:event", 
+		"count": 3
+	}
+}
+
+
+
+
+

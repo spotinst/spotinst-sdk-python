@@ -1,0 +1,24 @@
+{
+	"request": {
+		"url": "/aws/ec2/group/sig-f22f40a3/statefulInstance?accountId=act-56c15b97", 
+		"timestamp": "2018-09-20T23:46:23.269Z", 
+		"id": "c2d491cb-0035-4f4b-8ae7-702cb53edcf6", 
+		"method": "GET"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [
+			{
+				"instanceId": "i-0d0153016d0b33537", 
+				"state": "ACTIVE", 
+				"id": "ssi-d71ca322", 
+				"devices": [
+					{"deviceName": "/dev/sda1", "volumeId": "vol-0bb82892458e6b851"}, 
+					{"deviceName": "/dev/sdb", "volumeId": "vol-07a5b01f4043cf368"}
+				], 
+			"imageId": "ami-0e5e62815ce0e5fec"}
+		], 
+		"kind": "spotinst:aws:ec2:statefulInstance", 
+		"count": 1
+	}
+}

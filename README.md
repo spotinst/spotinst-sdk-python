@@ -172,6 +172,36 @@ scheduling = Scheduling(tasks=[scheduled_ami_backup, scheduled_roll, scheduled_s
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, scheduling=scheduling)
 ```
 
+#### Stateful
+```python
+availability_zones= AvailabilityZone(name="us-west-2",subnet_ids=["subnet_ids","subnet_ids"])
+
+stateful_instance = StatefulInstance(
+  should_keep_private_ip=False , 
+  original_instance_id="original_instance_id" , 
+  name="Test" , 
+  product="Linux/UNIX" , 
+  spot_instance_types=["m1.medium", "c3.xlarge", "m3.xlarge"] ,
+  region="us-west-2" ,
+  availability_zones=[availability_zones])
+
+client.import_stateful_instance(stateful_instance="stateful_instance")
+
+client.get_stateful_instances(group_id="group_id")
+
+client.deallocate_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+
+client.get_stateful_import_status(stateful_migration_id="stateful_migration_id")
+
+client.delete_stateful_import(stateful_migration_id="stateful_migration_id")
+
+client.pause_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+
+client.resume_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+
+client.recycle_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+```
+
 ### Third Party Integrations
 #### ECS
 ```python

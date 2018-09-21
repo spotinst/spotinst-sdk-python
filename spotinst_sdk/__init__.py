@@ -8,6 +8,7 @@ import yaml
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
 from spotinst_sdk import spotinst_emr
+from spotinst_sdk import spotinst_stateful
 
 VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
@@ -32,6 +33,7 @@ class SpotinstClient:
     __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
     __base_emr_url = "https://api.spotinst.io/aws/emr/mrScaler"
     __base_functions_url = "https://api.spotinst.io/functions"
+    __base_stateful_url = "https://api.spotinst.io/aws/ec2/statefulMigrationGroup"
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
 
@@ -60,10 +62,6 @@ class SpotinstClient:
 
         self.should_print_output = print_output
         self.user_agent = user_agent
-
-    # endregion
-
-
 
 
     # region EMR
@@ -230,6 +228,22 @@ class SpotinstClient:
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
+    def get_elastigroup_activity(self, group_id, start_date):
+        query_params = self.build_query_params_with_input({"fromDate":start_date})
+
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/events",
+            query_params=query_params,
+            entity_name='active events')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+
     def roll_group(self, group_id, group_roll):
 
         group_roll_request = aws_elastigroup.ElastigroupRollRequest(
@@ -260,6 +274,21 @@ class SpotinstClient:
 
         return retVal
 
+    def get_deployment_status(self, group_id):
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll",
+            entity_name='roll')
+
+        print(json.dumps(content))
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+
     def detach_elastigroup_instances(self, group_id, detach_configuration):
 
         group_detach_request = aws_elastigroup.ElastigroupDetachInstancesRequest(
@@ -289,6 +318,126 @@ class SpotinstClient:
         retVal = formatted_response["response"]["status"]
 
         return retVal
+
+
+
+    def import_stateful_instance(self, stateful_instance):
+        stateful_instance = spotinst_stateful.StatefulImportRequest(stateful_instance)
+
+        excluded_group_dict = self.exclude_missing(json.loads(stateful_instance.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+        
+        group_response = self.send_post(
+            body_json,
+            self.__base_stateful_url,
+            entity_name='import stateful instance')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_stateful_import_status(self, stateful_migration_id):
+        content = self.send_get(
+            url=self.__base_stateful_url +
+                "/" +
+                str(stateful_migration_id),
+            entity_name='get stateful import status')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"] 
+
+    def delete_stateful_import(self, stateful_migration_id):
+        content = self.send_delete(
+            url=self.__base_stateful_url +
+                "/" +
+                str(stateful_migration_id),
+            entity_name='delete stateful import')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"] 
+
+    def deallocate_stateful_instance(self, group_id, stateful_instance_id):
+        content = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/statefulInstance/" +
+                str(stateful_instance_id +
+                "/deallocate"),
+            entity_name='deallocate stateful instance')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]
+
+    def recycle_stateful_instance(self, group_id, stateful_instance_id):
+        content = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/statefulInstance/" +
+                str(stateful_instance_id +
+                "/recycle"),
+            entity_name='recycle stateful instance')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]
+
+
+    def get_stateful_instances(self, group_id):
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/statefulInstance",
+            entity_name='get stateful instance')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]           
+
+    def resume_stateful_instance(self, group_id, stateful_instance_id):
+        content = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/statefulInstance/" +
+                str(stateful_instance_id +
+                "/resume"),
+            entity_name='resume stateful instance')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]
+
+    def pause_stateful_instance(self, group_id, stateful_instance_id):
+        content = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/statefulInstance/" +
+                str(stateful_instance_id) +
+                "/pause",
+            entity_name='pause stateful instance')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
 
 
     def beanstalk_maintenance_status(self, group_id):
@@ -435,9 +584,9 @@ class SpotinstClient:
         if self.should_print_output is True:
             print(output)
 
-    def send_get(self, url, entity_name):
+    def send_get(self, url,entity_name,query_params=None):
         agent = self.resolve_user_agent()
-        query_params = self.build_query_params()
+        query_params = query_params or self.build_query_params()
         headers = dict(
             {
                 'User-Agent': agent,
@@ -525,7 +674,7 @@ class SpotinstClient:
         else:
             self.handle_exception("creating {}".format(entity_name), result)
 
-    def send_put(self, body, url, entity_name):
+    def send_put(self, url, entity_name, body=None):
         agent = self.resolve_user_agent()
         query_params = self.build_query_params()
         headers = dict(
@@ -599,6 +748,7 @@ class SpotinstClient:
             return val
         elif type(val) in (int, float, bool, "".__class__, u"".__class__):
             return val
+
         for k, v in list(val.items()):
             new_v = v
             if isinstance(v, dict):

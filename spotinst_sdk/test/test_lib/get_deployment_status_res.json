@@ -1,0 +1,28 @@
+{
+	"request": {
+		"url": "/aws/ec2/group/sig-fdb91e77/roll?limit=5&sort=createdAt%3ADESC", 
+		"timestamp": "2018-09-21T00:23:40.806Z", 
+		"id": "92603d33-e1f7-4039-a685-1c48f28b9bda", 
+		"method": "GET"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [
+			{
+				"status": "stopped", 
+				"progress": {"value": 0, "unit": "percent"}, 
+				"id": "sbgd-3ebcd40a", 
+				"createdAt": "2018-07-29T15:50:14.000+0000", 
+				"updatedAt": "2018-07-29T16:00:18.000+0000"
+			}, {
+				"status": "stopped", 
+				"progress": {"value": 0, "unit": "percent"}, 
+				"id": "sbgd-00499d77", 
+				"createdAt": "2018-07-29T15:25:10.000+0000", 
+				"updatedAt": "2018-07-29T15:43:33.000+0000"
+			}
+		],
+		"kind": "spotinst:aws:ec2:group:roll", 
+		"count": 2
+	}
+}
