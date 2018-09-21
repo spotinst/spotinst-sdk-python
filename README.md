@@ -174,7 +174,7 @@ group = Elastigroup(name="TestGroup", description="Created by the Python SDK", c
 
 #### Stateful
 ```python
-availability_zones= AvailabilityZone(name="name",subnet_ids=["subnet_ids","subnet_ids"])
+availability_zones= AvailabilityZone(name="us-west-2",subnet_ids=["subnet_ids","subnet_ids"])
 
 stateful_instance = StatefulInstance(
   should_keep_private_ip=False , 
