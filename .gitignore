@@ -5,6 +5,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 setup.py-e
+.DS_STORE
 
 # C extensions
 *.so
