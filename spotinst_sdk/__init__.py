@@ -330,8 +330,6 @@ class SpotinstClient:
             excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
-
-        self.print_output(body_json)
         
         group_response = self.send_post(
             body_json,
@@ -366,7 +364,7 @@ class SpotinstClient:
 
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
-        return formatted_response["response"]["items"] 
+        return formatted_response
 
     def deallocate_stateful_instance(self, group_id, stateful_instance_id):
         content = self.send_put(
