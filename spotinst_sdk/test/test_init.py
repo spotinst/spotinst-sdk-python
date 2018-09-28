@@ -46,35 +46,13 @@ class AwsInitTestCase(unittest.TestCase):
 		with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), path)) as group_json:
 			return json.load(group_json)
 
-	def decode_elastigroup(self, code):
-		return json.dumps(self.mock_group_response)
-
-	def decode_import(self, code):
-		return json.dumps(self.mock_statful_res)
-
-	def decode_get_import(self, code):
-		return json.dumps(self.mock_get_stateful_import_res)
-
-	def decoce_ok_res(self, code):
-		return json.dumps(self.mock_ok_res)
-
-	def decode_get_stateful(self,code):
-		return json.dumps(self.mock_get_instances_res)
-
-	def decode_get_group_activity(self,code):
-		return json.dumps(self.mock_get_group_activity_res)
-
-	def decode_get_deployment_status(self,code):
-		return json.dumps(self.mock_get_deployment_status_res)
-
-
 # Elastigroup Tests
 class AwsInitTestElastigroup(AwsInitTestCase):
 
 	@patch('requests.post')
 	def testCreateElastigroup(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decode_elastigroup
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_group_response)
 
 		mock.return_value = self.mock_api_call
 
@@ -85,7 +63,7 @@ class AwsInitTestElastigroup(AwsInitTestCase):
 	@patch('requests.get')
 	def testGetElastigroupActivity(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decode_get_group_activity
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_get_group_activity_res)
 
 		mock.return_value = self.mock_api_call
 
@@ -96,7 +74,7 @@ class AwsInitTestElastigroup(AwsInitTestCase):
 	@patch('requests.get')
 	def testGetDeploymentStatus(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decode_get_deployment_status
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_get_deployment_status_res) 
 
 		mock.return_value = self.mock_api_call
 
@@ -113,7 +91,7 @@ class AwsInitTestStateFul(AwsInitTestCase):
 	@patch('requests.post')
 	def testImportStatefulInstance(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decode_import
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_statful_res) 
 
 		mock.return_value = self.mock_api_call
 
@@ -124,7 +102,7 @@ class AwsInitTestStateFul(AwsInitTestCase):
 	@patch('requests.get')
 	def testGetStatefulImportStatus(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decode_get_import
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_get_stateful_import_res) 
 
 		mock.return_value = self.mock_api_call
 
@@ -135,7 +113,7 @@ class AwsInitTestStateFul(AwsInitTestCase):
 	@patch('requests.put')
 	def testDeallocateStatefulInstance(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decoce_ok_res
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
 		mock.return_value = self.mock_api_call
 
@@ -146,7 +124,7 @@ class AwsInitTestStateFul(AwsInitTestCase):
 	@patch('requests.put')
 	def testRecycleStatefulInstance(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decoce_ok_res
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
 		mock.return_value = self.mock_api_call
 
@@ -157,7 +135,7 @@ class AwsInitTestStateFul(AwsInitTestCase):
 	@patch('requests.get')
 	def testGetStatefulInstances(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decode_get_stateful
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_get_instances_res)
 
 		mock.return_value = self.mock_api_call
 
@@ -168,7 +146,7 @@ class AwsInitTestStateFul(AwsInitTestCase):
 	@patch('requests.put')
 	def testResumeStatefulInstance(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decoce_ok_res
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
 		mock.return_value = self.mock_api_call
 
@@ -179,7 +157,7 @@ class AwsInitTestStateFul(AwsInitTestCase):
 	@patch('requests.put')
 	def testPauseStatefulInstance(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = self.decoce_ok_res
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
 		mock.return_value = self.mock_api_call
 
