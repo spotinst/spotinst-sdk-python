@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.38] - 2018-09-28
+### Added
+ - version to Rancher integration
+
 ## [1.0.37] - 2018-09-21
 ### Added
  - `get_deployment_status` 
