@@ -321,6 +321,32 @@ class AwsElastigroupTestSchedulingIntegration(AwsElastigroupTestCase):
 
 # endregion
 
+# region Rancher
+class AwsElastigroupTestRancher(AwsElastigroupTestCase):
+    def runTest(self):
+        rancher = Rancher(access_key="Access", secret_key="Secret", master_host="https://master.com:8080", version="2")
+        third_parties_integration = ThirdPartyIntegrations(rancher=rancher)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            third_parties_integration=third_parties_integration)
+
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['thirdPartiesIntegration']
+        expected_request_json = {
+            'rancher': {
+                'accessKey': 'Access', 
+                'masterHost': 'https://master.com:8080', 
+                'secretKey': 'Secret', 'version': '2'
+            }
+        }
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
+# endregion
+
+
+
 # region Compute
 class AwsElastigroupTestCompute(AwsElastigroupTestCase):
     def runTest(self):
