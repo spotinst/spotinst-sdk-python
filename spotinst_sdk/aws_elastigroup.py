@@ -397,16 +397,18 @@ class MultaiLoadBalancer:
 # region ThirdPartyIntegrations
 class Rancher:
 
-    def __init__(self, access_key=none, secret_key=none, master_host=none):
+    def __init__(self, access_key=none, secret_key=none, master_host=none, version=none):
         """
 
         :type access_key: str
         :type secret_key: str
         :type master_host: str
+        :type version: str
         """
         self.access_key = access_key
         self.secret_key = secret_key
         self.master_host = master_host
+        self.version = version
 
 
 class Mesosphere:

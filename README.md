@@ -18,6 +18,7 @@ Spotinst SDK for the Python programming language
           * [Scheduling](#scheduling)
         * [Third Party Integrations](#third-party-integrations)
           * [ECS](#ecs)
+          * [EMR](#emr)
           * [Kubernetes](#kubernetes)
           * [Nomad](#nomad)
           * [Docker Swarm](#dockerswarm)
@@ -171,6 +172,36 @@ scheduling = Scheduling(tasks=[scheduled_ami_backup, scheduled_roll, scheduled_s
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, scheduling=scheduling)
 ```
 
+#### Stateful
+```python
+availability_zones= AvailabilityZone(name="us-west-2",subnet_ids=["subnet_ids","subnet_ids"])
+
+stateful_instance = StatefulInstance(
+  should_keep_private_ip=False , 
+  original_instance_id="original_instance_id" , 
+  name="Test" , 
+  product="Linux/UNIX" , 
+  spot_instance_types=["m1.medium", "c3.xlarge", "m3.xlarge"] ,
+  region="us-west-2" ,
+  availability_zones=[availability_zones])
+
+client.import_stateful_instance(stateful_instance="stateful_instance")
+
+client.get_stateful_instances(group_id="group_id")
+
+client.deallocate_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+
+client.get_stateful_import_status(stateful_migration_id="stateful_migration_id")
+
+client.delete_stateful_import(stateful_migration_id="stateful_migration_id")
+
+client.pause_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+
+client.resume_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+
+client.recycle_stateful_instance(group_id="group_id", stateful_instance_id="stateful_instance_id")
+```
+
 ### Third Party Integrations
 #### ECS
 ```python
@@ -183,6 +214,116 @@ third_party_integrations = ThirdPartyIntegrations(ecs=ecs)
 
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
 ```
+
+#### EMR
+```python
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), "PythonSpotinstSDK"))
+
+from spotinst_sdk import SpotinstClient
+from spotinst_sdk.spotinst_emr import *
+
+client = SpotinstClient()
+
+
+################ Scaling ################
+
+action = Action(    
+  type="adjustment",
+  adjustment=2,
+  min_target_capacity=1,
+  target=5,
+  minimum=0,
+  maximum=10)
+
+dimension = Dimension(name="test_dim")
+
+up = Metric(    
+  metric_name="metric_name",
+  statistic="average",
+  unit="percent",
+  threshold=100,
+  adjustment=2,
+  namespace="AWS/ElasticMapReduce",
+  period=300,
+  evaluation_periods=1,
+  cooldown=600,
+  dimensions=[dimension],
+  operator="gte")
+
+down = Metric(    
+  metric_name="metric_name",
+  statistic="average",
+  unit="percent",
+  threshold=100,
+  adjustment=2,
+  namespace="AWS/ElasticMapReduce",
+  period=300,
+  evaluation_periods=1,
+  cooldown=600,
+  dimensions=[dimension],
+  operator="gte")
+
+scaling = Scaling(up=[up], down=[down])
+
+################ Copmute ################
+
+c_file = File(bucket="test_bucket", key="test_key")
+
+configurations = Configurations(file=c_file)
+
+
+volume_specification = VolumeSpecification(volume_type="gp2", size_in_gb=10)
+
+ebs_config = SingleEbsConfig(volume_specification=volume_specification, volumes_per_instance=1)
+
+ebs_configuration = EbsConfiguration(ebs_block_device_configs=[ebs_config], ebs_optimized=True)
+
+capacity = Capacity(target=1, maximum=1, minimum=1)
+
+
+master_group = MasterGroup(instance_types=["m1.medium", "c3.xlarge", "m3.xlarge"], target=1, life_cycle="SPOT")
+
+core_group = CoreGroup(instance_types=["m1.medium", "c3.xlarge", "m3.xlarge"], target=1, life_cycle="SPOT")
+
+task_group = TaskGroup(instance_types=["m1.medium", "c3.xlarge", "m3.xlarge"], capacity=capacity, life_cycle="SPOT")
+
+instance_groups = InstanceGroups(master_group=master_group, core_group=core_group, task_group=task_group)
+
+
+s_file = File(bucket="test_bucket", key="test_key")
+
+steps = Steps(file=s_file)
+
+
+ba_file = File(bucket="test_bucket", key="test_key")
+
+bootstrap_actions = BootstrapActions(file=ba_file)
+
+
+compute = Compute(ebs_root_volume_size=10, availability_zones=[{"name": "us-west-2a","subnetId": "subnet-79da021e"}], instance_groups=instance_groups)
+
+################ Strategy ################
+
+cloning = Cloning(origin_cluster_id="j-6T5B467690OT", include_steps=False)
+
+provisioning_timeout = ProvisioningTimeout(timeout=600, timeout_action="terminate")
+
+strategy = Strategy(cloning=cloning, provisioning_timeout=provisioning_timeout)
+
+name = "SDK-Test"
+
+description = "This was created with the SDK"
+
+region = "us-west-2"
+
+emr = EMR(name=name, description=description, region=region, strategy=strategy, compute=compute, scaling=scaling)
+
+emr = client.create_emr(emr)
+```
+
+
+
 
 #### Kubernetes
 ```python

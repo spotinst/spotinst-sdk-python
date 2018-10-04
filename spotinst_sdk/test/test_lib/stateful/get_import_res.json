@@ -1,0 +1,22 @@
+{
+	"request": {
+		"url": "/aws/ec2/statefulMigrationGroup/smg-ed45f757?accountId=act-56c15b97", 
+		"timestamp": "2018-09-20T23:19:35.166Z", 
+		"id": "44448baa-1536-4a9c-8fed-4b7044efcc06", 
+		"method": "GET"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [
+			{
+				"statefulMigrationId": "smg-ed45f757", 
+				"instanceId": "i-08807e080f8c3e681", 
+				"state": "MIGRATE_ERROR", 
+				"stateDescription": "There was an error during instance migration", 
+				"groupId": "sig-72897d13"
+			}
+		], 
+		"kind": "spotinst:aws:ec2:statefulMigrationGroup", 
+		"count": 1
+	}
+}

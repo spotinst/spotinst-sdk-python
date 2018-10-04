@@ -1,0 +1,25 @@
+{
+	"request": {
+		"url": "/aws/ec2/statefulMigrationGroup?accountId=act-56c15b97", 
+		"timestamp": "2018-09-20T23:10:18.911Z", 
+		"id": "99908bb7-dafb-493a-87a1-be8b7335c516", 
+		"method": "POST"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [
+			{
+				"state": "MIGRATE_START", 
+				"data": {
+					"originalInstanceId": "i-08807e080f8c3e681", 
+					"shouldKeepPrivateIp": false, 
+					"shouldTerminateInstance": true
+				}, 
+				"id": "smg-ed45f757", 
+				"groupId": "sig-72897d13"
+			}
+		], 
+		"kind": "spotinst:aws:ec2:statefulMigrationGroup", 
+		"count": 1
+	}
+}

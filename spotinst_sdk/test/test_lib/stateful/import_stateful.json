@@ -1,0 +1,18 @@
+{
+	"statefulMigrationGroup": {
+		"product": "Linux/UNIX", 
+		"shouldKeepPrivateIp": false, 
+		"name": "Test", 
+		"spotInstanceTypes": [
+			"m1.medium", 
+			"c3.xlarge", 
+			"m3.xlarge"
+		], 
+		"region": "us-west-2", 
+		"originalInstanceId": "i-08807e080f8c3e681", 
+		"availabilityZones": [
+			{"subnetIds": ["subnet-79da021e"], 
+			"name": "us-west-2a"
+		}]
+	}
+}
