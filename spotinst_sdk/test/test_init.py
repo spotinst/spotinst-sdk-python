@@ -60,6 +60,17 @@ class AwsInitTestElastigroup(AwsInitTestCase):
 
 		self.assertEqual(len(response), len(self.mock_group_response["response"]["items"][0]))
 
+	@patch('requests.put')
+	def testUpdateElastigroup(self, mock):
+		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_group_response)
+
+		mock.return_value = self.mock_api_call
+
+		response = self.client.update_elastigroup(group_update=self.mock_group_json, group_id="sig-123456")
+
+		self.assertEqual(len(response), len(self.mock_group_response["response"]["items"][0]))
+
 	@patch('requests.get')
 	def testGetElastigroupActivity(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
