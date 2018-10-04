@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.39] - 2018-10-04
+### Updated
+ - update_elastigroup() had error with the send_put() request arguments
+
 ## [1.0.38] - 2018-09-28
 ### Added
  - version to Rancher integration
