@@ -164,11 +164,11 @@ class SpotinstClient:
         self.print_output(body_json)
 
         group_response = self.send_put(
-            body_json,
             self.__base_elastigroup_url +
             "/" +
             group_id,
-            entity_name='elastigroup')
+            entity_name='elastigroup',
+            body=body_json)
 
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
