@@ -896,11 +896,6 @@ class SpotinstClient:
 
         return retVal
 
-
-
-
-
-
     def get_activity_events(self, group_id, from_date):
         query_params = dict(fromDate=from_date)
 
@@ -918,8 +913,6 @@ class SpotinstClient:
 
         return retVal
 
-
-
     def ami_backup(self, group_id):
         response = self.send_post(
             url=self.__base_elastigroup_url +
@@ -935,27 +928,6 @@ class SpotinstClient:
         retVal = formatted_response
 
         return retVal["response"]["status"]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     def create_blue_green_deployment(self, group_id, blue_green_deployment):
         blue_green_deployment = spotinst_blue_green_deployment.BlueGreenDeploymentRequest(blue_green_deployment)
