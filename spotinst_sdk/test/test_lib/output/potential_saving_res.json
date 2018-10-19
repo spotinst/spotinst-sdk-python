@@ -1,0 +1,31 @@
+{
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:cs:aws:potentialSavings",
+    "items": [
+      {
+        "resourceType": "Auto Scaling Group",
+        "name": "Prod_ASG",
+        "region": "us-west-1",
+        "instances": 5,
+        "instanceTypes": [
+          "c4.4xlarge"
+        ],
+        "potentialSavings": 2700
+      },
+      {
+        "resourceType": "Elastic Load Balancer",
+        "name": "Dev_ELB",
+        "region": "us-west-1",
+        "instances": 2,
+        "instanceTypes": [
+          "c4.2xlarge"
+        ],
+        "potentialSavings": 541
+      }
+    ]
+  }
+}

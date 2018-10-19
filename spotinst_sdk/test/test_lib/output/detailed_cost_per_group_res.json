@@ -1,0 +1,56 @@
+{
+  "request": {
+    "id": "14c3ab17-47ca-4081-aa55-c94955002ed8",
+    "url": "/aws/ec2/group/sig-12345/costs/detailed",
+    "method": "GET",
+    "timestamp": "2015-07-14T15:36:41.423Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:ec2:group",
+    "items": [
+      {
+        "groupId": "sig-12345",
+        "instanceId": "i-326129e1",
+        "spotInstanceRequestId": null,
+        "instanceType": "m3.medium",
+        "availabilityZone": "us-east-1a",
+        "running": {
+          "value": 4,
+          "unit": "hours"
+        },
+        "savings": {
+          "value": 0,
+          "unit": "percentage"
+        },
+        "costs": {
+          "actual": 0.268,
+          "potential": 0.268
+        }
+      },
+      {
+        "groupId": "sig-d56b9e37",
+        "instanceId": "i-c7793114",
+        "spotInstanceRequestId": "sir-02epa938",
+        "instanceType": "m3.large",
+        "availabilityZone": "us-east-1a",
+        "running": {
+          "value": 4,
+          "unit": "hours"
+        },
+        "savings": {
+          "value": 89.3233,
+          "unit": "percentage"
+        },
+        "costs": {
+          "actual": 0.0568,
+          "potential": 0.532
+        }
+      }
+    ],
+    "count": 2
+  }
+}

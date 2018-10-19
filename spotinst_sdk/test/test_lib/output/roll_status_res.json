@@ -1,0 +1,22 @@
+{
+	"request": {
+		"url": "/aws/ec2/group/sig-0df3597f/roll/sbgd-4ea64d71?accountId=act-56c15b97", 
+		"timestamp": "2018-10-15T17:39:43.085Z", 
+		"id": "70fa2fbf-640a-4f7d-8d4d-2303594a05c7", 
+		"method": "GET"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [
+			{
+				"status": "finished",
+				"progress": {"unit": "percent", "value": 100}, 
+				"created_at": "2018-10-13T18:24:11.000+0000", 
+				"id": "sbgd-4ea64d71", 
+				"updated_at": "2018-10-13T19:00:39.000+0000"
+			}
+		], 
+		"kind": "spotinst:aws:ec2:group:roll", 
+		"count": 1
+	}
+}

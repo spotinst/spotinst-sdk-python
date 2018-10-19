@@ -1,0 +1,23 @@
+{
+  "request": {
+    "id": "0bb5db74-2457-4a34-b8f3-174e6bf5578e",
+    "url": "/aws/ec2/group/sig-12345/scale/suspendPolicy?accountId=act-1234567&policyName=myscalingpolicyname",
+    "method": "POST",
+    "timestamp": "2016-06-19T08:41:57.516Z"
+  },
+    "response": {
+        "status": {
+            "code": 200,
+            "message": "OK"
+        },
+        "kind": "spotinst:aws:ec2:suspension",
+        "items": [
+            {
+                "groupId": "sig-12345",
+                "policyName": "down Scaling Policy 1",
+                "state": "suspended"
+            }
+        ],
+        "count": 1
+    }
+}

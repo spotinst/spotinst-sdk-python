@@ -1,0 +1,14 @@
+{
+	"request": {
+		"url":"/aws/ec2/group/sig-0df3597f/roll?accountId=act-56c15b97", 
+		"timestamp": "2018-10-15T17:08:00.311Z", 
+		"id": "3db08a72-0240-419c-8b06-8f1d820fcae4", 
+		"method": "PUT"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [], 
+		"kind": "spotinst:aws:ec2:group:roll", 
+		"count": 0
+	}
+}

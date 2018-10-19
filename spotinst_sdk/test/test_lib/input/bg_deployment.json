@@ -1,0 +1,11 @@
+{
+	"deployment": {
+		"deploymentGroups": [
+			{"applicationName": "appTest","deploymentGroupName": "deploymentGroupTest"}
+		], 
+		"timeout": 20, 
+		"tags": [
+			{"tagKey": "key", "tagValue": "value"}
+		]
+	}
+}

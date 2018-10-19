@@ -1,0 +1,6 @@
+{
+	"drainingTimeout": 60, 
+	"shouldDecrementTargetCapacity": false, 
+	"shouldHandleAllBatches": true, 
+	"actionType": "DETACH_NEW"
+}

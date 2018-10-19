@@ -1,0 +1,27 @@
+{
+  "request": {
+    "id": "3213e42e-455e-4901-a185-cc3eb65fac5f",
+    "url": "/aws/ec2/spotType?region=us-east-2",
+    "method": "GET",
+    "timestamp": "2017-12-18T14:06:04.866Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:ec2:spot:type",
+    "items": [
+      {
+        "instanceType": "t2.micro"
+      },
+      {
+        "instanceType": "m3.xlarge"
+      },
+      {
+        "instanceType": "c4.large"
+      }
+    ],
+    "count": 1
+  }
+}
