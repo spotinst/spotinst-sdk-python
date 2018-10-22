@@ -35,3 +35,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
  - `resume_stateful_instance`
  - `pause_stateful_instance`
  - testing for `__init__.py`
+ 
+## [1.0.31] - 2018-07-09
+### Added
+- Logger using standard logging module
+- "--log-level" command line argument (more info in "--help")
+- "log_level" constructor parameter, defaults to "critical"
+- Created changelog
+
