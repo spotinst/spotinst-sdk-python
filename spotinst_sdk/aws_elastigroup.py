@@ -309,6 +309,9 @@ class ScheduledTask:
             scale_target_capacity=none,
             scale_min_capacity=none,
             scale_max_capacity=none,
+            target_capacity=none,
+            min_capacity=none,
+            max_capacity=none,
             batch_size_percentage=none,
             grace_period=none,
             adjustment=none,
@@ -323,6 +326,9 @@ class ScheduledTask:
         :type scale_target_capacity: int
         :type scale_min_capacity: int
         :type scale_max_capacity: int
+        :type target_capacity: int
+        :type min_capacity: int
+        :type max_capacity: int
         :type batch_size_percentage: int
         :type grace_period: int
         :type adjustment: int
@@ -339,6 +345,9 @@ class ScheduledTask:
         self.scale_target_capacity = scale_target_capacity
         self.scale_min_capacity = scale_min_capacity
         self.scale_max_capacity = scale_max_capacity
+        self.target_capacity = target_capacity
+        self.min_capacity = min_capacity
+        self.max_capacity = max_capacity
         self.batch_size_percentage = batch_size_percentage
         self.grace_period = grace_period
         self.adjustment = adjustment
@@ -388,16 +397,18 @@ class MultaiLoadBalancer:
 # region ThirdPartyIntegrations
 class Rancher:
 
-    def __init__(self, access_key=none, secret_key=none, master_host=none):
+    def __init__(self, access_key=none, secret_key=none, master_host=none, version=none):
         """
 
         :type access_key: str
         :type secret_key: str
         :type master_host: str
+        :type version: str
         """
         self.access_key = access_key
         self.secret_key = secret_key
         self.master_host = master_host
+        self.version = version
 
 
 class Mesosphere:

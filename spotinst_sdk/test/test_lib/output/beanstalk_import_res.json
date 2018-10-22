@@ -1,0 +1,79 @@
+{
+	"request": {
+		"url": "/aws/ec2/group/beanstalk/import?environmentName=AlexGDev-env-1&region=us-west-2", 
+		"timestamp": "2018-10-19T21:20:56.896Z", 
+		"id": "21a34ea5-4e3e-417b-9fad-d0a75efbcbd2", 
+		"method": "GET"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [
+			{
+				"compute": {
+					"product": "Linux/UNIX", 
+					"availabilityZones": [
+						{"name": "us-west-2a"}, 
+						{"name": "us-west-2b"}, 
+						{"name": "us-west-2c"}
+					], 
+					"instanceTypes": {
+						"spot": ["t1.micro"], 
+						"ondemand": "t1.micro"
+					}, 
+					"launchSpecification": {
+						"iamRole": {
+							"name": "aws-elasticbeanstalk-ec2-role"
+						}, 
+						"blockDeviceMappings": [
+							{
+								"deviceName": "/dev/xvdcz", 
+								"ebs": {
+									"volumeSize": 12, 
+									"deleteOnTermination": true, 
+									"volumeType": "gp2"
+								}
+							}
+						], 
+						"monitoring": false, 
+						"tags": [
+							{"tagKey": "Name", "tagValue": "AlexGDev-env-1"}, 
+							{"tagKey": "elasticbeanstalk:environment-id", "tagValue": "e-wpkjxia8am"}, 
+							{"tagKey": "elasticbeanstalk:environment-name", "tagValue": "AlexGDev-env-1"}
+						], 
+						"loadBalancersConfig": {
+							"loadBalancers": [
+								{"type": "CLASSIC", "name": "awseb-e-w-AWSEBLoa-ZIGMX0AXHNLF"}
+							]
+						}, 
+						"imageId": "ami-0f4ef1b009cb20a5f", 
+						"ebsOptimized": false, 
+						"healthCheckGracePeriod": 600, 
+						"healthCheckType": "ELB"
+					}
+				},
+				"name": "e-wpkjxia8am group", 
+				"thirdPartiesIntegration": {
+					"elasticBeanstalk": {
+						"environmentId": "e-wpkjxia8am"
+					}
+				}, 
+				"strategy": {
+					"availabilityVsCost": "balanced", 
+					"fallbackToOd": true, 
+					"risk": 100
+				}, 
+				"scaling": {}, 
+				"capacity": {"minimum": 0, "maximum": 640, "unit": "instance", "target": 0}, 
+				"description": "Linked to environment: e-wpkjxia8am"
+			}
+		], 
+		"kind": "spotinst:aws:ec2:group", "count": 1
+	}
+}
+
+
+
+
+
+
+

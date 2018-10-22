@@ -1,0 +1,26 @@
+{
+    "request": {
+        "id": "8ce51c56-6971-4783-8e15-b92438f7a65d",
+        "url": "/aws/costs",
+        "method": "GET",
+        "timestamp": "2015-07-06T11:44:27.963Z"
+    },
+    "response": {
+        "status": {
+            "code": 200,
+            "message": "OK"
+        },
+        "kind": "spotinst:aws:costs",
+        "items": [
+{
+   "spot": {
+       "runningHours": "1470.80",
+       "actualCosts": "107.30",
+       "potentialCosts": "378.41",
+       "savingsPercentage": "71.64"
+      }
+   }
+],             
+        "count": 1
+    }
+}

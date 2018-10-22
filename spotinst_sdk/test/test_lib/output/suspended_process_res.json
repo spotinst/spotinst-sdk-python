@@ -1,0 +1,33 @@
+{
+  "request": {
+    "id": "0bb5db74-2457-4a34-b8f3-174e6bf5578e",
+    "url": "/aws/ec2/group/sig-12345/suspension",
+    "method": "POST",
+    "timestamp": "2016-06-19T08:41:57.516Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:ec2:suspension",
+    "items": [
+      {
+        "groupId": "sig-12345",
+        "processes" : [
+          "AUTO_SCALE",
+          "OUT_OF_STRATEGY",
+          "PREVENTIVE_REPLACEMENT",
+          "REVERT_PREFERRED"
+        ],
+        "suspensions": [
+          {"name" : "AUTO_SCALE", "expiresAt" : null},  
+          {"name" : "OUT_OF_STRATEGY", "expiresAt" : "2018-10-03T07:23:24.000+0000" },
+          {"name" : "PREVENTIVE_REPLACEMENT", "expiresAt" : "2018-10-03T09:03:24.000+0000"},
+          {"name" : "REVERT_PREFERRED", "expiresAt" : null}
+        ]
+      }
+    ],
+    "count": 4
+  }
+}

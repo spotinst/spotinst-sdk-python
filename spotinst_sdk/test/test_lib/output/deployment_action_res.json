@@ -1,0 +1,26 @@
+{
+  "request": {
+    "id": "9ea37b98-32f7-48ea-8ec3-14e3f396e50e",
+    "url": "/aws/ec2/group/sig-1b656b92/roll/sbgd-aafb7671/action",
+    "method": "POST",
+    "timestamp": "2017-04-02T11:09:40.652Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:ec2:group:roll:action",
+    "items": [
+      {
+        "groupId": "sig-1b656b92",
+        "rollId": "sbgd-aafb7671",
+        "actionType": "DETACH_NEW",
+        "detachedInstances": [
+          "i-0b6974ad592f8d9ba"
+        ]
+      }
+    ],
+    "count": 1
+  }
+}

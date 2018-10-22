@@ -1,0 +1,142 @@
+{
+  "request": {
+    "id": "46642c7d-bc29-417d-8ce4-79626f00c63c",
+    "url": "/aws/ec2/group/sig-12345/events?fromDate=2016-10-01",
+    "method": "GET",
+    "timestamp": "2016-01-21T17:12:51.451Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:ec2:group:event",
+    "items": [
+      {
+        "groupId": "sig-12345",
+        "eventType": "Update",
+        "createdAt": "2016-01-21T17:10:04.000+0000",
+        "subEvents": [
+          {
+            "type": "scaleUp",
+            "newSpots": [
+              {
+                "spotInstanceRequestId": "sir-0294dbzt"
+              },
+              {
+                "spotInstanceRequestId": "sir-02940b7h"
+              },
+              {
+                "spotInstanceRequestId": "sir-028z1age"
+              },
+              {
+                "spotInstanceRequestId": "sir-028z456e"
+              },
+              {
+                "spotInstanceRequestId": "sir-028wg6gr"
+              },
+              {
+                "spotInstanceRequestId": "sir-0294a9v5"
+              }
+            ],
+            "newInstances": []
+          }
+        ]
+      },
+      {
+        "groupId": "sig-12345",
+        "eventType": "Scale",
+        "createdAt": "2016-01-21T17:03:17.000+0000",
+        "subEvents": [
+          {
+            "type": "scaleUp",
+            "newSpots": [
+              {
+                "spotInstanceRequestId": "sir-02960nmw"
+              }
+            ],
+            "newInstances": []
+          }
+        ]
+      },
+      {
+        "groupId": "sig-12345",
+        "eventType": "Scale",
+        "createdAt": "2016-01-21T16:51:09.000+0000",
+        "subEvents": [
+          {
+            "type": "scaleDown",
+            "terminatedSpots": [
+              {
+                "spotInstanceRequestId": "sir-029404xk",
+                "instanceId": "i-7fb4facc"
+              }
+            ],
+            "terminatedInstances": []
+          }
+        ]
+      },
+      {
+        "groupId": "sig-12345",
+        "eventType": "Scale",
+        "createdAt": "2016-01-21T16:40:13.000+0000",
+        "subEvents": [
+          {
+            "type": "scaleUp",
+            "newSpots": [
+              {
+                "spotInstanceRequestId": "sir-0291mt56"
+              }
+            ],
+            "newInstances": []
+          }
+        ]
+      },
+      {
+        "groupId": "sig-12345",
+        "eventType": "Scale",
+        "createdAt": "2016-01-21T15:52:18.000+0000",
+        "subEvents": [
+          {
+            "type": "scaleDown",
+            "terminatedSpots": [
+              {
+                "spotInstanceRequestId": "sir-028zqc5c",
+                "instanceId": "i-9de8e51c"
+              }
+            ],
+            "terminatedInstances": []
+          }
+        ]
+      },
+      {
+        "groupId": "sig-12345",
+        "eventType": "DetachInstances",
+        "createdAt": "2016-01-21T15:48:10.000+0000",
+        "subEvents": [
+          {
+            "type": "detachedInstance",
+            "instanceId": "i-0f8533303dc4aa5d5"
+          }
+        ]
+      },
+      {
+        "groupId": "sig-12345",
+        "eventType": "Scale",
+        "createdAt": "2016-01-21T15:41:18.000+0000",
+        "subEvents": [
+          {
+            "type": "scaleUp",
+            "newSpots": [
+              {
+                "spotInstanceRequestId": "sir-0294le2m"
+              }
+            ],
+            "newInstances": []
+          }
+        ]
+      }
+    ],
+    "count": 6
+  }
+}

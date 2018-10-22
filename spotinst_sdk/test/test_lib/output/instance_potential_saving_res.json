@@ -1,0 +1,36 @@
+{
+  "request": {
+    "id": "cb2faaff-6c08-49c1-92af-822a117b1303",
+    "url": "/aws/instancePotentialSavings?instanceIds=i-08674ba9a6ddb73f4%2Ci-0973dc7a755d34894&region=us-west-2",
+    "method": "GET",
+    "timestamp": "2018-01-24T17:21:11.291Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:cs:aws:potentialSavings",
+    "items": [
+      {
+        "resourceType": "EC2Instance",
+        "name": "i-08674ba9a6ddb73f4",
+        "instances": 1,
+        "instanceTypes": [
+          "t2.medium"
+        ],
+        "potentialSavings": 28
+      },
+      {
+        "resourceType": "EC2Instance",
+        "name": "i-0973dc7a755d34894",
+        "instances": 1,
+        "instanceTypes": [
+          "m4.large"
+        ],
+        "potentialSavings": 60
+      }
+    ],
+    "count": 2
+  }
+}

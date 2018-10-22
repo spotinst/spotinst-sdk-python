@@ -1,11 +1,41 @@
-# Changelog
+# Change Log
 All notable changes to this project will be documented in this file.
+This project adheres to [Semantic Versioning](http://semver.org/).
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [1.0.39] - Unreleased
+### Added
+ - kubernetes api calls
+ - b/g deployment api calls
+ - beanstalk api calls
+ - stateful api calls
+ - process and scaling policy api calls
+ - deployment api calls
+ - instance api calls
+ - cost api calls
+ - other misc api calls
 
-## [Unreleased]
+## [1.0.39] - 2018-10-04
+### Updated
+ - update_elastigroup() had error with the send_put() request arguments
 
+## [1.0.38] - 2018-09-28
+### Added
+ - version to Rancher integration
+
+## [1.0.37] - 2018-09-21
+### Added
+ - `get_deployment_status` 
+ - `get_elastigroup_activity` 
+ - `import_stateful_instance`
+ - `get_stateful_import_status`
+ - `delete_stateful_import`
+ - `deallocate_stateful_instance`
+ - `recycle_stateful_instance` 
+ - `get_stateful_instances` 
+ - `resume_stateful_instance`
+ - `pause_stateful_instance`
+ - testing for `__init__.py`
+ 
 ## [1.0.31] - 2018-07-09
 ### Added
 - Logger using standard logging module
@@ -13,5 +43,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - "log_level" constructor parameter, defaults to "critical"
 - Created changelog
 
-### Changed
-- All print statements now handled by logger

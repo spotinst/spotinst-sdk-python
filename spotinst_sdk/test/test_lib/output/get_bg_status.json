@@ -1,0 +1,39 @@
+{
+  "request": {
+    "url": "/aws/ec2/group/sig-8ec84764/codeDeploy/blueGreenDeployment?accountId=act-56c15b97",
+    "timestamp": "2018-10-12T20:05:16.685Z",
+    "id": "856510ee-164b-4da3-be88-17b21e3d54cd",
+    "method": "GET"
+  },
+  "response": {
+    "status": {
+      "message": "OK",
+      "code": 200
+    },
+    "items": [
+      {
+        "status": "INITIALIZING",
+        "state": "STARTING",
+        "group_id": "sig-8ec84764",
+        "config": {
+          "deployment_groups": [
+            {
+              "application_name": "appTest",
+              "deployment_group_name": "deploymentGroupTest"
+            }
+          ],
+          "timeout": 20,
+          "tags": [
+            {
+              "tag_key": "key",
+              "tag_value": "value"
+            }
+          ]
+        },
+        "id": "cdbg-611a38d3"
+      }
+    ],
+    "kind": "spotinst:aws:ec2:group:codeDeploy:blueGreenDeployment",
+    "count": 1
+  }
+}
