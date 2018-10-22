@@ -1,0 +1,69 @@
+{
+	"request": {
+		"url": "/mcs/kubernetes/cluster/jeffrey.spotinstdemo.com/costs?toDate=2018-10-12&fromDate=2016-01-01", 
+		"timestamp": "2018-10-12T17:30:30.751Z", 
+		"id": "680d5676-d6e6-4129-9cec-a88c9c98444f", 
+		"method": "GET"
+	}, 
+	"response": {
+		"status": {
+			"message": "OK", 
+			"code": 200
+		}, 
+		"items": [
+			{
+				"total_cost": 2632.1284, 
+				"headroom_cost": 2250.1082, 
+				"stand_alone_pods_cost": 41.740726, 
+				"namespaces":[
+					{
+						"cost": 331.6783, 
+						"namespace": "default"
+					}, {
+						"cost": 8.601142, 
+						"namespace": "kube-system"
+					}
+				], 
+				"deployments": [
+					{
+						"cost": 8.746348, 
+						"namespace": "default", 
+						"deployment_name": "mapreduce-dask-jupyter"
+					}, {
+						"cost": 9.888494, 
+						"namespace": "default", 
+						"deployment_name": "mapreduce-dask-remote"
+					}, {
+						"cost": 135.88612, 
+						"namespace": "default", 
+						"deployment_name": "mapreduce-dask-scheduler"
+					}, {
+						"cost": 177.15735, 
+						"namespace": "default", 
+						"deployment_name": "mapreduce-dask-worker"
+					}, {
+						"cost": 0.9766621, 
+						"namespace": "kube-system", 
+						"deployment_name": "dns-controller"
+					}, {
+						"cost": 7.3198643, 
+						"namespace": "kube-system", 
+						"deployment_name": "kube-dns"
+					}, {
+						"cost": 0.3046156, 
+						"namespace": "kube-system", 
+						"deployment_name": "kube-dns-autoscaler"
+					}
+				]
+			}
+		], 
+		"kind": "spotinst:mcs:kubernetes:cluster:costs", 
+		"count": 1
+	}
+}
+
+
+
+
+
+

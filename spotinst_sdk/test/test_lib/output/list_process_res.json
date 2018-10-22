@@ -1,0 +1,25 @@
+{
+  "request": {
+    "id": "fa110d60-bdc0-49b2-974c-19a68ae03ec9",
+    "url": "/aws/ec2/group/sig-12345/suspension",
+    "method": "GET",
+    "timestamp": "2016-06-15T15:40:28.917Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:ec2:suspension",
+    "items": [
+      {
+        "groupId": "sig-12345",
+        "processes": [
+          "AUTO_SCALE"
+        ]
+      }
+    ],
+    "count": 1
+  }
+}
+

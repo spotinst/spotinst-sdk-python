@@ -1,0 +1,30 @@
+{
+  "request": {
+    "id": "8ce51c56-6971-4783-8e15-b92438f7a65d",
+    "url": "/aws/ec2/group/sig-12345/costs",
+    "method": "GET",
+    "timestamp": "2015-07-06T11:44:27.963Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:group",
+    "items": {
+      "running": {
+        "value": "6.00",
+        "unit": "hours"
+      },
+      "savings": {
+        "value": "72.8937",
+        "unit": "percentage"
+      },
+      "costs": {
+        "actual": "0.2681",
+        "potential": "1.5330"
+      }
+    },
+    "count": 1
+  }
+}

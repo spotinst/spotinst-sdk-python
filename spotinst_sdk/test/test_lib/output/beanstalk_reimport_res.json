@@ -1,0 +1,19 @@
+{
+	"request": {
+		"url": "/aws/ec2/group/sig-023d49af/beanstalk/reimport?accountId=act-56c15b97", 
+		"timestamp": "2018-10-19T21:33:29.164Z", 
+		"id": "4c71b5d1-e5e6-49bf-a49a-4c0749b4d599", 
+		"method": "PUT"
+	}, 
+	"response": {
+		"status": {"message": "OK", "code": 200}, 
+		"items": [
+			{
+				"compute": {"launchSpecification": {"monitoring": false}}, 
+				"id": "sig-023d49af"
+			}
+		], 
+		"kind": "spotinst:aws:ec2:group", 
+		"count": 1
+	}
+}

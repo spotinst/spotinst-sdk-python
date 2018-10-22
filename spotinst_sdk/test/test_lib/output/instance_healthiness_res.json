@@ -1,0 +1,26 @@
+{
+      "request": {
+            "id": "c31e4f9a-e6b0-4177-8899-6c327368b640",
+        "url": "/aws/ec2/group/sig-1b656b92/instanceHealthiness",
+        "method": "GET",
+        "timestamp": "2017-03-26T13:13:57.762Z"
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "kind": "spotinst:aws:ec2:group:instanceHealthiness",
+        "items": [
+          {
+            "instanceId": "i-07593cd9173cd9667",
+            "spotRequestId": "sir-xjag9yqp",
+            "groupId": "sig-1b656b92",
+            "availabilityZone": "us-west-2b",
+            "lifeCycle": "SPOT",
+            "healthStatus": "HEALTHY"
+          }
+        ],
+        "count": 1
+  }
+}
