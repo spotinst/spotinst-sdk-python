@@ -9,6 +9,9 @@ from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
 from spotinst_sdk import spotinst_emr
 from spotinst_sdk import spotinst_stateful
+from spotinst_sdk import spotinst_blue_green_deployment
+from spotinst_sdk import spotinst_deployment_action
+from spotinst_sdk import spotinst_asg
 
 VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
@@ -30,10 +33,14 @@ _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
 
 class SpotinstClient:
     __account_id_key = "accountId"
+    __base_url = "https://api.spotinst.io/aws/ec2"
     __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
     __base_emr_url = "https://api.spotinst.io/aws/emr/mrScaler"
     __base_functions_url = "https://api.spotinst.io/functions"
     __base_stateful_url = "https://api.spotinst.io/aws/ec2/statefulMigrationGroup"
+    __base_kube_url = "https://api.spotinst.io/mcs/kubernetes/cluster"
+    __base_saving_url = "https://api.spotinst.io/aws/potentialSavings"
+
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
 
@@ -74,12 +81,10 @@ class SpotinstClient:
             excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
-
-        self.print_output(body_json)
         
         group_response = self.send_post(
-            body_json,
-            self.__base_emr_url,
+            body=body_json,
+            url=self.__base_emr_url,
             entity_name='emr')
 
         formatted_response = self.convert_json(
@@ -91,6 +96,20 @@ class SpotinstClient:
 
     # endregion
 
+    # region Kubernetes
+
+    def get_kubernetes_cluster_cost(self, custer_id, from_date, to_date):        
+        geturl = self.__base_kube_url + "/" + custer_id + "/costs"
+        query_params = self.build_query_params_with_input({"toDate":to_date, "fromDate":from_date})
+
+        result = self.send_get(url=geturl, query_params=query_params, entity_name='kubernetes')
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    # endregion
 
 
 
@@ -108,8 +127,8 @@ class SpotinstClient:
         self.print_output(body_json)
 
         group_response = self.send_post(
-            body_json,
-            self.__base_elastigroup_url,
+            body=body_json,
+            url=self.__base_elastigroup_url,
             entity_name='elastigroup')
 
         formatted_response = self.convert_json(
@@ -243,11 +262,10 @@ class SpotinstClient:
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
-
     def roll_group(self, group_id, group_roll):
-
         group_roll_request = aws_elastigroup.ElastigroupRollRequest(
             group_roll=group_roll)
+
 
         excluded_group_roll_dict = self.exclude_missing(
             json.loads(group_roll_request.toJSON()))
@@ -256,8 +274,6 @@ class SpotinstClient:
             excluded_group_roll_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_roll_dict)
-
-        self.print_output(body_json)
 
         roll_response = self.send_put(
             url=self.__base_elastigroup_url +
@@ -270,11 +286,11 @@ class SpotinstClient:
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        retVal = formatted_response["response"]
 
         return retVal
 
-    def get_deployment_status(self, group_id):
+    def get_all_group_deployment(self, group_id):
         content = self.send_get(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -282,12 +298,347 @@ class SpotinstClient:
                 "/roll",
             entity_name='roll')
 
-        print(json.dumps(content))
-
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
+
+    def get_deployment_status(self, group_id, roll_id):
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll/"+
+                str(roll_id),
+            entity_name='roll')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def stop_deployment(self, group_id, roll_id):
+        content = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll/"+
+                str(roll_id),
+            body=json.dumps(dict(roll=dict(status="STOPPED"))),
+            entity_name='roll')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def create_deployment_action(self, group_id, roll_id, deployment_action):
+        deployment_action_request = spotinst_deployment_action.DeploymentActionRequest(deployment_action)
+
+        deployment_action_dict = self.exclude_missing(
+            json.loads(deployment_action_request.toJSON()))
+
+        formatted_group = self.convert_json(
+            deployment_action_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group)
+
+        detach_response = self.send_post(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll/"+
+                str(roll_id),
+            body=body_json,
+            entity_name='roll')
+
+        formatted_response = self.convert_json(
+            detach_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
+    def get_instance_type_by_region(self, region):
+        query_params = dict(region=region)
+        response = self.send_get(
+            url=self.__base_url+
+            "/spotType",
+            query_params=query_params,
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def lock_instance(self, instance_id, lock_time=None):
+        query_params= dict(ttlInMinutes=lock_time)
+
+        response = self.send_post(
+            url=self.__base_url +
+            "/instance/" +
+            instance_id +
+            "/lock",
+            query_params=query_params,
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def unlock_instance(self, instance_id):
+        response = self.send_post(
+            url=self.__base_url +
+            "/instance/" +
+            instance_id +
+            "/unlock",
+            entity_name="instance"
+        )
+        
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def enter_instance_standby(self, instance_id):
+        response = self.send_post(
+            url=self.__base_url + 
+            "/instance/" + 
+            instance_id +
+            "/standby/enter",
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def exit_instance_standby(self, instance_id):
+        response = self.send_post(
+            url=self.__base_url + 
+            "/instance/" + 
+            instance_id +
+            "/standby/exit",
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def get_instance_status(self, instance_id):
+        response = self.send_get(
+            url=self.__base_url + 
+            "/instance/" +
+            instance_id,
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_instance_healthiness(self, group_id):
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+             "/" + group_id + 
+            "/instanceHealthiness",
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]  
+
+
+    def create_instance_signal(self, instance_id, signal):
+        body = dict(instanceId=instance_id, signal=signal)
+
+        response = self.send_post(
+            url= self.__base_url + 
+            "/instance/signal",
+            body=body,
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["status"]  
+
+    def get_cost_per_account(self, to_date=None, from_date=None):
+        query_params=dict(toDate=to_date, fromDate=from_date)
+
+        response = self.send_get(
+            url="https://api.spotinst.io/aws/costs",
+            query_params=query_params,
+            entity_name="cost"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"]  
+
+    def get_cost_per_elastigroup(self, group_id, to_date=None, from_date=None):
+        query_params=dict(toDate=to_date, fromDate=from_date)
+
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+            "/" + group_id +
+            "/costs",
+            query_params=query_params,
+            entity_name="cost"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"]   
+
+    def get_group_detailed_cost(self, group_id, to_date=None, from_date=None):
+        query_params=dict(toDate=to_date, fromDate=from_date)
+
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+            "/" + group_id +
+            "/costs/detailed",
+            query_params=query_params,
+            entity_name="cost"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"] 
+
+    def get_potential_savings(self):
+        response = self.send_get(
+            url="https://api.spotinst.io/aws/potentialSavings",
+            entity_name="saving"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"] 
+
+    def get_instance_potential_savings(self, instance_ids, region):
+        instance_str = ""
+
+        for instance in instance_ids:
+            instance_str += instance + "," 
+        
+        query_params = dict(region=region, instanceIds=instance_str)
+
+        response = self.send_get(
+            url="https://api.spotinst.io/aws/instancePotentialSavings",
+            query_params=query_params,
+            entity_name="saving"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"] 
+
+    def list_suspended_scaling_policies(self, group_id):
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + 
+            "/scale/suspensions",
+            entity_name="scaling policies"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"]   
+
+    def suspend_scaling_policies(self, group_id, policy_name):
+        query_params = dict(policyName=policy_name)
+
+        response = self.send_post(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + 
+            "/scale/suspendPolicy",
+            query_params=query_params,
+            entity_name="scaling policies"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def resume_suspended_scaling_policies(self, group_id, policy_name):
+        query_params = dict(policyName=policy_name)
+
+        response = self.send_post(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + 
+            "/scale/resumePolicy",
+            query_params=query_params,
+            entity_name="scaling policies"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def list_suspended_process(self, group_id):
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + 
+            "/suspension",
+            entity_name="suspend process"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def suspend_process(self, group_id, processes, suspensions):
+        body = dict(suspensions=suspensions, processes=processes)
+        
+        response = self.send_post(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + 
+            "/suspension",
+            body=body,
+            entity_name="suspend process"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def remove_suspended_process(self, group_id, processes):
+        body = dict(processes=processes)
+
+        response = self.send_delete(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + 
+            "/suspension",
+            body=body,
+            entity_name="suspend process"
+        )
+
+        formatted_response = self.convert_json(
+            response, self. camel_to_underscore)
+
+        return formatted_response
 
     def detach_elastigroup_instances(self, group_id, detach_configuration):
 
@@ -301,8 +652,6 @@ class SpotinstClient:
             excluded_group_detach_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_detach_dict)
-
-        self.print_output(body_json)
 
         detach_response = self.send_put(
             url=self.__base_elastigroup_url +
@@ -319,8 +668,6 @@ class SpotinstClient:
 
         return retVal
 
-
-
     def import_stateful_instance(self, stateful_instance):
         stateful_instance = spotinst_stateful.StatefulImportRequest(stateful_instance)
 
@@ -332,8 +679,8 @@ class SpotinstClient:
         body_json = json.dumps(formatted_group_dict)
         
         group_response = self.send_post(
-            body_json,
-            self.__base_stateful_url,
+            body=body_json,
+            url=self.__base_stateful_url,
             entity_name='import stateful instance')
 
         formatted_response = self.convert_json(
@@ -489,8 +836,150 @@ class SpotinstClient:
 
         return retVal
 
+    def beanstalk_import(self, region, env_id=None, env_name=None):
+        query_params = dict(region=region, environmentId=env_id, environmentName=env_name)
 
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+            "/beanstalk/import",
+            query_params=query_params,
+            entity_name="beanstalk import"
+        )
 
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def beanstalk_reimport(self, group_id):
+        response = self.send_put(
+            url=self.__base_elastigroup_url +
+            "/" + str(group_id) + 
+            "/beanstalk/reimport",
+            entity_name="beanstalk reimport"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def import_asg(self, region, asg_name, asg, dry_run=None):
+        query_params = dict(region=region, autoScalingGroupName=asg_name, dryRun=dry_run)
+
+        asg = spotinst_asg.ImportASGRequest(asg)
+
+        excluded_group_dict = self.exclude_missing(json.loads(asg.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+        
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_elastigroup_url+
+            "/autoScalingGroup/import",
+            query_params=query_params,
+            entity_name='import asg')
+
+        print(json.dumps(response))
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_activity_events(self, group_id, from_date):
+        query_params = dict(fromDate=from_date)
+
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + "/events",
+            query_params=query_params,
+            entity_name="activity groups"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
+    def ami_backup(self, group_id):
+        response = self.send_post(
+            url=self.__base_elastigroup_url +
+            "/" + group_id + "/amiBackup",
+            entity_name="ami backup"
+        )
+
+        print(json.dumps(response))
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response
+
+        return retVal["response"]["status"]
+
+    def create_blue_green_deployment(self, group_id, blue_green_deployment):
+        blue_green_deployment = spotinst_blue_green_deployment.BlueGreenDeploymentRequest(blue_green_deployment)
+
+        excluded_group_dict = self.exclude_missing(json.loads(blue_green_deployment.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        group_response = self.send_post(
+            body=body_json,
+            url=self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment",
+            entity_name='create b/g deployment')
+
+        print(group_response)
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_blue_green_deployment(self, group_id):
+        response = self.send_get(
+            url= self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment",
+            entity_name="get b/g deployment")
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def stop_blue_green_deployment(self, group_id, deployment_id):
+        response = self.send_put(
+            url=self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment/" + deployment_id + "/stop",
+            entity_name="stop b/g deployment")
+
+        print(response)
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        print(formatted_response)
+
+        retVal = formatted_response["response"]
+
+        return retVal
 
     # endregion
 
@@ -509,8 +998,8 @@ class SpotinstClient:
         self.print_output(body_json)
 
         app_response = self.send_post(
-            body_json,
-            self.__base_functions_url +
+            body=body_json,
+            url=self.__base_functions_url +
             '/application',
             entity_name='application')
 
@@ -535,8 +1024,8 @@ class SpotinstClient:
         self.print_output(body_json)
 
         env_response = self.send_post(
-            body_json,
-            self.__base_functions_url +
+            body=body_json,
+            url=self.__base_functions_url +
             '/environment',
             entity_name='environment')
 
@@ -563,8 +1052,8 @@ class SpotinstClient:
         self.print_output(json.dumps(formatted_fx_dict))
 
         fx_response = self.send_post(
-            body_json,
-            self.__base_functions_url +
+            body=body_json,
+            url=self.__base_functions_url +
             '/function',
             entity_name='function')
 
@@ -603,7 +1092,7 @@ class SpotinstClient:
         else:
             self.handle_exception("getting {}".format(entity_name), result)
 
-    def send_delete(self, url, entity_name):
+    def send_delete(self, url, entity_name, body=None):
         agent = self.resolve_user_agent()
         query_params = self.build_query_params()
         headers = dict(
@@ -615,7 +1104,7 @@ class SpotinstClient:
         )
 
         self.print_output("Sending deletion request to spotinst API.")
-        result = requests.delete(url, params=query_params, headers=headers)
+        result = requests.delete(url, params=query_params, body=body, headers=headers)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -647,9 +1136,9 @@ class SpotinstClient:
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
 
-    def send_post(self, body, url, entity_name):
+    def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
-        query_params = self.build_query_params()
+        query_params = query_params or self.build_query_params()
         headers = dict(
             {
                 'User-Agent': agent,
