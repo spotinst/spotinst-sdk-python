@@ -4,6 +4,8 @@ import re
 
 import requests
 import yaml
+import logging
+import argparse
 
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
@@ -50,6 +52,7 @@ class SpotinstClient:
                  profile=None,
                  credentials_file=None,
                  print_output=True,
+                 log_level="critical",
                  user_agent=None):
         """
 
@@ -58,6 +61,7 @@ class SpotinstClient:
         :type profile: str
         :type credentials_file: str
         :type print_output: bool
+        :type log_level: str
         :type user_agent: str
         """
 
@@ -69,6 +73,15 @@ class SpotinstClient:
 
         self.should_print_output = print_output
         self.user_agent = user_agent
+
+        # initialize logger
+        self.logger = self.init_logger()
+        options = self.get_args()
+
+        if options:
+            self.set_log_level(options)
+        else:
+            self.set_log_level(log_level)
 
 
     # region EMR
@@ -887,8 +900,6 @@ class SpotinstClient:
             query_params=query_params,
             entity_name='import asg')
 
-        print(json.dumps(response))
-
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
@@ -920,8 +931,6 @@ class SpotinstClient:
             entity_name="ami backup"
         )
 
-        print(json.dumps(response))
-
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
@@ -943,8 +952,6 @@ class SpotinstClient:
             body=body_json,
             url=self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment",
             entity_name='create b/g deployment')
-
-        print(group_response)
 
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
@@ -970,12 +977,8 @@ class SpotinstClient:
             url=self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment/" + deployment_id + "/stop",
             entity_name="stop b/g deployment")
 
-        print(response)
-
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
-
-        print(formatted_response)
 
         retVal = formatted_response["response"]
 
@@ -1037,9 +1040,7 @@ class SpotinstClient:
         return retVal
 
     def create_function(self, fx):
-
-        fx = spotinst_functions.FunctionCreationRequest(
-            fx, self.should_print_output)
+        fx = spotinst_functions.FunctionCreationRequest(fx, self.should_print_output)
 
         excluded_fx_dict = self.exclude_missing(json.loads(fx.toJSON()))
 
@@ -1104,6 +1105,7 @@ class SpotinstClient:
         )
 
         self.print_output("Sending deletion request to spotinst API.")
+
         result = requests.delete(url, params=query_params, body=body, headers=headers)
 
         if result.status_code == requests.codes.ok:
@@ -1124,6 +1126,7 @@ class SpotinstClient:
         )
 
         self.print_output("Sending deletion request to spotinst API.")
+
         result = requests.delete(
             url,
             params=query_params,
@@ -1148,6 +1151,7 @@ class SpotinstClient:
         )
 
         self.print_output("Sending post request to spotinst API.")
+
         result = requests.post(
             url,
             params=query_params,
@@ -1199,6 +1203,7 @@ class SpotinstClient:
         )
 
         self.print_output("Sending put request to spotinst API.")
+
         result = requests.put(
             url,
             params=query_params,
@@ -1221,9 +1226,12 @@ class SpotinstClient:
 
     def handle_exception(self, action_string, result):
         self.print_output(result.status_code)
+
         data = json.loads(result.content.decode('utf-8'))
+
         response_json = json.dumps(data["response"])
         self.print_output(response_json)
+
         raise SpotinstClientException(
             "Error encountered while " +
             action_string,
@@ -1293,6 +1301,52 @@ class SpotinstClient:
             query_params = self.merge_two_dicts(query_params, user_params)
 
         return query_params
+
+    def print_output(self, output, level="debug"):
+        if self.should_print_output is True:
+            if level == "debug":
+                self.logger.debug(output)
+            if level == "info":
+                self.logger.info(output)
+            if level == "warn":
+                self.logger.warn(output)
+            if level == "error":
+                self.logger.error(output)
+            if level == "critical":
+                self.logger.critical(output)
+
+    @staticmethod
+    def init_logger():
+        logging.basicConfig(level=logging.CRITICAL)
+        logger = logging.getLogger(__name__)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        return logger
+
+    @staticmethod
+    def get_args():
+        parser = argparse.ArgumentParser(description='Options for Spotinst python-sdk')
+        parser.add_argument('--log-level',
+                            choices=["debug", "info", "warn", "error", "critical"],
+                            help='set log level: debug, info, warn, error, critical')
+        args = parser.parse_args()
+        return args
+
+    def set_log_level(self, args):
+        level = vars(args)['log_level']
+
+        if level == "debug":
+            self.logger.setLevel(logging.DEBUG)
+        if level == "info":
+            self.logger.setLevel(logging.INFO)
+        if level == "warn":
+            self.logger.setLevel(logging.WARN)
+        if level == "error":
+            self.logger.setLevel(logging.ERROR)
+        if level == "critical":
+            self.logger.setLevel(logging.CRITICAL)
 
     @staticmethod
     def merge_two_dicts(x, y):
