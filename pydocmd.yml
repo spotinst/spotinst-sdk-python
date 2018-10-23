@@ -1,0 +1,78 @@
+site_name: "Spotinst Python SDK"
+
+# This tells pydocmd which pages to generate from which Python modules,
+# functions and classes. At the first level is the page name, below that
+# is a tree of Python member names (modules, classes, etc.) that should be
+# documented. Higher indentation leads to smaller header size.
+generate:
+- endpoints/elastigroup/aws/core.md:
+  - spotinst_sdk.SpotinstClient.create_elastigroup
+  - spotinst_sdk.SpotinstClient.update_elastigroup
+  - spotinst_sdk.SpotinstClient.delete_elastigroup
+  - spotinst_sdk.SpotinstClient.delete_elastigroup_with_deallocation
+  - spotinst_sdk.SpotinstClient.get_elastigroup
+  - spotinst_sdk.SpotinstClient.get_elastigroups
+  - spotinst_sdk.SpotinstClient.get_elastigroup_active_instances
+  - spotinst_sdk.SpotinstClient.get_elastigroup_activity
+  - spotinst_sdk.SpotinstClient.get_instance_healthiness
+  - spotinst_sdk.SpotinstClient.list_suspended_process
+  - spotinst_sdk.SpotinstClient.detach_elastigroup_instances
+  - spotinst_sdk.SpotinstClient.import_asg
+  - spotinst_sdk.SpotinstClient.get_activity_events
+  - spotinst_sdk.SpotinstClient.ami_backup
+  - spotinst_sdk.SpotinstClient.scale_elastigroup_up
+  - spotinst_sdk.SpotinstClient.scale_elastigroup_down
+  - spotinst_sdk.SpotinstClient.list_suspended_scaling_policies
+  - spotinst_sdk.SpotinstClient.suspend_scaling_policies
+  - spotinst_sdk.SpotinstClient.resume_suspended_scaling_policies
+  - spotinst_sdk.SpotinstClient.roll_group
+  - spotinst_sdk.SpotinstClient.get_deployment_status
+  - spotinst_sdk.SpotinstClient.stop_deployment
+  - spotinst_sdk.SpotinstClient.create_deployment_action
+  - spotinst_sdk.SpotinstClient.get_kubernetes_cluster_cost
+  - spotinst_sdk.SpotinstClient.get_instance_type_by_region
+  - spotinst_sdk.SpotinstClient.lock_instance
+  - spotinst_sdk.SpotinstClient.unlock_instance
+  - spotinst_sdk.SpotinstClient.enter_instance_standby
+  - spotinst_sdk.SpotinstClient.exit_instance_standby
+  - spotinst_sdk.SpotinstClient.get_instance_status
+  - spotinst_sdk.SpotinstClient.get_cost_per_account
+  - spotinst_sdk.SpotinstClient.get_potential_savings
+  - spotinst_sdk.SpotinstClient.get_instance_potential_savings
+  - spotinst_sdk.SpotinstClient.get_cost_per_elastigroup
+  - spotinst_sdk.SpotinstClient.get_group_detailed_cost
+- endpoints/elastigroup/aws/stateful.md:
+  - spotinst_sdk.SpotinstClient.deallocate_stateful_instance
+  - spotinst_sdk.SpotinstClient.recycle_stateful_instance
+  - spotinst_sdk.SpotinstClient.get_stateful_instances
+  - spotinst_sdk.SpotinstClient.resume_stateful_instance
+  - spotinst_sdk.SpotinstClient.pause_stateful_instance
+  - spotinst_sdk.SpotinstClient.import_stateful_instance
+  - spotinst_sdk.SpotinstClient.get_stateful_import_status
+  - spotinst_sdk.SpotinstClient.delete_stateful_import
+- endpoints/elastigroup/aws/beanstalk.md:
+  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_status
+  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_start
+  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_finish
+  - spotinst_sdk.SpotinstClient.beanstalk_import  
+- endpoints/elastigroup/aws/codedeploy.md:
+  - spotinst_sdk.SpotinstClient.create_blue_green_deployment
+  - spotinst_sdk.SpotinstClient.get_blue_green_deployment
+  - spotinst_sdk.SpotinstClient.stop_blue_green_deployment
+- endpoints/elastigroup/aws/emr.md:
+  - spotinst_sdk.SpotinstClient.create_emr
+- endpoints/functions/application.md:
+  - spotinst_sdk.SpotinstClient.create_application
+- endpoints/functions/environment.md:
+  - spotinst_sdk.SpotinstClient.create_environment
+- endpoints/functions/function.md:
+  - spotinst_sdk.SpotinstClient.create_function
+
+pages:
+- Home: README.md << ./docs/home.md
+- Elastigroup: ./endpoints/elastigroup/README.md << ./docs/elastigroup.md
+- Functions: ./endpoints/functions/README.md << ./docs/functions.md
+- Examples: ./examles/README.md << ./docs/examples.md
+
+
+

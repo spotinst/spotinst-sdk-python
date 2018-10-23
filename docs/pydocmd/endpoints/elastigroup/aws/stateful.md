@@ -83,3 +83,51 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
+<h1 id="spotinst_sdk.SpotinstClient.import_stateful_instance">import_stateful_instance</h1>
+
+```python
+SpotinstClient.import_stateful_instance(self, stateful_instance)
+```
+
+Import stateful instance parametes
+
+__Arguments__
+
+- __stateful_instance (StatefulInstance)__: StatefulInstance Object
+
+__Returns__
+
+`(Object)`: Elastigroup API response
+
+<h1 id="spotinst_sdk.SpotinstClient.get_stateful_import_status">get_stateful_import_status</h1>
+
+```python
+SpotinstClient.get_stateful_import_status(self, stateful_migration_id)
+```
+
+Get stateful instance status
+
+__Arguments__
+
+- __stateful_migration_id (String)__: Stateful migration ID
+
+__Returns__
+
+`(Object)`: Elastigroup API response
+
+<h1 id="spotinst_sdk.SpotinstClient.delete_stateful_import">delete_stateful_import</h1>
+
+```python
+SpotinstClient.delete_stateful_import(self, stateful_migration_id)
+```
+
+Delete stateful instance
+
+__Arguments__
+
+- __stateful_migration_id (String)__: Stateful migration ID
+
+__Returns__
+
+`(Object)`: Elastigroup API response
+

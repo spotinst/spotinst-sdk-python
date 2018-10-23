@@ -90,6 +90,15 @@ class SpotinstClient:
 
     # region EMR
     def create_emr(self, emr):
+        """
+        Create an EMR 
+        
+        # Arguments
+        emr (EMR): EMR Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         emr = spotinst_emr.EMRCreationRequest(emr)
 
         excluded_group_dict = self.exclude_missing(json.loads(emr.toJSON()))
@@ -115,7 +124,18 @@ class SpotinstClient:
 
     # region Kubernetes
 
-    def get_kubernetes_cluster_cost(self, custer_id, from_date, to_date):        
+    def get_kubernetes_cluster_cost(self, custer_id, from_date, to_date):   
+        """
+        Get kubernetes cluster cost 
+        
+        # Arguments
+        custer_id (String): Kubernetes cluster id
+        from_date (String): From date
+        to_date (String): to date
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """      
         geturl = self.__base_kube_url + "/" + custer_id + "/costs"
         query_params = self.build_query_params_with_input({"toDate":to_date, "fromDate":from_date})
 
@@ -136,10 +156,10 @@ class SpotinstClient:
         Create an elastigroup
         
         # Arguments
-        group (Elastigroup) : Elastigroup Object
+        group (Elastigroup): Elastigroup Object
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """    
         group = aws_elastigroup.ElastigroupCreationRequest(group)
 
@@ -169,11 +189,11 @@ class SpotinstClient:
         Scale up an elastigroup
         
         # Arguments
-        group_id      (String) : Elastigroup ID
-        adjustment       (int) : Ammount to scale group
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """   
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
@@ -194,11 +214,11 @@ class SpotinstClient:
         Scale down an elastigroup
         
         # Arguments
-        group_id (String) : Elastigroup ID
-        adjustment  (int) : Ammount to scale group
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
@@ -219,11 +239,11 @@ class SpotinstClient:
         Update an elastigroup
         
         # Arguments
-        group_id          (String) : Elastigroup ID
-        group_update (Elastigroup) : Elastigroup Object
+        group_id (String): Elastigroup ID
+        group_update (Elastigroup): Elastigroup Object
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         group = aws_elastigroup.ElastigroupUpdateRequest(group_update)
 
@@ -256,10 +276,10 @@ class SpotinstClient:
         Delete an elastigroup
         
         # Arguments
-        group_id          (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         delurl = self.__base_elastigroup_url + "/" + group_id
         response = self.send_delete(url=delurl, entity_name='elastigroup')
@@ -271,11 +291,11 @@ class SpotinstClient:
         Delete a stateful elastigroup
         
         # Arguments
-        group_id                   (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         stateful_deallocation (Deallocation): Deallocation Object
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         delurl = self.__base_elastigroup_url + "/" + group_id
 
@@ -298,10 +318,10 @@ class SpotinstClient:
         Get an elastigroup
         
         # Arguments
-        group_id                   (String) : Elastigroup ID
+        group_id(String): Elastigroup ID
        
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         geturl = self.__base_elastigroup_url + "/" + group_id
         result = self.send_get(url=geturl, entity_name='elastigroup')
@@ -316,7 +336,7 @@ class SpotinstClient:
         Get all elastigroup
         
         # Returns
-        (List) : List of Elastigroup API response 
+        (List): List of Elastigroup API response 
         """
         content = self.send_get(
             url=self.__base_elastigroup_url,
@@ -330,10 +350,10 @@ class SpotinstClient:
         Get active instances of an elastigroup
         
         # Arguments
-        group_id (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
@@ -350,8 +370,8 @@ class SpotinstClient:
         Get elastigroup activity
         
         # Arguments
-        group_id   (String) : Elastigroup ID
-        start_date (String) : Date when to start checking
+        group_id (String): Elastigroup ID
+        start_date (String): Date when to start checking
         
         # Returns
         (Object) : Elastigroup API response 
@@ -375,11 +395,11 @@ class SpotinstClient:
         Roll an elastigroup
         
         # Arguments
-        group_id            (String) : Elastigroup ID
-        group_roll (ElastigroupRoll) : GroupRoll Object
+        group_id (String): Elastigroup ID
+        group_roll (ElastigroupRoll): GroupRoll Object
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         group_roll_request = aws_elastigroup.ElastigroupRollRequest(
             group_roll=group_roll)
@@ -413,10 +433,10 @@ class SpotinstClient:
         get all group deployment from an elastigroup
         
         # Arguments
-        group_id (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
@@ -435,11 +455,11 @@ class SpotinstClient:
         get all a deployment status from an elastigroup
         
         # Arguments
-        group_id (String) : Elastigroup ID
-        roll_id  (String) : Deployment ID
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
@@ -459,11 +479,11 @@ class SpotinstClient:
         stop a deployment from an elastigroup
         
         # Arguments
-        group_id (String) : Elastigroup ID
-        roll_id  (String) : Deployment ID
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
@@ -484,12 +504,12 @@ class SpotinstClient:
         create a deployment from an elastigroup
         
         # Arguments
-        group_id              (String) : Elastigroup ID
-        roll_id               (String) : Deployment ID
-        deployment_action (Deployment) : Deployment Object
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
+        deployment_action (Deployment): Deployment Object
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         deployment_action_request = spotinst_deployment_action.DeploymentActionRequest(deployment_action)
 
@@ -518,6 +538,15 @@ class SpotinstClient:
         return retVal
 
     def get_instance_type_by_region(self, region):
+        """
+        Get instance type by region
+        
+        # Arguments
+        region (String): AWS region
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         query_params = dict(region=region)
         response = self.send_get(
             url=self.__base_url+
@@ -532,6 +561,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def lock_instance(self, instance_id, lock_time=None):
+        """
+        Lock instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        lock_time (int) (Optinal): Time to lock instance
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         query_params= dict(ttlInMinutes=lock_time)
 
         response = self.send_post(
@@ -549,6 +588,15 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def unlock_instance(self, instance_id):
+        """
+        Unlock instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_post(
             url=self.__base_url +
             "/instance/" +
@@ -563,6 +611,15 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def enter_instance_standby(self, instance_id):
+        """
+        Enter standby for instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_post(
             url=self.__base_url + 
             "/instance/" + 
@@ -577,6 +634,15 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def exit_instance_standby(self, instance_id):
+        """
+        Exit standby for instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_post(
             url=self.__base_url + 
             "/instance/" + 
@@ -591,6 +657,15 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def get_instance_status(self, instance_id):
+        """
+        Get instance status
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_get(
             url=self.__base_url + 
             "/instance/" +
@@ -608,10 +683,10 @@ class SpotinstClient:
         get all instances a healthyness from an elastigroup
         
         # Arguments
-        group_id              (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
@@ -627,6 +702,7 @@ class SpotinstClient:
 
 
     def create_instance_signal(self, instance_id, signal):
+
         body = dict(instanceId=instance_id, signal=signal)
 
         response = self.send_post(
@@ -642,6 +718,16 @@ class SpotinstClient:
         return formatted_response["response"]["status"]  
 
     def get_cost_per_account(self, to_date=None, from_date=None):
+        """
+        get cost per account
+        
+        # Arguments
+        to_date (String) (Optional): to date
+        from_date (String) (Optional): to date
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         query_params=dict(toDate=to_date, fromDate=from_date)
 
         response = self.send_get(
@@ -660,12 +746,12 @@ class SpotinstClient:
         get cost per elastigroup
         
         # Arguments
-        group_id            (String)  : Elastigroup ID
-        to_date   (String) (Optional) : Start Date
-        from_date (String) (Optional) : End Date
+        group_id (String): Elastigroup ID
+        to_date (String) (Optional): Start Date
+        from_date (String) (Optional): End Date
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         query_params=dict(toDate=to_date, fromDate=from_date)
 
@@ -687,12 +773,12 @@ class SpotinstClient:
         get detailed cost per elastigroup
         
         # Arguments
-        group_id            (String)  : Elastigroup ID
-        to_date   (String) (Optional) : Start Date
-        from_date (String) (Optional) : End Date
+        group_id (String): Elastigroup ID
+        to_date (String) (Optional): Start Date
+        from_date (String) (Optional): End Date
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         query_params=dict(toDate=to_date, fromDate=from_date)
 
@@ -710,6 +796,12 @@ class SpotinstClient:
         return formatted_response["response"]["items"] 
 
     def get_potential_savings(self):
+        """
+        get potential saving 
+                
+        # Returns
+        (Object): Elastigroup API response 
+        """
         response = self.send_get(
             url="https://api.spotinst.io/aws/potentialSavings",
             entity_name="saving"
@@ -721,6 +813,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"] 
 
     def get_instance_potential_savings(self, instance_ids, region):
+        """
+        get potential saving 
+        
+        # Arguments
+        instance_ids (List): List of instance id strings
+        region (String): region
+
+        # Returns
+        (Object): Elastigroup API response 
+        """
         instance_str = ""
 
         for instance in instance_ids:
@@ -744,10 +846,10 @@ class SpotinstClient:
         get suspended scaling policies for an elastigroup
         
         # Arguments
-        group_id (String)  : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
@@ -766,11 +868,11 @@ class SpotinstClient:
         suspended scaling policies for an elastigroup
         
         # Arguments
-        group_id   (String)  : Elastigroup ID
-        policy_name (String) : Scaling policy name
+        group_id (String): Elastigroup ID
+        policy_name (String): Scaling policy name
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         query_params = dict(policyName=policy_name)
 
@@ -792,11 +894,11 @@ class SpotinstClient:
         Resume scaling policies for an elastigroup
         
         # Arguments
-        group_id   (String)  : Elastigroup ID
-        policy_name (String) : Scaling policy name
+        group_id (String): Elastigroup ID
+        policy_name (String): Scaling policy name
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         query_params = dict(policyName=policy_name)
 
@@ -818,10 +920,10 @@ class SpotinstClient:
         List suspended process for an elastigroup
         
         # Arguments
-        group_id   (String)  : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
@@ -872,11 +974,11 @@ class SpotinstClient:
         Detatch instances from an elastigroup
         
         # Arguments
-        group_id             (String)  : Elastigroup ID
-        detatch_configuration (Detach) : Detach Object
+        group_id (String): Elastigroup ID
+        detatch_configuration (Detach): Detach Object
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         group_detach_request = aws_elastigroup.ElastigroupDetachInstancesRequest(
             detach_configuration=detach_configuration)
@@ -905,6 +1007,15 @@ class SpotinstClient:
         return retVal
 
     def import_stateful_instance(self, stateful_instance):
+        """
+        Import stateful instance parametes
+        
+        # Arguments
+        stateful_instance (StatefulInstance): StatefulInstance Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         stateful_instance = spotinst_stateful.StatefulImportRequest(stateful_instance)
 
         excluded_group_dict = self.exclude_missing(json.loads(stateful_instance.toJSON()))
@@ -927,6 +1038,15 @@ class SpotinstClient:
         return retVal
 
     def get_stateful_import_status(self, stateful_migration_id):
+        """
+        Get stateful instance status
+        
+        # Arguments
+        stateful_migration_id (String): Stateful migration ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_get(
             url=self.__base_stateful_url +
                 "/" +
@@ -939,6 +1059,15 @@ class SpotinstClient:
         return formatted_response["response"]["items"] 
 
     def delete_stateful_import(self, stateful_migration_id):
+        """
+        Delete stateful instance 
+        
+        # Arguments
+        stateful_migration_id (String): Stateful migration ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_delete(
             url=self.__base_stateful_url +
                 "/" +
@@ -954,11 +1083,11 @@ class SpotinstClient:
         Deallocate stateful instances from an elastigroup
         
         # Arguments
-        group_id             (String) : Elastigroup ID
-        stateful_instance_id (String) : Stateful Instance ID
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
@@ -978,11 +1107,11 @@ class SpotinstClient:
         Recycle stateful instances from an elastigroup
         
         # Arguments
-        group_id             (String) : Elastigroup ID
-        stateful_instance_id (String) : Stateful Instance ID
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
@@ -1003,11 +1132,11 @@ class SpotinstClient:
         Deallocate stateful instances from an elastigroup
         
         # Arguments
-        group_id             (String) : Elastigroup ID
-        stateful_instance_id (String) : Stateful Instance ID
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
@@ -1025,11 +1154,11 @@ class SpotinstClient:
         Resume stateful instances from an elastigroup
         
         # Arguments
-        group_id             (String) : Elastigroup ID
-        stateful_instance_id (String) : Stateful Instance ID
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
@@ -1049,11 +1178,11 @@ class SpotinstClient:
         Pause stateful instances from an elastigroup
         
         # Arguments
-        group_id             (String) : Elastigroup ID
-        stateful_instance_id (String) : Stateful Instance ID
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
@@ -1076,10 +1205,10 @@ class SpotinstClient:
         Beanstalk maintenance status
         
         # Arguments
-        group_id (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         status_response = self.send_get(
             url=self.__base_elastigroup_url+
@@ -1101,10 +1230,10 @@ class SpotinstClient:
         Beanstalk maintenance start
         
         # Arguments
-        group_id (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         start_response = self.send_put(
             url=self.__base_elastigroup_url+
@@ -1126,10 +1255,10 @@ class SpotinstClient:
         Beanstalk maintenance finish
         
         # Arguments
-        group_id (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         finish_response = self.send_put(
             url=self.__base_elastigroup_url+
@@ -1151,12 +1280,12 @@ class SpotinstClient:
         Import beanstalk attributes into JSON. Either env_id or env_name is required, both cannot be null
         
         # Arguments
-        region   (String) : Beanstalk region
-        env_id   (String) : Beanstalk env id
-        env_name (String) : Beanstalk env name
+        region (String): Beanstalk region
+        env_id (String): Beanstalk env id
+        env_name (String): Beanstalk env name
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         query_params = dict(region=region, environmentId=env_id, environmentName=env_name)
 
@@ -1179,10 +1308,10 @@ class SpotinstClient:
         Reimport beanstalk attributes
         
         # Arguments
-        group_id (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """ 
         response = self.send_put(
             url=self.__base_elastigroup_url +
@@ -1203,13 +1332,13 @@ class SpotinstClient:
         import asg attributes as JSON
         
         # Arguments
-        region           (String) : ASG region
-        asg_name         (String) : ASG Name
-        asg                 (ASG) : ASG Object
-        dry_run (Bool) (Optional) : if true only return JSON and not create group
+        region (String): ASG region
+        asg_name (String): ASG Name
+        asg (ASG): ASG Object
+        dry_run (Bool) (Optional): if true only return JSON and not create group
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """ 
         query_params = dict(region=region, autoScalingGroupName=asg_name, dryRun=dry_run)
 
@@ -1241,11 +1370,11 @@ class SpotinstClient:
         get activity events
         
         # Arguments
-        group_id  (String) : Elastigroup ID
-        from_date (String) : From date
+        group_id (String): Elastigroup ID
+        from_date (String): From date
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """ 
         query_params = dict(fromDate=from_date)
 
@@ -1268,10 +1397,10 @@ class SpotinstClient:
         Start an AMI backup for Elastigroup
         
         # Arguments
-        group_id  (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
         
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """ 
         response = self.send_post(
             url=self.__base_elastigroup_url +
@@ -1291,11 +1420,11 @@ class SpotinstClient:
         Start a Blue Green Deployment
         
         # Arguments
-        group_id                    (String) : Elastigroup ID
-        blue_green_deployment (BGDeployment) : Blue Green Deployment Object
+        group_id (String): Elastigroup ID
+        blue_green_deployment (BGDeployment): Blue Green Deployment Object
 
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """ 
         blue_green_deployment = spotinst_blue_green_deployment.BlueGreenDeploymentRequest(blue_green_deployment)
 
@@ -1323,10 +1452,10 @@ class SpotinstClient:
         Get Blue Green Deployment for an elastigroup
         
         # Arguments
-        group_id (String) : Elastigroup ID
+        group_id (String): Elastigroup ID
 
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """ 
         response = self.send_get(
             url= self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment",
@@ -1344,11 +1473,11 @@ class SpotinstClient:
         Stop Blue Green Deployment for an elastigroup
         
         # Arguments
-        group_id      (String) : Elastigroup ID
-        deployment_id (String) :  BG Deployment ID
+        group_id (String): Elastigroup ID
+        deployment_id (String):  BG Deployment ID
 
         # Returns
-        (Object) : Elastigroup API response 
+        (Object): Elastigroup API response 
         """
         response = self.send_put(
             url=self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment/" + deployment_id + "/stop",
@@ -1365,7 +1494,15 @@ class SpotinstClient:
 
     # region Functions
     def create_application(self, app):
+        """
+        Create Spotinst Functions Application
+        
+        # Arguments
+        app (ApplicationCreate): ApplicationCreate Object
 
+        # Returns
+        (Object): Functions API response 
+        """
         app = spotinst_functions.ApplicationCreationRequest(app)
 
         excluded_group_dict = self.exclude_missing(json.loads(app.toJSON()))
@@ -1391,7 +1528,15 @@ class SpotinstClient:
         return retVal
 
     def create_environment(self, env):
+        """
+        Create Spotinst Functions Environment
+        
+        # Arguments
+        env (EnvironmentCreate): EnvironmentCreate Object
 
+        # Returns
+        (Object): Functions API response 
+        """
         env = spotinst_functions.EnvironmentCreationRequest(env)
 
         excluded_env_dict = self.exclude_missing(json.loads(env.toJSON()))
@@ -1417,6 +1562,15 @@ class SpotinstClient:
         return retVal
 
     def create_function(self, fx):
+        """
+        Create Spotinst Functions
+        
+        # Arguments
+        fx (FunctionCreate): FunctionCreate Object
+
+        # Returns
+        (Object): Functions API response 
+        """
         fx = spotinst_functions.FunctionCreationRequest(fx, self.should_print_output)
 
         excluded_fx_dict = self.exclude_missing(json.loads(fx.toJSON()))
