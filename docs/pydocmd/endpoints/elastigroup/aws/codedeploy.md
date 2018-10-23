@@ -10,7 +10,6 @@ __Arguments__
 
 - __group_id (String)__: Elastigroup ID
 - __blue_green_deployment (BGDeployment)__: Blue Green Deployment Object
-
 __Returns__
 
 `(Object)`: Elastigroup API response
@@ -26,7 +25,6 @@ Get Blue Green Deployment for an elastigroup
 __Arguments__
 
 - __group_id (String)__: Elastigroup ID
-
 __Returns__
 
 `(Object)`: Elastigroup API response
@@ -43,7 +41,6 @@ __Arguments__
 
 - __group_id (String)__: Elastigroup ID
 - __deployment_id (String)__:  BG Deployment ID
-
 __Returns__
 
 `(Object)`: Elastigroup API response

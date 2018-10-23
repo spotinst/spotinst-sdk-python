@@ -9,7 +9,6 @@ Create Spotinst Functions Application
 __Arguments__
 
 - __app (ApplicationCreate)__: ApplicationCreate Object
-
 __Returns__
 
 `(Object)`: Functions API response

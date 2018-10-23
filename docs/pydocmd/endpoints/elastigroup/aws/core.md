@@ -535,7 +535,6 @@ __Arguments__
 
 - __instance_ids (List)__: List of instance id strings
 - __region (String)__: region
-
 __Returns__
 
 `(Object)`: Elastigroup API response

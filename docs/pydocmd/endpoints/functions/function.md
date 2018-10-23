@@ -9,7 +9,6 @@ Create Spotinst Functions
 __Arguments__
 
 - __fx (FunctionCreate)__: FunctionCreate Object
-
 __Returns__
 
 `(Object)`: Functions API response

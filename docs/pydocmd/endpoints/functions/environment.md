@@ -9,7 +9,6 @@ Create Spotinst Functions Environment
 __Arguments__
 
 - __env (EnvironmentCreate)__: EnvironmentCreate Object
-
 __Returns__
 
 `(Object)`: Functions API response
