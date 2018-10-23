@@ -1,4 +1,3 @@
-
 """
 This module provides utilities for importing Python objects by name.
 """
@@ -59,7 +58,6 @@ class SpotinstClient:
                  log_level="critical",
                  user_agent=None):
         """
-
         :type auth_token: str
         :type account_id: str
         :type profile: str
@@ -819,7 +817,6 @@ class SpotinstClient:
         # Arguments
         instance_ids (List): List of instance id strings
         region (String): region
-
         # Returns
         (Object): Elastigroup API response 
         """
@@ -1422,7 +1419,6 @@ class SpotinstClient:
         # Arguments
         group_id (String): Elastigroup ID
         blue_green_deployment (BGDeployment): Blue Green Deployment Object
-
         # Returns
         (Object): Elastigroup API response 
         """ 
@@ -1453,7 +1449,6 @@ class SpotinstClient:
         
         # Arguments
         group_id (String): Elastigroup ID
-
         # Returns
         (Object): Elastigroup API response 
         """ 
@@ -1475,7 +1470,6 @@ class SpotinstClient:
         # Arguments
         group_id (String): Elastigroup ID
         deployment_id (String):  BG Deployment ID
-
         # Returns
         (Object): Elastigroup API response 
         """
@@ -1499,7 +1493,6 @@ class SpotinstClient:
         
         # Arguments
         app (ApplicationCreate): ApplicationCreate Object
-
         # Returns
         (Object): Functions API response 
         """
@@ -1533,7 +1526,6 @@ class SpotinstClient:
         
         # Arguments
         env (EnvironmentCreate): EnvironmentCreate Object
-
         # Returns
         (Object): Functions API response 
         """
@@ -1567,7 +1559,6 @@ class SpotinstClient:
         
         # Arguments
         fx (FunctionCreate): FunctionCreate Object
-
         # Returns
         (Object): Functions API response 
         """
