@@ -1,0 +1,16 @@
+{
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:setup:organization",
+    "items": [
+      {
+        "organizationId": 12345678,
+        "organizationName": "test"
+      }
+    ],
+    "count": 1
+  }
+}

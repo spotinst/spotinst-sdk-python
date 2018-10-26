@@ -1,0 +1,170 @@
+{
+   "request": {
+    "id": "3779ad1c-2ce6-45be-8c90-a4c7d8c6e99a",
+    "url": "/aws/emr/mrScaler",
+    "method": "GET",
+    "timestamp": "2017-02-02T19:40:05.266Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:emr:mrScaler",
+    "items": [
+      {
+        "id": "simrs-57a38dcc",
+        "name": "spotinst-test-emr",
+        "region": "us-east-1",
+        "strategy": {
+          "cloning": {
+            "originClusterId": "j-M89YN61FKDQQ",
+            "numberOfRetries": 0
+          }
+        },
+        "compute": {
+          "availabilityZones": [
+            {
+              "name": "us-east-1a",
+              "subnetId": "subnet-54213"
+            },
+            {
+              "name": "us-east-1c",
+              "subnetId": "subnet-2345"
+            },
+            {
+              "name": "us-east-1d",
+              "subnetId": "subnet-56533"
+            },
+            {
+              "name": "us-east-1e",
+              "subnetId": "subnet-234"
+            }
+          ],
+          "instanceGroups": {
+            "masterGroup": {
+              "instanceTypes": [
+                "m3.2xlarge"
+              ],
+              "target": 1,
+              "lifeCycle": "SPOT"
+            },
+            "coreGroup": {
+              "instanceTypes": [
+                "r3.2xlarge"
+              ],
+              "target": 5,
+              "lifeCycle": "SPOT"
+            },
+            "taskGroup": {
+              "instanceTypes": [
+                "r3.4xlarge",
+                "r3.2xlarge"
+              ],
+              "capacity": {
+                "minimum": 0,
+                "maximum": 20,
+                "target": 0
+              },
+              "lifeCycle": "SPOT"
+            }
+          },
+          "tags": null
+        },
+        "scaling": {
+          "up": [
+            {
+              "policyName": "up Scaling Policy 1",
+              "metricName": "YARNMemoryAvailablePercentage",
+              "statistic": "average",
+              "unit": "percent",
+              "threshold": 20,
+              "namespace": "AWS/ElasticMapReduce",
+              "period": 300,
+              "evaluationPeriods": 1,
+              "cooldown": 900,
+              "dimensions": null,
+              "action": {
+                "type": "adjustment",
+                "adjustment": "5"
+              },
+              "operator": "lte"
+            }
+          ],
+          "down": [
+            {
+              "policyName": "down Scaling Policy 1",
+              "metricName": "YARNMemoryAvailablePercentage",
+              "statistic": "average",
+              "unit": "percent",
+              "threshold": 10,
+              "namespace": "AWS/ElasticMapReduce",
+              "period": 600,
+              "evaluationPeriods": 1,
+              "cooldown": 900,
+              "dimensions": null,
+              "action": {
+                "type": "adjustment",
+                "adjustment": "6"
+              },
+              "operator": "gte"
+            }
+          ]
+        },
+        "createdAt": "2017-02-02T00:38:57.000Z",
+        "updatedAt": "2017-02-02T00:38:57.000Z"
+      },
+      {
+        "id": "simrs-5d1ddc54",
+        "name": "Spotinst-Test",
+        "region": "us-east-1",
+        "strategy": {
+          "cloning": {
+            "originClusterId": "j-dfr4Adt5",
+            "numberOfRetries": 0
+          }
+        },
+        "compute": {
+          "availabilityZones": [
+            {
+              "name": "us-east-1e",
+              "subnetId": "subnet-1231"
+            }
+          ],
+          "instanceGroups": {
+            "masterGroup": {
+              "instanceTypes": [
+                "c3.2xlarge"
+              ],
+              "target": 1,
+              "lifeCycle": "ON_DEMAND"
+            },
+            "coreGroup": {
+              "instanceTypes": [
+                "c3.2xlarge"
+              ],
+              "target": 200,
+              "lifeCycle": "SPOT"
+            },
+            "taskGroup": {
+              "instanceTypes": [
+                "c3.2xlarge"
+              ],
+              "capacity": {
+                "minimum": 1,
+                "maximum": 1,
+                "target": 1
+              },
+              "lifeCycle": "SPOT"
+            }
+          },
+          "tags": null
+        },
+        "scaling": {},
+        "createdAt": "2017-02-01T16:38:53.000Z",
+        "updatedAt": "2017-02-01T16:38:53.000Z"
+      }
+    ],
+    "count": 1
+  }
+}

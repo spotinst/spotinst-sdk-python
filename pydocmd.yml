@@ -1,0 +1,291 @@
+site_name: "Spotinst Python SDK"
+
+# This tells pydocmd which pages to generate from which Python modules,
+# functions and classes. At the first level is the page name, below that
+# is a tree of Python member names (modules, classes, etc.) that should be
+# documented. Higher indentation leads to smaller header size.
+generate:
+- endpoints/elastigroup/aws/core.md:
+  - spotinst_sdk.SpotinstClient.create_elastigroup
+  - spotinst_sdk.SpotinstClient.update_elastigroup
+  - spotinst_sdk.SpotinstClient.delete_elastigroup
+  - spotinst_sdk.SpotinstClient.delete_elastigroup_with_deallocation
+  - spotinst_sdk.SpotinstClient.get_elastigroup
+  - spotinst_sdk.SpotinstClient.get_elastigroups
+  - spotinst_sdk.SpotinstClient.get_elastigroup_active_instances
+  - spotinst_sdk.SpotinstClient.get_elastigroup_activity
+  - spotinst_sdk.SpotinstClient.get_instance_healthiness
+  - spotinst_sdk.SpotinstClient.create_instance_signal
+  - spotinst_sdk.SpotinstClient.list_suspended_process
+  - spotinst_sdk.SpotinstClient.suspend_process
+  - spotinst_sdk.SpotinstClient.remove_suspended_process
+  - spotinst_sdk.SpotinstClient.detach_elastigroup_instances
+  - spotinst_sdk.SpotinstClient.import_asg
+  - spotinst_sdk.SpotinstClient.get_activity_events
+  - spotinst_sdk.SpotinstClient.ami_backup
+  - spotinst_sdk.SpotinstClient.scale_elastigroup_up
+  - spotinst_sdk.SpotinstClient.scale_elastigroup_down
+  - spotinst_sdk.SpotinstClient.list_suspended_scaling_policies
+  - spotinst_sdk.SpotinstClient.suspend_scaling_policies
+  - spotinst_sdk.SpotinstClient.resume_suspended_scaling_policies
+  - spotinst_sdk.SpotinstClient.roll_group
+  - spotinst_sdk.SpotinstClient.get_deployment_status
+  - spotinst_sdk.SpotinstClient.stop_deployment
+  - spotinst_sdk.SpotinstClient.create_deployment_action
+  - spotinst_sdk.SpotinstClient.get_kubernetes_cluster_cost
+  - spotinst_sdk.SpotinstClient.get_instance_type_by_region
+  - spotinst_sdk.SpotinstClient.lock_instance
+  - spotinst_sdk.SpotinstClient.unlock_instance
+  - spotinst_sdk.SpotinstClient.enter_instance_standby
+  - spotinst_sdk.SpotinstClient.exit_instance_standby
+  - spotinst_sdk.SpotinstClient.get_instance_status
+  - spotinst_sdk.SpotinstClient.get_cost_per_account
+  - spotinst_sdk.SpotinstClient.get_potential_savings
+  - spotinst_sdk.SpotinstClient.get_instance_potential_savings
+  - spotinst_sdk.SpotinstClient.get_cost_per_elastigroup
+  - spotinst_sdk.SpotinstClient.get_group_detailed_cost
+- endpoints/elastigroup/aws/stateful.md:
+  - spotinst_sdk.SpotinstClient.deallocate_stateful_instance
+  - spotinst_sdk.SpotinstClient.recycle_stateful_instance
+  - spotinst_sdk.SpotinstClient.get_stateful_instances
+  - spotinst_sdk.SpotinstClient.resume_stateful_instance
+  - spotinst_sdk.SpotinstClient.pause_stateful_instance
+  - spotinst_sdk.SpotinstClient.import_stateful_instance
+  - spotinst_sdk.SpotinstClient.get_stateful_import_status
+  - spotinst_sdk.SpotinstClient.delete_stateful_import
+- endpoints/elastigroup/aws/beanstalk.md:
+  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_status
+  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_start
+  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_finish
+  - spotinst_sdk.SpotinstClient.beanstalk_import  
+- endpoints/elastigroup/aws/codedeploy.md:
+  - spotinst_sdk.SpotinstClient.create_blue_green_deployment
+  - spotinst_sdk.SpotinstClient.get_blue_green_deployment
+  - spotinst_sdk.SpotinstClient.stop_blue_green_deployment
+- endpoints/elastigroup/aws/emr.md:
+  - spotinst_sdk.SpotinstClient.create_emr
+  - spotinst_sdk.SpotinstClient.update_emr
+  - spotinst_sdk.SpotinstClient.get_all_emr
+  - spotinst_sdk.SpotinstClient.get_emr
+  - spotinst_sdk.SpotinstClient.get_emr_instances
+  - spotinst_sdk.SpotinstClient.get_emr_cluster
+  - spotinst_sdk.SpotinstClient.get_emr_cost
+  - spotinst_sdk.SpotinstClient.delete_emr
+  - spotinst_sdk.SpotinstClient.scale_up_emr
+  - spotinst_sdk.SpotinstClient.scale_down_emr
+- endpoints/functions/application.md:
+  - spotinst_sdk.SpotinstClient.create_application
+- endpoints/functions/environment.md:
+  - spotinst_sdk.SpotinstClient.create_environment
+- endpoints/functions/function.md:
+  - spotinst_sdk.SpotinstClient.create_function
+- endpoints/administration/org_and_account.md:
+  - spotinst_sdk.SpotinstClient.create_organization
+  - spotinst_sdk.SpotinstClient.delete_organization
+  - spotinst_sdk.SpotinstClient.set_cloud_credentials
+  - spotinst_sdk.SpotinstClient.create_account
+  - spotinst_sdk.SpotinstClient.get_accounts
+  - spotinst_sdk.SpotinstClient.delete_account
+  - spotinst_sdk.SpotinstClient.create_user
+  - spotinst_sdk.SpotinstClient.add_exsisting_user
+  - spotinst_sdk.SpotinstClient.update_user_role
+  - spotinst_sdk.SpotinstClient.detach_user
+  - spotinst_sdk.SpotinstClient.get_user
+  - spotinst_sdk.SpotinstClient.assign_user_to_account
+- endpoints/mlb/runtime.md:
+  - spotinst_sdk.SpotinstClient.get_all_mlb_runtime
+  - spotinst_sdk.SpotinstClient.get_mlb_runtime
+  - spotinst_sdk.SpotinstClient.deregister_mlb_runtime
+  - spotinst_sdk.SpotinstClient.delete_mlb_runtime
+- endpoints/mlb/deployment.md:
+  - spotinst_sdk.SpotinstClient.create_mlb_deployment
+  - spotinst_sdk.SpotinstClient.update_mlb_deployment
+  - spotinst_sdk.SpotinstClient.get_mlb_deployment
+  - spotinst_sdk.SpotinstClient.get_all_mlb_deployment
+  - spotinst_sdk.SpotinstClient.delete_mlb_deployment
+- endpoints/mlb/balancer.md:
+  - spotinst_sdk.SpotinstClient.create_mlb_balancer
+  - spotinst_sdk.SpotinstClient.update_mlb_balancer
+  - spotinst_sdk.SpotinstClient.get_mlb_balancer
+  - spotinst_sdk.SpotinstClient.get_all_mlb_balancer
+  - spotinst_sdk.SpotinstClient.delete_mlb_balancer
+- endpoints/mlb/target_set.md:
+  - spotinst_sdk.SpotinstClient.create_mlb_target_set
+  - spotinst_sdk.SpotinstClient.update_mlb_target_set
+  - spotinst_sdk.SpotinstClient.get_mlb_target_set
+  - spotinst_sdk.SpotinstClient.get_all_mlb_target_set
+  - spotinst_sdk.SpotinstClient.delete_mlb_target_set
+  - spotinst_sdk.SpotinstClient.register_mlb_targets
+  - spotinst_sdk.SpotinstClient.deregister_mlb_targets
+- endpoints/mlb/target.md:
+  - spotinst_sdk.SpotinstClient.create_mlb_target
+  - spotinst_sdk.SpotinstClient.update_mlb_target
+  - spotinst_sdk.SpotinstClient.get_mlb_target
+  - spotinst_sdk.SpotinstClient.get_all_mlb_target
+  - spotinst_sdk.SpotinstClient.delete_mlb_target
+- endpoints/mlb/listener.md:
+  - spotinst_sdk.SpotinstClient.create_mlb_listener
+  - spotinst_sdk.SpotinstClient.update_mlb_listener
+  - spotinst_sdk.SpotinstClient.get_mlb_listener
+  - spotinst_sdk.SpotinstClient.get_all_mlb_listener
+  - spotinst_sdk.SpotinstClient.delete_mlb_listener
+- endpoints/mlb/middleware.md:
+  - spotinst_sdk.SpotinstClient.create_mlb_middleware
+  - spotinst_sdk.SpotinstClient.update_mlb_middleware
+  - spotinst_sdk.SpotinstClient.get_mlb_middleware
+  - spotinst_sdk.SpotinstClient.get_all_mlb_middleware
+  - spotinst_sdk.SpotinstClient.delete_mlb_middleware
+- endpoints/mlb/routing_rule.md:
+  - spotinst_sdk.SpotinstClient.create_mlb_routing_rule
+  - spotinst_sdk.SpotinstClient.update_mlb_routing_rule
+  - spotinst_sdk.SpotinstClient.get_mlb_routing_rule
+  - spotinst_sdk.SpotinstClient.get_all_mlb_routing_rule
+  - spotinst_sdk.SpotinstClient.delete_mlb_routing_rule
+
+
+
+
+
+
+- classes/mlb.md:
+  - spotinst_sdk.spotinst_mlb.Balancer
+  - spotinst_sdk.spotinst_mlb.Timeout
+  - spotinst_sdk.spotinst_mlb.Tag
+  - spotinst_sdk.spotinst_mlb.TargetSet
+  - spotinst_sdk.spotinst_mlb.Config
+  - spotinst_sdk.spotinst_mlb.RateLimiter
+  - spotinst_sdk.spotinst_mlb.Integrations
+  - spotinst_sdk.spotinst_mlb.ECS
+  - spotinst_sdk.spotinst_mlb.HealthCheck
+  - spotinst_sdk.spotinst_mlb.Target
+  - spotinst_sdk.spotinst_mlb.Middleware
+  - spotinst_sdk.spotinst_mlb.Spec
+  - spotinst_sdk.spotinst_mlb.Condition
+  - spotinst_sdk.spotinst_mlb.Listener
+  - spotinst_sdk.spotinst_mlb.TLSConfig
+  - spotinst_sdk.spotinst_mlb.RoutingRule
+- classes/user_mapping.md:
+  - spotinst_sdk.spotinst_user_mapping.UserMapping
+- classes/deployment.md:
+  - spotinst_sdk.spotinst_blue_green_deployment.BlueGreenDeployment
+  - spotinst_sdk.spotinst_blue_green_deployment.Tag
+  - spotinst_sdk.spotinst_blue_green_deployment.DeploymentGroup
+- classes/asg.md:
+  - spotinst_sdk.spotinst_asg.ASG
+- classes/deployment_actions.md:
+  - spotinst_sdk.spotinst_deployment_action.DeploymentAction
+- classes/stateful.md:
+  - spotinst_sdk.spotinst_stateful.StatefulInstance
+  - spotinst_sdk.spotinst_stateful.AvailabilityZone
+- classes/functions.md:
+  - spotinst_sdk.spotinst_functions.Application
+  - spotinst_sdk.spotinst_functions.Environment
+  - spotinst_sdk.spotinst_functions.Function
+- classes/emr.md:
+  - spotinst_sdk.spotinst_emr.EMR
+  - spotinst_sdk.spotinst_emr.Strategy
+  - spotinst_sdk.spotinst_emr.Wrapping
+  - spotinst_sdk.spotinst_emr.Cloning
+  - spotinst_sdk.spotinst_emr.ProvisioningTimeout
+  - spotinst_sdk.spotinst_emr.Compute
+  - spotinst_sdk.spotinst_emr.AvailabilityZone
+  - spotinst_sdk.spotinst_emr.BootstrapActions
+  - spotinst_sdk.spotinst_emr.File
+  - spotinst_sdk.spotinst_emr.Steps
+  - spotinst_sdk.spotinst_emr.InstanceGroups
+  - spotinst_sdk.spotinst_emr.MasterGroup
+  - spotinst_sdk.spotinst_emr.CoreGroup
+  - spotinst_sdk.spotinst_emr.TaskGroup
+  - spotinst_sdk.spotinst_emr.Capacity
+  - spotinst_sdk.spotinst_emr.EbsConfiguration
+  - spotinst_sdk.spotinst_emr.SingleEbsConfig
+  - spotinst_sdk.spotinst_emr.VolumeSpecification
+  - spotinst_sdk.spotinst_emr.Configurations
+  - spotinst_sdk.spotinst_emr.Scaling
+  - spotinst_sdk.spotinst_emr.Metric
+  - spotinst_sdk.spotinst_emr.Action
+  - spotinst_sdk.spotinst_emr.Dimension
+- classes/elastigroup.md:
+  - spotinst_sdk.aws_elastigroup.Elastigroup
+  - spotinst_sdk.aws_elastigroup.Strategy
+  - spotinst_sdk.aws_elastigroup.Signal
+  - spotinst_sdk.aws_elastigroup.ScalingStrategy
+  - spotinst_sdk.aws_elastigroup.Persistence
+  - spotinst_sdk.aws_elastigroup.RevertToSpot
+  - spotinst_sdk.aws_elastigroup.Capacity
+  - spotinst_sdk.aws_elastigroup.Scaling
+  - spotinst_sdk.aws_elastigroup.ScalingPolicyDimension
+  - spotinst_sdk.aws_elastigroup.ScalingPolicyAction
+  - spotinst_sdk.aws_elastigroup.ScalingPolicy
+  - spotinst_sdk.aws_elastigroup.TargetTrackingPolicy
+  - spotinst_sdk.aws_elastigroup.Scheduling
+  - spotinst_sdk.aws_elastigroup.ScheduledTask
+  - spotinst_sdk.aws_elastigroup.Multai
+  - spotinst_sdk.aws_elastigroup.MultaiLoadBalancer
+  - spotinst_sdk.aws_elastigroup.Rancher
+  - spotinst_sdk.aws_elastigroup.Mesosphere
+  - spotinst_sdk.aws_elastigroup.ElasticBeanstalk
+  - spotinst_sdk.aws_elastigroup.DeploymentPreferences
+  - spotinst_sdk.aws_elastigroup.BeanstalkDeploymentStrategy
+  - spotinst_sdk.aws_elastigroup.EcsConfiguration
+  - spotinst_sdk.aws_elastigroup.EcsAutoScaleConfiguration
+  - spotinst_sdk.aws_elastigroup.EcsAutoScalerHeadroomConfiguration
+  - spotinst_sdk.aws_elastigroup.EcsAutoScalerAttributeConfiguration
+  - spotinst_sdk.aws_elastigroup.EcsAutoScalerDownConfiguration
+  - spotinst_sdk.aws_elastigroup.MlbRuntimeConfiguration
+  - spotinst_sdk.aws_elastigroup.KubernetesConfiguration
+  - spotinst_sdk.aws_elastigroup.KubernetesAutoScalerConfiguration
+  - spotinst_sdk.aws_elastigroup.KubernetesAutoScalerHeadroomConfiguration
+  - spotinst_sdk.aws_elastigroup.KubernetesAutoScalerLabelsConfiguration
+  - spotinst_sdk.aws_elastigroup.KubernetesAutoScalerDownConfiguration
+  - spotinst_sdk.aws_elastigroup.RightScaleConfiguration
+  - spotinst_sdk.aws_elastigroup.OpsWorksConfiguration
+  - spotinst_sdk.aws_elastigroup.ChefConfiguration
+  - spotinst_sdk.aws_elastigroup.CodeDeployConfiguration
+  - spotinst_sdk.aws_elastigroup.CodeDeployDeploymentGroupsConfiguration
+  - spotinst_sdk.aws_elastigroup.NomadConfiguration
+  - spotinst_sdk.aws_elastigroup.NomadAutoScalerConfiguration
+  - spotinst_sdk.aws_elastigroup.NomadAutoScalerHeadroomConfiguration
+  - spotinst_sdk.aws_elastigroup.NomadAutoScalerConstraintsConfiguration
+  - spotinst_sdk.aws_elastigroup.NomadAutoScalerDownConfiguration
+  - spotinst_sdk.aws_elastigroup.DockerSwarmConfiguration
+  - spotinst_sdk.aws_elastigroup.DockerSwarmAutoScalerConfiguration
+  - spotinst_sdk.aws_elastigroup.DockerSwarmAutoScalerHeadroomConfiguration
+  - spotinst_sdk.aws_elastigroup.DockerSwarmAutoScalerDownConfiguration
+  - spotinst_sdk.aws_elastigroup.Route53Configuration
+  - spotinst_sdk.aws_elastigroup.Route53DomainsConfiguration
+  - spotinst_sdk.aws_elastigroup.Route53RecordSetsConfiguration
+  - spotinst_sdk.aws_elastigroup.ThirdPartyIntegrations
+  - spotinst_sdk.aws_elastigroup.Compute
+  - spotinst_sdk.aws_elastigroup.AvailabilityZone
+  - spotinst_sdk.aws_elastigroup.InstanceTypes
+  - spotinst_sdk.aws_elastigroup.Weight
+  - spotinst_sdk.aws_elastigroup.LaunchSpecification
+  - spotinst_sdk.aws_elastigroup.LoadBalancersConfig
+  - spotinst_sdk.aws_elastigroup.LoadBalancer
+  - spotinst_sdk.aws_elastigroup.IamRole
+  - spotinst_sdk.aws_elastigroup.BlockDeviceMapping
+  - spotinst_sdk.aws_elastigroup.EBS
+  - spotinst_sdk.aws_elastigroup.Tag
+  - spotinst_sdk.aws_elastigroup.NetworkInterface
+  - spotinst_sdk.aws_elastigroup.PrivateIpAddress
+  - spotinst_sdk.aws_elastigroup.Roll
+  - spotinst_sdk.aws_elastigroup.DetachConfiguration
+  - spotinst_sdk.aws_elastigroup.StatefulDeallocation
+
+
+
+
+pages:
+- Home: README.md << ./docs/home.md
+- Elastigroup: ./endpoints/elastigroup/README.md << ./docs/elastigroup.md
+- Functions: ./endpoints/functions/README.md << ./docs/functions.md
+- Admin: ./endpoints/administration/README.md << ./docs/admin.md
+- MLB: ./endpoints/mlb/README.md << ./docs/mlb.md
+- AWS: ./endpoints/elastigroup/aws/README.md << ./docs/aws.md
+- Examples: ./examples/README.md << ./docs/examples.md
+- Endpoints: ./endpoints/README.md << ./docs/endpoints.md
+- Classes: ./classes/README.md << ./docs/classes.md
+
+
+

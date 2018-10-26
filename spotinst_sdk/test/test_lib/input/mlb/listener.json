@@ -1,0 +1,28 @@
+{
+  "listener": {
+    "balancerId": "lb-5470a9fb",
+    "protocol": "HTTPS",
+    "port": "443",
+    "tlsConfig": {
+      "minVersion": "TLS10",
+      "maxVersion": "TLS12",
+      "sessionTicketsDisabled": true,
+      "preferServerCipherSuites": true,
+      "cipherSuites": [
+        "TLS_RSA_WITH_AES_256_CBC_SHA",
+        "TLS_RSA_WITH_AES_128_CBC_SHA256"
+      ],
+      "insecureSkipVerify": false,
+      "certificateIds": [
+        "ce-12345",
+        "ce-67890"
+      ]
+    },
+    "tags": [
+      {
+        "key": "Environment",
+        "value": "Production"
+      }
+    ]
+  }
+}

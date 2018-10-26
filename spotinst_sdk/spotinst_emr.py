@@ -4,7 +4,15 @@ none = "d3043820717d74d9a17694c176d39733"
 
 # region EMR
 class EMR:
-
+	"""
+	# Arguments
+	name: str
+	decription: str
+	region: str
+	strategy: Strategy
+	:tpye compute: Compute
+	scaling: Scaling
+	"""
 	def __init__(
 		self,
 		name=none,
@@ -13,15 +21,7 @@ class EMR:
 		strategy=none,
 		compute=none,
 		scaling=none):
-		"""
 
-		:type name: str
-		:type decription: str
-		:type region: str
-		:type strategy: Strategy
-		:tpye compute: Compute
-		:type scaling: Scaling
-		"""
 		self.name = name
 		self.description = description
 		self.region = region
@@ -33,60 +33,60 @@ class EMR:
 
 # region Strategy
 class Strategy:
-
+	"""
+	# Arguments
+	wrapping: Wrapping
+	cloning: Cloning
+	provisioning_timeout: ProvisioningTimeout
+	"""
 	def __init__(
 		self,
 		wrapping=none,
 		cloning=none,
 		provisioning_timeout=none):
-		"""
 
-		:type wrapping: Wrapping
-		:type cloning: Cloning
-		:type provisioning_timeout: ProvisioningTimeout
-		"""
 		self.wrapping = wrapping
 		self.cloning = cloning
 		self.provisioning_timeout = provisioning_timeout
 
 class Wrapping:
-
+	"""
+	# Arguments
+	source_cluster_id: str
+	"""
 	def __init__(
 		self,
 		source_cluster_id):
-		"""
 
-		:type source_cluster_id: str
-		"""
 		self.source_cluster_id = source_cluster_id
 
 
 class Cloning:
-
+	"""
+	# Arguments
+	origin_cluster_id: str
+	include_steps: bool
+	"""
 	def __init__(
 		self,
 		origin_cluster_id=none,
 		include_steps=none):
-		"""
 
-		:type origin_cluster_id: str
-		:type include_steps: bool
-		"""
 		self.origin_cluster_id = origin_cluster_id
 		self.include_steps = include_steps
 
 
 class ProvisioningTimeout:
-
+	"""
+	# Arguments
+	timeout: int
+	:tpye timeout_action: str
+	"""
 	def __init__(
 		self, 
 		timeout = none,
 		timeout_action = none):
-		"""
 
-		:type timeout: int
-		:tpye timeout_action: str
-		"""
 		self.timeout = timeout
 		self.timeout_action = timeout_action
 
@@ -95,7 +95,15 @@ class ProvisioningTimeout:
 
 # region Compute
 class Compute:
-
+	"""
+	# Arguments
+	ebs_root_volume_size: int
+	availability_zones: List[AvailabilityZone]
+	bootstrap_actions: BootstrapActions
+	steps: Steps
+	instance_groups: InstanceGroups
+	configurations: Configurations
+	"""
 	def __init__(
 		self,
 		ebs_root_volume_size=none,
@@ -104,15 +112,7 @@ class Compute:
 		steps=none,
 		instance_groups=none,
 		configurations=none):
-		"""
 
-		:type ebs_root_volume_size: int
-		:type availability_zones: List[AvailabilityZone]
-		:type bootstrap_actions: BootstrapActions
-		:type steps: Steps
-		:type instance_groups: InstanceGroups
-		:type configurations: Configurations
-		"""
 		self.ebs_root_volume_size = ebs_root_volume_size
 		self.availability_zones = availability_zones
 		self.bootstrap_actions = bootstrap_actions
@@ -122,109 +122,110 @@ class Compute:
 
 
 class AvailabilityZone:
-
+	"""
+	# Arguments
+	name: str
+	subnet: str
+	"""
 	def __init__(
 		self,
 		name=none,
 		subnet=none):
-		"""
 
-		:type name: str
-		:type subnet: str
-		"""
 		self.name = name
 		self.subnet = subnet
 
 
 class BootstrapActions:
-
+	"""
+	# Arguments
+	file: File
+	"""
 	def __init__(
 		self,
 		file=none):
-		"""
 
-		:type file: File
-		"""
 		self.file = file
 
 
 class File:
-
+	"""
+	# Arguments
+	bucket: str
+	key: str
+	"""
 	def __init__(
 		self, 
 		bucket=none,
 		key=none):
-		"""
 
-		:type bucket: str
-		:type key: str
-		"""
 		self.bucket = bucket
 		self. key = key
 
 
 class Steps:
-
+	"""
+	# Arguments
+	file: File
+	"""
 	def __init__(
 		self,
 		file=none):
-		"""
-		:type file: File
-		"""
+
 		self.file = file
 
 
 class InstanceGroups:
-
+	"""
+	# Arguments
+	master_group: MasterGroup
+	core_group: CoreGroup
+	task_group: TaskGroup
+	"""
 	def __init__(
 		self, 
 		master_group=none,
 		core_group=none,
 		task_group=none):
-		"""
 
-		:type master_group: MasterGroup
-		:type core_group: CoreGroup
-		:type task_group: TaskGroup
-		"""
 		self.master_group = master_group
 		self.core_group = core_group
 		self.task_group = task_group
 
 
 class MasterGroup:
-
+	"""
+	# Arguments
+	instance_types: List[str]
+	target: int
+	life_cycle: str
+	"""
 	def __init__(
 		self,
 		instance_types=none,
 		target=none,
 		life_cycle=none):
-		"""
 
-		:type instance_types: List[str]
-		:type target: int
-		:type life_cycle: str
-		"""
 		self.instance_types = instance_types
 		self.target = target
 		self.life_cycle = life_cycle
 
 
 class CoreGroup:
-
+	"""
+	# Arguments
+	instance_types: List[str]
+	target: int
+	life_cycle: str
+	ebs_configuration: EbsConfiguration
+	"""
 	def __init__(
 		self,
 		instance_types=none,
 		target=none,
 		life_cycle=none,
 		ebs_configuration=none):
-		"""
 
-		:type instance_types: List[str]
-		:type target: int
-		:type life_cycle: str
-		:type ebs_configuration: EbsConfiguration
-		"""
 		self.instance_types = instance_types
 		self.target = target
 		self.life_cycle = life_cycle
@@ -232,20 +233,20 @@ class CoreGroup:
 
 
 class TaskGroup:
-
+	"""
+	# Arguments
+	instance_types: List[str]
+	capacity: Capacity
+	life_cycle: str
+	ebs_configuration: EbsConfiguration
+	"""
 	def __init__(
 		self,
 		instance_types=none,
 		capacity=none,
 		life_cycle=none,
 		ebs_configuration=none):
-		"""
 
-		:type instance_types: List[str]
-		:type capacity: Capacity
-		:type life_cycle: str
-		:type ebs_configuration: EbsConfiguration
-		"""
 		self.instance_types = instance_types
 		self.capacity = capacity
 		self.life_cycle = life_cycle
@@ -253,76 +254,77 @@ class TaskGroup:
 
 
 class Capacity:
-
+	"""
+	# Arguments
+	target: int
+	minimum: int
+	maximum: int
+	"""
 	def __init__(
 		self,
 		target=none,
 		minimum=none,
 		maximum=none):
-		"""
-		
-		:type target: int
-		:type minimum: int
-		:type maximum: int
-		"""
+
 		self.target = target
 		self.minimum = minimum
 		self.maximum = maximum
 
 
 class EbsConfiguration:
-
+	"""
+	# Arguments
+	ebs_block_device_configs: List[SingleEbsConfig]
+	ebs_optimized: bool
+	"""
 	def __init__(
 		self,
 		ebs_block_device_configs=none,
 		ebs_optimized=none):
-		"""
 
-		:type ebs_block_device_configs: List[SingleEbsConfig]
-		:type ebs_optimized: bool
-		"""
 		self.ebs_block_device_configs = ebs_block_device_configs
 		self.ebs_optimized = ebs_optimized
 
 
 class SingleEbsConfig:
-
+	"""
+	# Arguments
+	volume_specification: VolumeSpecification
+	volumes_per_instance: int
+	"""
 	def __init__(
 		self,
 		volume_specification=none,
 		volumes_per_instance=none):
-		"""
 
-		:type volume_specification: VolumeSpecification
-		:type volumes_per_instance: int
-		"""
 		self.volume_specification = volume_specification
 		self.volumes_per_instance = volumes_per_instance
 
 
 class VolumeSpecification:
+	"""
+	# Arguments
+	volume_type: str
+	size_in_GB: int
+	"""
 	def __init__(
 		self,
 		volume_type=none,
 		size_in_gb=none):
-		"""
 
-		:type volume_type: str
-		:type size_in_GB: int
-		"""
 		self.volume_type = volume_type
 		self.size_in_gB = size_in_gb
 
 
 class Configurations:
-
+	"""
+	# Arguments
+	file: File
+	"""
 	def __init__(
 		self,
 		file=none):
-		"""
 
-		:type file: File
-		"""
 		self.file = file
 
 
@@ -330,22 +332,36 @@ class Configurations:
 
 # region Scaling
 class Scaling:
-
+	"""
+	# Arguments
+	up: List[Metric]
+	down: List[Metric]
+	"""
 	def __init__(
 		self,
 		up=none,
 		down=none):
-		"""
 
-		:type up: List[Metric]
-		:type down: List[Metric]
-		"""
 		self.up = up
 		self.down = down
 
 
 class Metric:
-
+	"""
+	# Arguments
+	metric_name: str
+	statistic: str
+	unit: str
+	threshold: int
+	adjustment: int
+	namespace: str
+	period: int
+	evaluation_periods: int
+	action: Action
+	cooldown: int
+	dimensions: List[Dimension]
+	operator: str
+	"""
 	def __init__(
 		self,
 		metric_name=none,
@@ -360,21 +376,7 @@ class Metric:
 		cooldown=none,
 		dimensions=none,
 		operator=none):
-		"""
 
-		:type metric_name: str
-		:type statistic: str
-		:type unit: str
-		:type threshold: int
-		:type adjustment: int
-		:type namespace: str
-		:type period: int
-		:type evaluation_periods: int
-		:type action: Action
-		:type cooldown: int
-		:type dimensions: List[Dimension]
-		:type operator: str
-		"""
 		self.metric_name = metric_name
 		self.statistic = statistic
 		self.unit = unit
@@ -389,7 +391,15 @@ class Metric:
 		self.operator = operator
 
 class Action:
-
+	"""
+	# Arguments
+	type: str
+	adjustment: int
+	min_target_capacity: int
+	target: int
+	minimum: int
+	maximum: int
+	"""
 	def __init__(
 		self,
 		type=none,
@@ -398,15 +408,7 @@ class Action:
 		target=none,
 		minimum=none,
 		maximum=none):
-		"""
 
-		:type type: str
-		:type adjustment: int
-		:type min_target_capacity: int
-		:type target: int
-		:type minimum: int
-		:type maximum: int
-		"""
 		self.type = type
 		self.adjustment = adjustment
 		self.min_target_capacity = min_target_capacity
@@ -415,13 +417,14 @@ class Action:
 		self.maximum = maximum
 
 class Dimension:
-
+	"""
+	# Arguments
+	name: str
+	"""
 	def __init__(
 		self,
 		name=none):
-		"""
-		:type name: str
-		"""
+
 		self.name = name
 
 

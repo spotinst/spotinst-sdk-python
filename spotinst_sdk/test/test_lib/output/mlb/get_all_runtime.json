@@ -1,0 +1,41 @@
+{
+    "response":{
+      "status": {
+        "code": 200,
+        "message": "OK"
+      },
+      "kind": "spotinst:lb:core:runtime",
+      "items": [{
+        "id": "rt-12345",
+        "deploymentId": "dp-45678",
+        "ip": "54.173.237.1",
+        "privateIp": "172.31.33.57",
+        "version": "0.3.10",
+        "readinessStatus": "READY",
+        "healthinessStatus": "HEALTHY",
+        "lastReported": "2018-01-24T14:55:29.000Z",
+        "isLeader": true,
+        "tags": [{
+            "key": "aws:instance-id",
+            "value": "i-12345"
+        }]
+        },
+        {
+        "id": "rt-54321",
+        "deploymentId": "dp-45678",
+        "ip": "54.173.237.0",
+        "privateIp": "172.31.33.58",
+        "version": "0.3.8",
+        "readinessStatus": "READY",
+        "healthinessStatus": "HEALTHY",
+        "lastReported": "2018-01-24T14:55:29.000Z",
+        "isLeader": false,
+        "tags": [{
+            "key": "Environment",
+            "value": "Production"
+        }]
+        }
+      ],
+      "count": 2
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "request": {
+        "id": "c420b3a0-b64d-4c7d-b609-1937bfb207e4",
+        "url": "/accountUserMapping?userEmail=test@spotinst.com",
+        "method": "GET",
+        "timestamp": "2018-09-12T13:18:19.186Z"
+    },
+    "response": {
+        "status": {
+            "code": 200,
+            "message": "OK"
+        },
+        "kind": "spotinst:setup:accountUserMapping",
+        "items": [
+    {
+          "accountId": "act-1234592",
+          "role": "editor"
+      },
+    { 
+          "accountId": "act-1234593",
+          "role": "viewer"
+      }
+    ],      
+        "count": 2
+    }
+}

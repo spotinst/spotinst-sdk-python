@@ -1,0 +1,26 @@
+{
+    "request": {
+        "id": "47330a6f-f826-49ef-867c-1a7d7b38391e",
+        "url": "/setup/user/",
+        "method": "POST",
+        "timestamp": "2018-07-25T16:53:05.584Z"
+    },
+    "response": {
+        "status": {
+            "code": 200,
+            "message": "OK"
+        },
+        "kind": "spotinst:setup:user",
+        "items": [
+            {
+                "id": 9056,
+                "firstName": "Test",
+                "lastName": "Test",
+                "displayName": "Test Test",
+                "email": "test@gmail.com",
+                "organizationId": 606079860000
+            }
+        ],
+        "count": 1
+    }
+}

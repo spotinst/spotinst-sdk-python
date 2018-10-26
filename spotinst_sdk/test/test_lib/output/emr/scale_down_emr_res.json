@@ -1,0 +1,26 @@
+{
+"request": {
+    "id": "3213e42e-455e-4901-a185-123456789",
+    "url": "/aws/emr/mrScaler/simrs-c148c3c6/scale/down?adjustment=1",
+    "method": "PUT",
+    "time": "2015-06-28T15:49:11.911Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:emr:mrScaler:scale",
+    "items": [
+      {
+        "modifiedInstanceGroups": [
+          "ig-9870IUVXMYYW9"
+        ],
+        "victimInstances": [
+          "i-1234GBWAZXDSR3"
+        ]
+      }
+    ],
+    "count": 1
+  }
+}

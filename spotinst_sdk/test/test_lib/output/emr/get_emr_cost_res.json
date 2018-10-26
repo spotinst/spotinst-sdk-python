@@ -1,0 +1,32 @@
+{
+"request": {
+    "id": "bee3589d-2194-4724-81d2-16eaf80589d6",
+    "url": "/aws/emr/mrScaler/simrs-12223456789/costs",
+    "method": "GET",
+    "timestamp": "2015-08-02T09:14:15.884Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:emr:mrScaler:costs",
+    "items": [
+      {
+        "running": {
+          "value": "13.00",
+          "unit": "hours"
+        },
+        "savings": {
+          "value": "86.3245",
+          "unit": "percentage"
+        },
+        "costs": {
+          "actual": "0.4729",
+          "potential": "3.4580"
+        }
+      }
+    ],
+    "count": 1
+  }
+}

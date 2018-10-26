@@ -1,0 +1,22 @@
+{
+  "routingRule": {
+    "balancerId": "lb-12345",
+    "route": "PathRegexp(`/`)",
+    "targetSetIds": [
+      "ts-12345",
+      "ts-67890"
+    ],
+    "middlewareIds": [
+      "mw-23456",
+      "mw-7890"
+    ],
+    "listenerId": "ls-12345",
+    "priority": 2,
+    "tags": [
+      {
+        "key": "Environment",
+        "value": "Production"
+      }
+    ]
+  }
+}

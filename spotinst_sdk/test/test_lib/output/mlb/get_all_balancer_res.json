@@ -1,0 +1,61 @@
+{
+  "response":{
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:lb:balancer",
+    "items": [
+      {
+        "id": "lb-12345",
+        "name": "bestLoadBalancerInTheWorld",
+        "scheme": "internet-facing",
+        "timeouts": {
+          "draining": 300,
+          "idle": 60
+        },
+        "dns": {
+          "providers": [],
+          "records": [
+            {
+              "type": "A",
+              "name": "bestloadbalancerintheworld.lb-380283967edf.dev.lb1.spotinst.io"
+            }
+          ],
+          "aliases": []
+        },
+        "tags": [
+          {
+            "key": "Environment",
+            "value": "Production"
+          }
+        ]
+      },
+      {
+        "id": "lb-54321",
+        "name": "SecondbestLoadBalancerInTheWorld",
+        "scheme": "internet-facing",
+        "timeouts": {
+          "draining": 300,
+          "idle": 60
+        },
+        "dns": {
+          "providers": [],
+          "records": [
+            {
+              "type": "A",
+              "name": "secondbestloadbalancerintheworld.lb-380283967edf.dev.lb1.spotinst.io"
+            }
+          ],
+          "aliases": []
+        },
+        "tags": [
+          {
+            "key": "Environment",
+            "value": "Production"
+          }
+        ]
+      }
+    ]
+  }
+}

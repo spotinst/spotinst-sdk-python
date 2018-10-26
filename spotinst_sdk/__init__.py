@@ -14,6 +14,8 @@ from spotinst_sdk import spotinst_stateful
 from spotinst_sdk import spotinst_blue_green_deployment
 from spotinst_sdk import spotinst_deployment_action
 from spotinst_sdk import spotinst_asg
+from spotinst_sdk import spotinst_user_mapping
+from spotinst_sdk import spotinst_mlb
 
 VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
@@ -35,13 +37,15 @@ _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
 
 class SpotinstClient:
     __account_id_key = "accountId"
-    __base_url = "https://api.spotinst.io/aws/ec2"
+    __base_aws_url = "https://api.spotinst.io/aws/ec2"
     __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
     __base_emr_url = "https://api.spotinst.io/aws/emr/mrScaler"
     __base_functions_url = "https://api.spotinst.io/functions"
     __base_stateful_url = "https://api.spotinst.io/aws/ec2/statefulMigrationGroup"
     __base_kube_url = "https://api.spotinst.io/mcs/kubernetes/cluster"
     __base_saving_url = "https://api.spotinst.io/aws/potentialSavings"
+    __base_setup_url = "https://api.spotinst.io/setup"
+    __base_lb_url = "https://api.spotinst.io/loadBalancer"
 
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
@@ -55,7 +59,6 @@ class SpotinstClient:
                  log_level="critical",
                  user_agent=None):
         """
-
         :type auth_token: str
         :type account_id: str
         :type profile: str
@@ -83,9 +86,1407 @@ class SpotinstClient:
         else:
             self.set_log_level(log_level)
 
+    # endregion
+
+
+
+    # region MLB
+
+    def get_all_mlb_runtime(self):
+        """
+        Get all MLB runtime 
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/runtime",
+            entity_name="mlb runtime"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal     
+
+
+    def get_mlb_runtime(self, runtime_id):
+        """
+        Get MLB runtime
+        
+        # Arguments
+        runtime_id (String): Runtime id name
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/runtime/" + runtime_id,
+            entity_name="mlb runtime"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal     
+
+    def deregister_mlb_runtime(self, runtime_id):
+        """
+        Deregister MLB runtime
+        
+        # Arguments
+        runtime_id (String): Runtime id name
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/runtime/" + runtime_id +
+            "/deregister",
+            entity_name="mlb runtime"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal   
+
+    def delete_mlb_runtime(self, runtime_id):
+        """
+        Delete MLB runtime
+        
+        # Arguments
+        runtime_id (String): Runtime id name
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/runtime/" + runtime_id,
+            entity_name="mlb runtime"
+        )
+
+        return response 
+
+    def create_mlb_deployment(self, deployment_name):
+        """
+        Create MLB deployment
+        
+        # Arguments
+        deployment_name (String): Deployment name
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_post(
+            url=self.__base_lb_url +
+            "/deployment",
+            body=json.dumps(dict(deployment=dict(name=deployment_name))),
+            entity_name="mlb deployment"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def update_mlb_deployment(self, deployment_id, deployment_name):
+        """
+        Update MLB deployment
+        
+        # Arguments
+        deployment_name (String): Deployment name
+        deployment_id (String): Deployment Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/deployment/" + deployment_id,
+            body=json.dumps(dict(deployment=dict(name=deployment_name))),
+            entity_name="mlb deployment"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def get_mlb_deployment(self, deployment_id):
+        """
+        Get MLB deployment
+        
+        # Arguments
+        deployment_id (String): Deployment Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/deployment/"+deployment_id,
+            entity_name="mlb deployment"
+        )
+        
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def get_all_mlb_deployment(self):
+        """
+        Get All MLB deployment
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/deployment",
+            entity_name="mlb deployment"
+        )
+        
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def delete_mlb_deployment(self, deployment_id):
+        """
+        Delete MLB deployment
+        
+        # Arguments
+        deployment_id (String): Deployment Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/deployment/"+deployment_id,
+            entity_name="mlb deployment"
+        )
+
+        return response
+
+    def create_mlb_balancer(self, balancer):
+        """
+        Create MLB balancer
+        
+        # Arguments
+        balancer (Balancer): Balancer Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        balancer = spotinst_mlb.BalancerRequest(balancer)
+
+        excluded_group_dict = self.exclude_missing(json.loads(balancer.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_post(
+            url=self.__base_lb_url +
+            "/balancer",
+            body=body_json,
+            entity_name="mlb balancer"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal        
+
+    def update_mlb_balancer(self, balancer_id, balancer):
+        """
+        Create MLB balancer
+        
+        # Arguments
+        balancer_id (String): Balancer Id
+        balancer (Balancer): Balancer Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        balancer = spotinst_mlb.BalancerRequest(balancer)
+
+        excluded_group_dict = self.exclude_missing(json.loads(balancer.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/balancer/" + balancer_id,
+            body=body_json,
+            entity_name="mlb balancer"
+        )
+        
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def get_mlb_balancer(self, balancer_id):
+        """
+        Get MLB balancer
+        
+        # Arguments
+        balancer_id (String): Balancer Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/balancer/" + balancer_id,
+            entity_name="mlb balancer" 
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal        
+
+    def get_all_mlb_balancer(self):
+        """
+        Get All MLB balancer
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/balancer/",
+            entity_name="mlb balancer" 
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal   
+
+    def delete_mlb_balancer(self, balancer_id):
+        """
+        Delete MLB balancer
+        
+        # Arguments
+        balancer_id (String): Balancer Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/balancer/" + balancer_id,
+            entity_name="mlb balancer" 
+        )
+
+        return response   
+
+    def create_mlb_target_set(self, target_set):
+        """
+        Create MLB target set
+        
+        # Arguments
+        target_set (TargetSet): TargetSet Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        target_set = spotinst_mlb.TargetSetRequest(target_set)
+
+        excluded_group_dict = self.exclude_missing(json.loads(target_set.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_post(
+            url=self.__base_lb_url +
+            "/targetSet",
+            body=body_json,
+            entity_name="mlb target set"
+        )
+        
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def update_mlb_target_set(self, target_set_id, target_set):
+        """
+        Update MLB target set
+        
+        # Arguments
+        target_set_id (String): Target Set Id
+        target_set (TargetSet): TargetSet Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        target_set = spotinst_mlb.TargetSetRequest(target_set)
+
+        excluded_group_dict = self.exclude_missing(json.loads(target_set.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/targetSet" + target_set_id,
+            body=body_json,
+            entity_name="mlb target set"
+        )
+        
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def get_mlb_target_set(self, target_set_id):
+        """
+        Gat an MLB target set
+        
+        # Arguments
+        target_set_id (String): Target Set Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/targetSet/" + target_set_id,
+            entity_name="mlb target set"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+
+    def get_all_mlb_target_set(self):
+        """
+        Get all MLB target sets
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/targetSet",
+            entity_name="mlb target set"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def delete_mlb_target_set(self, target_set_id):
+        """
+        Delete an MLB target set
+        
+        # Arguments
+        target_set_id (String): Target Set Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/targetSet/" + target_set_id,
+            entity_name="mlb target set"
+        )
+
+        return response 
+
+    def register_mlb_targets(self, target_set_id, targets):
+        """
+        Register MLB targets
+        
+        # Arguments
+        target_set_id (String): Target Set Id
+        Targets (List[Target]): List of Target Objects
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        targets = spotinst_mlb.TargetsRequest(targets)
+
+        excluded_group_dict = self.exclude_missing(json.loads(targets.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/targetSet/" + target_set_id +
+            "/registerTargets",
+            body=body_json,
+            entity_name="mlb target set"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def deregister_mlb_targets(self, target_set_id, targets):
+        """
+        Deregister MLB targets
+        
+        # Arguments
+        target_set_id (String): Target Set Id
+        Targets (List[Target]): List of Target Objects
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        targets = spotinst_mlb.TargetsRequest(targets)
+
+        excluded_group_dict = self.exclude_missing(json.loads(targets.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/targetSet/" + target_set_id +
+            "/deregisterTargets",
+            body=body_json,
+            entity_name="mlb target set"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def create_mlb_target(self, target):
+        """
+        Create MLB target
+        
+        # Arguments
+        target (Target): Target Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        target = spotinst_mlb.TargetRequest(target)
+
+        excluded_group_dict = self.exclude_missing(json.loads(target.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_post(
+            url=self.__base_lb_url +
+            "/target",
+            body=body_json,
+            entity_name="mlb target"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+
+    def update_mlb_target(self, target_id, target):
+        """
+        Update MLB target
+        
+        # Arguments
+        target_id (String): Target Id
+        target (Target): Target Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        target = spotinst_mlb.TargetRequest(target)
+
+        excluded_group_dict = self.exclude_missing(json.loads(target.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/target/"+target_id,
+            body=body_json,
+            entity_name="mlb target"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def get_mlb_target(self, target_id):
+        """
+        Get MLB target
+        
+        # Arguments
+        target_id (String): Target Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/target/"+target_id,
+            entity_name="mlb target"            
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def get_all_mlb_target(self):
+        """
+        Get all MLB target
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/target",
+            entity_name="mlb target"            
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def delete_mlb_target(self, target_id):
+        """
+        Delete MLB target
+        
+        # Arguments
+        target_id (String): Target Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/target/"+target_id,
+            entity_name="mlb target"            
+        )
+
+        return response 
+
+
+
+
+
+
+
+    def create_mlb_listener(self, listener):
+        """
+        Create MLB listener
+        
+        # Arguments
+        listener (Listener): Listener Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        listener = spotinst_mlb.ListenerRequest(listener)
+
+        excluded_group_dict = self.exclude_missing(json.loads(listener.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_post(
+            url=self.__base_lb_url +
+            "/listener",
+            body=body_json,
+            entity_name="mlb listener"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+
+    def update_mlb_listener(self, listener_id, listener):
+        """
+        Update MLB listener
+        
+        # Arguments
+        listener_id (String): Listener ID
+        listener (Listener): Listener Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        listener = spotinst_mlb.ListenerRequest(listener)
+
+        excluded_group_dict = self.exclude_missing(json.loads(listener.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/listener/" + listener_id,
+            body=body_json,
+            entity_name="mlb listener"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def get_mlb_listener(self, listener_id):
+        """
+        Get MLB listener
+        
+        # Arguments
+        listener_id (String): Listener ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/listener/"+listener_id,
+            entity_name="mlb listener"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def get_all_mlb_listener(self):
+        """
+        Get all MLB listeners
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/listener",
+            entity_name="mlb listener"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def delete_mlb_listener(self, listener_id):
+        """
+        Delete MLB listener
+        
+        # Arguments
+        listener_id (String): Listener ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/listener/"+listener_id,
+            entity_name="mlb listener"
+        )
+
+        return response 
+
+
+
+
+
+
+    def create_mlb_routing_rule(self, routing_rule):
+        """
+        Create MLB routing rule
+        
+        # Arguments
+        routing_rule (RoutingRule): RoutingRule Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        routing_rule = spotinst_mlb.RoutingRuleRequest(routing_rule)
+
+        excluded_group_dict = self.exclude_missing(json.loads(routing_rule.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_post(
+            url=self.__base_lb_url +
+            "/routingRule",
+            body=body_json,
+            entity_name="mlb routing rule"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+
+    def update_mlb_routing_rule(self, routing_rule_id, routing_rule):
+        """
+        Update MLB routing rule
+        
+        # Arguments
+        routing_rule_id (String): Routing Rule Id
+        routing_rule (RoutingRule): RoutingRule Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        routing_rule = spotinst_mlb.RoutingRuleRequest(routing_rule)
+
+        excluded_group_dict = self.exclude_missing(json.loads(routing_rule.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/routingRule/" + routing_rule_id,
+            body=body_json,
+            entity_name="mlb routing rule"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def get_mlb_routing_rule(self, routing_rule_id):
+        """
+        Get MLB routing rule
+        
+        # Arguments
+        routing_rule_id (String): Routing Rule Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/routingRule/"+routing_rule_id,
+            entity_name="mlb routing rule"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def get_all_mlb_routing_rule(self):
+        """
+        Get all MLB routing rule
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/routingRule",
+            entity_name="mlb routing rule"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def delete_mlb_routing_rule(self, routing_rule_id):
+        """
+        Delete MLB routing rule
+        
+        # Arguments
+        routing_rule_id (String): Routing Rule Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/routingRule/"+routing_rule_id,
+            entity_name="mlb routing rule"
+        )
+
+        return response 
+
+
+
+
+
+
+
+    def create_mlb_middleware(self, middleware):
+        """
+        Create MLB middleware
+        
+        # Arguments
+        middleware (Middleware): Middleware Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        middleware = spotinst_mlb.MiddlewareRequest(middleware)
+
+        excluded_group_dict = self.exclude_missing(json.loads(middleware.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_post(
+            url=self.__base_lb_url +
+            "/middleware",
+            body=body_json,
+            entity_name="mlb middleware"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def update_mlb_middleware(self, middleware_id, middleware):
+        """
+        Update MLB middleware
+        
+        # Arguments
+        middleware_id (String): Middleware ID
+        middleware (Middleware): Middleware Object
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        middleware = spotinst_mlb.MiddlewareRequest(middleware)
+
+        excluded_group_dict = self.exclude_missing(json.loads(middleware.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        self.print_output(body_json)
+
+        response = self.send_put(
+            url=self.__base_lb_url +
+            "/middleware/" + middleware_id,
+            body=body_json,
+            entity_name="mlb middleware"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def get_mlb_middleware(self, middleware_id):
+        """
+        Get MLB middleware
+        
+        # Arguments
+        middleware_id (String): Middleware ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/middleware/"+middleware_id,
+            entity_name="mlb middleware"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal 
+
+    def get_all_mlb_middleware(self):
+        """
+        Get all MLB middleware
+                
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_get(
+            url=self.__base_lb_url +
+            "/middleware",
+            entity_name="mlb middleware"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def delete_mlb_middleware(self, middleware_id):
+        """
+        Delete MLB middleware
+        
+        # Arguments
+        middleware_id (String): Middleware ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_delete(
+            url=self.__base_lb_url +
+            "/middleware/"+middleware_id,
+            entity_name="mlb middleware"
+        )
+
+        return response 
+
+
+    # endregion
+
+
+
+    # region Organization and Account
+
+    def create_organization(self, org_name):
+        """
+        Create an organization 
+        
+        # Arguments
+        org_name (String): Orgnanization name
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_post(
+            url= self.__base_setup_url + 
+            "/organization",
+            body=json.dumps(dict(organization=dict(name=org_name))),
+            entity_name="organization"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def delete_organization(self, org_id):
+        """
+        delete organization 
+        
+        # Arguments
+        org_id (String): Organization Id
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_delete(
+            url= self.__base_setup_url + 
+            "/organization/" + str(org_id),
+            entity_name="organization"
+        )
+
+        return response
+
+    def set_cloud_credentials(self, iam_role, external_id):
+        """
+        set cloud credentials 
+        
+        # Arguments
+        iam_role (String): IAM Role
+        external_id (String): External ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_post(
+            url= self.__base_setup_url +
+            "/credentials/aws",
+            body=json.dumps(dict(credentials=dict(iamRole=iam_role, externalId=external_id))),
+            entity_name="credentials"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal
+
+    def create_account(self, account_name):
+        """
+        create an account 
+        
+        # Arguments
+        account_name (String): Account Name
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_post(
+            url= self.__base_setup_url +
+            "/account",
+            body=json.dumps(dict(account=dict(name=account_name))),
+            entity_name="account"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_accounts(self):
+        """
+        get accounts in organization
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_get(
+            url= self.__base_setup_url +
+            "/account",
+            entity_name="account"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
+    def delete_account(self, account_name):
+        """
+        delete account
+        
+        # Arguments
+        account_name (String): Account Name
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_delete(
+            url= self.__base_setup_url +
+            "/account/" + account_name,
+            entity_name="account"
+        )
+
+        return response
+
+    def create_user(self, first_name, last_name, email, password, role):
+        """
+        Create user
+        
+        # Arguments
+        first_name (String): Users first name
+        last_name (String): User last name
+        email (String): Eser email
+        password (String): User email
+        role (String): User role
+
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_post(
+            url= self.__base_setup_url +
+            "/user",
+            body=json.dumps(dict(
+                firstName=first_name,
+                lastName=last_name,
+                email=email,
+                password=password,
+                role=role)),
+            entity_name="user"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal       
+
+    def add_exsisting_user(self, user_email, role):
+        """
+        Add exsisting user
+        
+        # Arguments
+        user_email (String): User email
+        role (String): User role
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_post(
+            url= self.__base_setup_url +
+            "/account/" + self.account_id +
+            "/user",
+            body=json.dumps(dict(userEmail=user_email, role=role)),
+            entity_name="user"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def update_user_role(self, user_email, role):
+        """
+        Update exsisting user
+        
+        # Arguments
+        user_email (String): User email
+        role (String): User role
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_put(
+            url= self.__base_setup_url +
+            "/account/" + self.account_id +
+            "/user",
+            body=json.dumps(dict(userEmail=user_email, role=role)),
+            entity_name="user"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    def detach_user(self, user_email):
+        """
+        Delete exsisting user
+        
+        # Arguments
+        user_email (String): User email
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        response = self.send_delete_with_body(
+            url= self.__base_setup_url +
+            "/account/" + self.account_id +
+            "/user",
+            body=json.dumps(dict(userEmail=user_email)),
+            entity_name="user"
+        )
+
+        return response 
+
+    def get_user(self, user_email):
+        """
+        Get user
+        
+        # Arguments
+        user_email (String): User email
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        query_params= dict(userEmail=user_email)
+        response = self.send_get(
+            url= self.__base_setup_url + "/accountUserMapping",
+            query_params=query_params,
+            entity_name="user"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal 
+
+    def assign_user_to_account(self, mappings):
+        """
+        Assign user to account
+        
+        # Arguments
+        mappings (List): List of UserMapping Objects
+        
+        # Returns
+        (Object): Spotinst API response 
+        """ 
+        mappings = spotinst_user_mapping.UserMappingRequest(mappings)
+
+        excluded_group_dict = self.exclude_missing(json.loads(mappings.toJSON()))
+        
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        response = self.send_post(
+            url= self.__base_setup_url + "/accountUserMapping",
+            body= body_json,
+            entity_name="user"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal 
+
+    # endregion
+
+
 
     # region EMR
     def create_emr(self, emr):
+        """
+        Create an EMR 
+        
+        # Arguments
+        emr (EMR): EMR Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         emr = spotinst_emr.EMRCreationRequest(emr)
 
         excluded_group_dict = self.exclude_missing(json.loads(emr.toJSON()))
@@ -107,11 +1508,249 @@ class SpotinstClient:
 
         return retVal
 
+    def update_emr(self, emr_id, emr):
+        """
+        Update an exsisting EMR 
+        
+        # Arguments
+        emr_id (String): EMR id
+        emr (EMR): EMR Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        emr = spotinst_emr.EMRCreationRequest(emr)
+
+        excluded_group_dict = self.exclude_missing(json.loads(emr.toJSON()))
+        
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+        
+        group_response = self.send_put(
+            body=body_json,
+            url=self.__base_emr_url +
+            "/" + emr_id,
+            entity_name='emr')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_all_emr(self):
+        """
+        Get all EMR in account
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_emr_url,
+            entity_name="emr"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
+
+    def get_emr(self, emr_id):
+        """
+        Get an exsisting EMR json
+        
+        # Arguments
+        emr_id (String): EMR id
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_emr_url +
+            "/" + emr_id,
+            entity_name="emr"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal        
+
+    def get_emr_instances(self, emr_id):
+        """
+        Get instances from EMR 
+        
+        # Arguments
+        emr_id (String): EMR id
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_emr_url +
+            "/" + emr_id +
+            "/instance",
+            entity_name="emr"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal  
+
+    def get_emr_cluster(self, emr_id):
+        """
+        Get cluster from EMR
+        
+        # Arguments
+        emr_id (String): EMR id
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_emr_url +
+            "/" + emr_id +
+            "/cluster",
+            entity_name="emr"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_emr_cost(self, emr_id, from_date=None, to_date=None):
+        """
+        Get cost from EMR
+        
+        # Arguments
+        emr_id (String): EMR id
+        from_date (String) (Optional): From Date
+        to_date (String) (Optional): to date
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        query_params = dict(fromDate=from_date, toDate=to_date)
+
+        response = self.send_get(
+            url=self.__base_emr_url +
+            "/" + emr_id +
+            "/costs",
+            query_params=query_params,
+            entity_name="emr"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def delete_emr(self, emr_id):
+        """
+        Delete an EMR
+        
+        # Arguments
+        emr_id (String): EMR id
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        response = self.send_delete(
+            url=self.__base_emr_url +
+            "/" + emr_id,
+            entity_name="emr"
+        )
+
+        return response  
+
+    def scale_up_emr(self, emr_id, adjustment):
+        """
+        Scale up an EMR
+        
+        # Arguments
+        emr_id (String): EMR id
+        adjustment (Int): Ammount to scale
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        query_params = dict(adjustment=adjustment)
+
+        response = self.send_put(
+            url=self.__base_emr_url +
+            "/" + emr_id +
+            "/scale/up",
+            query_params=query_params,
+            entity_name="emr"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def scale_down_emr(self, emr_id, adjustment):
+        """
+        Scale down an EMR
+        
+        # Arguments
+        emr_id (String): EMR id
+        adjustment (Int): Ammount to scale
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        query_params = dict(adjustment=adjustment)
+
+        response = self.send_put(
+            url=self.__base_emr_url +
+            "/" + emr_id +
+            "/scale/down",
+            query_params=query_params,
+            entity_name="emr"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
     # endregion
 
     # region Kubernetes
 
-    def get_kubernetes_cluster_cost(self, custer_id, from_date, to_date):        
+    def get_kubernetes_cluster_cost(self, custer_id, from_date, to_date):   
+        """
+        Get kubernetes cluster cost 
+        
+        # Arguments
+        custer_id (String): Kubernetes cluster id
+        from_date (String): From date
+        to_date (String): to date
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """      
         geturl = self.__base_kube_url + "/" + custer_id + "/costs"
         query_params = self.build_query_params_with_input({"toDate":to_date, "fromDate":from_date})
 
@@ -127,7 +1766,16 @@ class SpotinstClient:
 
 
     # region Elastigroup
-    def create_elastigroup(self, group):        
+    def create_elastigroup(self, group):
+        """
+        Create an elastigroup
+        
+        # Arguments
+        group (Elastigroup): Elastigroup Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """    
         group = aws_elastigroup.ElastigroupCreationRequest(group)
 
         excluded_group_dict = self.exclude_missing(json.loads(group.toJSON()))
@@ -152,6 +1800,16 @@ class SpotinstClient:
         return retVal
 
     def scale_elastigroup_up(self, group_id, adjustment):
+        """
+        Scale up an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """   
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
@@ -167,6 +1825,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def scale_elastigroup_down(self, group_id, adjustment):
+        """
+        Scale down an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
@@ -182,7 +1850,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def update_elastigroup(self, group_update, group_id):
-
+        """
+        Update an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        group_update (Elastigroup): Elastigroup Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         group = aws_elastigroup.ElastigroupUpdateRequest(group_update)
 
         excluded_group_update_dict = self.exclude_missing(
@@ -210,12 +1887,31 @@ class SpotinstClient:
         return retVal
 
     def delete_elastigroup(self, group_id):
+        """
+        Delete an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         delurl = self.__base_elastigroup_url + "/" + group_id
         response = self.send_delete(url=delurl, entity_name='elastigroup')
         return response
 
     def delete_elastigroup_with_deallocation(
             self, group_id, stateful_deallocation):
+        """
+        Delete a stateful elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_deallocation (Deallocation): Deallocation Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         delurl = self.__base_elastigroup_url + "/" + group_id
 
         deletion_request = aws_elastigroup.ElastigroupDeletionRequest(
@@ -233,6 +1929,15 @@ class SpotinstClient:
         return response
 
     def get_elastigroup(self, group_id):
+        """
+        Get an elastigroup
+        
+        # Arguments
+        group_id(String): Elastigroup ID
+       
+        # Returns
+        (Object): Elastigroup API response 
+        """
         geturl = self.__base_elastigroup_url + "/" + group_id
         result = self.send_get(url=geturl, entity_name='elastigroup')
 
@@ -242,6 +1947,12 @@ class SpotinstClient:
         return formatted_response["response"]["items"][0]
 
     def get_elastigroups(self):
+        """
+        Get all elastigroup
+        
+        # Returns
+        (List): List of Elastigroup API response 
+        """
         content = self.send_get(
             url=self.__base_elastigroup_url,
             entity_name='elastigroup')
@@ -250,6 +1961,15 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def get_elastigroup_active_instances(self, group_id):
+        """
+        Get active instances of an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_get(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -261,6 +1981,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def get_elastigroup_activity(self, group_id, start_date):
+        """
+        Get elastigroup activity
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        start_date (String): Date when to start checking
+        
+        # Returns
+        (Object) : Elastigroup API response 
+        """
         query_params = self.build_query_params_with_input({"fromDate":start_date})
 
         content = self.send_get(
@@ -276,6 +2006,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def roll_group(self, group_id, group_roll):
+        """
+        Roll an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        group_roll (ElastigroupRoll): GroupRoll Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         group_roll_request = aws_elastigroup.ElastigroupRollRequest(
             group_roll=group_roll)
 
@@ -304,6 +2044,15 @@ class SpotinstClient:
         return retVal
 
     def get_all_group_deployment(self, group_id):
+        """
+        get all group deployment from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_get(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -317,6 +2066,16 @@ class SpotinstClient:
 
 
     def get_deployment_status(self, group_id, roll_id):
+        """
+        get all a deployment status from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_get(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -331,6 +2090,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def stop_deployment(self, group_id, roll_id):
+        """
+        stop a deployment from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_put(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -346,6 +2115,17 @@ class SpotinstClient:
         return formatted_response["response"]
 
     def create_deployment_action(self, group_id, roll_id, deployment_action):
+        """
+        create a deployment from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
+        deployment_action (Deployment): Deployment Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         deployment_action_request = spotinst_deployment_action.DeploymentActionRequest(deployment_action)
 
         deployment_action_dict = self.exclude_missing(
@@ -373,9 +2153,18 @@ class SpotinstClient:
         return retVal
 
     def get_instance_type_by_region(self, region):
+        """
+        Get instance type by region
+        
+        # Arguments
+        region (String): AWS region
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         query_params = dict(region=region)
         response = self.send_get(
-            url=self.__base_url+
+            url=self.__base_aws_url+
             "/spotType",
             query_params=query_params,
             entity_name="instance"
@@ -387,10 +2176,20 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def lock_instance(self, instance_id, lock_time=None):
+        """
+        Lock instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        lock_time (int) (Optinal): Time to lock instance
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         query_params= dict(ttlInMinutes=lock_time)
 
         response = self.send_post(
-            url=self.__base_url +
+            url=self.__base_aws_url +
             "/instance/" +
             instance_id +
             "/lock",
@@ -404,8 +2203,17 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def unlock_instance(self, instance_id):
+        """
+        Unlock instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_post(
-            url=self.__base_url +
+            url=self.__base_aws_url +
             "/instance/" +
             instance_id +
             "/unlock",
@@ -418,8 +2226,17 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def enter_instance_standby(self, instance_id):
+        """
+        Enter standby for instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_post(
-            url=self.__base_url + 
+            url=self.__base_aws_url + 
             "/instance/" + 
             instance_id +
             "/standby/enter",
@@ -432,8 +2249,17 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def exit_instance_standby(self, instance_id):
+        """
+        Exit standby for instance 
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_post(
-            url=self.__base_url + 
+            url=self.__base_aws_url + 
             "/instance/" + 
             instance_id +
             "/standby/exit",
@@ -446,8 +2272,17 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def get_instance_status(self, instance_id):
+        """
+        Get instance status
+        
+        # Arguments
+        instance_id (String): Instance ID
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         response = self.send_get(
-            url=self.__base_url + 
+            url=self.__base_aws_url + 
             "/instance/" +
             instance_id,
             entity_name="instance"
@@ -459,6 +2294,15 @@ class SpotinstClient:
         return formatted_response["response"]["items"][0]
 
     def get_instance_healthiness(self, group_id):
+        """
+        get all instances a healthyness from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         response = self.send_get(
             url=self.__base_elastigroup_url +
              "/" + group_id + 
@@ -473,10 +2317,20 @@ class SpotinstClient:
 
 
     def create_instance_signal(self, instance_id, signal):
-        body = dict(instanceId=instance_id, signal=signal)
+        """
+        create instance signal
+        
+        # Arguments
+        instance_id (String): instance ID
+        signal (String): Signal
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        body = json.dumps(dict(instanceId=instance_id, signal=signal))
 
         response = self.send_post(
-            url= self.__base_url + 
+            url= self.__base_aws_url + 
             "/instance/signal",
             body=body,
             entity_name="instance"
@@ -488,6 +2342,16 @@ class SpotinstClient:
         return formatted_response["response"]["status"]  
 
     def get_cost_per_account(self, to_date=None, from_date=None):
+        """
+        get cost per account
+        
+        # Arguments
+        to_date (String) (Optional): to date
+        from_date (String) (Optional): to date
+        
+        # Returns
+        (Object): Spotinst API response 
+        """
         query_params=dict(toDate=to_date, fromDate=from_date)
 
         response = self.send_get(
@@ -502,6 +2366,17 @@ class SpotinstClient:
         return formatted_response["response"]["items"]  
 
     def get_cost_per_elastigroup(self, group_id, to_date=None, from_date=None):
+        """
+        get cost per elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        to_date (String) (Optional): Start Date
+        from_date (String) (Optional): End Date
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         query_params=dict(toDate=to_date, fromDate=from_date)
 
         response = self.send_get(
@@ -518,6 +2393,17 @@ class SpotinstClient:
         return formatted_response["response"]["items"]   
 
     def get_group_detailed_cost(self, group_id, to_date=None, from_date=None):
+        """
+        get detailed cost per elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        to_date (String) (Optional): Start Date
+        from_date (String) (Optional): End Date
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         query_params=dict(toDate=to_date, fromDate=from_date)
 
         response = self.send_get(
@@ -534,6 +2420,12 @@ class SpotinstClient:
         return formatted_response["response"]["items"] 
 
     def get_potential_savings(self):
+        """
+        get potential saving 
+                
+        # Returns
+        (Object): Elastigroup API response 
+        """
         response = self.send_get(
             url="https://api.spotinst.io/aws/potentialSavings",
             entity_name="saving"
@@ -545,6 +2437,15 @@ class SpotinstClient:
         return formatted_response["response"]["items"] 
 
     def get_instance_potential_savings(self, instance_ids, region):
+        """
+        get potential saving 
+        
+        # Arguments
+        instance_ids (List): List of instance id strings
+        region (String): region
+        # Returns
+        (Object): Elastigroup API response 
+        """
         instance_str = ""
 
         for instance in instance_ids:
@@ -564,6 +2465,15 @@ class SpotinstClient:
         return formatted_response["response"]["items"] 
 
     def list_suspended_scaling_policies(self, group_id):
+        """
+        get suspended scaling policies for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         response = self.send_get(
             url=self.__base_elastigroup_url +
             "/" + group_id + 
@@ -577,6 +2487,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]   
 
     def suspend_scaling_policies(self, group_id, policy_name):
+        """
+        suspended scaling policies for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        policy_name (String): Scaling policy name
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         query_params = dict(policyName=policy_name)
 
         response = self.send_post(
@@ -593,6 +2513,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"][0]
 
     def resume_suspended_scaling_policies(self, group_id, policy_name):
+        """
+        Resume scaling policies for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        policy_name (String): Scaling policy name
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         query_params = dict(policyName=policy_name)
 
         response = self.send_post(
@@ -609,6 +2539,15 @@ class SpotinstClient:
         return formatted_response["response"]["status"]
 
     def list_suspended_process(self, group_id):
+        """
+        List suspended process for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         response = self.send_get(
             url=self.__base_elastigroup_url +
             "/" + group_id + 
@@ -622,7 +2561,18 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def suspend_process(self, group_id, processes, suspensions):
-        body = dict(suspensions=suspensions, processes=processes)
+        """
+        suspended process for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        processes (List): list of processes
+        suspensions (List): list of suspensions
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        body = json.dumps(dict(suspensions=suspensions, processes=processes))
         
         response = self.send_post(
             url=self.__base_elastigroup_url +
@@ -638,9 +2588,19 @@ class SpotinstClient:
         return formatted_response["response"]["items"]
 
     def remove_suspended_process(self, group_id, processes):
-        body = dict(processes=processes)
+        """
+        remove suspended process for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        processes (List): list of processes
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        body = json.dumps(dict(processes=processes))
 
-        response = self.send_delete(
+        response = self.send_delete_with_body(
             url=self.__base_elastigroup_url +
             "/" + group_id + 
             "/suspension",
@@ -654,7 +2614,16 @@ class SpotinstClient:
         return formatted_response
 
     def detach_elastigroup_instances(self, group_id, detach_configuration):
-
+        """
+        Detatch instances from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        detatch_configuration (Detach): Detach Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         group_detach_request = aws_elastigroup.ElastigroupDetachInstancesRequest(
             detach_configuration=detach_configuration)
 
@@ -682,6 +2651,15 @@ class SpotinstClient:
         return retVal
 
     def import_stateful_instance(self, stateful_instance):
+        """
+        Import stateful instance parametes
+        
+        # Arguments
+        stateful_instance (StatefulInstance): StatefulInstance Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         stateful_instance = spotinst_stateful.StatefulImportRequest(stateful_instance)
 
         excluded_group_dict = self.exclude_missing(json.loads(stateful_instance.toJSON()))
@@ -704,6 +2682,15 @@ class SpotinstClient:
         return retVal
 
     def get_stateful_import_status(self, stateful_migration_id):
+        """
+        Get stateful instance status
+        
+        # Arguments
+        stateful_migration_id (String): Stateful migration ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_get(
             url=self.__base_stateful_url +
                 "/" +
@@ -716,6 +2703,15 @@ class SpotinstClient:
         return formatted_response["response"]["items"] 
 
     def delete_stateful_import(self, stateful_migration_id):
+        """
+        Delete stateful instance 
+        
+        # Arguments
+        stateful_migration_id (String): Stateful migration ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_delete(
             url=self.__base_stateful_url +
                 "/" +
@@ -727,6 +2723,16 @@ class SpotinstClient:
         return formatted_response
 
     def deallocate_stateful_instance(self, group_id, stateful_instance_id):
+        """
+        Deallocate stateful instances from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_put(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -741,6 +2747,16 @@ class SpotinstClient:
         return formatted_response["response"]
 
     def recycle_stateful_instance(self, group_id, stateful_instance_id):
+        """
+        Recycle stateful instances from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_put(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -756,6 +2772,16 @@ class SpotinstClient:
 
 
     def get_stateful_instances(self, group_id):
+        """
+        Deallocate stateful instances from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_get(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -768,6 +2794,16 @@ class SpotinstClient:
         return formatted_response["response"]["items"]           
 
     def resume_stateful_instance(self, group_id, stateful_instance_id):
+        """
+        Resume stateful instances from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_put(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -782,6 +2818,16 @@ class SpotinstClient:
         return formatted_response["response"]
 
     def pause_stateful_instance(self, group_id, stateful_instance_id):
+        """
+        Pause stateful instances from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         content = self.send_put(
             url=self.__base_elastigroup_url +
                 "/" +
@@ -799,7 +2845,15 @@ class SpotinstClient:
 
 
     def beanstalk_maintenance_status(self, group_id):
+        """
+        Beanstalk maintenance status
         
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         status_response = self.send_get(
             url=self.__base_elastigroup_url+
             "/" +
@@ -816,7 +2870,15 @@ class SpotinstClient:
 
 
     def beanstalk_maintenance_start(self, group_id):
-
+        """
+        Beanstalk maintenance start
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         start_response = self.send_put(
             url=self.__base_elastigroup_url+
             "/" +
@@ -833,7 +2895,15 @@ class SpotinstClient:
         return retVal
 
     def beanstalk_maintenance_finish(self, group_id):   
-
+        """
+        Beanstalk maintenance finish
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         finish_response = self.send_put(
             url=self.__base_elastigroup_url+
             "/" +
@@ -850,6 +2920,17 @@ class SpotinstClient:
         return retVal
 
     def beanstalk_import(self, region, env_id=None, env_name=None):
+        """
+        Import beanstalk attributes into JSON. Either env_id or env_name is required, both cannot be null
+        
+        # Arguments
+        region (String): Beanstalk region
+        env_id (String): Beanstalk env id
+        env_name (String): Beanstalk env name
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
         query_params = dict(region=region, environmentId=env_id, environmentName=env_name)
 
         response = self.send_get(
@@ -867,6 +2948,15 @@ class SpotinstClient:
         return retVal
 
     def beanstalk_reimport(self, group_id):
+        """
+        Reimport beanstalk attributes
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         response = self.send_put(
             url=self.__base_elastigroup_url +
             "/" + str(group_id) + 
@@ -882,6 +2972,18 @@ class SpotinstClient:
         return retVal
 
     def import_asg(self, region, asg_name, asg, dry_run=None):
+        """
+        import asg attributes as JSON
+        
+        # Arguments
+        region (String): ASG region
+        asg_name (String): ASG Name
+        asg (ASG): ASG Object
+        dry_run (Bool) (Optional): if true only return JSON and not create group
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         query_params = dict(region=region, autoScalingGroupName=asg_name, dryRun=dry_run)
 
         asg = spotinst_asg.ImportASGRequest(asg)
@@ -908,6 +3010,16 @@ class SpotinstClient:
         return retVal
 
     def get_activity_events(self, group_id, from_date):
+        """
+        get activity events
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        from_date (String): From date
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         query_params = dict(fromDate=from_date)
 
         response = self.send_get(
@@ -925,6 +3037,15 @@ class SpotinstClient:
         return retVal
 
     def ami_backup(self, group_id):
+        """
+        Start an AMI backup for Elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         response = self.send_post(
             url=self.__base_elastigroup_url +
             "/" + group_id + "/amiBackup",
@@ -939,6 +3060,15 @@ class SpotinstClient:
         return retVal["response"]["status"]
 
     def create_blue_green_deployment(self, group_id, blue_green_deployment):
+        """
+        Start a Blue Green Deployment
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        blue_green_deployment (BGDeployment): Blue Green Deployment Object
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         blue_green_deployment = spotinst_blue_green_deployment.BlueGreenDeploymentRequest(blue_green_deployment)
 
         excluded_group_dict = self.exclude_missing(json.loads(blue_green_deployment.toJSON()))
@@ -961,6 +3091,14 @@ class SpotinstClient:
         return retVal
 
     def get_blue_green_deployment(self, group_id):
+        """
+        Get Blue Green Deployment for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
         response = self.send_get(
             url= self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment",
             entity_name="get b/g deployment")
@@ -973,6 +3111,15 @@ class SpotinstClient:
         return retVal
 
     def stop_blue_green_deployment(self, group_id, deployment_id):
+        """
+        Stop Blue Green Deployment for an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        deployment_id (String):  BG Deployment ID
+        # Returns
+        (Object): Elastigroup API response 
+        """
         response = self.send_put(
             url=self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment/" + deployment_id + "/stop",
             entity_name="stop b/g deployment")
@@ -988,7 +3135,14 @@ class SpotinstClient:
 
     # region Functions
     def create_application(self, app):
-
+        """
+        Create Spotinst Functions Application
+        
+        # Arguments
+        app (ApplicationCreate): ApplicationCreate Object
+        # Returns
+        (Object): Functions API response 
+        """
         app = spotinst_functions.ApplicationCreationRequest(app)
 
         excluded_group_dict = self.exclude_missing(json.loads(app.toJSON()))
@@ -1014,7 +3168,14 @@ class SpotinstClient:
         return retVal
 
     def create_environment(self, env):
-
+        """
+        Create Spotinst Functions Environment
+        
+        # Arguments
+        env (EnvironmentCreate): EnvironmentCreate Object
+        # Returns
+        (Object): Functions API response 
+        """
         env = spotinst_functions.EnvironmentCreationRequest(env)
 
         excluded_env_dict = self.exclude_missing(json.loads(env.toJSON()))
@@ -1040,6 +3201,14 @@ class SpotinstClient:
         return retVal
 
     def create_function(self, fx):
+        """
+        Create Spotinst Functions
+        
+        # Arguments
+        fx (FunctionCreate): FunctionCreate Object
+        # Returns
+        (Object): Functions API response 
+        """
         fx = spotinst_functions.FunctionCreationRequest(fx, self.should_print_output)
 
         excluded_fx_dict = self.exclude_missing(json.loads(fx.toJSON()))
@@ -1093,7 +3262,7 @@ class SpotinstClient:
         else:
             self.handle_exception("getting {}".format(entity_name), result)
 
-    def send_delete(self, url, entity_name, body=None):
+    def send_delete(self, url, entity_name):
         agent = self.resolve_user_agent()
         query_params = self.build_query_params()
         headers = dict(
@@ -1106,7 +3275,7 @@ class SpotinstClient:
 
         self.print_output("Sending deletion request to spotinst API.")
 
-        result = requests.delete(url, params=query_params, body=body, headers=headers)
+        result = requests.delete(url, params=query_params, headers=headers)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -1141,7 +3310,9 @@ class SpotinstClient:
 
     def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
+
         query_params = query_params or self.build_query_params()
+        
         headers = dict(
             {
                 'User-Agent': agent,
@@ -1165,9 +3336,9 @@ class SpotinstClient:
         else:
             self.handle_exception("creating {}".format(entity_name), result)
 
-    def send_put(self, url, entity_name, body=None):
+    def send_put(self, url, entity_name, query_params=None, body=None):
         agent = self.resolve_user_agent()
-        query_params = self.build_query_params()
+        query_params =  query_params or self.build_query_params()
         headers = dict(
             {
                 'User-Agent': agent,
@@ -1227,7 +3398,10 @@ class SpotinstClient:
     def handle_exception(self, action_string, result):
         self.print_output(result.status_code)
 
-        data = json.loads(result.content.decode('utf-8'))
+        if result.content  == "Bad Request":
+            data = dict(response=result.content)
+        else:
+            data = json.loads(result.content.decode('utf-8'))
 
         response_json = json.dumps(data["response"])
         self.print_output(response_json)

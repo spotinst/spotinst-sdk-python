@@ -1,0 +1,10 @@
+{
+  "group": {
+    "product": "Linux/UNIX",
+    "spotInstanceTypes": [
+      "c3.large",
+      "m4.large"
+    ],
+    "name": "My Group"
+  }
+}

@@ -1,0 +1,53 @@
+{
+	"response":{
+	  "status": {
+	    "code": 200,
+	    "message": "OK"
+	  },
+	  "count": 2,
+	  "kind": "spotinst:lb:middleware",
+	  "items": [
+	    {
+	      "id": "mw-01c4ec988f3d",
+	      "balancerId": "lb-57e0dad0627c",
+	      "type": "ACL",
+	      "priority": 1,
+	      "spec": {
+	        "action": "ALLOW",
+	        "conditions": [
+	          {
+	            "type": "HTTP_REQUEST_IP",
+	            "values": [
+	              "1.2.3.4",
+	              "1.2.3.5"
+	            ]
+	          }
+	        ]
+	      },
+	      "tags": [],
+	      "updatedAt": "2017-06-26T06:06:38.000Z",
+	      "createdAt": "2017-06-26T06:06:38.000Z"
+	    },
+	    {
+	      "id": "mw-01c4ec988f3s",
+	      "balancerId": "lb-57e0dad0627c",
+	      "type": "ACL",
+	      "priority": 2,
+	      "spec": {
+	        "action": "DENY",
+	        "conditions": [
+	          {
+	            "type": "HTTP_REQUEST_COOKIE",
+	            "values": [
+	              "username=John Doe"
+	            ]
+	          }
+	        ]
+	      },
+	      "tags": [],
+	      "updatedAt": "2017-06-26T06:06:38.000Z",
+	      "createdAt": "2017-06-26T06:06:38.000Z"
+	    }
+	  ]
+	}
+}

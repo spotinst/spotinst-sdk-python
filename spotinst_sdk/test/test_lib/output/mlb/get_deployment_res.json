@@ -1,0 +1,15 @@
+{
+  "response":{
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:lb:deployment",
+    "items": [
+      {
+        "name": "us-east-1"
+      }
+    ],
+    "count": 1
+  }
+}
