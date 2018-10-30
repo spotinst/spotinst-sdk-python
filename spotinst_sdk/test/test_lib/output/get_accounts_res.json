@@ -1,0 +1,30 @@
+{
+  "request": {
+    "id": "e2923755-80ec-4751-be1a-3b4b4400d1d1",
+    "url": "/setup/account",
+    "method": "GET",
+    "timestamp": "2017-11-15T08:03:54.322Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:setup:account",
+    "items": [
+      {
+        "accountId": "act-0b18f123",
+        "organizationId": "606079861123",
+        "name": "test",
+        "createdAt": "2017-06-04T16:32:58.000Z"
+      },
+      {
+        "accountId": "act-57765123",
+        "organizationId": "606079861123",
+        "name": "prod",
+        "createdAt": "2017-04-16T09:58:24.000Z"
+      }
+    ],
+    "count": 2
+  }
+}

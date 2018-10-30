@@ -1,0 +1,45 @@
+{
+"request": {
+    "id": "91f7f580-2c9d-42dc-b3c2-463514e406d7",
+    "url": "/aws/emr/mrScaler/simrs-12223456789/instance",
+    "method": "GET",
+    "timestamp": "2015-08-02T09:11:16.356Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:emr:mrScaler:instance",
+    "items": [
+      {
+        "instanceId": "i-asdfjk3989",
+        "instanceGroupId": "ig-asdfjl2",
+        "instanceGroupRole": "MASTER",
+        "instanceType": "m1.medium",
+        "availabilityZone": "us-east-1a",
+        "status": "Running",
+        "updatedAt": "2015-08-02T09:11:16.356Z"
+      },
+      {
+        "instanceId": "i-13ft257wdas",
+        "instanceGroupId": "ig-dsfjk3",
+        "instanceGroupRole": "CORE",
+        "instanceType": "m1.medium",
+        "availabilityZone": "us-east-1a",
+        "status": "Running",
+        "updatedAt": "2015-08-02T09:11:16.356Z"
+      },
+      {
+        "instanceId": "i-ajlkj209218",
+        "instanceGroupId": "ig-dasdf2",
+        "instanceGroupRole": "TASK",
+        "instanceType": "m1.medium",
+        "availabilityZone": "us-east-1a",
+        "status": "Running",
+        "updatedAt": "2015-08-02T09:11:16.356Z"
+      }
+    ],
+    "count": 3
+  }
+}

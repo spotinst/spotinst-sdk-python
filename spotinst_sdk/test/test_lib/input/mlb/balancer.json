@@ -1,0 +1,15 @@
+{
+  "balancer": {
+    "name": "bestLoadBalancerInTheWorld",
+    "timeouts": {
+      "draining": 300,
+      "idle": 60
+    },
+    "tags": [
+      {
+        "key": "Environment",
+        "value": "Production"
+      }
+    ]
+  }
+}

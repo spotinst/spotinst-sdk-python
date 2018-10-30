@@ -1,0 +1,36 @@
+{
+  "response":{
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:lb:targetSet",
+    "items": [
+      {
+        "id": "ts-12345",
+        "deploymentId": "de-12345",
+        "name": "targetSet1",
+        "balancerId": "lb-5470a9fb",
+        "protocol": "HTTP",
+        "port": null,
+        "weight": 1,
+        "healthCheck": {
+          "interval": 10,
+          "path": "/healthCheck",
+          "port": 80,
+          "protocol": "HTTP",
+          "timeout": 5,
+          "healthyThresholdCount": 2,
+          "unhealthyThresholdCount": 3
+        },
+        "tags": [
+          {
+            "key": "Environment",
+            "value": "Production"
+          }
+        ]
+      }
+    ],
+    "count": 1
+  }
+}

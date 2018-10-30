@@ -4,7 +4,16 @@ none = "d3043820717d74d9a17694c176d39733"
 
 # region StatefulInstance
 class StatefulInstance:
-
+	"""
+	# Arguments
+	shouldKeepPrivateIp: bool
+	originalInstanceId: str
+	name: str
+	product: str
+	spotInstanceTypes: List[str]
+	region: str
+	availabilityZones: List[AvailabiltyZones]
+	"""
 	def __init__(
 		self,
 		should_keep_private_ip=none,
@@ -14,16 +23,7 @@ class StatefulInstance:
 		spot_instance_types=none,
 		region=none,
 		availability_zones=none):
-		"""
 
-		:type shouldKeepPrivateIp: bool
-		"type originalInstanceId: str
-		"type name: str
-		:type product: str
-		:type spotInstanceTypes: List[str]
-		:type region: str
-		:type availabilityZones: List[AvailabiltyZones]
-		"""
 		self.should_keep_private_ip = should_keep_private_ip
 		self.original_instance_id = original_instance_id
 		self.name = name
@@ -33,16 +33,16 @@ class StatefulInstance:
 		self.availability_zones = availability_zones
 
 class AvailabilityZone:
-
+	"""
+	# Arguments
+	name: str
+	subnet: str
+	"""
 	def __init__(
 		self,
 		name=none,
 		subnet_ids=none):
-		"""
 
-		:type name: str
-		:type subnet: str
-		"""
 		self.name = name
 		self.subnet_ids = subnet_ids
 

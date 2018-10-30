@@ -1,0 +1,18 @@
+{
+  "response":{
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:lb:target",
+    "items": [
+      {
+        "registeredTargetId": "t-fdf323227b78"
+      },
+      {
+        "registeredTargetId": "t-595ff11ac283"
+      }
+    ],
+    "count": 2
+  }
+}

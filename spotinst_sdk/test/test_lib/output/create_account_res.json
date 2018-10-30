@@ -1,0 +1,23 @@
+{
+  "request": {
+    "id": "64181193-f129-4981-835a-6fcdb1e5e01f",
+    "url": "/setup/account",
+    "method": "POST",
+    "timestamp": "2017-10-17T10:43:42.538Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:setup:account",
+    "items": [
+      {
+        "id": "act-123456",
+        "name": "AccountName",
+        "organizationId": "606012341234"
+      }
+    ],
+    "count": 1
+  }
+}

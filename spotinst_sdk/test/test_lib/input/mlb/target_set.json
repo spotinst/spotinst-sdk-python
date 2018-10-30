@@ -1,0 +1,40 @@
+{
+  "targetSet": {
+    "name": "targetSet1",
+    "balancerId": "lb-5470a9fb",
+    "deploymentId": "de-12345",
+    "protocol": "HTTP",
+    "weight": 1,
+    "config": {
+      "rateLimiter": {
+        "requestsPerSecond": 10
+      }
+    },
+    "integrations": {
+      "ecs": [
+        {
+          "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:12345:targetgroup/MyTargetGroup/12345",
+          "targetGroupName": "MyTargetGroup",
+          "region": "us-east-1",
+          "serviceName": "11",
+          "clusterName": "22"
+        }
+      ]
+    },
+    "healthCheck": {
+      "interval": 10,
+      "path": "/healthCheck",
+      "port": 80,
+      "protocol": "HTTP",
+      "timeout": 5,
+      "healthyThresholdCount": 2,
+      "unhealthyThresholdCount": 3
+    },
+    "tags": [
+      {
+        "key": "Environment",
+        "value": "Production"
+      }
+    ]
+  }
+}

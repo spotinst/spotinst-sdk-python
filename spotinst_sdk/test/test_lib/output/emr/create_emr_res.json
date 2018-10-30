@@ -1,0 +1,122 @@
+{
+  "request": {
+    "id": "24b3159e-e2d9-49bc-bfe2-cc383febd04d",
+    "url": "/aws/emr/mrScaler",
+    "method": "POST",
+    "timestamp": "2016-03-03T19:13:24.062Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:aws:emr:mrScaler",
+    "items": [
+      {
+        "id": "simrs-12345",
+        "name": "my MRScaler",
+        "description": "Spotinst MRScaler",
+        "region": "us-west-2",
+        "strategy": {
+          "cloning": {
+            "originClusterId": "j-38EE27G2QY02I"
+          }
+        },
+        "compute": {
+          "availabilityZones": [
+            {
+              "name": "us-west-2a",
+              "subnetId": "subnet-3b5b3601"
+            },
+            {
+              "name": "us-west-2b",
+              "subnetId": "subnet-6b5c4209"
+            }
+          ],
+          "instanceGroups": {
+            "masterGroup": {
+              "instanceTypes": [
+                "m3.xlarge",
+                "m4.large",
+                "m4.xlarge",
+                "m4.2xlarge"
+              ],
+              "target": 1,
+              "lifeCycle": "ON_DEMAND"
+            },
+            "coreGroup": {
+              "instanceTypes": [
+                "m3.xlarge",
+                "m4.large",
+                "m4.xlarge",
+                "m4.2xlarge"
+              ],
+              "target": 5,
+              "lifeCycle": "SPOT"
+            },
+            "taskGroup": {
+              "instanceTypes": [
+                "m1.medium",
+                "c3.xlarge",
+                "m3.xlarge"
+              ],
+              "capacity": {
+                "minimum": 0,
+                "maximum": 30,
+                "target": 15
+              },
+              "lifeCycle": "SPOT"
+            }
+          },
+          "configurations": {
+            "file": {
+              "bucket": "spotinst-labs",
+              "key": "emr_configurations.json"
+            }
+          }
+        },
+        "scaling": {
+          "up": [
+            {
+              "metricName": "AppsPending",
+              "statistic": "average",
+              "unit": "count",
+              "threshold": 100,
+              "minTargetCapacity": 20,
+              "namespace": "AWS/ElasticMapReduce",
+              "period": 300,
+              "evaluationPeriods": 1,
+              "cooldown": 600,
+              "dimensions": [
+                {
+                  "name": "JobFlowId"
+                }
+              ],
+              "operator": "gte"
+            }
+          ],
+          "down": [
+            {
+              "metricName": "AppsPending",
+              "statistic": "average",
+              "unit": "count",
+              "threshold": 10,
+              "maxTargetCapacity": 5,
+              "namespace": "AWS/ElasticMapReduce",
+              "period": 300,
+              "evaluationPeriods": 1,
+              "cooldown": 600,
+              "dimensions": [
+                {
+                  "name": "JobFlowId"
+                }
+              ],
+              "operator": "lte"
+            }
+          ]
+        }
+      }
+    ],
+    "count": 1
+  }
+}

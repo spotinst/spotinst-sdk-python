@@ -11,6 +11,10 @@ logger = logging.getLogger(__name__)
 
 # region Application
 class Application:
+    """
+    # Arguments
+    name: str
+    """
     def __init__(self, name):
         self.name = name
 
@@ -19,6 +23,13 @@ class Application:
 
 # region Environment
 class Environment:
+    """
+    # Arguments
+    name: str
+    application_id: str
+    providers: List[str]
+    locations: List[str]
+    """
     def __init__(self, name, application_id, providers=none, locations=none):
         self.name = name
         self.application_id = application_id
@@ -29,6 +40,15 @@ class Environment:
 
 # region Environment
 class Function:
+    """
+    # Arguments
+    name: str
+    environment_id: str
+    directory: str
+    runtime: int
+    memory: int
+    timeout: int
+    """
     def __init__(
             self,
             name,

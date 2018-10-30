@@ -1,0 +1,14 @@
+{ 
+	"mappings":[ 
+		{ 
+		"userEmail": "test@spotinst.ocom" ,
+		"accountId": "act-123abc", 
+		"role": "editor" 
+		}, 
+		{ 
+		"userEmail": "test2@spotinst.com", 
+		"accountId": "act-123abc", 
+		"role": "viewer" 
+		} 
+	] 
+}

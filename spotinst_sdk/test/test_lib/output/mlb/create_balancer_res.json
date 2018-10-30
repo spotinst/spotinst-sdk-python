@@ -1,0 +1,28 @@
+{
+  "response":{
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:lb:balancer",
+    "items": [
+      {
+        "id": "lb-12345",
+        "name": "bestLoadBalancerInTheWorld",
+        "timeouts": {
+          "draining": 300,
+          "idle": 60
+        },
+        "dnsCnameAliases": [],
+        "dnsRrType": "A",
+        "dnsRrName": "bestloadbalancerintheworld.lb-380283967edf.dev.lb1.spotinst.io",
+        "tags": [
+          {
+            "key": "Environment",
+            "value": "Production"
+          }
+        ]
+      }
+    ]
+  }
+}
