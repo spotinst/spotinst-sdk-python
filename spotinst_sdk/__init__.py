@@ -20,6 +20,7 @@ VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
 VAR_SPOTINST_TOKEN = 'SPOTINST_TOKEN'
 VAR_SPOTINST_ACCOUNT = 'SPOTINST_ACCOUNT'
+VAR_SPOTINST_LOG_LEVEL = 'SPOTINST_LOG_LEVEL'
 
 DEFAULT_PROFILE = 'default'
 DEFAULT_CREDENTIALS_FILE = os.path.join(
@@ -55,7 +56,7 @@ class SpotinstClient:
                  profile=None,
                  credentials_file=None,
                  print_output=True,
-                 log_level="critical",
+                 log_level=None,
                  user_agent=None):
         """
         :type auth_token: str
@@ -3494,7 +3495,10 @@ class SpotinstClient:
         return logger
 
     def set_log_level(self, log_level):
-        level = log_level
+        if log_level==None:
+            level = os.environ.get(VAR_SPOTINST_LOG_LEVEL, 'critical')
+        else:
+            level = log_level
 
         if level == "debug":
             self.logger.setLevel(logging.DEBUG)
