@@ -5,7 +5,6 @@ import re
 import requests
 import yaml
 import logging
-import argparse
 
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
@@ -21,6 +20,7 @@ VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
 VAR_SPOTINST_TOKEN = 'SPOTINST_TOKEN'
 VAR_SPOTINST_ACCOUNT = 'SPOTINST_ACCOUNT'
+VAR_SPOTINST_LOG_LEVEL = 'SPOTINST_LOG_LEVEL'
 
 DEFAULT_PROFILE = 'default'
 DEFAULT_CREDENTIALS_FILE = os.path.join(
@@ -56,7 +56,7 @@ class SpotinstClient:
                  profile=None,
                  credentials_file=None,
                  print_output=True,
-                 log_level="critical",
+                 log_level=None,
                  user_agent=None):
         """
         :type auth_token: str
@@ -79,12 +79,7 @@ class SpotinstClient:
 
         # initialize logger
         self.logger = self.init_logger()
-        options = self.get_args()
-
-        if options:
-            self.set_log_level(options)
-        else:
-            self.set_log_level(log_level)
+        self.set_log_level(log_level=log_level)
 
     # endregion
 
@@ -3499,17 +3494,11 @@ class SpotinstClient:
         logger.addHandler(handler)
         return logger
 
-    @staticmethod
-    def get_args():
-        parser = argparse.ArgumentParser(description='Options for Spotinst python-sdk')
-        parser.add_argument('--log-level',
-                            choices=["debug", "info", "warn", "error", "critical"],
-                            help='set log level: debug, info, warn, error, critical')
-        args = parser.parse_args()
-        return args
-
-    def set_log_level(self, args):
-        level = vars(args)['log_level']
+    def set_log_level(self, log_level):
+        if log_level==None:
+            level = os.environ.get(VAR_SPOTINST_LOG_LEVEL, 'critical')
+        else:
+            level = log_level
 
         if level == "debug":
             self.logger.setLevel(logging.DEBUG)
