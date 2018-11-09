@@ -5,7 +5,6 @@ import re
 import requests
 import yaml
 import logging
-import argparse
 
 from spotinst_sdk import aws_elastigroup
 from spotinst_sdk import spotinst_functions
@@ -79,12 +78,7 @@ class SpotinstClient:
 
         # initialize logger
         self.logger = self.init_logger()
-        options = self.get_args()
-
-        if options:
-            self.set_log_level(options)
-        else:
-            self.set_log_level(log_level)
+        self.set_log_level(log_level=log_level)
 
     # endregion
 
@@ -3499,17 +3493,8 @@ class SpotinstClient:
         logger.addHandler(handler)
         return logger
 
-    @staticmethod
-    def get_args():
-        parser = argparse.ArgumentParser(description='Options for Spotinst python-sdk')
-        parser.add_argument('--log-level',
-                            choices=["debug", "info", "warn", "error", "critical"],
-                            help='set log level: debug, info, warn, error, critical')
-        args = parser.parse_args()
-        return args
-
-    def set_log_level(self, args):
-        level = vars(args)['log_level']
+    def set_log_level(self, log_level):
+        level = log_level
 
         if level == "debug":
             self.logger.setLevel(logging.DEBUG)
