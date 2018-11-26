@@ -396,7 +396,7 @@ class AWSInitTestInstance(AwsInitTestCase):
 
 		response = self.client.get_instance_healthiness(group_id="sig-12345")
 
-		self.assertEqual(len(response), len(mock_instance_healthiness_res["response"]["items"][0]))	
+		self.assertEqual(len(response), len(mock_instance_healthiness_res["response"]["items"]))	
 
 	@patch('requests.post')
 	def testCreateInstanceSignal(self, mock):
