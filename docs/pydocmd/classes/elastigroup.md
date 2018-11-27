@@ -712,7 +712,7 @@ __Arguments__
 - __health_check_unhealthy_duration_before_replacement__: int
 - __ebs_optimized__: bool
 - __tenancy__: str
-- __iam_role__: list[IamRole]
+- __iam_role__: IamRole
 - __key_pair__: str
 - __user_data__: str
 - __shutdown_script__: str

@@ -18,6 +18,15 @@ Spotinst SDK for the Python programming language
        * [Multai Load Balancer](./docs/pydocmd/endpoints/mlb)
      * [Examples](./docs/pydocmd/examples/)
      * [Classes](./docs/pydocmd/classes/)
+       * [ASG](./docs/pydocmd/classes/asg.md)
+       * [Deployment](./docs/pydocmd/classes/deployment.md)
+       * [Deployment Action](./docs/pydocmd/classes/deployment_action.md)
+       * [Elastigroup](./docs/pydocmd/classes/elastigroup.md)
+       * [EMR](./docs/pydocmd/classes/emr.md) 
+       * [Functions](./docs/pydocmd/classes/functions.md)
+       * [MLB](./docs/pydocmd/classes/mlb.md)
+       * [Stateful](./docs/pydocmd/classes/stateful.md)
+       * [User Mapping](./docs/pydocmd/classes/user_mapping.md)
 <!--te-->
 
 ## Installation

@@ -2308,7 +2308,7 @@ class SpotinstClient:
         formatted_response = self.convert_json(
             response, self. camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]  
+        return formatted_response["response"]["items"]
 
 
     def create_instance_signal(self, instance_id, signal):

@@ -1070,7 +1070,7 @@ class LaunchSpecification:
     health_check_unhealthy_duration_before_replacement: int
     ebs_optimized: bool
     tenancy: str
-    iam_role: list[IamRole]
+    iam_role: IamRole
     key_pair: str
     user_data: str
     shutdown_script: str
