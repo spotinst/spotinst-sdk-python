@@ -8,6 +8,9 @@ Object used to create and update an Elastigroup
 ## [ASG](./asg.md)
 Object used to import an ASG 
 
+## [Ocean](./ocean.md)
+Object used to create an Ocean cluster
+
 ## [Deployment](./deployment.md)
 Object used to create and update Elastigroup Deployments
 

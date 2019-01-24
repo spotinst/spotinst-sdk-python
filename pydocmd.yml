@@ -141,6 +141,12 @@ generate:
   - spotinst_sdk.SpotinstClient.get_mlb_routing_rule
   - spotinst_sdk.SpotinstClient.get_all_mlb_routing_rule
   - spotinst_sdk.SpotinstClient.delete_mlb_routing_rule
+- endpoints/ocean/cloud.md:
+  - spotinst_sdk.SpotinstClient.create_ocean_cluster
+  - spotinst_sdk.SpotinstClient.update_ocean_cluster
+  - spotinst_sdk.SpotinstClient.get_all_ocean_cluster
+  - spotinst_sdk.SpotinstClient.get_ocean_cluster
+  - spotinst_sdk.SpotinstClient.delete_ocean_cluster
 
 
 
@@ -272,13 +278,26 @@ generate:
   - spotinst_sdk.aws_elastigroup.Roll
   - spotinst_sdk.aws_elastigroup.DetachConfiguration
   - spotinst_sdk.aws_elastigroup.StatefulDeallocation
-
+- classes/ocean.md:
+  - spotinst_sdk.spotinst_ocean.Ocean
+  - spotinst_sdk.spotinst_ocean.AutoScaler
+  - spotinst_sdk.spotinst_ocean.ResourceLimits
+  - spotinst_sdk.spotinst_ocean.Down
+  - spotinst_sdk.spotinst_ocean.Headroom
+  - spotinst_sdk.spotinst_ocean.Capacity
+  - spotinst_sdk.spotinst_ocean.Strategy
+  - spotinst_sdk.spotinst_ocean.Compute
+  - spotinst_sdk.spotinst_ocean.InstanceTypes
+  - spotinst_sdk.spotinst_ocean.LaunchSpecifications
+  - spotinst_sdk.spotinst_ocean.IamInstanceProfile
+  - spotinst_sdk.spotinst_ocean.Tag
 
 
 
 pages:
 - Home: README.md << ./docs/home.md
 - Elastigroup: ./endpoints/elastigroup/README.md << ./docs/elastigroup.md
+- Ocean: ./endpoints/ocean/README.md << ./docs/ocean.md
 - Functions: ./endpoints/functions/README.md << ./docs/functions.md
 - Admin: ./endpoints/administration/README.md << ./docs/admin.md
 - MLB: ./endpoints/mlb/README.md << ./docs/mlb.md

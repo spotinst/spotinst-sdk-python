@@ -1,7 +1,7 @@
 <h1 id="spotinst_sdk.spotinst_emr.EMR">EMR</h1>
 
 ```python
-EMR(self, name='d3043820717d74d9a17694c176d39733', description='d3043820717d74d9a17694c176d39733', region='d3043820717d74d9a17694c176d39733', strategy='d3043820717d74d9a17694c176d39733', compute='d3043820717d74d9a17694c176d39733', scaling='d3043820717d74d9a17694c176d39733')
+EMR(self, name='d3043820717d74d9a17694c176d39733', description='d3043820717d74d9a17694c176d39733', region='d3043820717d74d9a17694c176d39733', strategy='d3043820717d74d9a17694c176d39733', compute='d3043820717d74d9a17694c176d39733', cluster='d3043820717d74d9a17694c176d39733', scheduling='d3043820717d74d9a17694c176d39733', scaling='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -10,19 +10,22 @@ __Arguments__
 - __decription__: str
 - __region__: str
 - __strategy__: Strategy
-:- __tpye compute__: Compute
+- __compute__: Compute
+- __cluster__: Cluster
+- __scheduling__: Scheduling
 - __scaling__: Scaling
 
 <h1 id="spotinst_sdk.spotinst_emr.Strategy">Strategy</h1>
 
 ```python
-Strategy(self, wrapping='d3043820717d74d9a17694c176d39733', cloning='d3043820717d74d9a17694c176d39733', provisioning_timeout='d3043820717d74d9a17694c176d39733')
+Strategy(self, wrapping='d3043820717d74d9a17694c176d39733', cloning='d3043820717d74d9a17694c176d39733', new='d3043820717d74d9a17694c176d39733', provisioning_timeout='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __wrapping__: Wrapping
 - __cloning__: Cloning
+- __new__: Newing
 - __provisioning_timeout__: ProvisioningTimeout
 
 <h1 id="spotinst_sdk.spotinst_emr.Wrapping">Wrapping</h1>
@@ -38,13 +41,14 @@ __Arguments__
 <h1 id="spotinst_sdk.spotinst_emr.Cloning">Cloning</h1>
 
 ```python
-Cloning(self, origin_cluster_id='d3043820717d74d9a17694c176d39733', include_steps='d3043820717d74d9a17694c176d39733')
+Cloning(self, origin_cluster_id='d3043820717d74d9a17694c176d39733', include_steps='d3043820717d74d9a17694c176d39733', number_of_retries='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __origin_cluster_id__: str
 - __include_steps__: bool
+- __number_of_retries__: int
 
 <h1 id="spotinst_sdk.spotinst_emr.ProvisioningTimeout">ProvisioningTimeout</h1>
 
@@ -60,7 +64,7 @@ __Arguments__
 <h1 id="spotinst_sdk.spotinst_emr.Compute">Compute</h1>
 
 ```python
-Compute(self, ebs_root_volume_size='d3043820717d74d9a17694c176d39733', availability_zones='d3043820717d74d9a17694c176d39733', bootstrap_actions='d3043820717d74d9a17694c176d39733', steps='d3043820717d74d9a17694c176d39733', instance_groups='d3043820717d74d9a17694c176d39733', configurations='d3043820717d74d9a17694c176d39733')
+Compute(self, ebs_root_volume_size='d3043820717d74d9a17694c176d39733', availability_zones='d3043820717d74d9a17694c176d39733', bootstrap_actions='d3043820717d74d9a17694c176d39733', steps='d3043820717d74d9a17694c176d39733', instance_groups='d3043820717d74d9a17694c176d39733', configurations='d3043820717d74d9a17694c176d39733', emr_managed_master_security_group='d3043820717d74d9a17694c176d39733', emr_managed_slave_security_group='d3043820717d74d9a17694c176d39733', additional_master_security_groups='d3043820717d74d9a17694c176d39733', service_access_security_group='d3043820717d74d9a17694c176d39733', custom_ami_id='d3043820717d74d9a17694c176d39733', repo_upgrade_on_boot='d3043820717d74d9a17694c176d39733', additional_slave_security_groups='d3043820717d74d9a17694c176d39733', ec2_key_name='d3043820717d74d9a17694c176d39733', applications='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -71,17 +75,26 @@ __Arguments__
 - __steps__: Steps
 - __instance_groups__: InstanceGroups
 - __configurations__: Configurations
+- __emr_managed_master_security_group__: str
+- __emr_managed_slave_security_group__: str
+- __additional_master_security_groups__: List[str]
+- __service_access_security_group__: str
+- __custom_ami_id__: str
+- __repo_upgrade_on_boot__: str
+- __additional_slave_security_groups__: List[str]
+- __ec2_key_name__: str
+- __applications__: List[Application]
 
 <h1 id="spotinst_sdk.spotinst_emr.AvailabilityZone">AvailabilityZone</h1>
 
 ```python
-AvailabilityZone(self, name='d3043820717d74d9a17694c176d39733', subnet='d3043820717d74d9a17694c176d39733')
+AvailabilityZone(self, name='d3043820717d74d9a17694c176d39733', subnetId='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __name__: str
-- __subnet__: str
+- __subnetId__: str
 
 <h1 id="spotinst_sdk.spotinst_emr.BootstrapActions">BootstrapActions</h1>
 
@@ -129,7 +142,7 @@ __Arguments__
 <h1 id="spotinst_sdk.spotinst_emr.MasterGroup">MasterGroup</h1>
 
 ```python
-MasterGroup(self, instance_types='d3043820717d74d9a17694c176d39733', target='d3043820717d74d9a17694c176d39733', life_cycle='d3043820717d74d9a17694c176d39733')
+MasterGroup(self, instance_types='d3043820717d74d9a17694c176d39733', target='d3043820717d74d9a17694c176d39733', life_cycle='d3043820717d74d9a17694c176d39733', configurations='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -137,11 +150,12 @@ __Arguments__
 - __instance_types__: List[str]
 - __target__: int
 - __life_cycle__: str
+- __configurations__: Configurations
 
 <h1 id="spotinst_sdk.spotinst_emr.CoreGroup">CoreGroup</h1>
 
 ```python
-CoreGroup(self, instance_types='d3043820717d74d9a17694c176d39733', target='d3043820717d74d9a17694c176d39733', life_cycle='d3043820717d74d9a17694c176d39733', ebs_configuration='d3043820717d74d9a17694c176d39733')
+CoreGroup(self, instance_types='d3043820717d74d9a17694c176d39733', target='d3043820717d74d9a17694c176d39733', life_cycle='d3043820717d74d9a17694c176d39733', ebs_configuration='d3043820717d74d9a17694c176d39733', configurations='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -150,11 +164,12 @@ __Arguments__
 - __target__: int
 - __life_cycle__: str
 - __ebs_configuration__: EbsConfiguration
+- __configurations__: Configurations
 
 <h1 id="spotinst_sdk.spotinst_emr.TaskGroup">TaskGroup</h1>
 
 ```python
-TaskGroup(self, instance_types='d3043820717d74d9a17694c176d39733', capacity='d3043820717d74d9a17694c176d39733', life_cycle='d3043820717d74d9a17694c176d39733', ebs_configuration='d3043820717d74d9a17694c176d39733')
+TaskGroup(self, instance_types='d3043820717d74d9a17694c176d39733', capacity='d3043820717d74d9a17694c176d39733', life_cycle='d3043820717d74d9a17694c176d39733', ebs_configuration='d3043820717d74d9a17694c176d39733', configurations='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -163,6 +178,7 @@ __Arguments__
 - __capacity__: Capacity
 - __life_cycle__: str
 - __ebs_configuration__: EbsConfiguration
+- __configurations__: Configurations
 
 <h1 id="spotinst_sdk.spotinst_emr.Capacity">Capacity</h1>
 

@@ -16,6 +16,7 @@ Spotinst SDK for the Python programming language
        * [Functions](./docs/pydocmd/endpoints/functions/)
        * [Administration](./docs/pydocmd/endpoints/administration/)
        * [Multai Load Balancer](./docs/pydocmd/endpoints/mlb)
+       * [Ocean](./docs/pydocmd/endpoints/ocean)
      * [Examples](./docs/pydocmd/examples/)
      * [Classes](./docs/pydocmd/classes/)
        * [ASG](./docs/pydocmd/classes/asg.md)
@@ -27,6 +28,7 @@ Spotinst SDK for the Python programming language
        * [MLB](./docs/pydocmd/classes/mlb.md)
        * [Stateful](./docs/pydocmd/classes/stateful.md)
        * [User Mapping](./docs/pydocmd/classes/user_mapping.md)
+       * [Ocean](./docs/pydocmd/classes/ocean.md)
 <!--te-->
 
 ## Installation
