@@ -10,7 +10,8 @@ class EMR:
 	decription: str
 	region: str
 	strategy: Strategy
-	:tpye compute: Compute
+	compute: Compute
+	cluster: Cluster
 	scaling: Scaling
 	"""
 	def __init__(
@@ -20,6 +21,7 @@ class EMR:
 		region=none,
 		strategy=none,
 		compute=none,
+		cluster=none,
 		scaling=none):
 
 		self.name = name
@@ -27,6 +29,7 @@ class EMR:
 		self.region = region
 		self.strategy = strategy
 		self.compute = compute
+		self.cluster = cluster
 		self.scaling = scaling
 
 # endregion
@@ -37,16 +40,19 @@ class Strategy:
 	# Arguments
 	wrapping: Wrapping
 	cloning: Cloning
+	new: Newing
 	provisioning_timeout: ProvisioningTimeout
 	"""
 	def __init__(
 		self,
 		wrapping=none,
 		cloning=none,
+		new=none,
 		provisioning_timeout=none):
 
 		self.wrapping = wrapping
 		self.cloning = cloning
+		self.new = new
 		self.provisioning_timeout = provisioning_timeout
 
 class Wrapping:
@@ -60,21 +66,36 @@ class Wrapping:
 
 		self.source_cluster_id = source_cluster_id
 
-
 class Cloning:
 	"""
 	# Arguments
 	origin_cluster_id: str
 	include_steps: bool
+	number_of_retries: int
 	"""
 	def __init__(
 		self,
 		origin_cluster_id=none,
-		include_steps=none):
+		include_steps=none,
+		number_of_retries=none):
 
 		self.origin_cluster_id = origin_cluster_id
 		self.include_steps = include_steps
+		self.number_of_retries=number_of_retries
 
+class New:
+	"""
+	# Arguments
+	release_label: str
+	number_of_retries: int
+	"""
+	def __init__(
+		self,
+		release_label=none,
+		number_of_retries=none):
+
+		self.release_label=release_label
+		self.number_of_retries=number_of_retries
 
 class ProvisioningTimeout:
 	"""
@@ -103,6 +124,15 @@ class Compute:
 	steps: Steps
 	instance_groups: InstanceGroups
 	configurations: Configurations
+	emr_managed_master_security_group: str
+	emr_managed_slave_security_group: str
+	additional_master_security_groups: List[str]
+	service_access_security_group: str
+	custom_ami_id: str
+	repo_upgrade_on_boot: str
+	additional_slave_security_groups: List[str]
+	ec2_key_name: str
+	applications: List[Application]
 	"""
 	def __init__(
 		self,
@@ -111,7 +141,16 @@ class Compute:
 		bootstrap_actions=none,
 		steps=none,
 		instance_groups=none,
-		configurations=none):
+		configurations=none,
+		emr_managed_master_security_group=none,
+		emr_managed_slave_security_group=none,
+		additional_master_security_groups=none,
+		service_access_security_group=none,
+		custom_ami_id=none,
+		repo_upgrade_on_boot=none,
+		additional_slave_security_groups=none,
+		ec2_key_name=none,
+		applications=none):
 
 		self.ebs_root_volume_size = ebs_root_volume_size
 		self.availability_zones = availability_zones
@@ -119,21 +158,30 @@ class Compute:
 		self.steps = steps
 		self.instance_groups = instance_groups
 		self.configurations = configurations
+		self.emr_managed_master_security_group = emr_managed_master_security_group
+		self.emr_managed_slave_security_group = emr_managed_slave_security_group
+		self.additional_master_security_groups = additional_master_security_groups
+		self.service_access_security_group = service_access_security_group
+		self.custom_ami_id = custom_ami_id
+		self.repo_upgrade_on_boot = repo_upgrade_on_boot
+		self.additional_slave_security_groups = additional_slave_security_groups
+		self.ec2_key_name = ec2_key_name
+		self.applications = applications
 
 
 class AvailabilityZone:
 	"""
 	# Arguments
 	name: str
-	subnet: str
+	subnetId: str
 	"""
 	def __init__(
 		self,
 		name=none,
-		subnet=none):
+		subnetId=none):
 
 		self.name = name
-		self.subnet = subnet
+		self.subnetId = subnetId
 
 
 class BootstrapActions:
@@ -174,6 +222,22 @@ class Steps:
 
 		self.file = file
 
+class Application:
+	"""
+	# Arguments
+	name: str
+	args: List[str]
+	version: str
+	"""
+	def __init__(
+		self,
+		name=none,
+		args=none,
+		version=none):
+	
+		self.name = name
+		self.args = args
+		self.version = version
 
 class InstanceGroups:
 	"""
@@ -199,16 +263,19 @@ class MasterGroup:
 	instance_types: List[str]
 	target: int
 	life_cycle: str
+	configurations: Configurations
 	"""
 	def __init__(
 		self,
 		instance_types=none,
 		target=none,
-		life_cycle=none):
+		life_cycle=none,
+		configurations=none):
 
 		self.instance_types = instance_types
 		self.target = target
 		self.life_cycle = life_cycle
+		self.configurations = configurations
 
 
 class CoreGroup:
@@ -218,18 +285,21 @@ class CoreGroup:
 	target: int
 	life_cycle: str
 	ebs_configuration: EbsConfiguration
+	configurations: Configurations
 	"""
 	def __init__(
 		self,
 		instance_types=none,
 		target=none,
 		life_cycle=none,
-		ebs_configuration=none):
+		ebs_configuration=none,
+		configurations=none):
 
 		self.instance_types = instance_types
 		self.target = target
 		self.life_cycle = life_cycle
 		self.ebs_configuration = ebs_configuration
+		self.configurations = configurations
 
 
 class TaskGroup:
@@ -239,18 +309,21 @@ class TaskGroup:
 	capacity: Capacity
 	life_cycle: str
 	ebs_configuration: EbsConfiguration
+	configurations: Configurations
 	"""
 	def __init__(
 		self,
 		instance_types=none,
 		capacity=none,
 		life_cycle=none,
-		ebs_configuration=none):
+		ebs_configuration=none,
+		configurations=none):
 
 		self.instance_types = instance_types
 		self.capacity = capacity
 		self.life_cycle = life_cycle
 		self.ebs_configuration = ebs_configuration
+		self.configurations = configurations
 
 
 class Capacity:
@@ -328,6 +401,37 @@ class Configurations:
 		self.file = file
 
 
+# endregion
+
+# region Cluster
+class Cluster:
+	"""
+	# Arguments
+	visible_to_all_users: Boolean
+	termination_protected: Boolean
+	keep_job_flow_alive_when_no_steps: Boolean
+	log_uri: str
+	additional_info: str
+	job_flow_role: str
+	security_configuration: str
+	"""
+	def __init__(
+		self,
+		visible_to_all_users=none,
+		termination_protected=none,
+		keep_job_flow_alive_when_no_steps=none,
+		log_uri=none,
+		additional_info=none,
+		job_flow_role=none,
+		security_configuration=none):
+
+		self.visible_to_all_users = visible_to_all_users
+		self.termination_protected = termination_protected
+		self.keep_job_flow_alive_when_no_steps = keep_job_flow_alive_when_no_steps
+		self.log_uri = log_uri
+		self.additional_info = additional_info
+		self.job_flow_role = job_flow_role
+		self.security_configuration = security_configuration
 # endregion
 
 # region Scaling
