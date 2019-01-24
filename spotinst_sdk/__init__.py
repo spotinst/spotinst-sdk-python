@@ -46,6 +46,7 @@ class SpotinstClient:
     __base_saving_url = "https://api.spotinst.io/aws/potentialSavings"
     __base_setup_url = "https://api.spotinst.io/setup"
     __base_lb_url = "https://api.spotinst.io/loadBalancer"
+    __base_ocean_url = "https://api.spotinst.io/ocean/aws/k8s/cluster"
 
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
@@ -86,7 +87,6 @@ class SpotinstClient:
 
 
     # region MLB
-
     def get_all_mlb_runtime(self):
         """
         Get all MLB runtime 
@@ -106,7 +106,6 @@ class SpotinstClient:
         retVal = formatted_response["response"]["items"]
 
         return retVal     
-
 
     def get_mlb_runtime(self, runtime_id):
         """
@@ -508,7 +507,6 @@ class SpotinstClient:
 
         return retVal 
 
-
     def get_all_mlb_target_set(self):
         """
         Get all MLB target sets
@@ -656,7 +654,6 @@ class SpotinstClient:
 
         return retVal 
 
-
     def update_mlb_target(self, target_id, target):
         """
         Update MLB target
@@ -754,12 +751,6 @@ class SpotinstClient:
 
         return response 
 
-
-
-
-
-
-
     def create_mlb_listener(self, listener):
         """
         Create MLB listener
@@ -794,7 +785,6 @@ class SpotinstClient:
         retVal = formatted_response["response"]["items"][0]
 
         return retVal 
-
 
     def update_mlb_listener(self, listener_id, listener):
         """
@@ -893,11 +883,6 @@ class SpotinstClient:
 
         return response 
 
-
-
-
-
-
     def create_mlb_routing_rule(self, routing_rule):
         """
         Create MLB routing rule
@@ -932,7 +917,6 @@ class SpotinstClient:
         retVal = formatted_response["response"]["items"][0]
 
         return retVal 
-
 
     def update_mlb_routing_rule(self, routing_rule_id, routing_rule):
         """
@@ -1030,12 +1014,6 @@ class SpotinstClient:
         )
 
         return response 
-
-
-
-
-
-
 
     def create_mlb_middleware(self, middleware):
         """
@@ -1168,14 +1146,11 @@ class SpotinstClient:
         )
 
         return response 
-
-
     # endregion
 
 
 
     # region Organization and Account
-
     def create_organization(self, org_name):
         """
         Create an organization 
@@ -1466,7 +1441,6 @@ class SpotinstClient:
         retVal = formatted_response["response"]["status"]
 
         return retVal 
-
     # endregion
 
 
@@ -1554,7 +1528,6 @@ class SpotinstClient:
         retVal = formatted_response["response"]["items"]
 
         return retVal
-
 
     def get_emr(self, emr_id):
         """
@@ -1729,8 +1702,142 @@ class SpotinstClient:
         retVal = formatted_response["response"]["items"][0]
 
         return retVal
-
     # endregion
+
+
+
+    # region Ocean
+    def create_ocean_cluster(self, ocean):
+        """
+        Create an Ocean Cluster 
+        
+        # Arguments
+        ocean (Ocean): Ocean Object
+        
+        # Returns
+        (Object): Ocean API response 
+        """ 
+        ocean = spotinst_ocean.OceanRequest(ocean)
+
+        excluded_group_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+        
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        group_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url,
+            entity_name='ocean')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        print(group_response)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def update_ocean_cluster(self, ocean_id, ocean):
+        """
+        Update an exsisting Ocean Cluster 
+        
+        # Arguments
+        ocean_id (String): Ocean id
+        ocean (Ocean): Ocean Object
+        
+        # Returns
+        (Object): Ocean API response 
+        """ 
+        ocean = spotinst_ocean.OceanRequest(ocean)
+
+        excluded_group_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+        
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+        
+        group_response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_url +
+            "/" + ocean_id,
+            entity_name='ocean')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_all_ocean_cluster(self):
+        """
+        Get all Ocean in account
+        
+        # Returns
+        (Object): Ocean API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_ocean_url,
+            entity_name="ocean"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        print(response)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
+    def get_ocean_cluster(self, ocean_id):
+        """
+        Get an exsisting Ocean Cluster json
+        
+        # Arguments
+        ocean_id (String): Ocean id
+        
+        # Returns
+        (Object): Ocean API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_ocean_url +
+            "/" + ocean_id,
+            entity_name="ocean"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal        
+    
+    def delete_ocean_cluster(self, ocean_id):
+        """
+        Delete an Ocean Cluster
+        
+        # Arguments
+        ocean_id (String): Ocean id
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """ 
+        response = self.send_delete(
+            url=self.__base_ocean_url +
+            "/" + ocean_id,
+            entity_name="ocean"
+        )
+
+        return response  
+    # endregion
+
+
+
 
     # region Kubernetes
 
@@ -1757,6 +1864,8 @@ class SpotinstClient:
         return formatted_response["response"]["items"][0]
 
     # endregion
+
+
 
 
 
@@ -1895,8 +2004,7 @@ class SpotinstClient:
         response = self.send_delete(url=delurl, entity_name='elastigroup')
         return response
 
-    def delete_elastigroup_with_deallocation(
-            self, group_id, stateful_deallocation):
+    def delete_elastigroup_with_deallocation(self, group_id, stateful_deallocation):
         """
         Delete a stateful elastigroup
         
@@ -2058,7 +2166,6 @@ class SpotinstClient:
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
-
 
     def get_deployment_status(self, group_id, roll_id):
         """
@@ -2309,7 +2416,6 @@ class SpotinstClient:
             response, self. camel_to_underscore)
 
         return formatted_response["response"]["items"]
-
 
     def create_instance_signal(self, instance_id, signal):
         """
@@ -2765,7 +2871,6 @@ class SpotinstClient:
             content, self.camel_to_underscore)
         return formatted_response["response"]
 
-
     def get_stateful_instances(self, group_id):
         """
         Deallocate stateful instances from an elastigroup
@@ -2837,8 +2942,6 @@ class SpotinstClient:
 
         return formatted_response["response"]
 
-
-
     def beanstalk_maintenance_status(self, group_id):
         """
         Beanstalk maintenance status
@@ -2862,7 +2965,6 @@ class SpotinstClient:
         retVal = formatted_response["response"]["status"]
 
         return retVal
-
 
     def beanstalk_maintenance_start(self, group_id):
         """
@@ -3128,6 +3230,10 @@ class SpotinstClient:
 
     # endregion
 
+
+
+
+
     # region Functions
     def create_application(self, app):
         """
@@ -3230,6 +3336,10 @@ class SpotinstClient:
         return retVal
 
     # endregion
+
+
+
+
 
     # region Utils
     def print_output(self, output):
