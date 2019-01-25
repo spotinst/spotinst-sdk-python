@@ -1,0 +1,42 @@
+{
+	"request": {
+		"id": "133eee36-0a95-4960-b69e-4bbeea5da821", 
+		"url": "/ocean/aws/k8s/cluster?accountId=act-92d45673", 
+		"method": "GET", 
+		"timestamp": "2019-01-24T18:21:31.752Z"
+	}, 
+	"response": {
+		"status": {"code": 200, "message": "OK"}, 
+		"kind": "spotinst:ocean:aws:k8s", 
+		"items": [
+			{
+				"id": "o-aba5d93b", 
+				"name": "Ocean SDK Test", 
+				"controllerClusterId": "ocean.k8s", 
+				"region": "us-west-2", 
+				"autoScaler": {
+					"isEnabled": true, 
+					"cooldown": 180, "down": {"evaluationPeriods": 3}, 
+					"headroom": {"cpuPerUnit": 2000, "memoryPerUnit": 0, "numOfUnits": 4}, 
+					"isAutoConfig": true, 
+					"resourceLimits": {"maxVCpu": 750, "maxMemoryGib": 1500}
+				}, 
+				"capacity": {"minimum": 0, "maximum": 0, "target": 0}, 
+				"strategy": {"utilizeReservedInstances": false, "fallbackToOd": true, "spotPercentage": 100}, 
+				"compute": {
+					"subnetIds": ["subnet-1ba25052"], 
+					"instanceTypes": {"whitelist": ["c4.8xlarge"]}, 
+					"launchSpecification": {
+						"securityGroupIds": ["sg-8cfb40f6"], 
+						"keyPair": "Noam-key", 
+						"imageId": "ami-1178f169", 
+						"tags": [{"tagKey": "testing", "tagValue": "tags"}]
+					}
+				}, 
+				"createdAt": "2019-01-24T18:21:31.000Z", 
+				"updatedAt": "2019-01-24T18:21:31.000Z"
+			}
+		], 
+		"count": 1
+	}
+}

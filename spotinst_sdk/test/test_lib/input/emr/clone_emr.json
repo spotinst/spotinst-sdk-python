@@ -89,7 +89,8 @@
       "strategy":{
          "cloning":{
             "includeSteps":false,
-            "originClusterId":"123456789"
+            "originClusterId":"123456789",
+            "numberOfRetries": 1
          },
          "provisioningTimeout":{
             "timeout":600,

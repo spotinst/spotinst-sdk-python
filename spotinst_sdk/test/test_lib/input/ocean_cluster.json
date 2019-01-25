@@ -1,0 +1,35 @@
+{
+	"cluster": {
+		"autoScaler": {
+			"cooldown": 180, 
+			"down": {"evaluationPeriods": 3}, 
+			"headroom": {
+				"cpuPerUnit": 2000, 
+				"memoryPerUnit": 0, 
+				"numOfUnits": 4
+			}, 
+			"isAutoConfig": true, 
+			"isEnabled": true, 
+			"resourceLimits": {"maxMemoryGib": 1500, "maxVCpu": 750}
+		}, 
+		"capacity": {"maximum": 0, "minimum": 0, "target": 0}, 
+		"compute": {
+			"instanceTypes": {"whitelist": ["c4.8xlarge"]}, 
+			"launchSpecification": {
+				"imageId": "ami-1178f169", 
+				"keyPair": "Noam-key", 
+				"securityGroupIds": ["sg-8cfb40f6"], 
+				"tags": [{"tagKey": "testing", "tagValue": "tags"}]
+			}, 
+			"subnetIds": ["subnet-1ba25052"]
+		}, 
+		"controllerClusterId": "ocean.k8s", 
+		"name": "Ocean SDK Test", 
+		"region": "us-west-2", 
+		"strategy": {
+			"fallbackToOd": true, 
+			"spotPercentage": 100, 
+			"utilizeReservedInstances": false
+		}
+	}
+}

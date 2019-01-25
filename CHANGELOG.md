@@ -2,14 +2,37 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.0.41] - UNRELEASED
-### Added
-- Logger using standard logging module
-- "--log-level" command line argument (more info in "--help")
-- "log_level" constructor parameter, defaults to "critical"
-- Created changelog
+## [1.0.44] - 2019-01-24s
+### Updated
+ - Emr support new strategy type, cluster object and additional computer parameters
 
-## [1.0.40] - 2018-20-22
+### Added
+ - `create_ocean_cluster`
+ - `update_ocean_cluster`
+ - `get_all_ocean_cluster`
+ - `get_ocean_cluster`
+ - `delete_ocean_cluster`
+ - parameter credit_specification to EG schema
+
+## [1.0.43] - NA
+
+## [1.0.42] - 2018-11-09
+### Commits
+ - [src] - fixing documentation
+ - [src] - removing argparse from SDK
+ - [src] - adding log level to ENV
+
+## [1.0.41] - 2018-11
+### Added
+ - Logger using standard logging module
+ - "--log-level" command line argument (more info in "--help")
+ - "log_level" constructor parameter, defaults to "critical"
+ - Created changelog
+
+### New
+ - Documentation for the entire project
+
+## [1.0.40] - 2018-10-22
 ### Added
  - kubernetes api calls
  - b/g deployment api calls

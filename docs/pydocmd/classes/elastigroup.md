@@ -698,12 +698,13 @@ __Arguments__
 <h1 id="spotinst_sdk.aws_elastigroup.LaunchSpecification">LaunchSpecification</h1>
 
 ```python
-LaunchSpecification(self, security_group_ids='d3043820717d74d9a17694c176d39733', image_id='d3043820717d74d9a17694c176d39733', monitoring='d3043820717d74d9a17694c176d39733', health_check_type='d3043820717d74d9a17694c176d39733', load_balancers_config='d3043820717d74d9a17694c176d39733', health_check_grace_period='d3043820717d74d9a17694c176d39733', health_check_unhealthy_duration_before_replacement='d3043820717d74d9a17694c176d39733', ebs_optimized='d3043820717d74d9a17694c176d39733', tenancy='d3043820717d74d9a17694c176d39733', iam_role='d3043820717d74d9a17694c176d39733', key_pair='d3043820717d74d9a17694c176d39733', user_data='d3043820717d74d9a17694c176d39733', shutdown_script='d3043820717d74d9a17694c176d39733', block_device_mappings='d3043820717d74d9a17694c176d39733', network_interfaces='d3043820717d74d9a17694c176d39733', tags='d3043820717d74d9a17694c176d39733')
+LaunchSpecification(self, security_group_ids='d3043820717d74d9a17694c176d39733', image_id='d3043820717d74d9a17694c176d39733', monitoring='d3043820717d74d9a17694c176d39733', credit_specification='d3043820717d74d9a17694c176d39733', health_check_type='d3043820717d74d9a17694c176d39733', load_balancers_config='d3043820717d74d9a17694c176d39733', health_check_grace_period='d3043820717d74d9a17694c176d39733', health_check_unhealthy_duration_before_replacement='d3043820717d74d9a17694c176d39733', ebs_optimized='d3043820717d74d9a17694c176d39733', tenancy='d3043820717d74d9a17694c176d39733', iam_role='d3043820717d74d9a17694c176d39733', key_pair='d3043820717d74d9a17694c176d39733', user_data='d3043820717d74d9a17694c176d39733', shutdown_script='d3043820717d74d9a17694c176d39733', block_device_mappings='d3043820717d74d9a17694c176d39733', network_interfaces='d3043820717d74d9a17694c176d39733', tags='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __security_group_ids__: list[str]
+- __credit_specification__: CreditSpecification
 - __image_id__: str
 - __monitoring__: bool
 - __health_check_type__: str

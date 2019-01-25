@@ -1062,6 +1062,7 @@ class LaunchSpecification:
     """
     # Arguments
     security_group_ids: list[str]
+    credit_specification: CreditSpecification
     image_id: str
     monitoring: bool
     health_check_type: str
@@ -1083,6 +1084,7 @@ class LaunchSpecification:
             security_group_ids=none,
             image_id=none,
             monitoring=none,
+            credit_specification=none,
             health_check_type=none,
             load_balancers_config=none,
             health_check_grace_period=none,
@@ -1103,6 +1105,7 @@ class LaunchSpecification:
         self.health_check_unhealthy_duration_before_replacement = health_check_unhealthy_duration_before_replacement
         self.security_group_ids = security_group_ids
         self.monitoring = monitoring
+        self.credit_specification = credit_specification
         self.ebs_optimized = ebs_optimized
         self.image_id = image_id
         self.tenancy = tenancy
@@ -1114,6 +1117,17 @@ class LaunchSpecification:
         self.network_interfaces = network_interfaces
         self.tags = tags
 
+
+class CreditSpecification:
+    """
+    # Arguments
+    cpu_credits: str
+    """ 
+    def __init__(
+        self,
+        cpu_credits=none):
+
+        self.cpu_credits = cpu_credits
 
 class LoadBalancersConfig:
     """
