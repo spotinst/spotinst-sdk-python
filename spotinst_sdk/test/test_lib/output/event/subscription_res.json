@@ -1,0 +1,17 @@
+{
+	"request":{},
+	"response":{
+		"items":[
+			{
+				"created_at": "2019-01-15T19:43:53.000Z", 
+				"updated_at": "2019-01-15T19:43:53.000Z", 
+				"id": "sis-f999a8a9", 
+				"resource_id": "sig-15d0599e", 
+				"protocol": "email", 
+				"endpoint": "test@me.com", 
+				"event_type": "GROUP_ROLL_FINISHED", 
+				"event_format": {"another_custom_field": "second", "custom_field": "first"}
+			}
+		]
+	}
+}

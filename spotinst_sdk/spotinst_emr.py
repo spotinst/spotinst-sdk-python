@@ -104,7 +104,7 @@ class ProvisioningTimeout:
 	"""
 	# Arguments
 	timeout: int
-	:tpye timeout_action: str
+	timeout_action: str
 	"""
 	def __init__(
 		self, 
@@ -260,6 +260,7 @@ class MasterGroup:
 	# Arguments
 	instance_types: List[str]
 	target: int
+	capacity: Capacity
 	life_cycle: str
 	configurations: Configurations
 	"""
@@ -280,6 +281,7 @@ class CoreGroup:
 	# Arguments
 	instance_types: List[str]
 	target: int
+	capacity: Capacity
 	life_cycle: str
 	ebs_configuration: EbsConfiguration
 	configurations: Configurations
@@ -288,12 +290,14 @@ class CoreGroup:
 		self,
 		instance_types=none,
 		target=none,
+		capacity=none,
 		life_cycle=none,
 		ebs_configuration=none,
 		configurations=none):
 
 		self.instance_types = instance_types
 		self.target = target
+		self.capacity = capacity
 		self.life_cycle = life_cycle
 		self.ebs_configuration = ebs_configuration
 		self.configurations = configurations
