@@ -13,3 +13,10 @@
  * SpotinstClient.detach_user
  * SpotinstClient.get_user
  * SpotinstClient.assign_user_to_account
+
+## [Events Subscription](./event_subscription.md)
+ * SpotinstClient.create_event_subscription
+ * SpotinstClient.update_event_subscription
+ * SpotinstClient.get_all_event_subscription
+ * SpotinstClient.get_event_subscription
+ * SpotinstClient.delete_event_subscription
