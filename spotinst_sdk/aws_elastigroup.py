@@ -680,11 +680,11 @@ class KubernetesAutoScalerLabelsConfiguration:
 
 
 class KubernetesAutoScalerDownConfiguration:
+    """
+    # Arguments
+    evaluation_periods: int
+    """
     def __init__(self, evaluation_periods=none):
-        """
-
-        evaluation_periods: int
-        """
         self.evaluation_periods = evaluation_periods
 
 
