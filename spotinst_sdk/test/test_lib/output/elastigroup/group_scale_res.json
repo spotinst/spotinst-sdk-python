@@ -1,0 +1,30 @@
+{
+	"response":{
+		"items":[
+			{
+				"newPreemptibles":[
+					{"instanceName":"sin-9da52709"}
+				],
+				"newInstances":[
+					{"instanceName":"sin-9da52709"}
+				]
+			},
+			{
+				"victimPreemptibles":[
+					{
+						"instanceName":"sin-9da52709",
+                        "zone": "asia-east1-b",
+                        "machineType": "N1_STANDARD_1"
+					}
+				],
+				"victimInstances":[
+					{
+						"instanceName":"sin-9da52709",
+                        "zone": "asia-east1-b",
+                        "machineType": "N1_STANDARD_1"
+					}
+				]
+			}
+		]
+	}
+}

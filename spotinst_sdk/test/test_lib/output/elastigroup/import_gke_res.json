@@ -1,0 +1,69 @@
+{
+	"response":{
+		"items":[
+            {
+                "id": "sig-96a29200",
+                "name": "gkeCluster",
+                "capacity": {
+                    "minimum": 0,
+                    "maximum": 0,
+                    "target": 0
+                },
+                "strategy": {
+                    "preemptiblePercentage": 70
+                },
+                "compute": {
+                    "launchSpecification": {
+                        "metadata": [
+                            {
+                                "...": "..."
+                            }
+                        ],
+                        "disks": [
+                            {
+                                "initializeParams": {
+                                    "diskSizeGb": 100,
+                                    "diskType": "pd-standard",
+                                    "sourceImage": "https://www.googleapis.com/compute/v1/projects/ubuntu-os-gke-cloud/global/images/ubuntu-gke-1604-xenial-v20180308"
+                                },
+                                "mode": "READ_WRITE",
+                                "type": "PERSISTENT",
+                                "autoDelete": true,
+                                "boot": true
+                            }
+                        ],
+                        "networkInterfaces": [
+                            {
+                                "network": "default",
+                                "accessConfigs": [
+                                    {
+                                        "name": "public ip",
+                                        "type": "ONE_TO_ONE_NAT"
+                                    }
+                                ]
+                            }
+                        ],
+                        "serviceAccount": "308294713526-ea45sdi0juqbtpsarcmflq0en88hmk51@developer.gserviceaccount.com"
+                    },
+                    "instanceTypes": {
+                        "ondemand": "n1-highcpu-32",
+                        "preemptible": [
+                            "n1-standard-1"
+                        ]
+                    },
+                    "availabilityZones": [
+                        "us-central1-a"
+                    ]
+                },
+                "thirdPartiesIntegration": {
+                    "gke": {
+                        "clusterIdentifier": "cluster",
+                        "location": "us-central1-a"
+                    }
+                },
+                "createdAt": "2018-06-14T08:34:56.636+0000",
+                "updatedAt": "2018-06-14T08:34:56.636+0000"
+            }
+		]
+	}
+}

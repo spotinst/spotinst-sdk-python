@@ -1,0 +1,88 @@
+{
+	"group": {
+		"capacity": {"minimum": 0, "maximum": 0, "target": 0}, 
+		"description": "description", 
+		"thirdPartiesIntegration": {
+			"dockerSwarm": {"masterPort": 1, "masterHost": "master_host"}
+		}, 
+		"strategy": {
+			"preemptiblePercentage": 100, "drainingTimeout": 0, "fallbackToOd": false, "onDemandCount": 0
+		}, 
+		"scaling": {
+			"down": [{
+				"policyName": "policy_name", 
+				"dimensions": [{"name": "name", "value": "value"}], 
+				"evaluationPeriods": 1, 
+				"namespace": "namespace", 
+				"period": 60, 
+				"source": "spectrum", 
+				"cooldown": 0, 
+				"threshold": 0, 
+				"statistic": 
+				"average", 
+				"operator": "gte", 
+				"action": {"adjustment": 0, "type": "adjustment"}, 
+				"unit": "seconds", "metricName": "metric_name"
+			}], 
+			"up": [{
+				"policyName": "policy_name", 
+				"dimensions": [{"name": "name", "value": "value"}], 
+				"evaluationPeriods": 1, 
+				"namespace": "namespace", 
+				"period": 60, 
+				"source": "spectrum", 
+				"cooldown": 0, 
+				"threshold": 0, 
+				"statistic": "average", 
+				"operator": "gte", 
+				"action": {"adjustment": 0, "type": "adjustment"}, 
+				"unit": "seconds", "metricName": "metric_name"
+			}]
+		}, 
+		"compute": {
+			"subnets": [{"region": "us-west2", "subnetNames": ["subnet_names"]}], 
+			"instanceTypes": {"preemptible": ["preemptible"], "ondemand": "ondemand", "custom": [{"vCPU": 1, "memoryGiB": 1}]}, 
+			"health": {"gracePeriod": 0}, 
+			"launchSpecification": {
+				"disks": [
+					{
+						"deviceName": "device_name", 
+						"initializeParams": {"diskSizeGb": 1, "sourceImage": "source_image", "diskType": "disk_type"}, 
+						"autoDelete": false, 
+						"boot": false, 
+						"source": "source", 
+						"mode": "READ_WRITE", 
+						"interface": "SCSI", 
+						"type": "disk_type"
+					}
+				], 
+				"backendServiceConfig": {
+					"backendServices": [{
+						"locationType": "regional", 
+						"backendServiceName": "backend_service_name", 
+						"scheme": "EXTERNAL", 
+						"namedPorts": {"name": "name", "ports": [1, 2, 3]}
+					}]
+				}, 
+				"labels": [{"key": "key", "value": "value"}], 
+				"serviceAccount": "service_account", 
+				"startupScript": "startup_script", 
+				"ipForwarding": false, 
+				"metadata": [{"key": "key", "value": "value"}], 
+				"tags": ["tags"], 
+				"networkInterfaces": [{
+					"accessConfigs": [{"type": "ONE_TO_ONE_NAT", "name": "name"}], 
+					"aliasIpRanges": [{"subnetworkRangeName": "subnetwork_range_name", "ipCidrRange": "ip_cidr_range"}], 
+					"network": "network"
+				}]
+			}, 
+			"gpu": {"count": 1, "type": "nvidia-tesla-v100"}, 
+			"availabilityZones": ["us-west2-a"]
+		}, 
+		"name": "name"
+	}
+}
+
+
+
+

@@ -1,0 +1,9 @@
+{
+	"group": {
+		"preemptiblePercentage": 0, 
+		"nodeImage": "test", 
+		"availabilityZones": ["test"], 
+		"capacity": {"minimum": 0, "maximum": 0, "target": 0}, 
+		"instanceTypes": {"preemptible": ["test"], "ondemand": "test"}
+	}
+}
