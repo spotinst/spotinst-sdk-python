@@ -2,7 +2,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.0.44] - 2019-01-24s
+## [1.0.44] - 2019-02-04
+### Added
+ - Event subscription endpoints
+
+### Updated
+ - `auto_apply_tags` parameter added to update EG
+ - `managed_actions` parameter added to beanstalk EG
+
+
+## [1.0.44] - 2019-01-24
 ### Updated
  - Emr support new strategy type, cluster object and additional computer parameters
 

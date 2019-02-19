@@ -31,3 +31,6 @@ Object used to create User Mapping
 
 ## [MLB](./mlb.md)
 Object used to create and update MLB 
+
+## [Event Subscription](./event_subscription.md)
+Object used to create event Subscription

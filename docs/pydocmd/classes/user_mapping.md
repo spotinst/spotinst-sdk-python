@@ -1,4 +1,7 @@
-<h1 id="spotinst_sdk.spotinst_user_mapping.UserMapping">UserMapping</h1>
+<h1 id="spotinst_sdk.spotinst_user_mapping">spotinst_sdk.spotinst_user_mapping</h1>
+
+
+<h2 id="spotinst_sdk.spotinst_user_mapping.UserMapping">UserMapping</h2>
 
 ```python
 UserMapping(self, user_email='d3043820717d74d9a17694c176d39733', account_id='d3043820717d74d9a17694c176d39733', role='d3043820717d74d9a17694c176d39733')

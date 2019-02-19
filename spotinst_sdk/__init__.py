@@ -15,6 +15,8 @@ from spotinst_sdk import spotinst_deployment_action
 from spotinst_sdk import spotinst_asg
 from spotinst_sdk import spotinst_user_mapping
 from spotinst_sdk import spotinst_mlb
+from spotinst_sdk import spotinst_ocean
+from spotinst_sdk import spotinst_event_subscription
 
 VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
@@ -47,6 +49,7 @@ class SpotinstClient:
     __base_setup_url = "https://api.spotinst.io/setup"
     __base_lb_url = "https://api.spotinst.io/loadBalancer"
     __base_ocean_url = "https://api.spotinst.io/ocean/aws/k8s/cluster"
+    __base_event_subscription_url = "https://api.spotinst.io/events/subscription"
 
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
@@ -83,6 +86,136 @@ class SpotinstClient:
         self.set_log_level(log_level=log_level)
 
     # endregion
+
+
+    # region Event Subscription
+    def create_event_subscription(self, subscription):
+        """
+        Create an event subscription 
+        
+        # Arguments
+        subscription (Subscription): Subscription Object
+        
+        # Returns
+        (Object): Subscription API response 
+        """ 
+        subscription = spotinst_event_subscription.SubscriptionRequest(subscription)
+
+        excluded_group_dict = self.exclude_missing(json.loads(subscription.toJSON()))
+        
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        group_response = self.send_post(
+            body=body_json,
+            url=self.__base_event_subscription_url,
+            entity_name='subscription')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def update_event_subscription(self, subscription_id, subscription):
+        """
+        Update an exsisting event subscription 
+        
+        # Arguments
+        subscription_id (String): Subscription id
+        subscription (Subscription): Subscription Object
+        
+        # Returns
+        (Object): Subscription API response 
+        """ 
+        subscription = spotinst_event_subscription.SubscriptionRequest(subscription)
+
+        excluded_group_dict = self.exclude_missing(json.loads(subscription.toJSON()))
+        
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+        
+        group_response = self.send_put(
+            body=body_json,
+            url=self.__base_event_subscription_url +
+            "/" + subscription_id,
+            entity_name='subscription')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]
+
+        return retVal
+
+    def get_all_event_subscription(self):
+        """
+        Get all Subscription in account
+        
+        # Returns
+        (Object): Subscription API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_event_subscription_url,
+            entity_name="subscription"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
+    def get_event_subscription(self, subscription_id):
+        """
+        Get an exsisting event subscription json
+        
+        # Arguments
+        subscription_id (String): Subscription id
+        
+        # Returns
+        (Object): Subscription API response 
+        """ 
+        response = self.send_get(
+            url=self.__base_event_subscription_url +
+            "/" + subscription_id,
+            entity_name="subscription"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal        
+    
+    def delete_event_subscription(self, subscription_id):
+        """
+        Delete an event subscription
+        
+        # Arguments
+        subscription_id (String): Subscription id
+        
+        # Returns
+        (Object): subscription response 
+        """ 
+        response = self.send_delete(
+            url=self.__base_event_subscription_url +
+            "/" + subscription_id,
+            entity_name="subscription"
+        )
+
+        return response  
+    # end region
+
+
+
 
 
 
@@ -1734,8 +1867,6 @@ class SpotinstClient:
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        print(group_response)
-
         retVal = formatted_response["response"]["items"][0]
 
         return retVal
@@ -1787,8 +1918,6 @@ class SpotinstClient:
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
-
-        print(response)
 
         retVal = formatted_response["response"]["items"]
 
@@ -1953,7 +2082,7 @@ class SpotinstClient:
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
-    def update_elastigroup(self, group_update, group_id):
+    def update_elastigroup(self, group_update, group_id, auto_apply_tags=None):
         """
         Update an elastigroup
         
@@ -1976,12 +2105,12 @@ class SpotinstClient:
 
         self.print_output(body_json)
 
-        group_response = self.send_put(
-            self.__base_elastigroup_url +
-            "/" +
-            group_id,
-            entity_name='elastigroup',
-            body=body_json)
+        group_response = self.send_put_with_params(
+            body=body_json, 
+            url=self.__base_elastigroup_url + "/" + group_id, 
+            entity_name='elastigroup', 
+            user_query_params=dict(autoApplyTags=auto_apply_tags)
+        )
 
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)

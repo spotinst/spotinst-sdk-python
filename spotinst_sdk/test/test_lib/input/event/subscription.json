@@ -1,0 +1,9 @@
+{
+	"subscription": {
+		"endpoint": "https://webhook.com",
+		"eventFormat": " { \"subject\" : \"%s\", \"message\" : \"%s\" }", 
+		"eventType": "GROUP_UPDATED", 
+		"protocol": "web", 
+		"resourceId": "sig-885c4f64"
+	}
+}

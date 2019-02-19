@@ -17,7 +17,7 @@ __Returns__
 <h1 id="spotinst_sdk.SpotinstClient.update_elastigroup">update_elastigroup</h1>
 
 ```python
-SpotinstClient.update_elastigroup(self, group_update, group_id)
+SpotinstClient.update_elastigroup(self, group_update, group_id, auto_apply_tags=None)
 ```
 
 Update an elastigroup

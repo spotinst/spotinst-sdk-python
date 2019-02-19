@@ -438,12 +438,42 @@ class ElasticBeanstalk:
     """
     # Arguments
     environment_id: str
+    managed_actions: ManagedActions
     deployment_preferences: DeploymentPreferences
     """
-    def __init__(self, environment_id=none, deployment_preferences=none):
+    def __init__(self, environment_id=none, managed_actions=none, deployment_preferences=none):
 
         self.environment_id = environment_id
+        self.managed_actions = managed_actions
         self.deployment_preferences = deployment_preferences
+
+
+class ManagedActions:
+    """
+    # Arguments
+    platform_update: PlatformUpdate
+    """
+    def __init__(self, platform_update=none):
+
+        self.platform_update = platform_update
+
+
+class PlatformUpdate:
+    """
+    # Arguments
+    perform_at: str
+    time_window: str
+    update_level: str
+    """
+    def __init__(
+        self,
+        perform_at=none,
+        time_window=none,
+        update_level=none):
+
+        self.perform_at = perform_at
+        self.time_window = time_window
+        self.update_level = update_level
 
 
 class DeploymentPreferences:
@@ -650,11 +680,11 @@ class KubernetesAutoScalerLabelsConfiguration:
 
 
 class KubernetesAutoScalerDownConfiguration:
+    """
+    # Arguments
+    evaluation_periods: int
+    """
     def __init__(self, evaluation_periods=none):
-        """
-
-        evaluation_periods: int
-        """
         self.evaluation_periods = evaluation_periods
 
 

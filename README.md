@@ -29,6 +29,7 @@ Spotinst SDK for the Python programming language
        * [Stateful](./docs/pydocmd/classes/stateful.md)
        * [User Mapping](./docs/pydocmd/classes/user_mapping.md)
        * [Ocean](./docs/pydocmd/classes/ocean.md)
+       * [Event Subscription](./docs/pydocmd/classes/event_subscription.md)
 <!--te-->
 
 ## Installation
