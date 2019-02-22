@@ -2,32 +2,37 @@
 
 ## Table of contents
 <!--ts-->
-  * [Elastigroup](#elastigroup)
-    * [Getting Started With Elastigroup](#getting-started-with-elastigroup)
-    * [Elastigroup Additional Configurations](#elastigroup-additional-configurations)
+  * [AWS Elastigroup](#aws-elastigroup)
+    * [Getting Started](#getting-started-with-aws-elastigroup)
+    * [Additional Configurations](#additional-configurations-aws-elastigroup)
       * [Scaling Policies](#scaling-policies)
       * [Scheduling](#scheduling)
-    * [Third Party Integrations](#third-party-integrations)
-      * [ECS](#ecs)
-      * [EMR](#emr)
-      * [Kubernetes](#kubernetes)
-      * [Nomad](#nomad)
-      * [Docker Swarm](#dockerswarm)
-      * [CodeDeploy](#codedeploy)
-      * [Route53](#route53)
-      * [ElasticBeanstalk](#elasticbeanstalk)
+  * [GCP Elastigroup](#gcp-elastigroup)
+    * [Getting Started](#getting-started-with-gcp-elastigroup)
+  * [Third Party Integrations](#third-party-integrations)
+    * [ECS](#ecs)
+    * [Kubernetes](#kubernetes)
+    * [Nomad](#nomad)
+    * [Docker Swarm](#dockerswarm)
+    * [CodeDeploy](#codedeploy)
+    * [Route53](#route53)
+    * [ElasticBeanstalk](#elasticbeanstalk)
+  * [MrScaler](#mrscaler)
+  * [Ocean](#Ocean)
   * [Functions](#functions)
     * [Getting Started With Functions](#getting-started-with-functions)
 <!--te-->
 
-## Elastigroup
+## AWS Elastigroup
 
-### Getting Started With Elastigroup
+### Getting Started With AWS Elastigroup
 ```python
-from spotinst_sdk import SpotinstClient
-from spotinst_sdk.aws_elastigroup import *
+from spotinst_sdk import SpotinstSession
+from spotinst_sdk.models.elastigroup.aws import *
 
-client = SpotinstClient()
+session = SpotinstSession()
+
+client = session.client("elastigroup_aws")
 
 # Initialize group strategy
 strategy = Strategy(risk=100, utilize_reserved_instances=False, fallback_to_od=True, availability_vs_cost="balanced")
@@ -80,7 +85,7 @@ deletion_success = client.delete_elastigroup(group_id=group_id)
 print('delete result: %s' % deletion_success)
 ```
 
-### Elastigroup Additional Configurations
+### Additional Configurations Aws Elastigroup
 #### Scaling Policies
 ```python
 scaling_policy_up_action = ScalingPolicyAction(type='percentageAdjustment', adjustment=20)
@@ -168,16 +173,245 @@ third_party_integrations = ThirdPartyIntegrations(ecs=ecs)
 group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
 ```
 
-#### EMR
+#### Kubernetes
 ```python
-import sys, os
-sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), "PythonSpotinstSDK"))
+kubernetes_auto_scale_down = KubernetesAutoScalerDownConfiguration(evaluation_periods=5)
+kubernetes_auto_scale_headroom = KubernetesAutoScalerHeadroomConfiguration(cpu_per_unit=2000, memory_per_unit=4000, num_of_units=2)
+kubernetes_auto_scale = KubernetesAutoScalerConfiguration(is_enabled=True, cooldown=300, headroom=kubernetes_auto_scale_headroom, down=kubernetes_auto_scale_down, is_auto_config=False)
+kubernetes = KubernetesConfiguration(integration_mode='pod', cluster_identifier='test-k8s', auto_scale=kubernetes_auto_scale)
+third_party_integrations = ThirdPartyIntegrations(kubernetes=kubernetes)
 
-from spotinst_sdk import SpotinstClient
-from spotinst_sdk.spotinst_emr import *
+group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
 
-client = SpotinstClient()
+#### Nomad
+```python
+nomad_down = NomadAutoScalerDownConfiguration(evaluation_periods=3)
+nomad_constraints = NomadAutoScalerConstraintsConfiguration(key='${node.class}', value='value')
+nomad_scale_headroom = NomadAutoScalerHeadroomConfiguration(cpu_per_unit=10, memory_per_unit=1000, num_of_units=2)
+nomad_auto_scale = NomadAutoScalerConfiguration(is_enabled=True, cooldown=180, headroom=nomad_scale_headroom, constraints=[nomad_constraints], down=nomad_down)
+nomad = NomadConfiguration(master_host="https://master.host.com", master_port=443, acl_token='123', auto_scale=nomad_auto_scale)
+third_party_integrations = ThirdPartyIntegrations(nomad=nomad)
 
+group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
+
+#### DockerSwarm
+```python
+docker_swarm_down = DockerSwarmAutoScalerDownConfiguration(evaluation_periods=4)
+docker_swarm_headroom = DockerSwarmAutoScalerHeadroomConfiguration(cpu_per_unit=1000000000, memory_per_unit=800000000, num_of_units=3)
+docker_swarm_auto_scale = DockerSwarmAutoScalerConfiguration(is_enabled=True, cooldown=300, headroom=docker_swarm_headroom, down=docker_swarm_down)
+docker_swarm = DockerSwarmConfiguration(master_host='10.10.10.10', master_port=1234, auto_scale=docker_swarm_auto_scale)
+third_party_integrations = ThirdPartyIntegrations(docker_swarm=docker_swarm)
+
+group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
+
+#### CodeDeploy
+```python
+code_deploy_deployment_groups = CodeDeployDeploymentGroupsConfiguration(application_name='test-app', deployment_group_name='test-grp')
+code_deploy = CodeDeployConfiguration(clean_up_on_failure=False, terminate_instance_on_failure=False, deployment_groups=[code_deploy_deployment_groups])
+third_party_integrations = ThirdPartyIntegrations(code_deploy=code_deploy)
+
+group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
+
+#### Route53
+```python
+route53_record_set = Route53RecordSetsConfiguration(use_public_ip=True, name='test-domain.com')
+route53_domains = Route53DomainsConfiguration(hosted_zone_id='Z3UFMBCGJMYLUT', record_sets=[route53_record_set])
+route53 = Route53Configuration(domains=[route53_domains])
+third_party_integrations = ThirdPartyIntegrations(route53=route53)
+
+group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
+
+#### ElasticBeanstalk
+```python
+deployment_strategy = BeanstalkDeploymentStrategy(action='REPLACE_SERVER', should_drain_instances=True)
+deployment_preferences = DeploymentPreferences(automatic_roll=True, batch_size_percentage=50, grace_period=600,
+                                               strategy=deployment_strategy)
+elastic_beanstalk = ElasticBeanstalk(environment_id='123', deployment_preferences=deployment_preferences)
+third_party_integrations = ThirdPartyIntegrations(elastic_beanstalk=elastic_beanstalk)
+
+group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+```
+
+## GCP Elastigroup
+
+### Getting Started With GCP Elastigroup
+```python
+from spotinst_sdk import SpotinstSession
+from spotinst_sdk.models.elastigroup.gcp import *
+
+session = SpotinstSession() 
+gcp_eg = session.client("elastigroup_gcp")
+
+###################### Capacity ######################
+capacity = Capacity(minimum=0, maximum=0, target=0)
+
+###################### Strategy ######################
+strategy = Strategy(
+  preemptible_percentage=100,
+  on_demand_count=0,
+  draining_timeout=0,
+  fallback_to_od=False)
+
+####################### Scaling ######################
+dim = ScalingPolicyDimension(name="name", value="value")
+
+action = ScalingPolicyAction(scaling_type="adjustment", adjustment=0)
+
+up = ScalingPolicy(
+  source="spectrum",
+    policy_name="policy_name",
+    namespace="namespace",
+    metric_name="metric_name",
+    dimensions=[dim],
+    statistic="average",
+    unit="seconds",
+    threshold=0,
+    period=60,
+    evaluation_periods=1,
+    cooldown=0,
+    action=action,
+    operator="gte")
+
+down = ScalingPolicy(
+  source="spectrum",
+    policy_name="policy_name",
+    namespace="namespace",
+    metric_name="metric_name",
+    dimensions=[dim],
+    statistic="average",
+    unit="seconds",
+    threshold=0,
+    period=60,
+    evaluation_periods=1,
+    cooldown=0,
+    action=action,
+    operator="gte")
+
+scaling = Scaling(up=[up], down=[down])
+
+############## ThirdPartiesIntegration ##############
+docker_swarm = DockerSwarmConfiguration(master_host="master_host", master_port=1)
+
+third_parties_integration = ThirdPartiesIntegration(docker_swarm=docker_swarm)
+
+###################### Compute ######################
+subnet = Subnet(region="us-west2", subnet_names=["subnet_names"])
+
+health = Health(grace_period=0)
+
+gpu = Gpu(gpu_type="nvidia-tesla-v100", count=1)
+
+custom = CustomInstanceTypes(v_cPU=1, memory_giB=1)
+
+instance_types = InstanceTypes(ondemand="ondemand", preemptible=["preemptible"], custom=[custom])
+
+label = Label(key="key", value="value")
+
+metadata = Metadata(key="key", value="value")
+
+named_ports = NamedPorts(name="name", ports=[1,2,3])
+
+backend_services = BackendServices(
+    backend_service_name="backend_service_name",
+    location_type="regional",
+    scheme="EXTERNAL",
+    named_ports=named_ports)
+
+backend_service_config = BackendServiceConfig(backend_services=[backend_services])
+
+initialize_params = InitializeParams(            
+  disk_size_gb=1,
+    disk_type="disk_type",
+    source_image="source_image")
+
+disk = Disk(           
+  auto_delete=False,
+    boot=False,
+    device_name="device_name",
+    initialize_params=initialize_params,
+    interface="SCSI",
+    mode="READ_WRITE",
+    source="source",
+    disk_type="disk_type")
+
+access_configs = AccessConfig(name="name", access_type="ONE_TO_ONE_NAT")
+
+alias_ip_ranges = AliasIpRange(ip_cidr_range="ip_cidr_range", subnetwork_range_name="subnetwork_range_name")
+
+network_interfaces = NetworkInterface(            
+  network="network",
+    access_configs=[access_configs],
+    alias_ip_ranges=[alias_ip_ranges])
+
+launch_specification = LaunchSpecification(
+    labels=[label],
+    metadata=[metadata],
+    tags=["tags"],
+    backend_service_config=backend_service_config,
+    startup_script="startup_script",
+    disks=[disk],
+    network_interfaces=[network_interfaces],
+    service_account="service_account",
+    ip_forwarding=False)
+
+compute = Compute(
+  launch_specification=launch_specification,
+    instance_types=instance_types,
+    gpu=gpu,
+    health=health,
+    availability_zones=["us-west2-a"],
+    subnets=[subnet])
+
+#################### Elastigroup ####################
+elastigroup = Elastigroup(
+  name="name", 
+  description="description", 
+  capacity=capacity, 
+  strategy=strategy, 
+  scaling=scaling, 
+  third_parties_integration=third_parties_integration, 
+  compute=compute)
+
+# Create elastigroup and retrieve group id
+print("Create Group")
+group = gcp_eg.create_elastigroup(group=elastigroup)
+group_id = group['id']
+print('group id: %s' % group_id)
+
+# Update New Elastigroup
+capacity = Capacity(maximum=10)
+update_group = Elastigroup(capacity=capacity)
+
+print("Update Group")
+print(gcp_eg.update_elastigroup(group_id=group_id, group_update=update_group))
+
+# Get New Elastigroup
+print("Get New Group Config")
+print(gcp_eg.get_elastigroup(group_id=group_id))
+
+# Get all Elastigroups
+print("Get All Group Configs")
+print(gcp_eg.get_elastigroups())
+
+# Delete Elastigroup
+print("Delete New Group")
+deletion_success = gcp_eg.delete_elastigroup(group_id=group_id)
+print('delete result: %s' % deletion_success)
+```
+
+
+#### MrScaler
+```python
+from spotinst_sdk import SpotinstSession
+from spotinst_sdk.models.mrscaler.aws import *
+
+session = SpotinstSession()
+client = session.client("mrscaler_aws")
 
 ################ Scaling ################
 
@@ -276,79 +510,50 @@ emr = client.create_emr(emr)
 ```
 
 
+## Ocean
 
-
-#### Kubernetes
 ```python
-kubernetes_auto_scale_down = KubernetesAutoScalerDownConfiguration(evaluation_periods=5)
-kubernetes_auto_scale_headroom = KubernetesAutoScalerHeadroomConfiguration(cpu_per_unit=2000, memory_per_unit=4000, num_of_units=2)
-kubernetes_auto_scale = KubernetesAutoScalerConfiguration(is_enabled=True, cooldown=300, headroom=kubernetes_auto_scale_headroom, down=kubernetes_auto_scale_down, is_auto_config=False)
-kubernetes = KubernetesConfiguration(integration_mode='pod', cluster_identifier='test-k8s', auto_scale=kubernetes_auto_scale)
-third_party_integrations = ThirdPartyIntegrations(kubernetes=kubernetes)
+from spotinst_sdk import SpotinstSession
+from spotinst_sdk.models.ocean.aws import *
 
-group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
+session = SpotinstSession()
+client = session.client("ocean_aws")
+
+################ Compute ################
+launch_specification = LaunchSpecifications(security_group_ids=["sg-12345"],
+ image_id="ami-12345", key_pair="Noam-key")
+
+instance_types = InstanceTypes(whitelist=["c4.8xlarge"])
+
+compute = Compute(instance_types=instance_types, 
+  subnet_ids=["subnet-1234"], launch_specification=launch_specification)
+
+################ Strategy ################
+
+strategy = Strategy(utilize_reserved_instances=False, fallback_to_od=True, spot_percentage=100)
+
+################ Capacity ################
+
+capacity = Capacity(minimum=0, maximum=0, target=0)
+
+################# Ocean #################
+
+ocean = Ocean(name="Ocean SDK Test", controller_cluster_id="ocean.k8s", 
+  region="us-west-2", capacity=capacity, strategy=strategy, compute=compute)
+
+client.create_ocean_cluster(ocean=ocean)
 ```
 
-#### Nomad
-```python
-nomad_down = NomadAutoScalerDownConfiguration(evaluation_periods=3)
-nomad_constraints = NomadAutoScalerConstraintsConfiguration(key='${node.class}', value='value')
-nomad_scale_headroom = NomadAutoScalerHeadroomConfiguration(cpu_per_unit=10, memory_per_unit=1000, num_of_units=2)
-nomad_auto_scale = NomadAutoScalerConfiguration(is_enabled=True, cooldown=180, headroom=nomad_scale_headroom, constraints=[nomad_constraints], down=nomad_down)
-nomad = NomadConfiguration(master_host="https://master.host.com", master_port=443, acl_token='123', auto_scale=nomad_auto_scale)
-third_party_integrations = ThirdPartyIntegrations(nomad=nomad)
 
-group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-```
-
-#### DockerSwarm
-```python
-docker_swarm_down = DockerSwarmAutoScalerDownConfiguration(evaluation_periods=4)
-docker_swarm_headroom = DockerSwarmAutoScalerHeadroomConfiguration(cpu_per_unit=1000000000, memory_per_unit=800000000, num_of_units=3)
-docker_swarm_auto_scale = DockerSwarmAutoScalerConfiguration(is_enabled=True, cooldown=300, headroom=docker_swarm_headroom, down=docker_swarm_down)
-docker_swarm = DockerSwarmConfiguration(master_host='10.10.10.10', master_port=1234, auto_scale=docker_swarm_auto_scale)
-third_party_integrations = ThirdPartyIntegrations(docker_swarm=docker_swarm)
-
-group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-```
-
-#### CodeDeploy
-```python
-code_deploy_deployment_groups = CodeDeployDeploymentGroupsConfiguration(application_name='test-app', deployment_group_name='test-grp')
-code_deploy = CodeDeployConfiguration(clean_up_on_failure=False, terminate_instance_on_failure=False, deployment_groups=[code_deploy_deployment_groups])
-third_party_integrations = ThirdPartyIntegrations(code_deploy=code_deploy)
-
-group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-```
-
-#### Route53
-```python
-route53_record_set = Route53RecordSetsConfiguration(use_public_ip=True, name='test-domain.com')
-route53_domains = Route53DomainsConfiguration(hosted_zone_id='Z3UFMBCGJMYLUT', record_sets=[route53_record_set])
-route53 = Route53Configuration(domains=[route53_domains])
-third_party_integrations = ThirdPartyIntegrations(route53=route53)
-
-group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-```
-
-#### ElasticBeanstalk
-```python
-deployment_strategy = BeanstalkDeploymentStrategy(action='REPLACE_SERVER', should_drain_instances=True)
-deployment_preferences = DeploymentPreferences(automatic_roll=True, batch_size_percentage=50, grace_period=600,
-                                               strategy=deployment_strategy)
-elastic_beanstalk = ElasticBeanstalk(environment_id='123', deployment_preferences=deployment_preferences)
-third_party_integrations = ThirdPartyIntegrations(elastic_beanstalk=elastic_beanstalk)
-
-group = Elastigroup(name="TestGroup", description="Created by the Python SDK", capacity=capacity, strategy=strategy, compute=compute, third_parties_integration=third_party_integrations)
-```
 
 ## Functions
 ### Getting Started With Functions
 ```python
-from spotinst_sdk import SpotinstClient
-from spotinst_sdk.spotinst_functions import *
+from spotinst_sdk import SpotinstSesion
+from spotinst_sdk.models.functions import *
 
-client = SpotinstClient()
+session = SpotinstSession()
+client  = session.client("functions")
 
 # Initialize application
 application = Application("example_application")

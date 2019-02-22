@@ -1,200 +1,78 @@
 site_name: "Spotinst Python SDK"
 
 # This tells pydocmd which pages to generate from which Python modules,
-# functions and classes. At the first level is the page name, below that
-# is a tree of Python member names (modules, classes, etc.) that should be
+# functions and models. At the first level is the page name, below that
+# is a tree of Python member names (modules, models, etc.) that should be
 # documented. Higher indentation leads to smaller header size.
 generate:
-- endpoints/elastigroup/aws/core.md:
-  - spotinst_sdk.SpotinstClient.create_elastigroup
-  - spotinst_sdk.SpotinstClient.update_elastigroup
-  - spotinst_sdk.SpotinstClient.delete_elastigroup
-  - spotinst_sdk.SpotinstClient.delete_elastigroup_with_deallocation
-  - spotinst_sdk.SpotinstClient.get_elastigroup
-  - spotinst_sdk.SpotinstClient.get_elastigroups
-  - spotinst_sdk.SpotinstClient.get_elastigroup_active_instances
-  - spotinst_sdk.SpotinstClient.get_elastigroup_activity
-  - spotinst_sdk.SpotinstClient.get_instance_healthiness
-  - spotinst_sdk.SpotinstClient.create_instance_signal
-  - spotinst_sdk.SpotinstClient.list_suspended_process
-  - spotinst_sdk.SpotinstClient.suspend_process
-  - spotinst_sdk.SpotinstClient.remove_suspended_process
-  - spotinst_sdk.SpotinstClient.detach_elastigroup_instances
-  - spotinst_sdk.SpotinstClient.import_asg
-  - spotinst_sdk.SpotinstClient.get_activity_events
-  - spotinst_sdk.SpotinstClient.ami_backup
-  - spotinst_sdk.SpotinstClient.scale_elastigroup_up
-  - spotinst_sdk.SpotinstClient.scale_elastigroup_down
-  - spotinst_sdk.SpotinstClient.list_suspended_scaling_policies
-  - spotinst_sdk.SpotinstClient.suspend_scaling_policies
-  - spotinst_sdk.SpotinstClient.resume_suspended_scaling_policies
-  - spotinst_sdk.SpotinstClient.roll_group
-  - spotinst_sdk.SpotinstClient.get_deployment_status
-  - spotinst_sdk.SpotinstClient.stop_deployment
-  - spotinst_sdk.SpotinstClient.create_deployment_action
-  - spotinst_sdk.SpotinstClient.get_kubernetes_cluster_cost
-  - spotinst_sdk.SpotinstClient.get_instance_type_by_region
-  - spotinst_sdk.SpotinstClient.lock_instance
-  - spotinst_sdk.SpotinstClient.unlock_instance
-  - spotinst_sdk.SpotinstClient.enter_instance_standby
-  - spotinst_sdk.SpotinstClient.exit_instance_standby
-  - spotinst_sdk.SpotinstClient.get_instance_status
-  - spotinst_sdk.SpotinstClient.get_cost_per_account
-  - spotinst_sdk.SpotinstClient.get_potential_savings
-  - spotinst_sdk.SpotinstClient.get_instance_potential_savings
-  - spotinst_sdk.SpotinstClient.get_cost_per_elastigroup
-  - spotinst_sdk.SpotinstClient.get_group_detailed_cost
-- endpoints/elastigroup/aws/stateful.md:
-  - spotinst_sdk.SpotinstClient.deallocate_stateful_instance
-  - spotinst_sdk.SpotinstClient.recycle_stateful_instance
-  - spotinst_sdk.SpotinstClient.get_stateful_instances
-  - spotinst_sdk.SpotinstClient.resume_stateful_instance
-  - spotinst_sdk.SpotinstClient.pause_stateful_instance
-  - spotinst_sdk.SpotinstClient.import_stateful_instance
-  - spotinst_sdk.SpotinstClient.get_stateful_import_status
-  - spotinst_sdk.SpotinstClient.delete_stateful_import
-- endpoints/elastigroup/aws/beanstalk.md:
-  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_status
-  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_start
-  - spotinst_sdk.SpotinstClient.beanstalk_maintenance_finish
-  - spotinst_sdk.SpotinstClient.beanstalk_import  
-- endpoints/elastigroup/aws/codedeploy.md:
-  - spotinst_sdk.SpotinstClient.create_blue_green_deployment
-  - spotinst_sdk.SpotinstClient.get_blue_green_deployment
-  - spotinst_sdk.SpotinstClient.stop_blue_green_deployment
-- endpoints/elastigroup/aws/emr.md:
-  - spotinst_sdk.SpotinstClient.create_emr
-  - spotinst_sdk.SpotinstClient.update_emr
-  - spotinst_sdk.SpotinstClient.get_all_emr
-  - spotinst_sdk.SpotinstClient.get_emr
-  - spotinst_sdk.SpotinstClient.get_emr_instances
-  - spotinst_sdk.SpotinstClient.get_emr_cluster
-  - spotinst_sdk.SpotinstClient.get_emr_cost
-  - spotinst_sdk.SpotinstClient.delete_emr
-  - spotinst_sdk.SpotinstClient.scale_up_emr
-  - spotinst_sdk.SpotinstClient.scale_down_emr
-- endpoints/functions/application.md:
-  - spotinst_sdk.SpotinstClient.create_application
-- endpoints/functions/environment.md:
-  - spotinst_sdk.SpotinstClient.create_environment
-- endpoints/functions/function.md:
-  - spotinst_sdk.SpotinstClient.create_function
-- endpoints/administration/org_and_account.md:
-  - spotinst_sdk.SpotinstClient.create_organization
-  - spotinst_sdk.SpotinstClient.delete_organization
-  - spotinst_sdk.SpotinstClient.set_cloud_credentials
-  - spotinst_sdk.SpotinstClient.create_account
-  - spotinst_sdk.SpotinstClient.get_accounts
-  - spotinst_sdk.SpotinstClient.delete_account
-  - spotinst_sdk.SpotinstClient.create_user
-  - spotinst_sdk.SpotinstClient.add_exsisting_user
-  - spotinst_sdk.SpotinstClient.update_user_role
-  - spotinst_sdk.SpotinstClient.detach_user
-  - spotinst_sdk.SpotinstClient.get_user
-  - spotinst_sdk.SpotinstClient.assign_user_to_account
-- endpoints/administration/event_subscription.md:
-  - spotinst_sdk.SpotinstClient.create_event_subscription
-  - spotinst_sdk.SpotinstClient.update_event_subscription
-  - spotinst_sdk.SpotinstClient.get_all_event_subscription
-  - spotinst_sdk.SpotinstClient.get_event_subscription
-  - spotinst_sdk.SpotinstClient.delete_event_subscription
-- endpoints/mlb/runtime.md:
-  - spotinst_sdk.SpotinstClient.get_all_mlb_runtime
-  - spotinst_sdk.SpotinstClient.get_mlb_runtime
-  - spotinst_sdk.SpotinstClient.deregister_mlb_runtime
-  - spotinst_sdk.SpotinstClient.delete_mlb_runtime
-- endpoints/mlb/deployment.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_deployment
-  - spotinst_sdk.SpotinstClient.update_mlb_deployment
-  - spotinst_sdk.SpotinstClient.get_mlb_deployment
-  - spotinst_sdk.SpotinstClient.get_all_mlb_deployment
-  - spotinst_sdk.SpotinstClient.delete_mlb_deployment
-- endpoints/mlb/balancer.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_balancer
-  - spotinst_sdk.SpotinstClient.update_mlb_balancer
-  - spotinst_sdk.SpotinstClient.get_mlb_balancer
-  - spotinst_sdk.SpotinstClient.get_all_mlb_balancer
-  - spotinst_sdk.SpotinstClient.delete_mlb_balancer
-- endpoints/mlb/target_set.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_target_set
-  - spotinst_sdk.SpotinstClient.update_mlb_target_set
-  - spotinst_sdk.SpotinstClient.get_mlb_target_set
-  - spotinst_sdk.SpotinstClient.get_all_mlb_target_set
-  - spotinst_sdk.SpotinstClient.delete_mlb_target_set
-  - spotinst_sdk.SpotinstClient.register_mlb_targets
-  - spotinst_sdk.SpotinstClient.deregister_mlb_targets
-- endpoints/mlb/target.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_target
-  - spotinst_sdk.SpotinstClient.update_mlb_target
-  - spotinst_sdk.SpotinstClient.get_mlb_target
-  - spotinst_sdk.SpotinstClient.get_all_mlb_target
-  - spotinst_sdk.SpotinstClient.delete_mlb_target
-- endpoints/mlb/listener.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_listener
-  - spotinst_sdk.SpotinstClient.update_mlb_listener
-  - spotinst_sdk.SpotinstClient.get_mlb_listener
-  - spotinst_sdk.SpotinstClient.get_all_mlb_listener
-  - spotinst_sdk.SpotinstClient.delete_mlb_listener
-- endpoints/mlb/middleware.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_middleware
-  - spotinst_sdk.SpotinstClient.update_mlb_middleware
-  - spotinst_sdk.SpotinstClient.get_mlb_middleware
-  - spotinst_sdk.SpotinstClient.get_all_mlb_middleware
-  - spotinst_sdk.SpotinstClient.delete_mlb_middleware
-- endpoints/mlb/routing_rule.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.update_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.get_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.get_all_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.delete_mlb_routing_rule
-- endpoints/ocean/cloud.md:
-  - spotinst_sdk.SpotinstClient.create_ocean_cluster
-  - spotinst_sdk.SpotinstClient.update_ocean_cluster
-  - spotinst_sdk.SpotinstClient.get_all_ocean_cluster
-  - spotinst_sdk.SpotinstClient.get_ocean_cluster
-  - spotinst_sdk.SpotinstClient.delete_ocean_cluster
+- clients/admin/admin_client.md:
+  - spotinst_sdk.clients.admin.AdminClient++
+- clients/elastigroup/elastigroup_aws_client.md:
+  - spotinst_sdk.clients.elastigroup.ElastigroupAwsClient++
+- clients/elastigroup/elastigroup_gcp_client.md:
+  - spotinst_sdk.clients.elastigroup.ElastigroupGcpClient++
+- clients/elastigroup/elastigroup_azure_client.md:
+  - spotinst_sdk.clients.elastigroup.ElastigroupAzureClient++
+- clients/functions/functions_client.md:
+  - spotinst_sdk.clients.functions.FunctionsClient++
+- clients/mcs/mcs_client.md:
+  - spotinst_sdk.clients.mcs.McsClient++
+- clients/mlb/mlb_client.md:
+  - spotinst_sdk.clients.mlb.MlbClient++
+- clients/mrscaler/mrscaler_aws_client.md:
+  - spotinst_sdk.clients.mrscaler.MrScalerAwsClient++
+- clients/ocean/ocean_aws_client.md:
+  - spotinst_sdk.clients.ocean.OceanAwsClient++
+- clients/subscription/subscription_client.md:
+  - spotinst_sdk.clients.subscription.SubscriptionClient++
 
 
-
-
-
-
-- classes/mlb.md:
-  - spotinst_sdk.spotinst_mlb++
-- classes/user_mapping.md:
-  - spotinst_sdk.spotinst_user_mapping++
-- classes/deployment.md:
-  - spotinst_sdk.spotinst_blue_green_deployment++
-- classes/asg.md:
-  - spotinst_sdk.spotinst_asg.ASG++
-- classes/deployment_actions.md:
-  - spotinst_sdk.spotinst_deployment_action++
-- classes/stateful.md:
-  - spotinst_sdk.spotinst_stateful++
-- classes/functions.md:
-  - spotinst_sdk.spotinst_functions++
-- classes/emr.md:
-  - spotinst_sdk.spotinst_emr++
-- classes/elastigroup.md:
-  - spotinst_sdk.aws_elastigroup++
-- classes/ocean.md:
-  - spotinst_sdk.spotinst_ocean++
-- classes/event_subscription.md:
-  - spotinst_sdk.spotinst_event_subscription++
-
+- models/admin.md:
+  - spotinst_sdk.models.admin.user_mapping++
+- models/elastigroup/aws.md:
+  - spotinst_sdk.models.elastigroup.aws++
+  - spotinst_sdk.models.elastigroup.aws.asg++
+  - spotinst_sdk.models.elastigroup.aws.deployment++
+  - spotinst_sdk.models.elastigroup.aws.deployment_action++
+  - spotinst_sdk.models.elastigroup.aws.stateful++
+- models/elastigroup/gcp.md:
+  - spotinst_sdk.models.elastigroup.gcp++
+  - spotinst_sdk.models.elastigroup.gcp.gke++
+- models/elastigroup/azure.md:
+  - spotinst_sdk.models.elastigroup.azure++
+- models/functions.md:
+  - spotinst_sdk.models.functions++
+- models/mlb.md:
+  - spotinst_sdk.models.mlb++
+- models/mrscaler/aws.md:
+  - spotinst_sdk.models.mrscaler.aws++
+- models/ocean/aws.md:
+  - spotinst_sdk.models.ocean.aws++
+- models/subscription.md:
+  - spotinst_sdk.models.subscription++
 
 
 pages:
 - Home: README.md << ./docs/home.md
-- Elastigroup: ./endpoints/elastigroup/README.md << ./docs/elastigroup.md
-- Ocean: ./endpoints/ocean/README.md << ./docs/ocean.md
-- Functions: ./endpoints/functions/README.md << ./docs/functions.md
-- Admin: ./endpoints/administration/README.md << ./docs/admin.md
-- MLB: ./endpoints/mlb/README.md << ./docs/mlb.md
-- AWS: ./endpoints/elastigroup/aws/README.md << ./docs/aws.md
+
 - Examples: ./examples/README.md << ./docs/examples.md
-- Endpoints: ./endpoints/README.md << ./docs/endpoints.md
-- Classes: ./classes/README.md << ./docs/classes.md
+- Clients:  ./clients/README.md  << ./docs/clients/home.md
+- Models:   ./models/README.md   << ./docs/models/home.md
+
+- AdminClient:        ./clients/admin/README.md        << ./docs/clients/admin.md
+- ElastigroupClient:  ./clients/elastigroup/README.md  << ./docs/clients/elastigroup.md
+- FunctionsClient:    ./clients/functions/README.md    << ./docs/clients/functions.md
+- MCSClient:          ./clients/mcs/README.md          << ./docs/clients/mcs.md
+- MLBClient:          ./clients/mlb/README.md          << ./docs/clients/mlb.md
+- MrScalerClient:     ./clients/mrscaler/README.md     << ./docs/clients/mrscaler.md
+- OceanClient:        ./clients/ocean/README.md        << ./docs/clients/ocean.md
+- SubscriptionClient: ./clients/subscription/README.md << ./docs/clients/subscription.md
+
+- ElastigroupModel: ./models/elastigroup/README.md << ./docs/models/elastigroup.md
+- OceanModel:       ./models/ocean/README.md       << ./docs/models/ocean.md
+- MrScalerModel:    ./models/mrscaler/README.md    << ./docs/models/mrscaler.md
+
+
 
 
 

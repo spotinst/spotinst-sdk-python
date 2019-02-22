@@ -1,0 +1,28 @@
+{
+	"response":{
+		"items":[
+           {
+                "machineType": "n1-standard-2",
+                "zone": "us-central1-f",
+                "instanceName": "sin-12w357",
+                "lifeCycle": "PREEMPTIBLE",
+                "statusName": "running",
+                "privateIpAddress": "10.10.1.2",
+                "publicIpAddress": null,
+                "updatedAt": "2018-03-11T15:41:05.000Z",
+                "createdAt": "2018-03-11T01:14:06.000Z"
+            },
+           {
+                "machineType": "n1-standard-2",
+                "zone": "us-central1-f",
+                "instanceName": "sin-12w357",
+                "lifeCycle": "PREEMPTIBLE",
+                "statusName": "running",
+                "privateIpAddress": "10.10.1.2",
+                "publicIpAddress": null,
+                "updatedAt": "2018-03-11T15:41:05.000Z",
+                "createdAt": "2018-03-11T01:14:06.000Z"
+            }
+		]
+	}
+}
