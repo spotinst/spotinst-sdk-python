@@ -162,12 +162,15 @@ class ThirdPartiesIntegration:
     """
     # Arguments
     docker_swarm: DockerSwarmConfiguration
+    gke : GKE
     """
     def __init__(
             self,
-            docker_swarm=none):
+            docker_swarm=none,
+            gke=none):
 
         self.docker_swarm = docker_swarm
+        self.gke = gke
 
 class DockerSwarmConfiguration:
     """
@@ -179,6 +182,73 @@ class DockerSwarmConfiguration:
 
         self.master_host = master_host
         self.master_port = master_port
+
+class GKE:
+    """
+    # Arguments
+    auto_update: bool
+    auto_scale: AutoScale
+    """
+    def __init__(
+            self,
+            auto_update=none,
+            auto_scale=none):
+
+        self.auto_update = auto_update
+        self.auto_scale = auto_scale
+
+class AutoScale:
+    """
+    # Arguments
+    is_enabled: bool
+    is_auto_config: bool
+    cooldown: int
+    headroom: Headroom
+    labels: list[Label]
+    down: Down
+    """
+    def __init__(
+            self,
+            is_enabled=none,
+            is_auto_config=none,
+            cooldown=none,
+            headroom=none,
+            labels=none,
+            down=none):
+
+        self.is_enabled = is_enabled
+        self.is_auto_config = is_auto_config
+        self.cooldown = cooldown
+        self.headroom = headroom
+        self.labels = labels
+        self.down = down
+
+class Headroom:
+    """
+    # Arguments
+    cpu_per_unit: int
+    memory_per_unit: int
+    num_of_units: int
+    """
+    def __init__(
+            self,
+            cpu_per_unit=none,
+            memory_per_unit=none,
+            num_of_units=none):
+
+        self.cpu_per_unit = cpu_per_unit
+        self.memory_per_unit = memory_per_unit
+        self.num_of_units = num_of_units
+
+class Down:
+    """
+    # Arguments
+    evaluation_periods: int
+    """
+    def __init__(self, evaluation_periods=none):
+        self.evaluation_periods = evaluation_periods
+
+
 # endregion
 
 

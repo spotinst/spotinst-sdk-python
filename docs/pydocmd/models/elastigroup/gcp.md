@@ -100,12 +100,13 @@ __Arguments__
 <h2 id="spotinst_sdk.models.elastigroup.gcp.ThirdPartiesIntegration">ThirdPartiesIntegration</h2>
 
 ```python
-ThirdPartiesIntegration(self, docker_swarm='d3043820717d74d9a17694c176d39733')
+ThirdPartiesIntegration(self, docker_swarm='d3043820717d74d9a17694c176d39733', gke='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __docker_swarm__: DockerSwarmConfiguration
+- __gke __: GKE
 
 <h2 id="spotinst_sdk.models.elastigroup.gcp.DockerSwarmConfiguration">DockerSwarmConfiguration</h2>
 
@@ -117,6 +118,54 @@ __Arguments__
 
 - __master_host__: str
 - __master_port__: int
+
+<h2 id="spotinst_sdk.models.elastigroup.gcp.GKE">GKE</h2>
+
+```python
+GKE(self, auto_update='d3043820717d74d9a17694c176d39733', auto_scale='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __auto_update__: bool
+- __auto_scale__: AutoScale
+
+<h2 id="spotinst_sdk.models.elastigroup.gcp.AutoScale">AutoScale</h2>
+
+```python
+AutoScale(self, is_enabled='d3043820717d74d9a17694c176d39733', is_auto_config='d3043820717d74d9a17694c176d39733', cooldown='d3043820717d74d9a17694c176d39733', headroom='d3043820717d74d9a17694c176d39733', labels='d3043820717d74d9a17694c176d39733', down='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __is_enabled__: bool
+- __is_auto_config__: bool
+- __cooldown__: int
+- __headroom__: Headroom
+- __labels__: list[Label]
+- __down__: Down
+
+<h2 id="spotinst_sdk.models.elastigroup.gcp.Headroom">Headroom</h2>
+
+```python
+Headroom(self, cpu_per_unit='d3043820717d74d9a17694c176d39733', memory_per_unit='d3043820717d74d9a17694c176d39733', num_of_units='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __cpu_per_unit__: int
+- __memory_per_unit__: int
+- __num_of_units__: int
+
+<h2 id="spotinst_sdk.models.elastigroup.gcp.Down">Down</h2>
+
+```python
+Down(self, evaluation_periods='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __evaluation_periods__: int
 
 <h2 id="spotinst_sdk.models.elastigroup.gcp.Compute">Compute</h2>
 

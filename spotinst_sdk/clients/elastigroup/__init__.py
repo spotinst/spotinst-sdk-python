@@ -1415,7 +1415,6 @@ class ElastigroupGcpClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         self.print_output(body_json)
-
         group_response = self.send_post(
             body=body_json,
             url=self.__base_elastigroup_url,

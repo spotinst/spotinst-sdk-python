@@ -3,10 +3,24 @@
 		"capacity": {"minimum": 0, "maximum": 0, "target": 0}, 
 		"description": "description", 
 		"thirdPartiesIntegration": {
-			"dockerSwarm": {"masterPort": 1, "masterHost": "master_host"}
+			"dockerSwarm": {"masterPort": 1, "masterHost": "master_host"}, 
+			"gke": {
+				"autoUpdate": false, 
+				"autoScale": {
+					"headroom": {"memoryPerUnit": 0, "numOfUnits": 0, "cpuPerUnit": 0}, 
+					"isEnabled": false, 
+					"labels": [{"key": "key", "value": "value"}], 
+					"down": {"evaluationPeriods": 0}, 
+					"isAutoConfig": false, 
+					"cooldown": 0
+				}
+			}
 		}, 
 		"strategy": {
-			"preemptiblePercentage": 100, "drainingTimeout": 0, "fallbackToOd": false, "onDemandCount": 0
+			"preemptiblePercentage": 100, 
+			"drainingTimeout": 0, 
+			"fallbackToOd": false, 
+			"onDemandCount": 0
 		}, 
 		"scaling": {
 			"down": [{
@@ -18,11 +32,11 @@
 				"source": "spectrum", 
 				"cooldown": 0, 
 				"threshold": 0, 
-				"statistic": 
-				"average", 
+				"statistic": "average", 
 				"operator": "gte", 
 				"action": {"adjustment": 0, "type": "adjustment"}, 
-				"unit": "seconds", "metricName": "metric_name"
+				"unit": "seconds", 
+				"metricName": "metric_name"
 			}], 
 			"up": [{
 				"policyName": "policy_name", 
@@ -44,18 +58,16 @@
 			"instanceTypes": {"preemptible": ["preemptible"], "ondemand": "ondemand", "custom": [{"vCPU": 1, "memoryGiB": 1}]}, 
 			"health": {"gracePeriod": 0}, 
 			"launchSpecification": {
-				"disks": [
-					{
-						"deviceName": "device_name", 
-						"initializeParams": {"diskSizeGb": 1, "sourceImage": "source_image", "diskType": "disk_type"}, 
-						"autoDelete": false, 
-						"boot": false, 
-						"source": "source", 
-						"mode": "READ_WRITE", 
-						"interface": "SCSI", 
-						"type": "disk_type"
-					}
-				], 
+				"disks": [{
+					"deviceName": "device_name", 
+					"initializeParams": {"diskSizeGb": 1, "sourceImage": "source_image", "diskType": "disk_type"}, 
+					"autoDelete": false, 
+					"boot": false, 
+					"source": "source", 
+					"mode": "READ_WRITE", 
+					"interface": "SCSI", 
+					"type": "disk_type"
+				}], 
 				"backendServiceConfig": {
 					"backendServices": [{
 						"locationType": "regional", 
@@ -82,6 +94,8 @@
 		"name": "name"
 	}
 }
+
+
 
 
 

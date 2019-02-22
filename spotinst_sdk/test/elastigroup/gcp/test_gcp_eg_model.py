@@ -81,7 +81,23 @@ class GcpElastigroupTest(GcpElastigroupTestCase):
         ############## ThirdPartiesIntegration ##############
         docker_swarm = DockerSwarmConfiguration(master_host="master_host", master_port=1)
 
-        third_parties_integration = ThirdPartiesIntegration(docker_swarm=docker_swarm)
+        down = Down(evaluation_periods=0)
+
+        label = Label(key="key", value="value")
+
+        headroom = Headroom(cpu_per_unit=0, memory_per_unit=0, num_of_units=0)
+
+        auto_scale = AutoScale(
+            is_enabled=False,
+            is_auto_config=False,
+            cooldown=0,
+            headroom=headroom,
+            labels=[label],
+            down=down)
+
+        gke = GKE(auto_update=False, auto_scale=auto_scale)
+
+        third_parties_integration = ThirdPartiesIntegration(docker_swarm=docker_swarm, gke=gke)
 
         ###################### Compute ######################
         subnet = Subnet(region="us-west2", subnet_names=["subnet_names"])
@@ -93,8 +109,6 @@ class GcpElastigroupTest(GcpElastigroupTestCase):
         custom = CustomInstanceTypes(v_cpu=1, memory_gib=1)
 
         instance_types = InstanceTypes(ondemand="ondemand", preemptible=["preemptible"], custom=[custom])
-
-        label = Label(key="key", value="value")
 
         metadata = Metadata(key="key", value="value")
 
@@ -160,6 +174,7 @@ class GcpElastigroupTest(GcpElastigroupTestCase):
           scaling=scaling, 
           third_parties_integration=third_parties_integration, 
           compute=compute)
+
 
         formatted_group_dict = self.create_formatted_group_request(elastigroup)
 
