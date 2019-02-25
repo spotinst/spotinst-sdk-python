@@ -20,7 +20,7 @@ with open("spotinst_sdk/version.py") as fp:
     exec(fp.read(), version)
 
 setup(
-    name='spotinst-sdk',
+    name='spotinst-sdk2',
 
     version=version['__version__'],
 
