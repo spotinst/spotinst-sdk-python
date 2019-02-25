@@ -6,50 +6,50 @@ site_name: "Spotinst Python SDK"
 # documented. Higher indentation leads to smaller header size.
 generate:
 - clients/admin/admin_client.md:
-  - spotinst_sdk.clients.admin.AdminClient++
+  - spotinst_sdk2.clients.admin.AdminClient++
 - clients/elastigroup/elastigroup_aws_client.md:
-  - spotinst_sdk.clients.elastigroup.ElastigroupAwsClient++
+  - spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient++
 - clients/elastigroup/elastigroup_gcp_client.md:
-  - spotinst_sdk.clients.elastigroup.ElastigroupGcpClient++
+  - spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient++
 - clients/elastigroup/elastigroup_azure_client.md:
-  - spotinst_sdk.clients.elastigroup.ElastigroupAzureClient++
+  - spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient++
 - clients/functions/functions_client.md:
-  - spotinst_sdk.clients.functions.FunctionsClient++
+  - spotinst_sdk2.clients.functions.FunctionsClient++
 - clients/mcs/mcs_client.md:
-  - spotinst_sdk.clients.mcs.McsClient++
+  - spotinst_sdk2.clients.mcs.McsClient++
 - clients/mlb/mlb_client.md:
-  - spotinst_sdk.clients.mlb.MlbClient++
+  - spotinst_sdk2.clients.mlb.MlbClient++
 - clients/mrscaler/mrscaler_aws_client.md:
-  - spotinst_sdk.clients.mrscaler.MrScalerAwsClient++
+  - spotinst_sdk2.clients.mrscaler.MrScalerAwsClient++
 - clients/ocean/ocean_aws_client.md:
-  - spotinst_sdk.clients.ocean.OceanAwsClient++
+  - spotinst_sdk2.clients.ocean.OceanAwsClient++
 - clients/subscription/subscription_client.md:
-  - spotinst_sdk.clients.subscription.SubscriptionClient++
+  - spotinst_sdk2.clients.subscription.SubscriptionClient++
 
 
 - models/admin.md:
-  - spotinst_sdk.models.admin.user_mapping++
+  - spotinst_sdk2.models.admin.user_mapping++
 - models/elastigroup/aws.md:
-  - spotinst_sdk.models.elastigroup.aws++
-  - spotinst_sdk.models.elastigroup.aws.asg++
-  - spotinst_sdk.models.elastigroup.aws.deployment++
-  - spotinst_sdk.models.elastigroup.aws.deployment_action++
-  - spotinst_sdk.models.elastigroup.aws.stateful++
+  - spotinst_sdk2.models.elastigroup.aws++
+  - spotinst_sdk2.models.elastigroup.aws.asg++
+  - spotinst_sdk2.models.elastigroup.aws.deployment++
+  - spotinst_sdk2.models.elastigroup.aws.deployment_action++
+  - spotinst_sdk2.models.elastigroup.aws.stateful++
 - models/elastigroup/gcp.md:
-  - spotinst_sdk.models.elastigroup.gcp++
-  - spotinst_sdk.models.elastigroup.gcp.gke++
+  - spotinst_sdk2.models.elastigroup.gcp++
+  - spotinst_sdk2.models.elastigroup.gcp.gke++
 - models/elastigroup/azure.md:
-  - spotinst_sdk.models.elastigroup.azure++
+  - spotinst_sdk2.models.elastigroup.azure++
 - models/functions.md:
-  - spotinst_sdk.models.functions++
+  - spotinst_sdk2.models.functions++
 - models/mlb.md:
-  - spotinst_sdk.models.mlb++
+  - spotinst_sdk2.models.mlb++
 - models/mrscaler/aws.md:
-  - spotinst_sdk.models.mrscaler.aws++
+  - spotinst_sdk2.models.mrscaler.aws++
 - models/ocean/aws.md:
-  - spotinst_sdk.models.ocean.aws++
+  - spotinst_sdk2.models.ocean.aws++
 - models/subscription.md:
-  - spotinst_sdk.models.subscription++
+  - spotinst_sdk2.models.subscription++
 
 
 pages:

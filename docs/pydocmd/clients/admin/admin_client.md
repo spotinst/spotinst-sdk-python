@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.admin.AdminClient">AdminClient</h1>
+<h1 id="spotinst_sdk2.clients.admin.AdminClient">AdminClient</h1>
 
 ```python
 AdminClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.create_organization">create_organization</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.create_organization">create_organization</h2>
 
 ```python
 AdminClient.create_organization(self, org_name)
@@ -20,7 +20,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.delete_organization">delete_organization</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.delete_organization">delete_organization</h2>
 
 ```python
 AdminClient.delete_organization(self, org_id)
@@ -36,7 +36,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.set_cloud_credentials">set_cloud_credentials</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.set_cloud_credentials">set_cloud_credentials</h2>
 
 ```python
 AdminClient.set_cloud_credentials(self, iam_role, external_id)
@@ -53,7 +53,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.create_account">create_account</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.create_account">create_account</h2>
 
 ```python
 AdminClient.create_account(self, account_name)
@@ -69,7 +69,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.get_accounts">get_accounts</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.get_accounts">get_accounts</h2>
 
 ```python
 AdminClient.get_accounts(self)
@@ -81,7 +81,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.delete_account">delete_account</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.delete_account">delete_account</h2>
 
 ```python
 AdminClient.delete_account(self, account_name)
@@ -97,7 +97,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.create_user">create_user</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.create_user">create_user</h2>
 
 ```python
 AdminClient.create_user(self, first_name, last_name, email, password, role)
@@ -117,7 +117,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.add_exsisting_user">add_exsisting_user</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.add_exsisting_user">add_exsisting_user</h2>
 
 ```python
 AdminClient.add_exsisting_user(self, user_email, role)
@@ -134,7 +134,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.update_user_role">update_user_role</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.update_user_role">update_user_role</h2>
 
 ```python
 AdminClient.update_user_role(self, user_email, role)
@@ -151,7 +151,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.detach_user">detach_user</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.detach_user">detach_user</h2>
 
 ```python
 AdminClient.detach_user(self, user_email)
@@ -167,7 +167,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.get_user">get_user</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.get_user">get_user</h2>
 
 ```python
 AdminClient.get_user(self, user_email)
@@ -183,7 +183,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.admin.AdminClient.assign_user_to_account">assign_user_to_account</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.assign_user_to_account">assign_user_to_account</h2>
 
 ```python
 AdminClient.assign_user_to_account(self, mappings)
