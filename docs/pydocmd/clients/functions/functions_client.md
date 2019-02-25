@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.functions.FunctionsClient">FunctionsClient</h1>
+<h1 id="spotinst_sdk2.clients.functions.FunctionsClient">FunctionsClient</h1>
 
 ```python
 FunctionsClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.functions.FunctionsClient.create_application">create_application</h2>
+<h2 id="spotinst_sdk2.clients.functions.FunctionsClient.create_application">create_application</h2>
 
 ```python
 FunctionsClient.create_application(self, app)
@@ -19,7 +19,7 @@ __Returns__
 
 `(Object)`: Functions API response
 
-<h2 id="spotinst_sdk.clients.functions.FunctionsClient.create_environment">create_environment</h2>
+<h2 id="spotinst_sdk2.clients.functions.FunctionsClient.create_environment">create_environment</h2>
 
 ```python
 FunctionsClient.create_environment(self, env)
@@ -34,7 +34,7 @@ __Returns__
 
 `(Object)`: Functions API response
 
-<h2 id="spotinst_sdk.clients.functions.FunctionsClient.create_function">create_function</h2>
+<h2 id="spotinst_sdk2.clients.functions.FunctionsClient.create_function">create_function</h2>
 
 ```python
 FunctionsClient.create_function(self, fx)

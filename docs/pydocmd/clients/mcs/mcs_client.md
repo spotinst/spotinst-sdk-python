@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.mcs.McsClient">McsClient</h1>
+<h1 id="spotinst_sdk2.clients.mcs.McsClient">McsClient</h1>
 
 ```python
 McsClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.mcs.McsClient.get_kubernetes_cluster_cost">get_kubernetes_cluster_cost</h2>
+<h2 id="spotinst_sdk2.clients.mcs.McsClient.get_kubernetes_cluster_cost">get_kubernetes_cluster_cost</h2>
 
 ```python
 McsClient.get_kubernetes_cluster_cost(self, custer_id, from_date, to_date)

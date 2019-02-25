@@ -16,7 +16,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 version = {}
-with open("spotinst_sdk/version.py") as fp:
+with open("spotinst_sdk2/version.py") as fp:
     exec(fp.read(), version)
 
 setup(
@@ -49,29 +49,29 @@ setup(
 
     keywords='spotinst spot instances aws ec2 cloud infrastructure development elastigroup',
     packages=[
-    "spotinst_sdk", 
-        "spotinst_sdk.clients", 
-            "spotinst_sdk.clients.admin",
-            "spotinst_sdk.clients.elastigroup",
-            "spotinst_sdk.clients.functions",
-            "spotinst_sdk.clients.mcs",
-            "spotinst_sdk.clients.mlb",
-            "spotinst_sdk.clients.mrscaler",
-            "spotinst_sdk.clients.ocean",
-            "spotinst_sdk.clients.subscription",
-        "spotinst_sdk.models",
-            "spotinst_sdk.models.admin",
-            "spotinst_sdk.models.elastigroup",
-                "spotinst_sdk.models.elastigroup.aws",
-                "spotinst_sdk.models.elastigroup.azure",
-                "spotinst_sdk.models.elastigroup.gcp",
-            "spotinst_sdk.models.functions",
-            "spotinst_sdk.models.mlb",
-            "spotinst_sdk.models.mrscaler",
-                "spotinst_sdk.models.mrscaler.aws",
-            "spotinst_sdk.models.ocean",
-                "spotinst_sdk.models.ocean.aws",
-            "spotinst_sdk.models.subscription"
+    "spotinst_sdk2", 
+        "spotinst_sdk2.clients", 
+            "spotinst_sdk2.clients.admin",
+            "spotinst_sdk2.clients.elastigroup",
+            "spotinst_sdk2.clients.functions",
+            "spotinst_sdk2.clients.mcs",
+            "spotinst_sdk2.clients.mlb",
+            "spotinst_sdk2.clients.mrscaler",
+            "spotinst_sdk2.clients.ocean",
+            "spotinst_sdk2.clients.subscription",
+        "spotinst_sdk2.models",
+            "spotinst_sdk2.models.admin",
+            "spotinst_sdk2.models.elastigroup",
+                "spotinst_sdk2.models.elastigroup.aws",
+                "spotinst_sdk2.models.elastigroup.azure",
+                "spotinst_sdk2.models.elastigroup.gcp",
+            "spotinst_sdk2.models.functions",
+            "spotinst_sdk2.models.mlb",
+            "spotinst_sdk2.models.mrscaler",
+                "spotinst_sdk2.models.mrscaler.aws",
+            "spotinst_sdk2.models.ocean",
+                "spotinst_sdk2.models.ocean.aws",
+            "spotinst_sdk2.models.subscription"
     ],
     install_requires=['requests', 'PyYaml'],
 
