@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.subscription.SubscriptionClient">SubscriptionClient</h1>
+<h1 id="spotinst_sdk2.clients.subscription.SubscriptionClient">SubscriptionClient</h1>
 
 ```python
 SubscriptionClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.subscription.SubscriptionClient.create_event_subscription">create_event_subscription</h2>
+<h2 id="spotinst_sdk2.clients.subscription.SubscriptionClient.create_event_subscription">create_event_subscription</h2>
 
 ```python
 SubscriptionClient.create_event_subscription(self, subscription)
@@ -20,7 +20,7 @@ __Returns__
 
 `(Object)`: Subscription API response
 
-<h2 id="spotinst_sdk.clients.subscription.SubscriptionClient.update_event_subscription">update_event_subscription</h2>
+<h2 id="spotinst_sdk2.clients.subscription.SubscriptionClient.update_event_subscription">update_event_subscription</h2>
 
 ```python
 SubscriptionClient.update_event_subscription(self, subscription_id, subscription)
@@ -37,7 +37,7 @@ __Returns__
 
 `(Object)`: Subscription API response
 
-<h2 id="spotinst_sdk.clients.subscription.SubscriptionClient.get_all_event_subscription">get_all_event_subscription</h2>
+<h2 id="spotinst_sdk2.clients.subscription.SubscriptionClient.get_all_event_subscription">get_all_event_subscription</h2>
 
 ```python
 SubscriptionClient.get_all_event_subscription(self)
@@ -49,7 +49,7 @@ __Returns__
 
 `(Object)`: Subscription API response
 
-<h2 id="spotinst_sdk.clients.subscription.SubscriptionClient.get_event_subscription">get_event_subscription</h2>
+<h2 id="spotinst_sdk2.clients.subscription.SubscriptionClient.get_event_subscription">get_event_subscription</h2>
 
 ```python
 SubscriptionClient.get_event_subscription(self, subscription_id)
@@ -65,7 +65,7 @@ __Returns__
 
 `(Object)`: Subscription API response
 
-<h2 id="spotinst_sdk.clients.subscription.SubscriptionClient.delete_event_subscription">delete_event_subscription</h2>
+<h2 id="spotinst_sdk2.clients.subscription.SubscriptionClient.delete_event_subscription">delete_event_subscription</h2>
 
 ```python
 SubscriptionClient.delete_event_subscription(self, subscription_id)

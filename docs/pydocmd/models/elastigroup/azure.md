@@ -1,7 +1,7 @@
-<h1 id="spotinst_sdk.models.elastigroup.azure">spotinst_sdk.models.elastigroup.azure</h1>
+<h1 id="spotinst_sdk2.models.elastigroup.azure">spotinst_sdk2.models.elastigroup.azure</h1>
 
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Elastigroup">Elastigroup</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Elastigroup">Elastigroup</h2>
 
 ```python
 Elastigroup(self, name='d3043820717d74d9a17694c176d39733', region='d3043820717d74d9a17694c176d39733', resource_group_name='d3043820717d74d9a17694c176d39733', capacity='d3043820717d74d9a17694c176d39733', strategy='d3043820717d74d9a17694c176d39733', compute='d3043820717d74d9a17694c176d39733', scaling='d3043820717d74d9a17694c176d39733', scheduling='d3043820717d74d9a17694c176d39733', third_parties_integration='d3043820717d74d9a17694c176d39733')
@@ -19,7 +19,7 @@ __Arguments__
 - __scheduling__: Scheduling
 - __third_parties_integration__: ThirdPartiesIntegration
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Capacity">Capacity</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Capacity">Capacity</h2>
 
 ```python
 Capacity(self, minimum='d3043820717d74d9a17694c176d39733', maximum='d3043820717d74d9a17694c176d39733', target='d3043820717d74d9a17694c176d39733')
@@ -31,7 +31,7 @@ __Arguments__
 - __maximum__: int
 - __target__: int
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Strategy">Strategy</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Strategy">Strategy</h2>
 
 ```python
 Strategy(self, low_priority_percentage='d3043820717d74d9a17694c176d39733', on_demand_count='d3043820717d74d9a17694c176d39733', draining_timeout='d3043820717d74d9a17694c176d39733')
@@ -43,7 +43,7 @@ low_priority_percentage: int
 on_demand_count: int
 draining_timeout: int
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Compute">Compute</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Compute">Compute</h2>
 
 ```python
 Compute(self, vm_sizes='d3043820717d74d9a17694c176d39733', product='d3043820717d74d9a17694c176d39733', health='d3043820717d74d9a17694c176d39733', launch_specification='d3043820717d74d9a17694c176d39733')
@@ -56,7 +56,7 @@ __Arguments__
 - __health__: Health
 - __launch_specification__: LaunchSpecification
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.VmSizes">VmSizes</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.VmSizes">VmSizes</h2>
 
 ```python
 VmSizes(self, od_sizes='d3043820717d74d9a17694c176d39733', low_priority_sizes='d3043820717d74d9a17694c176d39733')
@@ -66,7 +66,7 @@ VmSizes(self, od_sizes='d3043820717d74d9a17694c176d39733', low_priority_sizes='d
 od_sizes: list[str]
 low_priority_sizes: list[str]
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Health">Health</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Health">Health</h2>
 
 ```python
 Health(self, health_check_type='d3043820717d74d9a17694c176d39733', auto_healing='d3043820717d74d9a17694c176d39733', grace_period='d3043820717d74d9a17694c176d39733')
@@ -77,7 +77,7 @@ health_check_type: str
 auto_healing: bool
 grace_period: int
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.LaunchSpecification">LaunchSpecification</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.LaunchSpecification">LaunchSpecification</h2>
 
 ```python
 LaunchSpecification(self, image='d3043820717d74d9a17694c176d39733', network='d3043820717d74d9a17694c176d39733', login='d3043820717d74d9a17694c176d39733', user_data='d3043820717d74d9a17694c176d39733', shutdown_script='d3043820717d74d9a17694c176d39733', custom_data='d3043820717d74d9a17694c176d39733', load_balancers_config='d3043820717d74d9a17694c176d39733', tags='d3043820717d74d9a17694c176d39733', extensions='d3043820717d74d9a17694c176d39733', managed_service_identities='d3043820717d74d9a17694c176d39733')
@@ -95,7 +95,7 @@ tags: list[Tag]
 extensions: list[Extension]
 managed_service_identities: list[ManagedServiceIdentity]
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Image">Image</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Image">Image</h2>
 
 ```python
 Image(self, marketplace='d3043820717d74d9a17694c176d39733', custom='d3043820717d74d9a17694c176d39733')
@@ -106,7 +106,7 @@ __Arguments__
 - __marketplace__: Marketplace
 - __custom__: Custom
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Marketplace">Marketplace</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Marketplace">Marketplace</h2>
 
 ```python
 Marketplace(self, publisher='d3043820717d74d9a17694c176d39733', offer='d3043820717d74d9a17694c176d39733', sku='d3043820717d74d9a17694c176d39733', version='d3043820717d74d9a17694c176d39733')
@@ -119,7 +119,7 @@ __Arguments__
 - __sku__: str
 - __version__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Custom">Custom</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Custom">Custom</h2>
 
 ```python
 Custom(self, resource_group_name='d3043820717d74d9a17694c176d39733', image_name='d3043820717d74d9a17694c176d39733')
@@ -130,7 +130,7 @@ __Arguments__
 - __resource_group_name__: str
 - __image_name__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Network">Network</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Network">Network</h2>
 
 ```python
 Network(self, virtual_network_name='d3043820717d74d9a17694c176d39733', subnet_name='d3043820717d74d9a17694c176d39733', resource_group_name='d3043820717d74d9a17694c176d39733', assign_public_ip='d3043820717d74d9a17694c176d39733', additional_ip_configurations='d3043820717d74d9a17694c176d39733')
@@ -144,7 +144,7 @@ __Arguments__
 - __assign_public_ip__: bool
 - __additional_ip_configurations__: list[AdditionalIpConfiguration]
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.AdditionalIpConfiguration">AdditionalIpConfiguration</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.AdditionalIpConfiguration">AdditionalIpConfiguration</h2>
 
 ```python
 AdditionalIpConfiguration(self, name='d3043820717d74d9a17694c176d39733', private_ip_address_version='d3043820717d74d9a17694c176d39733')
@@ -155,7 +155,7 @@ __Arguments__
 - __name__: str
 - __private_ip_address_version__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Login">Login</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Login">Login</h2>
 
 ```python
 Login(self, ssh_public_key='d3043820717d74d9a17694c176d39733', user_name='d3043820717d74d9a17694c176d39733', password='d3043820717d74d9a17694c176d39733')
@@ -167,7 +167,7 @@ __Arguments__
 - __user_name__: str
 - __password__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.LoadBalancerConfig">LoadBalancerConfig</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.LoadBalancerConfig">LoadBalancerConfig</h2>
 
 ```python
 LoadBalancerConfig(self, load_balancers='d3043820717d74d9a17694c176d39733')
@@ -177,7 +177,7 @@ __Arguments__
 
 - __load_balancers__: list[LoadBalancer]
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.LoadBalancer">LoadBalancer</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.LoadBalancer">LoadBalancer</h2>
 
 ```python
 LoadBalancer(self, balancer_id='d3043820717d74d9a17694c176d39733', target_set_id='d3043820717d74d9a17694c176d39733', auto_weight='d3043820717d74d9a17694c176d39733', resource_group_name='d3043820717d74d9a17694c176d39733', application_gateway_name='d3043820717d74d9a17694c176d39733', backend_pool_name='d3043820717d74d9a17694c176d39733', balancer_type='d3043820717d74d9a17694c176d39733')
@@ -193,7 +193,7 @@ __Arguments__
 - __backend_pool_name__: str
 - __balancer_type__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Tag">Tag</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Tag">Tag</h2>
 
 ```python
 Tag(self, tag_key='d3043820717d74d9a17694c176d39733', tag_value='d3043820717d74d9a17694c176d39733')
@@ -204,7 +204,7 @@ __Arguments__
 - __tag_key__: str
 - __tag_value__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Extension">Extension</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Extension">Extension</h2>
 
 ```python
 Extension(self, auto_upgrade_minor_version='d3043820717d74d9a17694c176d39733', name='d3043820717d74d9a17694c176d39733', publisher='d3043820717d74d9a17694c176d39733', extension_type='d3043820717d74d9a17694c176d39733', type_handler_version='d3043820717d74d9a17694c176d39733', protected_settings='d3043820717d74d9a17694c176d39733')
@@ -219,7 +219,7 @@ __Arguments__
 - __type_handler_version__: str
 - __protected_settings__: ProtectedSettings
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.ProtectedSettings">ProtectedSettings</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.ProtectedSettings">ProtectedSettings</h2>
 
 ```python
 ProtectedSettings(self, command_to_execute='d3043820717d74d9a17694c176d39733')
@@ -229,7 +229,7 @@ __Arguments__
 
 - __command_to_execute__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.ManagedServiceIdentity">ManagedServiceIdentity</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.ManagedServiceIdentity">ManagedServiceIdentity</h2>
 
 ```python
 ManagedServiceIdentity(self, resource_group_name='d3043820717d74d9a17694c176d39733', name='d3043820717d74d9a17694c176d39733')
@@ -240,7 +240,7 @@ __Arguments__
 - __resource_group_name__: str
 - __name__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Scaling">Scaling</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Scaling">Scaling</h2>
 
 ```python
 Scaling(self, up='d3043820717d74d9a17694c176d39733', down='d3043820717d74d9a17694c176d39733')
@@ -251,7 +251,7 @@ __Arguments__
 - __up__:  list[ScalingPolicy]
 - __down__: list[ScalingPolicy]
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.ScalingPolicy">ScalingPolicy</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.ScalingPolicy">ScalingPolicy</h2>
 
 ```python
 ScalingPolicy(self, policy_name='d3043820717d74d9a17694c176d39733', namespace='d3043820717d74d9a17694c176d39733', metric_name='d3043820717d74d9a17694c176d39733', dimensions='d3043820717d74d9a17694c176d39733', statistic='d3043820717d74d9a17694c176d39733', unit='d3043820717d74d9a17694c176d39733', threshold='d3043820717d74d9a17694c176d39733', adjustment='d3043820717d74d9a17694c176d39733', min_target_capacity='d3043820717d74d9a17694c176d39733', period='d3043820717d74d9a17694c176d39733', evaluation_periods='d3043820717d74d9a17694c176d39733', cooldown='d3043820717d74d9a17694c176d39733', action='d3043820717d74d9a17694c176d39733', operator='d3043820717d74d9a17694c176d39733')
@@ -274,7 +274,7 @@ __Arguments__
 - __action__: ScalingPolicyAction
 - __operator__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.ScalingPolicyDimension">ScalingPolicyDimension</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.ScalingPolicyDimension">ScalingPolicyDimension</h2>
 
 ```python
 ScalingPolicyDimension(self, name='d3043820717d74d9a17694c176d39733', value='d3043820717d74d9a17694c176d39733')
@@ -285,7 +285,7 @@ __Arguments__
 - __name__: str
 - __value__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.ScalingPolicyAction">ScalingPolicyAction</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.ScalingPolicyAction">ScalingPolicyAction</h2>
 
 ```python
 ScalingPolicyAction(self, scaling_type='d3043820717d74d9a17694c176d39733', adjustment='d3043820717d74d9a17694c176d39733', min_target_capacity='d3043820717d74d9a17694c176d39733', target='d3043820717d74d9a17694c176d39733', maximum='d3043820717d74d9a17694c176d39733', minimum='d3043820717d74d9a17694c176d39733')
@@ -300,7 +300,7 @@ __Arguments__
 - __maximum__: int
 - __minimum__: int
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Scheduling">Scheduling</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Scheduling">Scheduling</h2>
 
 ```python
 Scheduling(self, tasks='d3043820717d74d9a17694c176d39733')
@@ -310,7 +310,7 @@ __Arguments__
 
 - __tasks__: list[Task]
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Task">Task</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Task">Task</h2>
 
 ```python
 Task(self, is_enabled='d3043820717d74d9a17694c176d39733', cron_expression='d3043820717d74d9a17694c176d39733', task_type='d3043820717d74d9a17694c176d39733', scale_target_capacity='d3043820717d74d9a17694c176d39733', scale_min_capacity='d3043820717d74d9a17694c176d39733', scale_max_capacity='d3043820717d74d9a17694c176d39733', batch_size_percentage='d3043820717d74d9a17694c176d39733', grace_period='d3043820717d74d9a17694c176d39733', adjustment='d3043820717d74d9a17694c176d39733', adjustment_percentage='d3043820717d74d9a17694c176d39733')
@@ -329,7 +329,7 @@ __Arguments__
 - __adjustment__: int
 - __adjustment_percentage__: int
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.ThirdPartiesIntegration">ThirdPartiesIntegration</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.ThirdPartiesIntegration">ThirdPartiesIntegration</h2>
 
 ```python
 ThirdPartiesIntegration(self, mlb_runtime='d3043820717d74d9a17694c176d39733', kubernetes='d3043820717d74d9a17694c176d39733')
@@ -340,7 +340,7 @@ __Arguments__
 - __mlb_runtime__: MlbRuntime
 - __kubernetes__: Kubernetes
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.MlbRuntime">MlbRuntime</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.MlbRuntime">MlbRuntime</h2>
 
 ```python
 MlbRuntime(self, deployment_id='d3043820717d74d9a17694c176d39733')
@@ -350,7 +350,7 @@ __Arguments__
 
 - __deployment_id__: str
 
-<h2 id="spotinst_sdk.models.elastigroup.azure.Kubernetes">Kubernetes</h2>
+<h2 id="spotinst_sdk2.models.elastigroup.azure.Kubernetes">Kubernetes</h2>
 
 ```python
 Kubernetes(self, cluster_identifier='d3043820717d74d9a17694c176d39733')

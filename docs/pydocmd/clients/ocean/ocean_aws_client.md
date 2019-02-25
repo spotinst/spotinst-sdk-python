@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.ocean.OceanAwsClient">OceanAwsClient</h1>
+<h1 id="spotinst_sdk2.clients.ocean.OceanAwsClient">OceanAwsClient</h1>
 
 ```python
 OceanAwsClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.ocean.OceanAwsClient.create_ocean_cluster">create_ocean_cluster</h2>
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.create_ocean_cluster">create_ocean_cluster</h2>
 
 ```python
 OceanAwsClient.create_ocean_cluster(self, ocean)
@@ -20,7 +20,7 @@ __Returns__
 
 `(Object)`: Ocean API response
 
-<h2 id="spotinst_sdk.clients.ocean.OceanAwsClient.update_ocean_cluster">update_ocean_cluster</h2>
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.update_ocean_cluster">update_ocean_cluster</h2>
 
 ```python
 OceanAwsClient.update_ocean_cluster(self, ocean_id, ocean)
@@ -37,7 +37,7 @@ __Returns__
 
 `(Object)`: Ocean API response
 
-<h2 id="spotinst_sdk.clients.ocean.OceanAwsClient.get_all_ocean_cluster">get_all_ocean_cluster</h2>
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_all_ocean_cluster">get_all_ocean_cluster</h2>
 
 ```python
 OceanAwsClient.get_all_ocean_cluster(self)
@@ -49,7 +49,7 @@ __Returns__
 
 `(Object)`: Ocean API response
 
-<h2 id="spotinst_sdk.clients.ocean.OceanAwsClient.get_ocean_cluster">get_ocean_cluster</h2>
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_ocean_cluster">get_ocean_cluster</h2>
 
 ```python
 OceanAwsClient.get_ocean_cluster(self, ocean_id)
@@ -65,7 +65,7 @@ __Returns__
 
 `(Object)`: Ocean API response
 
-<h2 id="spotinst_sdk.clients.ocean.OceanAwsClient.delete_ocean_cluster">delete_ocean_cluster</h2>
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.delete_ocean_cluster">delete_ocean_cluster</h2>
 
 ```python
 OceanAwsClient.delete_ocean_cluster(self, ocean_id)

@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient">ElastigroupGcpClient</h1>
+<h1 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient">ElastigroupGcpClient</h1>
 
 ```python
 ElastigroupGcpClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.create_elastigroup">create_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.create_elastigroup">create_elastigroup</h2>
 
 ```python
 ElastigroupGcpClient.create_elastigroup(self, group)
@@ -20,7 +20,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.update_elastigroup">update_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.update_elastigroup">update_elastigroup</h2>
 
 ```python
 ElastigroupGcpClient.update_elastigroup(self, group_update, group_id)
@@ -37,7 +37,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.delete_elastigroup">delete_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.delete_elastigroup">delete_elastigroup</h2>
 
 ```python
 ElastigroupGcpClient.delete_elastigroup(self, group_id)
@@ -53,7 +53,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.get_elastigroup">get_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.get_elastigroup">get_elastigroup</h2>
 
 ```python
 ElastigroupGcpClient.get_elastigroup(self, group_id)
@@ -69,7 +69,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.get_elastigroups">get_elastigroups</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.get_elastigroups">get_elastigroups</h2>
 
 ```python
 ElastigroupGcpClient.get_elastigroups(self)
@@ -81,7 +81,7 @@ __Returns__
 
 `(List)`: List of Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.scale_elastigroup_up">scale_elastigroup_up</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.scale_elastigroup_up">scale_elastigroup_up</h2>
 
 ```python
 ElastigroupGcpClient.scale_elastigroup_up(self, group_id, adjustment)
@@ -98,7 +98,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.scale_elastigroup_down">scale_elastigroup_down</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.scale_elastigroup_down">scale_elastigroup_down</h2>
 
 ```python
 ElastigroupGcpClient.scale_elastigroup_down(self, group_id, adjustment)
@@ -115,7 +115,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.roll_group">roll_group</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.roll_group">roll_group</h2>
 
 ```python
 ElastigroupGcpClient.roll_group(self, group_id, group_roll)
@@ -132,7 +132,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.get_all_group_deployment">get_all_group_deployment</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.get_all_group_deployment">get_all_group_deployment</h2>
 
 ```python
 ElastigroupGcpClient.get_all_group_deployment(self, group_id)
@@ -148,7 +148,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.get_deployment_status">get_deployment_status</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.get_deployment_status">get_deployment_status</h2>
 
 ```python
 ElastigroupGcpClient.get_deployment_status(self, group_id, roll_id)
@@ -165,7 +165,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.stop_deployment">stop_deployment</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.stop_deployment">stop_deployment</h2>
 
 ```python
 ElastigroupGcpClient.stop_deployment(self, group_id, roll_id)
@@ -182,7 +182,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.get_elastigroup_active_instances">get_elastigroup_active_instances</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.get_elastigroup_active_instances">get_elastigroup_active_instances</h2>
 
 ```python
 ElastigroupGcpClient.get_elastigroup_active_instances(self, group_id)
@@ -198,7 +198,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.get_cost_per_elastigroup">get_cost_per_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.get_cost_per_elastigroup">get_cost_per_elastigroup</h2>
 
 ```python
 ElastigroupGcpClient.get_cost_per_elastigroup(self, group_id, to_date=None, from_date=None)
@@ -216,7 +216,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.get_elastigroup_activity">get_elastigroup_activity</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.get_elastigroup_activity">get_elastigroup_activity</h2>
 
 ```python
 ElastigroupGcpClient.get_elastigroup_activity(self, group_id, start_date)
@@ -233,7 +233,7 @@ __Returns__
 
 `(Object) `: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.import_gke">import_gke</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.import_gke">import_gke</h2>
 
 ```python
 ElastigroupGcpClient.import_gke(self, location, gke_id, gke)
@@ -251,7 +251,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupGcpClient.detach_elastigroup_instances">detach_elastigroup_instances</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.detach_elastigroup_instances">detach_elastigroup_instances</h2>
 
 ```python
 ElastigroupGcpClient.detach_elastigroup_instances(self, group_id, detach_configuration)

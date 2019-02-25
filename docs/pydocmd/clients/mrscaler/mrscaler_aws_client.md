@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient">MrScalerAwsClient</h1>
+<h1 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient">MrScalerAwsClient</h1>
 
 ```python
 MrScalerAwsClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.create_emr">create_emr</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.create_emr">create_emr</h2>
 
 ```python
 MrScalerAwsClient.create_emr(self, emr)
@@ -20,7 +20,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.update_emr">update_emr</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.update_emr">update_emr</h2>
 
 ```python
 MrScalerAwsClient.update_emr(self, emr_id, emr)
@@ -37,7 +37,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.get_all_emr">get_all_emr</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.get_all_emr">get_all_emr</h2>
 
 ```python
 MrScalerAwsClient.get_all_emr(self)
@@ -49,7 +49,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.get_emr">get_emr</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.get_emr">get_emr</h2>
 
 ```python
 MrScalerAwsClient.get_emr(self, emr_id)
@@ -65,7 +65,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.get_emr_instances">get_emr_instances</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.get_emr_instances">get_emr_instances</h2>
 
 ```python
 MrScalerAwsClient.get_emr_instances(self, emr_id)
@@ -81,7 +81,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.get_emr_cluster">get_emr_cluster</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.get_emr_cluster">get_emr_cluster</h2>
 
 ```python
 MrScalerAwsClient.get_emr_cluster(self, emr_id)
@@ -97,7 +97,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.get_emr_cost">get_emr_cost</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.get_emr_cost">get_emr_cost</h2>
 
 ```python
 MrScalerAwsClient.get_emr_cost(self, emr_id, from_date=None, to_date=None)
@@ -115,7 +115,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.delete_emr">delete_emr</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.delete_emr">delete_emr</h2>
 
 ```python
 MrScalerAwsClient.delete_emr(self, emr_id)
@@ -131,7 +131,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.scale_up_emr">scale_up_emr</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.scale_up_emr">scale_up_emr</h2>
 
 ```python
 MrScalerAwsClient.scale_up_emr(self, emr_id, adjustment)
@@ -148,7 +148,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.mrscaler.MrScalerAwsClient.scale_down_emr">scale_down_emr</h2>
+<h2 id="spotinst_sdk2.clients.mrscaler.MrScalerAwsClient.scale_down_emr">scale_down_emr</h2>
 
 ```python
 MrScalerAwsClient.scale_down_emr(self, emr_id, adjustment)
