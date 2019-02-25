@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.elastigroup.ElastigroupAzureClient">ElastigroupAzureClient</h1>
+<h1 id="spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient">ElastigroupAzureClient</h1>
 
 ```python
 ElastigroupAzureClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupAzureClient.create_elastigroup">create_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient.create_elastigroup">create_elastigroup</h2>
 
 ```python
 ElastigroupAzureClient.create_elastigroup(self, group)
@@ -20,7 +20,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupAzureClient.update_elastigroup">update_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient.update_elastigroup">update_elastigroup</h2>
 
 ```python
 ElastigroupAzureClient.update_elastigroup(self, group_update, group_id)
@@ -37,7 +37,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupAzureClient.delete_elastigroup">delete_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient.delete_elastigroup">delete_elastigroup</h2>
 
 ```python
 ElastigroupAzureClient.delete_elastigroup(self, group_id)
@@ -53,7 +53,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupAzureClient.get_elastigroup">get_elastigroup</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient.get_elastigroup">get_elastigroup</h2>
 
 ```python
 ElastigroupAzureClient.get_elastigroup(self, group_id)
@@ -69,7 +69,7 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
-<h2 id="spotinst_sdk.clients.elastigroup.ElastigroupAzureClient.get_elastigroups">get_elastigroups</h2>
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient.get_elastigroups">get_elastigroups</h2>
 
 ```python
 ElastigroupAzureClient.get_elastigroups(self)

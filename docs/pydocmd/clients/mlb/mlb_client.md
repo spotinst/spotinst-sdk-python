@@ -1,10 +1,10 @@
-<h1 id="spotinst_sdk.clients.mlb.MlbClient">MlbClient</h1>
+<h1 id="spotinst_sdk2.clients.mlb.MlbClient">MlbClient</h1>
 
 ```python
 MlbClient(self, session=None, print_output=True, log_level=None, user_agent=None)
 ```
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_runtime">get_all_mlb_runtime</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_runtime">get_all_mlb_runtime</h2>
 
 ```python
 MlbClient.get_all_mlb_runtime(self)
@@ -16,7 +16,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_runtime">get_mlb_runtime</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_runtime">get_mlb_runtime</h2>
 
 ```python
 MlbClient.get_mlb_runtime(self, runtime_id)
@@ -32,7 +32,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.deregister_mlb_runtime">deregister_mlb_runtime</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.deregister_mlb_runtime">deregister_mlb_runtime</h2>
 
 ```python
 MlbClient.deregister_mlb_runtime(self, runtime_id)
@@ -48,7 +48,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_runtime">delete_mlb_runtime</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_runtime">delete_mlb_runtime</h2>
 
 ```python
 MlbClient.delete_mlb_runtime(self, runtime_id)
@@ -64,7 +64,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.create_mlb_deployment">create_mlb_deployment</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.create_mlb_deployment">create_mlb_deployment</h2>
 
 ```python
 MlbClient.create_mlb_deployment(self, deployment_name)
@@ -80,7 +80,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.update_mlb_deployment">update_mlb_deployment</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.update_mlb_deployment">update_mlb_deployment</h2>
 
 ```python
 MlbClient.update_mlb_deployment(self, deployment_id, deployment_name)
@@ -97,7 +97,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_deployment">get_mlb_deployment</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_deployment">get_mlb_deployment</h2>
 
 ```python
 MlbClient.get_mlb_deployment(self, deployment_id)
@@ -113,7 +113,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_deployment">get_all_mlb_deployment</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_deployment">get_all_mlb_deployment</h2>
 
 ```python
 MlbClient.get_all_mlb_deployment(self)
@@ -125,7 +125,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_deployment">delete_mlb_deployment</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_deployment">delete_mlb_deployment</h2>
 
 ```python
 MlbClient.delete_mlb_deployment(self, deployment_id)
@@ -141,7 +141,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.create_mlb_balancer">create_mlb_balancer</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.create_mlb_balancer">create_mlb_balancer</h2>
 
 ```python
 MlbClient.create_mlb_balancer(self, balancer)
@@ -157,7 +157,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.update_mlb_balancer">update_mlb_balancer</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.update_mlb_balancer">update_mlb_balancer</h2>
 
 ```python
 MlbClient.update_mlb_balancer(self, balancer_id, balancer)
@@ -174,7 +174,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_balancer">get_mlb_balancer</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_balancer">get_mlb_balancer</h2>
 
 ```python
 MlbClient.get_mlb_balancer(self, balancer_id)
@@ -190,7 +190,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_balancer">get_all_mlb_balancer</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_balancer">get_all_mlb_balancer</h2>
 
 ```python
 MlbClient.get_all_mlb_balancer(self)
@@ -202,7 +202,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_balancer">delete_mlb_balancer</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_balancer">delete_mlb_balancer</h2>
 
 ```python
 MlbClient.delete_mlb_balancer(self, balancer_id)
@@ -218,7 +218,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.create_mlb_target_set">create_mlb_target_set</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.create_mlb_target_set">create_mlb_target_set</h2>
 
 ```python
 MlbClient.create_mlb_target_set(self, target_set)
@@ -234,7 +234,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.update_mlb_target_set">update_mlb_target_set</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.update_mlb_target_set">update_mlb_target_set</h2>
 
 ```python
 MlbClient.update_mlb_target_set(self, target_set_id, target_set)
@@ -251,7 +251,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_target_set">get_mlb_target_set</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_target_set">get_mlb_target_set</h2>
 
 ```python
 MlbClient.get_mlb_target_set(self, target_set_id)
@@ -267,7 +267,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_target_set">get_all_mlb_target_set</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_target_set">get_all_mlb_target_set</h2>
 
 ```python
 MlbClient.get_all_mlb_target_set(self)
@@ -279,7 +279,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_target_set">delete_mlb_target_set</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_target_set">delete_mlb_target_set</h2>
 
 ```python
 MlbClient.delete_mlb_target_set(self, target_set_id)
@@ -295,7 +295,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.register_mlb_targets">register_mlb_targets</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.register_mlb_targets">register_mlb_targets</h2>
 
 ```python
 MlbClient.register_mlb_targets(self, target_set_id, targets)
@@ -312,7 +312,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.deregister_mlb_targets">deregister_mlb_targets</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.deregister_mlb_targets">deregister_mlb_targets</h2>
 
 ```python
 MlbClient.deregister_mlb_targets(self, target_set_id, targets)
@@ -329,7 +329,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.create_mlb_target">create_mlb_target</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.create_mlb_target">create_mlb_target</h2>
 
 ```python
 MlbClient.create_mlb_target(self, target)
@@ -345,7 +345,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.update_mlb_target">update_mlb_target</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.update_mlb_target">update_mlb_target</h2>
 
 ```python
 MlbClient.update_mlb_target(self, target_id, target)
@@ -362,7 +362,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_target">get_mlb_target</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_target">get_mlb_target</h2>
 
 ```python
 MlbClient.get_mlb_target(self, target_id)
@@ -378,7 +378,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_target">get_all_mlb_target</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_target">get_all_mlb_target</h2>
 
 ```python
 MlbClient.get_all_mlb_target(self)
@@ -390,7 +390,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_target">delete_mlb_target</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_target">delete_mlb_target</h2>
 
 ```python
 MlbClient.delete_mlb_target(self, target_id)
@@ -406,7 +406,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.create_mlb_listener">create_mlb_listener</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.create_mlb_listener">create_mlb_listener</h2>
 
 ```python
 MlbClient.create_mlb_listener(self, listener)
@@ -422,7 +422,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.update_mlb_listener">update_mlb_listener</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.update_mlb_listener">update_mlb_listener</h2>
 
 ```python
 MlbClient.update_mlb_listener(self, listener_id, listener)
@@ -439,7 +439,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_listener">get_mlb_listener</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_listener">get_mlb_listener</h2>
 
 ```python
 MlbClient.get_mlb_listener(self, listener_id)
@@ -455,7 +455,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_listener">get_all_mlb_listener</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_listener">get_all_mlb_listener</h2>
 
 ```python
 MlbClient.get_all_mlb_listener(self)
@@ -467,7 +467,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_listener">delete_mlb_listener</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_listener">delete_mlb_listener</h2>
 
 ```python
 MlbClient.delete_mlb_listener(self, listener_id)
@@ -483,7 +483,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.create_mlb_routing_rule">create_mlb_routing_rule</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.create_mlb_routing_rule">create_mlb_routing_rule</h2>
 
 ```python
 MlbClient.create_mlb_routing_rule(self, routing_rule)
@@ -499,7 +499,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.update_mlb_routing_rule">update_mlb_routing_rule</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.update_mlb_routing_rule">update_mlb_routing_rule</h2>
 
 ```python
 MlbClient.update_mlb_routing_rule(self, routing_rule_id, routing_rule)
@@ -516,7 +516,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_routing_rule">get_mlb_routing_rule</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_routing_rule">get_mlb_routing_rule</h2>
 
 ```python
 MlbClient.get_mlb_routing_rule(self, routing_rule_id)
@@ -532,7 +532,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_routing_rule">get_all_mlb_routing_rule</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_routing_rule">get_all_mlb_routing_rule</h2>
 
 ```python
 MlbClient.get_all_mlb_routing_rule(self)
@@ -544,7 +544,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_routing_rule">delete_mlb_routing_rule</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_routing_rule">delete_mlb_routing_rule</h2>
 
 ```python
 MlbClient.delete_mlb_routing_rule(self, routing_rule_id)
@@ -560,7 +560,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.create_mlb_middleware">create_mlb_middleware</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.create_mlb_middleware">create_mlb_middleware</h2>
 
 ```python
 MlbClient.create_mlb_middleware(self, middleware)
@@ -576,7 +576,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.update_mlb_middleware">update_mlb_middleware</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.update_mlb_middleware">update_mlb_middleware</h2>
 
 ```python
 MlbClient.update_mlb_middleware(self, middleware_id, middleware)
@@ -593,7 +593,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_mlb_middleware">get_mlb_middleware</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_mlb_middleware">get_mlb_middleware</h2>
 
 ```python
 MlbClient.get_mlb_middleware(self, middleware_id)
@@ -609,7 +609,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.get_all_mlb_middleware">get_all_mlb_middleware</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.get_all_mlb_middleware">get_all_mlb_middleware</h2>
 
 ```python
 MlbClient.get_all_mlb_middleware(self)
@@ -621,7 +621,7 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk.clients.mlb.MlbClient.delete_mlb_middleware">delete_mlb_middleware</h2>
+<h2 id="spotinst_sdk2.clients.mlb.MlbClient.delete_mlb_middleware">delete_mlb_middleware</h2>
 
 ```python
 MlbClient.delete_mlb_middleware(self, middleware_id)
