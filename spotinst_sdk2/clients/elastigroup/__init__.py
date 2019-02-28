@@ -4,19 +4,20 @@ from spotinst_sdk2.client import Client
 
 # region AWS imports
 import spotinst_sdk2.models.elastigroup.aws as aws_elastigroup
-import spotinst_sdk2.models.elastigroup.aws.stateful as spotinst_stateful
-import spotinst_sdk2.models.elastigroup.aws.deployment as spotinst_deployment
-import spotinst_sdk2.models.elastigroup.aws.deployment_action as spotinst_deployment_action
-import spotinst_sdk2.models.elastigroup.aws.asg as spotinst_asg
+import spotinst_sdk2.models.elastigroup.aws.stateful as aws_stateful
+import spotinst_sdk2.models.elastigroup.aws.deployment as aws_deployment
+import spotinst_sdk2.models.elastigroup.aws.deployment_action as aws_deployment_action
+import spotinst_sdk2.models.elastigroup.aws.asg as aws_asg
 # endregion
 
 # region GCP imports
 import spotinst_sdk2.models.elastigroup.gcp as gcp_elastigroup
-import spotinst_sdk2.models.elastigroup.gcp.gke as spotinst_gke
+import spotinst_sdk2.models.elastigroup.gcp.gke as gcp_gke
 # endregion
 
 # region Azure imports
 import spotinst_sdk2.models.elastigroup.azure as azure_elastigroup
+import spotinst_sdk2.models.elastigroup.azure.task as azure_task
 # endregion
 
 # region AWS
@@ -384,7 +385,7 @@ class ElastigroupAwsClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """
-        deployment_action_request = spotinst_deployment_action.DeploymentActionRequest(deployment_action)
+        deployment_action_request = aws_deployment_action.DeploymentActionRequest(deployment_action)
 
         deployment_action_dict = self.exclude_missing(
             json.loads(deployment_action_request.toJSON()))
@@ -932,7 +933,7 @@ class ElastigroupAwsClient(Client):
         """ 
         query_params = dict(region=region, autoScalingGroupName=asg_name, dryRun=dry_run)
 
-        asg = spotinst_asg.ImportASGRequest(asg)
+        asg = aws_asg.ImportASGRequest(asg)
 
         excluded_group_dict = self.exclude_missing(json.loads(asg.toJSON()))
 
@@ -1015,7 +1016,7 @@ class ElastigroupAwsClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """ 
-        blue_green_deployment = spotinst_deployment.BlueGreenDeploymentRequest(blue_green_deployment)
+        blue_green_deployment = aws_deployment.BlueGreenDeploymentRequest(blue_green_deployment)
 
         excluded_group_dict = self.exclude_missing(json.loads(blue_green_deployment.toJSON()))
 
@@ -1326,7 +1327,7 @@ class ElastigroupAwsClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """
-        stateful_instance = spotinst_stateful.StatefulImportRequest(stateful_instance)
+        stateful_instance = aws_stateful.StatefulImportRequest(stateful_instance)
 
         excluded_group_dict = self.exclude_missing(json.loads(stateful_instance.toJSON()))
 
@@ -1752,7 +1753,7 @@ class ElastigroupGcpClient(Client):
         """ 
         query_params = dict(location=location, clusterId=gke_id)
 
-        gke = spotinst_gke.ImportGKERequest(gke)
+        gke = gcp_gke.ImportGKERequest(gke)
 
         excluded_group_dict = self.exclude_missing(json.loads(gke.toJSON()))
 
@@ -1817,6 +1818,7 @@ class ElastigroupGcpClient(Client):
 # region Azure
 class ElastigroupAzureClient(Client):
     __base_elastigroup_url = "https://api.spotinst.io/compute/azure/group"
+    __base_task_url = "https://api.spotinst.io/azure/compute/task"
 
     def create_elastigroup(self, group):
         """
@@ -1932,5 +1934,335 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
-# endreion
 
+    # region Deploy
+    def roll_group(self, group_id, group_roll):
+        """
+        Roll an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        group_roll (ElastigroupRoll): GroupRoll Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        group_roll_request = azure_elastigroup.ElastigroupRollRequest(
+            group_roll=group_roll)
+
+        excluded_group_roll_dict = self.exclude_missing(
+            json.loads(group_roll_request.toJSON()))
+
+        formatted_group_roll_dict = self.convert_json(
+            excluded_group_roll_dict, self.underscore_to_camel)
+
+        roll_response = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" + str(group_id) + "/roll",
+            body=json.dumps(formatted_group_roll_dict),
+            entity_name='roll')
+
+        formatted_response = self.convert_json(
+            roll_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]
+
+        return retVal
+
+    def get_all_group_deployment(self, group_id):
+        """
+        get all group deployment from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll",
+            entity_name='roll')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def get_deployment_status(self, group_id, roll_id):
+        """
+        get all a deployment status from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll/"+
+                str(roll_id),
+            entity_name='roll')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def stop_deployment(self, group_id, roll_id):
+        """
+        stop a deployment from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        roll_id (String): Deployment ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        content = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/roll/"+
+                str(roll_id),
+            body=json.dumps(dict(roll=dict(status="STOPPED"))),
+            entity_name='roll')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+
+        return formatted_response["response"]
+    # endregion
+
+
+    # region Scale
+    def scale_elastigroup_up(self, group_id, adjustment):
+        """
+        Scale up an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """   
+        query_params = dict({"adjustment": adjustment})
+        content = self.send_put_with_params(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/scale/up",
+            entity_name='elastigroup (scale up)',
+            body=None,
+            user_query_params=query_params)
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def scale_elastigroup_down(self, group_id, adjustment):
+        """
+        Scale down an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        query_params = dict({"adjustment": adjustment})
+        content = self.send_put_with_params(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/scale/down",
+            entity_name='elastigroup (scale down)',
+            body=None,
+            user_query_params=query_params)
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+    # endregion
+
+
+    # region Task
+    def create_task(self, task):
+        """
+        Create a scheduling task
+        
+        # Arguments
+        task (Task): Task Object
+        
+        # Returns
+        (Object): Task API response 
+        """    
+        task = azure_task.TaskCreationRequest(task)
+
+        excluded_group_dict = self.exclude_missing(json.loads(task.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        group_response = self.send_post(
+            body=json.dumps(formatted_group_dict),
+            url=self.__base_task_url,
+            entity_name='task')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def update_task(self, task_update, task_id):
+        """
+        Update a scheduling Task
+        
+        # Arguments
+        task_id (String): Task ID
+        task_update (Elastigroup): Task Object
+        
+        # Returns
+        (Object): Task API response 
+        """
+        task = azure_task.TaskCreationRequest(task_update)
+
+        excluded_group_update_dict = self.exclude_missing(
+            json.loads(task.toJSON()))
+
+        formatted_group_update_dict = self.convert_json(
+            excluded_group_update_dict, self.underscore_to_camel)
+
+        group_response = self.send_put(
+            body=json.dumps(formatted_group_update_dict), 
+            url=self.__base_task_url + "/" + task_id, 
+            entity_name='task'
+        )
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"][0]
+
+        return retVal
+
+    def get_task(self, task_id):
+        """
+        Get a Task
+        
+        # Arguments
+        task_id(String): Task ID
+       
+        # Returns
+        (Object): Task API response 
+        """
+        result = self.send_get(
+            url=self.__base_task_url + "/" + task_id, 
+            entity_name='task')
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_all_tasks(self):
+        """
+        Get all Tasks
+        # Returns
+        (Object): Task API response 
+        """
+        result = self.send_get(
+            url=self.__base_task_url + "/", 
+            entity_name='task')
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def delete_task(self, task_id):
+        """
+        Delete a scheduling task
+        
+        # Arguments
+        task_id (String): Task ID
+        
+        # Returns
+        (Object): Task API response 
+        """
+        response = self.send_delete(
+            url= self.__base_task_url + "/" + task_id, 
+            entity_name='task')
+
+        return response
+    # endregion
+
+
+    def get_elastigroup_active_instances(self, group_id):
+        """
+        Get active instances of an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/status",
+            entity_name='active instances')
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def detach_elastigroup_instances(self, group_id, detach_configuration):
+        """
+        Detatch instances from an elastigroup
+        
+        # Arguments
+        group_id (String): Elastigroup ID
+        detatch_configuration (Detach): Detach Object
+        
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        group_detach_request = azure_elastigroup.ElastigroupDetachInstancesRequest(
+            detach_configuration=detach_configuration)
+
+        excluded_group_detach_dict = self.exclude_missing(
+            json.loads(group_detach_request.toJSON()))
+
+        formatted_group_detach_dict = self.convert_json(
+            excluded_group_detach_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_detach_dict)
+
+        detach_response = self.send_put(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/detachInstances",
+            body=body_json,
+            entity_name='detach')
+
+        formatted_response = self.convert_json(
+            detach_response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["status"]
+
+        return retVal
+
+# endreion

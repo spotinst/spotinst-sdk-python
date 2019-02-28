@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.1] - 2019-02-28
+### Added
+ - last 13 Azure endpoints
+
+## [2.0.1] - 2019-02-24
+### Updated
+ - Changed single client to multiple clients
+ - Added Session object
+ - Moved models to /models dir
+
+### Added
+ - gcp client with all endpoints
+ - azure client with 5/18 endpoints
+
 ## [1.0.44] - 2019-02-04
 ### Added
  - Event subscription endpoints
