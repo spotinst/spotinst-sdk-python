@@ -559,4 +559,65 @@ class ElastigroupCreationRequest:
 # endregion
 
 
+# Deployment
+class RollGroup:
+    """
+    # Arguments
+    batch_size_percentage: int
+    grace_period: int
+    health_check_type: str
+    """
+    def __init__(
+            self,
+            batch_size_percentage=none,
+            grace_period=none,
+            health_check_type=none):
+
+        self.batch_size_percentage = batch_size_percentage
+        self.grace_period = grace_period
+        self.health_check_type = health_check_type
+
+class ElastigroupRollRequest:
+    def __init__(self, group_roll):
+        self.batch_size_percentage = group_roll.batch_size_percentage
+        self.grace_period = group_roll.grace_period
+        self.health_check_type = group_roll.health_check_type
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+# endregion
+
+
+# Detach Instances
+class DetachConfiguration:
+    """
+    # Arguments
+    instances_to_detach: list[str]
+    draining_timeout: int
+    should_decrement_target_capacity: bool
+    """
+    def __init__(
+            self,
+            instances_to_detach=none,
+            draining_timeout=none,
+            should_decrement_target_capacity=none):
+        self.instances_to_detach = instances_to_detach
+        self.draining_timeout = draining_timeout
+        self.should_decrement_target_capacity = should_decrement_target_capacity
+
+class ElastigroupDetachInstancesRequest:
+    def __init__(self, detach_configuration):
+        self.should_decrement_target_capacity = detach_configuration.should_decrement_target_capacity
+        self.draining_timeout = detach_configuration.draining_timeout
+        self.instances_to_detach = detach_configuration.instances_to_detach
+
+    def toJSON(self):
+        return json.dumps(
+            self,
+            default=lambda o: o.__dict__,
+            sort_keys=True,
+            indent=4)
+# endregion
+
 
