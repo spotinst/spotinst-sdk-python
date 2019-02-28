@@ -1,0 +1,44 @@
+{
+	"request": {
+		"id": "b021899-dd87-49c1-c696-4c98efa12b46",
+		"url": "/azure/compute/task/sat-e7db7386?accountId=act-1234567",
+		"method": "GET",
+		"timestamp": "2018-10-18T18:25:45.746Z"
+	},
+	"response": {
+		"status": {
+			"code": 200,
+			"message": "OK"
+		},
+		"kind": "spotinst:azure:compute:task",
+		"items": [
+			{
+				"createdAt": "2018-10-16T18:33:22.000Z",
+				"updatedAt": "2018-10-16T19:55:02.000Z",
+				"deletedAt": null,
+				"id": "sat-e123f5a",
+				"name": "example-task",
+				"description": "example description",
+				"state": "DISABLED",
+				"policies": [{
+					"cron": "00 20 * * FRI",
+					"action": "START"
+				}]
+			},
+			{
+				"createdAt": "2018-10-16T18:33:22.000Z",
+				"updatedAt": "2018-10-16T19:55:02.000Z",
+				"deletedAt": null,
+				"id": "sat-e123f5a",
+				"name": "example-task",
+				"description": "example description",
+				"state": "DISABLED",
+				"policies": [{
+					"cron": "00 20 * * FRI",
+					"action": "START"
+				}]
+			}
+		],
+		"count": 1
+	}
+}

@@ -85,6 +85,19 @@ Client used to perform requests for Spotinst Elastigroup
  * get_elastigroups
  * update_elastigroup
  * delete_elastigroup
+ * scale_elastigroup_up
+ * scale_elastigroup_down
+ * detach_elastigroup_instances
+ * roll_group
+ * get_all_group_deployment
+ * get_deployment_status
+ * stop_deployment
+ * get_elastigroup_active_instances
+ * create_task
+ * update_task
+ * get_task
+ * get_all_tasks
+ * delete_task
 
 
 

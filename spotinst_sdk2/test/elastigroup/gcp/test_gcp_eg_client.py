@@ -147,7 +147,6 @@ class GCPInitTestElastigroup(GcpInitTestCase):
 
 		response = self.client.detach_elastigroup_instances(group_id="sig-123456", detach_configuration=DetachConfiguration(
 			instances_to_detach="test", 
-			should_terminate_instances="test",
 			draining_timeout="test",
 			should_decrement_target_capacity="test"))
 
