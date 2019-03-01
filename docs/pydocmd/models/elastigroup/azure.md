@@ -384,3 +384,42 @@ __Arguments__
 - __draining_timeout__: int
 - __should_decrement_target_capacity__: bool
 
+<h1 id="spotinst_sdk2.models.elastigroup.azure.task">spotinst_sdk2.models.elastigroup.azure.task</h1>
+
+
+<h2 id="spotinst_sdk2.models.elastigroup.azure.task.Task">Task</h2>
+
+```python
+Task(self, name='d3043820717d74d9a17694c176d39733', description='d3043820717d74d9a17694c176d39733', state='d3043820717d74d9a17694c176d39733', policies='d3043820717d74d9a17694c176d39733', instances='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __name__: str
+- __description__: str
+- __state__: str
+- __policies__: list[Policy]
+- __instances__: list[Instance]
+
+<h2 id="spotinst_sdk2.models.elastigroup.azure.task.Policy">Policy</h2>
+
+```python
+Policy(self, cron='d3043820717d74d9a17694c176d39733', action='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __cron__: str
+- __action__: str
+
+<h2 id="spotinst_sdk2.models.elastigroup.azure.task.Instance">Instance</h2>
+
+```python
+Instance(self, vm_name='d3043820717d74d9a17694c176d39733', resource_group_name='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __vm_name__: str
+- __resource_group_name__: str
+

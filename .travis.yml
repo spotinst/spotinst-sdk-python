@@ -6,6 +6,5 @@ install:
   - pip install coveralls PyYaml requests mock pydoc-markdown
 script:
   - coverage run --source spotinst_sdk2 setup.py test
-  - coveralls
 after_success:
     coveralls
