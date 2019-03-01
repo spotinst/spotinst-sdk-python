@@ -812,7 +812,7 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             status_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        retVal = formatted_response["response"]["items"]
 
         return retVal
 
