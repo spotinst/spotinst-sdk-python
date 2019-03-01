@@ -13,7 +13,7 @@ class SimpleNamespace:
 
 class SpotinstSessionTestCase(unittest.TestCase):
     def setUp(self):
-        with patch("builtins.open", mock_open(read_data=yaml.dump(dict()))):
+        with patch("spotinst_sdk2.session.open", mock_open(read_data=yaml.dump(dict()))):
             try:
                 SpotinstSession()
             except SpotinstClientException as e:
