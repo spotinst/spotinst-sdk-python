@@ -1,5 +1,7 @@
 import json
 import os
+import yaml
+from spotinst_sdk2.client import SpotinstClientException
 
 VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
 VAR_SPOTINST_PROFILE = 'SPOTINST_PROFILE'
@@ -16,7 +18,7 @@ class Session:
                  profile=None,
                  credentials_file=None):
 
-        if not auth_token:
+        if auth_token is None:
             self.load_credentials(profile, credentials_file)
         else:
             self.auth_token = auth_token
@@ -46,5 +48,5 @@ class Session:
                         profile, {}).get("token", None)
 
             if not self.auth_token:
-                raise SpotinstClientException("failed to load credentials")
+                raise SpotinstClientException("failed to load credentials", "ERROR")
 

@@ -1,7 +1,8 @@
 import unittest
 import os
 import json
-from mock import patch
+import yaml
+from mock import patch, mock_open
 
 from spotinst_sdk2 import SpotinstSession
 from spotinst_sdk2.client import SpotinstClientException
@@ -12,15 +13,12 @@ class SimpleNamespace:
 
 class SpotinstSessionTestCase(unittest.TestCase):
     def setUp(self):
-        session_test = SpotinstSession()
-
-        self.session = SpotinstSession(
-            auth_token='dummy-token',
-            account_id='act-1234567')
-
-        self.client = self.session.client("elastigroup_aws")
-
-    def setUp(self):
+        with patch("builtins.open", mock_open(read_data=yaml.dump(dict()))):
+            try:
+                SpotinstSession()
+            except SpotinstClientException as e:
+                pass
+        
         self.session = SpotinstSession(
             auth_token='dummy-token',
             account_id='act-1234567')
@@ -33,7 +31,7 @@ class SpotinstSessionTestCase(unittest.TestCase):
     @staticmethod
     def load_json(path):
         with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), path)) as group_json:
-            return json.load(group_json)
+            return json.load(group_json)  
 
 
 # region Internal Methods
