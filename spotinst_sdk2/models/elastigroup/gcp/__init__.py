@@ -147,7 +147,7 @@ class ScalingPolicyDimension:
 class ScalingPolicyAction:
     """
     # Arguments
-    type: str
+    scaling_type: str
     adjustment: int
     """
     def __init__(self, scaling_type=none, adjustment=none):
@@ -507,7 +507,7 @@ class CustomInstanceTypes:
 class Gpu:
     """
     # Arguments
-    type: str
+    gpu_type: str
     count: int
     """
     def __init__(

@@ -1,0 +1,46 @@
+{
+    "request": {
+    "id": "faab3520-fa30-40e8-8d17-0a6776147e11",
+    "url": "/azure/compute/task",
+    "method": "POST",
+    "time": "2016-08-28T15:41:48.102Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:azure:compute:task",
+    "items": [
+      {
+        "id": "sat-3f174165",
+        "name": "My first task",
+        "description": "My first task",
+        "state": "ENABLED",
+        "policies": [
+          {
+            "cron": "00 20 * * FRI",
+            "action": "STOP"
+          },
+          {
+            "cron": "00 08 * * MON",
+            "action": "START"
+          }
+        ],
+        "instances": [
+          {
+            "vmName": "MyVm1",
+            "resourceGroupName": "MyGroup1"
+          },
+          {
+            "vmName": "MyVm2",
+            "resourceGroupName": "MyGroup2"
+          }
+        ],
+        "createdAt": "2016-08-28T15:41:48.102Z",
+        "updatedAt": "2016-08-28T15:41:48.102Z",
+        "deletedAt": null
+      }
+    ]
+  }
+} 
