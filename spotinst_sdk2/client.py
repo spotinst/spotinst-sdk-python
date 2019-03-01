@@ -24,9 +24,9 @@ class Client:
 
 
     def __init__(self, session=None,
-                 print_output=True,
-                 log_level=None,
-                 user_agent=None):
+            print_output=True,
+            log_level=None,
+            user_agent=None):
 
         self.auth_token = session.auth_token
         self.account_id = session.account_id
