@@ -86,6 +86,17 @@ class AwsInitTestElastigroup(AwsInitTestCase):
 
 		self.assertEqual(response, True)
 
+	@patch('requests.delete')
+	def testDeleteElastigroupWithDeallocation(self, mock):
+		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
+
+		mock.return_value = self.mock_api_call
+
+		response = self.client.delete_elastigroup_with_deallocation(group_id="sig-12345", stateful_deallocation="")
+
+		self.assertEqual(response, True)
+
 	@patch('requests.get')
 	def testGetElastigroup(self, mock):
 		mock_get_group_res    = self.load_json('../../test_lib/output/elastigroup/get_group_res.json')
@@ -253,6 +264,16 @@ class AwsInitTestStateFul(AwsInitTestCase):
 
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]))
 
+	@patch('requests.delete')
+	def testDeleteStatefulImport(self, mock):
+		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
+		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
+
+		mock.return_value = self.mock_api_call
+
+		response = self.client.delete_stateful_import(stateful_migration_id="sig-12345")
+
+		self.assertEqual(response, True)
 
 # Blue Green Deployment
 class AWSInitTestBGDeployment(AwsInitTestCase):
@@ -411,10 +432,10 @@ class AWSInitTestInstance(AwsInitTestCase):
 
 		response = self.client.enter_instance_standby(instance_id="i-123456")
 
-		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))	
+		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))		
 	
 	@patch('requests.post')
-	def testEnterInstanceStandby(self, mock):
+	def testExitInstanceStandby(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
 		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
@@ -423,9 +444,9 @@ class AWSInitTestInstance(AwsInitTestCase):
 		response = self.client.exit_instance_standby(instance_id="i-123456")
 
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))	
-	
+
 	@patch('requests.get')
-	def getInstanceStatus(self, mock):
+	def testGetInstanceStatus(self, mock):
 		mock_instance_status_res = self.load_json("../../test_lib/output/elastigroup/instance_status_res.json")
 
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
@@ -638,6 +659,45 @@ class AWSInitTestBeanstalk(AwsInitTestCase):
 
 		self.assertEqual(len(response), len(mock_beanstalk_import_res["response"]["items"][0]))
 
+	@patch('requests.get')
+	def testBeanstalkMaintenanceStatus(self, mock):
+		mock_beanstalk_import_res = self.load_json("../../test_lib/output/elastigroup/beanstalk_import_res.json")
+
+		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
+		self.mock_api_call.content.decode = lambda code: json.dumps(mock_beanstalk_import_res) 
+
+		mock.return_value = self.mock_api_call
+
+		response = self.client.beanstalk_maintenance_status(group_id="sig-12345")
+
+		self.assertEqual(len(response), len(mock_beanstalk_import_res["response"]["items"]))
+	
+	@patch('requests.put')
+	def testBeanstalkMaintenanceStart(self, mock):
+		mock_beanstalk_reimport_res = self.load_json("../../test_lib/output/elastigroup/beanstalk_reimport_res.json")
+
+		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
+		self.mock_api_call.content.decode = lambda code: json.dumps(mock_beanstalk_reimport_res) 
+
+		mock.return_value = self.mock_api_call
+
+		response = self.client.beanstalk_maintenance_start(group_id="sig-12345")
+
+		self.assertEqual(len(response), len(mock_beanstalk_reimport_res["response"]["status"]))
+
+	@patch('requests.put')
+	def testBeanstalkMaintenanceFinish(self, mock):
+		mock_beanstalk_reimport_res = self.load_json("../../test_lib/output/elastigroup/beanstalk_reimport_res.json")
+
+		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
+		self.mock_api_call.content.decode = lambda code: json.dumps(mock_beanstalk_reimport_res) 
+
+		mock.return_value = self.mock_api_call
+
+		response = self.client.beanstalk_maintenance_finish(group_id="sig-12345")
+
+		self.assertEqual(len(response), len(mock_beanstalk_reimport_res["response"]["status"]))
+
 	@patch('requests.put')
 	def testReimportBeanstalk(self, mock):
 		mock_beanstalk_reimport_res = self.load_json("../../test_lib/output/elastigroup/beanstalk_reimport_res.json")
@@ -675,7 +735,7 @@ class AWSInitTestASG(AwsInitTestCase):
 
 
 # Test Activity Events
-class AWSInitTestASG(AwsInitTestCase):
+class AWSInitTestActivityEvent(AwsInitTestCase):
 	@patch('requests.get')
 	def testGetActivityEvents(self, mock):
 		mock_activity_events_res = self.load_json("../../test_lib/output/elastigroup/activity_events_res.json")
@@ -687,14 +747,14 @@ class AWSInitTestASG(AwsInitTestCase):
 
 		response = self.client.get_activity_events(group_id="sig-1234", from_date="2016-01-01")
 
-		self.assertEqual(len(response), len(mock_activity_events_res["response"]["items"][0]))
+		self.assertEqual(len(response), len(mock_activity_events_res["response"]["items"]))
 
 
 
 
 
 # Test AMI Backup
-class AWSInitTestASG(AwsInitTestCase):
+class AWSInitTestAMI(AwsInitTestCase):
 	@patch('requests.post')
 	def testAmiBackup(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
@@ -705,7 +765,6 @@ class AWSInitTestASG(AwsInitTestCase):
 		response = self.client.ami_backup(group_id="sig-12345")
 
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))
-
 
 
 

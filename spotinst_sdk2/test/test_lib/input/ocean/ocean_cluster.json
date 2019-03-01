@@ -19,7 +19,11 @@
 				"imageId": "ami-1178f169", 
 				"keyPair": "Noam-key", 
 				"securityGroupIds": ["sg-8cfb40f6"], 
-				"tags": [{"tagKey": "testing", "tagValue": "tags"}]
+				"tags": [{"tagKey": "testing", "tagValue": "tags"}],
+				"iamInstanceProfile":{
+					"arn":"1234567", 
+					"name":"12345ty7"
+				}
 			}, 
 			"subnetIds": ["subnet-1ba25052"]
 		}, 
