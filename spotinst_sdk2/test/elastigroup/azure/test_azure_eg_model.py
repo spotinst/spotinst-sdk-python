@@ -150,7 +150,7 @@ class GcpElastigroupTest(GcpElastigroupTestCase):
 
         ############################# Scheduling ############################
 
-        task = Task(
+        task = SchedulingTask(
             is_enabled=False,
             cron_expression="cron_expression",
             task_type="task_type",

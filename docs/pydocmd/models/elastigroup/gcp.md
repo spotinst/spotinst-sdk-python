@@ -94,7 +94,7 @@ ScalingPolicyAction(self, scaling_type='d3043820717d74d9a17694c176d39733', adjus
 
 __Arguments__
 
-- __type__: str
+- __scaling_type__: str
 - __adjustment__: int
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.ThirdPartiesIntegration">ThirdPartiesIntegration</h2>
@@ -350,7 +350,7 @@ Gpu(self, gpu_type='d3043820717d74d9a17694c176d39733', count='d3043820717d74d9a1
 
 __Arguments__
 
-- __type__: str
+- __gpu_type__: str
 - __count__: int
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.Health">Health</h2>
