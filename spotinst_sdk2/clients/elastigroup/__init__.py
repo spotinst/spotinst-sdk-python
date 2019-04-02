@@ -1314,6 +1314,32 @@ class ElastigroupAwsClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"] 
+
+    def get_elastilog(self, group_id, from_date, to_date, severity=None, resource_id=None, limit=None):
+        """
+        Get an elastilog for a specific elastigroup
+        
+        # Arguments
+        group_id(String): Elastigroup ID
+        to_date (String): to date
+        from_date (String): to date
+        severity(String) (Optional): Log level severity
+        resource_id(String) (Optional): Filter log extracted entires related to a specific resource id
+        limit(String) (Optional): Maximum number of lines to extract in a response
+       
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        geturl = self.__base_elastigroup_url + "/" + group_id + "/logs"
+        query_params=dict(toDate=to_date, fromDate=from_date, severity=severity, 
+            resource_id=resource_id, limit=limit)
+
+        result = self.send_get(url=geturl, entity_name='elastilog', query_params=query_params)
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
     # endregion
 
     # region stateful
@@ -1830,7 +1856,7 @@ class ElastigroupAzureClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """    
-        group = gcp_elastigroup.ElastigroupCreationRequest(group)
+        group = azure_elastigroup.ElastigroupCreationRequest(group)
 
         excluded_group_dict = self.exclude_missing(json.loads(group.toJSON()))
 
@@ -1838,8 +1864,6 @@ class ElastigroupAzureClient(Client):
             excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
-
-        self.print_output(body_json)
 
         group_response = self.send_post(
             body=body_json,
@@ -1864,7 +1888,7 @@ class ElastigroupAzureClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """
-        group = gcp_elastigroup.ElastigroupCreationRequest(group_update)
+        group = azure_elastigroup.ElastigroupCreationRequest(group_update)
 
         excluded_group_update_dict = self.exclude_missing(
             json.loads(group.toJSON()))

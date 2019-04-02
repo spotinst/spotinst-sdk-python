@@ -845,6 +845,27 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient.get_elastilog">get_elastilog</h2>
+
+```python
+ElastigroupAwsClient.get_elastilog(self, group_id, from_date, to_date, severity=None, resource_id=None, limit=None)
+```
+
+Get an elastilog for a specific elastigroup
+
+__Arguments__
+
+- __group_id(String)__: Elastigroup ID
+- __to_date (String)__: to date
+- __from_date (String)__: to date
+- __severity(String) (Optional)__: Log level severity
+- __resource_id(String) (Optional)__: Filter log extracted entires related to a specific resource id
+- __limit(String) (Optional)__: Maximum number of lines to extract in a response
+
+__Returns__
+
+`(Object)`: Elastigroup API response
+
 <h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient.import_stateful_instance">import_stateful_instance</h2>
 
 ```python

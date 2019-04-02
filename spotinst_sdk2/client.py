@@ -45,7 +45,12 @@ class Client:
 
     def send_get(self, url,entity_name,query_params=None):
         agent = self.resolve_user_agent()
-        query_params = query_params or self.build_query_params()
+
+        if query_params != None:
+            query_params = self.build_query_params_with_input(query_params)
+        else:
+            query_params = self.build_query_params()
+
         headers = dict(
             {
                 'User-Agent': agent,
@@ -113,7 +118,10 @@ class Client:
     def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
 
-        query_params = query_params or self.build_query_params()
+        if query_params != None:
+            query_params = self.build_query_params_with_input(query_params)
+        else:
+            query_params = self.build_query_params()
         
         headers = dict(
             {
@@ -140,7 +148,12 @@ class Client:
 
     def send_put(self, url, entity_name, query_params=None, body=None):
         agent = self.resolve_user_agent()
-        query_params =  query_params or self.build_query_params()
+        
+        if query_params != None:
+            query_params = self.build_query_params_with_input(query_params)
+        else:
+            query_params = self.build_query_params()
+
         headers = dict(
             {
                 'User-Agent': agent,

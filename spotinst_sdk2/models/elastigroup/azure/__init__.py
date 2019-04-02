@@ -527,10 +527,12 @@ class ThirdPartiesIntegration:
     # Arguments
     mlb_runtime: MlbRuntime
     kubernetes: Kubernetes
+    hpc_grid_engine: HpcGridEngine
     """
     def __init__(self, mlb_runtime=none, kubernetes=none):
         self.mlb_runtime = mlb_runtime
         self.kubernetes = kubernetes
+        self.hpc_grid_engine
 
 class MlbRuntime:
     """
@@ -548,6 +550,15 @@ class Kubernetes:
     def __init__(self, cluster_identifier=none):
         self.cluster_identifier = cluster_identifier
 
+class HpcGridEngine:
+    """
+    # Arguments
+    cluster_id: str
+    queues: List[str]
+    """
+    def __init__(self, cluster_id=none, queues=none):
+        self.cluster_id = cluster_id
+        self.queues = queues
 
 class ElastigroupCreationRequest:
     def __init__(self, elastigroup):
