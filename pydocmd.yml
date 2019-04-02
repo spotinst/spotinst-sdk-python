@@ -44,6 +44,7 @@ generate:
   - spotinst_sdk.SpotinstClient.get_instance_potential_savings
   - spotinst_sdk.SpotinstClient.get_cost_per_elastigroup
   - spotinst_sdk.SpotinstClient.get_group_detailed_cost
+  - spotinst_sdk.SpotinstClient.get_elastilog
 - endpoints/elastigroup/aws/stateful.md:
   - spotinst_sdk.SpotinstClient.deallocate_stateful_instance
   - spotinst_sdk.SpotinstClient.recycle_stateful_instance
