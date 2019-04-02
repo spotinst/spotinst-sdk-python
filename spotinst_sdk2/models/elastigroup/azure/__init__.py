@@ -529,10 +529,10 @@ class ThirdPartiesIntegration:
     kubernetes: Kubernetes
     hpc_grid_engine: HpcGridEngine
     """
-    def __init__(self, mlb_runtime=none, kubernetes=none):
+    def __init__(self, mlb_runtime=none, kubernetes=none, hpc_grid_engine=none):
         self.mlb_runtime = mlb_runtime
         self.kubernetes = kubernetes
-        self.hpc_grid_engine
+        self.hpc_grid_engine = hpc_grid_engine
 
 class MlbRuntime:
     """
