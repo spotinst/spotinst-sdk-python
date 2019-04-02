@@ -332,7 +332,7 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.elastigroup.azure.ThirdPartiesIntegration">ThirdPartiesIntegration</h2>
 
 ```python
-ThirdPartiesIntegration(self, mlb_runtime='d3043820717d74d9a17694c176d39733', kubernetes='d3043820717d74d9a17694c176d39733')
+ThirdPartiesIntegration(self, mlb_runtime='d3043820717d74d9a17694c176d39733', kubernetes='d3043820717d74d9a17694c176d39733', hpc_grid_engine='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -360,7 +360,6 @@ Kubernetes(self, cluster_identifier='d3043820717d74d9a17694c176d39733')
 __Arguments__
 
 - __cluster_identifier__: str
-
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure.HpcGridEngine">HpcGridEngine</h2>
 
