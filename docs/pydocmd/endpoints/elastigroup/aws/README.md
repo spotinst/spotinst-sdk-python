@@ -39,6 +39,7 @@
  * SpotinstClient.get_instance_potential_savings
  * SpotinstClient.get_cost_per_elastigroup
  * SpotinstClient.get_group_detailed_cost
+ * SpotinstClient.get_elastilog
 
 ## [Beanstalk](./beanstalk.md)
  * SpotinstClient.beanstalk_maintenance_status

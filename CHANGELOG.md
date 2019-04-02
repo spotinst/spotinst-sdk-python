@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.45] - 2019-04-02
+### Added 
+- get_elastilog for aws eg
+
+### Updated
+- README with v2 info
+
 ## [1.0.44] - 2019-02-04
 ### Added
  - Event subscription endpoints
@@ -9,7 +16,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Updated
  - `auto_apply_tags` parameter added to update EG
  - `managed_actions` parameter added to beanstalk EG
-
 
 ## [1.0.44] - 2019-01-24
 ### Updated

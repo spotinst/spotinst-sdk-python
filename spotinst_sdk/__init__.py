@@ -2160,6 +2160,32 @@ class SpotinstClient:
 
         return response
 
+    def get_elastilog(self, group_id, from_date, to_date, severity=None, resource_id=None, limit=None):
+        """
+        Get an elastilog for a specific elastigroup
+        
+        # Arguments
+        group_id(String): Elastigroup ID
+        to_date (String): to date
+        from_date (String): to date
+        severity(String) (Optional): Log level severity
+        resource_id(String) (Optional): Filter log extracted entires related to a specific resource id
+        limit(String) (Optional): Maximum number of lines to extract in a response
+       
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        geturl = self.__base_elastigroup_url + "/" + group_id + "/logs"
+        query_params=dict(toDate=to_date, fromDate=from_date, severity=severity, 
+            resource_id=resource_id, limit=limit)
+
+        result = self.send_get(url=geturl, entity_name='elastilog', query_params=query_params)
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
     def get_elastigroup(self, group_id):
         """
         Get an elastigroup
@@ -3477,7 +3503,10 @@ class SpotinstClient:
 
     def send_get(self, url,entity_name,query_params=None):
         agent = self.resolve_user_agent()
-        query_params = query_params or self.build_query_params()
+        if query_params != None:
+            query_params = self.build_query_params_with_input(query_params)
+        else:
+            query_params = self.build_query_params()
         headers = dict(
             {
                 'User-Agent': agent,
@@ -3545,7 +3574,10 @@ class SpotinstClient:
     def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
 
-        query_params = query_params or self.build_query_params()
+        if query_params != None:
+            query_params = self.build_query_params_with_input(query_params)
+        else:
+            query_params = self.build_query_params()
         
         headers = dict(
             {
@@ -3572,7 +3604,10 @@ class SpotinstClient:
 
     def send_put(self, url, entity_name, query_params=None, body=None):
         agent = self.resolve_user_agent()
-        query_params =  query_params or self.build_query_params()
+        if query_params != None:
+            query_params = self.build_query_params_with_input(query_params)
+        else:
+            query_params = self.build_query_params()
         headers = dict(
             {
                 'User-Agent': agent,
