@@ -7,7 +7,7 @@
 Spotinst SDK for the Python programming language
 
 # **V2 Is Coming!**
-Version 2 for the Spotinst Python SDK will be merging into the master branch very soon. This is a breaking change from version 1 and will require updates if switching over. Luckily this process should be easy and is completly explained on the [v2 branch in this repository](https://github.com/spotinst/spotinst-sdk-python/tree/v2). 
+Version 2 for the Spotinst Python SDK will be moving from the `v2` branch to the `master` branch very soon. The current `master` will move to it's own `v1` branch and eventually be deprecated.  Version 2 introduces some breaking changes from v1 and will require updates when switching over. Luckily this process should be easy and is completely explained on the [v2 branch in this repository](https://github.com/spotinst/spotinst-sdk-python/tree/v2).  Both `v1` and `v2` will be released as `spotinst-sdk` and `spotinst-sdk2` respectively, to prevent any auto version upgrades.
 
 ## Table of contents
 <!--ts-->
