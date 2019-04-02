@@ -339,6 +339,7 @@ __Arguments__
 
 - __mlb_runtime__: MlbRuntime
 - __kubernetes__: Kubernetes
+- __hpc_grid_engine__: HpcGridEngine
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure.MlbRuntime">MlbRuntime</h2>
 
@@ -359,6 +360,18 @@ Kubernetes(self, cluster_identifier='d3043820717d74d9a17694c176d39733')
 __Arguments__
 
 - __cluster_identifier__: str
+
+
+<h2 id="spotinst_sdk2.models.elastigroup.azure.HpcGridEngine">HpcGridEngine</h2>
+
+```python
+HpcGridEngine(self, cluster_id='d3043820717d74d9a17694c176d39733', queues='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __cluster_id__: str
+- __queues__: List[str]
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure.RollGroup">RollGroup</h2>
 

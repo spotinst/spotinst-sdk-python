@@ -56,6 +56,7 @@ Client used to perform requests for Spotinst Elastigroup
  * import_stateful_instance
  * get_stateful_import_status
  * delete_stateful_import
+ * get_elastilog
 
 ## [ElastigroupGcpClient](./elastigroup_gcp_client.md)
 ### session.client("elastigroup_gcp")

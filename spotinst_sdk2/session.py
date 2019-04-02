@@ -38,7 +38,7 @@ class Session:
                     DEFAULT_CREDENTIALS_FILE)
 
             with open(credentials_file, 'r') as credentials_file:
-                config = yaml.load(credentials_file)
+                config = yaml.load(credentials_file, Loader=yaml.SafeLoader)
 
                 if config:
                     self.account_id = config.get(
