@@ -702,7 +702,7 @@ class AWSInitTestOrgAndAcct(AwsInitTestCase):
 
 		mock.return_value = self.mock_api_call
 
-		response = self.client.set_cloud_credentials(iam_role="arn", external_id="test")
+		response = self.client.set_cloud_credentials(account_id="account_id", iam_role="arn", external_id="test")
 
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))
 
