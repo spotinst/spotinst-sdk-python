@@ -1326,7 +1326,7 @@ class SpotinstClient:
 
         return response
 
-    def set_cloud_credentials(self, iam_role, external_id):
+    def set_cloud_credentials(self, account_id, iam_role, external_id):
         """
         set cloud credentials 
         
@@ -1339,7 +1339,7 @@ class SpotinstClient:
         """ 
         response = self.send_post(
             url= self.__base_setup_url +
-            "/credentials/aws",
+            "/credentials/aws?accountId={ACCOUNT_ID}".format(ACCOUNT_ID=account_id),
             body=json.dumps(dict(credentials=dict(iamRole=iam_role, externalId=external_id))),
             entity_name="credentials"
         )
