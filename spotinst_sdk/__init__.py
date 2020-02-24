@@ -87,7 +87,6 @@ class SpotinstClient:
 
     # endregion
 
-
     # region Event Subscription
     def create_event_subscription(self, subscription):
         """
@@ -143,7 +142,7 @@ class SpotinstClient:
         group_response = self.send_put(
             body=body_json,
             url=self.__base_event_subscription_url +
-            "/" + subscription_id,
+                "/" + subscription_id,
             entity_name='subscription')
 
         formatted_response = self.convert_json(
@@ -184,7 +183,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_event_subscription_url +
-            "/" + subscription_id,
+                "/" + subscription_id,
             entity_name="subscription"
         )
 
@@ -207,17 +206,13 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_event_subscription_url +
-            "/" + subscription_id,
+                "/" + subscription_id,
             entity_name="subscription"
         )
 
         return response
+
     # end region
-
-
-
-
-
 
     # region MLB
     def get_all_mlb_runtime(self):
@@ -229,7 +224,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/runtime",
+                "/runtime",
             entity_name="mlb runtime"
         )
 
@@ -252,7 +247,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/runtime/" + runtime_id,
+                "/runtime/" + runtime_id,
             entity_name="mlb runtime"
         )
 
@@ -275,8 +270,8 @@ class SpotinstClient:
         """
         response = self.send_put(
             url=self.__base_lb_url +
-            "/runtime/" + runtime_id +
-            "/deregister",
+                "/runtime/" + runtime_id +
+                "/deregister",
             entity_name="mlb runtime"
         )
 
@@ -299,7 +294,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/runtime/" + runtime_id,
+                "/runtime/" + runtime_id,
             entity_name="mlb runtime"
         )
 
@@ -317,7 +312,7 @@ class SpotinstClient:
         """
         response = self.send_post(
             url=self.__base_lb_url +
-            "/deployment",
+                "/deployment",
             body=json.dumps(dict(deployment=dict(name=deployment_name))),
             entity_name="mlb deployment"
         )
@@ -342,7 +337,7 @@ class SpotinstClient:
         """
         response = self.send_put(
             url=self.__base_lb_url +
-            "/deployment/" + deployment_id,
+                "/deployment/" + deployment_id,
             body=json.dumps(dict(deployment=dict(name=deployment_name))),
             entity_name="mlb deployment"
         )
@@ -365,7 +360,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/deployment/"+deployment_id,
+                "/deployment/" + deployment_id,
             entity_name="mlb deployment"
         )
 
@@ -385,7 +380,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/deployment",
+                "/deployment",
             entity_name="mlb deployment"
         )
 
@@ -408,7 +403,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/deployment/"+deployment_id,
+                "/deployment/" + deployment_id,
             entity_name="mlb deployment"
         )
 
@@ -437,7 +432,7 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_lb_url +
-            "/balancer",
+                "/balancer",
             body=body_json,
             entity_name="mlb balancer"
         )
@@ -473,7 +468,7 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/balancer/" + balancer_id,
+                "/balancer/" + balancer_id,
             body=body_json,
             entity_name="mlb balancer"
         )
@@ -497,7 +492,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/balancer/" + balancer_id,
+                "/balancer/" + balancer_id,
             entity_name="mlb balancer"
         )
 
@@ -517,7 +512,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/balancer/",
+                "/balancer/",
             entity_name="mlb balancer"
         )
 
@@ -540,7 +535,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/balancer/" + balancer_id,
+                "/balancer/" + balancer_id,
             entity_name="mlb balancer"
         )
 
@@ -569,7 +564,7 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_lb_url +
-            "/targetSet",
+                "/targetSet",
             body=body_json,
             entity_name="mlb target set"
         )
@@ -605,7 +600,7 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/targetSet" + target_set_id,
+                "/targetSet" + target_set_id,
             body=body_json,
             entity_name="mlb target set"
         )
@@ -629,7 +624,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/targetSet/" + target_set_id,
+                "/targetSet/" + target_set_id,
             entity_name="mlb target set"
         )
 
@@ -649,7 +644,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/targetSet",
+                "/targetSet",
             entity_name="mlb target set"
         )
 
@@ -672,7 +667,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/targetSet/" + target_set_id,
+                "/targetSet/" + target_set_id,
             entity_name="mlb target set"
         )
 
@@ -702,8 +697,8 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/targetSet/" + target_set_id +
-            "/registerTargets",
+                "/targetSet/" + target_set_id +
+                "/registerTargets",
             body=body_json,
             entity_name="mlb target set"
         )
@@ -739,8 +734,8 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/targetSet/" + target_set_id +
-            "/deregisterTargets",
+                "/targetSet/" + target_set_id +
+                "/deregisterTargets",
             body=body_json,
             entity_name="mlb target set"
         )
@@ -775,7 +770,7 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_lb_url +
-            "/target",
+                "/target",
             body=body_json,
             entity_name="mlb target"
         )
@@ -811,7 +806,7 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/target/"+target_id,
+                "/target/" + target_id,
             body=body_json,
             entity_name="mlb target"
         )
@@ -835,7 +830,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/target/"+target_id,
+                "/target/" + target_id,
             entity_name="mlb target"
         )
 
@@ -855,7 +850,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/target",
+                "/target",
             entity_name="mlb target"
         )
 
@@ -878,7 +873,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/target/"+target_id,
+                "/target/" + target_id,
             entity_name="mlb target"
         )
 
@@ -907,7 +902,7 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_lb_url +
-            "/listener",
+                "/listener",
             body=body_json,
             entity_name="mlb listener"
         )
@@ -943,7 +938,7 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/listener/" + listener_id,
+                "/listener/" + listener_id,
             body=body_json,
             entity_name="mlb listener"
         )
@@ -967,7 +962,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/listener/"+listener_id,
+                "/listener/" + listener_id,
             entity_name="mlb listener"
         )
 
@@ -987,7 +982,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/listener",
+                "/listener",
             entity_name="mlb listener"
         )
 
@@ -1010,7 +1005,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/listener/"+listener_id,
+                "/listener/" + listener_id,
             entity_name="mlb listener"
         )
 
@@ -1039,7 +1034,7 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_lb_url +
-            "/routingRule",
+                "/routingRule",
             body=body_json,
             entity_name="mlb routing rule"
         )
@@ -1075,7 +1070,7 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/routingRule/" + routing_rule_id,
+                "/routingRule/" + routing_rule_id,
             body=body_json,
             entity_name="mlb routing rule"
         )
@@ -1099,7 +1094,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/routingRule/"+routing_rule_id,
+                "/routingRule/" + routing_rule_id,
             entity_name="mlb routing rule"
         )
 
@@ -1119,7 +1114,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/routingRule",
+                "/routingRule",
             entity_name="mlb routing rule"
         )
 
@@ -1142,7 +1137,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/routingRule/"+routing_rule_id,
+                "/routingRule/" + routing_rule_id,
             entity_name="mlb routing rule"
         )
 
@@ -1171,7 +1166,7 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_lb_url +
-            "/middleware",
+                "/middleware",
             body=body_json,
             entity_name="mlb middleware"
         )
@@ -1207,7 +1202,7 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_lb_url +
-            "/middleware/" + middleware_id,
+                "/middleware/" + middleware_id,
             body=body_json,
             entity_name="mlb middleware"
         )
@@ -1231,7 +1226,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/middleware/"+middleware_id,
+                "/middleware/" + middleware_id,
             entity_name="mlb middleware"
         )
 
@@ -1251,7 +1246,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_lb_url +
-            "/middleware",
+                "/middleware",
             entity_name="mlb middleware"
         )
 
@@ -1274,14 +1269,13 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_lb_url +
-            "/middleware/"+middleware_id,
+                "/middleware/" + middleware_id,
             entity_name="mlb middleware"
         )
 
         return response
+
     # endregion
-
-
 
     # region Organization and Account
     def create_organization(self, org_name):
@@ -1295,8 +1289,8 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_post(
-            url= self.__base_setup_url +
-            "/organization",
+            url=self.__base_setup_url +
+                "/organization",
             body=json.dumps(dict(organization=dict(name=org_name))),
             entity_name="organization"
         )
@@ -1319,8 +1313,8 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_delete(
-            url= self.__base_setup_url +
-            "/organization/" + str(org_id),
+            url=self.__base_setup_url +
+                "/organization/" + str(org_id),
             entity_name="organization"
         )
 
@@ -1338,8 +1332,8 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_post(
-            url= self.__base_setup_url +
-            "/credentials/aws",
+            url=self.__base_setup_url +
+                "/credentials/aws",
             body=json.dumps(dict(credentials=dict(iamRole=iam_role, externalId=external_id))),
             entity_name="credentials"
         )
@@ -1362,8 +1356,8 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_post(
-            url= self.__base_setup_url +
-            "/account",
+            url=self.__base_setup_url +
+                "/account",
             body=json.dumps(dict(account=dict(name=account_name))),
             entity_name="account"
         )
@@ -1383,8 +1377,8 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_get(
-            url= self.__base_setup_url +
-            "/account",
+            url=self.__base_setup_url +
+                "/account",
             entity_name="account"
         )
 
@@ -1406,8 +1400,8 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_delete(
-            url= self.__base_setup_url +
-            "/account/" + account_name,
+            url=self.__base_setup_url +
+                "/account/" + account_name,
             entity_name="account"
         )
 
@@ -1429,8 +1423,8 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_post(
-            url= self.__base_setup_url +
-            "/user",
+            url=self.__base_setup_url +
+                "/user",
             body=json.dumps(dict(
                 firstName=first_name,
                 lastName=last_name,
@@ -1459,9 +1453,9 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_post(
-            url= self.__base_setup_url +
-            "/account/" + self.account_id +
-            "/user",
+            url=self.__base_setup_url +
+                "/account/" + self.account_id +
+                "/user",
             body=json.dumps(dict(userEmail=user_email, role=role)),
             entity_name="user"
         )
@@ -1485,9 +1479,9 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_put(
-            url= self.__base_setup_url +
-            "/account/" + self.account_id +
-            "/user",
+            url=self.__base_setup_url +
+                "/account/" + self.account_id +
+                "/user",
             body=json.dumps(dict(userEmail=user_email, role=role)),
             entity_name="user"
         )
@@ -1510,9 +1504,9 @@ class SpotinstClient:
         (Object): Spotinst API response
         """
         response = self.send_delete_with_body(
-            url= self.__base_setup_url +
-            "/account/" + self.account_id +
-            "/user",
+            url=self.__base_setup_url +
+                "/account/" + self.account_id +
+                "/user",
             body=json.dumps(dict(userEmail=user_email)),
             entity_name="user"
         )
@@ -1529,9 +1523,9 @@ class SpotinstClient:
         # Returns
         (Object): Spotinst API response
         """
-        query_params= dict(userEmail=user_email)
+        query_params = dict(userEmail=user_email)
         response = self.send_get(
-            url= self.__base_setup_url + "/accountUserMapping",
+            url=self.__base_setup_url + "/accountUserMapping",
             query_params=query_params,
             entity_name="user"
         )
@@ -1563,8 +1557,8 @@ class SpotinstClient:
         body_json = json.dumps(formatted_group_dict)
 
         response = self.send_post(
-            url= self.__base_setup_url + "/accountUserMapping",
-            body= body_json,
+            url=self.__base_setup_url + "/accountUserMapping",
+            body=body_json,
             entity_name="user"
         )
 
@@ -1574,9 +1568,8 @@ class SpotinstClient:
         retVal = formatted_response["response"]["status"]
 
         return retVal
+
     # endregion
-
-
 
     # region EMR
     def create_emr(self, emr):
@@ -1633,7 +1626,7 @@ class SpotinstClient:
         group_response = self.send_put(
             body=body_json,
             url=self.__base_emr_url +
-            "/" + emr_id,
+                "/" + emr_id,
             entity_name='emr')
 
         formatted_response = self.convert_json(
@@ -1674,7 +1667,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_emr_url +
-            "/" + emr_id,
+                "/" + emr_id,
             entity_name="emr"
         )
 
@@ -1697,8 +1690,8 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_emr_url +
-            "/" + emr_id +
-            "/instance",
+                "/" + emr_id +
+                "/instance",
             entity_name="emr"
         )
 
@@ -1721,8 +1714,8 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_emr_url +
-            "/" + emr_id +
-            "/cluster",
+                "/" + emr_id +
+                "/cluster",
             entity_name="emr"
         )
 
@@ -1749,8 +1742,8 @@ class SpotinstClient:
 
         response = self.send_get(
             url=self.__base_emr_url +
-            "/" + emr_id +
-            "/costs",
+                "/" + emr_id +
+                "/costs",
             query_params=query_params,
             entity_name="emr"
         )
@@ -1774,7 +1767,7 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_emr_url +
-            "/" + emr_id,
+                "/" + emr_id,
             entity_name="emr"
         )
 
@@ -1795,8 +1788,8 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_emr_url +
-            "/" + emr_id +
-            "/scale/up",
+                "/" + emr_id +
+                "/scale/up",
             query_params=query_params,
             entity_name="emr"
         )
@@ -1823,8 +1816,8 @@ class SpotinstClient:
 
         response = self.send_put(
             url=self.__base_emr_url +
-            "/" + emr_id +
-            "/scale/down",
+                "/" + emr_id +
+                "/scale/down",
             query_params=query_params,
             entity_name="emr"
         )
@@ -1835,9 +1828,8 @@ class SpotinstClient:
         retVal = formatted_response["response"]["items"][0]
 
         return retVal
+
     # endregion
-
-
 
     # region Ocean
     def create_ocean_cluster(self, ocean):
@@ -1894,7 +1886,7 @@ class SpotinstClient:
         group_response = self.send_put(
             body=body_json,
             url=self.__base_ocean_url +
-            "/" + ocean_id,
+                "/" + ocean_id,
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -1923,6 +1915,28 @@ class SpotinstClient:
 
         return retVal
 
+    def get_all_ocean_recs(self, ocean_id, namespace):
+        """
+        Get all Ocean in account
+
+        # Returns
+        (Object): Ocean API response
+        """
+        response = self.send_get(
+            url=(self.__base_ocean_url +
+                 "/" + ocean_id +
+                 "/rightSizing/suggestion?namespace={}"
+                 ).format(namespace),
+            entity_name="ocean"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
     def get_ocean_cluster(self, ocean_id):
         """
         Get an exsisting Ocean Cluster json
@@ -1935,7 +1949,7 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_ocean_url +
-            "/" + ocean_id,
+                "/" + ocean_id,
             entity_name="ocean"
         )
 
@@ -1958,15 +1972,13 @@ class SpotinstClient:
         """
         response = self.send_delete(
             url=self.__base_ocean_url +
-            "/" + ocean_id,
+                "/" + ocean_id,
             entity_name="ocean"
         )
 
         return response
+
     # endregion
-
-
-
 
     # region Kubernetes
 
@@ -1983,7 +1995,7 @@ class SpotinstClient:
         (Object): Elastigroup API response
         """
         geturl = self.__base_kube_url + "/" + custer_id + "/costs"
-        query_params = self.build_query_params_with_input({"toDate":to_date, "fromDate":from_date})
+        query_params = self.build_query_params_with_input({"toDate": to_date, "fromDate": from_date})
 
         result = self.send_get(url=geturl, query_params=query_params, entity_name='kubernetes')
 
@@ -1993,10 +2005,6 @@ class SpotinstClient:
         return formatted_response["response"]["items"][0]
 
     # endregion
-
-
-
-
 
     # region Elastigroup
     def create_elastigroup(self, group):
@@ -2176,8 +2184,8 @@ class SpotinstClient:
         (Object): Elastigroup API response
         """
         geturl = self.__base_elastigroup_url + "/" + group_id + "/logs"
-        query_params=dict(toDate=to_date, fromDate=from_date, severity=severity,
-            resource_id=resource_id, limit=limit)
+        query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
+                            resource_id=resource_id, limit=limit)
 
         result = self.send_get(url=geturl, entity_name='elastilog', query_params=query_params)
 
@@ -2249,7 +2257,7 @@ class SpotinstClient:
         # Returns
         (Object) : Elastigroup API response
         """
-        query_params = self.build_query_params_with_input({"fromDate":start_date})
+        query_params = self.build_query_params_with_input({"fromDate": start_date})
 
         content = self.send_get(
             url=self.__base_elastigroup_url +
@@ -2276,7 +2284,6 @@ class SpotinstClient:
         """
         group_roll_request = aws_elastigroup.ElastigroupRollRequest(
             group_roll=group_roll)
-
 
         excluded_group_roll_dict = self.exclude_missing(
             json.loads(group_roll_request.toJSON()))
@@ -2337,7 +2344,7 @@ class SpotinstClient:
             url=self.__base_elastigroup_url +
                 "/" +
                 str(group_id) +
-                "/roll/"+
+                "/roll/" +
                 str(roll_id),
             entity_name='roll')
 
@@ -2361,7 +2368,7 @@ class SpotinstClient:
             url=self.__base_elastigroup_url +
                 "/" +
                 str(group_id) +
-                "/roll/"+
+                "/roll/" +
                 str(roll_id),
             body=json.dumps(dict(roll=dict(status="STOPPED"))),
             entity_name='roll')
@@ -2397,7 +2404,7 @@ class SpotinstClient:
             url=self.__base_elastigroup_url +
                 "/" +
                 str(group_id) +
-                "/roll/"+
+                "/roll/" +
                 str(roll_id),
             body=body_json,
             entity_name='roll')
@@ -2421,14 +2428,14 @@ class SpotinstClient:
         """
         query_params = dict(region=region)
         response = self.send_get(
-            url=self.__base_aws_url+
-            "/spotType",
+            url=self.__base_aws_url +
+                "/spotType",
             query_params=query_params,
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2443,19 +2450,19 @@ class SpotinstClient:
         # Returns
         (Object): Spotinst API response
         """
-        query_params= dict(ttlInMinutes=lock_time)
+        query_params = dict(ttlInMinutes=lock_time)
 
         response = self.send_post(
             url=self.__base_aws_url +
-            "/instance/" +
-            instance_id +
-            "/lock",
+                "/instance/" +
+                instance_id +
+                "/lock",
             query_params=query_params,
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
@@ -2471,14 +2478,14 @@ class SpotinstClient:
         """
         response = self.send_post(
             url=self.__base_aws_url +
-            "/instance/" +
-            instance_id +
-            "/unlock",
+                "/instance/" +
+                instance_id +
+                "/unlock",
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
@@ -2494,14 +2501,14 @@ class SpotinstClient:
         """
         response = self.send_post(
             url=self.__base_aws_url +
-            "/instance/" +
-            instance_id +
-            "/standby/enter",
+                "/instance/" +
+                instance_id +
+                "/standby/enter",
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
@@ -2517,14 +2524,14 @@ class SpotinstClient:
         """
         response = self.send_post(
             url=self.__base_aws_url +
-            "/instance/" +
-            instance_id +
-            "/standby/exit",
+                "/instance/" +
+                instance_id +
+                "/standby/exit",
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
@@ -2540,13 +2547,13 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_aws_url +
-            "/instance/" +
-            instance_id,
+                "/instance/" +
+                instance_id,
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
@@ -2562,13 +2569,13 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
-             "/" + group_id +
-            "/instanceHealthiness",
+                "/" + group_id +
+                "/instanceHealthiness",
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2586,14 +2593,14 @@ class SpotinstClient:
         body = json.dumps(dict(instanceId=instance_id, signal=signal))
 
         response = self.send_post(
-            url= self.__base_aws_url +
-            "/instance/signal",
+            url=self.__base_aws_url +
+                "/instance/signal",
             body=body,
             entity_name="instance"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
@@ -2608,7 +2615,7 @@ class SpotinstClient:
         # Returns
         (Object): Spotinst API response
         """
-        query_params=dict(toDate=to_date, fromDate=from_date)
+        query_params = dict(toDate=to_date, fromDate=from_date)
 
         response = self.send_get(
             url="https://api.spotinst.io/aws/costs",
@@ -2617,7 +2624,7 @@ class SpotinstClient:
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2633,18 +2640,18 @@ class SpotinstClient:
         # Returns
         (Object): Elastigroup API response
         """
-        query_params=dict(toDate=to_date, fromDate=from_date)
+        query_params = dict(toDate=to_date, fromDate=from_date)
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/costs",
+                "/" + group_id +
+                "/costs",
             query_params=query_params,
             entity_name="cost"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2660,18 +2667,18 @@ class SpotinstClient:
         # Returns
         (Object): Elastigroup API response
         """
-        query_params=dict(toDate=to_date, fromDate=from_date)
+        query_params = dict(toDate=to_date, fromDate=from_date)
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/costs/detailed",
+                "/" + group_id +
+                "/costs/detailed",
             query_params=query_params,
             entity_name="cost"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2688,7 +2695,7 @@ class SpotinstClient:
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2716,7 +2723,7 @@ class SpotinstClient:
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2732,13 +2739,13 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/scale/suspensions",
+                "/" + group_id +
+                "/scale/suspensions",
             entity_name="scaling policies"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2757,14 +2764,14 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/scale/suspendPolicy",
+                "/" + group_id +
+                "/scale/suspendPolicy",
             query_params=query_params,
             entity_name="scaling policies"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
@@ -2783,14 +2790,14 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/scale/resumePolicy",
+                "/" + group_id +
+                "/scale/resumePolicy",
             query_params=query_params,
             entity_name="scaling policies"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
@@ -2806,13 +2813,13 @@ class SpotinstClient:
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/suspension",
+                "/" + group_id +
+                "/suspension",
             entity_name="suspend process"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2842,14 +2849,14 @@ class SpotinstClient:
 
         response = self.send_post(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/suspension",
+                "/" + group_id +
+                "/suspension",
             body=body,
             entity_name="suspend process"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2868,14 +2875,14 @@ class SpotinstClient:
 
         response = self.send_delete_with_body(
             url=self.__base_elastigroup_url +
-            "/" + group_id +
-            "/suspension",
+                "/" + group_id +
+                "/suspension",
             body=body,
             entity_name="suspend process"
         )
 
         formatted_response = self.convert_json(
-            response, self. camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response
 
@@ -3005,7 +3012,7 @@ class SpotinstClient:
                 str(group_id) +
                 "/statefulInstance/" +
                 str(stateful_instance_id +
-                "/deallocate"),
+                    "/deallocate"),
             entity_name='deallocate stateful instance')
 
         formatted_response = self.convert_json(
@@ -3029,7 +3036,7 @@ class SpotinstClient:
                 str(group_id) +
                 "/statefulInstance/" +
                 str(stateful_instance_id +
-                "/recycle"),
+                    "/recycle"),
             entity_name='recycle stateful instance')
 
         formatted_response = self.convert_json(
@@ -3075,7 +3082,7 @@ class SpotinstClient:
                 str(group_id) +
                 "/statefulInstance/" +
                 str(stateful_instance_id +
-                "/resume"),
+                    "/resume"),
             entity_name='resume stateful instance')
 
         formatted_response = self.convert_json(
@@ -3118,10 +3125,10 @@ class SpotinstClient:
         (Object): Elastigroup API response
         """
         status_response = self.send_get(
-            url=self.__base_elastigroup_url+
-            "/" +
-            str(group_id) +
-            "/beanstalk/maintenance/status",
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/beanstalk/maintenance/status",
             entity_name="beanstalk maintenance start")
 
         formatted_response = self.convert_json(
@@ -3142,10 +3149,10 @@ class SpotinstClient:
         (Object): Elastigroup API response
         """
         start_response = self.send_put(
-            url=self.__base_elastigroup_url+
-            "/" +
-            str(group_id) +
-            "/beanstalk/maintenance/start",
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/beanstalk/maintenance/start",
             body={},
             entity_name="beanstalk maintenance start")
 
@@ -3167,10 +3174,10 @@ class SpotinstClient:
         (Object): Elastigroup API response
         """
         finish_response = self.send_put(
-            url=self.__base_elastigroup_url+
-            "/" +
-            str(group_id) +
-            "/beanstalk/maintenance/finish",
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/beanstalk/maintenance/finish",
             body={},
             entity_name="beanstalk maintenance start")
 
@@ -3197,7 +3204,7 @@ class SpotinstClient:
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-            "/beanstalk/import",
+                "/beanstalk/import",
             query_params=query_params,
             entity_name="beanstalk import"
         )
@@ -3221,8 +3228,8 @@ class SpotinstClient:
         """
         response = self.send_put(
             url=self.__base_elastigroup_url +
-            "/" + str(group_id) +
-            "/beanstalk/reimport",
+                "/" + str(group_id) +
+                "/beanstalk/reimport",
             entity_name="beanstalk reimport"
         )
 
@@ -3259,8 +3266,8 @@ class SpotinstClient:
 
         response = self.send_post(
             body=body_json,
-            url=self.__base_elastigroup_url+
-            "/autoScalingGroup/import",
+            url=self.__base_elastigroup_url +
+                "/autoScalingGroup/import",
             query_params=query_params,
             entity_name='import asg')
 
@@ -3286,7 +3293,7 @@ class SpotinstClient:
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-            "/" + group_id + "/events",
+                "/" + group_id + "/events",
             query_params=query_params,
             entity_name="activity groups"
         )
@@ -3310,7 +3317,7 @@ class SpotinstClient:
         """
         response = self.send_post(
             url=self.__base_elastigroup_url +
-            "/" + group_id + "/amiBackup",
+                "/" + group_id + "/amiBackup",
             entity_name="ami backup"
         )
 
@@ -3362,7 +3369,7 @@ class SpotinstClient:
         (Object): Elastigroup API response
         """
         response = self.send_get(
-            url= self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment",
+            url=self.__base_elastigroup_url + "/" + group_id + "/codeDeploy/blueGreenDeployment",
             entity_name="get b/g deployment")
 
         formatted_response = self.convert_json(
@@ -3395,10 +3402,6 @@ class SpotinstClient:
 
     # endregion
 
-
-
-
-
     # region Functions
     def create_application(self, app):
         """
@@ -3423,7 +3426,7 @@ class SpotinstClient:
         app_response = self.send_post(
             body=body_json,
             url=self.__base_functions_url +
-            '/application',
+                '/application',
             entity_name='application')
 
         formatted_response = self.convert_json(
@@ -3456,7 +3459,7 @@ class SpotinstClient:
         env_response = self.send_post(
             body=body_json,
             url=self.__base_functions_url +
-            '/environment',
+                '/environment',
             entity_name='environment')
 
         formatted_response = self.convert_json(
@@ -3490,7 +3493,7 @@ class SpotinstClient:
         fx_response = self.send_post(
             body=body_json,
             url=self.__base_functions_url +
-            '/function',
+                '/function',
             entity_name='function')
 
         formatted_response = self.convert_json(
@@ -3502,16 +3505,12 @@ class SpotinstClient:
 
     # endregion
 
-
-
-
-
     # region Utils
     def print_output(self, output):
         if self.should_print_output is True:
             print(output)
 
-    def send_get(self, url,entity_name,query_params=None):
+    def send_get(self, url, entity_name, query_params=None):
         agent = self.resolve_user_agent()
         if query_params != None:
             query_params = self.build_query_params_with_input(query_params)
@@ -3677,7 +3676,7 @@ class SpotinstClient:
     def handle_exception(self, action_string, result):
         self.print_output(result.status_code)
 
-        if result.content  == "Bad Request":
+        if result.content == "Bad Request":
             data = dict(response=result.content)
         else:
             data = json.loads(result.content.decode('utf-8'))
@@ -3779,7 +3778,7 @@ class SpotinstClient:
         return logger
 
     def set_log_level(self, log_level):
-        if log_level==None:
+        if log_level == None:
             level = os.environ.get(VAR_SPOTINST_LOG_LEVEL, 'critical')
         else:
             level = log_level
