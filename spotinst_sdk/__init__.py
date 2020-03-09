@@ -1915,9 +1915,9 @@ class SpotinstClient:
 
         return retVal
 
-    def get_all_ocean_recs(self, ocean_id, namespace):
+    def get_all_ocean_sizing(self, ocean_id, namespace):
         """
-        Get all Ocean in account
+        Get all right sizing recommendations for an Ocean cluster
 
         # Returns
         (Object): Ocean API response
