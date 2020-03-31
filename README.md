@@ -72,3 +72,5 @@ client = SpotinstClient(credentials_file='/path/to/file', profile='my_profile')
   4. You can overwrite the credentials file location and the profile used as environment variables `SPOTINST_PROFILE` and/or `SPOTINST_SHARED_CREDENTIALS_FILE`
   5. Fetching from the default location with the default profile
   
+## License
+Code is licensed under the [Apache License 2.0](LICENSE). See [NOTICE.md](NOTICE.md) for complete details, including software and third-party licenses and permissions.
