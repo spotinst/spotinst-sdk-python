@@ -1,9 +1,5 @@
-site_name: "Spotinst Python SDK"
+site_name: "Spotinst SDK Python"
 
-# This tells pydocmd which pages to generate from which Python modules,
-# functions and classes. At the first level is the page name, below that
-# is a tree of Python member names (modules, classes, etc.) that should be
-# documented. Higher indentation leads to smaller header size.
 generate:
 - endpoints/elastigroup/aws/core.md:
   - spotinst_sdk.SpotinstClient.create_elastigroup
@@ -58,7 +54,7 @@ generate:
   - spotinst_sdk.SpotinstClient.beanstalk_maintenance_status
   - spotinst_sdk.SpotinstClient.beanstalk_maintenance_start
   - spotinst_sdk.SpotinstClient.beanstalk_maintenance_finish
-  - spotinst_sdk.SpotinstClient.beanstalk_import  
+  - spotinst_sdk.SpotinstClient.beanstalk_import
 - endpoints/elastigroup/aws/codedeploy.md:
   - spotinst_sdk.SpotinstClient.create_blue_green_deployment
   - spotinst_sdk.SpotinstClient.get_blue_green_deployment
@@ -74,12 +70,6 @@ generate:
   - spotinst_sdk.SpotinstClient.delete_emr
   - spotinst_sdk.SpotinstClient.scale_up_emr
   - spotinst_sdk.SpotinstClient.scale_down_emr
-- endpoints/functions/application.md:
-  - spotinst_sdk.SpotinstClient.create_application
-- endpoints/functions/environment.md:
-  - spotinst_sdk.SpotinstClient.create_environment
-- endpoints/functions/function.md:
-  - spotinst_sdk.SpotinstClient.create_function
 - endpoints/administration/org_and_account.md:
   - spotinst_sdk.SpotinstClient.create_organization
   - spotinst_sdk.SpotinstClient.delete_organization
@@ -99,69 +89,12 @@ generate:
   - spotinst_sdk.SpotinstClient.get_all_event_subscription
   - spotinst_sdk.SpotinstClient.get_event_subscription
   - spotinst_sdk.SpotinstClient.delete_event_subscription
-- endpoints/mlb/runtime.md:
-  - spotinst_sdk.SpotinstClient.get_all_mlb_runtime
-  - spotinst_sdk.SpotinstClient.get_mlb_runtime
-  - spotinst_sdk.SpotinstClient.deregister_mlb_runtime
-  - spotinst_sdk.SpotinstClient.delete_mlb_runtime
-- endpoints/mlb/deployment.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_deployment
-  - spotinst_sdk.SpotinstClient.update_mlb_deployment
-  - spotinst_sdk.SpotinstClient.get_mlb_deployment
-  - spotinst_sdk.SpotinstClient.get_all_mlb_deployment
-  - spotinst_sdk.SpotinstClient.delete_mlb_deployment
-- endpoints/mlb/balancer.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_balancer
-  - spotinst_sdk.SpotinstClient.update_mlb_balancer
-  - spotinst_sdk.SpotinstClient.get_mlb_balancer
-  - spotinst_sdk.SpotinstClient.get_all_mlb_balancer
-  - spotinst_sdk.SpotinstClient.delete_mlb_balancer
-- endpoints/mlb/target_set.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_target_set
-  - spotinst_sdk.SpotinstClient.update_mlb_target_set
-  - spotinst_sdk.SpotinstClient.get_mlb_target_set
-  - spotinst_sdk.SpotinstClient.get_all_mlb_target_set
-  - spotinst_sdk.SpotinstClient.delete_mlb_target_set
-  - spotinst_sdk.SpotinstClient.register_mlb_targets
-  - spotinst_sdk.SpotinstClient.deregister_mlb_targets
-- endpoints/mlb/target.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_target
-  - spotinst_sdk.SpotinstClient.update_mlb_target
-  - spotinst_sdk.SpotinstClient.get_mlb_target
-  - spotinst_sdk.SpotinstClient.get_all_mlb_target
-  - spotinst_sdk.SpotinstClient.delete_mlb_target
-- endpoints/mlb/listener.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_listener
-  - spotinst_sdk.SpotinstClient.update_mlb_listener
-  - spotinst_sdk.SpotinstClient.get_mlb_listener
-  - spotinst_sdk.SpotinstClient.get_all_mlb_listener
-  - spotinst_sdk.SpotinstClient.delete_mlb_listener
-- endpoints/mlb/middleware.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_middleware
-  - spotinst_sdk.SpotinstClient.update_mlb_middleware
-  - spotinst_sdk.SpotinstClient.get_mlb_middleware
-  - spotinst_sdk.SpotinstClient.get_all_mlb_middleware
-  - spotinst_sdk.SpotinstClient.delete_mlb_middleware
-- endpoints/mlb/routing_rule.md:
-  - spotinst_sdk.SpotinstClient.create_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.update_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.get_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.get_all_mlb_routing_rule
-  - spotinst_sdk.SpotinstClient.delete_mlb_routing_rule
 - endpoints/ocean/cloud.md:
   - spotinst_sdk.SpotinstClient.create_ocean_cluster
   - spotinst_sdk.SpotinstClient.update_ocean_cluster
   - spotinst_sdk.SpotinstClient.get_all_ocean_cluster
   - spotinst_sdk.SpotinstClient.get_ocean_cluster
   - spotinst_sdk.SpotinstClient.delete_ocean_cluster
-
-
-
-
-
-
-- classes/mlb.md:
-  - spotinst_sdk.spotinst_mlb++
 - classes/user_mapping.md:
   - spotinst_sdk.spotinst_user_mapping++
 - classes/deployment.md:
@@ -172,8 +105,6 @@ generate:
   - spotinst_sdk.spotinst_deployment_action++
 - classes/stateful.md:
   - spotinst_sdk.spotinst_stateful++
-- classes/functions.md:
-  - spotinst_sdk.spotinst_functions++
 - classes/emr.md:
   - spotinst_sdk.spotinst_emr++
 - classes/elastigroup.md:
@@ -183,19 +114,8 @@ generate:
 - classes/event_subscription.md:
   - spotinst_sdk.spotinst_event_subscription++
 
-
-
 pages:
-- Home: README.md << ./docs/home.md
-- Elastigroup: ./endpoints/elastigroup/README.md << ./docs/elastigroup.md
-- Ocean: ./endpoints/ocean/README.md << ./docs/ocean.md
-- Functions: ./endpoints/functions/README.md << ./docs/functions.md
-- Admin: ./endpoints/administration/README.md << ./docs/admin.md
-- MLB: ./endpoints/mlb/README.md << ./docs/mlb.md
-- AWS: ./endpoints/elastigroup/aws/README.md << ./docs/aws.md
-- Examples: ./examples/README.md << ./docs/examples.md
-- Endpoints: ./endpoints/README.md << ./docs/endpoints.md
-- Classes: ./classes/README.md << ./docs/classes.md
+- Home: README.md << README.md
 
-
-
+gens_dir: docs
+site_dir: site
