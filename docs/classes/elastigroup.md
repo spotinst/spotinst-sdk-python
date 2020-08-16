@@ -80,12 +80,12 @@ __Arguments__
 <h2 id="spotinst_sdk.aws_elastigroup.ScalingStrategy">ScalingStrategy</h2>
 
 ```python
-ScalingStrategy(self, terminate_at_end_of_billing_hour)
+ScalingStrategy(self, terminationPolicy='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
-- __terminate_at_end_of_billing_hour__: bool
+- __terminationPolicy__: str
 
 <h2 id="spotinst_sdk.aws_elastigroup.Persistence">Persistence</h2>
 
@@ -1094,7 +1094,8 @@ EBS(self,
     snapshot_id='d3043820717d74d9a17694c176d39733',
     volume_size='d3043820717d74d9a17694c176d39733',
     volume_type='d3043820717d74d9a17694c176d39733',
-    kms_key_id='d3043820717d74d9a17694c176d39733')
+    kms_key_id='d3043820717d74d9a17694c176d39733',
+    dynamic_volume_size='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1106,6 +1107,22 @@ __Arguments__
 - __volume_size__: int
 - __volume_type__: str
 - __kms_key_id__: str
+- __dynamic_volume_size__: DynamicVolumeSize
+
+<h2 id="spotinst_sdk.aws_elastigroup.EBS.DynamicVolumeSize">DynamicVolumeSize</h2>
+
+```python
+DynamicVolumeSize(self,
+                  base_size='d3043820717d74d9a17694c176d39733',
+                  resource='d3043820717d74d9a17694c176d39733',
+                  size_per_resource_unit='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __base_size__: int
+- __resource__: str
+- __size_per_resource_unit__: int
 
 <h2 id="spotinst_sdk.aws_elastigroup.Tag">Tag</h2>
 
