@@ -108,10 +108,12 @@ class ScalingStrategy:
     """
     # Arguments
     terminate_at_end_of_billing_hour: bool
+    terminationPolicy: str
     """
-    def __init__(self, terminate_at_end_of_billing_hour):
+    def __init__(self, terminate_at_end_of_billing_hour=none, terminationPolicy=none):
 
         self.terminate_at_end_of_billing_hour = terminate_at_end_of_billing_hour
+        self.terminationPolicy = terminationPolicy
 
 
 class Persistence:
@@ -1242,6 +1244,7 @@ class EBS:
     volume_size: int
     volume_type: str
     kms_key_id: str
+    dynamic_volume_size: DynamicVolumeSize
     """
     def __init__(
             self,
@@ -1251,7 +1254,8 @@ class EBS:
             snapshot_id=none,
             volume_size=none,
             volume_type=none,
-            kms_key_id=none):
+            kms_key_id=none,
+            dynamic_volume_size=none):
 
         self.delete_on_termination = delete_on_termination
         self.encrypted = encrypted
@@ -1260,6 +1264,24 @@ class EBS:
         self.volume_size = volume_size
         self.volume_type = volume_type
         self.kms_key_id = kms_key_id
+        self.dynamic_volume_size = dynamic_volume_size
+
+class DynamicVolumeSize:
+    """
+    # Arguments
+    base_size: int
+    resource: str
+    size_per_resource_unit: int
+    """
+    def __init__(
+            self,
+            base_size=none,
+            resource=none,
+            size_per_resource_unit=none):
+
+        self.base_size=base_size
+        self.resource=resource
+        self.size_per_resource_unit=size_per_resource_unit
 
 
 class Tag:
