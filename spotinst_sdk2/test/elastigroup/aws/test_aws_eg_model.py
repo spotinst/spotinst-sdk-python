@@ -319,8 +319,6 @@ class AwsElastigroupTestSchedulingIntegration(AwsElastigroupTestCase):
 
         self.maxDiff = None
         self.assertDictEqual(actual_request_json, expected_request_json)
-
-
 # endregion
 
 # region Rancher
@@ -347,8 +345,6 @@ class AwsElastigroupTestRancher(AwsElastigroupTestCase):
         self.assertDictEqual(actual_request_json, expected_request_json)
 # endregion
 
-
-
 # region Compute
 class AwsElastigroupTestCompute(AwsElastigroupTestCase):
     def runTest(self):
@@ -364,6 +360,82 @@ class AwsElastigroupTestCompute(AwsElastigroupTestCase):
         expected_request_json = {
             'product': "Linux/UNIX",
             'preferredAvailabilityZones': ["us-west-2a"]}
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
+
+class AwsElastigroupTestLaunchSpecification(AwsElastigroupTestCase):
+    def runTest(self):
+        launch_specification = LaunchSpecification(image_id="ami-123",
+                                                   health_check_type="type")
+        compute = Compute(launch_specification=launch_specification)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            compute=compute)
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['compute']['launchSpecification']
+        expected_request_json = {
+            'imageId': "ami-123",
+            'healthCheckType': "type"
+        }
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
+
+class AwsElastigroupTestBlockDeviceMapping(AwsElastigroupTestCase):
+    def runTest(self):
+        block_device_mappings = [BlockDeviceMapping(device_name='device')]
+        launch_specification = LaunchSpecification(block_device_mappings=block_device_mappings)
+        compute = Compute(launch_specification=launch_specification)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            compute=compute)
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['compute']['launchSpecification']['blockDeviceMappings'][0]
+        expected_request_json = {
+            'deviceName': "device"
+        }
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
+
+class AwsElastigroupTestEbs(AwsElastigroupTestCase):
+    def runTest(self):
+        ebs = [EBS(snapshot_id="snp-1")]
+        block_device_mappings = [BlockDeviceMapping(ebs=ebs)]
+        launch_specification = LaunchSpecification(block_device_mappings=block_device_mappings)
+        compute = Compute(launch_specification=launch_specification)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            compute=compute)
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['compute']['launchSpecification']['blockDeviceMappings'][0]['ebs'][0]
+        expected_request_json = {
+            'snapshotId': "snp-1"
+        }
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
+
+class AwsElastigroupTestDynamicVolumeSize(AwsElastigroupTestCase):
+    def runTest(self):
+        dynamic_volume_size = DynamicVolumeSize(resource="resource")
+        ebs = [EBS(dynamic_volume_size=dynamic_volume_size)]
+        block_device_mappings = [BlockDeviceMapping(ebs=ebs)]
+        launch_specification = LaunchSpecification(block_device_mappings=block_device_mappings)
+        compute = Compute(launch_specification=launch_specification)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            compute=compute)
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['compute']['launchSpecification']['blockDeviceMappings'][0]['ebs'][0]['dynamicVolumeSize']
+        expected_request_json = {
+            'resource': "resource"
+        }
 
         self.assertDictEqual(actual_request_json, expected_request_json)
 # endregion

@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.3] - 2019-04-02
+### Added
+ - field aws.group.strategy.scalingStrategy.terminationPolicy
+ - field aws.group.compute.launchSpecification.blockDeviceMappings.ebs.dynamicVolumeSize
+
+### Removed
+ - field aws.group.strategy.scalingStrategy.terminate_at_end_of_billing_hour from documentation
+
 ## [2.1.2] - 2019-04-02
 ### Added
  - get_elastilog for aws client
