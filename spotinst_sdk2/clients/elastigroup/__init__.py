@@ -595,7 +595,16 @@ class ElastigroupAwsClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """
-        body = json.dumps(dict(suspensions=suspensions, processes=processes))
+        if suspensions is not None:
+            if processes is not None:
+                # should fail in API
+                item_to_send = dict(suspensions=suspensions, processes=processes)
+            else:
+                item_to_send = dict(suspensions=suspensions)
+        else:
+            item_to_send = dict(processes=processes)
+
+        body = json.dumps(item_to_send)
         
         response = self.send_post(
             url=self.__base_elastigroup_url +
