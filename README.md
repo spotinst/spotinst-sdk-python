@@ -142,4 +142,5 @@ Take note you can create more than one client with the session. The currently su
 
 A full list of endpoints and clients can be found in the documentation [here](./docs/pydocmd/clients/).
 
-
+## License
+Code is licensed under the [Apache License 2.0](LICENSE). See [NOTICE.md](NOTICE.md) for complete details, including software and third-party licenses and permissions.
