@@ -89,6 +89,28 @@ class OceanAwsClient(Client):
 
         return retVal
 
+    def get_all_ocean_sizing(self, ocean_id, namespace):
+        """
+        Get all right sizing recommendations for an Ocean cluster
+        
+        # Returns
+        (Object): Ocean API response
+        """
+        response = self.send_get(
+            url=(self.__base_ocean_url +
+                 "/" + ocean_id +
+                 "/rightSizing/suggestion?namespace={}"
+                 ).format(namespace),
+            entity_name="ocean"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        retVal = formatted_response["response"]["items"]
+
+        return retVal
+
     def get_ocean_cluster(self, ocean_id):
         """
         Get an exsisting Ocean Cluster json
