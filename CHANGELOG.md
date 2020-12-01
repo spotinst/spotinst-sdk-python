@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.1.3] - 2019-04-02
+## [2.1.3] - 2020-12-01
 ### Added
  - field aws.group.strategy.scalingStrategy.terminationPolicy
  - field aws.group.compute.launchSpecification.blockDeviceMappings.ebs.dynamicVolumeSize
