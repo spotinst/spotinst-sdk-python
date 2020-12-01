@@ -12,7 +12,7 @@ setup.py-e
 
 # Distribution / packaging
 .Python
-build/
+*build/
 develop-eggs/
 dist/
 downloads/
@@ -90,7 +90,7 @@ celerybeat-schedule
 .env
 .venv
 env/
-venv/
+venv*/
 ENV/
 env.bak/
 venv.bak/

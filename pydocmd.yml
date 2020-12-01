@@ -1,9 +1,5 @@
 site_name: "Spotinst Python SDK"
 
-# This tells pydocmd which pages to generate from which Python modules,
-# functions and models. At the first level is the page name, below that
-# is a tree of Python member names (modules, models, etc.) that should be
-# documented. Higher indentation leads to smaller header size.
 generate:
 - clients/admin/admin_client.md:
   - spotinst_sdk2.clients.admin.AdminClient++
@@ -13,20 +9,14 @@ generate:
   - spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient++
 - clients/elastigroup/elastigroup_azure_client.md:
   - spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient++
-- clients/functions/functions_client.md:
-  - spotinst_sdk2.clients.functions.FunctionsClient++
 - clients/mcs/mcs_client.md:
   - spotinst_sdk2.clients.mcs.McsClient++
-- clients/mlb/mlb_client.md:
-  - spotinst_sdk2.clients.mlb.MlbClient++
 - clients/mrscaler/mrscaler_aws_client.md:
   - spotinst_sdk2.clients.mrscaler.MrScalerAwsClient++
 - clients/ocean/ocean_aws_client.md:
   - spotinst_sdk2.clients.ocean.OceanAwsClient++
 - clients/subscription/subscription_client.md:
   - spotinst_sdk2.clients.subscription.SubscriptionClient++
-
-
 - models/admin.md:
   - spotinst_sdk2.models.admin.user_mapping++
 - models/elastigroup/aws.md:
@@ -41,10 +31,6 @@ generate:
 - models/elastigroup/azure.md:
   - spotinst_sdk2.models.elastigroup.azure++
   - spotinst_sdk2.models.elastigroup.azure.task++
-- models/functions.md:
-  - spotinst_sdk2.models.functions++
-- models/mlb.md:
-  - spotinst_sdk2.models.mlb++
 - models/mrscaler/aws.md:
   - spotinst_sdk2.models.mrscaler.aws++
 - models/ocean/aws.md:
@@ -54,26 +40,8 @@ generate:
 
 
 pages:
-- Home: README.md << ./docs/home.md
-
+- Home:     README.md << README.md
 - Examples: ./examples/README.md << ./docs/examples.md
-- Clients:  ./clients/README.md  << ./docs/clients/home.md
-- Models:   ./models/README.md   << ./docs/models/home.md
 
-- AdminClient:        ./clients/admin/README.md        << ./docs/clients/admin.md
-- ElastigroupClient:  ./clients/elastigroup/README.md  << ./docs/clients/elastigroup.md
-- FunctionsClient:    ./clients/functions/README.md    << ./docs/clients/functions.md
-- MCSClient:          ./clients/mcs/README.md          << ./docs/clients/mcs.md
-- MLBClient:          ./clients/mlb/README.md          << ./docs/clients/mlb.md
-- MrScalerClient:     ./clients/mrscaler/README.md     << ./docs/clients/mrscaler.md
-- OceanClient:        ./clients/ocean/README.md        << ./docs/clients/ocean.md
-- SubscriptionClient: ./clients/subscription/README.md << ./docs/clients/subscription.md
-
-- ElastigroupModel: ./models/elastigroup/README.md << ./docs/models/elastigroup.md
-- OceanModel:       ./models/ocean/README.md       << ./docs/models/ocean.md
-- MrScalerModel:    ./models/mrscaler/README.md    << ./docs/models/mrscaler.md
-
-
-
-
-
+gens_dir: docs
+site_dir: site
