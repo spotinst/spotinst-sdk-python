@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.4] - 2020-12-03
+### Added
+ - get all ocean right sizing recommendations
+
+### Fixed
+ - process suspension by user
+ - License and documentation
+
+### Removed
+ - field aws.group.strategy.scalingStrategy.terminate_at_end_of_billing_hour from documentation
+
 ## [2.1.3] - 2020-12-01
 ### Added
  - field aws.group.strategy.scalingStrategy.terminationPolicy
