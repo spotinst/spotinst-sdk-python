@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.1.4] - 2020-12-03
 ### Added
  - get all ocean right sizing recommendations
+ - field aws.group.compute.launchSpecification.blockDeviceMappings.ebs.throughput
 
 ### Fixed
  - process suspension by user
