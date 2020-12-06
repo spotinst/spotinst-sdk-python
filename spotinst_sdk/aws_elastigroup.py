@@ -1245,6 +1245,7 @@ class EBS:
     volume_type: str
     kms_key_id: str
     dynamic_volume_size: DynamicVolumeSize
+    throughput: int
     """
     def __init__(
             self,
@@ -1255,7 +1256,8 @@ class EBS:
             volume_size=none,
             volume_type=none,
             kms_key_id=none,
-            dynamic_volume_size=none):
+            dynamic_volume_size=none,
+            throughput=none):
 
         self.delete_on_termination = delete_on_termination
         self.encrypted = encrypted
@@ -1265,6 +1267,7 @@ class EBS:
         self.volume_type = volume_type
         self.kms_key_id = kms_key_id
         self.dynamic_volume_size = dynamic_volume_size
+        self.throughput = throughput
 
 class DynamicVolumeSize:
     """

@@ -364,4 +364,24 @@ class AwsElastigroupTestCompute(AwsElastigroupTestCase):
             'preferredAvailabilityZones': ["us-west-2a"]}
 
         self.assertDictEqual(actual_request_json, expected_request_json)
+
+class AwsElastigroupTestEbs(AwsElastigroupTestCase):
+    def runTest(self):
+        ebs = [EBS(snapshot_id="snp-1", throughput=500)]
+        block_device_mappings = [BlockDeviceMapping(ebs=ebs)]
+        launch_specification = LaunchSpecification(block_device_mappings=block_device_mappings)
+        compute = Compute(launch_specification=launch_specification)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            compute=compute)
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['compute']['launchSpecification']['blockDeviceMappings'][0]['ebs'][0]
+        expected_request_json = {
+            'snapshotId': "snp-1",
+            'throughput': 500
+        }
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
 # endregion

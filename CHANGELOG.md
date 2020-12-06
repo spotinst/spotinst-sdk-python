@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.52] - 2020-12-07
+### Added 
+- field aws.group.compute.launchSpecification.blockDeviceMappings.ebs.throughput
+
 ## [1.0.45] - 2019-04-02
 ### Added 
 - get_elastilog for aws eg

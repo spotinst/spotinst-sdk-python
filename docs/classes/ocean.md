@@ -145,13 +145,13 @@ __Arguments__
 
 ```python
 LaunchSpecifications(
-    self,
-    security_group_ids='d3043820717d74d9a17694c176d39733',
-    image_id='d3043820717d74d9a17694c176d39733',
-    iam_instance_profile='d3043820717d74d9a17694c176d39733',
-    key_pair='d3043820717d74d9a17694c176d39733',
-    user_data='d3043820717d74d9a17694c176d39733',
-    tags='d3043820717d74d9a17694c176d39733')
+  self,
+  security_group_ids='d3043820717d74d9a17694c176d39733',
+  image_id='d3043820717d74d9a17694c176d39733',
+  iam_instance_profile='d3043820717d74d9a17694c176d39733',
+  key_pair='d3043820717d74d9a17694c176d39733',
+  user_data='d3043820717d74d9a17694c176d39733',
+  tags='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__

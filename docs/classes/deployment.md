@@ -5,10 +5,10 @@
 
 ```python
 BlueGreenDeployment(
-    self,
-    timeout='d3043820717d74d9a17694c176d39733',
-    tags='d3043820717d74d9a17694c176d39733',
-    deployment_groups='d3043820717d74d9a17694c176d39733')
+  self,
+  timeout='d3043820717d74d9a17694c176d39733',
+  tags='d3043820717d74d9a17694c176d39733',
+  deployment_groups='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -34,9 +34,9 @@ __Arguments__
 
 ```python
 DeploymentGroup(
-    self,
-    application_name='d3043820717d74d9a17694c176d39733',
-    deployment_group_name='d3043820717d74d9a17694c176d39733')
+  self,
+  application_name='d3043820717d74d9a17694c176d39733',
+  deployment_group_name='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__

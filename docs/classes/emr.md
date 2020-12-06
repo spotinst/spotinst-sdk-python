@@ -98,22 +98,22 @@ __Arguments__
 
 ```python
 Compute(
-    self,
-    ebs_root_volume_size='d3043820717d74d9a17694c176d39733',
-    availability_zones='d3043820717d74d9a17694c176d39733',
-    bootstrap_actions='d3043820717d74d9a17694c176d39733',
-    steps='d3043820717d74d9a17694c176d39733',
-    instance_groups='d3043820717d74d9a17694c176d39733',
-    configurations='d3043820717d74d9a17694c176d39733',
-    emr_managed_master_security_group='d3043820717d74d9a17694c176d39733',
-    emr_managed_slave_security_group='d3043820717d74d9a17694c176d39733',
-    additional_master_security_groups='d3043820717d74d9a17694c176d39733',
-    service_access_security_group='d3043820717d74d9a17694c176d39733',
-    custom_ami_id='d3043820717d74d9a17694c176d39733',
-    repo_upgrade_on_boot='d3043820717d74d9a17694c176d39733',
-    additional_slave_security_groups='d3043820717d74d9a17694c176d39733',
-    ec2_key_name='d3043820717d74d9a17694c176d39733',
-    applications='d3043820717d74d9a17694c176d39733')
+  self,
+  ebs_root_volume_size='d3043820717d74d9a17694c176d39733',
+  availability_zones='d3043820717d74d9a17694c176d39733',
+  bootstrap_actions='d3043820717d74d9a17694c176d39733',
+  steps='d3043820717d74d9a17694c176d39733',
+  instance_groups='d3043820717d74d9a17694c176d39733',
+  configurations='d3043820717d74d9a17694c176d39733',
+  emr_managed_master_security_group='d3043820717d74d9a17694c176d39733',
+  emr_managed_slave_security_group='d3043820717d74d9a17694c176d39733',
+  additional_master_security_groups='d3043820717d74d9a17694c176d39733',
+  service_access_security_group='d3043820717d74d9a17694c176d39733',
+  custom_ami_id='d3043820717d74d9a17694c176d39733',
+  repo_upgrade_on_boot='d3043820717d74d9a17694c176d39733',
+  additional_slave_security_groups='d3043820717d74d9a17694c176d39733',
+  ec2_key_name='d3043820717d74d9a17694c176d39733',
+  applications='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -287,9 +287,9 @@ __Arguments__
 
 ```python
 EbsConfiguration(
-    self,
-    ebs_block_device_configs='d3043820717d74d9a17694c176d39733',
-    ebs_optimized='d3043820717d74d9a17694c176d39733')
+  self,
+  ebs_block_device_configs='d3043820717d74d9a17694c176d39733',
+  ebs_optimized='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -337,14 +337,14 @@ __Arguments__
 
 ```python
 Cluster(
-    self,
-    visible_to_all_users='d3043820717d74d9a17694c176d39733',
-    termination_protected='d3043820717d74d9a17694c176d39733',
-    keep_job_flow_alive_when_no_steps='d3043820717d74d9a17694c176d39733',
-    log_uri='d3043820717d74d9a17694c176d39733',
-    additional_info='d3043820717d74d9a17694c176d39733',
-    job_flow_role='d3043820717d74d9a17694c176d39733',
-    security_configuration='d3043820717d74d9a17694c176d39733')
+  self,
+  visible_to_all_users='d3043820717d74d9a17694c176d39733',
+  termination_protected='d3043820717d74d9a17694c176d39733',
+  keep_job_flow_alive_when_no_steps='d3043820717d74d9a17694c176d39733',
+  log_uri='d3043820717d74d9a17694c176d39733',
+  additional_info='d3043820717d74d9a17694c176d39733',
+  job_flow_role='d3043820717d74d9a17694c176d39733',
+  security_configuration='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__

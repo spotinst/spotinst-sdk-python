@@ -53,7 +53,7 @@ __Returns__
 
 ```python
 SpotinstClient.delete_elastigroup_with_deallocation(
-    group_id, stateful_deallocation)
+  group_id, stateful_deallocation)
 ```
 
 Delete a stateful elastigroup

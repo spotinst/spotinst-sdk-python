@@ -5,17 +5,17 @@
 
 ```python
 Elastigroup(
-    self,
-    name='d3043820717d74d9a17694c176d39733',
-    description='d3043820717d74d9a17694c176d39733',
-    region='d3043820717d74d9a17694c176d39733',
-    capacity='d3043820717d74d9a17694c176d39733',
-    strategy='d3043820717d74d9a17694c176d39733',
-    compute='d3043820717d74d9a17694c176d39733',
-    scaling='d3043820717d74d9a17694c176d39733',
-    scheduling='d3043820717d74d9a17694c176d39733',
-    multai='d3043820717d74d9a17694c176d39733',
-    third_parties_integration='d3043820717d74d9a17694c176d39733')
+  self,
+  name='d3043820717d74d9a17694c176d39733',
+  description='d3043820717d74d9a17694c176d39733',
+  region='d3043820717d74d9a17694c176d39733',
+  capacity='d3043820717d74d9a17694c176d39733',
+  strategy='d3043820717d74d9a17694c176d39733',
+  compute='d3043820717d74d9a17694c176d39733',
+  scaling='d3043820717d74d9a17694c176d39733',
+  scheduling='d3043820717d74d9a17694c176d39733',
+  multai='d3043820717d74d9a17694c176d39733',
+  third_parties_integration='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -80,22 +80,26 @@ __Arguments__
 <h2 id="spotinst_sdk.aws_elastigroup.ScalingStrategy">ScalingStrategy</h2>
 
 ```python
-ScalingStrategy(self, terminationPolicy='d3043820717d74d9a17694c176d39733')
+ScalingStrategy(
+  self,
+  terminate_at_end_of_billing_hour='d3043820717d74d9a17694c176d39733',
+  terminationPolicy='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
+- __terminate_at_end_of_billing_hour__: bool
 - __terminationPolicy__: str
 
 <h2 id="spotinst_sdk.aws_elastigroup.Persistence">Persistence</h2>
 
 ```python
 Persistence(
-    self,
-    should_persist_block_devices='d3043820717d74d9a17694c176d39733',
-    should_persist_root_device='d3043820717d74d9a17694c176d39733',
-    should_persist_private_ip='d3043820717d74d9a17694c176d39733',
-    block_devices_mode='d3043820717d74d9a17694c176d39733')
+  self,
+  should_persist_block_devices='d3043820717d74d9a17694c176d39733',
+  should_persist_root_device='d3043820717d74d9a17694c176d39733',
+  should_persist_private_ip='d3043820717d74d9a17694c176d39733',
+  block_devices_mode='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -167,14 +171,14 @@ __Arguments__
 
 ```python
 ScalingPolicyAction(
-    self,
-    type='d3043820717d74d9a17694c176d39733',
-    adjustment='d3043820717d74d9a17694c176d39733',
-    min_target_capacity='d3043820717d74d9a17694c176d39733',
-    max_target_capacity='d3043820717d74d9a17694c176d39733',
-    target='d3043820717d74d9a17694c176d39733',
-    minimum='d3043820717d74d9a17694c176d39733',
-    maximum='d3043820717d74d9a17694c176d39733')
+  self,
+  type='d3043820717d74d9a17694c176d39733',
+  adjustment='d3043820717d74d9a17694c176d39733',
+  min_target_capacity='d3043820717d74d9a17694c176d39733',
+  max_target_capacity='d3043820717d74d9a17694c176d39733',
+  target='d3043820717d74d9a17694c176d39733',
+  minimum='d3043820717d74d9a17694c176d39733',
+  maximum='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -363,10 +367,10 @@ __Arguments__
 
 ```python
 ElasticBeanstalk(
-    self,
-    environment_id='d3043820717d74d9a17694c176d39733',
-    managed_actions='d3043820717d74d9a17694c176d39733',
-    deployment_preferences='d3043820717d74d9a17694c176d39733')
+  self,
+  environment_id='d3043820717d74d9a17694c176d39733',
+  managed_actions='d3043820717d74d9a17694c176d39733',
+  deployment_preferences='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -404,11 +408,11 @@ __Arguments__
 
 ```python
 DeploymentPreferences(
-    self,
-    automatic_roll='d3043820717d74d9a17694c176d39733',
-    batch_size_percentage='d3043820717d74d9a17694c176d39733',
-    grace_period='d3043820717d74d9a17694c176d39733',
-    strategy='d3043820717d74d9a17694c176d39733')
+  self,
+  automatic_roll='d3043820717d74d9a17694c176d39733',
+  batch_size_percentage='d3043820717d74d9a17694c176d39733',
+  grace_period='d3043820717d74d9a17694c176d39733',
+  strategy='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -422,9 +426,9 @@ __Arguments__
 
 ```python
 BeanstalkDeploymentStrategy(
-    self,
-    action='d3043820717d74d9a17694c176d39733',
-    should_drain_instances='d3043820717d74d9a17694c176d39733')
+  self,
+  action='d3043820717d74d9a17694c176d39733',
+  should_drain_instances='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -449,13 +453,13 @@ __Arguments__
 
 ```python
 EcsAutoScaleConfiguration(
-    self,
-    is_enabled='d3043820717d74d9a17694c176d39733',
-    is_auto_config='d3043820717d74d9a17694c176d39733',
-    cooldown='d3043820717d74d9a17694c176d39733',
-    headroom='d3043820717d74d9a17694c176d39733',
-    attributes='d3043820717d74d9a17694c176d39733',
-    down='d3043820717d74d9a17694c176d39733')
+  self,
+  is_enabled='d3043820717d74d9a17694c176d39733',
+  is_auto_config='d3043820717d74d9a17694c176d39733',
+  cooldown='d3043820717d74d9a17694c176d39733',
+  headroom='d3043820717d74d9a17694c176d39733',
+  attributes='d3043820717d74d9a17694c176d39733',
+  down='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -471,10 +475,10 @@ __Arguments__
 
 ```python
 EcsAutoScalerHeadroomConfiguration(
-    self,
-    cpu_per_unit='d3043820717d74d9a17694c176d39733',
-    memory_per_unit='d3043820717d74d9a17694c176d39733',
-    num_of_units='d3043820717d74d9a17694c176d39733')
+  self,
+  cpu_per_unit='d3043820717d74d9a17694c176d39733',
+  memory_per_unit='d3043820717d74d9a17694c176d39733',
+  num_of_units='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -487,9 +491,9 @@ __Arguments__
 
 ```python
 EcsAutoScalerAttributeConfiguration(
-    self,
-    key='d3043820717d74d9a17694c176d39733',
-    value='d3043820717d74d9a17694c176d39733')
+  self,
+  key='d3043820717d74d9a17694c176d39733',
+  value='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -501,7 +505,7 @@ __Arguments__
 
 ```python
 EcsAutoScalerDownConfiguration(
-    self, evaluation_periods='d3043820717d74d9a17694c176d39733')
+  self, evaluation_periods='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -524,12 +528,12 @@ __Arguments__
 
 ```python
 KubernetesConfiguration(
-    self,
-    api_server='d3043820717d74d9a17694c176d39733',
-    token='d3043820717d74d9a17694c176d39733',
-    integration_mode='d3043820717d74d9a17694c176d39733',
-    cluster_identifier='d3043820717d74d9a17694c176d39733',
-    auto_scale='d3043820717d74d9a17694c176d39733')
+  self,
+  api_server='d3043820717d74d9a17694c176d39733',
+  token='d3043820717d74d9a17694c176d39733',
+  integration_mode='d3043820717d74d9a17694c176d39733',
+  cluster_identifier='d3043820717d74d9a17694c176d39733',
+  auto_scale='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -544,13 +548,13 @@ __Arguments__
 
 ```python
 KubernetesAutoScalerConfiguration(
-    self,
-    is_enabled='d3043820717d74d9a17694c176d39733',
-    is_auto_config='d3043820717d74d9a17694c176d39733',
-    cooldown='d3043820717d74d9a17694c176d39733',
-    headroom='d3043820717d74d9a17694c176d39733',
-    labels='d3043820717d74d9a17694c176d39733',
-    down='d3043820717d74d9a17694c176d39733')
+  self,
+  is_enabled='d3043820717d74d9a17694c176d39733',
+  is_auto_config='d3043820717d74d9a17694c176d39733',
+  cooldown='d3043820717d74d9a17694c176d39733',
+  headroom='d3043820717d74d9a17694c176d39733',
+  labels='d3043820717d74d9a17694c176d39733',
+  down='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -566,10 +570,10 @@ __Arguments__
 
 ```python
 KubernetesAutoScalerHeadroomConfiguration(
-    self,
-    cpu_per_unit='d3043820717d74d9a17694c176d39733',
-    memory_per_unit='d3043820717d74d9a17694c176d39733',
-    num_of_units='d3043820717d74d9a17694c176d39733')
+  self,
+  cpu_per_unit='d3043820717d74d9a17694c176d39733',
+  memory_per_unit='d3043820717d74d9a17694c176d39733',
+  num_of_units='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -582,9 +586,9 @@ __Arguments__
 
 ```python
 KubernetesAutoScalerLabelsConfiguration(
-    self,
-    key='d3043820717d74d9a17694c176d39733',
-    value='d3043820717d74d9a17694c176d39733')
+  self,
+  key='d3043820717d74d9a17694c176d39733',
+  value='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -596,7 +600,7 @@ __Arguments__
 
 ```python
 KubernetesAutoScalerDownConfiguration(
-    self, evaluation_periods='d3043820717d74d9a17694c176d39733')
+  self, evaluation_periods='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -654,10 +658,10 @@ __Arguments__
 
 ```python
 CodeDeployConfiguration(
-    self,
-    deployment_groups='d3043820717d74d9a17694c176d39733',
-    clean_up_on_failure='d3043820717d74d9a17694c176d39733',
-    terminate_instance_on_failure='d3043820717d74d9a17694c176d39733')
+  self,
+  deployment_groups='d3043820717d74d9a17694c176d39733',
+  clean_up_on_failure='d3043820717d74d9a17694c176d39733',
+  terminate_instance_on_failure='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -670,9 +674,9 @@ __Arguments__
 
 ```python
 CodeDeployDeploymentGroupsConfiguration(
-    self,
-    application_name='d3043820717d74d9a17694c176d39733',
-    deployment_group_name='d3043820717d74d9a17694c176d39733')
+  self,
+  application_name='d3043820717d74d9a17694c176d39733',
+  deployment_group_name='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -701,12 +705,12 @@ __Arguments__
 
 ```python
 NomadAutoScalerConfiguration(
-    self,
-    is_enabled='d3043820717d74d9a17694c176d39733',
-    cooldown='d3043820717d74d9a17694c176d39733',
-    headroom='d3043820717d74d9a17694c176d39733',
-    constraints='d3043820717d74d9a17694c176d39733',
-    down='d3043820717d74d9a17694c176d39733')
+  self,
+  is_enabled='d3043820717d74d9a17694c176d39733',
+  cooldown='d3043820717d74d9a17694c176d39733',
+  headroom='d3043820717d74d9a17694c176d39733',
+  constraints='d3043820717d74d9a17694c176d39733',
+  down='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -721,10 +725,10 @@ __Arguments__
 
 ```python
 NomadAutoScalerHeadroomConfiguration(
-    self,
-    cpu_per_unit='d3043820717d74d9a17694c176d39733',
-    memory_per_unit='d3043820717d74d9a17694c176d39733',
-    num_of_units='d3043820717d74d9a17694c176d39733')
+  self,
+  cpu_per_unit='d3043820717d74d9a17694c176d39733',
+  memory_per_unit='d3043820717d74d9a17694c176d39733',
+  num_of_units='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -737,9 +741,9 @@ __Arguments__
 
 ```python
 NomadAutoScalerConstraintsConfiguration(
-    self,
-    key='d3043820717d74d9a17694c176d39733',
-    value='d3043820717d74d9a17694c176d39733')
+  self,
+  key='d3043820717d74d9a17694c176d39733',
+  value='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -751,7 +755,7 @@ __Arguments__
 
 ```python
 NomadAutoScalerDownConfiguration(
-    self, evaluation_periods='d3043820717d74d9a17694c176d39733')
+  self, evaluation_periods='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -777,11 +781,11 @@ __Arguments__
 
 ```python
 DockerSwarmAutoScalerConfiguration(
-    self,
-    is_enabled='d3043820717d74d9a17694c176d39733',
-    cooldown='d3043820717d74d9a17694c176d39733',
-    headroom='d3043820717d74d9a17694c176d39733',
-    down='d3043820717d74d9a17694c176d39733')
+  self,
+  is_enabled='d3043820717d74d9a17694c176d39733',
+  cooldown='d3043820717d74d9a17694c176d39733',
+  headroom='d3043820717d74d9a17694c176d39733',
+  down='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -795,10 +799,10 @@ __Arguments__
 
 ```python
 DockerSwarmAutoScalerHeadroomConfiguration(
-    self,
-    cpu_per_unit='d3043820717d74d9a17694c176d39733',
-    memory_per_unit='d3043820717d74d9a17694c176d39733',
-    num_of_units='d3043820717d74d9a17694c176d39733')
+  self,
+  cpu_per_unit='d3043820717d74d9a17694c176d39733',
+  memory_per_unit='d3043820717d74d9a17694c176d39733',
+  num_of_units='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -811,7 +815,7 @@ __Arguments__
 
 ```python
 DockerSwarmAutoScalerDownConfiguration(
-    self, evaluation_periods='d3043820717d74d9a17694c176d39733')
+  self, evaluation_periods='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -832,9 +836,9 @@ __Arguments__
 
 ```python
 Route53DomainsConfiguration(
-    self,
-    hosted_zone_id='d3043820717d74d9a17694c176d39733',
-    record_sets='d3043820717d74d9a17694c176d39733')
+  self,
+  hosted_zone_id='d3043820717d74d9a17694c176d39733',
+  record_sets='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -846,9 +850,9 @@ __Arguments__
 
 ```python
 Route53RecordSetsConfiguration(
-    self,
-    name='d3043820717d74d9a17694c176d39733',
-    use_public_ip='d3043820717d74d9a17694c176d39733')
+  self,
+  name='d3043820717d74d9a17694c176d39733',
+  use_public_ip='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -860,20 +864,20 @@ __Arguments__
 
 ```python
 ThirdPartyIntegrations(
-    self,
-    rancher='d3043820717d74d9a17694c176d39733',
-    mesosphere='d3043820717d74d9a17694c176d39733',
-    elastic_beanstalk='d3043820717d74d9a17694c176d39733',
-    ecs='d3043820717d74d9a17694c176d39733',
-    kubernetes='d3043820717d74d9a17694c176d39733',
-    right_scale='d3043820717d74d9a17694c176d39733',
-    ops_works='d3043820717d74d9a17694c176d39733',
-    chef='d3043820717d74d9a17694c176d39733',
-    mlb_runtime='d3043820717d74d9a17694c176d39733',
-    code_deploy='d3043820717d74d9a17694c176d39733',
-    nomad='d3043820717d74d9a17694c176d39733',
-    docker_swarm='d3043820717d74d9a17694c176d39733',
-    route53='d3043820717d74d9a17694c176d39733')
+  self,
+  rancher='d3043820717d74d9a17694c176d39733',
+  mesosphere='d3043820717d74d9a17694c176d39733',
+  elastic_beanstalk='d3043820717d74d9a17694c176d39733',
+  ecs='d3043820717d74d9a17694c176d39733',
+  kubernetes='d3043820717d74d9a17694c176d39733',
+  right_scale='d3043820717d74d9a17694c176d39733',
+  ops_works='d3043820717d74d9a17694c176d39733',
+  chef='d3043820717d74d9a17694c176d39733',
+  mlb_runtime='d3043820717d74d9a17694c176d39733',
+  code_deploy='d3043820717d74d9a17694c176d39733',
+  nomad='d3043820717d74d9a17694c176d39733',
+  docker_swarm='d3043820717d74d9a17694c176d39733',
+  route53='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -921,11 +925,11 @@ __Arguments__
 
 ```python
 AvailabilityZone(
-    self,
-    name='d3043820717d74d9a17694c176d39733',
-    subnet_id='d3043820717d74d9a17694c176d39733',
-    subnet_ids='d3043820717d74d9a17694c176d39733',
-    placement_group_name='d3043820717d74d9a17694c176d39733')
+  self,
+  name='d3043820717d74d9a17694c176d39733',
+  subnet_id='d3043820717d74d9a17694c176d39733',
+  subnet_ids='d3043820717d74d9a17694c176d39733',
+  placement_group_name='d3043820717d74d9a17694c176d39733')
 ```
 
 __Aerguments__
@@ -969,24 +973,24 @@ __Arguments__
 
 ```python
 LaunchSpecification(
-    self,
-    security_group_ids='d3043820717d74d9a17694c176d39733',
-    image_id='d3043820717d74d9a17694c176d39733',
-    monitoring='d3043820717d74d9a17694c176d39733',
-    credit_specification='d3043820717d74d9a17694c176d39733',
-    health_check_type='d3043820717d74d9a17694c176d39733',
-    load_balancers_config='d3043820717d74d9a17694c176d39733',
-    health_check_grace_period='d3043820717d74d9a17694c176d39733',
-    health_check_unhealthy_duration_before_replacement='d3043820717d74d9a17694c176d39733',
-    ebs_optimized='d3043820717d74d9a17694c176d39733',
-    tenancy='d3043820717d74d9a17694c176d39733',
-    iam_role='d3043820717d74d9a17694c176d39733',
-    key_pair='d3043820717d74d9a17694c176d39733',
-    user_data='d3043820717d74d9a17694c176d39733',
-    shutdown_script='d3043820717d74d9a17694c176d39733',
-    block_device_mappings='d3043820717d74d9a17694c176d39733',
-    network_interfaces='d3043820717d74d9a17694c176d39733',
-    tags='d3043820717d74d9a17694c176d39733')
+  self,
+  security_group_ids='d3043820717d74d9a17694c176d39733',
+  image_id='d3043820717d74d9a17694c176d39733',
+  monitoring='d3043820717d74d9a17694c176d39733',
+  credit_specification='d3043820717d74d9a17694c176d39733',
+  health_check_type='d3043820717d74d9a17694c176d39733',
+  load_balancers_config='d3043820717d74d9a17694c176d39733',
+  health_check_grace_period='d3043820717d74d9a17694c176d39733',
+  health_check_unhealthy_duration_before_replacement='d3043820717d74d9a17694c176d39733',
+  ebs_optimized='d3043820717d74d9a17694c176d39733',
+  tenancy='d3043820717d74d9a17694c176d39733',
+  iam_role='d3043820717d74d9a17694c176d39733',
+  key_pair='d3043820717d74d9a17694c176d39733',
+  user_data='d3043820717d74d9a17694c176d39733',
+  shutdown_script='d3043820717d74d9a17694c176d39733',
+  block_device_mappings='d3043820717d74d9a17694c176d39733',
+  network_interfaces='d3043820717d74d9a17694c176d39733',
+  tags='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1095,7 +1099,8 @@ EBS(self,
     volume_size='d3043820717d74d9a17694c176d39733',
     volume_type='d3043820717d74d9a17694c176d39733',
     kms_key_id='d3043820717d74d9a17694c176d39733',
-    dynamic_volume_size='d3043820717d74d9a17694c176d39733')
+    dynamic_volume_size='d3043820717d74d9a17694c176d39733',
+    throughput='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1108,14 +1113,16 @@ __Arguments__
 - __volume_type__: str
 - __kms_key_id__: str
 - __dynamic_volume_size__: DynamicVolumeSize
+- __throughput__: int
 
-<h2 id="spotinst_sdk.aws_elastigroup.EBS.DynamicVolumeSize">DynamicVolumeSize</h2>
+<h2 id="spotinst_sdk.aws_elastigroup.DynamicVolumeSize">DynamicVolumeSize</h2>
 
 ```python
-DynamicVolumeSize(self,
-                  base_size='d3043820717d74d9a17694c176d39733',
-                  resource='d3043820717d74d9a17694c176d39733',
-                  size_per_resource_unit='d3043820717d74d9a17694c176d39733')
+DynamicVolumeSize(
+  self,
+  base_size='d3043820717d74d9a17694c176d39733',
+  resource='d3043820717d74d9a17694c176d39733',
+  size_per_resource_unit='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1141,18 +1148,18 @@ __Arguments__
 
 ```python
 NetworkInterface(
-    self,
-    delete_on_termination='d3043820717d74d9a17694c176d39733',
-    device_index='d3043820717d74d9a17694c176d39733',
-    description='d3043820717d74d9a17694c176d39733',
-    secondary_private_ip_address_count='d3043820717d74d9a17694c176d39733',
-    associate_public_ip_address='d3043820717d74d9a17694c176d39733',
-    groups='d3043820717d74d9a17694c176d39733',
-    network_interface_id='d3043820717d74d9a17694c176d39733',
-    private_ip_address='d3043820717d74d9a17694c176d39733',
-    private_ip_addresses='d3043820717d74d9a17694c176d39733',
-    subnet_id='d3043820717d74d9a17694c176d39733',
-    associate_ipv6_address='d3043820717d74d9a17694c176d39733')
+  self,
+  delete_on_termination='d3043820717d74d9a17694c176d39733',
+  device_index='d3043820717d74d9a17694c176d39733',
+  description='d3043820717d74d9a17694c176d39733',
+  secondary_private_ip_address_count='d3043820717d74d9a17694c176d39733',
+  associate_public_ip_address='d3043820717d74d9a17694c176d39733',
+  groups='d3043820717d74d9a17694c176d39733',
+  network_interface_id='d3043820717d74d9a17694c176d39733',
+  private_ip_address='d3043820717d74d9a17694c176d39733',
+  private_ip_addresses='d3043820717d74d9a17694c176d39733',
+  subnet_id='d3043820717d74d9a17694c176d39733',
+  associate_ipv6_address='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1203,11 +1210,11 @@ __Arguments__
 
 ```python
 DetachConfiguration(
-    self,
-    instances_to_detach='d3043820717d74d9a17694c176d39733',
-    should_terminate_instances='d3043820717d74d9a17694c176d39733',
-    draining_timeout='d3043820717d74d9a17694c176d39733',
-    should_decrement_target_capacity='d3043820717d74d9a17694c176d39733')
+  self,
+  instances_to_detach='d3043820717d74d9a17694c176d39733',
+  should_terminate_instances='d3043820717d74d9a17694c176d39733',
+  draining_timeout='d3043820717d74d9a17694c176d39733',
+  should_decrement_target_capacity='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1221,11 +1228,11 @@ __Arguments__
 
 ```python
 StatefulDeallocation(
-    self,
-    should_delete_images='d3043820717d74d9a17694c176d39733',
-    should_delete_network_interfaces='d3043820717d74d9a17694c176d39733',
-    should_delete_volumes='d3043820717d74d9a17694c176d39733',
-    should_delete_snapshots='d3043820717d74d9a17694c176d39733')
+  self,
+  should_delete_images='d3043820717d74d9a17694c176d39733',
+  should_delete_network_interfaces='d3043820717d74d9a17694c176d39733',
+  should_delete_volumes='d3043820717d74d9a17694c176d39733',
+  should_delete_snapshots='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
