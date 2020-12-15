@@ -260,7 +260,6 @@ class MasterGroup:
 	# Arguments
 	instance_types: List[str]
 	target: int
-	capacity: Capacity
 	life_cycle: str
 	configurations: Configurations
 	"""
@@ -331,16 +330,19 @@ class Capacity:
 	target: int
 	minimum: int
 	maximum: int
+	unit: str
 	"""
 	def __init__(
 		self,
 		target=none,
 		minimum=none,
-		maximum=none):
+		maximum=none,
+		unit=none):
 
 		self.target = target
 		self.minimum = minimum
 		self.maximum = maximum
+		self.unit = unit
 
 class EbsConfiguration:
 	"""

@@ -222,7 +222,7 @@ ebs_config = SingleEbsConfig(volume_specification=volume_specification, volumes_
 
 ebs_configuration = EbsConfiguration(ebs_block_device_configs=[ebs_config], ebs_optimized=True)
 
-capacity = Capacity(target=1, maximum=1, minimum=1)
+capacity = Capacity(target=1, maximum=1, minimum=1, unit='instance')
 
 master_group = MasterGroup(instance_types=["m1.medium", "c3.xlarge", "m3.xlarge"], target=1, life_cycle="SPOT")
 

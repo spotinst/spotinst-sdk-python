@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.53] - 2020-12-15
+### Added
+ - field aws.emr.coreGroup.capacity.unit
+ - field aws.emr.taskGroup.capacity.unit
+
+### Fixed
+ - Fixed aws.emr.masterGroup documentation, it mentioned a field that didn't exist
+ 
 ## [1.0.52] - 2020-12-07
 ### Added 
 - field aws.group.compute.launchSpecification.blockDeviceMappings.ebs.throughput
