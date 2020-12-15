@@ -224,7 +224,6 @@ __Arguments__
 
 - __instance_types__: List[str]
 - __target__: int
-- __capacity__: Capacity
 - __life_cycle__: str
 - __configurations__: Configurations
 
@@ -274,7 +273,8 @@ __Arguments__
 Capacity(self,
          target='d3043820717d74d9a17694c176d39733',
          minimum='d3043820717d74d9a17694c176d39733',
-         maximum='d3043820717d74d9a17694c176d39733')
+         maximum='d3043820717d74d9a17694c176d39733',
+         unit='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -282,6 +282,7 @@ __Arguments__
 - __target__: int
 - __minimum__: int
 - __maximum__: int
+- __unit__: str
 
 <h2 id="spotinst_sdk2.models.mrscaler.aws.EbsConfiguration">EbsConfiguration</h2>
 

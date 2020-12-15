@@ -48,7 +48,8 @@
                "capacity":{
                   "minimum":1,
                   "maximum":1,
-                  "target":1
+                  "target":1,
+                  "unit":"instance"
                },
                "instanceTypes":[
                   "m1.medium",

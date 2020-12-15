@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.5] - 2020-12-15
+### Added
+ - field aws.emr.coreGroup.capacity.unit
+ - field aws.emr.taskGroup.capacity.unit
+
+### Fixed
+ - Fixed aws.emr.masterGroup documentation, it mentioned a field that didn't exist
+
 ## [2.1.4] - 2020-12-03
 ### Added
  - get all ocean right sizing recommendations
