@@ -356,7 +356,7 @@ class AWSInitTestDeployment(AwsInitTestCase):
 
 		mock.return_value = self.mock_api_call
 
-		response = self.client.roll_group(group_id="sig-123456", group_roll=Roll(batch_size_percentage=50, grace_period=150, health_check_type="EC2", strategy=dict(action="REPLACE_SERVER")))
+		response = self.client.roll_group(group_id="sig-123456", group_roll=Roll(batch_size_percentage=50, grace_period=150, health_check_type="EC2", strategy=RollStrategy(action="REPLACE_SERVER")))
 
 		self.assertEqual(len(response), len(mock_roll_group_res["response"]))
 

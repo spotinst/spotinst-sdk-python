@@ -1204,7 +1204,45 @@ __Arguments__
 - __batch_size_percentage__: str
 - __grace_period__: xstr
 - __health_check_type__: str
-- __strategy__: str
+- __strategy__: RollStrategy
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.RollStrategy">RollStrategy</h2>
+
+```python
+RollStrategy(
+  self,
+  action='d3043820717d74d9a17694c176d39733',
+  should_drain_instances='d3043820717d74d9a17694c176d39733',
+  batch_min_healthy_percentage='d3043820717d74d9a17694c176d39733',
+  on_failure='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __action__: str,
+- __should_drain_instances__: bool,
+- __batch_min_healthy_percentage__: int,
+- __on_failure__: OnFailure
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.OnFailure">OnFailure</h2>
+
+```python
+OnFailure(
+  self,
+  action_type='d3043820717d74d9a17694c176d39733',
+  should_handle_all_batches='d3043820717d74d9a17694c176d39733',
+  batch_num='d3043820717d74d9a17694c176d39733',
+  draining_timeout='d3043820717d74d9a17694c176d39733',
+  should_decrement_target_capacity='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __action_type__: str
+- __should_handle_all_batches__: bool
+- __batch_num__: int
+- __draining_timeout__: int
+- __should_decrement_target_capacity__: bool
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.DetachConfiguration">DetachConfiguration</h2>
 
