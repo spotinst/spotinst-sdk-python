@@ -1361,7 +1361,7 @@ class Roll:
     batch_size_percentage: str
     grace_period: xstr
     health_check_type: str
-    strategy: str
+    strategy: RollStrategy
     """
     def __init__(
             self,
@@ -1373,6 +1373,49 @@ class Roll:
         self.grace_period = grace_period
         self.health_check_type = health_check_type
         self.strategy = strategy
+
+
+class RollStrategy:
+    """
+    # Arguments
+    action: str,
+    should_drain_instances: bool,
+    batch_min_healthy_percentage: int,
+    on_failure: OnFailure
+    """
+    def __init__(
+            self,
+            action=none,
+            should_drain_instances=none,
+            batch_min_healthy_percentage=none,
+            on_failure=none):
+        self.action = action
+        self.should_drain_instances = should_drain_instances
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.on_failure = on_failure
+
+
+class OnFailure:
+    """
+    # Arguments
+    action_type: str
+    should_handle_all_batches: bool
+    batch_num: int
+    draining_timeout: int
+    should_decrement_target_capacity: bool
+    """
+    def __init__(
+            self,
+            action_type=none,
+            should_handle_all_batches=none,
+            batch_num=none,
+            draining_timeout=none,
+            should_decrement_target_capacity=none):
+        self.action_type = action_type
+        self.should_handle_all_batches = should_handle_all_batches
+        self.batch_num = batch_num
+        self.draining_timeout = draining_timeout
+        self.should_decrement_target_capacity = should_decrement_target_capacity
 
 
 class DetachConfiguration:

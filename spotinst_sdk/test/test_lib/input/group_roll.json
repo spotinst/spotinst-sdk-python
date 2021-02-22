@@ -1,0 +1,17 @@
+{
+    "batchSizePercentage":"20",
+    "gracePeriod": 500,
+    "healthCheckType": "NONE",
+    "strategy": {
+        "action": "REPLACE_SERVER",
+        "shouldDrainInstances": true,
+        "batchMinHealthyPercentage": 100,
+        "onFailure": {
+            "actionType": "DETACH_OLD",
+            "shouldHandleAllBatches": true,
+            "batchNum": 2,
+            "drainingTimeout": 300,
+            "shouldDecrementTargetCapacity": false
+        }
+    }
+}
