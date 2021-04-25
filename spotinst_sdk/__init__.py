@@ -1320,21 +1320,49 @@ class SpotinstClient:
 
         return response
 
-    def set_cloud_credentials(self, iam_role, external_id):
+    def create_aws_external_id(self):
+        """
+        Create aws account external id.
+        You should use the external id when creating your AWS role for your spot account
+
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_post(
+            url=self.__base_setup_url +
+                "/credentials/aws/externalId",
+            entity_name="credentials"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"][0]
+
+        return ret_val
+
+    def set_cloud_credentials(self, iam_role, external_id=None):
         """
         set cloud credentials
+        Please create external id using spot api (see #AdminClient.create_aws_external_id)
+        and use it when creating the AWS role
 
         # Arguments
         iam_role (String): IAM Role
-        external_id (String): External ID
+        external_id (String) (Optional): External ID
 
         # Returns
         (Object): Spotinst API response
         """
+        credentials = {"iamRole": iam_role}
+
+        if external_id is not None:
+            credentials['externalId'] = external_id
+
         response = self.send_post(
             url=self.__base_setup_url +
                 "/credentials/aws",
-            body=json.dumps(dict(credentials=dict(iamRole=iam_role, externalId=external_id))),
+            body=json.dumps(dict(credentials=credentials)),
             entity_name="credentials"
         )
 

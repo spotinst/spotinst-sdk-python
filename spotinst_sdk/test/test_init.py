@@ -696,13 +696,26 @@ class AWSInitTestOrgAndAcct(AwsInitTestCase):
 		self.assertEqual(response, True)
 
 	@patch('requests.post')
+	def testCreateAwsExternalId(self, mock):
+		mock_create_aws_external_id_res = self.load_json("test_lib/output/create_aws_external_id_res.json")
+
+		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
+		self.mock_api_call.content.decode = lambda code: json.dumps(mock_create_aws_external_id_res) 
+
+		mock.return_value = self.mock_api_call
+
+		response = self.client.create_account(account_name="test")
+
+		self.assertEqual(len(response), len(mock_create_aws_external_id_res["response"]["items"][0]))
+
+	@patch('requests.post')
 	def testSetCloudCredentials(self, mock):
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
 		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
 		mock.return_value = self.mock_api_call
 
-		response = self.client.set_cloud_credentials(iam_role="arn", external_id="test")
+		response = self.client.set_cloud_credentials(iam_role="arn")
 
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))
 

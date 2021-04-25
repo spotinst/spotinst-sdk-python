@@ -73,6 +73,7 @@ generate:
 - endpoints/administration/org_and_account.md:
   - spotinst_sdk.SpotinstClient.create_organization
   - spotinst_sdk.SpotinstClient.delete_organization
+  - spotinst_sdk.SpotinstClient.create_aws_external_id
   - spotinst_sdk.SpotinstClient.set_cloud_credentials
   - spotinst_sdk.SpotinstClient.create_account
   - spotinst_sdk.SpotinstClient.get_accounts
