@@ -40,18 +40,33 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.create_aws_external_id">create_aws_external_id</h2>
+
+```python
+AdminClient.create_aws_external_id()
+```
+
+Create aws account external id.
+You should use the external id when creating your AWS role for your spot account
+
+__Returns__
+
+`(Object)`: Spotinst API response
+
 <h2 id="spotinst_sdk2.clients.admin.AdminClient.set_cloud_credentials">set_cloud_credentials</h2>
 
 ```python
-AdminClient.set_cloud_credentials(iam_role, external_id)
+AdminClient.set_cloud_credentials(iam_role, external_id=None)
 ```
 
 set cloud credentials
+Please create external id using spot api (see [`AdminClient.create_aws_external_id`](#spotinst_sdk2.clients.admin.AdminClient.set_cloud_credentials.AdminClient.create_aws_external_id))
+and use it when creating the AWS role
 
 __Arguments__
 
 - __iam_role (String)__: IAM Role
-- __external_id (String)__: External ID
+- __external_id (String) (Optional)__: External ID
 
 __Returns__
 

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "id": "64181193-f129-4981-835a-6fcdb1e5e01f",
+    "url": "/setup/account",
+    "method": "POST",
+    "timestamp": "2017-10-17T10:43:42.538Z"
+  },
+  "response": {
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "kind": "spotinst:setup:account",
+    "items": [
+      {
+        "externalId": "externalId",
+        "maxValidUntil": "2021-03-18T16:11:04.402Z"
+      }
+    ],
+    "count": 1
+  }
+}
