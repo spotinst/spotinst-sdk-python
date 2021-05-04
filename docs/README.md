@@ -19,8 +19,8 @@ The new Spotinst Python SDK comes with a few breaking changes but do not fear, h
 Here is a basic example of how to create an Ocean cluster using the Ocean Client and the Ocean Models
 
 ```python
-from spotinst_sdk import SpotinstSession
-from spotinst_sdk.models.ocean.aws import *
+from spotinst_sdk2 import SpotinstSession
+from spotinst_sdk2.models.ocean.aws import *
 
 session = SpotinstSession()
 client = session.client("ocean_aws")
@@ -67,7 +67,7 @@ More examples can be found in the [SDK Examples Documentation](./docs/examples/)
 ## Installation
 
 ```bash
-pip install --upgrade spotinst-sdk
+pip install --upgrade spotinst-sdk2
 ```
 
 ## Authentication
