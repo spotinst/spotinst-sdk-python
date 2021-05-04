@@ -67,7 +67,7 @@ More examples can be found in the [SDK Examples Documentation](./docs/examples/)
 ## Installation
 
 ```bash
-pip install --upgrade spotinst-sdk
+pip install --upgrade spotinst-sdk2
 ```
 
 ## Authentication
