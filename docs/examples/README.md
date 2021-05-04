@@ -26,8 +26,8 @@
 ### Getting Started With AWS Elastigroup
 
 ```python
-from spotinst_sdk import SpotinstSession
-from spotinst_sdk.models.elastigroup.aws import *
+from spotinst_sdk2 import SpotinstSession
+from spotinst_sdk2.models.elastigroup.aws import *
 
 session = SpotinstSession()
 
@@ -253,8 +253,8 @@ group = Elastigroup(name="TestGroup", description="Created by the Python SDK", c
 ### Getting Started With GCP Elastigroup
 
 ```python
-from spotinst_sdk import SpotinstSession
-from spotinst_sdk.models.elastigroup.gcp import *
+from spotinst_sdk2 import SpotinstSession
+from spotinst_sdk2.models.elastigroup.gcp import *
 
 session = SpotinstSession() 
 gcp_eg = session.client("elastigroup_gcp")
@@ -420,8 +420,8 @@ print('delete result: %s' % deletion_success)
 #### MrScaler
 
 ```python
-from spotinst_sdk import SpotinstSession
-from spotinst_sdk.models.mrscaler.aws import *
+from spotinst_sdk2 import SpotinstSession
+from spotinst_sdk2.models.mrscaler.aws import *
 
 session = SpotinstSession()
 client = session.client("mrscaler_aws")
@@ -525,8 +525,8 @@ emr = client.create_emr(emr)
 ## Ocean
 
 ```python
-from spotinst_sdk import SpotinstSession
-from spotinst_sdk.models.ocean.aws import *
+from spotinst_sdk2 import SpotinstSession
+from spotinst_sdk2.models.ocean.aws import *
 
 session = SpotinstSession()
 client = session.client("ocean_aws")
