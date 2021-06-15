@@ -51,6 +51,8 @@ class AdminClient(Client):
 
     def create_aws_external_id(self):
         """
+        Important note: This is deprecated, please use setup_aws client instead(SetupAWSClient#create_external_id)
+
         Create aws account external id.
         You should use the external id when creating your AWS role for your spot account
 
@@ -71,6 +73,8 @@ class AdminClient(Client):
 
     def set_cloud_credentials(self, iam_role, external_id=None):
         """
+        Important note: This is deprecated, please use setup_aws client instead(SetupAWSClient#set_credentials)
+
         set cloud credentials 
         Please create external id using spot api (see #AdminClient.create_aws_external_id)
         and use it when creating the AWS role

@@ -118,6 +118,9 @@ Take note you can create more than one client with the session. The currently su
 ### Client Options
 
 - `session.client("admin")`
+- `session.client("setup_aws")`
+- `session.client("setup_azure")`
+- `session.client("setup_gcp")`
 - `session.client("elastigroup_aws")`
 - `session.client("elastigroup_azure")`
 - `session.client("elastigroup_gcp")`

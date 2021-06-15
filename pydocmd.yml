@@ -3,6 +3,12 @@ site_name: "Spotinst Python SDK"
 generate:
 - clients/admin/admin_client.md:
   - spotinst_sdk2.clients.admin.AdminClient++
+- clients/admin/setup_aws_client.md:
+  - spotinst_sdk2.clients.setup.SetupAWSClient++
+- clients/admin/setup_azure_client.md:
+  - spotinst_sdk2.clients.setup.SetupAzureClient++
+- clients/admin/setup_gcp_client.md:
+  - spotinst_sdk2.clients.setup.SetupGCPClient++
 - clients/elastigroup/elastigroup_aws_client.md:
   - spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient++
 - clients/elastigroup/elastigroup_gcp_client.md:
@@ -19,6 +25,10 @@ generate:
   - spotinst_sdk2.clients.subscription.SubscriptionClient++
 - models/admin.md:
   - spotinst_sdk2.models.admin.user_mapping++
+- models/setup/azure.md:
+  - spotinst_sdk2.models.setup.azure++
+- models/setup/gcp.md:
+  - spotinst_sdk2.models.setup.gcp++
 - models/elastigroup/aws.md:
   - spotinst_sdk2.models.elastigroup.aws++
   - spotinst_sdk2.models.elastigroup.aws.asg++

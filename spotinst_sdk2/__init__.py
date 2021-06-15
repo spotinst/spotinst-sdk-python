@@ -9,6 +9,7 @@ from spotinst_sdk2.clients.mlb import *
 from spotinst_sdk2.clients.mrscaler import *
 from spotinst_sdk2.clients.subscription import *
 from spotinst_sdk2.clients.ocean import *
+from spotinst_sdk2.clients.setup import *
 
 class SpotinstSession:
     def __init__(self, 
@@ -25,6 +26,9 @@ class SpotinstSession:
     def client(self, service, print_output=True, log_level=None, user_agent=None):
         switcher = {
             "admin":             AdminClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
+            "setup_aws":         SetupAWSClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
+            "setup_azure":       SetupAzureClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
+            "setup_gcp":         SetupGCPClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
             "elastigroup_aws":   ElastigroupAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
             "elastigroup_azure": ElastigroupAzureClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
             "elastigroup_gcp":   ElastigroupGcpClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
