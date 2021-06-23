@@ -54,7 +54,7 @@ In the [SDK Client documentation](./docs/clients/) you can view what methods are
 For information on what models are supported checkout the [SDK Model documentation](./docs/models/). <br>
 More examples can be found in the [SDK Examples Documentation](./docs/examples/). <br>
 
-## Contents
+## Table of Contents
 
 - [Installation](#installation)
 - [Authentication](#authentication)
@@ -72,36 +72,80 @@ pip install --upgrade spotinst-sdk2
 
 ## Authentication
 
-The mechanism in which the sdk looks for credentials is to search through a list of possible locations and stop as soon as it finds credentials. The order in which the sdk searches for credentials is:
+The mechanism in which the SDK looks for credentials is to search through a list of possible locations and stop as soon as it finds credentials. The order in which the SDK searches for credentials is:
 
-1. Passing credentials as parameters to the `SpotinstSession()` constructor
+1. Passing credentials as parameters when creating a `SpotinstSession` object:
 
 ```python
-session = SpotinstSession(auth_token='token', account_id='act-123')
+session = SpotinstSession(auth_token='foo', account_id='bar')
 ```
 
-2. Fetching the account and token from environment variables under `SPOTINST_ACCOUNT` & `SPOTINST_TOKEN`.
-If you choose to not pass your credentials directly you configure a credentials file, this file should be a valid `.yml` file. The default shared credential file location is `~/.spotinst/credentials` and the default profile is `default`
+2. Environment variables:
+
+```sh
+export SPOTINST_TOKEN=foo
+export SPOTINST_ACCOUNT=bar
+```
+
+3. Shared credentials file:
+
+- The shared credentials file has a default location of `~/.spotinst/credentials`. This file is an INI formatted file with section names corresponding to profiles. With each section, two configuration variables can be specified: `token`, `account`. These are the only supported values in the shared credential file.
+
+- Below is a minimal example of the shared credentials file:
+
+```ini
+[default]
+token   = foo
+account = bar
+```
+
+- The shared credentials file also supports the concept of profiles. Profiles represent logical groups of configuration. The shared credential file can have multiple profiles:
+
+```ini
+[default]
+token   = foo
+account = bar
+
+[dev]
+token   = foo2
+account = bar2
+
+[prod]
+token   = foo3
+account = bar3
+```
+
+- You can configure your Spot credentials using the `spotctl configure` command. For more information, see the `spotctl` [Getting Started](https://github.com/spotinst/spotctl#getting-started).
+
+- To maintain compatibility with previous SDK versions, the file can also be in YAML format:
 
 ```yaml
-default: #profile
-  token: $defaul_spotinst_token
-  account: $default_spotinst-account-id
-my_profile:
-  token: $my_spotinst_token
-  account: $my_spotinst-account-id
+default:
+  token: foo
+  account: bar
+  
+dev:
+  token: foo2
+  account: bar2
+  
+prod:
+  token: foo3
+  account: bar3
 ```
 
-3. You can overwrite the credentials file location and the profile used as parameters in the `SpotinstSession()` constructor
+- You can change the location of the credentials file and the profile used by setting the `SPOTINST_SHARED_CREDENTIALS_FILE` and/or `SPOTINST_PROFILE` environment variables:
+
+```sh
+export SPOTINST_SHARED_CREDENTIALS_FILE=/path/to/credentials_file
+export SPOTINST_PROFILE=dev
+```
+
+- Passing the credentials file location and the profile used as parameters when creating a `SpotinstSession` object:
 
 ```python
-session = SpotinstSession(credentials_file='/path/to/file', profile='my_profile')
+session = SpotinstSession(credentials_file='/path/to/credentials_file', profile='dev')
 ```
 
-4. You can overwrite the credentials file location and the profile used as environment variables `SPOTINST_PROFILE` and/or `SPOTINST_SHARED_CREDENTIALS_FILE`
-
-5. Fetching from the default location with the default profile
-  
 ## Setup Clients
 
 After a session is created you can use the session object to create clients. Clients are used to make request to the different services that Spotinsts has to offer. To create a client simply use the method `client` from the session object and pass in the string of the client you wish to create. Here is an example:
