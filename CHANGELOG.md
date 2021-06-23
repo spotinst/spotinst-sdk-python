@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.8] - 2021-06-23
+### Added
+ - Model setup.azure.AzureCredentials
+ - Model setup.azure.AzureSetCredentialsRequest
+ - Model setup.gcp.GcpCredentials
+ - Model setup.gcp.GcpCredentials.ServiceAccount
+ - Model setup.gcp.GcpSetCredentialsRequest
+ - Client setup for aws to handle credentials routes
+ - Client setup for azure to handle credentials routes
+ - Client setup for gcp to handle credentials routes
+
+### Deprecated
+ - Credentials routes for aws under admin client
+
+## [2.1.7] - 2021-04-25
+### Added
+ - Added aws create external id route to admin client
+
 ## [2.1.6] - 2021-03-07
 ### Added
  - Model aws.groupRoll.strategy
