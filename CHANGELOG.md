@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.9] - 2021-06-24
+### Added
+ - New credentials file format: `INI` ([#84](https://github.com/spotinst/spotinst-sdk-python/pull/84))
+
 ## [2.1.8] - 2021-06-23
 ### Added
  - Model setup.azure.AzureCredentials
