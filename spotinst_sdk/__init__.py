@@ -1,7 +1,7 @@
 import json
 import os
 import re
-
+import configparser
 import requests
 import yaml
 import logging
@@ -1326,7 +1326,7 @@ class SpotinstClient:
         You should use the external id when creating your AWS role for your spot account
 
         # Returns
-        (Object): Spotinst API response 
+        (Object): Spotinst API response
         """
         response = self.send_post(
             url=self.__base_setup_url +
@@ -3848,17 +3848,31 @@ class SpotinstClient:
                     DEFAULT_CREDENTIALS_FILE)
 
             with open(credentials_file, 'r') as credentials_file:
-                config = yaml.load(credentials_file, Loader=yaml.SafeLoader)
-
-                if config:
-                    self.account_id = config.get(
-                        profile, {}).get(
-                        "account", None)
-                    self.auth_token = config.get(
-                        profile, {}).get("token", None)
+                self.__load_credentials_yaml(profile, credentials_file)
+                if not self.auth_token:
+                    self.__load_credentials_ini(profile, credentials_file)
 
             if not self.auth_token:
-                raise SpotinstClientException("failed to load credentials")
+                raise SpotinstClientException("failed to load credentials", "ERROR")
+
+    def __load_credentials_yaml(self, profile, credentials_file):
+        try:
+            config = yaml.load(credentials_file, Loader=yaml.SafeLoader)
+            if config:
+                self.account_id = config.get(profile, {}).get("account", None)
+                self.auth_token = config.get(profile, {}).get("token", None)
+        except:
+            return
+
+    def __load_credentials_ini(self, profile, credentials_file):
+        try:
+            config = configparser.ConfigParser()
+            config.read(credentials_file.name)
+            if config[profile]:
+                self.account_id = config[profile]["account"]
+                self.auth_token = config[profile]["token"]
+        except:
+            return
 
     # endregion
 
