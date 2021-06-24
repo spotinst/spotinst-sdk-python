@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.56] - 2021-06-23
+### Added
+ - New credentials file format: `INI` ([#84](https://github.com/spotinst/spotinst-sdk-python/pull/84))
+
 ## [1.0.54] - 2021-03-07
 ### Added
  - Model aws.groupRoll.strategy
