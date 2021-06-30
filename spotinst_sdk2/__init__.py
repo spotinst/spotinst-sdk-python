@@ -1,5 +1,6 @@
 from spotinst_sdk2.session import Session
 
+from spotinst_sdk2.clients.managed_instance import *
 from spotinst_sdk2.clients.elastigroup import *
 from spotinst_sdk2.clients.ocean import *
 from spotinst_sdk2.clients.admin import *
@@ -11,8 +12,9 @@ from spotinst_sdk2.clients.subscription import *
 from spotinst_sdk2.clients.ocean import *
 from spotinst_sdk2.clients.setup import *
 
+
 class SpotinstSession:
-    def __init__(self, 
+    def __init__(self,
         auth_token=None,
         account_id=None,
         profile=None,
@@ -37,10 +39,9 @@ class SpotinstSession:
             "mlb" :              MlbClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
             "mrScaler_aws":      MrScalerAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
             "ocean_aws":         OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "subscription":      SubscriptionClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
+            "managed_instance_aws": ManagedInstanceAwsClient(session=self.session, print_output=print_output,
+                                                             log_level=log_level, user_agent=user_agent),
+            "subscription":      SubscriptionClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent)
         }
 
         return switcher.get(service, "Invalid Service")
-
-
-

@@ -172,6 +172,7 @@ Take note you can create more than one client with the session. The currently su
 - `session.client("mrScaler_aws")`
 - `session.client("ocean_aws")`
 - `session.client("subscription")`
+- `session.client("managed_instance_aws")`
 
 A full list of endpoints and clients can be found in the documentation [here](./docs/clients/).
 

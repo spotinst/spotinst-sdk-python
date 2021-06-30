@@ -1,0 +1,125 @@
+{
+  "managedInstance": {
+    "compute": {
+      "launchSpecification": {
+        "instanceTypes": {
+          "preferredType": "t2.micro",
+          "types": [
+            "t2.micro"
+          ]
+        },
+        "ebsOptimized": false,
+        "monitoring": false,
+        "tenancy": "default",
+        "iamRole": {
+          "name": "name",
+          "arn": "arn"
+        },
+        "securityGroupIds": [
+          "sg-0dfc2c8760df6fec7"
+        ],
+        "imageId": "ami-01e24be29428c15b2",
+        "keyPair": "labs-oregon",
+        "tags": [
+          {
+            "tagKey": "Creator",
+            "tagValue": "test1@spot.io"
+          }
+        ],
+        "resourceTagSpecification": {
+          "volumes": {
+            "shouldTag": false
+          },
+          "snapshots": {
+            "shouldTag": true
+          },
+          "enis": {
+            "shouldTag": false
+          },
+          "amis": {
+            "shouldTag": true
+          }
+        },
+        "userData": "dXNlcmJhc2g2NGVuY29kZWQ=",
+        "shutdownScript": "dXNlcmJhc2g2NGVuY29kZWQ=",
+        "creditSpecification": {
+          "cpuCredits": "unlimited"
+        },
+        "networkInterfaces": [
+          {
+            "deviceIndex": 0,
+            "associatePublicIpAddress": true,
+            "associateIpv6Address": true
+          }
+        ],
+        "blockDeviceMappings": [
+          {
+            "deviceName": "/dev/xvdcz",
+            "ebs": {
+              "iops": 0,
+              "throughput": 125,
+              "deleteOnTermination": true,
+              "volumeSize": 12,
+              "volumeType": "gp2"
+            }
+          }
+        ]
+      },
+      "product": "Linux/UNIX",
+      "subnetIds": [
+        "subnet-0d67e8b90c74986c8"
+      ],
+      "vpcId": "vpc-4a74eb32"
+    },
+    "description": "testing purposes",
+    "healthCheck": {
+      "gracePeriod": 120,
+      "type": "EC2",
+      "unhealthyDuration": 120
+    },
+    "name": "some-sdk-mi",
+    "persistence": {
+      "blockDevicesMode": "onLaunch",
+      "persistBlockDevices": true,
+      "persistRootDevice": true
+    },
+    "region": "us-west-2",
+    "strategy": {
+      "lifeCycle": "spot",
+      "revertToSpot": {
+        "performAt": "always"
+      }
+    },
+    "integrations": {
+      "route53": {
+        "domains": [
+          {
+            "hostedZoneId": "123",
+            "recordSetType": "bar",
+            "spotinstAccountId": "foo",
+            "recordSets": [
+              {
+                "usePublicIp": true,
+                "name": "someName",
+                "usePublicDns": true
+              }
+            ]
+          }
+        ]
+      },
+      "loadBalancersConfig": {
+        "loadBalancers": [
+          {
+            "name": "name",
+            "arn": "arn",
+            "type": "MULTAI_TARGET_SET",
+            "balancerId": "lb-1ee2e3q",
+            "targetSetId": "ts-3eq",
+            "azAwareness": true,
+            "autoWeight": true
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "response": {
+    "items": [
+      {
+        "compute": {
+          "launchSpecification": {
+            "imageId": "ami-082b5a644766e0e6f",
+            "instanceTypes": {
+              "preferredType": "t2.micro",
+              "types": [
+                "t2.micro",
+                "t2.small",
+                "t3.micro"
+              ]
+            },
+            "keyPair": "some-key-pair",
+            "securityGroupIds": [
+              "some-sg"
+            ]
+          },
+          "product": "Linux/UNIX",
+          "subnetIds": [
+            "subnet-0d67e8b90c74986c8"
+          ],
+          "vpcId": "vpc-4a74eb32"
+        },
+        "description": "testing purposes",
+        "healthCheck": {
+          "gracePeriod": 120,
+          "type": "EC2",
+          "unhealthyDuration": 120
+        },
+        "name": "some-sdk-mi",
+        "persistence": {
+          "blockDevicesMode": "onLaunch",
+          "persistBlockDevices": true,
+          "persistRootDevice": true
+        },
+        "region": "us-west-2",
+        "strategy": {
+          "lifeCycle": "spot",
+          "revertToSpot": {
+            "performAt": "always"
+          }
+        }
+      }
+    ]
+  }
+}

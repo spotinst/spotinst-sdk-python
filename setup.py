@@ -60,6 +60,7 @@ setup(
             "spotinst_sdk2.clients.ocean",
             "spotinst_sdk2.clients.subscription",
             "spotinst_sdk2.clients.setup",
+            "spotinst_sdk2.clients.managed_instance",
         "spotinst_sdk2.models",
             "spotinst_sdk2.models.admin",
             "spotinst_sdk2.models.elastigroup",
@@ -72,10 +73,12 @@ setup(
                 "spotinst_sdk2.models.mrscaler.aws",
             "spotinst_sdk2.models.ocean",
                 "spotinst_sdk2.models.ocean.aws",
-            "spotinst_sdk2.models.subscription",
             "spotinst_sdk2.models.setup",
                 "spotinst_sdk2.models.setup.azure",
-                "spotinst_sdk2.models.setup.gcp"
+                "spotinst_sdk2.models.setup.gcp",
+            "spotinst_sdk2.models.subscription",
+            "spotinst_sdk2.models.managed_instance",
+                "spotinst_sdk2.models.managed_instance.aws",
     ],
     install_requires=['requests', 'PyYaml'],
 
