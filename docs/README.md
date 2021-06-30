@@ -145,7 +145,7 @@ export SPOTINST_PROFILE=dev
 ```python
 session = SpotinstSession(credentials_file='/path/to/credentials_file', profile='dev')
 ```
-
+  
 ## Setup Clients
 
 After a session is created you can use the session object to create clients. Clients are used to make request to the different services that Spotinsts has to offer. To create a client simply use the method `client` from the session object and pass in the string of the client you wish to create. Here is an example:
@@ -172,6 +172,7 @@ Take note you can create more than one client with the session. The currently su
 - `session.client("mrScaler_aws")`
 - `session.client("ocean_aws")`
 - `session.client("subscription")`
+- `session.client("managed_instance_aws")`
 
 A full list of endpoints and clients can be found in the documentation [here](./docs/clients/).
 
