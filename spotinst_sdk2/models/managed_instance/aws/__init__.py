@@ -324,7 +324,7 @@ class Route53Configuration:
     # Arguments
     domains: list[Route53DomainsConfiguration]
     """
-    def __init__(self, domains: [Route53DomainConfiguration] = none):
+    def __init__(self, domains: List[Route53DomainConfiguration] = none):
         self.domains = domains
 
 
@@ -356,9 +356,8 @@ class LoadBalancersConfiguration:
     # Arguments
     load_balancers: list[LoadBalancer]
     """
-    load_balancers: List[LoadBalancer]
 
-    def __init__(self, load_balancers: List[LoadBalancer]) -> None:
+    def __init__(self, load_balancers: List[LoadBalancer] = none):
         self.load_balancers = load_balancers
 
 
