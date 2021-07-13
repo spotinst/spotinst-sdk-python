@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## [2.1.12] - 2021-07-13
+### Fixed
+ - Properly populate message in client exception
+ - Type annotation for Managed Instance object
+
 ## [2.1.11] - 2021-07-04
 ### Added
  - Managed Instance load balancer config can be initialized without arguments
