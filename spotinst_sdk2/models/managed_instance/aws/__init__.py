@@ -28,7 +28,7 @@ class HealthCheck:
     grace_period: int
     unhealthy_duration: int
     """
-    def __init__(self, type: bool = none, auto_healing: bool = none, grace_period: int = none,
+    def __init__(self, type: str = none, auto_healing: bool = none, grace_period: int = none,
                  unhealthy_duration: int = none):
         self.type = type
         self.auto_healing = auto_healing
