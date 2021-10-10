@@ -5,7 +5,8 @@ SubscriptionClient(self,
                    session=None,
                    print_output=True,
                    log_level=None,
-                   user_agent=None)
+                   user_agent=None,
+                   timeout=None)
 ```
 
 <h2 id="spotinst_sdk2.clients.subscription.SubscriptionClient.create_event_subscription">create_event_subscription</h2>

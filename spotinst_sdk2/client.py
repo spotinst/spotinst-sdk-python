@@ -26,7 +26,8 @@ class Client:
     def __init__(self, session=None,
                  print_output=True,
                  log_level=None,
-                 user_agent=None):
+                 user_agent=None,
+                 timeout=None):
 
         self.auth_token = session.auth_token
         self.account_id = session.account_id
@@ -37,6 +38,8 @@ class Client:
         # initialize logger
         self.logger = self.init_logger()
         self.set_log_level(log_level=log_level)
+
+        self.timeout = timeout
 
     # region Utils
     def print_output(self, output):
@@ -60,7 +63,7 @@ class Client:
         )
 
         self.print_output("Sending get request to spotinst API.")
-        result = requests.get(url, params=query_params, headers=headers)
+        result = requests.get(url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -82,7 +85,7 @@ class Client:
 
         self.print_output("Sending deletion request to spotinst API.")
 
-        result = requests.delete(url, params=query_params, headers=headers)
+        result = requests.delete(url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -107,7 +110,8 @@ class Client:
             url,
             params=query_params,
             headers=headers,
-            data=body)
+            data=body,
+            timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -137,7 +141,8 @@ class Client:
             url,
             params=query_params,
             data=body,
-            headers=headers)
+            headers=headers,
+            timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -167,7 +172,8 @@ class Client:
             url,
             params=query_params,
             data=body,
-            headers=headers)
+            headers=headers,
+            timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -194,7 +200,8 @@ class Client:
             url,
             params=query_params,
             data=body,
-            headers=headers)
+            headers=headers,
+            timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")

@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## [2.1.13] - 2021-10-11
+### Added
+- Add support for timeout parameter. defaults to "None"
+
 ## [2.1.12] - 2021-07-13
 ### Fixed
  - Properly populate message in client exception

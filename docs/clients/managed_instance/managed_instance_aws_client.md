@@ -5,7 +5,8 @@ ManagedInstanceAwsClient(self,
                          session=None,
                          print_output=True,
                          log_level=None,
-                         user_agent=None)
+                         user_agent=None,
+                         timeout=None)
 ```
 
 <h2 id="spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient.ENTITY_NAME">ENTITY_NAME</h2>

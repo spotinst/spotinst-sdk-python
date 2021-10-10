@@ -5,7 +5,8 @@ ElastigroupGcpClient(self,
                      session=None,
                      print_output=True,
                      log_level=None,
-                     user_agent=None)
+                     user_agent=None,
+                     timeout=None)
 ```
 
 <h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.create_elastigroup">create_elastigroup</h2>

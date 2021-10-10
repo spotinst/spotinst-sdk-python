@@ -5,7 +5,8 @@ SetupAWSClient(self,
                session=None,
                print_output=True,
                log_level=None,
-               user_agent=None)
+               user_agent=None,
+               timeout=None)
 ```
 
 <h2 id="spotinst_sdk2.clients.setup.SetupAWSClient.create_external_id">create_external_id</h2>

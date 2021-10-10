@@ -25,23 +25,23 @@ class SpotinstSession:
             profile=profile,
             credentials_file=credentials_file)
 
-    def client(self, service, print_output=True, log_level=None, user_agent=None):
+    def client(self, service, print_output=True, log_level=None, user_agent=None, timeout=None):
         switcher = {
-            "admin":             AdminClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "setup_aws":         SetupAWSClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "setup_azure":       SetupAzureClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "setup_gcp":         SetupGCPClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "elastigroup_aws":   ElastigroupAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "elastigroup_azure": ElastigroupAzureClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "elastigroup_gcp":   ElastigroupGcpClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "functions":         FunctionsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "mcs":               McsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "mlb" :              MlbClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "mrScaler_aws":      MrScalerAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
-            "ocean_aws":         OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent),
+            "admin":             AdminClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "setup_aws":         SetupAWSClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "setup_azure":       SetupAzureClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "setup_gcp":         SetupGCPClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "elastigroup_aws":   ElastigroupAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "elastigroup_azure": ElastigroupAzureClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "elastigroup_gcp":   ElastigroupGcpClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "functions":         FunctionsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "mcs":               McsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "mlb" :              MlbClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "mrScaler_aws":      MrScalerAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "ocean_aws":         OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout),
             "managed_instance_aws": ManagedInstanceAwsClient(session=self.session, print_output=print_output,
-                                                             log_level=log_level, user_agent=user_agent),
-            "subscription":      SubscriptionClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent)
+                                                             log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "subscription":      SubscriptionClient(session=self.session, print_output=print_output, log_level=log_level, user_agent=user_agent, timeout=timeout)
         }
 
         return switcher.get(service, "Invalid Service")

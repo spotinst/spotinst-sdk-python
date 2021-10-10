@@ -5,7 +5,8 @@ OceanAwsClient(self,
                session=None,
                print_output=True,
                log_level=None,
-               user_agent=None)
+               user_agent=None,
+               timeout=None)
 ```
 
 <h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.create_ocean_cluster">create_ocean_cluster</h2>
