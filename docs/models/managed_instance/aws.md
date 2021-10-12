@@ -24,7 +24,7 @@ __Arguments__
 ```python
 HealthCheck(
   self,
-  type: bool = 'd3043820717d74d9a17694c176d39733',
+  type: str = 'd3043820717d74d9a17694c176d39733',
   auto_healing: bool = 'd3043820717d74d9a17694c176d39733',
   grace_period: int = 'd3043820717d74d9a17694c176d39733',
   unhealthy_duration: int = 'd3043820717d74d9a17694c176d39733')
@@ -360,7 +360,7 @@ __Arguments__
 Route53Configuration(
     self,
     domains:
-    [<class 'spotinst_sdk2.models.managed_instance.aws.Route53DomainConfiguration'>] = 'd3043820717d74d9a17694c176d39733'
+    typing.List[spotinst_sdk2.models.managed_instance.aws.Route53DomainConfiguration] = 'd3043820717d74d9a17694c176d39733'
 )
 ```
 
@@ -395,8 +395,10 @@ __Arguments__
 
 ```python
 LoadBalancersConfiguration(
-    self, load_balancers:
-    typing.List[spotinst_sdk2.models.managed_instance.aws.LoadBalancer])
+    self,
+    load_balancers:
+    typing.List[spotinst_sdk2.models.managed_instance.aws.LoadBalancer] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
