@@ -400,6 +400,34 @@ class AwsElastigroupTestBlockDeviceMapping(AwsElastigroupTestCase):
 
         self.assertDictEqual(actual_request_json, expected_request_json)
 
+
+class AwsElastigroupTestResourceTagSpecification(AwsElastigroupTestCase):
+    def runTest(self):
+        eni_specifcation = TagSpecification(should_tag=True)
+        ami_specification = TagSpecification(should_tag=False)
+        resource_tag_specification = ResourceTagSpecification(amis=ami_specification, enis=eni_specifcation)
+        launch_specification = LaunchSpecification(resource_tag_specification=resource_tag_specification)
+        compute = Compute(launch_specification=launch_specification)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            compute=compute)
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['compute']['launchSpecification']['resourceTagSpecification']
+
+        expected_request_json = {
+            'enis': {
+                "shouldTag": True
+            },
+            'amis': {
+                "shouldTag": False
+            }
+        }
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
+
+
 class AwsElastigroupTestEbs(AwsElastigroupTestCase):
     def runTest(self):
         ebs = [EBS(snapshot_id="snp-1", throughput=500)]
