@@ -1090,6 +1090,31 @@ class Weight:
         self.weighted_capacity = weighted_capacity
 
 
+class TagSpecification:
+    """
+    # Arguments
+    should_tag: bool
+    """
+    def __init__(self, should_tag: bool = none):
+        self.should_tag = should_tag
+
+
+class ResourceTagSpecification:
+    """
+    # Arguments
+    volumes: TagSpecification
+    snapshots: TagSpecification
+    enis: TagSpecification
+    amis: TagSpecification
+    """
+    def __init__(self, volumes: TagSpecification = none, snapshots: TagSpecification = none, enis: TagSpecification = none,
+                 amis: TagSpecification = none):
+        self.volumes = volumes
+        self.snapshots = snapshots
+        self.enis = enis
+        self.amis = amis
+
+
 class LaunchSpecification:
     """
     # Arguments
@@ -1110,6 +1135,7 @@ class LaunchSpecification:
     block_device_mappings: list[BlockDeviceMapping]
     network_interfaces: list[NetworkInterface]
     tags: list[Tag]
+    resource_tag_specification: ResourceTagSpecification
     """
     def __init__(
             self,
@@ -1129,7 +1155,8 @@ class LaunchSpecification:
             shutdown_script=none,
             block_device_mappings=none,
             network_interfaces=none,
-            tags=none):
+            tags=none,
+            resource_tag_specification=none):
 
         self.load_balancers_config = load_balancers_config
         self.health_check_type = health_check_type
@@ -1148,6 +1175,7 @@ class LaunchSpecification:
         self.block_device_mappings = block_device_mappings
         self.network_interfaces = network_interfaces
         self.tags = tags
+        self.resource_tag_specification = resource_tag_specification
 
 
 class CreditSpecification:

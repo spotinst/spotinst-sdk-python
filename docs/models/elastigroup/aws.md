@@ -969,6 +969,35 @@ __Arguments__
 - __instance_type__: str
 - __weighted_capacity__: int
 
+<h2 id="spotinst_sdk2.models.elastigroup.aws.TagSpecification">TagSpecification</h2>
+
+```python
+TagSpecification(self,
+                 should_tag: bool = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __should_tag__: bool
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.ResourceTagSpecification">ResourceTagSpecification</h2>
+
+```python
+ResourceTagSpecification(
+  self,
+  volumes: TagSpecification = 'd3043820717d74d9a17694c176d39733',
+  snapshots: TagSpecification = 'd3043820717d74d9a17694c176d39733',
+  enis: TagSpecification = 'd3043820717d74d9a17694c176d39733',
+  amis: TagSpecification = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __volumes__: TagSpecification
+- __snapshots__: TagSpecification
+- __enis__: TagSpecification
+- __amis__: TagSpecification
+
 <h2 id="spotinst_sdk2.models.elastigroup.aws.LaunchSpecification">LaunchSpecification</h2>
 
 ```python
@@ -990,7 +1019,8 @@ LaunchSpecification(
   shutdown_script='d3043820717d74d9a17694c176d39733',
   block_device_mappings='d3043820717d74d9a17694c176d39733',
   network_interfaces='d3043820717d74d9a17694c176d39733',
-  tags='d3043820717d74d9a17694c176d39733')
+  tags='d3043820717d74d9a17694c176d39733',
+  resource_tag_specification='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1012,6 +1042,7 @@ __Arguments__
 - __block_device_mappings__: list[BlockDeviceMapping]
 - __network_interfaces__: list[NetworkInterface]
 - __tags__: list[Tag]
+- __resource_tag_specification__: ResourceTagSpecification
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.CreditSpecification">CreditSpecification</h2>
 
