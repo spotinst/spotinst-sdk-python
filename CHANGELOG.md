@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## [2.1.14] - 2021-11-02
+### Added
+- Add support for Elastigroup field: `resourceTagSpecification`
+
 ## [2.1.13] - 2021-10-12
 ### Added
 - Add support for timeout parameter. defaults to "None"
