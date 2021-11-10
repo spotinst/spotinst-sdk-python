@@ -340,7 +340,8 @@ class ElastigroupAwsClient(Client):
                 "/" +
                 str(group_id) +
                 "/roll/"+
-                str(roll_id),
+                str(roll_id)+
+                "/status",
             entity_name='roll')
 
         formatted_response = self.convert_json(
