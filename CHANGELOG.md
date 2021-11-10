@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.1.15] - 2021-11-10
 ### Fixed
-- update Elastigroup Aws `get_deployment_status` call
+- Change the api call made by elastigroup aws `get_deployment_status`
 
 ## [2.1.14] - 2021-11-02
 ### Added
