@@ -145,7 +145,8 @@ __Arguments__
 Scaling(self,
         up='d3043820717d74d9a17694c176d39733',
         down='d3043820717d74d9a17694c176d39733',
-        target='d3043820717d74d9a17694c176d39733')
+        target='d3043820717d74d9a17694c176d39733',
+        multiple_metrics='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -153,6 +154,7 @@ __Arguments__
 - __up__:  list[ScalingPolicy]
 - __down__: list[ScalingPolicy]
 - __target__: list[TargetTrackingPolicy]
+- __multiple_metrics__: MultipleMetrics
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.ScalingPolicyDimension">ScalingPolicyDimension</h2>
 
@@ -191,6 +193,20 @@ __Arguments__
 - __minimum__: int
 - __maximum__: int
 
+<h2 id="spotinst_sdk2.models.elastigroup.aws.ScalingPolicyStepAdjustment">ScalingPolicyStepAdjustment</h2>
+
+```python
+ScalingPolicyStepAdjustment(
+  self,
+  action='d3043820717d74d9a17694c176d39733',
+  threshold='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __action__: ScalingPolicyAction
+- __threshold__: int
+
 <h2 id="spotinst_sdk2.models.elastigroup.aws.ScalingPolicy">ScalingPolicy</h2>
 
 ```python
@@ -208,7 +224,12 @@ ScalingPolicy(self,
               dimensions='d3043820717d74d9a17694c176d39733',
               policy_name='d3043820717d74d9a17694c176d39733',
               source='d3043820717d74d9a17694c176d39733',
-              extended_statistic='d3043820717d74d9a17694c176d39733')
+              extended_statistic='d3043820717d74d9a17694c176d39733',
+              step_adjustments='d3043820717d74d9a17694c176d39733',
+              min_target_capacity='d3043820717d74d9a17694c176d39733',
+              max_target_capacity='d3043820717d74d9a17694c176d39733',
+              should_resume_stateful='d3043820717d74d9a17694c176d39733',
+              is_enabled='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -227,6 +248,11 @@ __Arguments__
 - __policy_name__: str
 - __source__: str
 - __extended_statistic__: str
+- __step_adjustments__: list[ScalingPolicyStepAdjustment]
+- __min_target_capacity__: int
+- __max_target_capacity__: int
+- __should_resume_stateful__: bool
+- __is_enabled__: bool
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.TargetTrackingPolicy">TargetTrackingPolicy</h2>
 
@@ -254,6 +280,56 @@ __Arguments__
 - __dimensions__: list[ScalingPolicyDimension]
 - __policy_name__: str
 - __source__: str
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.ScalingPolicyMetric">ScalingPolicyMetric</h2>
+
+```python
+ScalingPolicyMetric(
+  self,
+  name='d3043820717d74d9a17694c176d39733',
+  namespace='d3043820717d74d9a17694c176d39733',
+  metric_name='d3043820717d74d9a17694c176d39733',
+  statistic='d3043820717d74d9a17694c176d39733',
+  unit='d3043820717d74d9a17694c176d39733',
+  dimensions='d3043820717d74d9a17694c176d39733',
+  extended_statistic='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __name__: str
+- __metric_name__: str
+- __name_space__: str
+- __statistic__: str
+- __unit__: str
+- __dimensions__: list[ScalingPolicyDimension]
+- __extended_statistic__: str
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.MetricExpression">MetricExpression</h2>
+
+```python
+MetricExpression(self,
+                 name='d3043820717d74d9a17694c176d39733',
+                 expression='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __name__: str
+- __expression__: str
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.MultipleMetrics">MultipleMetrics</h2>
+
+```python
+MultipleMetrics(self,
+                metrics='d3043820717d74d9a17694c176d39733',
+                expressions='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __metrics__: list[ScalingPolicyMetric]
+- __expressions__: list[MetricExpression]
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Scheduling">Scheduling</h2>
 
