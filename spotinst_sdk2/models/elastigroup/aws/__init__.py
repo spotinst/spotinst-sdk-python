@@ -177,12 +177,14 @@ class Scaling:
     up:  list[ScalingPolicy]
     down: list[ScalingPolicy]
     target: list[TargetTrackingPolicy]
+    multiple_metrics: MultipleMetrics
     """
-    def __init__(self, up=none, down=none, target=none):
+    def __init__(self, up=none, down=none, target=none, multiple_metrics=none):
 
         self.up = up
         self.down = down
         self.target = target
+        self.multiple_metrics = multiple_metrics
 
 
 class ScalingPolicyDimension:
@@ -222,6 +224,18 @@ class ScalingPolicyAction:
         self.maximum = maximum
 
 
+class ScalingPolicyStepAdjustment:
+    """
+    # Arguments
+    action: ScalingPolicyAction
+    threshold: int
+    """
+    def __init__(self, action=none, threshold=none):
+
+        self.action = action
+        self.threshold = threshold
+
+
 class ScalingPolicy:
     """
     # Arguments
@@ -239,6 +253,11 @@ class ScalingPolicy:
     policy_name: str
     source: str
     extended_statistic: str
+    step_adjustments: list[ScalingPolicyStepAdjustment]
+    min_target_capacity: int
+    max_target_capacity: int
+    should_resume_stateful: bool
+    is_enabled: bool
     """
     def __init__(
             self,
@@ -255,7 +274,12 @@ class ScalingPolicy:
             dimensions=none,
             policy_name=none,
             source=none,
-            extended_statistic=none):
+            extended_statistic=none,
+            step_adjustments=none,
+            min_target_capacity=none,
+            max_target_capacity=none,
+            should_resume_stateful=none,
+            is_enabled=none):
 
         self.policy_name = policy_name
         self.namespace = namespace
@@ -271,6 +295,11 @@ class ScalingPolicy:
         self.operator = operator
         self.source = source
         self.extended_statistic = extended_statistic
+        self.step_adjustments = step_adjustments
+        self.min_target_capacity = min_target_capacity
+        self.max_target_capacity = max_target_capacity
+        self.should_resume_stateful = should_resume_stateful
+        self.is_enabled = is_enabled
 
 
 class TargetTrackingPolicy:
@@ -300,6 +329,59 @@ class TargetTrackingPolicy:
         self.cooldown = cooldown
         self.target = target
 
+
+class ScalingPolicyMetric:
+    """
+    # Arguments
+    name: str
+    metric_name: str
+    name_space: str
+    statistic: str
+    unit: str
+    dimensions: list[ScalingPolicyDimension]
+    extended_statistic: str
+    """
+    def __init__(
+            self,
+            name=none,
+            namespace=none,
+            metric_name=none,
+            statistic=none,
+            unit=none,
+            dimensions=none,
+            extended_statistic=none):
+
+        self.name = name
+        self.namespace = namespace
+        self.metric_name = metric_name
+        self.dimensions = dimensions
+        self.statistic = statistic
+        self.unit = unit
+        self.extended_statistic = extended_statistic
+
+
+class MetricExpression:
+    """
+    # Arguments
+    name: str
+    expression: str
+    """
+    def __init__(self, name=none, expression=none):
+
+        self.name = name
+        self.expression = expression
+
+
+class MultipleMetrics:
+    """
+    # Arguments
+    metrics: list[ScalingPolicyMetric]
+    expressions: list[MetricExpression]
+    """
+    def __init__(self, metrics=none, expressions=none):
+
+        self.metrics = metrics
+        self.expressions = expressions
 
 # endregion
 

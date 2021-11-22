@@ -47,7 +47,19 @@
             "type": "percentageAdjustment",
             "adjustment": 20
           },
-          "operator": "gte"
+          "operator": "gte",
+          "stepAdjustments": [
+            {
+              "action": {
+                "type": "setMinTarget",
+                "minTargetCapacity": 3
+              },
+              "threshold": 50
+            }
+          ],
+          "minTargetCapacity": 1,
+          "isEnabled": true,
+          "shouldResumeStateful": false
         }
       ],
       "down": [
@@ -88,7 +100,31 @@
           "namespace": "AWS/EC2",
           "cooldown": 300
         }
-      ]
+      ],
+      "multipleMetrics": {
+        "metrics": [
+          {
+            "name": "metric1",
+            "metricName": "CPUUtilization",
+            "namespace": "AWS/EC2",
+            "statistic": "average",
+            "extendedStatistic": "p1.5",
+            "unit": "percent",
+            "dimensions": [
+              {
+                "name": "instanceId",
+                "value": "string"
+              }
+            ]
+          }
+        ],
+        "expressions": [
+          {
+            "name": "e1",
+            "expression": "metric1+10"
+          }
+        ]
+      }
     },
     "scheduling": {
       "tasks": [

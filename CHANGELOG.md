@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## [2.1.16] - 2021-11-22
+### Added
+- Add support for Elastigroup Scaling field: `multipleMetrics`
+- Add support for Elastigroup Scaling Up/Down field: `stepAdjustments`
+- Add support for Elastigroup Scaling Up/Down field: `isEnabled`
+- Add support for Elastigroup Scaling Up field: `minTarget capacity`
+- Add support for Elastigroup Scaling Up field: `maxTarget capacity`
+- Add support for Elastigroup Scaling Up field: `shouldResumeStateful`
+
 ## [2.1.15] - 2021-11-10
 ### Fixed
 - Change the api call made by elastigroup aws `get_deployment_status`

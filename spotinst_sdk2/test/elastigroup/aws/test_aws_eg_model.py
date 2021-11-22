@@ -229,6 +229,10 @@ class AwsElastigroupTestScalingIntegration(AwsElastigroupTestCase):
             type='percentageAdjustment', adjustment=20)
         scaling_policy_up_instance_dimension = ScalingPolicyDimension(
             name='InstanceId')
+        step_adjustment_action = ScalingPolicyAction(
+            type='setMinTarget', min_target_capacity=3)
+        step_adjustment = ScalingPolicyStepAdjustment(
+            action=step_adjustment_action, threshold=50)
         scaling_policy_up = ScalingPolicy(
             metric_name='CPUUtilization',
             statistic='average',
@@ -240,7 +244,11 @@ class AwsElastigroupTestScalingIntegration(AwsElastigroupTestCase):
             cooldown=300,
             operator='gte',
             action=scaling_policy_up_action,
-            dimensions=[scaling_policy_up_instance_dimension])
+            dimensions=[scaling_policy_up_instance_dimension],
+            step_adjustments=[step_adjustment],
+            min_target_capacity=1,
+            is_enabled=True,
+            should_resume_stateful=False)
 
         scaling_policy_down_action = ScalingPolicyAction(
             type='adjustment', adjustment=1)
@@ -273,10 +281,31 @@ class AwsElastigroupTestScalingIntegration(AwsElastigroupTestCase):
             namespace='AWS/EC2',
             cooldown=300)
 
+        expression = MetricExpression(
+            name="e1", expression="metric1+10")
+        metric_dimension = ScalingPolicyDimension(
+            name="instanceId",
+            value="string"
+        )
+        metric = ScalingPolicyMetric(
+            name="metric1",
+            metric_name="CPUUtilization",
+            namespace="AWS/EC2",
+            statistic="average",
+            extended_statistic="p1.5",
+            unit="percent",
+            dimensions=[metric_dimension]
+        )
+        multiple_metrics = MultipleMetrics(
+            metrics=[metric],
+            expressions=[expression]
+        )
+
         scaling = Scaling(
             up=[scaling_policy_up],
             down=[scaling_policy_down],
-            target=[target_tracking])
+            target=[target_tracking],
+            multiple_metrics=multiple_metrics)
         group = Elastigroup(scaling=scaling)
         formatted_group_dict = self.create_formatted_group_request(group)
 
