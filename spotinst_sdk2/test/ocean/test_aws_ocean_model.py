@@ -39,9 +39,11 @@ class SpotinstOceanCluster(SpotinstOceanTestCase):
 
 		iam_instance_profile = IamInstanceProfile(arn="1234567", name="12345ty7")
 
+		load_balancer = LoadBalancer(name="example", lb_type="CLASSIC")
+
 		launch_specification = LaunchSpecifications(
 			security_group_ids=["sg-8cfb40f6"], iam_instance_profile=iam_instance_profile,
-			image_id="ami-1178f169", key_pair="Noam-key", tags=[single_tag])
+			image_id="ami-1178f169", key_pair="Noam-key", tags=[single_tag], load_balancers=[load_balancer])
 
 		instance_types = InstanceTypes(whitelist=["c4.8xlarge"])
 

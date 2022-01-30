@@ -23,7 +23,8 @@
 				"iamInstanceProfile":{
 					"arn":"1234567", 
 					"name":"12345ty7"
-				}
+				},
+				"loadBalancers": [{"name": "example", "type": "CLASSIC"}]
 			}, 
 			"subnetIds": ["subnet-1ba25052"]
 		}, 

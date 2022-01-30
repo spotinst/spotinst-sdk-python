@@ -30,7 +30,8 @@
 						"securityGroupIds": ["sg-8cfb40f6"], 
 						"keyPair": "Noam-key", 
 						"imageId": "ami-1178f169", 
-						"tags": [{"tagKey": "testing", "tagValue": "tags"}]
+						"tags": [{"tagKey": "testing", "tagValue": "tags"}],
+						"loadBalancers": [{"name": "example", "type": "CLASSIC"}]
 					}
 				}, 
 				"createdAt": "2019-01-24T18:21:31.000Z", 

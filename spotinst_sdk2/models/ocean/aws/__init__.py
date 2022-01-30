@@ -180,6 +180,7 @@ class LaunchSpecifications:
 	key_pair: str
 	user_data: str
 	tags: List[Tag]
+	load_balancers: List[LoadBalancer]
 	"""
 	def __init__(
 		self,
@@ -188,7 +189,8 @@ class LaunchSpecifications:
 		iam_instance_profile=none,
 		key_pair=none,
 		user_data=none,
-		tags=none):
+		tags=none,
+		load_balancers=none):
 
 		self.security_group_ids = security_group_ids
 		self.image_id = image_id
@@ -196,6 +198,7 @@ class LaunchSpecifications:
 		self.key_pair = key_pair
 		self.user_data = user_data
 		self.tags = tags
+		self.load_balancers = load_balancers
 
 class IamInstanceProfile:
 	"""
@@ -222,6 +225,22 @@ class Tag:
 		tag_value=none):
 		self.tag_key = tag_key
 		self.tag_value = tag_value
+
+class LoadBalancer:
+	"""
+	# Argument
+	arn:  str
+	name: str
+	type: str
+	"""
+	def __init__(
+		self,
+		arn=none,
+		name=none,
+		lb_type=none):
+		self.arn = arn
+		self.name = name
+		self.type = lb_type
 # endregion
 
 

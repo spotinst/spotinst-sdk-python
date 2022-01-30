@@ -34,7 +34,8 @@
 						"keyPair": "Noam-key", 
 						"imageId": "ami-1178f169", 
 						"tags": [{"tagKey": "testing", "tagValue": "tags"}], 
-						"userData": "__hidden__"}
+						"userData": "__hidden__",
+						"loadBalancers": [{"name": "example", "type": "CLASSIC"}]}
 					}, 
 				"createdAt": "2019-01-24T18:21:31.286Z", 
 				"updatedAt": "2019-01-24T18:21:31.286Z"
