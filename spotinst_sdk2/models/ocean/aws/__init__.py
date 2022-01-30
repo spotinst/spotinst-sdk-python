@@ -231,7 +231,7 @@ class LoadBalancer:
 	# Argument
 	arn:  str
 	name: str
-	type: str
+	lb_type: str
 	"""
 	def __init__(
 		self,

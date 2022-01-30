@@ -204,5 +204,5 @@ __Argument__
 
 arn:  str
 name: str
-type: str
+lb_type: str
 
