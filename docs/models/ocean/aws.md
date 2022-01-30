@@ -151,7 +151,8 @@ LaunchSpecifications(
   iam_instance_profile='d3043820717d74d9a17694c176d39733',
   key_pair='d3043820717d74d9a17694c176d39733',
   user_data='d3043820717d74d9a17694c176d39733',
-  tags='d3043820717d74d9a17694c176d39733')
+  tags='d3043820717d74d9a17694c176d39733',
+  load_balancers='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -162,6 +163,7 @@ __Arguments__
 - __key_pair__: str
 - __user_data__: str
 - __tags__: List[Tag]
+- __load_balancers__: List[LoadBalancer]
 
 <h2 id="spotinst_sdk2.models.ocean.aws.IamInstanceProfile">IamInstanceProfile</h2>
 
@@ -188,4 +190,19 @@ __Argument__
 
 tag_key: str
 tag_value: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.LoadBalancer">LoadBalancer</h2>
+
+```python
+LoadBalancer(self,
+             arn='d3043820717d74d9a17694c176d39733',
+             name='d3043820717d74d9a17694c176d39733',
+             lb_type='d3043820717d74d9a17694c176d39733')
+```
+
+__Argument__
+
+arn:  str
+name: str
+type: str
 
