@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
-## [2.1.7] - 2022-01-31
+## [2.1.17] - 2022-01-31
 ### Added
 - Add support for Ocean AWS LaunchSpec field: `loadBalancers`
 
