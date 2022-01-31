@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## [2.1.7] - 2022-01-31
+### Added
+- Add support for Ocean AWS LaunchSpec field: `loadBalancers`
+
+### Fixed
+- correctly classify v2's minimum Python version
+
 ## [2.1.16] - 2021-11-22
 ### Added
 - Add support for Elastigroup Scaling field: `multipleMetrics`
