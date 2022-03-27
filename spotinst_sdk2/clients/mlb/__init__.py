@@ -23,9 +23,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal     
+        return ret_val
 
     def get_mlb_runtime(self, runtime_id):
         """
@@ -46,9 +46,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal     
+        return ret_val
 
     def deregister_mlb_runtime(self, runtime_id):
         """
@@ -70,9 +70,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal   
+        return ret_val
 
     def delete_mlb_runtime(self, runtime_id):
         """
@@ -112,9 +112,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def update_mlb_deployment(self, deployment_id, deployment_name):
         """
@@ -136,9 +136,9 @@ class MlbClient(Client):
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def get_mlb_deployment(self, deployment_id):
         """
@@ -159,9 +159,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def get_all_mlb_deployment(self):
         """
@@ -179,9 +179,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def delete_mlb_deployment(self, deployment_id):
         """
@@ -232,9 +232,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal        
+        return ret_val
 
     def update_mlb_balancer(self, balancer_id, balancer):
         """
@@ -268,9 +268,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def get_mlb_balancer(self, balancer_id):
         """
@@ -291,9 +291,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal        
+        return ret_val
 
     def get_all_mlb_balancer(self):
         """
@@ -311,9 +311,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal   
+        return ret_val
 
     def delete_mlb_balancer(self, balancer_id):
         """
@@ -364,9 +364,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def update_mlb_target_set(self, target_set_id, target_set):
         """
@@ -400,9 +400,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def get_mlb_target_set(self, target_set_id):
         """
@@ -423,9 +423,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def get_all_mlb_target_set(self):
         """
@@ -443,9 +443,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def delete_mlb_target_set(self, target_set_id):
         """
@@ -498,9 +498,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def deregister_mlb_targets(self, target_set_id, targets):
         """
@@ -535,9 +535,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def create_mlb_target(self, target):
         """
@@ -570,9 +570,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def update_mlb_target(self, target_id, target):
         """
@@ -606,9 +606,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def get_mlb_target(self, target_id):
         """
@@ -629,9 +629,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def get_all_mlb_target(self):
         """
@@ -649,9 +649,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def delete_mlb_target(self, target_id):
         """
@@ -702,9 +702,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def update_mlb_listener(self, listener_id, listener):
         """
@@ -738,9 +738,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def get_mlb_listener(self, listener_id):
         """
@@ -761,9 +761,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def get_all_mlb_listener(self):
         """
@@ -781,9 +781,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def delete_mlb_listener(self, listener_id):
         """
@@ -834,9 +834,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def update_mlb_routing_rule(self, routing_rule_id, routing_rule):
         """
@@ -870,9 +870,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def get_mlb_routing_rule(self, routing_rule_id):
         """
@@ -893,9 +893,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def get_all_mlb_routing_rule(self):
         """
@@ -913,9 +913,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def delete_mlb_routing_rule(self, routing_rule_id):
         """
@@ -966,9 +966,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def update_mlb_middleware(self, middleware_id, middleware):
         """
@@ -1002,9 +1002,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def get_mlb_middleware(self, middleware_id):
         """
@@ -1025,9 +1025,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal 
+        return ret_val
 
     def get_all_mlb_middleware(self):
         """
@@ -1045,9 +1045,9 @@ class MlbClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def delete_mlb_middleware(self, middleware_id):
         """

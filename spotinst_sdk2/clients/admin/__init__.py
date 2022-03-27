@@ -27,9 +27,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_organization(self, org_id):
         """
@@ -101,9 +101,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
     def create_account(self, account_name):
         """
@@ -125,9 +125,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_accounts(self):
         """
@@ -145,9 +145,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def delete_account(self, account_name):
         """
@@ -196,9 +196,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal       
+        return ret_val
 
     def add_exsisting_user(self, user_email, role):
         """
@@ -222,9 +222,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def update_user_role(self, user_email, role):
         """
@@ -248,9 +248,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
 
     def detach_user(self, user_email):
         """
@@ -292,9 +292,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal 
+        return ret_val
 
     def assign_user_to_account(self, mappings):
         """
@@ -324,9 +324,9 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal 
+        return ret_val
     # endregion
 
 

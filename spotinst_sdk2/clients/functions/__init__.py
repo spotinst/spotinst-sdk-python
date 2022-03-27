@@ -36,9 +36,9 @@ class FunctionsClient(Client):
         formatted_response = self.convert_json(
             app_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def create_environment(self, env):
         """
@@ -69,9 +69,9 @@ class FunctionsClient(Client):
         formatted_response = self.convert_json(
             env_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def create_function(self, fx):
         """
@@ -103,8 +103,8 @@ class FunctionsClient(Client):
         formatted_response = self.convert_json(
             fx_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     # endregion

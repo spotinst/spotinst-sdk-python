@@ -56,9 +56,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_elastigroup(self, group_update, group_id, auto_apply_tags=None):
         """
@@ -93,9 +93,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_elastigroup(self, group_id):
         """
@@ -299,9 +299,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
 
     def get_all_group_deployment(self, group_id):
         """
@@ -408,9 +408,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def get_instance_healthiness(self, group_id):
         """
@@ -679,9 +679,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
     def deallocate_stateful_instance(self, group_id, stateful_instance_id):
         """
@@ -822,9 +822,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             status_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def beanstalk_maintenance_start(self, group_id):
         """
@@ -847,9 +847,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             start_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
     def beanstalk_maintenance_finish(self, group_id):   
         """
@@ -872,9 +872,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             finish_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
     def beanstalk_import(self, region, env_id=None, env_name=None):
         """
@@ -900,9 +900,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def beanstalk_reimport(self, group_id):
         """
@@ -924,9 +924,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def import_asg(self, region, asg_name, asg, dry_run=None):
         """
@@ -962,9 +962,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_activity_events(self, group_id, from_date):
         """
@@ -989,9 +989,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def ami_backup(self, group_id):
         """
@@ -1012,9 +1012,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response
+        ret_val = formatted_response
 
-        return retVal["response"]["status"]
+        return ret_val["response"]["status"]
 
     def create_blue_green_deployment(self, group_id, blue_green_deployment):
         """
@@ -1043,9 +1043,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_blue_green_deployment(self, group_id):
         """
@@ -1063,9 +1063,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def stop_blue_green_deployment(self, group_id, deployment_id):
         """
@@ -1084,9 +1084,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
     # endregion
 
     # region AWS
@@ -1380,9 +1380,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_stateful_import_status(self, stateful_migration_id):
         """
@@ -1460,9 +1460,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_elastigroup(self, group_update, group_id):
         """
@@ -1496,9 +1496,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_elastigroup(self, group_id):
         """
@@ -1628,9 +1628,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
 
     def get_all_group_deployment(self, group_id):
         """
@@ -1808,9 +1808,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def detach_elastigroup_instances(self, group_id, detach_configuration):
         """
@@ -1845,9 +1845,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 # endregion
 
 
@@ -1883,9 +1883,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_elastigroup(self, group_update, group_id):
         """
@@ -1919,9 +1919,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_elastigroup(self, group_id):
         """
@@ -1999,9 +1999,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
 
     def get_all_group_deployment(self, group_id):
         """
@@ -2154,9 +2154,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_task(self, task_update, task_id):
         """
@@ -2186,9 +2186,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_task(self, task_id):
         """
@@ -2295,8 +2295,8 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
 # endreion

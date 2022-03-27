@@ -33,9 +33,9 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_ocean_cluster(self, ocean_id, ocean):
         """
@@ -66,9 +66,9 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_all_ocean_cluster(self):
         """
@@ -85,9 +85,9 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def get_all_ocean_sizing(self, ocean_id, namespace):
         """
@@ -107,9 +107,9 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def get_ocean_cluster(self, ocean_id):
         """
@@ -130,9 +130,9 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal        
+        return ret_val
     
     def delete_ocean_cluster(self, ocean_id):
         """

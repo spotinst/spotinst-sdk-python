@@ -34,9 +34,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_emr(self, emr_id, emr):
         """
@@ -67,9 +67,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_all_emr(self):
         """
@@ -86,9 +86,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def get_emr(self, emr_id):
         """
@@ -109,9 +109,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal        
+        return ret_val
 
     def get_emr_instances(self, emr_id):
         """
@@ -133,9 +133,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal  
+        return ret_val
 
     def get_emr_cluster(self, emr_id):
         """
@@ -157,9 +157,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_emr_cost(self, emr_id, from_date=None, to_date=None):
         """
@@ -186,9 +186,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_emr(self, emr_id):
         """
@@ -232,9 +232,9 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def scale_down_emr(self, emr_id, adjustment):
         """
@@ -260,7 +260,7 @@ class MrScalerAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
     # endregion

@@ -34,9 +34,9 @@ class SubscriptionClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_event_subscription(self, subscription_id, subscription):
         """
@@ -67,9 +67,9 @@ class SubscriptionClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
 
     def get_all_event_subscription(self):
         """
@@ -86,9 +86,9 @@ class SubscriptionClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def get_event_subscription(self, subscription_id):
         """
@@ -109,9 +109,9 @@ class SubscriptionClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal        
+        return ret_val
     
     def delete_event_subscription(self, subscription_id):
         """
