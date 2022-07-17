@@ -4,7 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.ocean.aws as aws_ocean
 
 class OceanAwsClient(Client):
-    __base_ocean_url = "http://localhost:3100/ocean/aws/k8s/cluster"
+    __base_ocean_url = "https://api.spotinst.io/ocean/aws/k8s/cluster"
 
     def create_ocean_cluster(self, ocean):
         """
@@ -152,7 +152,7 @@ class OceanAwsClient(Client):
 
         return response
 
-    def get_aggregated_cluster_costs(self, ocean_id, aggregated_cluster_costs):
+    def get_aggregated_cluster_costs(self, ocean_id, aggregated_cluster_costs_request):
         """
         Get aggregated cluster costs
 
@@ -163,22 +163,22 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Aggregated Cluster Costs API response
         """
-        aggregated_cluster_costs = aws_ocean.AggregatedClusterCostRequest(aggregated_cluster_costs)
+        aggregated_cluster_costs_request = aws_ocean.AggregatedClusterCostRequest(aggregated_cluster_costs_request)
 
-        excluded_group_dict = self.exclude_missing(json.loads(aggregated_cluster_costs.toJSON()))
+        excluded_aggregated_costs_dict = self.exclude_missing(json.loads(aggregated_cluster_costs_request.toJSON()))
 
-        formatted_group_dict = self.convert_json_with_list_of_lists(
-            excluded_group_dict, self.underscore_to_camel)
+        formatted_aggregated_costs_dict = self.convert_json_with_list_of_lists(
+            excluded_aggregated_costs_dict, self.underscore_to_camel)#TODO baruch validate that the method underscore_to_camel doesn't effect the values themselfs
 
-        body_json = json.dumps(formatted_group_dict)
+        body_json = json.dumps(formatted_aggregated_costs_dict)
 
-        group_response = self.send_post(
+        aggregated_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_url + "/" + ocean_id + "/aggregatedCosts",
-            entity_name='ocean (aggregated cluster costs)')
+            entity_name='ocean (aggregated cluster costs)')#TODO baruch play with it, and understand what is going on
 
         formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+            aggregated_costs_response, self.camel_to_underscore)
 
         retVal = formatted_response["response"]["items"][0]
 
