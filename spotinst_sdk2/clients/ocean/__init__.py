@@ -168,14 +168,14 @@ class OceanAwsClient(Client):
         excluded_aggregated_costs_dict = self.exclude_missing(json.loads(aggregated_cluster_costs_request.toJSON()))
 
         formatted_aggregated_costs_dict = self.convert_json_with_list_of_lists(
-            excluded_aggregated_costs_dict, self.underscore_to_camel)#TODO baruch validate that the method underscore_to_camel doesn't effect the values themselfs
+            excluded_aggregated_costs_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_aggregated_costs_dict)
 
         aggregated_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_url + "/" + ocean_id + "/aggregatedCosts",
-            entity_name='ocean (aggregated cluster costs)')#TODO baruch play with it, and understand what is going on
+            entity_name='ocean (aggregated cluster costs)')
 
         formatted_response = self.convert_json(
             aggregated_costs_response, self.camel_to_underscore)
