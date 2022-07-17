@@ -243,14 +243,80 @@ class LoadBalancer:
 		self.type = lb_type
 # endregion
 
+#region AggregatedClusterCosts
+class AggregatedClusterCosts:
+	"""
+	# Argument
+	start_time:  str
+	end_time: str
+	groupby: str
+	aggregated_filter: Filter
+	"""
+	def __init__(
+		self,
+		start_time=none,
+		end_time=none,
+		group_by=none,
+		aggregated_filter=none):
+		self.start_time = start_time
+		self.end_time = end_time
+		self.group_by = group_by
+		self.filter = aggregated_filter
+
+class Filter:
+	"""
+	# Argument
+	scope:  str
+	conditions: Conditions
+	"""
+	def __init__(
+		self,
+		scope=none,
+		conditions=none):
+		self.scope = scope
+		self.conditions = conditions
+
+class Conditions:
+	"""
+	# Argument
+	any_match:  List(AllMatch)
+	"""
+	def __init__(
+		self,
+		any_match=none):
+		self.any_match = any_match
+
+class AllMatch:
+	"""
+	# Argument
+	all_matches:  List(AllMatchInner)
+	"""
+	def __init__(
+		self,
+		all_match=none):
+		self.all_match = all_match
+#endregion
 
 class OceanRequest:
-    def __init__(self, cluster):
-        self.cluster = cluster
+	def __init__(self, cluster):
+		self.cluster = cluster
 
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
+	def toJSON(self):
+		return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
+class AggregatedClusterCostRequest:
+	def __init__(self, aggregated_cluster_costs):
+		self.start_time = aggregated_cluster_costs.start_time
+		self.end_time = aggregated_cluster_costs.end_time
+		self.group_by = aggregated_cluster_costs.group_by
+		self.filter = aggregated_cluster_costs.filter
+
+	def toJSON(self):
+		return json.dumps(self, default=lambda o: o.__dict__,
+						  sort_keys=True, indent=4)
+
+
 
 
 

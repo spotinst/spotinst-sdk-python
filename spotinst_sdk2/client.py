@@ -251,6 +251,30 @@ class Client:
             new_json[convert(k)] = new_v
         return new_json
 
+    def convert_json_with_list_of_lists(self, val, convert):
+        new_json = {}
+        if val is None:
+            return val
+        elif type(val) in (int, float, bool, "".__class__, u"".__class__):
+            return val
+
+        if isinstance(val, list):
+            new_v = list()
+            for x in val:
+                new_v.append(self.convert_json_with_list_of_lists(x, convert))
+            return new_v
+        else:
+            for k, v in list(val.items()):
+                new_v = v
+                if isinstance(v, dict):
+                    new_v = self.convert_json_with_list_of_lists(v, convert)
+                elif isinstance(v, list):
+                    new_v = list()
+                    for x in v:
+                        new_v.append(self.convert_json_with_list_of_lists(x, convert))
+                new_json[convert(k)] = new_v
+        return new_json
+
     def exclude_missing(self, obj):
         # Delete keys with the value 'none' in a dictionary, recursively.
 
