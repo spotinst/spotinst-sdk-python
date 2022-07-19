@@ -1,7 +1,12 @@
 import os
 import unittest
 import json
-from mock import patch
+import sys
+if sys.version_info >= (3, 3):
+    from unittest.mock import patch
+else:
+    from mock import patch
+
 
 from spotinst_sdk2 import SpotinstSession
 
