@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+## [2.1.18] - 2022-07-18
+### Added
+- Add support for Ocean AWS field: `aggregatedCosts`
+
 ## [2.1.17] - 2022-01-31
 ### Added
 - Add support for Ocean AWS LaunchSpec field: `loadBalancers`
