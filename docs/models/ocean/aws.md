@@ -206,3 +206,54 @@ arn:  str
 name: str
 lb_type: str
 
+<h2 id="spotinst_sdk2.models.ocean.aws.AggregatedClusterCosts">AggregatedClusterCosts</h2>
+
+```python
+AggregatedClusterCosts(
+  self,
+  start_time='d3043820717d74d9a17694c176d39733',
+  end_time='d3043820717d74d9a17694c176d39733',
+  group_by='d3043820717d74d9a17694c176d39733',
+  aggregated_filter='d3043820717d74d9a17694c176d39733')
+```
+
+__Argument__
+
+start_time: str
+end_time: str
+groupby: str
+aggregated_filter: Filter
+
+<h2 id="spotinst_sdk2.models.ocean.aws.Filter">Filter</h2>
+
+```python
+Filter(self,
+       scope='d3043820717d74d9a17694c176d39733',
+       conditions='d3043820717d74d9a17694c176d39733')
+```
+
+__Argument__
+
+scope: str
+conditions: Conditions
+
+<h2 id="spotinst_sdk2.models.ocean.aws.Conditions">Conditions</h2>
+
+```python
+Conditions(self, any_match='d3043820717d74d9a17694c176d39733')
+```
+
+__Argument__
+
+any_match: List(AllMatch)
+
+<h2 id="spotinst_sdk2.models.ocean.aws.AllMatch">AllMatch</h2>
+
+```python
+AllMatch(self, all_match='d3043820717d74d9a17694c176d39733')
+```
+
+__Argument__
+
+all_matches:  List(AllMatchInner)
+
