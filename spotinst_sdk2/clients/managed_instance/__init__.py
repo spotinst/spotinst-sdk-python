@@ -192,20 +192,3 @@ class ManagedInstanceAwsClient(Client):
         formatted_response = self.convert_json(result, self.camel_to_underscore)
 
         return formatted_response["response"]
-
-    def get_managed_instance_status(self, managed_instance_id: str):
-        """
-        Get Managed Instance Status
-
-        # Arguments
-        managed_instance_id(String): Managed Instance ID
-
-        # Returns
-        (Object): ManagedInstance API response
-        """
-        geturl = self.__base_mi_url + "/" + managed_instance_id + "/" + "status"
-        result = self.send_get(url=geturl, entity_name=self.ENTITY_NAME)
-
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
-
-        return formatted_response["response"]["items"][0]
