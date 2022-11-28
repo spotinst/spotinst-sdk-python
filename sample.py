@@ -40,7 +40,7 @@ compute = Compute(launch_specification=launch_spec, os='Linux', vm_sizes=vm_size
 strategy = Strategy(draining_timeout=120, spot_percentage=100, orientation='cost', fallback_to_od=True)
 
 # Capacity
-capacity = Capacity(minimum=0, maximum=10, target=1)
+capacity = Capacity(minimum=0, maximum=10, target=5)
 
 # Elastigroup
 group = Elastigroup(name='Python-Test', region='eastus', resource_group_name='AutomationResourceGroup',
@@ -56,13 +56,16 @@ group = Elastigroup(name='Python-Test', region='eastus', resource_group_name='Au
 
 #client.update_elastigroup_capacity(group_id=group_id, capacity=update_capacity)
 
-client.scale_elastigroup_up(group_id='<group-id>', adjustment=5)
-client.scale_elastigroup_down(group_id='<group-id>', adjustment=5)
+#client.scale_elastigroup_up(group_id='<group-id>', adjustment=5)
+#client.scale_elastigroup_down(group_id='<group-id>', adjustment=5)
 
+#detach_config = DetachConfiguration(draining_timeout=120, should_decrement_target_capacity=False, should_terminate_vms=True, vms_to_detach=['vm-27dbf6362db2'])
 
+#print(client.detach_elastigroup_vms(group_id='sig-2c224c27', detach_configuration=detach_config))
 
+print(client.protect_virtual_machine(group_id='sig-2c224c27', vm_name='vm-a9e9a09f2b6f', ttl_in_minutes=5))
 
-
+print(client.unprotect_virtual_machine(group_id='sig-2c224c27', vm_name='vm-a9e9a09f2b6f'))
 
 # Update Elastigroup
 #capacity_update = Capacity(minimum=0, maximum=15, target=0)

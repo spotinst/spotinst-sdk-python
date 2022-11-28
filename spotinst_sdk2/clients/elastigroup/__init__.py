@@ -2506,4 +2506,79 @@ class ElastigroupAzureV3Client(Client):
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
+    def detach_elastigroup_vms(self, group_id, detach_configuration):
+        """
+        Detatch VMs from an elastigroup
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        detach_configuration (Detach): DetachConfiguration Object
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        detach_request = azure_v3_elastigroup.ElastigroupDetachVMsRequest(
+            detach_configuration=detach_configuration)
+
+        excluded_detach_dict = self.exclude_missing(json.loads(detach_request.toJSON()))
+
+        formatted_detach_dict = self.convert_json(excluded_detach_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_detach_dict)
+
+        detach_response = self.send_put(
+            url=self.__base_elastigroup_url + "/" + str(group_id) + "/detachVms",
+            body=body_json,
+            entity_name='detach')
+
+        formatted_response = self.convert_json(
+            detach_response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"]
+
+        return ret_val
+
+    def protect_virtual_machine(self, group_id, vm_name, ttl_in_minutes=None):
+        """
+        Protect virtual machines in Elastigroup cluster.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        vm_name (String): VM ID
+        ttl_in_minutes (int) (Optional): How long protection will be valid
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        query_params = dict(ttlInMinutes=ttl_in_minutes)
+
+        response = self.send_post(url=self.__base_elastigroup_url +
+                                      "/" + str(group_id) +
+                                      "/vm/" + str(vm_name) + "/protection",
+            query_params=query_params,
+            entity_name="virtual machine"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def unprotect_virtual_machine(self, group_id, vm_name):
+        """
+        Un-Protect virtual machines in Elastigroup cluster.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        vm_name (String): VM ID
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        return self.send_delete(url=self.__base_elastigroup_url +
+                                      "/" + str(group_id) +
+                                      "/vm/" + str(vm_name) + "/protection",
+            entity_name="virtual machine"
+        )
+
 # endregion

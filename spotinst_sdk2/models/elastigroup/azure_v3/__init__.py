@@ -808,10 +808,30 @@ class SchedulingTask:
         self.min_capacity = min_capacity
         self.max_capacity = max_capacity
 
-
 # endregion
 
 # Region Requests
+
+class DetachConfiguration:
+    """
+    # Arguments
+    draining_timeout: int
+    should_decrement_target_capacity: bool
+    should_terminate_vms: bool
+    instances_to_detach: list[str]
+    """
+    def __init__(
+            self,
+            draining_timeout=none,
+            should_decrement_target_capacity=none,
+            should_terminate_vms=none,
+            vms_to_detach=none):
+        self.draining_timeout = draining_timeout
+        self.should_decrement_target_capacity = should_decrement_target_capacity
+        self.should_terminate_vms = should_terminate_vms
+        self.vms_to_detach = vms_to_detach
+
+
 class ElastigroupCreateRequest:
     def __init__(self, elastigroup):
         self.group = elastigroup
@@ -838,4 +858,18 @@ class ElastigroupUpdateCapacityRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
+
+class ElastigroupDetachVMsRequest:
+    def __init__(self, detach_configuration):
+        self.should_decrement_target_capacity = detach_configuration.should_decrement_target_capacity
+        self.draining_timeout = detach_configuration.draining_timeout
+        self.vms_to_detach = detach_configuration.vms_to_detach
+        self.should_terminate_vms = detach_configuration.should_terminate_vms
+
+    def toJSON(self):
+        return json.dumps(
+            self,
+            default=lambda o: o.__dict__,
+            sort_keys=True,
+            indent=4)
 # endregion
