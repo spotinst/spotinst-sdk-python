@@ -573,7 +573,7 @@ class Health:
     health_check_types: str
     auto_healing: bool
     grace_period: int
-    unhealthy_duration
+    unhealthy_duration : int
     """
 
     def __init__(
@@ -655,8 +655,8 @@ class ScalingPolicyDimension:
     value: str
     """
 
-    def __init__(self, key=none, value=none):
-        self.key = key
+    def __init__(self, name=none, value=none):
+        self.name = name
         self.value = value
 
 
