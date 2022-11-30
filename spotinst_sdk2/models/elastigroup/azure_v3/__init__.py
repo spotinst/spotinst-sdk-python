@@ -606,6 +606,7 @@ class Scaling:
 class ScalingPolicy:
     """
     # Arguments
+    is_enabled: bool
     policy_name: str
     namespace: str
     metric_name: str
@@ -622,6 +623,7 @@ class ScalingPolicy:
 
     def __init__(
             self,
+            is_enabled=none,
             policy_name=none,
             namespace=none,
             metric_name=none,
@@ -634,6 +636,7 @@ class ScalingPolicy:
             cooldown=none,
             action=none,
             operator=none):
+        self.is_enabled = is_enabled
         self.policy_name = policy_name
         self.namespace = namespace
         self.metric_name = metric_name

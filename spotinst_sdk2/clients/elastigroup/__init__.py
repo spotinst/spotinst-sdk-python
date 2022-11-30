@@ -2327,7 +2327,7 @@ class ElastigroupAzureV3Client(Client):
             excluded_group_dict, self.underscore_to_camel)
     
         body_json = json.dumps(formatted_group_dict)
-
+        
         group_response = self.send_post(
             body=body_json,
             url=self.__base_elastigroup_url,
