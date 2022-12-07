@@ -10,7 +10,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add support for AWS Elastigroup compute-> launchSpecification field: `images`
 - Add support for AWS Elastigroup strategy field: `utilizeCommitments`
-- Add support for AWS Managed Instance API: `get_managed_instance_status`
 
 ## [2.1.18] - 2022-07-18
 ### Added
