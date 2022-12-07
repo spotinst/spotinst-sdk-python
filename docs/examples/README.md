@@ -555,23 +555,3 @@ ocean = Ocean(name="Ocean SDK Test", controller_cluster_id="ocean.k8s",
 
 client.create_ocean_cluster(ocean=ocean)
 ```
-
-## Get Aggregated Cluster Costs
-```python
-from spotinst_sdk2 import SpotinstSession
-from spotinst_sdk2.models.ocean.aws import *
-
-
-def main():
-    session = SpotinstSession(auth_token='some token', account_id='act-12345')
-    client = session.client("ocean_aws")
-
-    all_match = AllMatch([{"type": "label", "key": "k8s-app", "operator": "notEquals", "value": "dns-controller"}])
-    any_match = [all_match]
-
-    aggregated_cluster_costs = AggregatedClusterCosts(start_time="1657411200000", end_time="1658052000000", group_by="resource.label.k8s-addon",
-                                                          aggregated_filter=Filter("resource", Conditions(any_match)))
-
-    aggregated_cluster_costs_response = client.get_aggregated_cluster_costs(ocean_id="o-12345", aggregated_cluster_costs_request=aggregated_cluster_costs)
-    print(aggregated_cluster_costs_response)
-```

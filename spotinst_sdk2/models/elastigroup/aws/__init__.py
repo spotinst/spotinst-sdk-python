@@ -51,6 +51,7 @@ class Strategy:
     # Arguments
     availability_vs_cost: str
     risk: int
+    utilize_commitments: bool
     utilize_reserved_instances: bool
     fallback_to_od: bool
     on_demand_count: int
@@ -66,6 +67,7 @@ class Strategy:
             self,
             availability_vs_cost=none,
             risk=none,
+            utilize_commitments=none,
             utilize_reserved_instances=none,
             fallback_to_od=none,
             on_demand_count=none,
@@ -78,6 +80,7 @@ class Strategy:
             revert_to_spot=none):
 
         self.risk = risk
+        self.utilize_commitments = utilize_commitments
         self.utilize_reserved_instances = utilize_reserved_instances
         self.fallback_to_od = fallback_to_od
         self.on_demand_count = on_demand_count
@@ -1203,6 +1206,7 @@ class LaunchSpecification:
     security_group_ids: list[str]
     credit_specification: CreditSpecification
     image_id: str
+    images: list[Image]
     monitoring: bool
     health_check_type: str
     load_balancers_config:  LoadBalancersConfig
@@ -1223,6 +1227,7 @@ class LaunchSpecification:
             self,
             security_group_ids=none,
             image_id=none,
+            images=none,
             monitoring=none,
             credit_specification=none,
             health_check_type=none,
@@ -1249,6 +1254,7 @@ class LaunchSpecification:
         self.credit_specification = credit_specification
         self.ebs_optimized = ebs_optimized
         self.image_id = image_id
+        self.images = images
         self.tenancy = tenancy
         self.iam_role = iam_role
         self.key_pair = key_pair
@@ -1270,6 +1276,19 @@ class CreditSpecification:
         cpu_credits=none):
 
         self.cpu_credits = cpu_credits
+
+
+class Image:
+    """
+    # Arguments
+    id: str
+    """
+    def __init__(
+        self,
+        id=none):
+
+        self.id = id
+
 
 class LoadBalancersConfig:
     """

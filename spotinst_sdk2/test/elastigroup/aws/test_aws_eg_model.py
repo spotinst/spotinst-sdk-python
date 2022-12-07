@@ -411,6 +411,30 @@ class AwsElastigroupTestLaunchSpecification(AwsElastigroupTestCase):
 
         self.assertDictEqual(actual_request_json, expected_request_json)
 
+class AwsElastigroupTestLaunchSpecificationMultipleAMI(AwsElastigroupTestCase):
+    def runTest(self):
+        image_list = []
+        image_list.append(Image(id="ami-08e2d37b6a0129927"))
+        image_list.append(Image(id="ami-0d70650c3afa9cf54"))
+        image_list.append(Image(id="ami-0f05b297987cf6aff"))
+
+        launch_specification = LaunchSpecification(images=image_list,
+                                                   health_check_type="type")
+        compute = Compute(launch_specification=launch_specification)
+        group = Elastigroup(
+            name="TestGroup",
+            description="Created by the Python SDK",
+            compute=compute)
+        formatted_group_dict = self.create_formatted_group_request(group)
+
+        actual_request_json = formatted_group_dict['group']['compute']['launchSpecification']
+        expected_request_json = {
+            'images': [ { "id" : "ami-08e2d37b6a0129927" }, { "id" : "ami-0d70650c3afa9cf54" }, { "id" : "ami-0f05b297987cf6aff" } ],
+            'healthCheckType': "type"
+        }
+
+        self.assertDictEqual(actual_request_json, expected_request_json)
+
 class AwsElastigroupTestBlockDeviceMapping(AwsElastigroupTestCase):
     def runTest(self):
         block_device_mappings = [BlockDeviceMapping(device_name='device')]

@@ -96,5 +96,23 @@ __Arguments__
 
 __Returns__
 
-`(Object)`: Elastigroup API response
+`(Object)`: Ocean API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_aggregated_cluster_costs">get_aggregated_cluster_costs</h2>
+
+```python
+OceanAwsClient.get_aggregated_cluster_costs(
+  ocean_id, aggregated_cluster_costs_request)
+```
+
+Get aggregated cluster costs
+
+__Arguments__
+
+- __ocean_id__: str
+- __aggregated_cluster_costs__: AggregatedClusterCosts object
+
+__Returns__
+
+`(Object)`: Aggregated Cluster Costs API response
 
