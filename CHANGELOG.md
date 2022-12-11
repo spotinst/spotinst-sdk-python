@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [2.1.20] - 2022-12-7
+### Added
+- Add support for AWS Managed Instance API: `get_managed_instance_status`
+
+## [2.1.19] - 2022-10-18
+### Added
+- Add support for AWS Elastigroup compute-> launchSpecification field: `images`
+- Add support for AWS Elastigroup strategy field: `utilizeCommitments`
+
 ## [2.1.18] - 2022-07-18
 ### Added
 - Add support for Ocean AWS field: `aggregatedCosts`

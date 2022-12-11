@@ -37,6 +37,7 @@ __Arguments__
 Strategy(self,
          availability_vs_cost='d3043820717d74d9a17694c176d39733',
          risk='d3043820717d74d9a17694c176d39733',
+         utilize_commitments='d3043820717d74d9a17694c176d39733',
          utilize_reserved_instances='d3043820717d74d9a17694c176d39733',
          fallback_to_od='d3043820717d74d9a17694c176d39733',
          on_demand_count='d3043820717d74d9a17694c176d39733',
@@ -53,6 +54,7 @@ __Arguments__
 
 - __availability_vs_cost__: str
 - __risk__: int
+- __utilize_commitments__: bool
 - __utilize_reserved_instances__: bool
 - __fallback_to_od__: bool
 - __on_demand_count__: int
@@ -1081,6 +1083,7 @@ LaunchSpecification(
   self,
   security_group_ids='d3043820717d74d9a17694c176d39733',
   image_id='d3043820717d74d9a17694c176d39733',
+  images='d3043820717d74d9a17694c176d39733',
   monitoring='d3043820717d74d9a17694c176d39733',
   credit_specification='d3043820717d74d9a17694c176d39733',
   health_check_type='d3043820717d74d9a17694c176d39733',
@@ -1104,6 +1107,7 @@ __Arguments__
 - __security_group_ids__: list[str]
 - __credit_specification__: CreditSpecification
 - __image_id__: str
+- __images__: list[Image]
 - __monitoring__: bool
 - __health_check_type__: str
 - __load_balancers_config__:  LoadBalancersConfig
@@ -1130,6 +1134,16 @@ CreditSpecification(self,
 __Arguments__
 
 - __cpu_credits__: str
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.Image">Image</h2>
+
+```python
+Image(self, id='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __id__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.LoadBalancersConfig">LoadBalancersConfig</h2>
 
