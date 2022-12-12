@@ -1,0 +1,125 @@
+{
+  "group": {
+    "name": "Python-Test",
+    "region": "eastus",
+    "resourceGroupName": "AutomationResourceGroup",
+    "capacity": {
+      "target": 5,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "strategy": {
+      "spotPercentage": 100,
+      "drainingTimeout": 240,
+      "fallbackToOd": true,
+      "orientation": "cost"
+    },
+    "scaling": {
+      "up": [
+        {
+          "isEnabled": true,
+          "policyName": "cpuScaleUp",
+          "metricName": "Percentage CPU",
+          "statistic": "average",
+          "unit": "percent",
+          "threshold": 60,
+          "namespace": "Microsoft.Compute",
+          "period": 300,
+          "evaluationPeriods": 3,
+          "cooldown": 600,
+          "action": {
+            "type": "adjustment",
+            "adjustment": "2",
+            "actionType": "adjustment"
+          },
+          "operator": "gt"
+        }
+      ]
+    },
+    "compute": {
+      "os": "Linux",
+      "vmSizes": {
+        "odSizes": [
+          "standard_a1_v2",
+          "standard_a2_v2"
+        ],
+        "spotSizes": [
+          "standard_a1_v2",
+          "standard_a2_v2"
+        ],
+        "preferredSpotSizes": [
+          "standard_a1_v2"
+        ]
+      },
+      "launchSpecification": {
+        "image": {
+          "marketplace": {
+            "publisher": "Canonical",
+            "offer": "UbuntuServer",
+            "sku": "18.04-LTS",
+            "version": "latest"
+          }
+        },
+        "customData": "TXkgQ3VzdG9tIERhdGE=",
+        "shutdownScript": "TXkgU2h1dGRvd24gU2NyaXB0",
+        "network": {
+          "resourceGroupName": "AutomationResourceGroup",
+          "virtualNetworkName": "Automation-VirtualNetwork",
+          "networkInterfaces": [
+            {
+              "isPrimary": true,
+              "subnetName": "Automation-PrivateSubnet",
+              "assignPublicIp": false
+            }
+          ]
+        },
+        "login": {
+          "sshPublicKey": "ssh-rsa dummy key",
+          "userName": "ubuntu"
+        },
+        "tags": [
+          {
+            "tagKey": "Creator",
+            "tagValue": "Spotinst-Python-SDK"
+          },
+          {
+            "tagKey": "Name",
+            "tagValue": "Spotinst-Elastigroup-Instance"
+          }
+        ],
+        "osDisk": {
+          "type": "Standard_LRS"
+        },
+        "bootDiagnostics": {
+          "isEnabled": true,
+          "type": "managed"
+        }
+      }
+    },
+    "health": {
+      "healthCheckTypes": [
+        "vmState"
+      ],
+      "gracePeriod": 350,
+      "autoHealing": true,
+      "unhealthyDuration": 300
+    },
+    "scheduling": {
+      "tasks": [
+        {
+          "isEnabled": true,
+          "type": "deployment",
+          "cronExpression": "* * * 1 *",
+          "batchSizePercentage": 10,
+          "gracePeriod": 200
+        },
+        {
+          "isEnabled": true,
+          "type": "scaleUp",
+          "cronExpression": "*/2 * * * *",
+          "adjustment": 2
+        }
+      ]
+    }
+  }
+}
