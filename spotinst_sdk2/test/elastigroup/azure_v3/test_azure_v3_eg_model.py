@@ -117,8 +117,5 @@ class AzureV3ElastigroupTest(AzureV3ElastigroupTestCase):
 
         formatted_group_dict = self.create_formatted_group_request(group)
 
-        print(formatted_group_dict)
-        print(self.mock_group_json)
-
         self.assertDictEqual(formatted_group_dict, self.mock_group_json)
 
