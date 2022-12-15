@@ -173,10 +173,10 @@ class DataDisk:
     def __init__(
             self,
             lun=none,
-            size_gb=none,
+            size_gB=none,
             type=none):
         self.lun = lun
-        self.size_gb = size_gb
+        self.size_gB = size_gB
         self.type = type
 
 

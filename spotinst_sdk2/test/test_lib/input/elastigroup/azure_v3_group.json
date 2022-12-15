@@ -98,12 +98,12 @@
             "dataDisks":[
                {
                   "lun":0,
-                  "sizeGb":8,
+                  "sizeGB":8,
                   "type":"Standard_LRS"
                },
                {
                   "lun":1,
-                  "sizeGb":32,
+                  "sizeGB":32,
                   "type":"StandardSSD_LRS"
                }
             ]
