@@ -1,8 +1,6 @@
 import os
 import unittest
 
-from deepdiff import DeepDiff
-
 from spotinst_sdk2 import SpotinstSession
 from spotinst_sdk2.models.elastigroup.azure_v3 import *
 
@@ -42,8 +40,8 @@ class AzureV3ElastigroupTest(AzureV3ElastigroupTestCase):
         # Boot Diagnostics
         boot_diagnostics = BootDiagnostics(is_enabled=True, type="managed")
 
-        data_disks = [DataDisk(lun=0, size_gB=8, type='Standard_LRS'),
-                      DataDisk(lun=1, size_gB=32, type='StandardSSD_LRS')]
+        data_disks = [DataDisk(lun=0, size_g_b=8, type='Standard_LRS'),
+                      DataDisk(lun=1, size_g_b=32, type='StandardSSD_LRS')]
 
         os_disk = OsDisk(size=8, type='Standard_LRS')
 
