@@ -2402,7 +2402,7 @@ class ElastigroupAzureV3Client(Client):
 
     def get_elastigroups(self):
         """
-        Get all elastigroup
+        Get all elastigroups
 
         # Returns
         (List): List of Elastigroup API response
@@ -2413,7 +2413,7 @@ class ElastigroupAzureV3Client(Client):
 
     def update_elastigroup_capacity(self, group_id, capacity):
         """
-        Get all elastigroup
+        Update capacity of Elastigroups
 
         # Arguments
         group_id (String): Elastigroup ID
@@ -2437,24 +2437,6 @@ class ElastigroupAzureV3Client(Client):
         formatted_response = self.convert_json(response, self.camel_to_underscore)
 
         return formatted_response["response"]
-
-    # def get_elastigroup_vm_healthiness(self, group_id):
-    #     """
-    #     Get a list of vms with health status.
-    #
-    #     # Returns
-    #     (List): List of Elastigroup API response
-    #     """
-    #     response = self.send_get(
-    #         url=self.__base_elastigroup_url +
-    #          "/" + group_id +
-    #         "/vmHealthiness",
-    #         entity_name="instance"
-    #     )
-    #
-    #     formatted_response = self.convert_json(response, self.camel_to_underscore)
-    #
-    #     return formatted_response["response"]["items"]
 
     def scale_elastigroup_up(self, group_id, adjustment):
         """
@@ -2508,7 +2490,7 @@ class ElastigroupAzureV3Client(Client):
 
     def detach_elastigroup_vms(self, group_id, detach_configuration):
         """
-        Detatch VMs from an elastigroup
+        Detach VMs from an elastigroup
 
         # Arguments
         group_id (String): Elastigroup ID

@@ -5,7 +5,6 @@ from mock import patch
 
 from spotinst_sdk2 import SpotinstSession
 from spotinst_sdk2.models.elastigroup.azure_v3 import *
-from spotinst_sdk2.models.elastigroup.azure_v3.task import *
 
 
 class SimpleNamespace:

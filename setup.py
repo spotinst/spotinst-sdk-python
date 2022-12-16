@@ -69,6 +69,7 @@ setup(
             "spotinst_sdk2.models.elastigroup",
                 "spotinst_sdk2.models.elastigroup.aws",
                 "spotinst_sdk2.models.elastigroup.azure",
+                "spotinst_sdk2.models.elastigroup.azure_v3",
                 "spotinst_sdk2.models.elastigroup.gcp",
             "spotinst_sdk2.models.functions",
             "spotinst_sdk2.models.mlb",

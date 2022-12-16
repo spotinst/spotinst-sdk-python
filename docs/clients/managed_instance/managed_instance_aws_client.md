@@ -148,3 +148,20 @@ __Returns__
 
 `(Object)`: ManagedInstance API response
 
+<h2 id="spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient.get_managed_instance_status">get_managed_instance_status</h2>
+
+```python
+ManagedInstanceAwsClient.get_managed_instance_status(
+  managed_instance_id: str)
+```
+
+Get Managed Instance Status
+
+__Arguments__
+
+- __managed_instance_id(String)__: Managed Instance ID
+
+__Returns__
+
+`(Object)`: ManagedInstance API response
+
