@@ -2563,4 +2563,291 @@ class ElastigroupAzureV3Client(Client):
             entity_name="virtual machine"
         )
 
-# endregion
+    def get_elastigroup_status(self, group_id):
+        """
+        Get status of Elastigroup cluster.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        content = self.send_get(url=self.__base_elastigroup_url + "/" + group_id + "/status",
+                                entity_name='elastigroup')
+        formatted_response = self.convert_json(content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def get_vm_healthiness(self, group_id):
+        """
+        Get a list of vms with health status.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        response = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" + group_id +
+                "/vmHealthiness",
+            entity_name="instance"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def suspend_elastigroup(self, group_id, processes):
+        """
+        Suspends the Group.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        processes (List): List of processes to create or update their suspensions
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        body = json.dumps(dict(processes=processes))
+
+        response = self.send_put(
+            url=self.__base_elastigroup_url + "/" + group_id + "/suspend",
+            body=body,
+            entity_name='suspend')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def resume_elastigroup(self, group_id, processes):
+        """
+        Resumes the Group.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        processes (List): List of processes to cancel their suspensions
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        body = json.dumps(dict(processes=processes))
+
+        response = self.send_put(
+            url=self.__base_elastigroup_url + "/" + group_id + "/resume",
+            body=body,
+            entity_name='resume')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def start_deployment(self, group_id, deployment):
+        """
+        Deploy the Elastigroup.
+        This triggers a Blue/Green deployment that replaces the existing VMs in the Elastigroup.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        deployment: DeploymentConfiguration Object
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        start_deployment_request = azure_v3_elastigroup.StartDeploymentRequest(deployment_configuration=deployment)
+
+        excluded_start_deployment_dict = self.exclude_missing(json.loads(start_deployment_request.toJSON()))
+
+        formatted_start_deployment_dict = self.convert_json(excluded_start_deployment_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_start_deployment_dict)
+
+        response = self.send_put(url=self.__base_elastigroup_url + "/" + str(group_id) + "/deployment",
+            body=body_json,
+            entity_name='start deployment')
+
+        formatted_response = self.convert_json(response, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def get_all_deployments(self, group_id, limit, sort):
+        """
+        Get a list of all the deployments of a specific Elastigroup and the status of each one.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        limit (integer): Limits the number of deployments returned. Default: 5
+        sort (String): Field by which to sort the results. Default: createdAt:DESC
+
+        # Returns
+        (Object) : Elastigroup API response
+        """
+        query_params = self.build_query_params_with_input({"LIMIT": limit, "SORT": sort})
+
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/deployment",
+            query_params=query_params,
+            entity_name='deployments')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def get_deployment(self, group_id, deployment_id):
+        """
+        Get the status of a specific deployment.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        deployment_id (String): The deployment ID you want to query
+
+        # Returns
+        (Object) : Elastigroup API response
+        """
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/deployment/" +
+                deployment_id,
+            entity_name='deployment')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def get_deployment_status(self, group_id, deployment_id):
+        """
+        Get the detailed status of a specific deployment.
+        This includes status details per batch and other information.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        deployment_id (String): The deployment ID you want to query
+
+        # Returns
+        (Object) : Elastigroup API response
+        """
+        content = self.send_get(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/deployment/" +
+                deployment_id +
+                "/details",
+            entity_name='deployment')
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def import_from_scale_set(self, resource_group_name, scale_set_name):
+        """
+        Given a scale set, constructs a valid group configuration based on the scale set and returns it.
+
+        # Arguments
+        resource_group_name (String): Resource Group Name
+        scale_set_name (String): Scale Set Name
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
+                 + "/scaleSet/" + scale_set_name
+        result = self.send_get(url=geturl, entity_name='elastigroup')
+
+        formatted_response = self.convert_json(result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def import_from_virtual_machine(self, resource_group_name, virtual_machine_name):
+        """
+        Given a virtual machine, constructs a valid group configuration based on the virtual machine and returns it.
+
+        # Arguments
+        resource_group_name (String): Resource Group Name
+        virtual_machine_name (String): Virtual Machine Name
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
+            + "/virtualMachine/" + virtual_machine_name
+        result = self.send_get(url=geturl, entity_name='elastigroup')
+
+        formatted_response = self.convert_json(result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def import_from_load_balancer(self, backend_pool_name, load_balancer_name, resource_group_name):
+        """
+        Given a load balancer, constructs a valid group configuration and returns it.
+
+        # Arguments
+        resource_group_name (String): Resource Group Name
+        load_balancer_name (String): Virtual Machine Name
+        backend_pool_name (String): Backend Pool Name
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
+            + "/loadBalancer/" + load_balancer_name + "/backendPool/" + backend_pool_name
+        result = self.send_get(url=geturl, entity_name='elastigroup')
+
+        formatted_response = self.convert_json(result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def import_from_application_gateway(self, backend_pool_name, application_gateway_name, resource_group_name):
+        """
+        Given a load balancer, constructs a valid group configuration and returns it.
+
+        # Arguments
+        resource_group_name (String): Resource Group Name
+        application_gateway_name (String): Application Gateway Name
+        backend_pool_name (String): Backend Pool Name
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
+            + "/applicationGateway/" + application_gateway_name + "/backendPool/" + backend_pool_name
+        result = self.send_get(url=geturl, entity_name='elastigroup')
+
+        formatted_response = self.convert_json(result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def create_vm_signal(self, vm_name, signal_type):
+        """
+        The VM signal API is used for notifying Spot about the VM state so that Spot can act accordingly
+
+        # Arguments
+        vm_name (String): The virtual machine ID the signal refers to.
+        signal_type (String): Signal Type (Enum: "vmReady" "vmReadyToShutdown")
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        body = json.dumps(dict(vmName=vm_name, signalType=signal_type))
+
+        response = self.send_post(
+            url= "https://api.spotinst.io/azure/compute/vm/signal",
+            body=body,
+            entity_name="vm signal"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+        # endregion

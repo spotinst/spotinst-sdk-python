@@ -811,6 +811,7 @@ class SchedulingTask:
         self.min_capacity = min_capacity
         self.max_capacity = max_capacity
 
+
 # endregion
 
 # Region Requests
@@ -823,6 +824,7 @@ class DetachConfiguration:
     should_terminate_vms: bool
     instances_to_detach: list[str]
     """
+
     def __init__(
             self,
             draining_timeout=none,
@@ -833,6 +835,30 @@ class DetachConfiguration:
         self.should_decrement_target_capacity = should_decrement_target_capacity
         self.should_terminate_vms = should_terminate_vms
         self.vms_to_detach = vms_to_detach
+
+
+class DeploymentConfiguration:
+    """
+    # Arguments
+    batch_min_healthy_percentage: int
+    batch_size_percentage: int
+    draining_timeout: int
+    grace_period: int
+    health_check_types: list[str]
+    """
+
+    def __init__(
+            self,
+            batch_min_healthy_percentage=none,
+            batch_size_percentage=none,
+            draining_timeout=none,
+            grace_period=none,
+            health_check_types=none):
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.batch_size_percentage = batch_size_percentage
+        self.draining_timeout = draining_timeout
+        self.grace_period = grace_period
+        self.health_check_types = health_check_types
 
 
 class ElastigroupCreateRequest:
@@ -875,4 +901,13 @@ class ElastigroupDetachVMsRequest:
             default=lambda o: o.__dict__,
             sort_keys=True,
             indent=4)
+
+
+class StartDeploymentRequest:
+    def __init__(self, deployment_configuration):
+        self.deployment_configuration = deployment_configuration
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 # endregion
