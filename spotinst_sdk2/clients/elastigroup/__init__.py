@@ -2516,7 +2516,7 @@ class ElastigroupAzureV3Client(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["status"]
 
         return ret_val
 
@@ -2559,9 +2559,7 @@ class ElastigroupAzureV3Client(Client):
         """
         return self.send_delete(url=self.__base_elastigroup_url +
                                       "/" + str(group_id) +
-                                      "/vm/" + str(vm_name) + "/protection",
-            entity_name="virtual machine"
-        )
+                                      "/vm/" + str(vm_name) + "/protection", entity_name="virtual machine")
 
     def get_elastigroup_status(self, group_id):
         """
@@ -2672,7 +2670,7 @@ class ElastigroupAzureV3Client(Client):
 
         formatted_response = self.convert_json(response, self.camel_to_underscore)
 
-        return formatted_response["response"]
+        return formatted_response["response"]["status"]
 
     def get_all_deployments(self, group_id, limit, sort):
         """
@@ -2765,7 +2763,7 @@ class ElastigroupAzureV3Client(Client):
 
         formatted_response = self.convert_json(result, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["status"]
 
     def import_from_virtual_machine(self, resource_group_name, virtual_machine_name):
         """
@@ -2784,7 +2782,7 @@ class ElastigroupAzureV3Client(Client):
 
         formatted_response = self.convert_json(result, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["status"]
 
     def import_from_load_balancer(self, backend_pool_name, load_balancer_name, resource_group_name):
         """
@@ -2804,7 +2802,7 @@ class ElastigroupAzureV3Client(Client):
 
         formatted_response = self.convert_json(result, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["status"]
 
     def import_from_application_gateway(self, backend_pool_name, application_gateway_name, resource_group_name):
         """
@@ -2824,7 +2822,7 @@ class ElastigroupAzureV3Client(Client):
 
         formatted_response = self.convert_json(result, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["status"]
 
     def create_vm_signal(self, vm_name, signal_type):
         """
@@ -2840,13 +2838,39 @@ class ElastigroupAzureV3Client(Client):
         body = json.dumps(dict(vmName=vm_name, signalType=signal_type))
 
         response = self.send_post(
-            url= "https://api.spotinst.io/azure/compute/vm/signal",
+            url="https://api.spotinst.io/azure/compute/vm/signal",
             body=body,
             entity_name="vm signal"
         )
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def get_elastilog(self, group_id, from_date, to_date, severity=None, resource_id=None, limit=None):
+        """
+        Get an elastilog for a specific elastigroup
+
+        # Arguments
+        group_id(String): Elastigroup ID
+        to_date (String): to date
+        from_date (String): to date
+        severity(String) (Optional): Log level severity
+        resource_id(String) (Optional): Filter log extracted entires related to a specific resource id
+        limit(String) (Optional): Maximum number of lines to extract in a response
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        geturl = self.__base_elastigroup_url + "/" + group_id + "/logs"
+        query_params = dict(toDate=to_date, fromDate=from_date, SEVERITY=severity,
+                            RESOURCE_ID=resource_id, limit=limit)
+
+        result = self.send_get(url=geturl, entity_name='elastilog', query_params=query_params)
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 

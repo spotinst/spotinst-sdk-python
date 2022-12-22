@@ -861,6 +861,21 @@ class DeploymentConfiguration:
         self.health_check_types = health_check_types
 
 
+class Processes:
+    """
+    # Arguments
+    name: str
+    ttl_in_minutes: int
+    """
+
+    def __init__(
+            self,
+            name=none,
+            ttl_in_minutes=none):
+        self.name = name
+        self.ttl_in_minutes = ttl_in_minutes
+
+
 class ElastigroupCreateRequest:
     def __init__(self, elastigroup):
         self.group = elastigroup
