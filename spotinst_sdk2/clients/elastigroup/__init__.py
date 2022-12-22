@@ -20,6 +20,10 @@ import spotinst_sdk2.models.elastigroup.azure as azure_elastigroup
 import spotinst_sdk2.models.elastigroup.azure.task as azure_task
 # endregion
 
+# region Azure V3 imports
+import spotinst_sdk2.models.elastigroup.azure_v3 as azure_v3_elastigroup
+# endregion
+
 # region AWS
 class ElastigroupAwsClient(Client):
     __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
@@ -56,9 +60,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_elastigroup(self, group_update, group_id, auto_apply_tags=None):
         """
@@ -93,9 +97,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_elastigroup(self, group_id):
         """
@@ -299,9 +303,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
 
     def get_all_group_deployment(self, group_id):
         """
@@ -408,9 +412,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def get_instance_healthiness(self, group_id):
         """
@@ -679,9 +683,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
     def deallocate_stateful_instance(self, group_id, stateful_instance_id):
         """
@@ -822,9 +826,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             status_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def beanstalk_maintenance_start(self, group_id):
         """
@@ -847,9 +851,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             start_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
     def beanstalk_maintenance_finish(self, group_id):   
         """
@@ -872,9 +876,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             finish_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
     def beanstalk_import(self, region, env_id=None, env_name=None):
         """
@@ -900,9 +904,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def beanstalk_reimport(self, group_id):
         """
@@ -924,9 +928,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def import_asg(self, region, asg_name, asg, dry_run=None):
         """
@@ -962,9 +966,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_activity_events(self, group_id, from_date):
         """
@@ -989,9 +993,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        ret_val = formatted_response["response"]["items"]
 
-        return retVal
+        return ret_val
 
     def ami_backup(self, group_id):
         """
@@ -1012,9 +1016,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response
+        ret_val = formatted_response
 
-        return retVal["response"]["status"]
+        return ret_val["response"]["status"]
 
     def create_blue_green_deployment(self, group_id, blue_green_deployment):
         """
@@ -1043,9 +1047,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_blue_green_deployment(self, group_id):
         """
@@ -1063,9 +1067,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def stop_blue_green_deployment(self, group_id, deployment_id):
         """
@@ -1084,9 +1088,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
     # endregion
 
     # region AWS
@@ -1380,9 +1384,9 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_stateful_import_status(self, stateful_migration_id):
         """
@@ -1460,9 +1464,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_elastigroup(self, group_update, group_id):
         """
@@ -1496,9 +1500,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_elastigroup(self, group_id):
         """
@@ -1628,9 +1632,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
 
     def get_all_group_deployment(self, group_id):
         """
@@ -1808,9 +1812,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def detach_elastigroup_instances(self, group_id, detach_configuration):
         """
@@ -1845,9 +1849,9 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 # endregion
 
 
@@ -1883,9 +1887,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_elastigroup(self, group_update, group_id):
         """
@@ -1919,9 +1923,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def delete_elastigroup(self, group_id):
         """
@@ -1999,9 +2003,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]
+        ret_val = formatted_response["response"]
 
-        return retVal
+        return ret_val
 
     def get_all_group_deployment(self, group_id):
         """
@@ -2154,9 +2158,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def update_task(self, task_update, task_id):
         """
@@ -2186,9 +2190,9 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
+        ret_val = formatted_response["response"]["items"][0]
 
-        return retVal
+        return ret_val
 
     def get_task(self, task_id):
         """
@@ -2240,7 +2244,6 @@ class ElastigroupAzureClient(Client):
 
         return response
     # endregion
-
 
     def get_elastigroup_active_instances(self, group_id):
         """
@@ -2295,8 +2298,269 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["status"]
 
-        return retVal
+        return ret_val
 
 # endreion
+
+
+# region Azure V3
+class ElastigroupAzureV3Client(Client):
+    __base_elastigroup_url = "https://api.spotinst.io/azure/compute/group"
+
+    def create_elastigroup(self, group):
+        """
+        Create an elastigroup
+
+        # Arguments
+        group (Elastigroup): Elastigroup Object
+
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        group = azure_v3_elastigroup.ElastigroupCreateRequest(group)
+    
+        excluded_group_dict = self.exclude_missing(json.loads(group.toJSON()))
+    
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+    
+        body_json = json.dumps(formatted_group_dict)
+        
+        group_response = self.send_post(
+            body=body_json,
+            url=self.__base_elastigroup_url,
+            entity_name='elastigroup')
+    
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def update_elastigroup(self, group_update, group_id):
+        """
+        Update an elastigroup
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        group_update (Elastigroup): Elastigroup Object
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        group = azure_v3_elastigroup.ElastigroupUpdateRequest(group_update)
+
+        excluded_group_update_dict = self.exclude_missing(
+            json.loads(group.toJSON()))
+
+        formatted_group_update_dict = self.convert_json(
+            excluded_group_update_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_update_dict)
+
+        group_response = self.send_put(
+            body=body_json,
+            url=self.__base_elastigroup_url + "/" + group_id,
+            entity_name='elastigroup'
+        )
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def delete_elastigroup(self, group_id):
+        """
+        Delete an elastigroup
+
+        # Arguments
+        group_id (String): Elastigroup ID
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        delurl = self.__base_elastigroup_url + "/" + group_id
+        return self.send_delete(url=delurl, entity_name='elastigroup')
+
+    def get_elastigroup(self, group_id):
+        """
+        Get an elastigroup
+
+        # Arguments
+        group_id(String): Elastigroup ID
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        geturl = self.__base_elastigroup_url + "/" + group_id
+        result = self.send_get(url=geturl, entity_name='elastigroup')
+
+        formatted_response = self.convert_json(result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_elastigroups(self):
+        """
+        Get all elastigroups
+
+        # Returns
+        (List): List of Elastigroup API response
+        """
+        content = self.send_get(url=self.__base_elastigroup_url, entity_name='elastigroup')
+        formatted_response = self.convert_json(content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def update_elastigroup_capacity(self, group_id, capacity):
+        """
+        Update capacity of Elastigroups
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        capacity: Capacity Object
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        update_capacity_request = azure_v3_elastigroup.ElastigroupUpdateCapacityRequest(capacity=capacity)
+
+        excluded_update_capacity_dict = self.exclude_missing(json.loads(update_capacity_request.toJSON()))
+
+        formatted_update_capacity_dict = self.convert_json(excluded_update_capacity_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_update_capacity_dict)
+
+        response = self.send_put(url=self.__base_elastigroup_url + "/" + str(group_id) + "/capacity",
+            body=body_json,
+            entity_name='update capacity')
+
+        formatted_response = self.convert_json(response, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def scale_elastigroup_up(self, group_id, adjustment):
+        """
+        Scale up an elastigroup
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        query_params = dict({"adjustment": adjustment})
+        content = self.send_put_with_params(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/scale/up",
+            entity_name='elastigroup (scale up)',
+            body=None,
+            user_query_params=query_params)
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def scale_elastigroup_down(self, group_id, adjustment):
+        """
+        Scale down an elastigroup
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        adjustment (int): Ammount to scale group
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        query_params = dict({"adjustment": adjustment})
+        content = self.send_put_with_params(
+            url=self.__base_elastigroup_url +
+                "/" +
+                str(group_id) +
+                "/scale/down",
+            entity_name='elastigroup (scale down)',
+            body=None,
+            user_query_params=query_params)
+
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
+
+    def detach_elastigroup_vms(self, group_id, detach_configuration):
+        """
+        Detach VMs from an elastigroup
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        detach_configuration (Detach): DetachConfiguration Object
+
+        # Returns
+        (Object): Elastigroup API response
+        """
+        detach_request = azure_v3_elastigroup.ElastigroupDetachVMsRequest(
+            detach_configuration=detach_configuration)
+
+        excluded_detach_dict = self.exclude_missing(json.loads(detach_request.toJSON()))
+
+        formatted_detach_dict = self.convert_json(excluded_detach_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_detach_dict)
+
+        detach_response = self.send_put(
+            url=self.__base_elastigroup_url + "/" + str(group_id) + "/detachVms",
+            body=body_json,
+            entity_name='detach')
+
+        formatted_response = self.convert_json(
+            detach_response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"]
+
+        return ret_val
+
+    def protect_virtual_machine(self, group_id, vm_name, ttl_in_minutes=None):
+        """
+        Protect virtual machines in Elastigroup cluster.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        vm_name (String): VM ID
+        ttl_in_minutes (int) (Optional): How long protection will be valid
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        query_params = dict(ttlInMinutes=ttl_in_minutes)
+
+        response = self.send_post(url=self.__base_elastigroup_url +
+                                      "/" + str(group_id) +
+                                      "/vm/" + str(vm_name) + "/protection",
+            query_params=query_params,
+            entity_name="virtual machine"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def unprotect_virtual_machine(self, group_id, vm_name):
+        """
+        Un-Protect virtual machines in Elastigroup cluster.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        vm_name (String): VM ID
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        return self.send_delete(url=self.__base_elastigroup_url +
+                                      "/" + str(group_id) +
+                                      "/vm/" + str(vm_name) + "/protection",
+            entity_name="virtual machine"
+        )
+
+# endregion
