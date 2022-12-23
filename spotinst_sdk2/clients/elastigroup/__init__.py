@@ -2559,7 +2559,8 @@ class ElastigroupAzureV3Client(Client):
         """
         return self.send_delete(url=self.__base_elastigroup_url +
                                       "/" + str(group_id) +
-                                      "/vm/" + str(vm_name) + "/protection", entity_name="virtual machine")
+                                      "/vm/" + str(vm_name) + "/protection",
+                                entity_name="virtual machine")
 
     def get_elastigroup_status(self, group_id):
         """
