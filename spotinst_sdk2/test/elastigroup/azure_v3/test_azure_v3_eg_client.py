@@ -351,7 +351,7 @@ class AzureV3InitTestElastigroup(AzureV3InitTestCase):
 
         mock.return_value = self.mock_api_call
 
-        response = self.client.get_elastilog(group_id="group_id", from_date="from_date", to_date="to_date",
+        response = self.client.get_azure_elastilog(group_id="group_id", from_date="from_date", to_date="to_date",
                                              severity="severity", resource_id="resource_id", limit="limit")
 
         self.assertEqual(len(response), len(mock_get_group_res["response"]["items"]))

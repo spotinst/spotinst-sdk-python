@@ -925,4 +925,13 @@ class StartDeploymentRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
+
+class ProcessesRequest:
+    def __init__(self, processes):
+        self.processes = processes
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 # endregion

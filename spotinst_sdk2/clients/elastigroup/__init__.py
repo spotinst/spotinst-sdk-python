@@ -2436,7 +2436,7 @@ class ElastigroupAzureV3Client(Client):
 
         formatted_response = self.convert_json(response, self.camel_to_underscore)
 
-        return formatted_response["response"]
+        return formatted_response["response"]["items"]
 
     def scale_elastigroup_up(self, group_id, adjustment):
         """
@@ -2609,7 +2609,14 @@ class ElastigroupAzureV3Client(Client):
         # Returns
         (Object): Spotinst API response
         """
-        body = json.dumps(dict(processes=processes))
+        processes_request = azure_v3_elastigroup.ProcessesRequest(
+            processes=processes)
+
+        excluded_process_dict = self.exclude_missing(json.loads(processes_request.toJSON()))
+
+        formatted_process_dict = self.convert_json(excluded_process_dict, self.underscore_to_camel)
+
+        body = json.dumps(formatted_process_dict)
 
         response = self.send_put(
             url=self.__base_elastigroup_url + "/" + group_id + "/suspend",
@@ -2632,7 +2639,14 @@ class ElastigroupAzureV3Client(Client):
         # Returns
         (Object): Spotinst API response
         """
-        body = json.dumps(dict(processes=processes))
+        processes_request = azure_v3_elastigroup.ProcessesRequest(
+            processes=processes)
+
+        excluded_process_dict = self.exclude_missing(json.loads(processes_request.toJSON()))
+
+        formatted_process_dict = self.convert_json(excluded_process_dict, self.underscore_to_camel)
+
+        body = json.dumps(formatted_process_dict)
 
         response = self.send_put(
             url=self.__base_elastigroup_url + "/" + group_id + "/resume",
@@ -2848,7 +2862,7 @@ class ElastigroupAzureV3Client(Client):
 
         return formatted_response["response"]["status"]
 
-    def get_elastilog(self, group_id, from_date, to_date, severity=None, resource_id=None, limit=None):
+    def get_azure_elastilog(self, group_id, from_date, to_date, severity=None, resource_id=None, limit=None):
         """
         Get an elastilog for a specific elastigroup
 
@@ -2872,6 +2886,6 @@ class ElastigroupAzureV3Client(Client):
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
 
-        return formatted_response["response"]["status"]
+        return formatted_response["response"]["items"]
 
         # endregion
