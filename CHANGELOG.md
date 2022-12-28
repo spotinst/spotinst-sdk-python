@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.22] - 2022-12-28
+### Added
+- Add support for remaining Azure V3 APIs: 
+`get_elastigroup_status`, `get_vm_healthiness`, `suspend_elastigroup`, `resume_elastigroup`,
+`start_deployment`, `get_all_deployments`, `get_deployment`, `get_deployment_status`, 
+`import_from_scale_set`, `import_from_virtual_machine`, `import_from_load_balancer`,
+`import_from_application_gateway`, `create_vm_signal`, `get_elastilog`
+
 ## [2.1.21] - 2022-12-15
 ### Added
 - Add support for Azure V3 CRUD APIs
