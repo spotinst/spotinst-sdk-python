@@ -401,7 +401,6 @@ class ManagedInstance:
         self.scheduling = scheduling
         self.integrations = integrations
 
-
 # region Client Requests
 class ManagedInstanceCreationRequest:
     def __init__(self, managed_instance: ManagedInstance):
@@ -454,3 +453,21 @@ class ManagedInstanceUpdateRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 # endregion
+
+class ManagedInstanceStatesEntry:
+    def __init__(self, id: str, state: str):
+        self.id=id
+        self.state= state
+    
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+                        sort_keys=True, indent=4)
+
+
+class ManagedInstanceStates:
+    def __init__(self, managed_instance_states: ManagedInstanceStatesEntry):
+        self.managed_instance_states = managed_instance_states
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+                        sort_keys=True, indent=4)

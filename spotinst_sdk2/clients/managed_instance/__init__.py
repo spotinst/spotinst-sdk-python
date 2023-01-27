@@ -209,3 +209,70 @@ class ManagedInstanceAwsClient(Client):
         formatted_response = self.convert_json(result, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+    
+    def get_managed_instance_cost(self, managed_instance_id: str):        
+        """
+        Get Managed Instance Cost
+
+        # Arguments
+        managed_instance_id(String): Managed Instance ID
+
+        # Returns
+        (Object): ManagedInstance API response
+        """
+        geturl = self.__base_mi_url + "/" + managed_instance_id + "/" + "costs"
+        result = self.send_get(url=geturl, entity_name=self.ENTITY_NAME)
+
+        formatted_response = self.convert_json(result, self.camel_to_underscore)
+
+
+        return formatted_response["response"]["items"][0]['costs']
+    
+     
+    def delete_volume_in_managed_instance(self, managed_instance_id: str, volume_id: str,):
+        """
+        Delete Volume in a Managed Instance
+
+        # Arguments
+        managed_instance_id(String): Managed Instance ID
+        volume_id(String): Volume ID
+
+        # Returns
+        (Object): ManagedInstance API response
+        """
+        req_url = self.__base_mi_url + "/" + managed_instance_id + "/" + "volume" + "/" + volume_id
+
+        response = self.send_delete(url=req_url, entity_name=self.ENTITY_NAME)
+    
+        return response
+
+    def update_managed_instance_states(self, managed_instance_id: str, state: str):
+        """
+        Update a Managed Instance States
+
+        # Arguments
+        managed_instance_id(String): Managed Instance ID
+        state(String): State Of Instance
+
+        # Returns
+        (Object): ManagedInstance API response
+        """
+        put_url = self.__base_mi_url + "/" + "state"
+        
+        group = aws_managed_instance.ManagedInstanceStates(aws_managed_instance.ManagedInstanceStates([aws_managed_instance.ManagedInstanceStatesEntry(managed_instance_id, state)]))
+
+        excluded_group_update_dict = self.exclude_missing(json.loads(group.toJSON()))
+
+        formatted_group_update_dict = self.convert_json(excluded_group_update_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_update_dict)
+
+        group_response = self.send_put(
+            body=body_json,
+            url=put_url,
+            entity_name=self.ENTITY_NAME,
+        )
+
+        formatted_response = self.convert_json(group_response, self.camel_to_underscore)
+
+        return formatted_response
