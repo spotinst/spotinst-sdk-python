@@ -246,20 +246,19 @@ class ManagedInstanceAwsClient(Client):
     
         return response
 
-    def update_managed_instance_states(self, managed_instance_id: str, state: str):
+    def update_managed_instance_states(self, update_manage_instance_state_list: list):
         """
         Update a Managed Instance States
 
         # Arguments
-        managed_instance_id(String): Managed Instance ID
-        state(String): State Of Instance
+        update_manage_instance_state_list(List): Update Manage Instance List
 
         # Returns
         (Object): ManagedInstance API response
         """
         put_url = self.__base_mi_url + "/" + "state"
         
-        group = aws_managed_instance.ManagedInstanceStates(aws_managed_instance.ManagedInstanceStates([aws_managed_instance.ManagedInstanceStatesEntry(managed_instance_id, state)]))
+        group = aws_managed_instance.ManagedInstanceStates([aws_managed_instance.ManagedInstanceStatesEntry(i["id"], i["state"]) for i in update_manage_instance_state_list])
 
         excluded_group_update_dict = self.exclude_missing(json.loads(group.toJSON()))
 
