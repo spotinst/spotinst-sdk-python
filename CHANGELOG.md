@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.22] - 2022-02-03
+### Added
+- Add support for AWS Managed Instance API: `get_managed_instance_costs`
+- Add support for AWS Managed Instance API: `delete_volume_in_managed_instance`
+- Add support for AWS Managed Instance API: `update_managed_instance_states`
+
 ## [2.1.21] - 2022-12-15
 ### Added
 - Add support for Azure V3 CRUD APIs
