@@ -412,14 +412,15 @@ class ManagedInstanceCreationRequest:
 
 
 class DeallocationConfig:
-    def __init__(self, deallocate_network_interfaces: bool = none,
-                 deallocate_volumes: bool = none, deallocate_snapshots: bool = none, deallocate_amis: bool = none,
+    def __init__(self, should_delete_network_interfaces: bool = none,
+                 should_delete_volumes: bool = none, should_delete_snapshots: bool = none, should_delete_images: bool = none,
                  should_terminate_instance: bool = none):
-        self.deallocate_network_interfaces = deallocate_network_interfaces
-        self.deallocate_volumes = deallocate_volumes
-        self.deallocate_snapshots = deallocate_snapshots
-        self.deallocate_amis = deallocate_amis
+        self.should_delete_network_interfaces = should_delete_network_interfaces
+        self.should_delete_volumes = should_delete_volumes
+        self.should_delete_snapshots = should_delete_snapshots
+        self.should_delete_images = should_delete_images
         self.should_terminate_instance = should_terminate_instance
+        
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
