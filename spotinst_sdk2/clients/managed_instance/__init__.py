@@ -259,7 +259,7 @@ class ManagedInstanceAwsClient(Client):
         return self.send_delete(url=req_url, entity_name=self.ENTITY_NAME)
 
 
-    def update_managed_instance_states(self, update_manage_instance_states_list: list[aws_managed_instance.ManagedInstanceState]):
+    def update_managed_instance_states(self, update_manage_instance_states_list: list):
         """
         Update a Managed Instance States
 

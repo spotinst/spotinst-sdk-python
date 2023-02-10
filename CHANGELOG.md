@@ -2,10 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.24] - 2023-02-10
+### Fixed
+- Fixed the parameter annotation of `update_managed_instance_states` API
+
 ## [2.1.23] - 2023-02-10
 ### Fixed
 - Fixed the parameter type of `update_managed_instance_states` API
-- Modified the return object of `update_managed_instance_states` API
+- Modified the return object of `update_managed_instance_states` API 
 
 ## [2.1.22] - 2023-02-03
 ### Added
