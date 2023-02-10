@@ -259,7 +259,7 @@ class ManagedInstanceAwsClient(Client):
         return self.send_delete(url=req_url, entity_name=self.ENTITY_NAME)
 
 
-    def update_managed_instance_states(self, update_manage_instance_states_list: list):
+    def update_managed_instance_states(self, update_manage_instance_states_list: list[aws_managed_instance.ManagedInstanceState]):
         """
         Update a Managed Instance States
 
@@ -287,4 +287,5 @@ class ManagedInstanceAwsClient(Client):
 
         formatted_response = self.convert_json(group_response, self.camel_to_underscore)
 
-        return formatted_response
+        return formatted_response['response']
+    

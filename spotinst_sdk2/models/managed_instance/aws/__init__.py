@@ -468,4 +468,17 @@ class ManagedInstanceUpdateStatesRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, 
                         sort_keys=True, indent=4)
+
+class ManagedInstanceMigration:
+    def __init__(self, should_keep_private_ip: bool = none, original_instance_id: str = none,
+                region: str = none, should_terminate_instance: bool = none, managed_instance_name: str =none,
+                product: str = none, spot_instances_types: list = none, availability_zones: list = none):
+        self.should_keep_private_ip = should_keep_private_ip
+        self.original_instance_id = original_instance_id
+        self.region = region
+        self.should_terminate_instance = should_terminate_instance
+        self.managed_instance_name = managed_instance_name
+        self.product = product
+        self.spot_instance_types = spot_instances_types
+        self.availability_zones = availability_zones
 # endregion
