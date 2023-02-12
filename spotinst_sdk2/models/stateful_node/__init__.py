@@ -3,6 +3,8 @@ import json
 none = "d3043820717d74d9a17694c176d39733"
 
 # region StatefulNode
+
+
 class StatefulNode:
     """
     # Arguments
@@ -16,17 +18,18 @@ class StatefulNode:
     scheduling: Scheduling
     strategy: Strategy
     """
+
     def __init__(
             self,
-            compute = none,
+            compute=none,
             description: str = none,
-            health = none,            
+            health=none,
             name: str = none,
-            persistence = none,
+            persistence=none,
             region: str = none,
             resource_group_name: str = none,
-            scheduling = none,
-            strategy = none):
+            scheduling=none,
+            strategy=none):
         self.compute = compute
         self.description = description
         self.health = health
@@ -51,8 +54,9 @@ class Persistence:
     should_persist_network: bool
     should_persist_os_disk: bool
     """
+
     def __init__(self, data_disks_persistence_mode: str = none, os_disk_persistence_mode: str = none,
-                 should_persist_data_disks: bool = none, should_persist_network: bool = none, 
+                 should_persist_data_disks: bool = none, should_persist_network: bool = none,
                  should_persist_os_disk: bool = none):
         self.data_disks_persistence_mode = data_disks_persistence_mode
         self.os_disk_persistence_mode = os_disk_persistence_mode
@@ -73,6 +77,7 @@ class Health:
     grace_period: int
     unhealthy_duration : int
     """
+
     def __init__(
             self,
             health_check_types: str = none,
@@ -94,6 +99,7 @@ class Scheduling:
     # Arguments
     tasks: list[SchedulingTask]
     """
+
     def __init__(self, tasks: list = none):
         self.tasks = tasks
 
@@ -105,6 +111,7 @@ class SchedulingTask:
     cron_expression: str
     type: str
     """
+
     def __init__(
             self,
             is_enabled: bool = none,
@@ -130,6 +137,7 @@ class Strategy:
     revert_to_spot: RevertToSpot
     signals: List[Signal]
     """
+
     def __init__(
             self,
             draining_timeout: int = none,
@@ -153,6 +161,7 @@ class RevertToSpot:
     # Arguments
     perform_at: str
     """
+
     def __init__(self, perform_at: str = none):
         self.perform_at = perform_at
 
@@ -163,6 +172,7 @@ class Signal:
     timeout: int
     type: str
     """
+
     def __init__(self, timeout: int = none, type: str = none):
         self.timeout = timeout
         self.type = type
@@ -180,12 +190,13 @@ class Compute:
     vm_sizes: VmSizes
     zones: List[str]
     """
+
     def __init__(
             self,
-            launch_specification = none,
+            launch_specification=none,
             os: str = none,
             preferred_zone: str = none,
-            vm_sizes = none,
+            vm_sizes=none,
             zones: list[str] = none):
         self.launch_specification = launch_specification
         self.os = os
@@ -214,22 +225,23 @@ class LaunchSpecification:
     vm_name: str
     vm_name_prefix: str
     """
+
     def __init__(
             self,
-            boot_diagnostics = none,
+            boot_diagnostics=none,
             custom_data: str = none,
-            data_disks = none,
-            extensions = none,
-            image = none,
+            data_disks=none,
+            extensions=none,
+            image=none,
             license_type: str = none,
-            load_balancers_config = none,
-            login = none,
-            managed_service_identities = none,
-            network = none,
-            os_disk = none,
-            secrets = none,
+            load_balancers_config=none,
+            login=none,
+            managed_service_identities=none,
+            network=none,
+            os_disk=none,
+            secrets=none,
             shutdown_script: str = none,
-            tags = none,
+            tags=none,
             vm_name: str = none,
             vm_name_prefix: str = none):
         self.boot_diagnostics = boot_diagnostics
@@ -257,6 +269,7 @@ class BootDiagnostics:
     storage_uri = str
     type: str
     """
+
     def __init__(
             self,
             is_enabled: bool = none,
@@ -274,6 +287,7 @@ class DataDisk:
     size_gb = int
     type: str
     """
+
     def __init__(
             self,
             lun: int = none,
@@ -293,6 +307,7 @@ class Extension:
     publisher: str
     type: str
     """
+
     def __init__(
             self,
             api_version: str = none,
@@ -314,6 +329,7 @@ class Image:
     custom: Custom
     gallery: Gallery
     """
+
     def __init__(self, marketplace=none, custom=none, gallery=none):
         self.marketplace = marketplace
         self.custom = custom
@@ -328,6 +344,7 @@ class Marketplace:
     sku: str
     version: str
     """
+
     def __init__(
             self,
             publisher: str = none,
@@ -346,6 +363,7 @@ class Custom:
     resource_group_name: str
     name: str
     """
+
     def __init__(
             self,
             resource_group_name: str = none,
@@ -363,6 +381,7 @@ class Gallery:
     spot_account_id: str
     version_name: str
     """
+
     def __init__(
             self,
             gallery_name: str = none,
@@ -382,6 +401,7 @@ class LoadBalancerConfig:
     # Arguments
     load_balancers: list[LoadBalancer]
     """
+
     def __init__(self, load_balancers=none):
         self.load_balancers = load_balancers
 
@@ -395,6 +415,7 @@ class LoadBalancer:
     resource_group_name: str
     type: str
     """
+
     def __init__(
             self,
             backend_pool_names: list[str] = none,
@@ -416,6 +437,7 @@ class Login:
     user_name: str
     password: str
     """
+
     def __init__(
             self,
             ssh_public_key: str = none,
@@ -432,6 +454,7 @@ class ManagedServiceIdentity:
     resource_group_name: str
     name: str
     """
+
     def __init__(
             self,
             resource_group_name: str = none,
@@ -447,9 +470,10 @@ class Network:
     resource_group_name: str
     virtual_network_name: str
     """
+
     def __init__(
             self,
-            network_interfaces = none,
+            network_interfaces=none,
             virtual_network_name: str = none,
             resource_group_name: str = none):
         self.network_interfaces = network_interfaces
@@ -471,16 +495,17 @@ class NetworkInterface:
     public_ip_sku: str
     subnet_name: str
     """
+
     def __init__(
             self,
-            additional_ip_configurations = none,
-            application_security_groups = none,
+            additional_ip_configurations=none,
+            application_security_groups=none,
             assign_public_ip: bool = none,
             enable_i_p_forwarding: bool = none,
             is_primary: bool = none,
             network_security_group=none,
             private_ip_addresses: list[str] = none,
-            public_ips = none,
+            public_ips=none,
             public_ip_sku: str = none,
             subnet_name: str = none):
         self.additional_ip_configurations = additional_ip_configurations
@@ -501,6 +526,7 @@ class AdditionalIpConfiguration:
     name: str
     private_ip_address_version: str
     """
+
     def __init__(
             self,
             name: str = none,
@@ -515,6 +541,7 @@ class ApplicationSecurityGroup:
     name: str
     resource_group_name: str
     """
+
     def __init__(
             self,
             name: str = none,
@@ -529,6 +556,7 @@ class NetworkSecurityGroup:
     name: str
     resource_group_name: str
     """
+
     def __init__(
             self,
             name: str = none,
@@ -543,6 +571,7 @@ class PublicIp:
     name: str
     resource_group_name: str
     """
+
     def __init__(
             self,
             name: str = none,
@@ -557,6 +586,7 @@ class OsDisk:
     size_g_b: int
     type: str
     """
+
     def __init__(
             self,
             size_g_b: int = none,
@@ -571,10 +601,11 @@ class Secret:
     source_vault: SourceVault
     vault_certificates: List[VaultCertificate]
     """
+
     def __init__(
             self,
-            source_vault = none,
-            vault_certificates = none):
+            source_vault=none,
+            vault_certificates=none):
         self.source_vault = source_vault
         self.vault_certificates = vault_certificates
 
@@ -585,6 +616,7 @@ class SourceVault:
     name: str
     resource_group_name: str
     """
+
     def __init__(
             self,
             name: str = none,
@@ -599,6 +631,7 @@ class VaultCertificate:
     certificate_store: str
     certificate_url: str
     """
+
     def __init__(
             self,
             certificate_store: str = none,
@@ -613,6 +646,7 @@ class Tag:
     tag_key: str
     tag_value: str
     """
+
     def __init__(
             self,
             tag_key: str = none,
@@ -628,6 +662,7 @@ class VmSizes:
     preferred_spot_sizes: list[str]
     spot_sizes: List[str]
     """
+
     def __init__(
             self,
             od_sizes: list[str] = none,
@@ -673,17 +708,17 @@ class Deallocate:
 
 
 class DeallocationConfig:
-    def __init__(self, 
-                disk_deallocation_config: Deallocate = none,
-                network_deallocation_config: Deallocate = none,
-                public_ip_deallocation_config: Deallocate = none,
-                snapshot_deallocation_config: Deallocate = none,
-                should_terminate_vm: bool = none):
+    def __init__(self,
+                 disk_deallocation_config: Deallocate = none,
+                 network_deallocation_config: Deallocate = none,
+                 public_ip_deallocation_config: Deallocate = none,
+                 snapshot_deallocation_config: Deallocate = none,
+                 should_terminate_vm: bool = none):
         self.disk_deallocation_config = disk_deallocation_config
         self.network_deallocation_config = network_deallocation_config
         self.public_ip_deallocation_config = public_ip_deallocation_config
         self.snapshot_deallocation_config = snapshot_deallocation_config
-        self.should_terminate_vm = should_terminate_vm        
+        self.should_terminate_vm = should_terminate_vm
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -700,17 +735,17 @@ class DeleteStatefulNodeRequest:
 
 
 class ImportVmConfiguration:
-    def __init__(self, 
-                draining_timeout: int = none,
-                node: StatefulNode = none,
-                original_vm_name: str = none,
-                resource_group_name: str = none,
-                resource_retention_time: int = none):
+    def __init__(self,
+                 draining_timeout: int = none,
+                 node: StatefulNode = none,
+                 original_vm_name: str = none,
+                 resource_group_name: str = none,
+                 resource_retention_time: int = none):
         self.draining_timeout = draining_timeout
         self.node = node
         self.original_vm_name = original_vm_name
         self.resource_group_name = resource_group_name
-        self.resource_retention_time = resource_retention_time        
+        self.resource_retention_time = resource_retention_time
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -788,61 +823,3 @@ class DetachDataDiskFromStatefulNodeRequest:
             indent=4)
 
 # endregion
-
-# class DeallocationConfig:
-#     def __init__(self, should_delete_network_interfaces: bool = none,
-#                  should_delete_volumes: bool = none, should_delete_snapshots: bool = none, should_delete_images: bool = none,
-#                  should_terminate_instance: bool = none):
-#         self.should_delete_network_interfaces = should_delete_network_interfaces
-#         self.should_delete_volumes = should_delete_volumes
-#         self.should_delete_snapshots = should_delete_snapshots
-#         self.should_delete_images = should_delete_images
-#         self.should_terminate_instance = should_terminate_instance
-        
-
-#     def toJSON(self):
-#         return json.dumps(self, default=lambda o: o.__dict__,
-#                           sort_keys=True, indent=4)
-
-
-# class AmiBackup:
-#     def __init__(self, should_delete_images: bool = none):
-#         self.should_delete_images = should_delete_images
-
-#     def toJSON(self):
-#         return json.dumps(self, default=lambda o: o.__dict__,
-#                           sort_keys=True, indent=4)
-
-
-# class ManagedInstanceDeletionRequest:
-#     def __init__(self, deallocation_config: DeallocationConfig = none, ami_backup: AmiBackup = none):
-#         self.deallocation_config = deallocation_config
-#         self.ami_backup = ami_backup
-
-#     def toJSON(self):
-#         return json.dumps(self, default=lambda o: o.__dict__,
-#                           sort_keys=True, indent=4)
-
-
-# class ManagedInstanceUpdateRequest:
-#     def __init__(self, managed_instance: ManagedInstance):
-#         self.managed_instance = managed_instance
-
-#     def toJSON(self):
-#         return json.dumps(self, default=lambda o: o.__dict__,
-#                           sort_keys=True, indent=4)
-
-
-# class ManagedInstanceState:
-#     def __init__(self, id: str = none, state: str = none):
-#         self.id = id
-#         self.state = state  
-
-
-# class ManagedInstanceUpdateStatesRequest:
-#     def __init__(self, managed_instance_states: List[ManagedInstanceState] = none):
-#         self.managed_instance_states = managed_instance_states
-
-#     def toJSON(self):
-#         return json.dumps(self, default=lambda o: o.__dict__, 
-#                         sort_keys=True, indent=4)

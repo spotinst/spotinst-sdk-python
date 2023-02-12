@@ -6,105 +6,111 @@ session = SpotinstSession(auth_token='3526b1fbfb2d375d095c3d4c2b552c2db86f1b4020
 
 client = session.client("stateful_node_azure")
 
-############################# Compute ##############################
+# ############################# Compute ##############################
 
-# Boot Diagnostics
+# # Boot Diagnostics
 
-boot_diagnostics = BootDiagnostics(is_enabled = True, type = "managed")
+# boot_diagnostics = BootDiagnostics(is_enabled = True, type = "managed")
 
-data_disks = [DataDisk(lun = 0, size_g_b=30, type = 'Standard_LRS'), DataDisk(lun = 1, size_g_b=32, type = 'StandardSSD_LRS')]
-os_disk = OsDisk(size_g_b = 30, type = 'Standard_LRS')
-marketplace = Marketplace(publisher = "Canonical", version = "latest", sku = "18.04-LTS", offer = "UbuntuServer")
-image = Image(marketplace = marketplace)
-
-
-
-# Network Interfaces
-
-interface = NetworkInterface(is_primary = True, assign_public_ip = True, subnet_name = "Automation-PrivateSubnet",
-                             enable_i_p_forwarding = True)
-
-network_interfaces = [interface]
+# data_disks = [DataDisk(lun = 0, size_g_b=30, type = 'Standard_LRS'), DataDisk(lun = 1, size_g_b=32, type = 'StandardSSD_LRS')]
+# os_disk = OsDisk(size_g_b = 30, type = 'Standard_LRS')
+# marketplace = Marketplace(publisher = "Canonical", version = "latest", sku = "18.04-LTS", offer = "UbuntuServer")
+# image = Image(marketplace = marketplace)
 
 
 
-# Network
-network = Network(network_interfaces = network_interfaces, virtual_network_name = 'Automation-VirtualNetwork',
-                    resource_group_name = 'AutomationResourceGroup')
+# # Network Interfaces
 
-# Login
-login = Login(user_name = "ubuntu",
-              ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfWrinLRVHx+KB57pb1mEYBueGfPzyVa2qPpCPZYbpcuL45nDKU2B14twX91+/cJ2m7DmUa8LLk2EVwBW8FBTfg5Fuwj8+kTnk4PMo4G+T0UgFt7NuD47I5fxg3sD9WQFUbXlO44Flp+k5MHlv+hF8iHz/QRz2QDDKxPGLWM1mh10LtLz4T+im/73RviTgbJhCZQr0+Yx7Uz1ZlWkrPThLUa9/4Br5mKLk3zEYa8mbg4LblJXIgknFsZ3cXlqtN5WofxJEDLy9QiKMxDJ2PZfR73IscpWtPnAMZjcTf6aI02FKAg+iEs0mdh3bGVGLxNi5w32lWOiiqKKJGKa1ctWb automation")
+# interface = NetworkInterface(is_primary = True, assign_public_ip = True, public_ip_sku = "Standard", subnet_name = "Automation-PrivateSubnet",
+#                              enable_i_p_forwarding = True)
 
-
-
-# Tags
-tag_creator = Tag(tag_key = "Creator", tag_value="Spotinst-Python-SDK")
-tag_name = Tag(tag_key = "Name", tag_value="Spotinst-Stateful-Node")
-tags = [tag_creator, tag_name]
-
-# Launch Specification
-launch_spec = LaunchSpecification(
-                                    boot_diagnostics = boot_diagnostics, 
-                                    image = image, 
-                                    login = login, 
-                                    network = network,
-                                    tags = tags, 
-                                    os_disk = os_disk, 
-                                    custom_data = "TXkgQ3VzdG9tIERhdGE=",
-                                  shutdown_script = "TXkgU2h1dGRvd24gU2NyaXB0", 
-                                  data_disks = data_disks)
+# network_interfaces = [interface]
 
 
 
-# VmSizes
-vm_sizes = VmSizes(od_sizes = ['standard_a1_v2', 'standard_a2_v2'],
-                    spot_sizes = ['standard_a1_v2', 'standard_a2_v2'],
-                    preferred_spot_sizes = ['standard_a1_v2'])
+# # Network
+# network = Network(network_interfaces = network_interfaces, virtual_network_name = 'Automation-VirtualNetwork',
+#                     resource_group_name = 'AutomationResourceGroup')
 
-# Compute
+# # Login
+# login = Login(user_name = "ubuntu",
+#               ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfWrinLRVHx+KB57pb1mEYBueGfPzyVa2qPpCPZYbpcuL45nDKU2B14twX91+/cJ2m7DmUa8LLk2EVwBW8FBTfg5Fuwj8+kTnk4PMo4G+T0UgFt7NuD47I5fxg3sD9WQFUbXlO44Flp+k5MHlv+hF8iHz/QRz2QDDKxPGLWM1mh10LtLz4T+im/73RviTgbJhCZQr0+Yx7Uz1ZlWkrPThLUa9/4Br5mKLk3zEYa8mbg4LblJXIgknFsZ3cXlqtN5WofxJEDLy9QiKMxDJ2PZfR73IscpWtPnAMZjcTf6aI02FKAg+iEs0mdh3bGVGLxNi5w32lWOiiqKKJGKa1ctWb automation")
 
-compute = Compute(launch_specification = launch_spec, os = 'Linux', vm_sizes = vm_sizes, preferred_zone="1", zones=["1", "2", "3"])
 
-############################# Strategy ##############################
 
-strategy = Strategy(draining_timeout = 240, fallback_to_od = True, preferred_lifecycle="spot", revert_to_spot=RevertToSpot(perform_at="always"))
+# # Tags
+# tag_creator = Tag(tag_key = "Creator", tag_value="Spotinst-Python-SDK")
+# tag_name = Tag(tag_key = "Name", tag_value="Spotinst-Stateful-Node")
+# tags = [tag_creator, tag_name]
 
-############################# Health ################################
+# # Launch Specification
+# launch_spec = LaunchSpecification(
+#                                     boot_diagnostics = boot_diagnostics, 
+#                                     image = image, 
+#                                     login = login, 
+#                                     network = network,
+#                                     tags = tags, 
+#                                     os_disk = os_disk, 
+#                                     custom_data = "TXkgQ3VzdG9tIERhdGE=",
+#                                   shutdown_script = "TXkgU2h1dGRvd24gU2NyaXB0", 
+#                                   data_disks = data_disks)
 
-health = Health(health_check_types=["vmState"], auto_healing=True, grace_period=350, unhealthy_duration=300)
 
-############################# Scheduling #############################
 
-# Scheduling Task
+# # VmSizes
+# vm_sizes = VmSizes(od_sizes = ['standard_a1_v2', 'standard_a2_v2'],
+#                     spot_sizes = ['standard_a1_v2', 'standard_a2_v2'],
+#                     preferred_spot_sizes = ['standard_a1_v2'])
 
-scheduling_task_1 = SchedulingTask(is_enabled = True, cron_expression = "* * * 1 *", type = "pause")
-scheduling_task_2 = SchedulingTask(is_enabled = True, cron_expression = "*/2 * * * *", type = "resume")
+# # Compute
 
-# Scheduling
-scheduling = Scheduling(tasks = [scheduling_task_1, scheduling_task_2])
+# compute = Compute(launch_specification = launch_spec, os = 'Linux', vm_sizes = vm_sizes, preferred_zone="1", zones=["1", "2", "3"])
 
-############################# Persistence #############################
-persistence = Persistence(data_disks_persistence_mode="reattach", os_disk_persistence_mode="reattach",should_persist_data_disks=False, should_persist_os_disk=True, should_persist_network=False)
+# ############################# Strategy ##############################
 
-# Stateful Node
+# strategy = Strategy(draining_timeout = 240, fallback_to_od = True, preferred_lifecycle="spot", revert_to_spot=RevertToSpot(perform_at="always"))
 
-node = StatefulNode(name = 'Python-Test', 
-                    region = 'eastus',
-                    description="This is a Test Run",
-                    resource_group_name = 'AutomationResourceGroup',
-                    persistence=persistence, 
-                    strategy = strategy, 
-                    compute = compute, 
-                    scheduling = scheduling, 
-                    health = health
-                    )
+# ############################# Health ################################
 
-response = client.create_stateful_node(node)
+# health = Health(health_check_types=["vmState"], auto_healing=True, grace_period=350, unhealthy_duration=300)
 
-ssi_id = response['id']
+# ############################# Scheduling #############################
 
-print('group id: %s' %ssi_id)
+# # Scheduling Task
+
+# scheduling_task_1 = SchedulingTask(is_enabled = True, cron_expression = "* * * 1 *", type = "pause")
+# scheduling_task_2 = SchedulingTask(is_enabled = True, cron_expression = "*/2 * * * *", type = "resume")
+
+# # Scheduling
+# scheduling = Scheduling(tasks = [scheduling_task_1, scheduling_task_2])
+
+# ############################# Persistence #############################
+# persistence = Persistence(data_disks_persistence_mode="reattach", os_disk_persistence_mode="reattach",should_persist_data_disks=False, should_persist_os_disk=True, should_persist_network=False)
+
+# # Stateful Node
+
+# node = StatefulNode(name = 'Python-Test', 
+#                     region = 'eastus',
+#                     description="This is a Test Run",
+#                     resource_group_name = 'AutomationResourceGroup',
+#                     persistence=persistence, 
+#                     strategy = strategy, 
+#                     compute = compute, 
+#                     scheduling = scheduling, 
+#                     health = health
+#                     )
+
+# response = client.create_stateful_node(node)
+
+# ssi_id = response['id']
+
+#print('group id: %s' %ssi_id)
+
+#print(client.get_stateful_node("ssn-4c98508c"))
+
+#print(client.update_stateful_node_state("ssn-4c98508c", "pause"))
+
+print(client.get_stateful_node_logs(node_id = "ssn-4c98508c", from_date="2023-02-01T22:02:39.831Z", to_date="2023-02-12T22:02:39.831Z", severity="ALL"))
 
 
 

@@ -24,9 +24,10 @@ class StatefulNodeAzureClient(Client):
         request = azure_stateful_node.CreateStatefulNodeRequest(node)
 
         excluded_node_dict = self.exclude_missing(json.loads(request.toJSON()))
-    
-        formatted_node_dict = self.convert_json(excluded_node_dict, self.underscore_to_camel)
-    
+
+        formatted_node_dict = self.convert_json(
+            excluded_node_dict, self.underscore_to_camel)
+
         body_json = json.dumps(formatted_node_dict)
 
         response = self.send_post(
@@ -34,10 +35,10 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url,
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def update_stateful_node(self, node_update: azure_stateful_node.StatefulNode, node_id: str):
         """
@@ -52,9 +53,11 @@ class StatefulNodeAzureClient(Client):
         """
         request = azure_stateful_node.UpdateStatefulNodeRequest(node_update)
 
-        excluded_node_update_dict = self.exclude_missing(json.loads(request.toJSON()))
+        excluded_node_update_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
 
-        formatted_node_update_dict = self.convert_json(excluded_node_update_dict, self.underscore_to_camel)
+        formatted_node_update_dict = self.convert_json(
+            excluded_node_update_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_node_update_dict)
 
@@ -63,10 +66,10 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/" + node_id,
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def delete_stateful_node(self, node_id: str, deallocation_config: azure_stateful_node.DeallocationConfig):
         """
@@ -79,21 +82,23 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): StatefulNode API response
         """
-        request = azure_stateful_node.DeleteStatefulNodeRequest(deallocation_config)
+        request = azure_stateful_node.DeleteStatefulNodeRequest(
+            deallocation_config)
 
-        excluded_node_delete_dict = self.exclude_missing(json.loads(request.toJSON()))
+        excluded_node_delete_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
 
-        formatted_node_delete_dict = self.convert_json(excluded_node_delete_dict, self.underscore_to_camel)
+        formatted_node_delete_dict = self.convert_json(
+            excluded_node_delete_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_node_delete_dict)
 
         response = self.send_delete_with_body(
-            body=body_json, 
-            url=self.__base_stateful_node_url + "/" + node_id, 
+            body=body_json,
+            url=self.__base_stateful_node_url + "/" + node_id,
             entity_name=self.ENTITY_NAME)
 
         return response
-
 
     def get_stateful_node(self, node_id: str):
         """
@@ -109,10 +114,10 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/" + node_id,
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def get_all_stateful_nodes(self):
         """
@@ -125,10 +130,10 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url,
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
-
 
     def get_stateful_node_resources(self, node_id: str):
         """
@@ -144,10 +149,10 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/" + node_id + "/resources",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def get_stateful_node_status(self, node_id: str):
         """
@@ -163,10 +168,10 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/" + node_id + "/status",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def get_all_stateful_node_statuses(self):
         """
@@ -179,10 +184,10 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/status",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
-
 
     def update_stateful_node_state(self, node_id: str, state: str):
         """
@@ -195,17 +200,17 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): StatefulNode API response
         """
-        body_json = json.dumps(dict(state = state))
+        body_json = json.dumps(dict(state=state))
 
         response = self.send_put(
             body=body_json,
             url=self.__base_stateful_node_url + "/" + node_id + "/state",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
-
 
     def get_stateful_node_from_azure_vm(self, resource_group_name: str, virtual_machine_name: str):
         """
@@ -219,14 +224,14 @@ class StatefulNodeAzureClient(Client):
         (Object): Stateful Node API response
         """
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/resourceGroup/" + resource_group_name + 
-                "/virtualMachine/" + virtual_machine_name + "/importConfiguration",
+            url=self.__base_stateful_node_url + "/resourceGroup/" + resource_group_name +
+            "/virtualMachine/" + virtual_machine_name + "/importConfiguration",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def import_vm_to_stateful_node(self, import_vm_configuration: azure_stateful_node.ImportVmConfiguration):
         """
@@ -238,12 +243,14 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): StatefulNode API response
         """
-        request = azure_stateful_node.ImportVmToStatefulNodeRequest(import_vm_configuration = import_vm_configuration)
+        request = azure_stateful_node.ImportVmToStatefulNodeRequest(
+            import_vm_configuration=import_vm_configuration)
 
         excluded_node_dict = self.exclude_missing(json.loads(request.toJSON()))
-    
-        formatted_node_dict = self.convert_json(excluded_node_dict, self.underscore_to_camel)
-    
+
+        formatted_node_dict = self.convert_json(
+            excluded_node_dict, self.underscore_to_camel)
+
         body_json = json.dumps(formatted_node_dict)
 
         response = self.send_post(
@@ -251,11 +258,11 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/import",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
-
     def get_stateful_node_import_status(self, import_id):
         """
         Get the import process status of a Stateful Node.
@@ -270,32 +277,13 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/import/" + import_id + "/status",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]
 
-
-    def get_stateful_node_import_status(self, import_id):
-        """
-        Get the import process status of a Stateful Node.
-
-        # Arguments
-        import_id (String): Import ID
-
-        # Returns
-        (Object) : Stateful Node API response
-        """
-        response = self.send_get(
-            url=self.__base_stateful_node_url + "/import/" + import_id + "/status",
-            entity_name=self.ENTITY_NAME)
-
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
-        
-        return formatted_response["response"]
-
-
-    def attach_data_disk_to_stateful_node(self, node_id: str, 
-                                        data_disk_configuration: azure_stateful_node.AttachDataDiskConfiguration):
+    def attach_data_disk_to_stateful_node(self, node_id: str,
+                                          data_disk_configuration: azure_stateful_node.AttachDataDiskConfiguration):
         """
         Create a new data disk and attche it to the Stateful Node.
 
@@ -306,11 +294,14 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): StatefulNode API response
         """
-        request = azure_stateful_node.AttachDataDiskToStatefulNodeRequest(data_disk_configuration)
+        request = azure_stateful_node.AttachDataDiskToStatefulNodeRequest(
+            data_disk_configuration)
 
-        excluded_node_update_dict = self.exclude_missing(json.loads(request.toJSON()))
+        excluded_node_update_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
 
-        formatted_node_update_dict = self.convert_json(excluded_node_update_dict, self.underscore_to_camel)
+        formatted_node_update_dict = self.convert_json(
+            excluded_node_update_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_node_update_dict)
 
@@ -319,13 +310,13 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/" + node_id + "/dataDisk/attach",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]
 
-
-    def detach_data_disk_from_stateful_node(self, node_id: str, 
-                                        data_disk_configuration: azure_stateful_node.DetachDataDiskConfiguration):
+    def detach_data_disk_from_stateful_node(self, node_id: str,
+                                            data_disk_configuration: azure_stateful_node.DetachDataDiskConfiguration):
         """
         Detach a data disk from a Stateful Node.
 
@@ -336,11 +327,14 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): StatefulNode API response
         """
-        request = azure_stateful_node.DetachDataDiskFromStatefulNodeRequest(data_disk_configuration)
+        request = azure_stateful_node.DetachDataDiskFromStatefulNodeRequest(
+            data_disk_configuration)
 
-        excluded_node_update_dict = self.exclude_missing(json.loads(request.toJSON()))
+        excluded_node_update_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
 
-        formatted_node_update_dict = self.convert_json(excluded_node_update_dict, self.underscore_to_camel)
+        formatted_node_update_dict = self.convert_json(
+            excluded_node_update_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_node_update_dict)
 
@@ -349,15 +343,15 @@ class StatefulNodeAzureClient(Client):
             url=self.__base_stateful_node_url + "/" + node_id + "/dataDisk/detach",
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
-
 
     def get_stateful_node_logs(self, node_id, from_date, to_date, severity=None, resource_id=None, limit=None):
         """
         Get the logs of a Stateful Node according to severity and time period filter parameters.
-        
+
         # Arguments
         node_id (String): Stateful ID
         to_date (String): On or Before this date 
@@ -365,19 +359,19 @@ class StatefulNodeAzureClient(Client):
         severity(String) (Optional): Log level severity
         resource_id(String) (Optional): Filter log extracted entires related to a specific resource id
         limit(String) (Optional): Maximum number of lines to extract in a response
-        
+
         # Returns
         (Object): Stateful Node API response
         """
-        query_params = dict(toDate = to_date, fromDate = from_date, severity = severity,
-                            resourceId = resource_id, limit = limit)
+        query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
+                            resourceId=resource_id, limit=limit)
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/" + node_id + "/log",
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
-    
