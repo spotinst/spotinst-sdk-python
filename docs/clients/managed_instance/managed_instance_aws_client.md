@@ -165,3 +165,61 @@ __Returns__
 
 `(Object)`: ManagedInstance API response
 
+<h2 id="spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient.get_managed_instance_costs">get_managed_instance_costs</h2>
+
+```python
+ManagedInstanceAwsClient.get_managed_instance_costs(
+  managed_instance_id: str,
+  from_date: str,
+  to_date: str,
+  aggregation_period: str = None)
+```
+
+Get Managed Instance Costs
+
+__Arguments__
+
+- __managed_instance_id(String)__: Managed Instance ID
+- __from_date (String)__: Get Cost on and after this Date
+- __to_date (String)__: Get Cost on and before this Date
+- __aggregation_period (String)__: Data values following either a date format or Unix seconds Timestamp
+
+__Returns__
+
+`(Object)`: ManagedInstance API response
+
+<h2 id="spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient.delete_volume_in_managed_instance">delete_volume_in_managed_instance</h2>
+
+```python
+ManagedInstanceAwsClient.delete_volume_in_managed_instance(
+  managed_instance_id: str, volume_id: str)
+```
+
+Delete Volume in a Managed Instance
+
+__Arguments__
+
+- __managed_instance_id(String)__: Managed Instance ID
+- __volume_id(String)__: Volume ID
+
+__Returns__
+
+`(Object)`: ManagedInstance API response
+
+<h2 id="spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient.update_managed_instance_states">update_managed_instance_states</h2>
+
+```python
+ManagedInstanceAwsClient.update_managed_instance_states(
+  update_manage_instance_states_list: list)
+```
+
+Update a Managed Instance States
+
+__Arguments__
+
+- __update_manage_instance_state_list(List)__: Update Manage Instance List
+
+__Returns__
+
+`(Object)`: ManagedInstance API response
+

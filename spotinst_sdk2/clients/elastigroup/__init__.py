@@ -1972,6 +1972,7 @@ class ElastigroupAzureClient(Client):
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
+# endregion
 
     # region Deploy
     def roll_group(self, group_id, group_roll):
