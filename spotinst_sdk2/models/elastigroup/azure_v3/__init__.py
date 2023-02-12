@@ -378,7 +378,7 @@ class NetworkInterface:
     additional_ip_configurations: List[AdditionalIpConfiguration]
     application_security_groups: List[ApplicationSecurityGroup]
     assign_public_ip: bool
-    enable_ip_forwarding: bool
+    enable_i_p_forwarding: bool
     is_primary: bool
     private_ip_addresses: List[str]
     public_ips: List[PublicIp]
@@ -392,7 +392,7 @@ class NetworkInterface:
             additional_ip_configurations=none,
             application_security_groups=none,
             assign_public_ip=none,
-            enable_ip_forwarding=none,
+            enable_i_p_forwarding=none,
             is_primary=none,
             private_ip_addresses=none,
             public_ips=none,
@@ -402,7 +402,7 @@ class NetworkInterface:
         self.additional_ip_configurations = additional_ip_configurations
         self.application_security_groups = application_security_groups
         self.assign_public_ip = assign_public_ip
-        self.enable_ip_forwarding = enable_ip_forwarding
+        self.enable_i_p_forwarding = enable_i_p_forwarding
         self.is_primary = is_primary
         self.private_ip_addresses = private_ip_addresses
         self.public_ips = public_ips
@@ -490,15 +490,15 @@ class Secret:
     """
     # Arguments
     source_vault: SourceVault
-    vault_certificate: List[VaultCertificate]
+    vault_certificates: List[VaultCertificate]
     """
 
     def __init__(
             self,
             source_vault=none,
-            vault_certificate=none):
+            vault_certificates=none):
         self.source_vault = source_vault
-        self.vault_certificate = vault_certificate
+        self.vault_certificates = vault_certificates
 
 
 class SourceVault:
@@ -813,7 +813,7 @@ class SchedulingTask:
 
 # endregion
 
-# Region Requests
+# region Requests
 
 class DetachConfiguration:
     """
