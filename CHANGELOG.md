@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.25] - 2023-02-13
+### Fixed
+- Add support for AWS Managed Instance API: `import_multiple_instances_from_aws`
+- Add support for AWS Managed Instance API: `get_multiple_instances_migration_status`
+
 ## [2.1.24] - 2023-02-10
 ### Fixed
 - Fixed the parameter annotation of `update_managed_instance_states` API
