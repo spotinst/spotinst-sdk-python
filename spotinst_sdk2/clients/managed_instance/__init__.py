@@ -289,3 +289,75 @@ class ManagedInstanceAwsClient(Client):
 
         return formatted_response['response']
     
+    def import_multiple_instances_from_aws(self, migrations_list: list):
+        """
+        Import Multiple Instances From AWS
+
+        # Arguments
+        migrations_list (List): ManagedInstanceMigration List
+
+        # Returns
+        (Object): ManagedInstanceMigrations API response
+        """
+        req = aws_managed_instance.ManagedInstanceMigrations(migrations_list)
+
+        post_url = self.__base_mi_url + "/" + "migration" + "/" + "bulk"
+
+        req_json_str = req.toJSON()
+        req_exclude_missing = self.exclude_missing(json.loads(req_json_str))
+
+        formatted_mi_dict = self.convert_json(
+            req_exclude_missing, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_mi_dict)
+
+        self.print_output(body_json)
+
+        mi_response = self.send_post(
+            body=body_json,
+            url=post_url,
+            entity_name=self.ENTITY_NAME)
+
+        formatted_response = self.convert_json(
+            mi_response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"]
+
+        return ret_val
+    
+    def get_multiple_instances_migration_status(self, migration_ids_list: list):
+        """
+        Import Multiple Instances From AWS
+
+        # Arguments
+        migration_ids_list (List): ManagedInstanceMigrationIds List
+
+        # Returns
+        (Object): ManagedInstanceMigrations API response
+        """
+        req = aws_managed_instance.ManagedInstanceMigrationStatus(migration_ids_list)
+
+        post_url = self.__base_mi_url + "/" + "migration" + "/" + "search"
+
+        req_json_str = req.toJSON()
+        req_exclude_missing = self.exclude_missing(json.loads(req_json_str))
+
+        formatted_mi_dict = self.convert_json(
+            req_exclude_missing, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_mi_dict)
+
+        self.print_output(body_json)
+
+        mi_response = self.send_post(
+            body=body_json,
+            url=post_url,
+            entity_name=self.ENTITY_NAME)
+
+        formatted_response = self.convert_json(
+            mi_response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"]
+
+        return ret_val
+    
