@@ -811,6 +811,7 @@ class SchedulingTask:
         self.min_capacity = min_capacity
         self.max_capacity = max_capacity
 
+
 # endregion
 
 # region Requests
@@ -834,6 +835,71 @@ class DetachConfiguration:
         self.should_terminate_vms = should_terminate_vms
         self.vms_to_detach = vms_to_detach
 
+class ElastigroupDetachVMsRequest:
+    def __init__(self, detach_configuration):
+        self.should_decrement_target_capacity = detach_configuration.should_decrement_target_capacity
+        self.draining_timeout = detach_configuration.draining_timeout
+        self.vms_to_detach = detach_configuration.vms_to_detach
+        self.should_terminate_vms = detach_configuration.should_terminate_vms
+
+    def toJSON(self):
+        return json.dumps(
+            self,
+            default=lambda o: o.__dict__,
+            sort_keys=True,
+            indent=4)
+
+class DeploymentConfiguration:
+    """
+    # Arguments
+    batch_min_healthy_percentage: int
+    batch_size_percentage: int
+    draining_timeout: int
+    grace_period: int
+    health_check_types: list[str]
+    """
+
+    def __init__(
+            self,
+            batch_min_healthy_percentage=none,
+            batch_size_percentage=none,
+            draining_timeout=none,
+            grace_period=none,
+            health_check_types=none):
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.batch_size_percentage = batch_size_percentage
+        self.draining_timeout = draining_timeout
+        self.grace_period = grace_period
+        self.health_check_types = health_check_types
+
+class ElastigroupDeploymentRequest:
+    def __init__(self, deployment_configuration):
+        self.deployment = deployment_configuration
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+class Process:
+    """
+    # Arguments
+    name: str
+    ttl_in_minutes: int
+    """
+    def __init__(
+            self,
+            name=none,
+            ttl_in_minutes=none):
+        self.name = name
+        self.ttl_in_minutes = ttl_in_minutes
+
+class ElastigroupProcessesRequest:
+    def __init__(self, processes):
+        self.processes = processes
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 
 class ElastigroupCreateRequest:
     def __init__(self, elastigroup):
@@ -861,18 +927,4 @@ class ElastigroupUpdateCapacityRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
-
-class ElastigroupDetachVMsRequest:
-    def __init__(self, detach_configuration):
-        self.should_decrement_target_capacity = detach_configuration.should_decrement_target_capacity
-        self.draining_timeout = detach_configuration.draining_timeout
-        self.vms_to_detach = detach_configuration.vms_to_detach
-        self.should_terminate_vms = detach_configuration.should_terminate_vms
-
-    def toJSON(self):
-        return json.dumps(
-            self,
-            default=lambda o: o.__dict__,
-            sort_keys=True,
-            indent=4)
 # endregion
