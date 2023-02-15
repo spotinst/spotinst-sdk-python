@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.26] - 2023-02-16
+### Added
+- Add support for Azure Stateful Node APIs
+
 ## [2.1.25] - 2023-02-13
 ### Added
 - Add support for remaining Azure V3 APIs: 
