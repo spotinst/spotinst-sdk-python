@@ -2546,7 +2546,7 @@ class ElastigroupAzureV3Client(Client):
 
         return ret_val
 
-    def protect_virtual_machine(self, group_id, vm_name, ttl_in_minutes = None):
+    def protect_virtual_machine(self, group_id, vm_name, ttl_in_minutes=None):
         """
         Protect virtual machines in Elastigroup cluster.
 

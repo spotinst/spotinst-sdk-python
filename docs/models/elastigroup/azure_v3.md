@@ -395,13 +395,13 @@ __Arguments__
 ```python
 Secret(self,
        source_vault='d3043820717d74d9a17694c176d39733',
-       vault_certificate='d3043820717d74d9a17694c176d39733')
+       vault_certificates='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __source_vault__: SourceVault
-- __vault_certificate__: List[VaultCertificate]
+- __vault_certificates__: List[VaultCertificate]
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure_v3.SourceVault">SourceVault</h2>
 

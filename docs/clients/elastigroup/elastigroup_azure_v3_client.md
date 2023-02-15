@@ -439,7 +439,7 @@ __Arguments__
 
 - __group_id(String)__: Elastigroup ID
 - __to_date (String)__: to date
-- __from_date (String)__: to date
+- __from_date (String)__: from date
 - __severity(String) (Optional)__: Log level severity
 - __resource_id(String) (Optional)__: Filter log extracted entires related to a specific resource id
 - __limit(String) (Optional)__: Maximum number of lines to extract in a response
