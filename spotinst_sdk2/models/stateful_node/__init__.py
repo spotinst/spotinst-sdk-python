@@ -487,7 +487,7 @@ class NetworkInterface:
     additional_ip_configurations: List[AdditionalIpConfiguration]
     application_security_groups: List[ApplicationSecurityGroup]
     assign_public_ip: bool
-    enable_i_p_forwarding: bool
+    enable_ip_forwarding: bool
     is_primary: bool
     network_security_group: NetworkSecurityGroup
     private_ip_addresses: List[str]
@@ -501,7 +501,7 @@ class NetworkInterface:
             additional_ip_configurations=none,
             application_security_groups=none,
             assign_public_ip: bool = none,
-            enable_i_p_forwarding: bool = none,
+            enable_ip_forwarding: bool = none,
             is_primary: bool = none,
             network_security_group=none,
             private_ip_addresses: list[str] = none,
@@ -511,7 +511,7 @@ class NetworkInterface:
         self.additional_ip_configurations = additional_ip_configurations
         self.application_security_groups = application_security_groups
         self.assign_public_ip = assign_public_ip
-        self.enable_i_p_forwarding = enable_i_p_forwarding
+        self.enable_ip_forwarding = enable_ip_forwarding
         self.is_primary = is_primary
         self.network_security_group = network_security_group
         self.private_ip_addresses = private_ip_addresses
