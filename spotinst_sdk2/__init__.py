@@ -2,6 +2,7 @@ from spotinst_sdk2.session import Session
 
 from spotinst_sdk2.clients.managed_instance import *
 from spotinst_sdk2.clients.elastigroup import *
+from spotinst_sdk2.clients.stateful_node import *
 from spotinst_sdk2.clients.ocean import *
 from spotinst_sdk2.clients.admin import *
 from spotinst_sdk2.clients.functions import *
@@ -42,6 +43,8 @@ class SpotinstSession:
                                                              log_level=log_level, user_agent=user_agent,
                                                              timeout=timeout),
             "elastigroup_gcp": ElastigroupGcpClient(session=self.session, print_output=print_output,
+                                                    log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "stateful_node_azure": StatefulNodeAzureClient(session=self.session, print_output=print_output,
                                                     log_level=log_level, user_agent=user_agent, timeout=timeout),
             "functions": FunctionsClient(session=self.session, print_output=print_output, log_level=log_level,
                                          user_agent=user_agent, timeout=timeout),

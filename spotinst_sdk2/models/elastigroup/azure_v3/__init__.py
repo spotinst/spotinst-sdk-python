@@ -490,15 +490,15 @@ class Secret:
     """
     # Arguments
     source_vault: SourceVault
-    vault_certificate: List[VaultCertificate]
+    vault_certificates: List[VaultCertificate]
     """
 
     def __init__(
             self,
             source_vault=none,
-            vault_certificate=none):
+            vault_certificates=none):
         self.source_vault = source_vault
-        self.vault_certificate = vault_certificate
+        self.vault_certificates = vault_certificates
 
 
 class SourceVault:
@@ -814,7 +814,7 @@ class SchedulingTask:
 
 # endregion
 
-# Region Requests
+# region Requests
 
 class DetachConfiguration:
     """

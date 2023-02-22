@@ -27,6 +27,8 @@ generate:
       - spotinst_sdk2.clients.subscription.SubscriptionClient++
   - clients/managed_instance/managed_instance_aws_client.md:
       - spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient++
+  - clients/stateful_node/stateful_node_azure_client.md:
+      - spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient++
   - models/admin.md:
       - spotinst_sdk2.models.admin.user_mapping++
   - models/setup/azure.md:
@@ -55,7 +57,8 @@ generate:
       - spotinst_sdk2.models.subscription++
   - models/managed_instance/aws.md:
       - spotinst_sdk2.models.managed_instance.aws++
-
+  - models/stateful_node.md:
+      - spotinst_sdk2.models.stateful_node++
 
 
 pages:

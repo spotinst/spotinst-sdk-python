@@ -50,7 +50,7 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
 
-    keywords='spotinst spot instances aws ec2 cloud infrastructure development elastigroup',
+    keywords='spotinst spot instances aws azure ec2 cloud infrastructure development elastigroup',
     packages=[
     "spotinst_sdk2", 
         "spotinst_sdk2.clients", 
@@ -64,6 +64,7 @@ setup(
             "spotinst_sdk2.clients.subscription",
             "spotinst_sdk2.clients.setup",
             "spotinst_sdk2.clients.managed_instance",
+            "spotinst_sdk2.clients.stateful_node",
         "spotinst_sdk2.models",
             "spotinst_sdk2.models.admin",
             "spotinst_sdk2.models.elastigroup",
@@ -83,6 +84,7 @@ setup(
             "spotinst_sdk2.models.subscription",
             "spotinst_sdk2.models.managed_instance",
                 "spotinst_sdk2.models.managed_instance.aws",
+            "spotinst_sdk2.models.stateful_node"
     ],
     install_requires=['requests', 'PyYaml'],
 
