@@ -33,7 +33,7 @@ class ElastigroupAwsClient(Client):
     __base_stateful_url = "https://api.spotinst.io/aws/ec2/statefulMigrationGroup"
 
     # region Elastigroup
-    def create_elastigroup(self, group):
+    def create_elastigroup(self, group, async_scale=False):
         """
         Create an elastigroup
 
@@ -52,10 +52,11 @@ class ElastigroupAwsClient(Client):
 
         body_json = json.dumps(formatted_group_dict)
 
-        self.print_output(body_json)
+        query_params = dict(asyncScale=async_scale)
 
         group_response = self.send_post(
             body=body_json,
+            query_params=query_params,
             url=self.__base_elastigroup_url,
             entity_name='elastigroup')
 
