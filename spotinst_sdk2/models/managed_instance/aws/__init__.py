@@ -469,10 +469,15 @@ class ManagedInstanceUpdateStatesRequest:
         return json.dumps(self, default=lambda o: o.__dict__, 
                         sort_keys=True, indent=4)
 
+class AvailabilityZones:
+    def __init__(self, name: str = None, subnet_ids: List[str] = None):
+        self.name = name
+        self.subnet_ids = subnet_ids
+
 class ManagedInstanceMigration:
     def __init__(self, should_keep_private_ip: bool = none, original_instance_id: str = none,
                 region: str = none, should_terminate_instance: bool = none, managed_instance_name: str =none,
-                product: str = none, spot_instances_types: list = none, availability_zones: list = none):
+                product: str = none, spot_instances_types: List[str] = none, availability_zones: List[AvailabilityZones] = none):
         self.should_keep_private_ip = should_keep_private_ip
         self.original_instance_id = original_instance_id
         self.region = region
@@ -482,7 +487,7 @@ class ManagedInstanceMigration:
         self.spot_instance_types = spot_instances_types
         self.availability_zones = availability_zones
 
-class ManagedInstanceMigrations:
+class ManagedInstanceBulkMigrationRequest:
     def __init__(self, migrations: List[ManagedInstanceMigration] = none):
         self.migrations = migrations
     
@@ -490,7 +495,7 @@ class ManagedInstanceMigrations:
         return json.dumps(self, default=lambda o: o.__dict__, 
                         sort_keys=True, indent=4)
 
-class ManagedInstanceMigrationStatus:
+class ManagedInstanceBulkMigrationStatusRequest:
     def __init__(self, migration_ids: List[str] = none):
         self.migration_ids = migration_ids
     

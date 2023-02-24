@@ -143,8 +143,8 @@ class Strategy:
             self,
             draining_timeout: int = none,
             fallback_to_od: bool = none,
-            od_windows: List[str] = none,
-            optimization_windows: List[str] = none,
+            od_windows: list = none,
+            optimization_windows: list = none,
             preferred_lifecycle: str = none,
             revert_to_spot=none,
             signals=none):
@@ -198,7 +198,7 @@ class Compute:
             os: str = none,
             preferred_zone: str = none,
             vm_sizes=none,
-            zones: List[str] = none):
+            zones: list = none):
         self.launch_specification = launch_specification
         self.os = os
         self.preferred_zone = preferred_zone
@@ -419,7 +419,7 @@ class LoadBalancer:
 
     def __init__(
             self,
-            backend_pool_names: List[str] = none,
+            backend_pool_names: list = none,
             load_balancer_sku: str = none,
             name: str = none,
             resource_group_name: str = none,
@@ -505,7 +505,7 @@ class NetworkInterface:
             enable_ip_forwarding: bool = none,
             is_primary: bool = none,
             network_security_group=none,
-            private_ip_addresses: List[str] = none,
+            private_ip_addresses: list = none,
             public_ips = none,
             public_ip_sku: str = none,
             subnet_name: str = none):
@@ -666,9 +666,9 @@ class VmSizes:
 
     def __init__(
             self,
-            od_sizes: List[str] = none,
-            preferred_spot_sizes: List[str] = none,
-            spot_sizes: List[str] = none):
+            od_sizes: list = none,
+            preferred_spot_sizes: list = none,
+            spot_sizes: list = none):
         self.od_sizes = od_sizes
         self.preferred_spot_sizes = preferred_spot_sizes
         self.spot_sizes = spot_sizes
