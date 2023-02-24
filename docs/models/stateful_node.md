@@ -36,7 +36,7 @@ __Arguments__
 - __health_check_types__: str
 - __auto_healing__: bool
 - __grace_period__: int
-- __unhealthy_duration __: int
+- __unhealthy_duration__: int
 
 <h2 id="spotinst_sdk2.models.stateful_node.SchedulingTask">SchedulingTask</h2>
 

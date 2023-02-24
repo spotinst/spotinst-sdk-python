@@ -35,7 +35,7 @@ class Health:
     health_check_types: str
     auto_healing: bool
     grace_period: int
-    unhealthy_duration : int
+    unhealthy_duration: int
     """
 
     def __init__(
