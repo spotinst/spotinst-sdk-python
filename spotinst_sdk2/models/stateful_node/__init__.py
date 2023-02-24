@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
@@ -142,8 +143,8 @@ class Strategy:
             self,
             draining_timeout: int = none,
             fallback_to_od: bool = none,
-            od_windows: list[str] = none,
-            optimization_windows: list[str] = none,
+            od_windows: List[str] = none,
+            optimization_windows: List[str] = none,
             preferred_lifecycle: str = none,
             revert_to_spot=none,
             signals=none):
@@ -197,7 +198,7 @@ class Compute:
             os: str = none,
             preferred_zone: str = none,
             vm_sizes=none,
-            zones: list[str] = none):
+            zones: List[str] = none):
         self.launch_specification = launch_specification
         self.os = os
         self.preferred_zone = preferred_zone
@@ -409,7 +410,7 @@ class LoadBalancerConfig:
 class LoadBalancer:
     """
     # Arguments
-    backend_pool_names: list[str]
+    backend_pool_names: List[str]
     load_balancer_sku: str
     name: str
     resource_group_name: str
@@ -418,7 +419,7 @@ class LoadBalancer:
 
     def __init__(
             self,
-            backend_pool_names: list[str] = none,
+            backend_pool_names: List[str] = none,
             load_balancer_sku: str = none,
             name: str = none,
             resource_group_name: str = none,
@@ -504,8 +505,8 @@ class NetworkInterface:
             enable_ip_forwarding: bool = none,
             is_primary: bool = none,
             network_security_group=none,
-            private_ip_addresses: list[str] = none,
-            public_ips=none,
+            private_ip_addresses: List[str] = none,
+            public_ips = none,
             public_ip_sku: str = none,
             subnet_name: str = none):
         self.additional_ip_configurations = additional_ip_configurations
@@ -658,16 +659,16 @@ class Tag:
 class VmSizes:
     """
     #Arguments
-    od_sizes: list[str]
-    preferred_spot_sizes: list[str]
+    od_sizes: List[str]
+    preferred_spot_sizes: List[str]
     spot_sizes: List[str]
     """
 
     def __init__(
             self,
-            od_sizes: list[str] = none,
-            preferred_spot_sizes: list[str] = none,
-            spot_sizes: list[str] = none):
+            od_sizes: List[str] = none,
+            preferred_spot_sizes: List[str] = none,
+            spot_sizes: List[str] = none):
         self.od_sizes = od_sizes
         self.preferred_spot_sizes = preferred_spot_sizes
         self.spot_sizes = spot_sizes
