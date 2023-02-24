@@ -95,7 +95,7 @@ class Compute:
 
 class LaunchSpecification:
     """
-    #Arguments
+    # Arguments
     boot_diagnostics: BootDiagnostics
     custom_data: str
     data_disks: List[DataDisk]
@@ -146,7 +146,7 @@ class LaunchSpecification:
 
 class BootDiagnostics:
     """
-    #Arguments
+    # Arguments
     is_enabled: bool
     storage_uri = str
     type: str
@@ -164,7 +164,7 @@ class BootDiagnostics:
 
 class DataDisk:
     """
-    #Arguments
+    # Arguments
     lun: int
     size_gb = int
     type: str
@@ -548,7 +548,7 @@ class Tag:
 
 class VmSizes:
     """
-    #Arguments
+    # Arguments
     od_sizes: list[str]
     preferred_spot_sizes: list[str]
     spot_sizes: List[str]
@@ -569,7 +569,7 @@ class VmSizes:
 # region Health
 class Health:
     """
-    #Arguments
+    # Arguments
     health_check_types: str
     auto_healing: bool
     grace_period: int

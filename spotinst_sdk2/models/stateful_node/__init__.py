@@ -31,7 +31,7 @@ class Persistence:
 
 class Health:
     """
-    #Arguments
+    # Arguments
     health_check_types: str
     auto_healing: bool
     grace_period: int
@@ -142,7 +142,7 @@ class Strategy:
 
 class BootDiagnostics:
     """
-    #Arguments
+    # Arguments
     is_enabled: bool
     storage_uri = str
     type: str
@@ -160,7 +160,7 @@ class BootDiagnostics:
 
 class DataDisk:
     """
-    #Arguments
+    # Arguments
     lun: int
     size_gb = int
     type: str
@@ -535,7 +535,7 @@ class Tag:
 
 class VmSizes:
     """
-    #Arguments
+    # Arguments
     od_sizes: List[str]
     preferred_spot_sizes: List[str]
     spot_sizes: List[str]
@@ -553,7 +553,7 @@ class VmSizes:
 
 class LaunchSpecification:
     """
-    #Arguments
+    # Arguments
     boot_diagnostics: BootDiagnostics
     custom_data: str
     data_disks: List[DataDisk]
