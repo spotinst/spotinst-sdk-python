@@ -395,13 +395,13 @@ __Arguments__
 ```python
 Secret(self,
        source_vault='d3043820717d74d9a17694c176d39733',
-       vault_certificate='d3043820717d74d9a17694c176d39733')
+       vault_certificates='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __source_vault__: SourceVault
-- __vault_certificate__: List[VaultCertificate]
+- __vault_certificates__: List[VaultCertificate]
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure_v3.SourceVault">SourceVault</h2>
 
@@ -666,4 +666,37 @@ __Arguments__
 - __should_decrement_target_capacity__: bool
 - __should_terminate_vms__: bool
 - __instances_to_detach__: list[str]
+
+<h2 id="spotinst_sdk2.models.elastigroup.azure_v3.DeploymentConfiguration">DeploymentConfiguration</h2>
+
+```python
+DeploymentConfiguration(
+  self,
+  batch_min_healthy_percentage='d3043820717d74d9a17694c176d39733',
+  batch_size_percentage='d3043820717d74d9a17694c176d39733',
+  draining_timeout='d3043820717d74d9a17694c176d39733',
+  grace_period='d3043820717d74d9a17694c176d39733',
+  health_check_types='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __batch_min_healthy_percentage__: int
+- __batch_size_percentage__: int
+- __draining_timeout__: int
+- __grace_period__: int
+- __health_check_types__: list[str]
+
+<h2 id="spotinst_sdk2.models.elastigroup.azure_v3.Process">Process</h2>
+
+```python
+Process(self,
+        name='d3043820717d74d9a17694c176d39733',
+        ttl_in_minutes='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __name__: str
+- __ttl_in_minutes__: int
 

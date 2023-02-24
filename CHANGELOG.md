@@ -2,10 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.26] - 2023-02-16
+### Added
+- Add support for Azure Stateful Node APIs
+
 ## [2.1.25] - 2023-02-13
-### Fixed
-- Add support for AWS Managed Instance API: `import_multiple_instances_from_aws`
-- Add support for AWS Managed Instance API: `get_multiple_instances_migration_status`
+### Added
+- Add support for remaining Azure V3 APIs: 
+`get_elastigroup_status`, `get_vm_healthiness`, `suspend_elastigroup`, `resume_elastigroup`,
+`start_deployment`, `get_all_deployments`, `get_deployment`, `get_deployment_status`, 
+`import_from_scale_set`, `import_from_virtual_machine`, `import_from_load_balancer`,
+`import_from_application_gateway`, `create_vm_signal`, `get_elastilog`
 
 ## [2.1.24] - 2023-02-10
 ### Fixed

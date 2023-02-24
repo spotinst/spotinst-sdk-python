@@ -167,12 +167,14 @@ Take note you can create more than one client with the session. The currently su
 - `session.client("setup_gcp")`
 - `session.client("elastigroup_aws")`
 - `session.client("elastigroup_azure")`
+- `session.client("elastigroup_azure_v3")`
 - `session.client("elastigroup_gcp")`
 - `session.client("mcs")`
 - `session.client("mrScaler_aws")`
 - `session.client("ocean_aws")`
 - `session.client("subscription")`
 - `session.client("managed_instance_aws")`
+- `session.client("stateful_node_azure")`
 
 A full list of endpoints and clients can be found in the documentation [here](./docs/clients/).
 
