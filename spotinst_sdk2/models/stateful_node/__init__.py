@@ -1,47 +1,7 @@
 import json
+from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
-
-# region StatefulNode
-
-
-class StatefulNode:
-    """
-    # Arguments
-    compute: Compute
-    description: str
-    health: Health    
-    name: str
-    persistence: Persistence
-    region: str
-    resource_group_name: str
-    scheduling: Scheduling
-    strategy: Strategy
-    """
-
-    def __init__(
-            self,
-            compute=none,
-            description: str = none,
-            health=none,
-            name: str = none,
-            persistence=none,
-            region: str = none,
-            resource_group_name: str = none,
-            scheduling=none,
-            strategy=none):
-        self.compute = compute
-        self.description = description
-        self.health = health
-        self.name = name
-        self.persistence = persistence
-        self.region = region
-        self.resource_group_name = resource_group_name
-        self.scheduling = scheduling
-        self.strategy = strategy
-
-# endregion
-
 
 # region Persistence
 
@@ -94,16 +54,6 @@ class Health:
 
 # region Scheduling
 
-class Scheduling:
-    """
-    # Arguments
-    tasks: list[SchedulingTask]
-    """
-
-    def __init__(self, tasks: list = none):
-        self.tasks = tasks
-
-
 class SchedulingTask:
     """
     # Arguments
@@ -120,41 +70,20 @@ class SchedulingTask:
         self.is_enabled = is_enabled
         self.cron_expression = cron_expression
         self.type = type
+        
+class Scheduling:
+    """
+    # Arguments
+    tasks: List[SchedulingTask]
+    """
+
+    def __init__(self, tasks: List[SchedulingTask] = none):
+        self.tasks = tasks
 
 # endregion
 
 
 # region Strategy
-
-class Strategy:
-    """
-    # Arguments
-    draining_timeout: int
-    fallback_to_od: bool
-    od_windows: List[str]
-    optimization_windows: List[str]
-    preferred_lifecycle: str
-    revert_to_spot: RevertToSpot
-    signals: List[Signal]
-    """
-
-    def __init__(
-            self,
-            draining_timeout: int = none,
-            fallback_to_od: bool = none,
-            od_windows: list[str] = none,
-            optimization_windows: list[str] = none,
-            preferred_lifecycle: str = none,
-            revert_to_spot=none,
-            signals=none):
-        self.draining_timeout = draining_timeout
-        self.fallback_to_od = fallback_to_od
-        self.od_windows = od_windows
-        self.optimization_windows = optimization_windows
-        self.preferred_lifecycle = preferred_lifecycle
-        self.revert_to_spot = revert_to_spot
-        self.signals = signals
-
 
 class RevertToSpot:
     """
@@ -177,90 +106,39 @@ class Signal:
         self.timeout = timeout
         self.type = type
 
+class Strategy:
+    """
+    # Arguments
+    draining_timeout: int
+    fallback_to_od: bool
+    od_windows: List[str]
+    optimization_windows: List[str]
+    preferred_lifecycle: str
+    revert_to_spot: RevertToSpot
+    signals: List[Signal]
+    """
+
+    def __init__(
+            self,
+            draining_timeout: int = none,
+            fallback_to_od: bool = none,
+            od_windows: List[str] = none,
+            optimization_windows: List[str] = none,
+            preferred_lifecycle: str = none,
+            revert_to_spot: RevertToSpot =none,
+            signals: List[Signal] = none):
+        self.draining_timeout = draining_timeout
+        self.fallback_to_od = fallback_to_od
+        self.od_windows = od_windows
+        self.optimization_windows = optimization_windows
+        self.preferred_lifecycle = preferred_lifecycle
+        self.revert_to_spot = revert_to_spot
+        self.signals = signals
+
 # endregion
 
 
 # region Compute
-class Compute:
-    """
-    # Arguments
-    launch_specification: LaunchSpecification
-    os: str
-    preferred_zone: str
-    vm_sizes: VmSizes
-    zones: List[str]
-    """
-
-    def __init__(
-            self,
-            launch_specification=none,
-            os: str = none,
-            preferred_zone: str = none,
-            vm_sizes=none,
-            zones: list[str] = none):
-        self.launch_specification = launch_specification
-        self.os = os
-        self.preferred_zone = preferred_zone
-        self.vm_sizes = vm_sizes
-        self.zones = zones
-
-
-class LaunchSpecification:
-    """
-    #Arguments
-    boot_diagnostics: BootDiagnostics
-    custom_data: str
-    data_disks: list[DataDisk]
-    extensions: list[Extension]
-    image: Image
-    license_type: str
-    load_balancers_config: LoadBalancerConfig
-    login: Login
-    managed_service_identities: list[ManagedServiceIdentity]
-    network: Network
-    os_disk: OsDisk
-    secrets: List[Secret]
-    shutdown_script: str
-    tags: list[Tag]
-    vm_name: str
-    vm_name_prefix: str
-    """
-
-    def __init__(
-            self,
-            boot_diagnostics=none,
-            custom_data: str = none,
-            data_disks=none,
-            extensions=none,
-            image=none,
-            license_type: str = none,
-            load_balancers_config=none,
-            login=none,
-            managed_service_identities=none,
-            network=none,
-            os_disk=none,
-            secrets=none,
-            shutdown_script: str = none,
-            tags=none,
-            vm_name: str = none,
-            vm_name_prefix: str = none):
-        self.boot_diagnostics = boot_diagnostics
-        self.custom_data = custom_data
-        self.data_disks = data_disks
-        self.extensions = extensions
-        self.image = image
-        self.license_type = license_type
-        self.load_balancers_config = load_balancers_config
-        self.login = login
-        self.managed_service_identities = managed_service_identities
-        self.network = network
-        self.os_disk = os_disk
-        self.secrets = secrets
-        self.shutdown_script = shutdown_script
-        self.tags = tags
-        self.vm_name = vm_name
-        self.vm_name_prefix = vm_name_prefix
-
 
 class BootDiagnostics:
     """
@@ -320,20 +198,6 @@ class Extension:
         self.name = name
         self.publisher = publisher
         self.type = type
-
-
-class Image:
-    """
-    # Arguments
-    marketplace: Marketplace
-    custom: Custom
-    gallery: Gallery
-    """
-
-    def __init__(self, marketplace=none, custom=none, gallery=none):
-        self.marketplace = marketplace
-        self.custom = custom
-        self.gallery = gallery
 
 
 class Marketplace:
@@ -396,20 +260,24 @@ class Gallery:
         self.version_name = version_name
 
 
-class LoadBalancerConfig:
+class Image:
     """
     # Arguments
-    load_balancers: list[LoadBalancer]
+    marketplace: Marketplace
+    custom: Custom
+    gallery: Gallery
     """
 
-    def __init__(self, load_balancers=none):
-        self.load_balancers = load_balancers
+    def __init__(self, marketplace: Marketplace = none, custom: Custom = none, gallery: Gallery = none):
+        self.marketplace = marketplace
+        self.custom = custom
+        self.gallery = gallery
 
 
 class LoadBalancer:
     """
     # Arguments
-    backend_pool_names: list[str]
+    backend_pool_names: List[str]
     load_balancer_sku: str
     name: str
     resource_group_name: str
@@ -418,7 +286,7 @@ class LoadBalancer:
 
     def __init__(
             self,
-            backend_pool_names: list[str] = none,
+            backend_pool_names: List[str] = none,
             load_balancer_sku: str = none,
             name: str = none,
             resource_group_name: str = none,
@@ -428,6 +296,16 @@ class LoadBalancer:
         self.name = name
         self.resource_group_name = resource_group_name
         self.type = type
+
+
+class LoadBalancerConfig:
+    """
+    # Arguments
+    load_balancers: List[LoadBalancer]
+    """
+
+    def __init__(self, load_balancers: List[LoadBalancer] = none):
+        self.load_balancers = load_balancers
 
 
 class Login:
@@ -461,63 +339,6 @@ class ManagedServiceIdentity:
             name: str = none):
         self.resource_group_name = resource_group_name
         self.name = name
-
-
-class Network:
-    """
-    # Arguments
-    network_interfaces: List[NetworkInterface]
-    resource_group_name: str
-    virtual_network_name: str
-    """
-
-    def __init__(
-            self,
-            network_interfaces=none,
-            virtual_network_name: str = none,
-            resource_group_name: str = none):
-        self.network_interfaces = network_interfaces
-        self.virtual_network_name = virtual_network_name
-        self.resource_group_name = resource_group_name
-
-
-class NetworkInterface:
-    """
-    # Arguments
-    additional_ip_configurations: List[AdditionalIpConfiguration]
-    application_security_groups: List[ApplicationSecurityGroup]
-    assign_public_ip: bool
-    enable_ip_forwarding: bool
-    is_primary: bool
-    network_security_group: NetworkSecurityGroup
-    private_ip_addresses: List[str]
-    public_ips: List[PublicIp]
-    public_ip_sku: str
-    subnet_name: str
-    """
-
-    def __init__(
-            self,
-            additional_ip_configurations=none,
-            application_security_groups=none,
-            assign_public_ip: bool = none,
-            enable_ip_forwarding: bool = none,
-            is_primary: bool = none,
-            network_security_group=none,
-            private_ip_addresses: list[str] = none,
-            public_ips=none,
-            public_ip_sku: str = none,
-            subnet_name: str = none):
-        self.additional_ip_configurations = additional_ip_configurations
-        self.application_security_groups = application_security_groups
-        self.assign_public_ip = assign_public_ip
-        self.enable_ip_forwarding = enable_ip_forwarding
-        self.is_primary = is_primary
-        self.network_security_group = network_security_group
-        self.private_ip_addresses = private_ip_addresses
-        self.public_ips = public_ips
-        self.public_ip_sku = public_ip_sku
-        self.subnet_name = subnet_name
 
 
 class AdditionalIpConfiguration:
@@ -580,6 +401,63 @@ class PublicIp:
         self.resource_group_name = resource_group_name
 
 
+class NetworkInterface:
+    """
+    # Arguments
+    additional_ip_configurations: List[AdditionalIpConfiguration]
+    application_security_groups: List[ApplicationSecurityGroup]
+    assign_public_ip: bool
+    enable_ip_forwarding: bool
+    is_primary: bool
+    network_security_group: NetworkSecurityGroup
+    private_ip_addresses: List[str]
+    public_ips: List[PublicIp]
+    public_ip_sku: str
+    subnet_name: str
+    """
+
+    def __init__(
+            self,
+            additional_ip_configurations: List[AdditionalIpConfiguration] = none,
+            application_security_groups: List[ApplicationSecurityGroup] = none,
+            assign_public_ip: bool = none,
+            enable_ip_forwarding: bool = none,
+            is_primary: bool = none,
+            network_security_group=none,
+            private_ip_addresses: List[str] = none,
+            public_ips: List[PublicIp] = none,
+            public_ip_sku: str = none,
+            subnet_name: str = none):
+        self.additional_ip_configurations = additional_ip_configurations
+        self.application_security_groups = application_security_groups
+        self.assign_public_ip = assign_public_ip
+        self.enable_ip_forwarding = enable_ip_forwarding
+        self.is_primary = is_primary
+        self.network_security_group = network_security_group
+        self.private_ip_addresses = private_ip_addresses
+        self.public_ips = public_ips
+        self.public_ip_sku = public_ip_sku
+        self.subnet_name = subnet_name
+
+
+class Network:
+    """
+    # Arguments
+    network_interfaces: List[NetworkInterface]
+    resource_group_name: str
+    virtual_network_name: str
+    """
+
+    def __init__(
+            self,
+            network_interfaces: List[NetworkInterface] = none,
+            virtual_network_name: str = none,
+            resource_group_name: str = none):
+        self.network_interfaces = network_interfaces
+        self.virtual_network_name = virtual_network_name
+        self.resource_group_name = resource_group_name
+
+
 class OsDisk:
     """
     # Arguments
@@ -593,21 +471,6 @@ class OsDisk:
             type: str = none):
         self.size_g_b = size_g_b
         self.type = type
-
-
-class Secret:
-    """
-    # Arguments
-    source_vault: SourceVault
-    vault_certificates: List[VaultCertificate]
-    """
-
-    def __init__(
-            self,
-            source_vault=none,
-            vault_certificates=none):
-        self.source_vault = source_vault
-        self.vault_certificates = vault_certificates
 
 
 class SourceVault:
@@ -640,6 +503,21 @@ class VaultCertificate:
         self.certificate_url = certificate_url
 
 
+class Secret:
+    """
+    # Arguments
+    source_vault: SourceVault
+    vault_certificates: List[VaultCertificate]
+    """
+
+    def __init__(
+            self,
+            source_vault: SourceVault = none,
+            vault_certificates: List[VaultCertificate] = none):
+        self.source_vault = source_vault
+        self.vault_certificates = vault_certificates
+
+
 class Tag:
     """
     # Arguments
@@ -658,19 +536,139 @@ class Tag:
 class VmSizes:
     """
     #Arguments
-    od_sizes: list[str]
-    preferred_spot_sizes: list[str]
+    od_sizes: List[str]
+    preferred_spot_sizes: List[str]
     spot_sizes: List[str]
     """
 
     def __init__(
             self,
-            od_sizes: list[str] = none,
-            preferred_spot_sizes: list[str] = none,
-            spot_sizes: list[str] = none):
+            od_sizes: List[str] = none,
+            preferred_spot_sizes: List[str] = none,
+            spot_sizes: List[str] = none):
         self.od_sizes = od_sizes
         self.preferred_spot_sizes = preferred_spot_sizes
         self.spot_sizes = spot_sizes
+
+
+class LaunchSpecification:
+    """
+    #Arguments
+    boot_diagnostics: BootDiagnostics
+    custom_data: str
+    data_disks: List[DataDisk]
+    extensions: List[Extension]
+    image: Image
+    license_type: str
+    load_balancers_config: LoadBalancerConfig
+    login: Login
+    managed_service_identities: List[ManagedServiceIdentity]
+    network: Network
+    os_disk: OsDisk
+    secrets: List[Secret]
+    shutdown_script: str
+    tags: List[Tag]
+    vm_name: str
+    vm_name_prefix: str
+    """
+
+    def __init__(
+            self,
+            boot_diagnostics: BootDiagnostics = none,
+            custom_data: str = none,
+            data_disks: List[DataDisk] = none,
+            extensions: List[Extension] = none,
+            image: Image = none,
+            license_type: str = none,
+            load_balancers_config: LoadBalancerConfig = none,
+            login: Login = none,
+            managed_service_identities: List[ManagedServiceIdentity] = none,
+            network: Network = none,
+            os_disk: OsDisk = none,
+            secrets: List[Secret] = none,
+            shutdown_script: str = none,
+            tags: List[Tag] = none,
+            vm_name: str = none,
+            vm_name_prefix: str = none):
+        self.boot_diagnostics = boot_diagnostics
+        self.custom_data = custom_data
+        self.data_disks = data_disks
+        self.extensions = extensions
+        self.image = image
+        self.license_type = license_type
+        self.load_balancers_config = load_balancers_config
+        self.login = login
+        self.managed_service_identities = managed_service_identities
+        self.network = network
+        self.os_disk = os_disk
+        self.secrets = secrets
+        self.shutdown_script = shutdown_script
+        self.tags = tags
+        self.vm_name = vm_name
+        self.vm_name_prefix = vm_name_prefix
+
+
+class Compute:
+    """
+    # Arguments
+    launch_specification: LaunchSpecification
+    os: str
+    preferred_zone: str
+    vm_sizes: VmSizes
+    zones: List[str]
+    """
+
+    def __init__(
+            self,
+            launch_specification: LaunchSpecification = none,
+            os: str = none,
+            preferred_zone: str = none,
+            vm_sizes: VmSizes = none,
+            zones: List[str] = none):
+        self.launch_specification = launch_specification
+        self.os = os
+        self.preferred_zone = preferred_zone
+        self.vm_sizes = vm_sizes
+        self.zones = zones
+
+# endregion
+
+# region StatefulNode
+
+class StatefulNode:
+    """
+    # Arguments
+    compute: Compute
+    description: str
+    health: Health    
+    name: str
+    persistence: Persistence
+    region: str
+    resource_group_name: str
+    scheduling: Scheduling
+    strategy: Strategy
+    """
+
+    def __init__(
+            self,
+            compute: Compute =none,
+            description: str = none,
+            health: Health =none,
+            name: str = none,
+            persistence: Persistence =none,
+            region: str = none,
+            resource_group_name: str = none,
+            scheduling: Scheduling =none,
+            strategy: Strategy =none):
+        self.compute = compute
+        self.description = description
+        self.health = health
+        self.name = name
+        self.persistence = persistence
+        self.region = region
+        self.resource_group_name = resource_group_name
+        self.scheduling = scheduling
+        self.strategy = strategy
 
 # endregion
 
