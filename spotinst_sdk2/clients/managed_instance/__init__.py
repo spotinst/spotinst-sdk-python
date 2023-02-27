@@ -299,7 +299,7 @@ class ManagedInstanceAwsClient(Client):
         # Returns
         (Object): ManagedInstanceMigrations API response
         """
-        req = aws_managed_instance.ManagedInstanceMigrations(migrations_list)
+        req = aws_managed_instance.ManagedInstanceBulkMigrationRequest(migrations_list)
 
         post_url = self.__base_mi_url + "/" + "migration" + "/" + "bulk"
 
@@ -332,7 +332,7 @@ class ManagedInstanceAwsClient(Client):
         # Returns
         (Object): ManagedInstanceMigrations API response
         """
-        req = aws_managed_instance.ManagedInstanceMigrationStatus(migration_ids)
+        req = aws_managed_instance.ManagedInstanceBulkMigrationStatusRequest(migration_ids)
 
         post_url = self.__base_mi_url + "/" + "migration" + "/" + "search"
 
