@@ -1125,16 +1125,19 @@ class AvailabilityZone:
     """
     # Arguments
     name: str
+    subnet_id: str
     subnet_ids: list
     placement_group_name: str
     """
     def __init__(
             self,
             name=none,
+            subnet_id=none,
             subnet_ids=none,
             placement_group_name=none):
 
         self.name = name
+        self.subnet_id = subnet_id
         self.subnet_ids = subnet_ids
         self.placement_group_name = placement_group_name
 
@@ -1219,7 +1222,7 @@ class LaunchSpecification:
     network_interfaces: list[NetworkInterface]
     tags: list[Tag]
     resource_tag_specification: ResourceTagSpecification
-    auto_healing: bool,
+    auto_healing: bool
     cpu_options: CpuOptions
     metadata_options: MetadataOptions
     """

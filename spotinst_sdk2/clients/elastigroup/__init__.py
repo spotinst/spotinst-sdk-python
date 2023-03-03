@@ -33,7 +33,7 @@ class ElastigroupAwsClient(Client):
     __base_stateful_url = "https://api.spotinst.io/aws/ec2/statefulMigrationGroup"
 
     # region Elastigroup
-    def create_elastigroup(self, group, async_scale=False):
+    def create_elastigroup(self, group, async_scale=None):
         """
         Create an elastigroup
 
@@ -52,13 +52,11 @@ class ElastigroupAwsClient(Client):
 
         body_json = json.dumps(formatted_group_dict)
 
-        query_params = dict(asyncScale=async_scale)
-
-        group_response = self.send_post(
+        group_response = self.send_post_with_params(
             body=body_json,
-            query_params=query_params,
             url=self.__base_elastigroup_url,
-            entity_name='elastigroup')
+            entity_name='elastigroup',
+            user_query_params=dict(asyncScale=async_scale))
 
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
@@ -138,7 +136,7 @@ class ElastigroupAwsClient(Client):
 
     def get_elastigroups(self):
         """
-        Get all elastigroup
+        Get all elastigroups
 
         # Returns
         (List): List of Elastigroup API response 
@@ -422,7 +420,7 @@ class ElastigroupAwsClient(Client):
 
     def get_instance_healthiness(self, group_id):
         """
-        get all instances a healthyness from an elastigroup
+        Get a list of instances with health status.
 
         # Arguments
         group_id (String): Elastigroup ID

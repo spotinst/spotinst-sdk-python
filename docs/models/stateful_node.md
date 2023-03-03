@@ -25,7 +25,8 @@ __Arguments__
 
 ```python
 Health(self,
-       health_check_types: str = 'd3043820717d74d9a17694c176d39733',
+       health_check_types:
+       typing.List[str] = 'd3043820717d74d9a17694c176d39733',
        auto_healing: bool = 'd3043820717d74d9a17694c176d39733',
        grace_period: int = 'd3043820717d74d9a17694c176d39733',
        unhealthy_duration: int = 'd3043820717d74d9a17694c176d39733')
@@ -33,7 +34,7 @@ Health(self,
 
 __Arguments__
 
-- __health_check_types__: str
+- __health_check_types__: List[str]
 - __auto_healing__: bool
 - __grace_period__: int
 - __unhealthy_duration__: int

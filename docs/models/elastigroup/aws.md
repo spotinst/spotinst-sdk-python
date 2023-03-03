@@ -1010,12 +1010,12 @@ AvailabilityZone(
   placement_group_name='d3043820717d74d9a17694c176d39733')
 ```
 
-__Aerguments__
+__Arguments__
 
-name:
-subnet_id:
-subnet_ids:
-placement_group_name:
+- __name__: str
+- __subnet_id__: str
+- __subnet_ids__: list
+- __placement_group_name__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.InstanceTypes">InstanceTypes</h2>
 
@@ -1099,7 +1099,10 @@ LaunchSpecification(
   block_device_mappings='d3043820717d74d9a17694c176d39733',
   network_interfaces='d3043820717d74d9a17694c176d39733',
   tags='d3043820717d74d9a17694c176d39733',
-  resource_tag_specification='d3043820717d74d9a17694c176d39733')
+  resource_tag_specification='d3043820717d74d9a17694c176d39733',
+  auto_healing='d3043820717d74d9a17694c176d39733',
+  cpu_options='d3043820717d74d9a17694c176d39733',
+  metadata_options='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1123,6 +1126,9 @@ __Arguments__
 - __network_interfaces__: list[NetworkInterface]
 - __tags__: list[Tag]
 - __resource_tag_specification__: ResourceTagSpecification
+- __auto_healing__: bool
+- __cpu_options__: CpuOptions
+- __metadata_options__: MetadataOptions
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.CreditSpecification">CreditSpecification</h2>
 
@@ -1309,6 +1315,32 @@ __Arguments__
 
 - __private_ip_address__: str
 - __primary__: bool
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.CpuOptions">CpuOptions</h2>
+
+```python
+CpuOptions(self, threads_per_core='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __threads_per_core__: int
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.MetadataOptions">MetadataOptions</h2>
+
+```python
+MetadataOptions(
+  self,
+  http_put_response_hop_limit='d3043820717d74d9a17694c176d39733',
+  http_tokens='d3043820717d74d9a17694c176d39733',
+  instance_metadata_tags='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __http_put_response_hop_limit__: int
+- __http_tokens__: str
+- __instance_metadata_tags__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Roll">Roll</h2>
 

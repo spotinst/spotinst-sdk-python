@@ -32,7 +32,7 @@ class Persistence:
 class Health:
     """
     # Arguments
-    health_check_types: str
+    health_check_types: List[str]
     auto_healing: bool
     grace_period: int
     unhealthy_duration: int
@@ -40,7 +40,7 @@ class Health:
 
     def __init__(
             self,
-            health_check_types: str = none,
+            health_check_types: List[str] = none,
             auto_healing: bool = none,
             grace_period: int = none,
             unhealthy_duration: int = none):
