@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.28] - 2023-03-03
+### Added
+- Add `cpu_options`, `auto_healing`, `metadata_options` fields in `LaunchSpecification` model in spotinst_sdk2.models.elastigroup.aws
+
+### Fixed
+- Changed `health_check_types` to string list in `Health` model in spotinst_sdk2.models.stateful_node
+
 ## [2.1.27] - 2023-02-24
 ### Fixed
 - TypeError in spotinst_sdk2.models.stateful_node
