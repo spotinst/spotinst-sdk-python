@@ -135,6 +135,35 @@ class Client:
             }
         )
 
+        self.print_output("Sending post request to spotinst API.")        
+        
+        result = requests.post(
+            url,
+            params=query_params,
+            data=body,
+            headers=headers,
+            timeout=self.timeout)
+
+        if result.status_code == requests.codes.ok:
+            self.print_output("Success")
+            data = json.loads(result.content.decode('utf-8'))
+            return data
+        else:
+            self.handle_exception("creating {}".format(entity_name), result)
+
+    def send_post_with_params(self, url, entity_name, body, user_query_params):
+        agent = self.resolve_user_agent()
+
+        query_params = self.build_query_params_with_input(user_query_params)
+        
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
+
         self.print_output("Sending post request to spotinst API.")
 
         result = requests.post(
@@ -143,7 +172,7 @@ class Client:
             data=body,
             headers=headers,
             timeout=self.timeout)
-
+        
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
             data = json.loads(result.content.decode('utf-8'))
@@ -168,6 +197,7 @@ class Client:
         )
 
         self.print_output("Sending put request to spotinst API.")
+        
         result = requests.put(
             url,
             params=query_params,

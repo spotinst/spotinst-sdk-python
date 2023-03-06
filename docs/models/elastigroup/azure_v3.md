@@ -86,21 +86,22 @@ LaunchSpecification(
   vm_name_prefix='d3043820717d74d9a17694c176d39733')
 ```
 
-#Arguments
-boot_diagnostics: BootDiagnostics
-custom_data: str
-data_disks: List[DataDisk]
-extensions: list[Extension]
-image: Image
-load_balancers_config: LoadBalancerConfig
-login: Login
-managed_service_identities: list[ManagedServiceIdentity]
-network: Network
-os_disk: OsDisk
-secrets: List[Secret]
-shutdown_script: str
-tags: list[Tag]
-vm_name_prefix: str
+__Arguments__
+
+- __boot_diagnostics__: BootDiagnostics
+- __custom_data__: str
+- __data_disks__: List[DataDisk]
+- __extensions__: list[Extension]
+- __image__: Image
+- __load_balancers_config__: LoadBalancerConfig
+- __login__: Login
+- __managed_service_identities__: list[ManagedServiceIdentity]
+- __network__: Network
+- __os_disk__: OsDisk
+- __secrets__: List[Secret]
+- __shutdown_script__: str
+- __tags__: list[Tag]
+- __vm_name_prefix__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure_v3.BootDiagnostics">BootDiagnostics</h2>
 
@@ -111,10 +112,11 @@ BootDiagnostics(self,
                 type='d3043820717d74d9a17694c176d39733')
 ```
 
-#Arguments
-is_enabled: bool
+__Arguments__
+
+- __is_enabled__: bool
 storage_uri = str
-type: str
+- __type__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure_v3.DataDisk">DataDisk</h2>
 
@@ -125,10 +127,11 @@ DataDisk(self,
          type='d3043820717d74d9a17694c176d39733')
 ```
 
-#Arguments
-lun: int
+__Arguments__
+
+- __lun__: int
 size_gb = int
-type: str
+- __type__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure_v3.Extension">Extension</h2>
 
@@ -451,10 +454,11 @@ VmSizes(self,
         spot_sizes='d3043820717d74d9a17694c176d39733')
 ```
 
-#Arguments
-od_sizes: list[str]
-preferred_spot_sizes: list[str]
-spot_sizes: List[str]
+__Arguments__
+
+- __od_sizes__: list[str]
+- __preferred_spot_sizes__: list[str]
+- __spot_sizes__: List[str]
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure_v3.Health">Health</h2>
 
@@ -466,11 +470,12 @@ Health(self,
        unhealthy_duration='d3043820717d74d9a17694c176d39733')
 ```
 
-#Arguments
-health_check_types: str
-auto_healing: bool
-grace_period: int
-unhealthy_duration : int
+__Arguments__
+
+- __health_check_types__: str
+- __auto_healing__: bool
+- __grace_period__: int
+- __unhealthy_duration__: int
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure_v3.Scaling">Scaling</h2>
 

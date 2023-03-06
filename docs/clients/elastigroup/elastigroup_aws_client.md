@@ -82,7 +82,7 @@ __Returns__
 ElastigroupAwsClient.get_elastigroups()
 ```
 
-Get all elastigroup
+Get all elastigroups
 
 __Returns__
 
@@ -265,7 +265,7 @@ __Returns__
 ElastigroupAwsClient.get_instance_healthiness(group_id)
 ```
 
-get all instances a healthyness from an elastigroup
+Get a list of instances with health status.
 
 __Arguments__
 

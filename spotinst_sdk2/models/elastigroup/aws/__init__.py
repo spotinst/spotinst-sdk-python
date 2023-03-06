@@ -1123,11 +1123,11 @@ class Compute:
 
 class AvailabilityZone:
     """
-    # Aerguments
-    name:
-    subnet_id:
-    subnet_ids:
-    placement_group_name:
+    # Arguments
+    name: str
+    subnet_id: str
+    subnet_ids: list
+    placement_group_name: str
     """
     def __init__(
             self,
@@ -1222,6 +1222,9 @@ class LaunchSpecification:
     network_interfaces: list[NetworkInterface]
     tags: list[Tag]
     resource_tag_specification: ResourceTagSpecification
+    auto_healing: bool
+    cpu_options: CpuOptions
+    metadata_options: MetadataOptions
     """
     def __init__(
             self,
@@ -1243,7 +1246,10 @@ class LaunchSpecification:
             block_device_mappings=none,
             network_interfaces=none,
             tags=none,
-            resource_tag_specification=none):
+            resource_tag_specification=none,
+            auto_healing=none,
+            cpu_options=none,
+            metadata_options=none):
 
         self.load_balancers_config = load_balancers_config
         self.health_check_type = health_check_type
@@ -1264,6 +1270,9 @@ class LaunchSpecification:
         self.network_interfaces = network_interfaces
         self.tags = tags
         self.resource_tag_specification = resource_tag_specification
+        self.auto_healing = auto_healing
+        self.cpu_options = cpu_options
+        self.metadata_options = metadata_options
 
 
 class CreditSpecification:
@@ -1398,6 +1407,7 @@ class EBS:
         self.dynamic_volume_size = dynamic_volume_size
         self.throughput = throughput
 
+
 class DynamicVolumeSize:
     """
     # Arguments
@@ -1481,6 +1491,32 @@ class PrivateIpAddress:
         self.private_ip_address = private_ip_address
         self.primary = primary
 
+
+class CpuOptions:
+    """
+    # Arguments
+    threads_per_core: int
+    """
+    def __init__(self, threads_per_core=none):
+
+        self.threads_per_core = threads_per_core
+
+
+class MetadataOptions:
+    """
+    # Arguments
+    http_put_response_hop_limit: int
+    http_tokens: str
+    instance_metadata_tags: str
+    """
+    def __init__(self, 
+                 http_put_response_hop_limit=none,
+                 http_tokens=none,
+                 instance_metadata_tags=none):
+
+        self.http_put_response_hop_limit = http_put_response_hop_limit
+        self.http_tokens = http_tokens
+        self.instance_metadata_tags = instance_metadata_tags
 
 # endregion
 
