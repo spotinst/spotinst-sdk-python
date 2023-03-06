@@ -223,3 +223,37 @@ __Returns__
 
 `(Object)`: ManagedInstance API response
 
+<h2 id="spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient.import_multiple_instances_from_aws">import_multiple_instances_from_aws</h2>
+
+```python
+ManagedInstanceAwsClient.import_multiple_instances_from_aws(
+  migrations_list: list)
+```
+
+Import Multiple Instances From AWS
+
+__Arguments__
+
+- __migrations_list (List)__: ManagedInstanceMigration List
+
+__Returns__
+
+`(Object)`: ManagedInstanceMigrations API response
+
+<h2 id="spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient.get_multiple_instances_migration_status">get_multiple_instances_migration_status</h2>
+
+```python
+ManagedInstanceAwsClient.get_multiple_instances_migration_status(
+  migration_ids: list)
+```
+
+Import Multiple Instances From AWS
+
+__Arguments__
+
+- __migration_ids (List)__: List of ManagedInstanceMigrationIds
+
+__Returns__
+
+`(Object)`: ManagedInstanceMigrations API response
+
