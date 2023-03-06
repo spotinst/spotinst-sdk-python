@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.29] - 2023-03-06
+### Added
+- Add support for AWS Managed Instance API: `import_multiple_instances_from_aws`
+- Add support for AWS Managed Instance API: `get_multiple_instances_migration_status`
+
 ## [2.1.28] - 2023-03-03
 ### Added
 - Add `cpu_options`, `auto_healing`, `metadata_options` fields in `LaunchSpecification` model in spotinst_sdk2.models.elastigroup.aws
