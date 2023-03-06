@@ -336,8 +336,7 @@ class ManagedInstanceAwsClient(Client):
 
         post_url = self.__base_mi_url + "/" + "migration" + "/" + "search"
 
-        req_json_str = req.toJSON()
-        req_exclude_missing = self.exclude_missing(json.loads(req_json_str))
+        req_exclude_missing = self.exclude_missing(json.loads(req.toJSON()))
 
         formatted_mi_dict = self.convert_json(
             req_exclude_missing, self.underscore_to_camel)
