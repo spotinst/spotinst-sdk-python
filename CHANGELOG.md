@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.30] - 2023-03-19
+### Added
+- Add `immediate_o_d_recover_threshold` field in `Strategy` model in spotinst_sdk2.models.elastigroup.aws
+
 ## [2.1.29] - 2023-03-06
 ### Added
 - Add support for AWS Managed Instance API: `import_multiple_instances_from_aws`

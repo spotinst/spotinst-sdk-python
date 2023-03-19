@@ -77,7 +77,8 @@ class Strategy:
             signals=none,
             scaling_strategy=none,
             persistence=none,
-            revert_to_spot=none):
+            revert_to_spot=none,
+            immediate_o_d_recover_threshold = none):
 
         self.risk = risk
         self.utilize_commitments = utilize_commitments
@@ -93,6 +94,7 @@ class Strategy:
         self.scaling_strategy = scaling_strategy
         self.persistence = persistence
         self.revert_to_spot = revert_to_spot
+        self.immediate_o_d_recover_threshold = immediate_o_d_recover_threshold
 
 
 class Signal:
