@@ -570,7 +570,7 @@ class VmSizes:
 class Health:
     """
     # Arguments
-    health_check_types: str
+    health_check_types: list[str]
     auto_healing: bool
     grace_period: int
     unhealthy_duration: int

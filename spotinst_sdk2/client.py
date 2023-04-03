@@ -2,9 +2,9 @@ import json
 import os
 import re
 
-import requests
-import yaml
 import logging
+import requests
+
 
 VAR_SPOTINST_LOG_LEVEL = 'SPOTINST_LOG_LEVEL'
 
@@ -19,7 +19,7 @@ _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
 class Client:
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
-    
+
     __account_id_key = "accountId"
 
 
@@ -41,10 +41,6 @@ class Client:
 
         self.timeout = timeout
 
-    # region Utils
-    def print_output(self, output):
-        if self.should_print_output is True:
-            print(output)
 
     def send_get(self, url,entity_name,query_params=None):
         agent = self.resolve_user_agent()
@@ -63,10 +59,13 @@ class Client:
         )
 
         self.print_output("Sending get request to spotinst API.")
-        result = requests.get(url, params=query_params, headers=headers, timeout=self.timeout)
+        self.print_output("Request Query Params - " + str(query_params))
+
+        result = requests.get(url, params=query_params, headers=headers, timeout=self.timeout)        
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
+            self.print_output("Response - " + str(result))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -84,11 +83,13 @@ class Client:
         )
 
         self.print_output("Sending deletion request to spotinst API.")
+        self.print_output("Request Query Params - " + str(query_params))
 
         result = requests.delete(url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
+            self.print_output("Response - " + str(result))
             return True
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
@@ -105,6 +106,8 @@ class Client:
         )
 
         self.print_output("Sending deletion request to spotinst API.")
+        self.print_output("Request Query Params - " + str(query_params))
+        self.print_output("Request Body - " + str(body))
 
         result = requests.delete(
             url,
@@ -115,6 +118,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
+            self.print_output("Response - " + str(result))
             return True
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
@@ -135,17 +139,20 @@ class Client:
             }
         )
 
-        self.print_output("Sending post request to spotinst API.")        
-        
+        self.print_output("Sending post request to spotinst API.")
+        self.print_output("Request Query Params - " + str(query_params))
+        self.print_output("Request Body - " + str(body))
+
         result = requests.post(
             url,
             params=query_params,
             data=body,
             headers=headers,
             timeout=self.timeout)
-
+        
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
+            self.print_output("Response - " + str(result))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -165,6 +172,8 @@ class Client:
         )
 
         self.print_output("Sending post request to spotinst API.")
+        self.print_output("Request Query Params - " + str(query_params))
+        self.print_output("Request Body - " + str(body))
 
         result = requests.post(
             url,
@@ -172,9 +181,10 @@ class Client:
             data=body,
             headers=headers,
             timeout=self.timeout)
-        
+
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
+            self.print_output("Response - " + str(result))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -197,7 +207,9 @@ class Client:
         )
 
         self.print_output("Sending put request to spotinst API.")
-        
+        self.print_output("Request Query Params - " + str(query_params))
+        self.print_output("Request Body - " + str(body))
+
         result = requests.put(
             url,
             params=query_params,
@@ -207,6 +219,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
+            self.print_output("Response - " + str(result))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -225,6 +238,8 @@ class Client:
         )
 
         self.print_output("Sending put request to spotinst API.")
+        self.print_output("Request Query Params - " + str(query_params))
+        self.print_output("Request Body - " + str(body))
 
         result = requests.put(
             url,
@@ -235,6 +250,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
+            self.print_output("Response - " + str(result))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -369,10 +385,11 @@ class Client:
     def init_logger():
         logging.basicConfig(level=logging.CRITICAL)
         logger = logging.getLogger(__name__)
-        handler = logging.StreamHandler()
-        formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
+        if not logger.hasHandlers():
+            handler = logging.StreamHandler()
+            formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
         return logger
 
     def set_log_level(self, log_level):

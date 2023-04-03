@@ -66,6 +66,18 @@ __Returns__
 
 `(Object)`: Ocean API response
 
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.fetch_rightsizing_recommendations">fetch_rightsizing_recommendations</h2>
+
+```python
+OceanAwsClient.fetch_rightsizing_recommendations(ocean_id, filter=None)
+```
+
+Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
+
+__Returns__
+
+`(Object)`: Ocean API response
+
 <h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_ocean_cluster">get_ocean_cluster</h2>
 
 ```python
