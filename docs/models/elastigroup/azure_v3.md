@@ -472,7 +472,7 @@ Health(self,
 
 __Arguments__
 
-- __health_check_types__: str
+- __health_check_types__: list[str]
 - __auto_healing__: bool
 - __grace_period__: int
 - __unhealthy_duration__: int

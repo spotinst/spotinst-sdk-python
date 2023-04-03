@@ -257,3 +257,34 @@ __Argument__
 
 all_matches:  List(AllMatchInner)
 
+<h2 id="spotinst_sdk2.models.ocean.aws.Attribute">Attribute</h2>
+
+```python
+Attribute(self,
+          key: str = 'd3043820717d74d9a17694c176d39733',
+          operator: str = 'd3043820717d74d9a17694c176d39733',
+          type: str = 'd3043820717d74d9a17694c176d39733',
+          value: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Argument__
+
+key: str
+operator: str
+type: str
+value: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.RightSizingRecommendationFilter">RightSizingRecommendationFilter</h2>
+
+```python
+RightSizingRecommendationFilter(
+  self,
+  attribute: Attribute = 'd3043820717d74d9a17694c176d39733',
+  namespaces: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Argument__
+
+attribute: Attribute
+namespaces: List[str]
+
