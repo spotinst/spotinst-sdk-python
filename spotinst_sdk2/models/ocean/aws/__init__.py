@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
@@ -322,8 +323,48 @@ class AggregatedClusterCostRequest:
 		return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
 
+# region RightSizingRecommendationFilter
+class Attribute:
+	"""
+	# Argument
+	key: str
+	operator: str
+	type: str
+	value: str
+	"""
+	def __init__(
+		self,
+		key: str = none,
+		operator: str = none,
+		type: str = none,
+		value: str = none):
+		self.key = key
+		self.operator = operator
+		self.type = type
+		self.value = value
 
 
+class RightSizingRecommendationFilter:
+	"""
+	# Argument
+	attribute: Attribute
+	namespaces: List[str]
+	"""
+	def __init__(
+		self,
+		attribute: Attribute = none,
+		namespaces: List[str] = none):
+		self.attribute = attribute
+		self.namespaces = namespaces
+
+# endregion
 
 
+class RightSizingRecommendationRequest:
+	def __init__(self, filter: RightSizingRecommendationFilter = none):
+		self.filter = filter
+
+	def toJSON(self):
+		return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 

@@ -1,6 +1,6 @@
 import os
-import yaml
 import configparser
+import yaml
 from spotinst_sdk2.client import SpotinstClientException
 
 VAR_SPOTINST_SHARED_CREDENTIALS_FILE = 'SPOTINST_SHARED_CREDENTIALS_FILE'
