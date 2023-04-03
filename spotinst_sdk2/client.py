@@ -65,7 +65,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            self.print_output("Response - " + str(result))
+            self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -89,7 +89,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            self.print_output("Response - " + str(result))
+            self.print_output("Response - " + str(result.json()))
             return True
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
@@ -118,7 +118,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            self.print_output("Response - " + str(result))
+            self.print_output("Response - " + str(result.json()))
             return True
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
@@ -152,7 +152,7 @@ class Client:
         
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            self.print_output("Response - " + str(result))
+            self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -184,7 +184,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            self.print_output("Response - " + str(result))
+            self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -219,7 +219,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            self.print_output("Response - " + str(result))
+            self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:
@@ -250,7 +250,7 @@ class Client:
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
-            self.print_output("Response - " + str(result))
+            self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
             return data
         else:

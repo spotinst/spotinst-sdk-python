@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.32] - 2023-04-03
+### Fixed
+- Fixed logging issue for response object.
+
 ## [2.1.31] - 2023-04-03
 ### Added
 - Add support for AWS Ocean API: `fetch_rightsizing_recommendations`
