@@ -216,7 +216,7 @@ class IamInstanceProfile:
 
 class Tag:
 	"""
-	# Argument
+	# Arguments
 	tag_key: str
 	tag_value: str
 	"""
@@ -229,7 +229,7 @@ class Tag:
 
 class LoadBalancer:
 	"""
-	# Argument
+	# Arguments
 	arn:  str
 	name: str
 	lb_type: str
@@ -248,7 +248,7 @@ class LoadBalancer:
 # region AggregatedClusterCosts
 class AggregatedClusterCosts:
 	"""
-	# Argument
+	# Arguments
 	start_time: str
 	end_time: str
 	groupby: str
@@ -268,7 +268,7 @@ class AggregatedClusterCosts:
 
 class Filter:
 	"""
-	# Argument
+	# Arguments
 	scope: str
 	conditions: Conditions
 	"""
@@ -282,7 +282,7 @@ class Filter:
 
 class Conditions:
 	"""
-	# Argument
+	# Arguments
 	any_match: List(AllMatch)
 	"""
 	def __init__(
@@ -293,7 +293,7 @@ class Conditions:
 
 class AllMatch:
 	"""
-	# Argument
+	# Arguments
 	all_matches:  List(AllMatchInner)
 	"""
 	def __init__(
@@ -326,7 +326,7 @@ class AggregatedClusterCostRequest:
 # region RightSizingRecommendationFilter
 class Attribute:
 	"""
-	# Argument
+	# Arguments
 	key: str
 	operator: str
 	type: str
@@ -346,7 +346,7 @@ class Attribute:
 
 class RightSizingRecommendationFilter:
 	"""
-	# Argument
+	# Arguments
 	attribute: Attribute
 	namespaces: List[str]
 	"""

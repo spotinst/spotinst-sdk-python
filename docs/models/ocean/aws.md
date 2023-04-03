@@ -186,10 +186,10 @@ Tag(self,
     tag_value='d3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-tag_key: str
-tag_value: str
+- __tag_key__: str
+- __tag_value__: str
 
 <h2 id="spotinst_sdk2.models.ocean.aws.LoadBalancer">LoadBalancer</h2>
 
@@ -200,11 +200,11 @@ LoadBalancer(self,
              lb_type='d3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-arn:  str
-name: str
-lb_type: str
+- __arn__:  str
+- __name__: str
+- __lb_type__: str
 
 <h2 id="spotinst_sdk2.models.ocean.aws.AggregatedClusterCosts">AggregatedClusterCosts</h2>
 
@@ -217,12 +217,12 @@ AggregatedClusterCosts(
   aggregated_filter='d3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-start_time: str
-end_time: str
-groupby: str
-aggregated_filter: Filter
+- __start_time__: str
+- __end_time__: str
+- __groupby__: str
+- __aggregated_filter__: Filter
 
 <h2 id="spotinst_sdk2.models.ocean.aws.Filter">Filter</h2>
 
@@ -232,10 +232,10 @@ Filter(self,
        conditions='d3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-scope: str
-conditions: Conditions
+- __scope__: str
+- __conditions__: Conditions
 
 <h2 id="spotinst_sdk2.models.ocean.aws.Conditions">Conditions</h2>
 
@@ -243,9 +243,9 @@ conditions: Conditions
 Conditions(self, any_match='d3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-any_match: List(AllMatch)
+- __any_match__: List(AllMatch)
 
 <h2 id="spotinst_sdk2.models.ocean.aws.AllMatch">AllMatch</h2>
 
@@ -253,9 +253,9 @@ any_match: List(AllMatch)
 AllMatch(self, all_match='d3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-all_matches:  List(AllMatchInner)
+- __all_matches__:  List(AllMatchInner)
 
 <h2 id="spotinst_sdk2.models.ocean.aws.Attribute">Attribute</h2>
 
@@ -267,12 +267,12 @@ Attribute(self,
           value: str = 'd3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-key: str
-operator: str
-type: str
-value: str
+- __key__: str
+- __operator__: str
+- __type__: str
+- __value__: str
 
 <h2 id="spotinst_sdk2.models.ocean.aws.RightSizingRecommendationFilter">RightSizingRecommendationFilter</h2>
 
@@ -283,8 +283,8 @@ RightSizingRecommendationFilter(
   namespaces: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
 ```
 
-__Argument__
+__Arguments__
 
-attribute: Attribute
-namespaces: List[str]
+- __attribute__: Attribute
+- __namespaces__: List[str]
 
