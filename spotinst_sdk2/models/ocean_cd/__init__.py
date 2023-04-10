@@ -3,6 +3,7 @@ from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
+
 class ClusterNotification:
     """
     # Arguments
@@ -16,6 +17,7 @@ class ClusterNotification:
             providers: List[str] = none):
         self.minutes_without_heartbeat = minutes_without_heartbeat
         self.providers = providers
+
 
 class UpdateClusterNotification:
     def __init__(self, cluster_notification: ClusterNotification):

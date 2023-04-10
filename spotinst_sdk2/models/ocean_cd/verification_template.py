@@ -311,7 +311,7 @@ class Job:
         self.spec = spec
 
 
-class MetricProvider:
+class Provider:
     """
     # Arguments
     prometheus : Prometheus
@@ -350,7 +350,7 @@ class Metric:
     failure_condition : str
     failure_limit : int
     consecutive_error_limit : int
-    provider : MetricProvider
+    provider : Provider
     """
 
     def __init__(
@@ -364,7 +364,7 @@ class Metric:
             failure_condition: str = none,
             failure_limit: int = none,
             consecutive_error_limit: int = none,
-            provider: MetricProvider = none):
+            provider: Provider = none):
         self.name = name
         self.dry_run = dry_run
         self.interval = interval

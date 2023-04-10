@@ -4,7 +4,7 @@ from typing import List
 none = "d3043820717d74d9a17694c176d39733"
 
 
-class StrategyBackground:
+class BackgroundVerification:
     """
     # Arguments
     template_names: List[str]
@@ -34,7 +34,7 @@ class Scale:
         self.weight = weight
 
 
-class CanaryVerification:
+class Verification:
     """
     # Arguments
     template_names: List[str]
@@ -76,7 +76,7 @@ class HeaderValue:
         self.regex = regex
 
 
-class HeaderMatch:
+class Match:
     """
     # Arguments
     header_name: str
@@ -95,24 +95,24 @@ class HeaderRoute:
     """
     # Arguments
     name: str
-    match: List[HeaderMatch]
+    match: List[Match]
     """
 
     def __init__(
             self,
             name: str = none,
-            match: List[HeaderMatch] = none):
+            match: List[Match] = none):
         self.name = name
         self.match = match
 
 
-class CanarySteps:
+class Steps:
     """
     # Arguments
     name: str
     set_weight: int
     set_canary_scale: Scale
-    verification: CanaryVerification
+    verification: Verification
     pause: Pause
     set_header_route: HeaderRoute
     """
@@ -122,7 +122,7 @@ class CanarySteps:
             name: str = none,
             set_weight: int = none,
             set_canary_scale: Scale = none,
-            verification: CanaryVerification = none,
+            verification: Verification = none,
             pause: Pause = none,
             set_header_route: HeaderRoute = none):
         self.name = name
@@ -136,14 +136,14 @@ class CanarySteps:
 class Canary:
     """
     # Arguments
-    background_verification: StrategyBackground
-    steps: List[CanarySteps]
+    background_verification: BackgroundVerification
+    steps: List[Steps]
     """
 
     def __init__(
             self,
-            background_verification: StrategyBackground = none,
-            steps: List[CanarySteps] = none):
+            background_verification: BackgroundVerification = none,
+            steps: List[Steps] = none):
         self.background_verification = background_verification
         self.steps = steps
 
@@ -158,18 +158,6 @@ class RollingPause:
             self,
             duration: str = none):
         self.duration = duration
-
-
-class Verification:
-    """
-    # Arguments
-    template_names: List[str]
-    """
-
-    def __init__(
-            self,
-            template_names: List[str] = none):
-        self.template_names = template_names
 
 
 class RollingUpdate:
