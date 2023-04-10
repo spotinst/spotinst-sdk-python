@@ -181,17 +181,13 @@ class Strategy:
     name: str
     canary: Canary
     rolling: RollingSteps
-    created_at: str
-    updated_at: str
     """
 
     def __init__(
             self,
             name: str = none,
             canary: Canary = none,
-            rolling: RollingSteps = none,
-            created_at: str = none,
-            updated_at: str = none):
+            rolling: RollingSteps = none):
         self.name = name
         self.canary = canary
         self.rolling = rolling
@@ -201,7 +197,7 @@ class Strategy:
 
 
 # region Client Requests
-class StrategyRequest:
+class CreateStrategyRequest:
     """
     # Arguments
     strategy : Strategy

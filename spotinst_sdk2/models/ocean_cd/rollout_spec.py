@@ -399,8 +399,6 @@ class RolloutSpec:
     strategy: Strategy
     traffic: Traffic
     failure_policy: FailurePolicy
-    created_at: str
-    updated_at: str
     """
 
     def __init__(
@@ -417,8 +415,6 @@ class RolloutSpec:
         self.strategy = strategy
         self.traffic = traffic
         self.failure_policy = failure_policy
-        self.created_at = created_at
-        self.updated_at = updated_at
 # endregion
 
 

@@ -121,7 +121,7 @@ class OceanCDClient(Client):
         # Returns
         (Object) : OceanCD Verification Provider
         """
-        request = oceancd_vp.VerificationProviderRequest(verification_provider)
+        request = oceancd_vp.CreateVerificationProviderRequest(verification_provider)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -187,7 +187,7 @@ class OceanCDClient(Client):
         # Returns
         (Boolean): Response Status
         """
-        request = oceancd_vp.VerificationProviderRequest(provider_update)
+        request = oceancd_vp.CreateVerificationProviderRequest(provider_update)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -353,7 +353,7 @@ class OceanCDClient(Client):
         # Returns
         (Object) : OceanCD Strategy
         """
-        request = strategy.StrategyRequest(strat)
+        request = strategy.CreateStrategyRequest(strat)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -419,7 +419,7 @@ class OceanCDClient(Client):
         # Returns
         (Boolean): Response Status
         """
-        request = strategy.StrategyRequest(provider_update)
+        request = strategy.CreateStrategyRequest(provider_update)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))

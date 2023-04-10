@@ -96,9 +96,7 @@ class VerificationProvider:
             prometheus: Prometheus = none,
             datadog: Datadog = none,
             new_relic: NewRelic = none,
-            cloud_watch: CloudWatch = none,
-            created_at: str = none,
-            updated_at: str = none):
+            cloud_watch: CloudWatch = none):
         self.name = name
         self.cluster_ids = cluster_ids
         self.prometheus = prometheus
@@ -109,7 +107,7 @@ class VerificationProvider:
 
 
 # region Client Requests
-class VerificationProviderRequest:
+class CreateVerificationProviderRequest:
     """
     # Arguments
     verification_provider : VerificationProvider
