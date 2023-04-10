@@ -4,7 +4,7 @@ from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
-
+# region Verification Arguments
 class SecretKeyRef:
     """
     # Arguments
@@ -20,7 +20,7 @@ class SecretKeyRef:
         self.name = name
 
 
-class Argument:
+class VerificationArgument:
     """
     # Arguments
     name : str
@@ -36,8 +36,10 @@ class Argument:
         self.name = name
         self.secret_key_ref = secret_key_ref
         self.value = value
+# endregion
 
 
+# region Verification Metrics
 class Prometheus:
     """
     # Arguments
@@ -125,7 +127,7 @@ class MetricUnit(Enum):
     NONE = "None"
 
 
-class StatMetric:
+class Metric:
     """
     # Arguments
     metric_name : str
@@ -146,7 +148,7 @@ class StatMetric:
 class MetricStat:
     """
     # Arguments
-    metric : StatMetric
+    metric : Metric
     period : int
     stat : str
     unit : MetricUnit
@@ -154,7 +156,7 @@ class MetricStat:
 
     def __init__(
             self,
-            metric: StatMetric = none,
+            metric: Metric = none,
             period: int = none,
             stat: str = none,
             unit: MetricUnit = none):
@@ -338,7 +340,7 @@ class Provider:
         self.job = job
 
 
-class Metric:
+class VerificationMetric:
     """
     # Arguments
     name : str
@@ -375,14 +377,16 @@ class Metric:
         self.failure_limit = failure_limit
         self.consecutive_error_limit = consecutive_error_limit
         self.provider = provider
+# endregion
 
 
+# region Verification Template
 class VerificationTemplate:
     """
     # Arguments
     name : str
-    args : List[Argument]
-    metrics : List[Metric]
+    args : List[VerificationArgument]
+    metrics : List[VerificationMetric]
     created_at : str
     updated_at : str
     """
@@ -390,8 +394,8 @@ class VerificationTemplate:
     def __init__(
             self,
             name: str = none,
-            args: List[Argument] = none,
-            metrics: List[Metric] = none,
+            args: List[VerificationArgument] = none,
+            metrics: List[VerificationMetric] = none,
             created_at: str = none,
             updated_at: str = none):
         self.name = name
@@ -399,8 +403,10 @@ class VerificationTemplate:
         self.metrics = metrics
         self.created_at = created_at
         self.updated_at = updated_at
+# endregion
 
 
+# region Client Requests
 class VerificationTemplateRequest:
     """
     # Arguments
@@ -413,3 +419,4 @@ class VerificationTemplateRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+# endregion

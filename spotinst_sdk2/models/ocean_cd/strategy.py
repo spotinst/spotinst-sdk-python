@@ -3,7 +3,7 @@ from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
-
+# region Canary Scale
 class BackgroundVerification:
     """
     # Arguments
@@ -106,7 +106,7 @@ class HeaderRoute:
         self.match = match
 
 
-class Steps:
+class CanarySteps:
     """
     # Arguments
     name: str
@@ -133,57 +133,49 @@ class Steps:
         self.set_header_route = set_header_route
 
 
-class Canary:
+class SetCanaryScale:
     """
     # Arguments
     background_verification: BackgroundVerification
-    steps: List[Steps]
+    steps: List[CanarySteps]
     """
 
     def __init__(
             self,
             background_verification: BackgroundVerification = none,
-            steps: List[Steps] = none):
+            steps: List[CanarySteps] = none):
         self.background_verification = background_verification
         self.steps = steps
+# endregion
 
 
-class RollingPause:
-    """
-    # Arguments
-    duration: str
-    """
-
-    def __init__(
-            self,
-            duration: str = none):
-        self.duration = duration
-
-
-class RollingUpdate:
+# region Rolling
+class RollingSteps:
     """
     # Arguments
     name: str
-    pause: RollingPause
+    pause: Pause
     verification: Verification
     """
 
     def __init__(
             self,
             name: str = none,
-            pause: RollingPause = none,
+            pause: Pause = none,
             verification: Verification = none):
         self.name = name
         self.pause = pause
         self.verification = verification
+# endregion
 
 
+# region
 class Strategy:
     """
     # Arguments
     name: str
-    canary: Canary
-    rolling: RollingUpdate
+    canary: SetCanaryScale
+    rolling: RollingSteps
     created_at: str
     updated_at: str
     """
@@ -191,17 +183,17 @@ class Strategy:
     def __init__(
             self,
             name: str = none,
-            canary: Canary = none,
-            rolling: RollingUpdate = none,
+            canary: SetCanaryScale = none,
+            rolling: RollingSteps = none,
             created_at: str = none,
             updated_at: str = none):
         self.name = name
         self.canary = canary
         self.rolling = rolling
-        self.created_at = created_at
-        self.updated_at = updated_at
+# endregion
 
 
+# region Client Requests
 class StrategyRequest:
     """
     # Arguments
@@ -214,3 +206,4 @@ class StrategyRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+# endregion

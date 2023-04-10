@@ -4,6 +4,7 @@ from typing import List
 none = "d3043820717d74d9a17694c176d39733"
 
 
+# region Prometheus
 class Prometheus:
     """
     # Arguments
@@ -14,8 +15,10 @@ class Prometheus:
             self,
             address: str = none):
         self.address = address
+# endregion
 
 
+# region Datadog
 class Datadog:
     """
     # Arguments
@@ -32,8 +35,10 @@ class Datadog:
         self.address = address
         self.api_key = api_key
         self.app_key = app_key
+# endregion
 
 
+# region New Relic
 class NewRelic:
     """
     # Arguments
@@ -56,8 +61,10 @@ class NewRelic:
         self.base_url_rest = base_url_rest
         self.personal_api_key = personal_api_key
         self.region = region
+# endregion
 
 
+# region CloudWatch
 class CloudWatch:
     """
     # Arguments
@@ -67,8 +74,10 @@ class CloudWatch:
             self,
             iam_arn: str = none):
         self.iam_arn = iam_arn
+# endregion
 
 
+# region Verification Provider
 class VerificationProvider:
     """
     # Arguments
@@ -78,8 +87,6 @@ class VerificationProvider:
     datadog : Datadog
     newRelic : NewRelic
     cloudWatch : CloudWatch
-    created_at : str
-    updated_at : str
     """
 
     def __init__(
@@ -98,10 +105,10 @@ class VerificationProvider:
         self.datadog = datadog
         self.new_relic = new_relic
         self.cloud_watch = cloud_watch
-        self.created_at = created_at
-        self.updated_at = updated_at
+# endregion
 
 
+# region Client Requests
 class VerificationProviderRequest:
     """
     # Arguments
@@ -113,3 +120,4 @@ class VerificationProviderRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+# endregion

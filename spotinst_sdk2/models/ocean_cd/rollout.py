@@ -5,6 +5,7 @@ from typing import List
 none = "d3043820717d74d9a17694c176d39733"
 
 
+# region Rollouts
 class SpotDeployment:
     """
     # Arguments
@@ -92,16 +93,20 @@ class Rollouts:
         self.rollout_spec = rollout_spec
         self.cloud_provider = cloud_provider
         self.identity = identity
+# endregion
 
 
+# region Action
 class Action(Enum):
     promote = 'promote'
     promote_full = 'promoteFull'
     pause = 'pause'
     abort = 'abort'
     retry = 'retry'
+# endregion
 
 
+# region Client Requests
 class ActionRequest:
     """
     # Arguments
@@ -114,3 +119,4 @@ class ActionRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+# endregion

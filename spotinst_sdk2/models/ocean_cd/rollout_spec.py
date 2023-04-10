@@ -5,6 +5,7 @@ from typing import List
 none = "d3043820717d74d9a17694c176d39733"
 
 
+# region Spot Deployment
 class SpotDeploymentSector:
     """
     # Arguments
@@ -21,8 +22,10 @@ class SpotDeploymentSector:
         self.cluster_id = cluster_id
         self.name = name
         self.namespace = namespace
+# endregion
 
 
+# region Strategy
 class SecretRef:
     """
     # Arguments
@@ -96,8 +99,10 @@ class Strategy:
             args: List[StrategyArguments] = none):
         self.name = name
         self.args = args
+# endregion
 
 
+# region Traffic
 class TlsRoutes:
     """
     # Arguments
@@ -362,8 +367,10 @@ class Traffic:
         self.ambassador = ambassador
         self.app_mesh = app_mesh
         self.ping_pong = ping_pong
+# endregion
 
 
+# region Failure Policy
 class FailureAction(Enum):
     abort = "abort"
     pause = "pause"
@@ -380,8 +387,10 @@ class FailurePolicy:
             self,
             action: FailureAction = none):
         self.action = action
+# endregion
 
 
+# region rolloutSpec
 class RolloutSpec:
     """
     # Arguments
@@ -410,8 +419,10 @@ class RolloutSpec:
         self.failure_policy = failure_policy
         self.created_at = created_at
         self.updated_at = updated_at
+# endregion
 
 
+# region Client Requests
 class RolloutSpecRequest:
     """
     # Arguments
@@ -424,3 +435,4 @@ class RolloutSpecRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+# endregion
