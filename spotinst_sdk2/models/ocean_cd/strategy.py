@@ -3,6 +3,7 @@ from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
+
 # region Canary Scale
 class BackgroundVerification:
     """
@@ -16,7 +17,7 @@ class BackgroundVerification:
         self.template_names = template_names
 
 
-class Scale:
+class SetCanaryScale:
     """
     # Arguments
     match_traffic_weight: bool
@@ -111,7 +112,7 @@ class CanarySteps:
     # Arguments
     name: str
     set_weight: int
-    set_canary_scale: Scale
+    set_canary_scale: SetCanaryScale
     verification: Verification
     pause: Pause
     set_header_route: HeaderRoute
@@ -121,7 +122,7 @@ class CanarySteps:
             self,
             name: str = none,
             set_weight: int = none,
-            set_canary_scale: Scale = none,
+            set_canary_scale: SetCanaryScale = none,
             verification: Verification = none,
             pause: Pause = none,
             set_header_route: HeaderRoute = none):
@@ -133,7 +134,7 @@ class CanarySteps:
         self.set_header_route = set_header_route
 
 
-class SetCanaryScale:
+class Canary:
     """
     # Arguments
     background_verification: BackgroundVerification
@@ -146,6 +147,8 @@ class SetCanaryScale:
             steps: List[CanarySteps] = none):
         self.background_verification = background_verification
         self.steps = steps
+
+
 # endregion
 
 
@@ -166,6 +169,8 @@ class RollingSteps:
         self.name = name
         self.pause = pause
         self.verification = verification
+
+
 # endregion
 
 
@@ -174,7 +179,7 @@ class Strategy:
     """
     # Arguments
     name: str
-    canary: SetCanaryScale
+    canary: Canary
     rolling: RollingSteps
     created_at: str
     updated_at: str
@@ -183,13 +188,15 @@ class Strategy:
     def __init__(
             self,
             name: str = none,
-            canary: SetCanaryScale = none,
+            canary: Canary = none,
             rolling: RollingSteps = none,
             created_at: str = none,
             updated_at: str = none):
         self.name = name
         self.canary = canary
         self.rolling = rolling
+
+
 # endregion
 
 
