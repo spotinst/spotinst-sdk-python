@@ -23,6 +23,8 @@ generate:
       - spotinst_sdk2.clients.mrscaler.MrScalerAwsClient++
   - clients/ocean/ocean_aws_client.md:
       - spotinst_sdk2.clients.ocean.OceanAwsClient++
+  - clients/ocean/ocean_cd_client.md:
+      - spotinst_sdk2.clients.ocean.OceanCDClient++
   - clients/subscription/subscription_client.md:
       - spotinst_sdk2.clients.subscription.SubscriptionClient++
   - clients/managed_instance/managed_instance_aws_client.md:
@@ -53,14 +55,14 @@ generate:
       - spotinst_sdk2.models.mrscaler.aws++
   - models/ocean/aws.md:
       - spotinst_sdk2.models.ocean.aws++
+  - models/ocean_cd.md:
+      - spotinst_sdk2.models.ocean_cd++
   - models/subscription.md:
       - spotinst_sdk2.models.subscription++
   - models/managed_instance/aws.md:
       - spotinst_sdk2.models.managed_instance.aws++
   - models/stateful_node.md:
       - spotinst_sdk2.models.stateful_node++
-  - models/ocean_cd.md:
-      - spotinst_sdk2.models.ocean_cd++
 
 
 pages:
