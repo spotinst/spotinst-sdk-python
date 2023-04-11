@@ -66,7 +66,7 @@ class OceanCDClient(Client):
 
         # Arguments
         cluster_id (String): OceanCD Cluster ID
-        node_update (StatefulNode): StatefulNode Object
+        cluster_notification (ClusterNotification): Cluster Notification
 
         # Returns
         (Boolean): Response Status
@@ -106,10 +106,7 @@ class OceanCDClient(Client):
             url=self.__base_oceancd_cluster_url + "/" + cluster_id,
             entity_name=self.ENTITY_NAME1)
 
-        formatted_response = self.convert_json(
-            response, self.camel_to_underscore)
-
-        return formatted_response["response"]["status"]
+        return response["response"]["status"]
 
     def create_oceancd_verification_provider(self, verification_provider: oceancd_vp.VerificationProvider):
         """
@@ -141,7 +138,7 @@ class OceanCDClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def get_all_oceancd_verification_provider(self):
+    def get_all_oceancd_verification_providers(self):
         """
         List all Ocean CD verification providers.
 
@@ -222,10 +219,7 @@ class OceanCDClient(Client):
             url=self.__base_oceancd_vp_url + "/" + name,
             entity_name=self.ENTITY_NAME2)
 
-        formatted_response = self.convert_json(
-            response, self.camel_to_underscore)
-
-        return formatted_response["response"]["status"]
+        return response["response"]["status"]
 
     def create_oceancd_verification_template(self, verification_template: oceancd_vt.VerificationTemplate):
         """
@@ -237,7 +231,7 @@ class OceanCDClient(Client):
         # Returns
         (Object) : OceanCD Verification Template
         """
-        request = oceancd_vt.VerificationTemplateRequest(verification_template)
+        request = oceancd_vt.CreateVerificationTemplateRequest(verification_template)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -255,9 +249,9 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"]
+        return formatted_response["response"]["items"][0]
 
-    def get_all_oceancd_verification_template(self):
+    def get_all_oceancd_verification_templates(self):
         """
         List all Ocean CD verification templates.
 
@@ -292,18 +286,18 @@ class OceanCDClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def update_oceancd_verifcation_template(self, provider_update: oceancd_vt.VerificationTemplate, name: str):
+    def update_oceancd_verifcation_template(self, template_update: oceancd_vt.VerificationTemplate, name: str):
         """
         Full Update of Ocean CD Verification Template configuration. All non included fields will be nullified
 
         # Arguments
         name (String): The identifier name of the Ocean CD Verification Template
-        provider_update (VerificationTemplate): VerificationTemplate Object
+        template_update (VerificationTemplate): VerificationTemplate Object
 
         # Returns
         (Boolean): Response Status
         """
-        request = oceancd_vt.VerificationTemplateRequest(provider_update)
+        request = oceancd_vt.CreateVerificationTemplateRequest(template_update)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -328,7 +322,7 @@ class OceanCDClient(Client):
         Delete an existing Ocean CD Verification Template.
 
         # Arguments
-        name (String): OceanCD Cluster ID
+        name (String): The identifier name of the Ocean CD Verification Template
 
         # Returns
         (Boolean): Response Status
@@ -348,7 +342,7 @@ class OceanCDClient(Client):
         Create Ocean CD Strategy.
 
         # Arguments
-        strategy (Strategy) : OceanCD Strategy
+        strat (Strategy) : OceanCD Strategy
 
         # Returns
         (Object) : OceanCD Strategy
@@ -371,7 +365,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"]
+        return formatted_response["response"]["items"][0]
 
     def get_all_oceancd_strategy(self):
         """
@@ -408,18 +402,18 @@ class OceanCDClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def update_oceancd_strategy(self, provider_update: strategy.Strategy, name: str):
+    def update_oceancd_strategy(self, strategy_update: strategy.Strategy, name: str):
         """
         Full Update of Ocean CD strategy configuration. All non included fields will be nullified
 
         # Arguments
         name (String): The identifier name of the Ocean CD Strategy
-        provider_update (Strategy): Strategy Object
+        strategy_update (Strategy): Strategy Object
 
         # Returns
         (Boolean): Response Status
         """
-        request = strategy.CreateStrategyRequest(provider_update)
+        request = strategy.CreateStrategyRequest(strategy_update)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -454,10 +448,7 @@ class OceanCDClient(Client):
             url=self.__base_strategy_url + "/" + name,
             entity_name=self.ENTITY_NAME4)
 
-        formatted_response = self.convert_json(
-            response, self.camel_to_underscore)
-
-        return formatted_response["response"]["status"]
+        return response["response"]["status"]
 
     def create_oceancd_rollout_spec(self, rollout: rollout_spec.RolloutSpec):
         """
@@ -469,7 +460,7 @@ class OceanCDClient(Client):
         # Returns
         (Object) : OceanCD Rollout Spec
         """
-        request = rollout_spec.RolloutSpecRequest(rollout)
+        request = rollout_spec.CreateRolloutSpecRequest(rollout)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -487,7 +478,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"]
+        return formatted_response["response"]["items"][0]
 
     def get_all_oceancd_rollout_specs(self):
         """
@@ -524,18 +515,18 @@ class OceanCDClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def update_oceancd_rollout_spec(self, provider_update: rollout_spec.RolloutSpec, name: str):
+    def update_oceancd_rollout_spec(self, rollout_spec_update: rollout_spec.RolloutSpec, name: str):
         """
         Full Update Ocean CD rollout spec configuration. All non included fields will be nullified
 
         # Arguments
         name (String): The identifier name of the Ocean CD Rollout Spec
-        provider_update (RolloutSpec): Rollout Spec Object
+        rollout_spec_update (RolloutSpec): Rollout Spec Object
 
         # Returns
         (Boolean): Response Status
         """
-        request = rollout_spec.RolloutSpecRequest(provider_update)
+        request = rollout_spec.CreateRolloutSpecRequest(rollout_spec_update)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -570,10 +561,7 @@ class OceanCDClient(Client):
             url=self.__base_rollout_spec_url + "/" + name,
             entity_name=self.ENTITY_NAME5)
 
-        formatted_response = self.convert_json(
-            response, self.camel_to_underscore)
-
-        return formatted_response["response"]["status"]
+        return response["response"]["status"]
 
     def describe_rollout_by_id(self, rollout_id: str):
         """
@@ -604,7 +592,7 @@ class OceanCDClient(Client):
         # Returns
         (Boolean): Response Status
         """
-        request = rollout.ActionRequest(action_update)
+        request = rollout.CreateRolloutActionRequest(action_update)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -622,7 +610,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["status"]
 
     def list_ocean_cd_rollouts(self, from_date: str):
         """
@@ -644,7 +632,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
     def ocean_cd_describe_rollout_status(self, rollout_id: str):
         """
@@ -688,7 +676,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
     def ocean_cd_describe_ongoing_rollouts(self):
         """
@@ -704,7 +692,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
     def ocean_cd_describe_rollout_verification(self, rollout_id: str):
         """

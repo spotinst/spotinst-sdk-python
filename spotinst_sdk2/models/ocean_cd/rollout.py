@@ -107,7 +107,7 @@ class Action(Enum):
 
 
 # region Client Requests
-class ActionRequest:
+class CreateRolloutActionRequest:
     """
     # Arguments
     action : Action

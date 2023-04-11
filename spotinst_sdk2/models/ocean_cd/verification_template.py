@@ -20,7 +20,7 @@ class SecretKeyRef:
         self.name = name
 
 
-class VerificationArgument:
+class VerificationTemplateArgument:
     """
     # Arguments
     name : str
@@ -385,29 +385,25 @@ class VerificationTemplate:
     """
     # Arguments
     name : str
-    args : List[VerificationArgument]
+    args : List[VerificationTemplateArgument]
     metrics : List[VerificationMetric]
-    created_at : str
-    updated_at : str
     """
 
     def __init__(
             self,
             name: str = none,
-            args: List[VerificationArgument] = none,
+            args: List[VerificationTemplateArgument] = none,
             metrics: List[VerificationMetric] = none,
             created_at: str = none,
             updated_at: str = none):
         self.name = name
         self.args = args
         self.metrics = metrics
-        self.created_at = created_at
-        self.updated_at = updated_at
 # endregion
 
 
 # region Client Requests
-class VerificationTemplateRequest:
+class CreateVerificationTemplateRequest:
     """
     # Arguments
     verification_template : VerificationTemplate

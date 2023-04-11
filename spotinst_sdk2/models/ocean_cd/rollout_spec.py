@@ -5,8 +5,8 @@ from typing import List
 none = "d3043820717d74d9a17694c176d39733"
 
 
-# region Spot Deployment
-class SpotDeploymentSector:
+# region SpotDeployment
+class SpotDeployment:
     """
     # Arguments
     cluster_id: str
@@ -53,7 +53,7 @@ class FieldRef:
         self.field_path = field_path
 
 
-class ValueForm:
+class ValueFrom:
     """
     # Arguments
     secret_ref: SecretRef
@@ -68,19 +68,19 @@ class ValueForm:
         self.field_ref = field_ref
 
 
-class StrategyArguments:
+class Argument:
     """
     # Arguments
     name: str
     value: str
-    value_from: ValueForm
+    value_from: ValueFrom
     """
 
     def __init__(
             self,
             name: str = none,
             value: str = none,
-            value_from: ValueForm = none):
+            value_from: ValueFrom = none):
         self.name = name
         self.value = value
         self.value_from = value_from
@@ -90,13 +90,13 @@ class Strategy:
     """
     # Arguments
     name: str
-    args: List[StrategyArguments]
+    args: List[Argument]
     """
 
     def __init__(
             self,
             name: str = none,
-            args: List[StrategyArguments] = none):
+            args: List[Argument] = none):
         self.name = name
         self.args = args
 # endregion
@@ -395,7 +395,7 @@ class RolloutSpec:
     """
     # Arguments
     name: str
-    spot_deployment: SpotDeploymentSector
+    spot_deployment: SpotDeployment
     strategy: Strategy
     traffic: Traffic
     failure_policy: FailurePolicy
@@ -404,7 +404,7 @@ class RolloutSpec:
     def __init__(
             self,
             name: str = none,
-            spot_deployment: SpotDeploymentSector = none,
+            spot_deployment: SpotDeployment = none,
             strategy: Strategy = none,
             traffic: Traffic = none,
             failure_policy: FailurePolicy = none,
@@ -419,7 +419,7 @@ class RolloutSpec:
 
 
 # region Client Requests
-class RolloutSpecRequest:
+class CreateRolloutSpecRequest:
     """
     # Arguments
     rollout_spec : RolloutSpec
