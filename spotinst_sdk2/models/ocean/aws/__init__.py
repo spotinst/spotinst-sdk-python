@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
@@ -215,7 +216,7 @@ class IamInstanceProfile:
 
 class Tag:
 	"""
-	# Argument
+	# Arguments
 	tag_key: str
 	tag_value: str
 	"""
@@ -228,7 +229,7 @@ class Tag:
 
 class LoadBalancer:
 	"""
-	# Argument
+	# Arguments
 	arn:  str
 	name: str
 	lb_type: str
@@ -247,7 +248,7 @@ class LoadBalancer:
 # region AggregatedClusterCosts
 class AggregatedClusterCosts:
 	"""
-	# Argument
+	# Arguments
 	start_time: str
 	end_time: str
 	groupby: str
@@ -267,7 +268,7 @@ class AggregatedClusterCosts:
 
 class Filter:
 	"""
-	# Argument
+	# Arguments
 	scope: str
 	conditions: Conditions
 	"""
@@ -281,7 +282,7 @@ class Filter:
 
 class Conditions:
 	"""
-	# Argument
+	# Arguments
 	any_match: List(AllMatch)
 	"""
 	def __init__(
@@ -292,7 +293,7 @@ class Conditions:
 
 class AllMatch:
 	"""
-	# Argument
+	# Arguments
 	all_matches:  List(AllMatchInner)
 	"""
 	def __init__(
@@ -322,8 +323,48 @@ class AggregatedClusterCostRequest:
 		return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
 
+# region RightSizingRecommendationFilter
+class Attribute:
+	"""
+	# Arguments
+	key: str
+	operator: str
+	type: str
+	value: str
+	"""
+	def __init__(
+		self,
+		key: str = none,
+		operator: str = none,
+		type: str = none,
+		value: str = none):
+		self.key = key
+		self.operator = operator
+		self.type = type
+		self.value = value
 
 
+class RightSizingRecommendationFilter:
+	"""
+	# Arguments
+	attribute: Attribute
+	namespaces: List[str]
+	"""
+	def __init__(
+		self,
+		attribute: Attribute = none,
+		namespaces: List[str] = none):
+		self.attribute = attribute
+		self.namespaces = namespaces
+
+# endregion
 
 
+class RightSizingRecommendationRequest:
+	def __init__(self, filter: RightSizingRecommendationFilter = none):
+		self.filter = filter
+
+	def toJSON(self):
+		return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 

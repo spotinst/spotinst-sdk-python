@@ -33,9 +33,7 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
-
-        return retVal
+        return formatted_response["response"]["items"][0]
 
     def update_ocean_cluster(self, ocean_id, ocean):
         """
@@ -66,9 +64,7 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
-
-        return retVal
+        return formatted_response["response"]["items"][0]
 
     def get_all_ocean_cluster(self):
         """
@@ -85,9 +81,7 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
-
-        return retVal
+        return formatted_response["response"]["items"]
 
     def get_all_ocean_sizing(self, ocean_id, namespace):
         """
@@ -107,9 +101,34 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
+        return formatted_response["response"]["items"]
 
-        return retVal
+    def fetch_rightsizing_recommendations(self, ocean_id, filter=None):
+        """
+        Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
+        
+        # Returns
+        (Object): Ocean API response
+        """
+        group_dict = aws_ocean.RightSizingRecommendationRequest(filter)
+
+        excluded_group_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        group_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url +
+            "/" + ocean_id + "/rightSizing/suggestion",
+            entity_name='ocean')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
 
     def get_ocean_cluster(self, ocean_id):
         """
@@ -130,9 +149,7 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
-
-        return retVal        
+        return formatted_response["response"]["items"][0]
     
     def delete_ocean_cluster(self, ocean_id):
         """
@@ -180,7 +197,5 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             aggregated_costs_response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
-
-        return retVal
+        return formatted_response["response"]["items"][0]
 
