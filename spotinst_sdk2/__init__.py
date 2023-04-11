@@ -1,3 +1,4 @@
+from spotinst_sdk2.clients.ocean_cd import OceanCDClient
 from spotinst_sdk2.session import Session
 
 from spotinst_sdk2.clients.managed_instance import *
@@ -45,7 +46,7 @@ class SpotinstSession:
             "elastigroup_gcp": ElastigroupGcpClient(session=self.session, print_output=print_output,
                                                     log_level=log_level, user_agent=user_agent, timeout=timeout),
             "stateful_node_azure": StatefulNodeAzureClient(session=self.session, print_output=print_output,
-                                                    log_level=log_level, user_agent=user_agent, timeout=timeout),
+                                                           log_level=log_level, user_agent=user_agent, timeout=timeout),
             "functions": FunctionsClient(session=self.session, print_output=print_output, log_level=log_level,
                                          user_agent=user_agent, timeout=timeout),
             "mcs": McsClient(session=self.session, print_output=print_output, log_level=log_level,
@@ -56,6 +57,8 @@ class SpotinstSession:
                                               user_agent=user_agent, timeout=timeout),
             "ocean_aws": OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level,
                                         user_agent=user_agent, timeout=timeout),
+            "oceancd": OceanCDClient(session=self.session, print_output=print_output, log_level=log_level,
+                                      user_agent=user_agent, timeout=timeout),
             "managed_instance_aws": ManagedInstanceAwsClient(session=self.session, print_output=print_output,
                                                              log_level=log_level, user_agent=user_agent,
                                                              timeout=timeout),
