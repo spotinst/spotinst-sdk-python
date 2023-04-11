@@ -784,9 +784,9 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
-    def ocean_cd_describe_workloads_migration(self, deployment_name: str, namespace: str, cluster_id: str):
+    def ocean_cd_describe_workloads_migration_process(self, deployment_name: str, namespace: str, cluster_id: str):
         """
         Describe How To Migrate Deployment CRD To SpotDeployment DRD.
 
@@ -827,7 +827,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
     def ocean_cd_describe_workloads_revision(self, workload_id: str):
         """
@@ -870,7 +870,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
     def ocean_cd_restart_workload(self, workload_id: str):
         """
@@ -889,7 +889,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]
 
     def ocean_cd_retry_workload(self, revision_id: str, workload_id: str, rollout_id: str):
         """
@@ -912,7 +912,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]
 
     def ocean_cd_rollback_workload(self, revision_id: str, workload_id: str, rollout_id: str):
         """
@@ -935,4 +935,4 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]
