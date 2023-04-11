@@ -407,9 +407,7 @@ class RolloutSpec:
             spot_deployment: SpotDeployment = none,
             strategy: Strategy = none,
             traffic: Traffic = none,
-            failure_policy: FailurePolicy = none,
-            created_at: str = none,
-            updated_at: str = none):
+            failure_policy: FailurePolicy = none):
         self.name = name
         self.spot_deployment = spot_deployment
         self.strategy = strategy
