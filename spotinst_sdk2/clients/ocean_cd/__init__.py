@@ -680,7 +680,7 @@ class OceanCDClient(Client):
 
     def ocean_cd_describe_ongoing_rollouts(self):
         """
-        Ocean CD Latest rollout/s.
+        Ocean CD Ongoing rollouts.
 
         # Returns
         (Object): OceanCD Rollout List API response
@@ -696,7 +696,7 @@ class OceanCDClient(Client):
 
     def ocean_cd_describe_rollout_verification(self, rollout_id: str):
         """
-        Ocean CD Latest rollout/s.
+        Ocean CD rollout verification.
 
         # Arguments
         rolloutId (String): The identifier of the Ocean CD Verification Response
@@ -734,7 +734,7 @@ class OceanCDClient(Client):
 
     def ocean_cd_describe_rollout_resource(self, rollout_id: str):
         """
-        Ocean CD rollout definition.
+        Ocean CD Resource
 
         # Arguments
         rolloutId (String): The identifier of the Ocean CD Resource Response
@@ -893,7 +893,7 @@ class OceanCDClient(Client):
 
     def ocean_cd_retry_workload(self, revision_id: str, workload_id: str, rollout_id: str):
         """
-        Ocean CD workload graph.
+        Retry Workload By WorkloadId,RevisionId And RolloutId
 
         # Arguments
         revision_id (String): Relevant Revision Id
@@ -916,7 +916,7 @@ class OceanCDClient(Client):
 
     def ocean_cd_rollback_workload(self, revision_id: str, workload_id: str, rollout_id: str):
         """
-        Ocean CD workload graph.
+        Rollback Workload By WorkloadId,RevisionId And RolloutId
 
         # Arguments
         revision_id (String): Relevant Revision Id
