@@ -17,13 +17,6 @@ class OceanCDClient(Client):
     __base_rollout_spec_url = 'https://api.spotinst.io/ocean/cd/rolloutSpec'
     __base_rollout_url = 'https://api.spotinst.io/ocean/cd/rollout'
     __base_workload_url = 'https://api.spotinst.io/ocean/cd/workload'
-    ENTITY_NAME1 = 'oceancd_cluster'
-    ENTITY_NAME2 = 'oceancd_verification_provider'
-    ENTITY_NAME3 = 'oceancd_verification_template'
-    ENTITY_NAME4 = 'oceancd_strategy'
-    ENTITY_NAME5 = 'oceancd_rollout_spec'
-    ENTITY_NAME6 = 'oceancd_rollout'
-    ENTITY_NAME7 = 'oceancd_workloads'
 
     def get_oceancd_cluster(self, cluster_id: str):
         """
@@ -37,7 +30,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_oceancd_cluster_url + "/" + cluster_id,
-            entity_name=self.ENTITY_NAME1)
+            entity_name="oceancdCluster")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -53,7 +46,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_oceancd_cluster_url,
-            entity_name=self.ENTITY_NAME1)
+            entity_name="oceancdCluster")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -84,7 +77,7 @@ class OceanCDClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_oceancd_cluster_url + "/" + cluster_id,
-            entity_name=self.ENTITY_NAME1)
+            entity_name="oceancdCluster")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -102,11 +95,9 @@ class OceanCDClient(Client):
         (Boolean): Response Status
         """
 
-        response = self.send_delete(
+        return self.send_delete(
             url=self.__base_oceancd_cluster_url + "/" + cluster_id,
-            entity_name=self.ENTITY_NAME1)
-
-        return response["response"]["status"]
+            entity_name="oceancdCluster")
 
     def create_oceancd_verification_provider(self, verification_provider: oceancd_vp.VerificationProvider):
         """
@@ -131,7 +122,7 @@ class OceanCDClient(Client):
         response = self.send_post(
             body=body_json,
             url=self.__base_oceancd_vp_url,
-            entity_name=self.ENTITY_NAME2)
+            entity_name="oceancdVerificationProvider")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -147,7 +138,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_oceancd_vp_url,
-            entity_name=self.ENTITY_NAME2)
+            entity_name="oceancdVerificationProvider")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -166,7 +157,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_oceancd_vp_url + "/" + name,
-            entity_name=self.ENTITY_NAME2)
+            entity_name="oceancdVerificationProvider")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -197,7 +188,7 @@ class OceanCDClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_oceancd_vp_url + "/" + name,
-            entity_name=self.ENTITY_NAME2)
+            entity_name="oceancdVerificationProvider")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -215,11 +206,9 @@ class OceanCDClient(Client):
         (Boolean): Response Status
         """
 
-        response = self.send_delete(
+        return self.send_delete(
             url=self.__base_oceancd_vp_url + "/" + name,
-            entity_name=self.ENTITY_NAME2)
-
-        return response["response"]["status"]
+            entity_name="oceancdVerificationProvider")
 
     def create_oceancd_verification_template(self, verification_template: oceancd_vt.VerificationTemplate):
         """
@@ -244,7 +233,7 @@ class OceanCDClient(Client):
         response = self.send_post(
             body=body_json,
             url=self.__base_oceancd_vt_url,
-            entity_name=self.ENTITY_NAME3)
+            entity_name="oceancdVerificationTemplate")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -260,7 +249,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_oceancd_vt_url,
-            entity_name=self.ENTITY_NAME3)
+            entity_name="oceancdVerificationTemplate")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -279,7 +268,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_oceancd_vt_url + "/" + name,
-            entity_name=self.ENTITY_NAME3)
+            entity_name="oceancdVerificationTemplate")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -310,7 +299,7 @@ class OceanCDClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_oceancd_vt_url + "/" + name,
-            entity_name=self.ENTITY_NAME3)
+            entity_name="oceancdVerificationTemplate")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -328,14 +317,9 @@ class OceanCDClient(Client):
         (Boolean): Response Status
         """
 
-        response = self.send_delete(
+        return self.send_delete(
             url=self.__base_oceancd_vt_url + "/" + name,
-            entity_name=self.ENTITY_NAME3)
-
-        formatted_response = self.convert_json(
-            response, self.camel_to_underscore)
-
-        return formatted_response["response"]["status"]
+            entity_name="oceancdVerificationTemplate")
 
     def create_oceancd_strategy(self, strat: strategy.Strategy):
         """
@@ -360,7 +344,7 @@ class OceanCDClient(Client):
         response = self.send_post(
             body=body_json,
             url=self.__base_strategy_url,
-            entity_name=self.ENTITY_NAME4)
+            entity_name="oceancdStrategy")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -376,7 +360,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_strategy_url,
-            entity_name=self.ENTITY_NAME4)
+            entity_name="oceancdStrategy")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -395,7 +379,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_strategy_url + "/" + name,
-            entity_name=self.ENTITY_NAME4)
+            entity_name="oceancdStrategy")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -426,7 +410,7 @@ class OceanCDClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_strategy_url + "/" + name,
-            entity_name=self.ENTITY_NAME4)
+            entity_name="oceancdStrategy")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -444,11 +428,9 @@ class OceanCDClient(Client):
         (Boolean): Response Status
         """
 
-        response = self.send_delete(
+        return self.send_delete(
             url=self.__base_strategy_url + "/" + name,
-            entity_name=self.ENTITY_NAME4)
-
-        return response["response"]["status"]
+            entity_name="oceancdStrategy")
 
     def create_oceancd_rollout_spec(self, rollout: rollout_spec.RolloutSpec):
         """
@@ -473,7 +455,7 @@ class OceanCDClient(Client):
         response = self.send_post(
             body=body_json,
             url=self.__base_rollout_spec_url,
-            entity_name=self.ENTITY_NAME5)
+            entity_name="oceancdRolloutSpec")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -489,7 +471,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_spec_url,
-            entity_name=self.ENTITY_NAME5)
+            entity_name="oceancdRolloutSpec")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -508,7 +490,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_spec_url + "/" + name,
-            entity_name=self.ENTITY_NAME5)
+            entity_name="oceancdRolloutSpec")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -539,7 +521,7 @@ class OceanCDClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_rollout_spec_url + "/" + name,
-            entity_name=self.ENTITY_NAME5)
+            entity_name="oceancdRolloutSpec")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -557,11 +539,9 @@ class OceanCDClient(Client):
         (Boolean): Response Status
         """
 
-        response = self.send_delete(
+        return self.send_delete(
             url=self.__base_rollout_spec_url + "/" + name,
-            entity_name=self.ENTITY_NAME5)
-
-        return response["response"]["status"]
+            entity_name="oceancdRolloutSpec")
 
     def describe_rollout_by_id(self, rollout_id: str):
         """
@@ -571,11 +551,11 @@ class OceanCDClient(Client):
         rollout_id (String): The identifier of the Ocean CD rollout
 
         # Returns
-        (Object): OceanCD Rollout List API response
+        (Object): OceanCD Rollout API response
         """
         response = self.send_get(
             url=self.__base_rollout_url + "/" + rollout_id,
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -605,7 +585,7 @@ class OceanCDClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_rollout_url + "/" + rollout_id,
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -626,7 +606,7 @@ class OceanCDClient(Client):
 
         response = self.send_get(
             url=self.__base_rollout_url,
-            entity_name=self.ENTITY_NAME6,
+            entity_name="oceancdRollout",
             query_params=query_params)
 
         formatted_response = self.convert_json(
@@ -646,7 +626,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_url + '/'+rollout_id+'/status',
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -670,7 +650,7 @@ class OceanCDClient(Client):
 
         response = self.send_get(
             url=self.__base_rollout_url + '/latest',
-            entity_name=self.ENTITY_NAME6,
+            entity_name="oceancdRollout",
             query_params=query_params)
 
         formatted_response = self.convert_json(
@@ -687,7 +667,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_url + '/ongoing',
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -706,7 +686,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_url + '/'+rollout_id+'/verification',
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -725,7 +705,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_url + '/'+rollout_id+'/definition',
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -744,7 +724,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_url + '/'+rollout_id+'/resource',
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -763,7 +743,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_rollout_url + '/'+rollout_id+'/phase',
-            entity_name=self.ENTITY_NAME6)
+            entity_name="oceancdRollout")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -779,7 +759,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_workload_url,
-            entity_name=self.ENTITY_NAME7)
+            entity_name="oceancdWorkloads")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -802,7 +782,7 @@ class OceanCDClient(Client):
 
         response = self.send_get(
             url=self.__base_workload_url + '/namespace/'+namespace+'/deployment/'+deployment_name+'/migrate',
-            entity_name=self.ENTITY_NAME7,
+            entity_name="oceancdWorkloads",
             query_params=query_params)
 
         formatted_response = self.convert_json(
@@ -822,7 +802,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_workload_url + '/'+workload_id+'/activeOperation',
-            entity_name=self.ENTITY_NAME7)
+            entity_name="oceancdWorkloads")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -841,7 +821,7 @@ class OceanCDClient(Client):
         """
         response = self.send_get(
             url=self.__base_workload_url + '/'+workload_id+'/revision',
-            entity_name=self.ENTITY_NAME7)
+            entity_name="oceancdWorkloads")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -864,7 +844,7 @@ class OceanCDClient(Client):
         query_params = dict(cluster_id=cluster_id, kind=kind)
         response = self.send_get(
             url=self.__base_workload_url + '/'+workload_name+'/namespace/'+namespace+'/graph',
-            entity_name=self.ENTITY_NAME7,
+            entity_name="oceancdWorkloads",
             query_params=query_params)
 
         formatted_response = self.convert_json(
@@ -884,7 +864,7 @@ class OceanCDClient(Client):
         """
         response = self.send_put(
             url=self.__base_workload_url + '/'+workload_id+'/restart',
-            entity_name=self.ENTITY_NAME7)
+            entity_name="oceancdWorkloads")
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
@@ -906,7 +886,7 @@ class OceanCDClient(Client):
         query_params = dict(rollout_id=rollout_id)
         response = self.send_put(
             url=self.__base_workload_url + '/'+workload_id+'/revision/'+revision_id+'/retry',
-            entity_name=self.ENTITY_NAME7,
+            entity_name="oceancdWorkloads",
             query_params=query_params)
 
         formatted_response = self.convert_json(
@@ -929,7 +909,7 @@ class OceanCDClient(Client):
         query_params = dict(rollout_id=rollout_id)
         response = self.send_put(
             url=self.__base_workload_url + '/'+workload_id+'/revision/'+revision_id+'/rollback',
-            entity_name=self.ENTITY_NAME7,
+            entity_name="oceancdWorkloads",
             query_params=query_params)
 
         formatted_response = self.convert_json(
