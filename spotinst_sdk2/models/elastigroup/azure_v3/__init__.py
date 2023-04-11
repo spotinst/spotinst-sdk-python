@@ -658,8 +658,8 @@ class ScalingPolicyDimension:
     value: str
     """
 
-    def __init__(self, name=none, value=none):
-        self.name = name
+    def __init__(self, key=none, value=none):
+        self.key = key
         self.value = value
 
 

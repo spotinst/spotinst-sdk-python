@@ -529,7 +529,7 @@ __Arguments__
 
 ```python
 ScalingPolicyDimension(self,
-                       name='d3043820717d74d9a17694c176d39733',
+                       key='d3043820717d74d9a17694c176d39733',
                        value='d3043820717d74d9a17694c176d39733')
 ```
 
