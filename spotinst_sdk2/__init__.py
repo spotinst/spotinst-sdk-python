@@ -1,3 +1,4 @@
+from spotinst_sdk2.clients.ocean_cd import OceanCDClient
 from spotinst_sdk2.session import Session
 
 from spotinst_sdk2.clients.managed_instance import *
@@ -56,8 +57,8 @@ class SpotinstSession:
                                               user_agent=user_agent, timeout=timeout),
             "ocean_aws": OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level,
                                         user_agent=user_agent, timeout=timeout),
-            "ocean_cd": OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level,
-                                       user_agent=user_agent, timeout=timeout),
+            "ocean_cd": OceanCDClient(session=self.session, print_output=print_output, log_level=log_level,
+                                      user_agent=user_agent, timeout=timeout),
             "managed_instance_aws": ManagedInstanceAwsClient(session=self.session, print_output=print_output,
                                                              log_level=log_level, user_agent=user_agent,
                                                              timeout=timeout),
