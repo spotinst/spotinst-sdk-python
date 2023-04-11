@@ -4,9 +4,9 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.ocean_cd as oceancd_cluster
 import spotinst_sdk2.models.ocean_cd.verification_provider as oceancd_vp
 import spotinst_sdk2.models.ocean_cd.verification_template as oceancd_vt
-import spotinst_sdk2.models.ocean_cd.strategy as strategy
-import spotinst_sdk2.models.ocean_cd.rollout_spec as rollout_spec
-import spotinst_sdk2.models.ocean_cd.rollout as rollout
+from spotinst_sdk2.models.ocean_cd import strategy
+from spotinst_sdk2.models.ocean_cd import rollout_spec
+from spotinst_sdk2.models.ocean_cd import rollout
 
 
 class OceanCDClient(Client):
@@ -53,7 +53,8 @@ class OceanCDClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def update_oceancd_cluster(self, cluster_notification: oceancd_cluster.ClusterNotification, cluster_id: str):
+    def update_oceancd_cluster(self, cluster_notification: oceancd_cluster.ClusterNotification,
+                               cluster_id: str):
         """
         Update Ocean CD cluster notification settings.
 
@@ -99,7 +100,8 @@ class OceanCDClient(Client):
             url=self.__base_oceancd_cluster_url + "/" + cluster_id,
             entity_name="oceancdCluster")
 
-    def create_oceancd_verification_provider(self, verification_provider: oceancd_vp.VerificationProvider):
+    def create_oceancd_verification_provider(self,
+                                             verification_provider: oceancd_vp.VerificationProvider):
         """
         Create Ocean CD Verification Provider. only one provider type can be defined
 
@@ -164,7 +166,8 @@ class OceanCDClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def update_oceancd_verifcation_provider(self, provider_update: oceancd_vp.VerificationProvider, name: str):
+    def update_oceancd_verifcation_provider(self, provider_update: oceancd_vp.VerificationProvider,
+                                            name: str):
         """
         Full Update of Ocean CD Verification Provider configuration. All non included fields will be nullified
 
@@ -210,7 +213,8 @@ class OceanCDClient(Client):
             url=self.__base_oceancd_vp_url + "/" + name,
             entity_name="oceancdVerificationProvider")
 
-    def create_oceancd_verification_template(self, verification_template: oceancd_vt.VerificationTemplate):
+    def create_oceancd_verification_template(self,
+                                             verification_template: oceancd_vt.VerificationTemplate):
         """
         Create Ocean CD Verification Template.
 
@@ -432,17 +436,17 @@ class OceanCDClient(Client):
             url=self.__base_strategy_url + "/" + name,
             entity_name="oceancdStrategy")
 
-    def create_oceancd_rollout_spec(self, rollout: rollout_spec.RolloutSpec):
+    def create_oceancd_rollout_spec(self, rollouts: rollout_spec.RolloutSpec):
         """
         Create Ocean CD rollout spec.
 
         # Arguments
-        rollout_spec (RolloutSpec) : OceanCD Rollout Spec
+        rollouts (RolloutSpec) : OceanCD Rollout Spec
 
         # Returns
         (Object) : OceanCD Rollout Spec
         """
-        request = rollout_spec.CreateRolloutSpecRequest(rollout)
+        request = rollout_spec.CreateRolloutSpecRequest(rollouts)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
