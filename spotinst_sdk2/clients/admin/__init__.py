@@ -1,6 +1,7 @@
 import json
 
 from spotinst_sdk2.client import Client
+from spotinst_sdk2.client import SpotinstClientException
 import spotinst_sdk2.models.admin.user_mapping as spotinst_user_mapping
 
 class AdminClient(Client):
@@ -9,16 +10,16 @@ class AdminClient(Client):
     # region Organization and Account
     def create_organization(self, org_name):
         """
-        Create an organization 
-        
+        Create an organization
+
         # Arguments
         org_name (String): Orgnanization name
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_post(
-            url= self.__base_setup_url + 
+            url= self.__base_setup_url +
             "/organization",
             body=json.dumps(dict(organization=dict(name=org_name))),
             entity_name="organization"
@@ -33,16 +34,16 @@ class AdminClient(Client):
 
     def delete_organization(self, org_id):
         """
-        delete organization 
-        
+        delete organization
+
         # Arguments
         org_id (String): Organization Id
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_delete(
-            url= self.__base_setup_url + 
+            url= self.__base_setup_url +
             "/organization/" + str(org_id),
             entity_name="organization"
         )
@@ -57,7 +58,7 @@ class AdminClient(Client):
         You should use the external id when creating your AWS role for your spot account
 
         # Returns
-        (Object): Spotinst API response 
+        (Object): Spotinst API response
         """
         response = self.send_post(
             url= self.__base_setup_url + "/credentials/aws/externalId",
@@ -75,17 +76,17 @@ class AdminClient(Client):
         """
         Important note: This is deprecated, please use setup_aws client instead(SetupAWSClient#set_credentials)
 
-        set cloud credentials 
+        set cloud credentials
         Please create external id using spot api (see #AdminClient.create_aws_external_id)
         and use it when creating the AWS role
-        
+
         # Arguments
         iam_role (String): IAM Role
         external_id (String) (Optional): External ID
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         credentials = {"iamRole": iam_role}
 
         if external_id is not None:
@@ -107,14 +108,20 @@ class AdminClient(Client):
 
     def create_account(self, account_name):
         """
-        create an account 
-        
+        create an account and validate duplicates
+
         # Arguments
         account_name (String): Account Name
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
+        account_names_in_organization: set = {act_details['name'] for act_details in self.get_accounts()}
+
+        if account_name in account_names_in_organization:
+            raise SpotinstClientException("The chosen account name `{0}` already exists in your organization, "
+                                          "Please pick a different name.".format(account_name), "ERROR")
+
         response = self.send_post(
             url= self.__base_setup_url +
             "/account",
@@ -132,10 +139,10 @@ class AdminClient(Client):
     def get_accounts(self):
         """
         get accounts in organization
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_get(
             url= self.__base_setup_url +
             "/account",
@@ -152,13 +159,13 @@ class AdminClient(Client):
     def delete_account(self, account_name):
         """
         delete account
-        
+
         # Arguments
         account_name (String): Account Name
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_delete(
             url= self.__base_setup_url +
             "/account/" + account_name,
@@ -170,17 +177,17 @@ class AdminClient(Client):
     def create_user(self, first_name, last_name, email, password, role):
         """
         Create user
-        
+
         # Arguments
         first_name (String): Users first name
         last_name (String): User last name
         email (String): Eser email
         password (String): User email
         role (String): User role
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_post(
             url= self.__base_setup_url +
             "/user",
@@ -198,19 +205,19 @@ class AdminClient(Client):
 
         retVal = formatted_response["response"]["items"][0]
 
-        return retVal       
+        return retVal
 
     def add_exsisting_user(self, user_email, role):
         """
         Add exsisting user
-        
+
         # Arguments
         user_email (String): User email
         role (String): User role
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_post(
             url= self.__base_setup_url +
             "/account/" + self.account_id +
@@ -224,19 +231,19 @@ class AdminClient(Client):
 
         retVal = formatted_response["response"]["status"]
 
-        return retVal 
+        return retVal
 
     def update_user_role(self, user_email, role):
         """
         Update exsisting user
-        
+
         # Arguments
         user_email (String): User email
         role (String): User role
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_put(
             url= self.__base_setup_url +
             "/account/" + self.account_id +
@@ -250,18 +257,18 @@ class AdminClient(Client):
 
         retVal = formatted_response["response"]["status"]
 
-        return retVal 
+        return retVal
 
     def detach_user(self, user_email):
         """
         Delete exsisting user
-        
+
         # Arguments
         user_email (String): User email
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         response = self.send_delete_with_body(
             url= self.__base_setup_url +
             "/account/" + self.account_id +
@@ -270,18 +277,18 @@ class AdminClient(Client):
             entity_name="user"
         )
 
-        return response 
+        return response
 
     def get_user(self, user_email):
         """
         Get user
-        
+
         # Arguments
         user_email (String): User email
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         query_params= dict(userEmail=user_email)
         response = self.send_get(
             url= self.__base_setup_url + "/accountUserMapping",
@@ -294,22 +301,22 @@ class AdminClient(Client):
 
         retVal = formatted_response["response"]["items"]
 
-        return retVal 
+        return retVal
 
     def assign_user_to_account(self, mappings):
         """
         Assign user to account
-        
+
         # Arguments
         mappings (List): List of UserMapping Objects
-        
+
         # Returns
-        (Object): Spotinst API response 
-        """ 
+        (Object): Spotinst API response
+        """
         mappings = spotinst_user_mapping.UserMappingRequest(mappings)
 
         excluded_group_dict = self.exclude_missing(json.loads(mappings.toJSON()))
-        
+
         formatted_group_dict = self.convert_json(
             excluded_group_dict, self.underscore_to_camel)
 
@@ -326,7 +333,7 @@ class AdminClient(Client):
 
         retVal = formatted_response["response"]["status"]
 
-        return retVal 
+        return retVal
     # endregion
 
 
