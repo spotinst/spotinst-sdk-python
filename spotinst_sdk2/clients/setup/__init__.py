@@ -9,7 +9,7 @@ import spotinst_sdk2.models.setup.gcp as gcp_setup
 
 # region AWS
 class SetupAWSClient(Client):
-    __base_setup_url = "https://api.spotinst.io/setup"
+    __base_setup_url = "/setup"
 
     def create_external_id(self):
         """
@@ -63,7 +63,7 @@ class SetupAWSClient(Client):
 
 # region Azure
 class SetupAzureClient(Client):
-    __base_setup_url = "https://api.spotinst.io/azure/setup"
+    __base_setup_url = "/azure/setup"
 
     def set_credentials(self, credentials):
         """"
@@ -131,7 +131,7 @@ class SetupAzureClient(Client):
 
 # region GCP
 class SetupGCPClient(Client):
-    __base_setup_url = "https://api.spotinst.io/gcp/setup"
+    __base_setup_url = "/gcp/setup"
 
     def set_credentials(self, credentials):
         """

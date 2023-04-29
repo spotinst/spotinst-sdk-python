@@ -29,6 +29,7 @@ class Client:
                  user_agent=None,
                  timeout=None):
 
+        self.base_url = session.base_url
         self.auth_token = session.auth_token
         self.account_id = session.account_id
 
@@ -61,7 +62,7 @@ class Client:
         self.print_output("Sending get request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
-        result = requests.get(url, params=query_params, headers=headers, timeout=self.timeout)        
+        result = requests.get(self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)        
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -85,7 +86,7 @@ class Client:
         self.print_output("Sending deletion request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
-        result = requests.delete(url, params=query_params, headers=headers, timeout=self.timeout)
+        result = requests.delete(self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -110,7 +111,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.delete(
-            url,
+            self.base_url + url,
             params=query_params,
             headers=headers,
             data=body,
@@ -144,7 +145,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.post(
-            url,
+            self.base_url + url,
             params=query_params,
             data=body,
             headers=headers,
@@ -176,7 +177,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.post(
-            url,
+            self.base_url + url,
             params=query_params,
             data=body,
             headers=headers,
@@ -211,7 +212,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.put(
-            url,
+            self.base_url + url,
             params=query_params,
             data=body,
             headers=headers,
@@ -242,7 +243,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.put(
-            url,
+            self.base_url + url,
             params=query_params,
             data=body,
             headers=headers,

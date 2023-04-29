@@ -8,7 +8,7 @@ none = "d3043820717d74d9a17694c176d39733"
 
 
 class StatefulNodeAzureClient(Client):
-    __base_stateful_node_url = "https://api.spotinst.io/azure/compute/statefulNode"
+    __base_stateful_node_url = "/azure/compute/statefulNode"
     ENTITY_NAME = 'statefulNode'
 
     def create_stateful_node(self, node: azure_stateful_node.StatefulNode):

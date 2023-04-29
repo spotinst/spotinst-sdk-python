@@ -4,7 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.ocean.aws as aws_ocean
 
 class OceanAwsClient(Client):
-    __base_ocean_url = "https://api.spotinst.io/ocean/aws/k8s/cluster"
+    __base_ocean_url = "/ocean/aws/k8s/cluster"
 
     def create_ocean_cluster(self, ocean):
         """

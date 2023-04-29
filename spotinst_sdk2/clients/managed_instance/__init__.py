@@ -8,7 +8,7 @@ none = "d3043820717d74d9a17694c176d39733"
 
 
 class ManagedInstanceAwsClient(Client):
-    __base_mi_url = "https://api.spotinst.io/aws/ec2/managedInstance"
+    __base_mi_url = "/aws/ec2/managedInstance"
     ENTITY_NAME = 'managedInstance'
 
     def create_managed_instance(self, managed_instance: aws_managed_instance.ManagedInstance):

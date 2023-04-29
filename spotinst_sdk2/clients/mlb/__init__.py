@@ -4,7 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.mlb as spotinst_mlb
 
 class MlbClient(Client):
-    __base_lb_url = "https://api.spotinst.io/loadBalancer"
+    __base_lb_url = "/loadBalancer"
 
     # region MLB
     def get_all_mlb_runtime(self):

@@ -13,10 +13,17 @@ DEFAULT_CREDENTIALS_FILE = os.path.join(
     os.path.expanduser("~"), '.spotinst', 'credentials')
 
 class Session:
-    def __init__(self, auth_token=None,
+    def __init__(self,
+                 base_url=None, 
+                 auth_token=None,
                  account_id=None,
                  profile=None,
                  credentials_file=None):
+
+        if base_url is None:
+            self.base_url = "https://api.spotinst.io"
+        else:
+            self.base_url = base_url
 
         if auth_token is None:
             self.load_credentials(profile, credentials_file)

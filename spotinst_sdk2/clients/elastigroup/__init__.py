@@ -28,9 +28,9 @@ import spotinst_sdk2.models.elastigroup.azure_v3 as azure_v3_elastigroup
 
 
 class ElastigroupAwsClient(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
-    __base_aws_url = "https://api.spotinst.io/aws/ec2"
-    __base_stateful_url = "https://api.spotinst.io/aws/ec2/statefulMigrationGroup"
+    __base_elastigroup_url = "/aws/ec2/group"
+    __base_aws_url = "/aws/ec2"
+    __base_stateful_url = "/aws/ec2/statefulMigrationGroup"
 
     # region Elastigroup
     def create_elastigroup(self, group, async_scale=None):
@@ -1445,7 +1445,7 @@ class ElastigroupAwsClient(Client):
 
 # region GCP
 class ElastigroupGcpClient(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/gcp/gce/group"
+    __base_elastigroup_url = "/gcp/gce/group"
 
     def create_elastigroup(self, group):
         """
@@ -1869,8 +1869,8 @@ class ElastigroupGcpClient(Client):
 
 # region Azure
 class ElastigroupAzureClient(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/compute/azure/group"
-    __base_task_url = "https://api.spotinst.io/azure/compute/task"
+    __base_elastigroup_url = "/compute/azure/group"
+    __base_task_url = "/azure/compute/task"
 
     def create_elastigroup(self, group):
         """
@@ -2320,7 +2320,7 @@ class ElastigroupAzureClient(Client):
 
 # region Azure V3
 class ElastigroupAzureV3Client(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/azure/compute/group"
+    __base_elastigroup_url = "/azure/compute/group"
 
     def create_elastigroup(self, group):
         """
@@ -2891,7 +2891,7 @@ class ElastigroupAzureV3Client(Client):
         body = json.dumps(dict(vmName=vm_name, signalType=signal_type))
 
         response = self.send_post(
-            url="https://api.spotinst.io/azure/compute/vm/signal",
+            url="/azure/compute/vm/signal",
             body=body,
             entity_name="vm signal"
         )

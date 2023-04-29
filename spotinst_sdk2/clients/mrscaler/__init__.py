@@ -4,7 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.mrscaler.aws as mrScaler_aws
 
 class MrScalerAwsClient(Client):
-    __base_emr_url = "https://api.spotinst.io/aws/emr/mrScaler"
+    __base_emr_url = "/aws/emr/mrScaler"
 
     # region EMR
     def create_emr(self, emr):
