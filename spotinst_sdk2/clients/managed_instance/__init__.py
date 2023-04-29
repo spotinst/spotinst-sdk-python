@@ -141,10 +141,7 @@ class ManagedInstanceAwsClient(Client):
 
         body_json = json.dumps(formatted_deletion_dict)
 
-        response = self.send_delete_with_body(
-            body=body_json, url=req_url, entity_name=self.ENTITY_NAME)
-
-        return response
+        return self.send_delete_with_body(body=body_json, url=req_url, entity_name=self.ENTITY_NAME)
 
 
     def recycle_managed_instance(self, managed_instance_id: str):
@@ -218,7 +215,7 @@ class ManagedInstanceAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    
+
     def get_managed_instance_costs(self, managed_instance_id: str, from_date: str, to_date: str, aggregation_period: str=None):        
         """
         Get Managed Instance Costs
@@ -241,8 +238,8 @@ class ManagedInstanceAwsClient(Client):
         formatted_response = self.convert_json(result, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
-     
+
+
     def delete_volume_in_managed_instance(self, managed_instance_id: str, volume_id: str):
         """
         Delete Volume in a Managed Instance
@@ -270,7 +267,7 @@ class ManagedInstanceAwsClient(Client):
         (Object): ManagedInstance API response
         """
         put_url = self.__base_mi_url + "/" + "state"
-        
+
         update_state_request = aws_managed_instance.ManagedInstanceUpdateStatesRequest(update_manage_instance_states_list)
 
         excluded_state_update_dict = self.exclude_missing(json.loads(update_state_request.toJSON()))
@@ -288,7 +285,8 @@ class ManagedInstanceAwsClient(Client):
         formatted_response = self.convert_json(group_response, self.camel_to_underscore)
 
         return formatted_response['response']
-    
+
+
     def import_multiple_instances_from_aws(self, migrations_list: list):
         """
         Import Multiple Instances From AWS
@@ -318,10 +316,9 @@ class ManagedInstanceAwsClient(Client):
         formatted_response = self.convert_json(
             mi_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"]
+        return formatted_response["response"]["items"]
 
-        return ret_val
-    
+
     def get_multiple_instances_migration_status(self, migration_ids: list):
         """
         Import Multiple Instances From AWS
@@ -351,7 +348,4 @@ class ManagedInstanceAwsClient(Client):
         formatted_response = self.convert_json(
             mi_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"]
-
-        return ret_val
-    
+        return formatted_response["response"]["items"]

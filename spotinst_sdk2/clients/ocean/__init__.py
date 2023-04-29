@@ -15,11 +15,11 @@ class OceanAwsClient(Client):
         
         # Returns
         (Object): Ocean API response 
-        """ 
+        """
         ocean = aws_ocean.OceanRequest(ocean)
 
         excluded_group_dict = self.exclude_missing(json.loads(ocean.toJSON()))
-        
+
         formatted_group_dict = self.convert_json(
             excluded_group_dict, self.underscore_to_camel)
 
@@ -45,16 +45,16 @@ class OceanAwsClient(Client):
         
         # Returns
         (Object): Ocean API response 
-        """ 
+        """
         ocean = aws_ocean.OceanRequest(ocean)
 
         excluded_group_dict = self.exclude_missing(json.loads(ocean.toJSON()))
-        
+
         formatted_group_dict = self.convert_json(
             excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
-        
+
         group_response = self.send_put(
             body=body_json,
             url=self.__base_ocean_url +
@@ -72,7 +72,7 @@ class OceanAwsClient(Client):
         
         # Returns
         (Object): Ocean API response 
-        """ 
+        """
         response = self.send_get(
             url=self.__base_ocean_url,
             entity_name="ocean"
@@ -105,8 +105,9 @@ class OceanAwsClient(Client):
 
     def fetch_rightsizing_recommendations(self, ocean_id, filter=None):
         """
-        Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
-        
+        Get right-sizing recommendations for an Ocean cluster and filter them according
+        to namespace or label.
+
         # Returns
         (Object): Ocean API response
         """
@@ -133,13 +134,13 @@ class OceanAwsClient(Client):
     def get_ocean_cluster(self, ocean_id):
         """
         Get an exsisting Ocean Cluster json
-        
+
         # Arguments
         ocean_id (String): Ocean id
-        
+
         # Returns
         (Object): Ocean API response 
-        """ 
+        """
         response = self.send_get(
             url=self.__base_ocean_url +
             "/" + ocean_id,
@@ -150,24 +151,22 @@ class OceanAwsClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     def delete_ocean_cluster(self, ocean_id):
         """
         Delete an Ocean Cluster
-        
+
         # Arguments
         ocean_id (String): Ocean id
-        
+
         # Returns
         (Object): Ocean API response
-        """ 
-        response = self.send_delete(
+        """
+        return self.send_delete(
             url=self.__base_ocean_url +
             "/" + ocean_id,
             entity_name="ocean"
         )
-
-        return response
 
     def get_aggregated_cluster_costs(self, ocean_id, aggregated_cluster_costs_request):
         """
@@ -198,4 +197,3 @@ class OceanAwsClient(Client):
             aggregated_costs_response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-

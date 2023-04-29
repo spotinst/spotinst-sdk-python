@@ -14,7 +14,7 @@ DEFAULT_CREDENTIALS_FILE = os.path.join(
 
 class Session:
     def __init__(self,
-                 base_url=None, 
+                 base_url=None,
                  auth_token=None,
                  account_id=None,
                  profile=None,

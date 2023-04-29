@@ -38,7 +38,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_delete(
             url= self.__base_setup_url + 
             "/organization/" + str(org_id),
@@ -222,7 +222,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_put(
             url= self.__base_setup_url +
             "/account/" + self.account_id +

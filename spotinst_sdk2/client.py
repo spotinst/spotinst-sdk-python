@@ -46,7 +46,7 @@ class Client:
     def send_get(self, url,entity_name,query_params=None):
         agent = self.resolve_user_agent()
 
-        if query_params != None:
+        if query_params is not None:
             query_params = self.build_query_params_with_input(query_params)
         else:
             query_params = self.build_query_params()
@@ -62,7 +62,7 @@ class Client:
         self.print_output("Sending get request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
-        result = requests.get(self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)        
+        result = requests.get(self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -127,7 +127,7 @@ class Client:
     def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
 
-        if query_params != None:
+        if query_params is not None:
             query_params = self.build_query_params_with_input(query_params)
         else:
             query_params = self.build_query_params()
@@ -194,7 +194,7 @@ class Client:
     def send_put(self, url, entity_name, query_params=None, body=None):
         agent = self.resolve_user_agent()
         
-        if query_params != None:
+        if query_params is not None:
             query_params = self.build_query_params_with_input(query_params)
         else:
             query_params = self.build_query_params()
@@ -394,7 +394,7 @@ class Client:
         return logger
 
     def set_log_level(self, log_level):
-        if log_level==None:
+        if log_level is None:
             level = os.environ.get(VAR_SPOTINST_LOG_LEVEL, 'critical')
         else:
             level = log_level
