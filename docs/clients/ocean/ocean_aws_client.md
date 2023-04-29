@@ -72,7 +72,8 @@ __Returns__
 OceanAwsClient.fetch_rightsizing_recommendations(ocean_id, filter=None)
 ```
 
-Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
+Get right-sizing recommendations for an Ocean cluster and filter them according
+to namespace or label.
 
 __Returns__
 

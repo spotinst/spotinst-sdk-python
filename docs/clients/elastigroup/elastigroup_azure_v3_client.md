@@ -338,7 +338,8 @@ ElastigroupAzureV3Client.import_from_scale_set(resource_group_name,
                                                scale_set_name)
 ```
 
-Given a scale set, constructs a valid group configuration based on the scale set and returns it.
+Given a scale set, constructs a valid group configuration based on the
+  scale set and returns it.
 
 __Arguments__
 
@@ -356,7 +357,8 @@ ElastigroupAzureV3Client.import_from_virtual_machine(
   resource_group_name, virtual_machine_name)
 ```
 
-Given a virtual machine, constructs a valid group configuration based on the virtual machine and returns it.
+Given a virtual machine, constructs a valid group configuration based on the
+virtual machine and returns it.
 
 __Arguments__
 
@@ -411,7 +413,8 @@ __Returns__
 ElastigroupAzureV3Client.create_vm_signal(vm_name, signal_type)
 ```
 
-The VM signal API is used for notifying Spot about the VM state so that Spot can act accordingly
+The VM signal API is used for notifying Spot about the VM state so that
+  Spot can act accordingly
 
 __Arguments__
 
@@ -441,7 +444,8 @@ __Arguments__
 - __to_date (String)__: to date
 - __from_date (String)__: from date
 - __severity(String) (Optional)__: Log level severity
-- __resource_id(String) (Optional)__: Filter log extracted entires related to a specific resource id
+- __resource_id(String) (Optional)__: Filter log extracted entires
+related to a specific resource id
 - __limit(String) (Optional)__: Maximum number of lines to extract in a response
 
 __Returns__

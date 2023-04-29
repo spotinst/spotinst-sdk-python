@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.34] - 2023-04-30
+### Added
+- Add support to use a base URL different from `https://api.spotinst.io`
+
 ## [2.1.33] - 2023-04-11
 ### Added
 - Add support for Ocean CD APIs
