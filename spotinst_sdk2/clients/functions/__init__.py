@@ -4,7 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.functions as spotinst_functions
 
 class FunctionsClient(Client):
-    __base_functions_url = "https://api.spotinst.io/functions"
+    __base_functions_url = "/functions"
 
     # region Functions
     def create_application(self, app):

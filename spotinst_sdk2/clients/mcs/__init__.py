@@ -3,7 +3,7 @@ import json
 from spotinst_sdk2.client import Client
 
 class McsClient(Client):
-    __base_kube_url = "https://api.spotinst.io/mcs/kubernetes/cluster"
+    __base_kube_url = "/mcs/kubernetes/cluster"
 
     def get_kubernetes_cluster_cost(self, custer_id, from_date, to_date):   
         """

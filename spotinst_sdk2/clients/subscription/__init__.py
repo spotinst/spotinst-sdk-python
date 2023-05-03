@@ -4,7 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.subscription as spotinst_event_subscription
 
 class SubscriptionClient(Client):
-    __base_event_subscription_url = "https://api.spotinst.io/events/subscription"
+    __base_event_subscription_url = "/events/subscription"
 
     # region Event Subscription
     def create_event_subscription(self, subscription):

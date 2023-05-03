@@ -28,9 +28,9 @@ import spotinst_sdk2.models.elastigroup.azure_v3 as azure_v3_elastigroup
 
 
 class ElastigroupAwsClient(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/aws/ec2/group"
-    __base_aws_url = "https://api.spotinst.io/aws/ec2"
-    __base_stateful_url = "https://api.spotinst.io/aws/ec2/statefulMigrationGroup"
+    __base_elastigroup_url = "/aws/ec2/group"
+    __base_aws_url = "/aws/ec2"
+    __base_stateful_url = "/aws/ec2/statefulMigrationGroup"
 
     # region Elastigroup
     def create_elastigroup(self, group, async_scale=None):
@@ -883,7 +883,8 @@ class ElastigroupAwsClient(Client):
 
     def beanstalk_import(self, region, env_id=None, env_name=None):
         """
-        Import beanstalk attributes into JSON. Either env_id or env_name is required, both cannot be null
+        Import beanstalk attributes into JSON. Either env_id or env_name is 
+        required, both cannot be null
 
         # Arguments
         region (String): Beanstalk region
@@ -1346,7 +1347,8 @@ class ElastigroupAwsClient(Client):
         to_date (String): to date
         from_date (String): to date
         severity(String) (Optional): Log level severity
-        resource_id(String) (Optional): Filter log extracted entires related to a specific resource id
+        resource_id(String) (Optional): Filter log extracted entires related to a
+          specific resource id
         limit(String) (Optional): Maximum number of lines to extract in a response
 
         # Returns
@@ -1445,7 +1447,7 @@ class ElastigroupAwsClient(Client):
 
 # region GCP
 class ElastigroupGcpClient(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/gcp/gce/group"
+    __base_elastigroup_url = "/gcp/gce/group"
 
     def create_elastigroup(self, group):
         """
@@ -1869,8 +1871,8 @@ class ElastigroupGcpClient(Client):
 
 # region Azure
 class ElastigroupAzureClient(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/compute/azure/group"
-    __base_task_url = "https://api.spotinst.io/azure/compute/task"
+    __base_elastigroup_url = "/compute/azure/group"
+    __base_task_url = "/azure/compute/task"
 
     def create_elastigroup(self, group):
         """
@@ -2320,7 +2322,7 @@ class ElastigroupAzureClient(Client):
 
 # region Azure V3
 class ElastigroupAzureV3Client(Client):
-    __base_elastigroup_url = "https://api.spotinst.io/azure/compute/group"
+    __base_elastigroup_url = "/azure/compute/group"
 
     def create_elastigroup(self, group):
         """
@@ -2449,7 +2451,8 @@ class ElastigroupAzureV3Client(Client):
 
         body_json = json.dumps(formatted_update_capacity_dict)
 
-        response = self.send_put(url=self.__base_elastigroup_url + "/" + str(group_id) + "/capacity",
+        response = self.send_put(url=self.__base_elastigroup_url + "/" +
+                                 str(group_id) + "/capacity",
                                  body=body_json,
                                  entity_name='update capacity')
 
@@ -2710,7 +2713,8 @@ class ElastigroupAzureV3Client(Client):
 
         body_json = json.dumps(formatted_start_deployment_dict)
 
-        response = self.send_post(url=self.__base_elastigroup_url + "/" + str(group_id) + "/deployment",
+        response = self.send_post(url=self.__base_elastigroup_url + "/" +
+                                  str(group_id) + "/deployment",
                                   body=body_json,
                                   entity_name='start deployment')
 
@@ -2796,7 +2800,8 @@ class ElastigroupAzureV3Client(Client):
 
     def import_from_scale_set(self, resource_group_name, scale_set_name):
         """
-        Given a scale set, constructs a valid group configuration based on the scale set and returns it.
+        Given a scale set, constructs a valid group configuration based on the
+          scale set and returns it.
 
         # Arguments
         resource_group_name (String): Resource Group Name
@@ -2816,7 +2821,8 @@ class ElastigroupAzureV3Client(Client):
 
     def import_from_virtual_machine(self, resource_group_name, virtual_machine_name):
         """
-        Given a virtual machine, constructs a valid group configuration based on the virtual machine and returns it.
+        Given a virtual machine, constructs a valid group configuration based on the 
+        virtual machine and returns it.
 
         # Arguments
         resource_group_name (String): Resource Group Name
@@ -2855,7 +2861,8 @@ class ElastigroupAzureV3Client(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def import_from_application_gateway(self, backend_pool_name, application_gateway_name, resource_group_name):
+    def import_from_application_gateway(self, backend_pool_name, application_gateway_name,
+                                         resource_group_name):
         """
         Given a load balancer, constructs a valid group configuration and returns it.
 
@@ -2879,7 +2886,8 @@ class ElastigroupAzureV3Client(Client):
 
     def create_vm_signal(self, vm_name, signal_type):
         """
-        The VM signal API is used for notifying Spot about the VM state so that Spot can act accordingly
+        The VM signal API is used for notifying Spot about the VM state so that
+          Spot can act accordingly
 
         # Arguments
         vm_name (String): The virtual machine ID the signal refers to.
@@ -2891,7 +2899,7 @@ class ElastigroupAzureV3Client(Client):
         body = json.dumps(dict(vmName=vm_name, signalType=signal_type))
 
         response = self.send_post(
-            url="https://api.spotinst.io/azure/compute/vm/signal",
+            url="/azure/compute/vm/signal",
             body=body,
             entity_name="vm signal"
         )
@@ -2901,7 +2909,8 @@ class ElastigroupAzureV3Client(Client):
 
         return formatted_response["response"]["status"]
 
-    def get_elastilog(self, group_id, from_date, to_date, severity=None, resource_id=None, limit=None):
+    def get_elastilog(self, group_id, from_date, to_date, severity=None, 
+                      resource_id=None, limit=None):
         """
         Get an elastilog for a specific elastigroup
 
@@ -2910,7 +2919,8 @@ class ElastigroupAzureV3Client(Client):
         to_date (String): to date
         from_date (String): from date
         severity(String) (Optional): Log level severity
-        resource_id(String) (Optional): Filter log extracted entires related to a specific resource id
+        resource_id(String) (Optional): Filter log extracted entires 
+        related to a specific resource id
         limit(String) (Optional): Maximum number of lines to extract in a response
 
         # Returns

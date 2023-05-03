@@ -4,7 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.admin.user_mapping as spotinst_user_mapping
 
 class AdminClient(Client):
-    __base_setup_url = "https://api.spotinst.io/setup"
+    __base_setup_url = "/setup"
 
     # region Organization and Account
     def create_organization(self, org_name):
@@ -16,9 +16,9 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_post(
-            url= self.__base_setup_url + 
+            url= self.__base_setup_url +
             "/organization",
             body=json.dumps(dict(organization=dict(name=org_name))),
             entity_name="organization"
@@ -27,9 +27,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
-
-        return retVal
+        return formatted_response["response"]["items"][0]
 
     def delete_organization(self, org_id):
         """
@@ -40,7 +38,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_delete(
             url= self.__base_setup_url + 
             "/organization/" + str(org_id),
@@ -67,9 +65,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"][0]
-
-        return ret_val
+        return formatted_response["response"]["items"][0]
 
     def set_cloud_credentials(self, iam_role, external_id=None):
         """
@@ -85,7 +81,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         credentials = {"iamRole": iam_role}
 
         if external_id is not None:
@@ -101,9 +97,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
-
-        return retVal
+        return formatted_response["response"]["status"]
 
     def create_account(self, account_name):
         """
@@ -114,7 +108,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_post(
             url= self.__base_setup_url +
             "/account",
@@ -125,9 +119,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
-
-        return retVal
+        return formatted_response["response"]["items"][0]
 
     def get_accounts(self):
         """
@@ -135,7 +127,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_get(
             url= self.__base_setup_url +
             "/account",
@@ -145,9 +137,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
-
-        return retVal
+        return formatted_response["response"]["items"]
 
     def delete_account(self, account_name):
         """
@@ -158,7 +148,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_delete(
             url= self.__base_setup_url +
             "/account/" + account_name,
@@ -180,7 +170,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_post(
             url= self.__base_setup_url +
             "/user",
@@ -196,9 +186,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"][0]
-
-        return retVal       
+        return formatted_response["response"]["items"][0]
 
     def add_exsisting_user(self, user_email, role):
         """
@@ -210,7 +198,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_post(
             url= self.__base_setup_url +
             "/account/" + self.account_id +
@@ -222,21 +210,19 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
-
-        return retVal 
+        return formatted_response["response"]["status"]
 
     def update_user_role(self, user_email, role):
         """
         Update exsisting user
-        
+
         # Arguments
         user_email (String): User email
         role (String): User role
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_put(
             url= self.__base_setup_url +
             "/account/" + self.account_id +
@@ -248,9 +234,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
-
-        return retVal 
+        return formatted_response["response"]["status"]
 
     def detach_user(self, user_email):
         """
@@ -261,7 +245,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         response = self.send_delete_with_body(
             url= self.__base_setup_url +
             "/account/" + self.account_id +
@@ -270,7 +254,7 @@ class AdminClient(Client):
             entity_name="user"
         )
 
-        return response 
+        return response
 
     def get_user(self, user_email):
         """
@@ -281,7 +265,7 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         query_params= dict(userEmail=user_email)
         response = self.send_get(
             url= self.__base_setup_url + "/accountUserMapping",
@@ -292,9 +276,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["items"]
-
-        return retVal 
+        return formatted_response["response"]["items"]
 
     def assign_user_to_account(self, mappings):
         """
@@ -305,11 +287,11 @@ class AdminClient(Client):
         
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         mappings = spotinst_user_mapping.UserMappingRequest(mappings)
 
         excluded_group_dict = self.exclude_missing(json.loads(mappings.toJSON()))
-        
+
         formatted_group_dict = self.convert_json(
             excluded_group_dict, self.underscore_to_camel)
 
@@ -324,10 +306,6 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        retVal = formatted_response["response"]["status"]
+        return formatted_response["response"]["status"]
 
-        return retVal 
     # endregion
-
-
-

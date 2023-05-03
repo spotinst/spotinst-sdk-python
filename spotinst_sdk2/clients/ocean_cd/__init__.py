@@ -10,13 +10,13 @@ from spotinst_sdk2.models.ocean_cd import rollout
 
 
 class OceanCDClient(Client):
-    __base_oceancd_cluster_url = "https://api.spotinst.io/ocean/cd/cluster"
-    __base_oceancd_vp_url = "https://api.spotinst.io/ocean/cd/verificationProvider"
-    __base_oceancd_vt_url = "https://api.spotinst.io/ocean/cd/verificationTemplate"
-    __base_strategy_url = "https://api.spotinst.io/ocean/cd/strategy"
-    __base_rollout_spec_url = 'https://api.spotinst.io/ocean/cd/rolloutSpec'
-    __base_rollout_url = 'https://api.spotinst.io/ocean/cd/rollout'
-    __base_workload_url = 'https://api.spotinst.io/ocean/cd/workload'
+    __base_oceancd_cluster_url = "/ocean/cd/cluster"
+    __base_oceancd_vp_url = "/ocean/cd/verificationProvider"
+    __base_oceancd_vt_url = "/ocean/cd/verificationTemplate"
+    __base_strategy_url = "/ocean/cd/strategy"
+    __base_rollout_spec_url = '/ocean/cd/rolloutSpec'
+    __base_rollout_url = '/ocean/cd/rollout'
+    __base_workload_url = '/ocean/cd/workload'
 
     def get_oceancd_cluster(self, cluster_id: str):
         """

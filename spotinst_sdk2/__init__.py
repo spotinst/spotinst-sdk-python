@@ -1,4 +1,3 @@
-from spotinst_sdk2.clients.ocean_cd import OceanCDClient
 from spotinst_sdk2.session import Session
 
 from spotinst_sdk2.clients.managed_instance import *
@@ -11,17 +10,18 @@ from spotinst_sdk2.clients.mcs import *
 from spotinst_sdk2.clients.mlb import *
 from spotinst_sdk2.clients.mrscaler import *
 from spotinst_sdk2.clients.subscription import *
-from spotinst_sdk2.clients.ocean import *
 from spotinst_sdk2.clients.setup import *
-
+from spotinst_sdk2.clients.ocean_cd import *
 
 class SpotinstSession:
     def __init__(self,
+                 base_url=None,
                  auth_token=None,
                  account_id=None,
                  profile=None,
                  credentials_file=None):
-        self.session = Session(auth_token=auth_token,
+        self.session = Session(base_url=base_url,
+                               auth_token=auth_token,
                                account_id=account_id,
                                profile=profile,
                                credentials_file=credentials_file)
