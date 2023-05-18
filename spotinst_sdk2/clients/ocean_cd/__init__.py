@@ -752,7 +752,7 @@ class OceanCDClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
     def get_all_ocean_cd_workloads(self):
         """
