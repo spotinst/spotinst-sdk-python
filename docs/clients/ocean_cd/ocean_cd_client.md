@@ -599,10 +599,7 @@ __Returns__
 <h2 id="spotinst_sdk2.clients.ocean_cd.OceanCDClient.ocean_cd_describe_workloads_revision">ocean_cd_describe_workloads_revision</h2>
 
 ```python
-OceanCDClient.ocean_cd_describe_workloads_revision(workload_id: str,
-                                                   namespace: str,
-                                                   cluster_id: str,
-                                                   kind: str)
+OceanCDClient.ocean_cd_describe_workloads_revision(workload_id: str)
 ```
 
 Describe Workload's Revision.
@@ -610,9 +607,6 @@ Describe Workload's Revision.
 __Arguments__
 
 - __workload_id (String)__: The workload's Id
-- __namespace (String)__: Workload's namespace name
-- __cluster_id (String)__: Cluster id where the workload is running
-- __kind (String)__: Kind of workload, currently only SpotDeployment is supported
 
 __Returns__
 
