@@ -819,6 +819,9 @@ class OceanCDClient(Client):
 
         # Arguments
         workload_id (String): The workload's Id
+        namespace (String): Workload's namespace name
+        cluster_id (String): Cluster id where the workload is running
+        kind (String): Kind of workload, currently only SpotDeployment is supported
 
         # Returns
         (Object): OceanCD Workloads Revision API response
