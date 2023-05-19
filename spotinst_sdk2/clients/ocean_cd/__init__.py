@@ -106,7 +106,7 @@ class OceanCDClient(Client):
         Create Ocean CD Verification Provider. only one provider type can be defined
 
         # Arguments
-        verification_provider (VerificationProvider) : OceanCD Verification Provider
+        verification_provider (VerificationProvider): OceanCD Verification Provider
 
         # Returns
         (Object) : OceanCD Verification Provider
@@ -441,10 +441,10 @@ class OceanCDClient(Client):
         Create Ocean CD rollout spec.
 
         # Arguments
-        rollouts (RolloutSpec) : OceanCD Rollout Spec
+        rollouts (RolloutSpec): OceanCD Rollout Spec
 
         # Returns
-        (Object) : OceanCD Rollout Spec
+        (Object): OceanCD Rollout Spec
         """
         request = rollout_spec.CreateRolloutSpecRequest(rollouts)
 

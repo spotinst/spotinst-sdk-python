@@ -82,7 +82,7 @@ Create Ocean CD Verification Provider. only one provider type can be defined
 
 __Arguments__
 
-- __verification_provider (VerificationProvider) __: OceanCD Verification Provider
+- __verification_provider (VerificationProvider)__: OceanCD Verification Provider
 
 __Returns__
 
@@ -317,11 +317,11 @@ Create Ocean CD rollout spec.
 
 __Arguments__
 
-- __rollouts (RolloutSpec) __: OceanCD Rollout Spec
+- __rollouts (RolloutSpec)__: OceanCD Rollout Spec
 
 __Returns__
 
-`(Object) `: OceanCD Rollout Spec
+`(Object)`: OceanCD Rollout Spec
 
 <h2 id="spotinst_sdk2.clients.ocean_cd.OceanCDClient.get_all_oceancd_rollout_specs">get_all_oceancd_rollout_specs</h2>
 
@@ -599,7 +599,8 @@ __Returns__
 <h2 id="spotinst_sdk2.clients.ocean_cd.OceanCDClient.ocean_cd_describe_workloads_revision">ocean_cd_describe_workloads_revision</h2>
 
 ```python
-OceanCDClient.ocean_cd_describe_workloads_revision(workload_id: str)
+OceanCDClient.ocean_cd_describe_workloads_revision(
+  workload_id: str, namespace: str, cluster_id: str, kind: str)
 ```
 
 Describe Workload's Revision.
@@ -607,6 +608,9 @@ Describe Workload's Revision.
 __Arguments__
 
 - __workload_id (String)__: The workload's Id
+- __namespace (String)__: Workload's namespace name
+- __cluster_id (String)__: Cluster id where the workload is running
+- __kind (String)__: Kind of workload, currently only SpotDeployment is supported
 
 __Returns__
 
