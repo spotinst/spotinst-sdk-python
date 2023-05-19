@@ -813,7 +813,7 @@ class OceanCDClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def ocean_cd_describe_workloads_revision(self, workload_id: str):
+    def ocean_cd_describe_workloads_revision(self, workload_id: str, namespace: str, cluster_id: str, kind: str):
         """
         Describe Workload's Revision.
 
@@ -823,9 +823,12 @@ class OceanCDClient(Client):
         # Returns
         (Object): OceanCD Workloads Revision API response
         """
+
+        query_params = dict(clusterId=cluster_id, kind=kind)
         response = self.send_get(
-            url=self.__base_workload_url + '/'+workload_id+'/revision',
-            entity_name="oceancdWorkloads")
+            url=self.__base_workload_url + '/'+workload_id+'/namespace/'+namespace+'/revision',
+            entity_name="oceancdWorkloads",
+            query_params=query_params)
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)

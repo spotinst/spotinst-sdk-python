@@ -7,5 +7,6 @@ client = session.client("oceancd", log_level="debug")
 # Create elastigroup and retrieve group id
 # response = client.ocean_cd_describe_rollout_phase(rollout_id='rol-d80f2865def6')
 # print(response)
-response = client.get_oceancd_verification_provider(name='Anurag-Experiment-Prometheus')
+response = client.ocean_cd_describe_workloads_revision(workload_id='anurag-experiment-deployment', namespace='default',
+                                                       cluster_id='anurag-cluster-experiment', kind='SpotDeployment')
 print(response)
