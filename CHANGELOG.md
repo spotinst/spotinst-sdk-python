@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.35] - 2023-05-19
+### Fixed 
+- Fixed `ocean_cd_describe_rollout_phase` and `ocean_cd_describe_workloads_revision` APIs
+
 ## [2.1.34] - 2023-04-30
 ### Added
 - Add support to use a base URL different from `https://api.spotinst.io`
