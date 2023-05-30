@@ -40,7 +40,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def update_ocean_cluster(self, ocean_id: str, account_id: str, auto_apply_tagsocean: str, ocean: aws_ocean.Ocean):
+    def update_ocean_cluster(self, ocean_id: str, account_id: str, ocean: aws_ocean.Ocean, auto_apply_tagsocean: str = "false"):
         """
         Update an exsisting Ocean Cluster 
         
@@ -340,7 +340,7 @@ class OceanAwsClient(Client):
         """
         query_params = dict(accountId=account_id)
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id + "/roll",
+            url=self.__base_ocean_url + "/" + ocean_id + "/roll/" + roll_id,
             entity_name="ocean (Cluster Roll)",
             query_params=query_params
         )

@@ -188,6 +188,10 @@ class Parameters:
     # Arguments
     cluster_roll: ClusterRoll
     """
+    def __init__(
+            self,
+            cluster_roll: ClusterRoll = none):
+        self.cluster_roll = cluster_roll
 
 
 class TaskType(Enum):
@@ -458,12 +462,12 @@ class BlockDeviceMappings:
 class IamInstanceProfile:
     """
     # Arguments
-    arn: str
+    name: str
     """
     def __init__(
             self,
-            arn: str = none):
-        self.arn = arn
+            name: str = none):
+        self.name = name
 
 
 class HttpEndpoint(Enum):
@@ -674,7 +678,7 @@ class Ocean:
 # region OceanRequest
 class OceanRequest:
     def __init__(self, ocean: Ocean):
-        self.ocean = ocean
+        self.cluster = ocean
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -688,8 +692,8 @@ class Type(Enum):
 
 
 class Operator(Enum):
-    equals = "Equals"
-    not_equals = "NotEquals"
+    equals = "equals"
+    not_equals = "notEquals"
     exists = "exists"
     does_not_exist = "doesNotExist"
 
@@ -796,7 +800,7 @@ class AggregatedClusterCosts:
             self,
             end_time: str = none,
             aggregated_filter: Filter = none,
-            group_by: GroupBy = none,
+            group_by: GroupBy = GroupBy.namespace.value,
             start_time: str = none):
         self.end_time = end_time
         self.aggregated_filter = aggregated_filter
@@ -806,7 +810,10 @@ class AggregatedClusterCosts:
 
 class AggregatedClusterCostRequest:
     def __init__(self, aggregated_cluster_costs: AggregatedClusterCosts = none):
-        self.aggregated_cluster_costs = aggregated_cluster_costs
+        self.end_time = aggregated_cluster_costs.end_time
+        self.start_time = aggregated_cluster_costs.start_time
+        self.group_by = aggregated_cluster_costs.group_by
+        self.filter = aggregated_cluster_costs.aggregated_filter
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -875,7 +882,7 @@ class UpdateRoll:
 
 class ClusterRollUpdateRequest:
     def __init__(self, updateRoll: UpdateRoll = none):
-        self.updateRoll = updateRoll
+        self.roll = updateRoll.roll
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -884,7 +891,7 @@ class ClusterRollUpdateRequest:
 
 class InstanceTypesFilterSimulationRequest:
     def __init__(self, instance_type_filter: InstanceTypesFilters = none):
-        self.instance_type_filter = instance_type_filter
+        self.filter = instance_type_filter
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -904,7 +911,7 @@ class LaunchNodes:
 
 class LaunchNodesRequest:
     def __init__(self, launch_nodes: LaunchNodes = none):
-        self.launch_nodes = launch_nodes
+        self.launch_request = launch_nodes
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
