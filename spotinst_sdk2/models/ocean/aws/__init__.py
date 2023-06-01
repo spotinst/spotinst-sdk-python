@@ -10,14 +10,14 @@ class ResourceLimits:
     """
     # Arguments
     max_memory_gib: int
-    max_vCpu: int
+    max_v_cpu: int
     """
     def __init__(
             self,
             max_memory_gib: int = none,
-            max_vCpu: int = none):
+            max_v_cpu: int = none):
         self.max_memory_gib=max_memory_gib
-        self.max_vCpu=max_vCpu
+        self.max_v_cpu=max_v_cpu
 
 
 class Down:
@@ -166,7 +166,7 @@ class Strategy:
 class ClusterRoll:
     """
     # Arguments
-    batch-min_healthy_percentage: int
+    batch_min_healthy_percentage: int
     batch_size_percentage: int
     comment: str
     respect_pdb: bool
@@ -321,12 +321,12 @@ class InstanceTypesFilters:
     include_families: List[str]
     is_ena_supported: bool
     max_gpu: int
-    max_memory_giB: int
+    max_memory_gi_b: float
     max_network_performance: int
     max_vcpu: int
     min_enis: int
     min_gpu: int
-    min_memory_giB: int
+    min_memory_gi_b: float
     min_network_performance: int
     min_vcpu: int
     root_device_types: RootDeviceTypes
@@ -343,12 +343,12 @@ class InstanceTypesFilters:
             include_families: List[str] = none,
             is_ena_supported: bool = none,
             max_gpu: int = none,
-            max_memory_giB: int = none,
+            max_memory_gi_b: float = none,
             max_network_performance: int = none,
             max_vcpu: int = none,
             min_enis: int = none,
             min_gpu: int = none,
-            min_memory_giB: int = none,
+            min_memory_gi_b: float = none,
             min_network_performance: int = none,
             min_vcpu: int = none,
             root_device_types: RootDeviceTypes = none,
@@ -362,12 +362,12 @@ class InstanceTypesFilters:
         self.include_families = include_families
         self.is_ena_supported = is_ena_supported
         self.max_gpu = max_gpu
-        self.max_memory_giB = max_memory_giB
+        self.max_memory_gi_b = max_memory_gi_b
         self.max_network_performance = max_network_performance
         self.max_vcpu = max_vcpu
         self.min_enis = min_enis
         self.min_gpu = min_gpu
-        self.min_memory_giB = min_memory_giB
+        self.min_memory_gi_b = min_memory_gi_b
         self.min_network_performance = min_network_performance
         self.min_vcpu = min_vcpu
         self.root_device_types = root_device_types
