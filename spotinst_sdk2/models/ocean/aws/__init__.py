@@ -294,7 +294,7 @@ class DiskTypes(Enum):
     hdd = "HDD"
 
 
-class Hypervisor:
+class Hypervisor(Enum):
     nitro = "nitro"
     xen = "xen"
 
@@ -312,12 +312,12 @@ class VirtualizationTypes(Enum):
 class InstanceTypesFilters:
     """
     # Arguments
-    architectures: Architectures
-    categories: Categories
-    disk_types: DiskTypes
+    architectures: List[Architectures]
+    categories: List[Categories]
+    disk_types: List[DiskTypes]
     exclude_families: List[str]
     exclude_metal: bool
-    hypervisor: Hypervisor
+    hypervisor: List[Hypervisor]
     include_families: List[str]
     is_ena_supported: bool
     max_gpu: int
@@ -329,17 +329,17 @@ class InstanceTypesFilters:
     min_memory_gi_b: float
     min_network_performance: int
     min_vcpu: int
-    root_device_types: RootDeviceTypes
-    virtualization_types: VirtualizationTypes
+    root_device_types: List[RootDeviceTypes]
+    virtualization_types: List[VirtualizationTypes]
     """
     def __init__(
             self,
-            architectures: Architectures = none,
-            categories: Categories = none,
-            disk_types: DiskTypes = none,
+            architectures: List[Architectures] = none,
+            categories: List[Categories] = none,
+            disk_types: List[DiskTypes] = none,
             exclude_families: List[str] = none,
             exclude_metal: bool = none,
-            hypervisor: Hypervisor = none,
+            hypervisor: List[Hypervisor] = none,
             include_families: List[str] = none,
             is_ena_supported: bool = none,
             max_gpu: int = none,
@@ -351,8 +351,8 @@ class InstanceTypesFilters:
             min_memory_gi_b: float = none,
             min_network_performance: int = none,
             min_vcpu: int = none,
-            root_device_types: RootDeviceTypes = none,
-            virtualization_types: VirtualizationTypes = none):
+            root_device_types: List[RootDeviceTypes] = none,
+            virtualization_types: List[VirtualizationTypes] = none):
         self.architectures = architectures
         self.categories = categories
         self.disk_types = disk_types
