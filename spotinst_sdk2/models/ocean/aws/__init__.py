@@ -726,8 +726,8 @@ class RightSizingRecommendationFilter:
     """
     def __init__(
             self,
-            namespaces: List[str],
-            attribute: Attribute):
+            namespaces: List[str] = none,
+            attribute: Attribute = none):
         self.namespaces = namespaces
         self.attribute = attribute
 
@@ -858,31 +858,9 @@ class ClusterRollInitiateRequest:
                           sort_keys=True, indent=4)
 
 
-class Status:
-    """
-    # Arguments
-    status: str
-    """
-    def __init__(
-            self,
-            status: str = none):
-        self.status = status
-
-
-class UpdateRoll:
-    """
-    # Arguments
-    roll: Status
-    """
-    def __init__(
-            self,
-            roll: Status = none):
-        self.roll = roll
-
-
 class ClusterRollUpdateRequest:
-    def __init__(self, updateRoll: UpdateRoll = none):
-        self.roll = updateRoll.roll
+    def __init__(self, status: str = none):
+        self.roll = dict(status=status)
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -898,20 +876,9 @@ class InstanceTypesFilterSimulationRequest:
                           sort_keys=True, indent=4)
 
 
-class LaunchNodes:
-    """
-    # Arguments
-    amount: int
-    """
-    def __init__(
-            self,
-            amount: int = none):
-        self.amount = amount
-
-
 class LaunchNodesRequest:
-    def __init__(self, launch_nodes: LaunchNodes = none):
-        self.launch_request = launch_nodes
+    def __init__(self, amount: int = none):
+        self.launch_request = dict(amount=amount)
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

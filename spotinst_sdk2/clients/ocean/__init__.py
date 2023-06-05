@@ -20,12 +20,12 @@ class OceanAwsClient(Client):
         """
         ocean = aws_ocean.OceanRequest(ocean)
 
-        excluded_group_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(ocean.toJSON()))
 
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_group_dict)
+        body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_post(
             body=body_json,
@@ -37,13 +37,13 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def update_ocean_cluster(self, ocean_id: str, ocean: aws_ocean.Ocean, auto_apply_tagsocean: str = "false"):
+    def update_ocean_cluster(self, ocean_id: str, ocean: aws_ocean.Ocean, auto_apply_tags: str = "false"):
         """
         Update an exsisting Ocean Cluster 
         
         # Arguments
         ocean_id (String): Ocean id
-        auto_apply_tagsocean (String): Option to update instance tags on the fly without rolling the cluster.
+        auto_apply_tags (String): Option to update instance tags on the fly without rolling the cluster.
         ocean (Ocean): Ocean object
         
         # Returns
@@ -51,13 +51,13 @@ class OceanAwsClient(Client):
         """
         ocean = aws_ocean.OceanRequest(ocean)
 
-        excluded_group_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(ocean.toJSON()))
 
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_group_dict)
-        query_params = dict(autoApplyTags=auto_apply_tagsocean)
+        body_json = json.dumps(formatted_missing_dict)
+        query_params = dict(autoApplyTags=auto_apply_tags)
 
         group_response = self.send_put(
             body=body_json,
@@ -88,33 +88,23 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def get_all_ocean_sizing(self, ocean_id: str, filter: aws_ocean.RightSizingRecommendationFilter):
+    def get_all_ocean_sizing(self, ocean_id: str, namespace: str):
         """
         Get all right sizing recommendations for an Ocean cluster
 
-        # Arguments
-        ocean_id (String): Id of the ocean cluster
-        filter (RightSizingRecommendationFilter): Optional - may be null.
-        
         # Returns
         (Object): Ocean API response
         """
-        group_dict = aws_ocean.RightSizingRecommendationRequest(filter)
-
-        excluded_group_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
-
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
-
-        body_json = json.dumps(formatted_group_dict)
-
-        group_response = self.send_post(
-            body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/rightSizing/suggestion",
-            entity_name='ocean')
+        response = self.send_get(
+            url=(self.__base_ocean_cluster_url +
+                 "/" + ocean_id +
+                 "/rightSizing/suggestion?namespace={}"
+                 ).format(namespace),
+            entity_name="ocean"
+        )
 
         formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -131,12 +121,12 @@ class OceanAwsClient(Client):
         """
         group_dict = aws_ocean.RightSizingRecommendationRequest(filter)
 
-        excluded_group_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
 
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_group_dict)
+        body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_post(
             body=body_json,
@@ -197,12 +187,12 @@ class OceanAwsClient(Client):
         """
         aggregated_cluster_costs_request = aws_ocean.AggregatedClusterCostRequest(aggregated_cluster_costs)
 
-        excluded_aggregated_costs_dict = self.exclude_missing(json.loads(aggregated_cluster_costs_request.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(aggregated_cluster_costs_request.toJSON()))
 
-        formatted_aggregated_costs_dict = self.convert_json_with_list_of_lists(
-            excluded_aggregated_costs_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_aggregated_costs_dict)
+        body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
             body=body_json,
@@ -227,12 +217,12 @@ class OceanAwsClient(Client):
         """
         group_dict = aws_ocean.ClusterRollInitiateRequest(cluster_roll)
 
-        excluded_aggregated_costs_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
 
-        formatted_aggregated_costs_dict = self.convert_json_with_list_of_lists(
-            excluded_aggregated_costs_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_aggregated_costs_dict)
+        body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
             body=body_json,
@@ -264,7 +254,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def update_roll(self, ocean_id: str, roll_id: str, update_roll: aws_ocean.UpdateRoll):
+    def update_roll(self, ocean_id: str, roll_id: str, status: str):
         """
         Update a roll of an Ocean cluster.
         Performing the request will stop the next batch in a roll.
@@ -277,14 +267,14 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Cluster Roll API response
         """
-        group_dict = aws_ocean.ClusterRollUpdateRequest(update_roll)
+        group_dict = aws_ocean.ClusterRollUpdateRequest(status)
 
-        excluded_group_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
 
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_group_dict)
+        body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_put(
             body=body_json,
@@ -379,12 +369,12 @@ class OceanAwsClient(Client):
         """
         group_dict = aws_ocean.InstanceTypesFilterSimulationRequest(instance_type_filter)
 
-        excluded_aggregated_costs_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
 
-        formatted_aggregated_costs_dict = self.convert_json_with_list_of_lists(
-            excluded_aggregated_costs_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_aggregated_costs_dict)
+        body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
             body=body_json,
@@ -436,7 +426,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def launch_nodes_in_vng(self, ocean_launch_spec_id: str, launch_nodes: aws_ocean.LaunchNodes):
+    def launch_nodes_in_vng(self, ocean_launch_spec_id: str, amount: int):
         """
         Launch nodes in Virtual Node Group.
 
@@ -447,14 +437,14 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean Virtual Node Group Launch API response
         """
-        group_dict = aws_ocean.LaunchNodesRequest(launch_nodes)
+        group_dict = aws_ocean.LaunchNodesRequest(amount)
 
-        excluded_group_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
 
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_group_dict)
+        body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_put(
             body=body_json,
