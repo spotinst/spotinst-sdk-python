@@ -33,7 +33,7 @@ OceanAwsClient.update_ocean_cluster(ocean_id: str,
                                     auto_apply_tags: str = None)
 ```
 
-Update an exsiting Ocean Cluster
+Update an existing Ocean Cluster
 
 __Arguments__
 

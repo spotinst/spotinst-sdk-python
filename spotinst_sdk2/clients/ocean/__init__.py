@@ -40,7 +40,7 @@ class OceanAwsClient(Client):
 
     def update_ocean_cluster(self, ocean_id: str, ocean: aws_ocean.Ocean, auto_apply_tags: str = None):
         """
-        Update an exsiting Ocean Cluster 
+        Update an existing Ocean Cluster 
         
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
