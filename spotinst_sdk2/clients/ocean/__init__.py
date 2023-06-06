@@ -7,6 +7,7 @@ import spotinst_sdk2.models.ocean.aws as aws_ocean
 class OceanAwsClient(Client):
     __base_ocean_cluster_url = "/ocean/aws/k8s/cluster"
     __base_ocean_launchspec_url = "/ocean/aws/k8s/launchSpec"
+    __base_ocean_url = "/ocean/k8s/cluster/"
 
     def create_ocean_cluster(self, ocean: aws_ocean.Ocean):
         """
@@ -345,7 +346,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Get Heartbeat response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/controllerHeartbeat",
+            url=self.__base_ocean_url + ocean_id + "/controllerHeartbeat",
             entity_name="ocean (Cluster Heartbeat)"
         )
 

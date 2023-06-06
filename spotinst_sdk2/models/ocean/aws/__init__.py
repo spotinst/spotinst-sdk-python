@@ -869,7 +869,7 @@ class ClusterRollUpdateRequest:
 
 class InstanceTypesFilterSimulationRequest:
     def __init__(self, instance_type_filter: InstanceTypesFilters = none):
-        self.filter = instance_type_filter
+        self.filters = instance_type_filter
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
