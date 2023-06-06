@@ -640,7 +640,7 @@ class Ocean:
     """
     # Arguments
     name: str
-    controller_clusterId: str
+    controller_cluster_id: str
     region: str
     auto_scaler: AutoScaler
     capacity: Capacity
@@ -653,7 +653,7 @@ class Ocean:
     def __init__(
             self,
             name: str = none,
-            controller_clusterId: str = none,
+            controller_cluster_id: str = none,
             region: str = none,
             auto_scaler: AutoScaler = none,
             capacity: Capacity = none,
@@ -663,7 +663,7 @@ class Ocean:
             compute: Compute = none,
             logging: Logging = none):
         self.name = name
-        self.controller_clusterId = controller_clusterId
+        self.controller_cluster_id = controller_cluster_id
         self.region = region
         self.auto_scaler = auto_scaler
         self.capacity = capacity

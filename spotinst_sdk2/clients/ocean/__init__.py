@@ -27,19 +27,19 @@ class OceanAwsClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        group_response = self.send_post(
+        response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url,
             entity_name='ocean')
 
-        formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(response, 
+                                               self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
-    def update_ocean_cluster(self, ocean_id: str, ocean: aws_ocean.Ocean, auto_apply_tags: str = "false"):
+    def update_ocean_cluster(self, ocean_id: str, ocean: aws_ocean.Ocean, auto_apply_tags: str = None):
         """
-        Update an exsisting Ocean Cluster 
+        Update an exsiting Ocean Cluster 
         
         # Arguments
         ocean_id (String): Ocean id
@@ -57,16 +57,16 @@ class OceanAwsClient(Client):
             excluded_missing_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_missing_dict)
-        query_params = dict(autoApplyTags=auto_apply_tags)
 
-        group_response = self.send_put(
+        response = self.send_put_with_params(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" + ocean_id,
             entity_name='ocean',
-            query_params=query_params)
+            user_query_params=dict(autoApplyTags=auto_apply_tags))
 
         formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+            response,
+            self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
@@ -119,9 +119,9 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean API response
         """
-        group_dict = aws_ocean.RightSizingRecommendationRequest(filter)
+        recommendation_request = aws_ocean.RightSizingRecommendationRequest(filter)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(recommendation_request.toJSON()))
 
         formatted_missing_dict = self.convert_json(
             excluded_missing_dict, self.underscore_to_camel)
@@ -210,14 +210,14 @@ class OceanAwsClient(Client):
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        cluster_roll (Roll): Roll with Instance Ids/ Launch specification Ids / None
+        cluster_roll (Roll): Cluster Roll / Roll with Instance Ids/ Launch specification Ids
 
         # Returns
         (Object): Cluster Roll API response
         """
-        group_dict = aws_ocean.ClusterRollInitiateRequest(cluster_roll)
+        roll_request = aws_ocean.ClusterRollInitiateRequest(cluster_roll)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(roll_request.toJSON()))
 
         formatted_missing_dict = self.convert_json_with_list_of_lists(
             excluded_missing_dict, self.underscore_to_camel)
@@ -267,22 +267,22 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Cluster Roll API response
         """
-        group_dict = aws_ocean.ClusterRollUpdateRequest(status)
+        update_roll_request = aws_ocean.ClusterRollUpdateRequest(status)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(update_roll_request.toJSON()))
 
         formatted_missing_dict = self.convert_json(
             excluded_missing_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_missing_dict)
 
-        group_response = self.send_put(
+        response = self.send_put(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id,
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
@@ -308,7 +308,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_cluster_nodes(self, ocean_id: str, instance_id: str, launch_spec_id: str):
+    def get_cluster_nodes(self, ocean_id: str, instance_id: str = None, launch_spec_id: str = None):
         """
         Get nodes data of an Ocean cluster.
 
@@ -320,7 +320,8 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean Kubernetes AWS Nodes Data response
         """
-        query_params = dict(instance_id=instance_id, launch_spec_id=launch_spec_id)
+        query_params = dict(instanceId = instance_id, launchSpecId = launch_spec_id)
+        
         response = self.send_get(
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/nodes",
             entity_name="ocean (Cluster Nodes)",
@@ -386,7 +387,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def allow_instance_types(self, ocean_id: str):
+    def allowed_instance_types(self, ocean_id: str):
         """
         Return the list of the allowed Ocean cluster instance types.
 
@@ -437,21 +438,21 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean Virtual Node Group Launch API response
         """
-        group_dict = aws_ocean.LaunchNodesRequest(amount)
+        launch_node_request = aws_ocean.LaunchNodesRequest(amount)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(group_dict.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(launch_node_request.toJSON()))
 
         formatted_missing_dict = self.convert_json(
             excluded_missing_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_missing_dict)
 
-        group_response = self.send_put(
+        response = self.send_put(
             body=body_json,
             url=self.__base_ocean_launchspec_url + "/" + ocean_launch_spec_id + "/launchNodes",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
