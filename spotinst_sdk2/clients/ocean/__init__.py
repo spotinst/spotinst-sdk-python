@@ -43,7 +43,7 @@ class OceanAwsClient(Client):
         Update an exsiting Ocean Cluster 
         
         # Arguments
-        ocean_id (String): Ocean id
+        ocean_id (String): ID of the Ocean Cluster
         auto_apply_tags (String): Option to update instance tags on the fly without rolling the cluster.
         ocean (Ocean): Ocean object
         
@@ -114,7 +114,7 @@ class OceanAwsClient(Client):
         Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
 
         # Arguments
-        ocean_id (String): Id of the ocean cluster
+        ocean_id (String): Id of the Ocean Cluster
         filter (RightSizingRecommendationFilter): Optional - may be null.
 
         # Returns
@@ -145,7 +145,7 @@ class OceanAwsClient(Client):
         Get an exsisting Ocean Cluster json
 
         # Arguments
-        ocean_id (String): Ocean id
+        ocean_id (String): ID of the Ocean Cluster
 
         # Returns
         (Object): Ocean API response 
@@ -165,7 +165,7 @@ class OceanAwsClient(Client):
         Delete an Ocean Cluster
 
         # Arguments
-        ocean_id (String): Ocean id
+        ocean_id (String): ID of the Ocean Cluster
 
         # Returns
         (Object): Ocean API response

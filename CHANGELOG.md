@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.36] - 2023-06-06
+### Added 
+- Add support for AWS Ocean APIs: Roll APIs, `get_aggregated_cluster_costs`,
+`get_cluster_nodes`, `get_heartbeat_status`, `instance_types_filter_simulation`,
+`allowed_instance_types` and `launch_nodes_in_vng`
+
 ## [2.1.35] - 2023-05-19
 ### Fixed 
 - Fixed `ocean_cd_describe_rollout_phase` and `ocean_cd_describe_workloads_revision` APIs
