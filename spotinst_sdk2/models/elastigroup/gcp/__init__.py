@@ -1,39 +1,8 @@
 import json
+from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
-
-# region Elastigroup
-class Elastigroup:
-    """
-    # Arguments
-    name: str
-    description: str
-    capacity: Capacity
-    strategy: Strategy
-    scaling: Scaling
-    third_parties_integration: ThirdPartiesIntegration
-    compute: Compute
-    """
-    def __init__(
-            self,
-            name=none,
-            description=none,
-            capacity=none,
-            strategy=none,
-            scaling=none,
-            third_parties_integration=none,
-            compute=none):
-
-        self.name = name
-        self.description = description
-        self.capacity = capacity
-        self.strategy = strategy
-        self.scaling = scaling
-        self.third_parties_integration = third_parties_integration
-        self.compute = compute
-
-# endregion
 
 # region Capacity
 class Capacity:
@@ -42,16 +11,35 @@ class Capacity:
     minimum: int
     maximum: int
     target: int
+    unit: str
     """
-    def __init__(self, minimum=none, maximum=none, target=none):
 
+    def __init__(self,
+                 minimum: int = none,
+                 maximum: int = none,
+                 target: int = none,
+                 unit: str = none):
         self.minimum = minimum
         self.maximum = maximum
         self.target = target
+        self.unit = unit
+
+
 # endregion
 
 
 # region Strategy
+class RevertToPreemptible:
+    """
+    # Arguments
+    perform_at: str
+    """
+
+    def __init__(self,
+                 perform_at: str = none):
+        self.perform_at = perform_at
+
+
 class Strategy:
     """
     # Arguments
@@ -59,66 +47,92 @@ class Strategy:
     on_demand_count: int
     draining_timeout: int
     fallback_to_od: bool
+    optimization_windows: List[str]
+    provisioning_model: str
+    revert_to_preemptible: RevertToPreemptible
     """
+
     def __init__(
             self,
-            preemptible_percentage=none,
-            on_demand_count=none,
-            draining_timeout=none,
-            fallback_to_od=none):
+            preemptible_percentage: int = none,
+            on_demand_count: int = none,
+            draining_timeout: int = none,
+            fallback_to_od: bool = none,
+            optimization_windows: List[str] = none,
+            provisioning_model: str = none,
+            revert_to_preemptible: RevertToPreemptible = none):
+        self.preemptible_percentage = preemptible_percentage
+        self.on_demand_count = on_demand_count
+        self.draining_timeout = draining_timeout
+        self.fallback_to_od = fallback_to_od
+        self.optimization_windows = optimization_windows
+        self.provisioning_model = provisioning_model
+        self.revert_to_preemptible = revert_to_preemptible
 
-            self.preemptible_percentage = preemptible_percentage
-            self.on_demand_count = on_demand_count
-            self.draining_timeout = draining_timeout
-            self.fallback_to_od = fallback_to_od
+
 # endregion
 
 
 # region Scaling
-class Scaling:
+class ScalingPolicyAction:
     """
     # Arguments
-    up:  list[ScalingPolicy]
-    down: list[ScalingPolicy]
+    scaling_type: str
+    adjustment: int
     """
-    def __init__(self, up=none, down=none):
 
-        self.up = up
-        self.down = down
+    def __init__(self,
+                 scaling_type: str = none,
+                 adjustment: int = none):
+        self.type = scaling_type
+        self.adjustment = adjustment
+
+
+class ScalingPolicyDimension:
+    """
+    # Arguments
+    name: str
+    value: str
+    """
+
+    def __init__(self, name=none, value=none):
+        self.name = name
+        self.value = value
+
 
 class ScalingPolicy:
     """
     # Arguments
-    source: str
-    policy_name: str
-    namespace: str
-    metric_name: str
-    dimensions: list[ScalingPolicyDimension]
-    statistic: str
-    unit: str
-    threshold: float
-    period: int
-    evaluation_periods: int
-    cooldown: int
     action: ScalingPolicyAction
+    cooldown: int
+    dimensions: list[ScalingPolicyDimension]
+    evaluation_periods: int
+    metric_name: str
+    namespace: str
     operator: str
+    period: int
+    policy_name: str
+    source: str
+    statistic: str
+    threshold: int
+    unit: str
     """
+
     def __init__(
             self,
-            source=none,
-            policy_name=none,
-            namespace=none,
-            metric_name=none,
-            dimensions=none,
-            statistic=none,
-            unit=none,
-            threshold=none,
-            period=none,
-            evaluation_periods=none,
-            cooldown=none,
-            action=none,
-            operator=none):
-
+            action: ScalingPolicyAction = none,
+            cooldown: int = none,
+            dimensions: list[ScalingPolicyDimension] = none,
+            evaluation_periods: int = none,
+            metric_name: str = none,
+            namespace: str = none,
+            operator: str = none,
+            period: int = none,
+            policy_name: str = none,
+            source: str = none,
+            statistic: str = none,
+            threshold: int = none,
+            unit: str = none):
         self.source = source
         self.policy_name = policy_name
         self.namespace = namespace
@@ -133,69 +147,66 @@ class ScalingPolicy:
         self.action = action
         self.operator = operator
 
-class ScalingPolicyDimension:
+
+class Scaling:
     """
     # Arguments
-    name: str
-    value: str
+    up:  list[ScalingPolicy]
+    down: list[ScalingPolicy]
     """
-    def __init__(self, name=none, value=none):
 
-        self.name = name
-        self.value = value
+    def __init__(self,
+                 up: List[ScalingPolicy] = none,
+                 down: List[ScalingPolicy] = none):
+        self.up = up
+        self.down = down
 
-class ScalingPolicyAction:
-    """
-    # Arguments
-    scaling_type: str
-    adjustment: int
-    """
-    def __init__(self, scaling_type=none, adjustment=none):
 
-        self.type = scaling_type
-        self.adjustment = adjustment
 # endregion
 
 
 # region ThirdPartiesIntegration
-class ThirdPartiesIntegration:
-    """
-    # Arguments
-    docker_swarm: DockerSwarmConfiguration
-    gke : GKE
-    """
-    def __init__(
-            self,
-            docker_swarm=none,
-            gke=none):
-
-        self.docker_swarm = docker_swarm
-        self.gke = gke
-
 class DockerSwarmConfiguration:
     """
     # Arguments
     master_host: str
     master_port: int
     """
-    def __init__(self, master_host=none, master_port=none):
 
+    def __init__(self,
+                 master_host: str = none,
+                 master_port: int = none):
         self.master_host = master_host
         self.master_port = master_port
 
-class GKE:
+
+class Down:
     """
     # Arguments
-    auto_update: bool
-    auto_scale: AutoScale
+    evaluation_periods: int
     """
+
+    def __init__(self, evaluation_periods: int = none):
+        self.evaluation_periods = evaluation_periods
+
+
+class Headroom:
+    """
+    # Arguments
+    cpu_per_unit: int
+    memory_per_unit: int
+    num_of_units: int
+    """
+
     def __init__(
             self,
-            auto_update=none,
-            auto_scale=none):
+            cpu_per_unit: int = none,
+            memory_per_unit: int = none,
+            num_of_units: int = none):
+        self.cpu_per_unit = cpu_per_unit
+        self.memory_per_unit = memory_per_unit
+        self.num_of_units = num_of_units
 
-        self.auto_update = auto_update
-        self.auto_scale = auto_scale
 
 class AutoScale:
     """
@@ -207,142 +218,87 @@ class AutoScale:
     labels: list[Label]
     down: Down
     """
+
     def __init__(
             self,
-            is_enabled=none,
-            is_auto_config=none,
-            cooldown=none,
-            headroom=none,
-            labels=none,
-            down=none):
-
+            is_enabled: bool = none,
+            is_auto_config: bool = none,
+            cooldown: int = none,
+            headroom: Headroom = none,
+            down: Down = none):
         self.is_enabled = is_enabled
         self.is_auto_config = is_auto_config
         self.cooldown = cooldown
         self.headroom = headroom
-        self.labels = labels
         self.down = down
 
-class Headroom:
+
+class GKE:
     """
     # Arguments
-    cpu_per_unit: int
-    memory_per_unit: int
-    num_of_units: int
+    auto_update: bool
+    auto_scale: AutoScale
+    cluster_identifier: str
+    location: str
     """
+
     def __init__(
             self,
-            cpu_per_unit=none,
-            memory_per_unit=none,
-            num_of_units=none):
+            auto_update: bool = none,
+            auto_scale: AutoScale = none,
+            cluster_identifier: str = none,
+            location: str = none):
+        self.auto_update = auto_update
+        self.auto_scale = auto_scale
+        self.cluster_identifier = cluster_identifier
+        self.location = location
 
-        self.cpu_per_unit = cpu_per_unit
-        self.memory_per_unit = memory_per_unit
-        self.num_of_units = num_of_units
 
-class Down:
+class ThirdPartiesIntegration:
     """
     # Arguments
-    evaluation_periods: int
+    docker_swarm: DockerSwarmConfiguration
+    gke : GKE
     """
-    def __init__(self, evaluation_periods=none):
-        self.evaluation_periods = evaluation_periods
+
+    def __init__(
+            self,
+            docker_swarm: DockerSwarmConfiguration = none,
+            gke: GKE = none):
+        self.docker_swarm = docker_swarm
+        self.gke = gke
 
 
 # endregion
 
 
 # region Compute
-class Compute:
-    """
-    # Arguments
-    launch_specification: LaunchSpecification
-    instance_types: InstanceTypes
-    gpu: Gpu
-    health: Health
-    availability_zones: list[str]
-    subnets: list[Subnet]
-    """
-    def __init__(
-            self,
-            launch_specification=none,
-            instance_types=none,
-            gpu=none,
-            health=none,
-            availability_zones=none,
-            subnets=none):
-
-        self.launch_specification = launch_specification
-        self.instance_types = instance_types
-        self.gpu = gpu
-        self.health = health
-        self.availability_zones = availability_zones
-        self.subnets = subnets
-
-class LaunchSpecification:
-    """
-    # Arguments
-    labels: list[Label]
-    metadata: list[MetaData]
-    tags: List[str]
-    backend_service_config: BackendServiceConfig
-    startup_script: str
-    disks: list[Disk]
-    network_interfaces: list[NetworkInterface]
-    service_account: str
-    ip_forwarding: bool
-    """
-    def __init__(
-            self,
-            labels=none,
-            metadata=none,
-            tags=none,
-            backend_service_config=none,
-            startup_script=none,
-            disks=none,
-            network_interfaces=none,
-            service_account=none,
-            ip_forwarding=none):
-
-        self.labels = labels
-        self.metadata = metadata 
-        self.tags = tags 
-        self.backend_service_config = backend_service_config
-        self.startup_script = startup_script
-        self.disks = disks
-        self.network_interfaces = network_interfaces
-        self.service_account = service_account
-        self.ip_forwarding = ip_forwarding
-
-class Label:
-    """
-    # Arguments
-    key: str
-    value: str
-    """
-    def __init__(self, key=none, value=none):
-
-        self.key = key
-        self.value = value
-
 class Metadata:
     """
     # Arguments
     key: str
     value: str
     """
-    def __init__(self, key=none, value=none):
 
+    def __init__(self, key: str = none, value: str = none):
         self.key = key
         self.value = value
 
-class BackendServiceConfig:
+
+class NamedPorts:
     """
     # Arguments
-    backend_services: [BackendServices]
+    name: str
+    ports: list[int]
     """
-    def __init__(self, backend_services=none):
-        self.backend_services = backend_services
+
+    def __init__(
+            self,
+            name: str = none,
+            ports: list[int] = none):
+        self.name = name
+        self.ports = ports
+
 
 class BackendServices:
     """
@@ -352,31 +308,46 @@ class BackendServices:
     scheme: str
     named_ports: NamedPorts
     """
+
     def __init__(
             self,
-            backend_service_name=none,
-            location_type=none,
-            scheme=none,
-            named_ports=none):
-
+            backend_service_name: str = none,
+            location_type: str = none,
+            scheme: str = none,
+            named_ports: NamedPorts = none):
         self.backend_service_name = backend_service_name
         self.location_type = location_type
         self.scheme = scheme
         self.named_ports = named_ports
 
-class NamedPorts:
+
+class BackendServiceConfig:
     """
     # Arguments
-    name: str
-    ports: list[int]
+    backend_services: list[BackendServices]
     """
+
+    def __init__(self, backend_services: list[BackendServices] = none):
+        self.backend_services = backend_services
+
+
+class InitializeParams:
+    """
+    # Arguments
+    disk_size_gb: int
+    disk_type: str
+    source_image: str
+    """
+
     def __init__(
             self,
-            name=none,
-            ports=none):
+            disk_size_gb: int = none,
+            disk_type: str = none,
+            source_image: str = none):
+        self.disk_size_gb = disk_size_gb
+        self.disk_type = disk_type
+        self.source_image = source_image
 
-        self.name = name
-        self.ports = ports
 
 class Disk:
     """
@@ -390,17 +361,17 @@ class Disk:
     source: str
     disk_type: str
     """
+
     def __init__(
             self,
-            auto_delete=none,
-            boot=none,
-            device_name=none,
-            initialize_params=none,
-            interface=none,
-            mode=none,
-            source=none,
-            disk_type=none):
-
+            auto_delete: bool = none,
+            boot: bool = none,
+            device_name: str = none,
+            initialize_params: InitializeParams = none,
+            interface: str = none,
+            mode: str = none,
+            source: str = none,
+            disk_type: str = none):
         self.auto_delete = auto_delete
         self.boot = boot
         self.device_name = device_name
@@ -410,99 +381,113 @@ class Disk:
         self.source = source
         self.type = disk_type
 
-class InitializeParams:
-    """
-    # Arguments
-    disk_size_gb: int
-    disk_type: str
-    source_image: str
-    """
 
-    def __init__(
-            self,
-            disk_size_gb=none,
-            disk_type=none,
-            source_image=none):
-
-        self.disk_size_gb = disk_size_gb
-        self.disk_type = disk_type
-        self.source_image = source_image
-
-class NetworkInterface: 
+class NetworkInterface:
     """
     # Arguments
     network: str
-    access_configs: list[AccessConfig]
-    alias_ip_ranges: list[AliasIpRange]
+    project_id: str
     """
+
     def __init__(
             self,
-            network=none,
-            access_configs=none,
-            alias_ip_ranges=none):
-
+            network: str = none,
+            project_id: str = none):
         self.network = network
-        self.access_configs = access_configs
-        self.alias_ip_ranges = alias_ip_ranges
+        self.project_id = project_id
 
-class AccessConfig:
+
+class LaunchSpecification:
     """
     # Arguments
-    name: str
-    access_type: str
+    metadata: list[Metadata]
+    tags: List[str]
+    backend_service_config: BackendServiceConfig
+    startup_script: str
+    disks: list[Disk]
+    network_interfaces: list[NetworkInterface]
+    service_account: str
+    ip_forwarding: bool
+    shutdown_script: str
+    min_cpu_platform: str
+    instance_name_prefix: str
     """
+
     def __init__(
             self,
-            name=none,
-            access_type=none):
+            metadata: list[Metadata] = none,
+            tags: List[str] = none,
+            backend_service_config: BackendServiceConfig = none,
+            startup_script: str = none,
+            disks: list[Disk] = none,
+            network_interfaces: list[NetworkInterface] = none,
+            service_account: str = none,
+            ip_forwarding: bool = none,
+            shutdown_script: str = none,
+            min_cpu_platform: str = none,
+            instance_name_prefix: str = none):
+        self.metadata = metadata
+        self.tags = tags
+        self.backend_service_config = backend_service_config
+        self.startup_script = startup_script
+        self.disks = disks
+        self.network_interfaces = network_interfaces
+        self.service_account = service_account
+        self.ip_forwarding = ip_forwarding
+        self.shutdown_script = shutdown_script
+        self.min_cpu_platform = min_cpu_platform
+        self.instance_name_prefix = instance_name_prefix
 
-        self.name = name
-        self.type = access_type
 
-class AliasIpRange:
+class CustomInstanceTypes:
     """
     # Arguments
-    ip_cidr_range: str
-    subnetwork_range_name: str
+    v_cPU: int
+    memory_giB: int
     """
+
     def __init__(
             self,
-            ip_cidr_range=none,
-            subnetwork_range_name=none):
+            v_cPU: int = none,
+            memory_giB: int = none):
+        self.v_cPU = v_cPU
+        self.memory_giB = memory_giB
 
-        self.ip_cidr_range = ip_cidr_range
-        self.subnetwork_range_name = subnetwork_range_name
+
+class PreferredPreemtible:
+    """
+    # Arguments
+    custom: CustomInstanceTypes
+    preemptible: list[str]
+    """
+
+    def __init__(self,
+                 custom: CustomInstanceTypes = none,
+                 preemptible: list[str] = none):
+        self.custom = custom
+        self.preemptible = preemptible
+
 
 class InstanceTypes:
     """
     # Arguments
     ondemand: str
     preemptible: list[str]
-    custom: list[CustomInstanceTypes]
+    custom: CustomInstanceTypes
+    preferred: PreferredPreemtible
     """
+
     def __init__(
             self,
-            ondemand=none,
-            preemptible=none,
-            custom=none):
-
+            ondemand: str = none,
+            preemptible: list[str] = none,
+            custom: CustomInstanceTypes = none,
+            preferred: PreferredPreemtible = none):
         self.ondemand = ondemand
         self.preemptible = preemptible
         self.custom = custom
+        self.preferred = preferred
 
-class CustomInstanceTypes:
-    """
-    # Arguments
-    v_cpu: int
-    memory_gib: int
-    """
-    def __init__(
-            self,
-            v_cpu=none,
-            memory_gib=none):
-
-        self.v_cPU = v_cpu
-        self.memory_giB = memory_gib
 
 class Gpu:
     """
@@ -510,22 +495,35 @@ class Gpu:
     gpu_type: str
     count: int
     """
+
     def __init__(
             self,
-            gpu_type=none,
-            count=none):
+            gpu_type: str = none,
+            count: int = none):
         self.type = gpu_type
         self.count = count
+
 
 class Health:
     """
     # Arguments
-    grace_period: int
+    grace_period: str
+    auto_healing: bool
+    health_check_type: str
+    unhealthy_duration: int
     """
+
     def __init__(
             self,
-            grace_period=none):
+            grace_period: str = none,
+            auto_healing: bool = none,
+            health_check_type: str = none,
+            unhealthy_duration: int = none):
         self.grace_period = grace_period
+        self.auto_healing = auto_healing
+        self.health_check_type = health_check_type
+        self.unhealthy_duration = unhealthy_duration
+
 
 class Subnet:
     """
@@ -533,40 +531,151 @@ class Subnet:
     region: str
     subnet_names: list[str]
     """
+
     def __init__(
             self,
             region=none,
             subnet_names=none):
-
         self.region = region
         self.subnet_names = subnet_names
 
+
+class Compute:
+    """
+    # Arguments
+    launch_specification: LaunchSpecification
+    instance_types: InstanceTypes
+    gpu: Gpu
+    health: Health
+    availability_zones: list[str]
+    subnets: list[Subnet]
+    preferred_availability_zones: list[str]
+    """
+
+    def __init__(
+            self,
+            launch_specification: LaunchSpecification = none,
+            instance_types: InstanceTypes = none,
+            gpu: Gpu = none,
+            health: Health = none,
+            availability_zones: list[str] = none,
+            subnets: list[Subnet] = none,
+            preferred_availability_zones: list[str] = none):
+        self.launch_specification = launch_specification
+        self.instance_types = instance_types
+        self.gpu = gpu
+        self.health = health
+        self.availability_zones = availability_zones
+        self.subnets = subnets
+        self.preferred_availability_zones = preferred_availability_zones
+
+
+# endregion
+
+
+# region Scheduling
+class Tasks:
+    """
+    # Arguments
+    cron_expression: str
+    is_enabled: bool
+    max_capacity: int
+    min_capacity: int
+    target_capacity: int
+    task_type: str
+    """
+
+    def __init__(self,
+                 cron_expression: str = none,
+                 is_enabled: bool = none,
+                 max_capacity: int = none,
+                 min_capacity: int = none,
+                 target_capacity: int = none,
+                 task_type: str = none):
+        self.cron_expression = cron_expression
+        self.is_enabled = is_enabled
+        self.max_capacity = max_capacity
+        self.min_capacity = min_capacity
+        self.target_capacity = target_capacity
+        self.task_type = task_type
+
+
+class Scheduling:
+    """
+    # Arguments
+    tasks: list[Tasks]
+    """
+
+    def __init__(self,
+                 tasks: list[Tasks] = none):
+        self.tasks = tasks
+# endregion
+
+
+# region Elastigroup
+class Elastigroup:
+    """
+    # Arguments
+    name: str
+    description: str
+    capacity: Capacity
+    strategy: Strategy
+    scaling: Scaling
+    third_parties_integration: ThirdPartiesIntegration
+    compute: Compute
+    scheduling: Scheduling
+    """
+
+    def __init__(
+            self,
+            name: str = none,
+            description: str = none,
+            capacity: Capacity = none,
+            strategy: Strategy = none,
+            scaling: Scaling = none,
+            third_parties_integration: ThirdPartiesIntegration = none,
+            compute: Compute = none,
+            scheduling: Scheduling = none):
+        self.name = name
+        self.description = description
+        self.capacity = capacity
+        self.strategy = strategy
+        self.scaling = scaling
+        self.third_parties_integration = third_parties_integration
+        self.compute = compute
+        self.scheduling = scheduling
+
+
 class ElastigroupCreationRequest:
-    def __init__(self, elastigroup):
+    def __init__(self, elastigroup: Elastigroup):
         self.group = elastigroup
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
+
 # endregion
 
-# Deployment
+
+# region Deployment
 class RollGroup:
     """
     # Arguments
     batch_size_percentage: int
     grace_period: int
     """
+
     def __init__(
             self,
-            batch_size_percentage=none,
-            grace_period=none):
-
+            batch_size_percentage: int = none,
+            grace_period: int = none):
         self.batch_size_percentage = batch_size_percentage
         self.grace_period = grace_period
 
+
 class ElastigroupRollRequest:
-    def __init__(self, group_roll):
+    def __init__(self, group_roll: RollGroup):
         self.batch_size_percentage = group_roll.batch_size_percentage
         self.grace_period = group_roll.grace_period
 
@@ -585,19 +694,21 @@ class DetachConfiguration:
     draining_timeout: int
     should_decrement_target_capacity: bool
     """
+
     def __init__(
             self,
-            instances_to_detach=none,
-            should_terminate_instances=none,
-            draining_timeout=none,
-            should_decrement_target_capacity=none):
+            instances_to_detach: list[str] = none,
+            should_terminate_instances: bool = none,
+            draining_timeout: int = none,
+            should_decrement_target_capacity: bool = none):
         self.instances_to_detach = instances_to_detach
         self.should_terminate_instances = should_terminate_instances
         self.draining_timeout = draining_timeout
         self.should_decrement_target_capacity = should_decrement_target_capacity
 
+
 class ElastigroupDetachInstancesRequest:
-    def __init__(self, detach_configuration):
+    def __init__(self, detach_configuration: DetachConfiguration):
         self.should_decrement_target_capacity = detach_configuration.should_decrement_target_capacity
         self.draining_timeout = detach_configuration.draining_timeout
         self.instances_to_detach = detach_configuration.instances_to_detach
@@ -606,5 +717,3 @@ class ElastigroupDetachInstancesRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 # endregion
-
-
