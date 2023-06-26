@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.37] - 2023-06-26
+### Added
+- Add `restrict_single_az` field in `Strategy` model in spotinst_sdk2.models.elastigroup.aws
+
 ## [2.1.36] - 2023-06-06
 ### Added 
 - Add support for AWS Ocean APIs: Roll APIs, `get_aggregated_cluster_costs`,
