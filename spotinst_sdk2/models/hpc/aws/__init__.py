@@ -2,38 +2,6 @@ import json
 
 none = "d3043820717d74d9a17694c176d39733"
 
-
-# region HPC
-class HPC:
-    """
-    # Arguments
-    name: str
-    description: str
-    region: str
-    capacity: Capacity
-    strategy: Strategy
-    compute: Compute
-    """
-    def __init__(
-            self,
-            name=none,
-            description=none,
-            region=none,
-            capacity=none,
-            strategy=none,
-            compute=none,
-            ):
-
-        self.name = name
-        self.description = description
-        self.region = region
-        self.capacity = capacity
-        self.strategy = strategy
-        self.compute = compute
-
-
-# endregion
-
 # region Strategy
 class Strategy:
     """
@@ -42,7 +10,7 @@ class Strategy:
     """
     def __init__(
             self,
-            draining_timeout=none,
+            draining_timeout:int=none,
             ):
         self.draining_timeout = draining_timeout
         
@@ -57,15 +25,72 @@ class Capacity:
     target: int
     unit: str
     """
-    def __init__(self, minimum=none, maximum=none, target=none, unit=none):
+    def __init__(self, minimum:int=none, maximum:int=none, target:int=none, unit:int=none):
 
         self.minimum = minimum
         self.maximum = maximum
         self.target = target
         self.unit = unit
 
+# endregion
+
+# region Instance Types
+class InstanceTypes:
+    """
+    # Arguments
+    ondemand: str
+    spot: list[str]
+    """
+    def __init__(
+            self,
+            ondemand:str=none,
+            spot:list[str]=none):
+
+        self.ondemand = ondemand
+        self.spot = spot
 
 # endregion
+
+# region Image
+class Image:
+    """
+    # Arguments
+    id: str
+    """
+    def __init__(
+        self,
+        id:str=none):
+        self.id = id
+
+# endregion
+
+# region Launch Specification
+class LaunchSpecification:
+    """
+    # Arguments
+    security_group_ids: list[str]
+    image_id: Image
+    monitoring: bool
+    key_pair: str
+    user_data: str
+    """
+    def __init__(
+            self,
+            security_group_ids:list[str]=none,
+            image_id:Image=none,
+            monitoring:bool=none,
+            key_pair:str=none,
+            user_data:str=none):
+
+        self.security_group_ids = security_group_ids
+        self.monitoring = monitoring
+        self.image_id = image_id
+        self.key_pair = key_pair
+        self.user_data = user_data
+
+# endregion
+
+
 
 # region Compute
 class Compute:
@@ -78,64 +103,45 @@ class Compute:
     """
     def __init__(
             self,
-            launch_specification=none,
-            instance_types=none,
-            product=none,
-            subnet_ids=none):
+            launch_specification:LaunchSpecification=none,
+            instance_types:InstanceTypes=none,
+            product:str=none,
+            subnet_ids:list[str]=none):
 
         self.subnet_ids = subnet_ids
         self.instance_types = instance_types
         self.product = product
         self.launch_specification = launch_specification
 
-class InstanceTypes:
+# endregion
+
+# region HPC
+class HPC:
     """
     # Arguments
-    ondemand: str
-    spot: list[str]
+    name: str
+    description: str
+    region: str
+    capacity: Capacity
+    strategy: Strategy
+    compute: Compute
     """
     def __init__(
             self,
-            ondemand=none,
-            spot=none):
+            name:str=none,
+            description:str=none,
+            region:str=none,
+            capacity:Capacity=none,
+            strategy:Strategy=none,
+            compute:Compute=none,
+            ):
 
-        self.ondemand = ondemand
-        self.spot = spot
-
-
-class LaunchSpecification:
-    """
-    # Arguments
-    security_group_ids: list[str]
-    image_id: str
-    monitoring: bool
-    key_pair: str
-    user_data: str
-    """
-    def __init__(
-            self,
-            security_group_ids=none,
-            image_id=none,
-            monitoring=none,
-            key_pair=none,
-            user_data=none):
-
-        self.security_group_ids = security_group_ids
-        self.monitoring = monitoring
-        self.image_id = image_id
-        self.key_pair = key_pair
-        self.user_data = user_data
-
-
-class Image:
-    """
-    # Arguments
-    id: str
-    """
-    def __init__(
-        self,
-        id=none):
-        self.id = id
+        self.name = name
+        self.description = description
+        self.region = region
+        self.capacity = capacity
+        self.strategy = strategy
+        self.compute = compute
 
 # endregion
 
@@ -155,39 +161,3 @@ class HPCClusterDeletionRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-
-
-class ElastigroupUpdateRequest:
-    def __init__(self, elastigroup):
-        self.group = elastigroup
-
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
-
-
-class ElastigroupRollRequest:
-    def __init__(self, group_roll):
-        self.batch_size_percentage = group_roll.batch_size_percentage
-        self.grace_period = group_roll.grace_period
-        self.health_check_type = group_roll.health_check_type
-        self.strategy = group_roll.strategy
-
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
-
-
-class ElastigroupDetachInstancesRequest:
-    def __init__(self, detach_configuration):
-        self.should_decrement_target_capacity = detach_configuration.should_decrement_target_capacity
-        self.draining_timeout = detach_configuration.draining_timeout
-        self.instances_to_detach = detach_configuration.instances_to_detach
-        self.should_terminate_instances = detach_configuration.should_terminate_instances
-
-    def toJSON(self):
-        return json.dumps(
-            self,
-            default=lambda o: o.__dict__,
-            sort_keys=True,
-            indent=4)

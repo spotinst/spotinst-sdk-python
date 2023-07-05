@@ -17,7 +17,7 @@ class HPCAwsClient(Client):
  # endregion
 
     # region HPCCluster
-    def create_hpc_cluster(self, cluster, async_scale=None):
+    def create_hpc_cluster(self, cluster:aws_hpc.HPC, async_scale=None):
         """
         Create an hpc cluster
 
