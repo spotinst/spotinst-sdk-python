@@ -1026,6 +1026,7 @@ __Arguments__
 ```python
 InstanceTypes(self,
               ondemand='d3043820717d74d9a17694c176d39733',
+              on_demand_types='d3043820717d74d9a17694c176d39733',
               spot='d3043820717d74d9a17694c176d39733',
               weights='d3043820717d74d9a17694c176d39733',
               preferred_spot='d3043820717d74d9a17694c176d39733')
@@ -1034,6 +1035,7 @@ InstanceTypes(self,
 __Arguments__
 
 - __ondemand__: str
+- __on_demand_types__: list[str]
 - __spot__: list[str]
 - __weights__: list[Weight]
 - __preferred_spot__: list[str]
