@@ -1151,6 +1151,7 @@ class InstanceTypes:
     """
     # Arguments
     ondemand: str
+    on_demand_types: list[str]
     spot: list[str]
     weights: list[Weight]
     preferred_spot: list[str]
@@ -1158,11 +1159,13 @@ class InstanceTypes:
     def __init__(
             self,
             ondemand=none,
+            on_demand_types=none,
             spot=none,
             weights=none,
             preferred_spot=none):
 
         self.ondemand = ondemand
+        self.on_demand_types = on_demand_types
         self.spot = spot
         self.weights = weights
         self.preferred_spot = preferred_spot
