@@ -27,23 +27,23 @@ class HPCAwsClient(Client):
         # Returns
         (Object): HPCCluster API response 
         """
-        group = aws_hpc.HPCClusterCreationRequest(group)
+        cluster = aws_hpc.HPCClusterCreationRequest(cluster)
 
-        excluded_group_dict = self.exclude_missing(json.loads(group.toJSON()))
+        excluded_cluster_dict = self.exclude_missing(json.loads(cluster.toJSON()))
 
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
+        formatted_cluster_dict = self.convert_json(
+            excluded_cluster_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_group_dict)
+        body_json = json.dumps(formatted_cluster_dict)
 
-        group_response = self.send_post_with_params(
+        cluster_response = self.send_post_with_params(
             body=body_json,
             url=self.__base_hpc_url,
             entity_name='hpc_cluster',
             user_query_params=dict(asyncScale=async_scale))
 
         formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+            cluster_response, self.camel_to_underscore)
 
         ret_val = formatted_response["response"]["items"][0]
 
