@@ -1,6 +1,6 @@
 import json
 
-none = "d3043820717d74d9a17694c176d39733"
+none = "c6791c1d3bcab7d4179f64f0f4d50f6091bfe7fadaa790ba8e98fc8645e2b576"
 
 # region Strategy
 class Strategy:

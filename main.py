@@ -2,7 +2,7 @@ from spotinst_sdk2 import SpotinstSession
 from spotinst_sdk2.models.elastigroup.aws import *
 from spotinst_sdk2.models.hpc.aws import *
 
-session = SpotinstSession(auth_token='3526b1fbfb2d375d095c3d4c2b552c2db86f1b4020a99f425d96b70604293f65', account_id='act-7c46c6df')
+session = SpotinstSession(auth_token='c6791c1d3bcab7d4179f64f0f4d50f6091bfe7fadaa790ba8e98fc8645e2b576', account_id='act-7c46c6df')
 
 client = session.client("hpc")
 
@@ -10,10 +10,10 @@ client = session.client("hpc")
 strategy = Strategy(draining_timeout=120)
 
 # Capacity
-capacity = Capacity(minimum=0, maximum=10, target=5)
+capacity = Capacity(minimum=0, maximum=10, target=5,unit="instance")
 
 # Instance Types
-instance_types = InstanceTypes(ondemand="t2.micro", spot=["t2.micro"])
+instance_types = InstanceTypes(onDemand="t2.micro", spot=["t2.micro"])
 
 
 
