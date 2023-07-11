@@ -1,3 +1,4 @@
+from spotinst_sdk2.clients.hpc import HPCAwsClient
 from spotinst_sdk2.session import Session
 
 from spotinst_sdk2.clients.managed_instance import *

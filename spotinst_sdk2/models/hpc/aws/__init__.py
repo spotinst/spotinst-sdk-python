@@ -25,7 +25,7 @@ class Capacity:
     target: int
     unit: str
     """
-    def __init__(self, minimum:int=none, maximum:int=none, target:int=none, unit:int=none):
+    def __init__(self, minimum:int=none, maximum:int=none, target:int=none, unit:str=none):
 
         self.minimum = minimum
         self.maximum = maximum
@@ -43,24 +43,11 @@ class InstanceTypes:
     """
     def __init__(
             self,
-            ondemand:str=none,
+            onDemand:str=none,
             spot:list[str]=none):
 
-        self.ondemand = ondemand
+        self.onDemand = onDemand
         self.spot = spot
-
-# endregion
-
-# region Image
-class Image:
-    """
-    # Arguments
-    id: str
-    """
-    def __init__(
-        self,
-        id:str=none):
-        self.id = id
 
 # endregion
 
@@ -77,7 +64,7 @@ class LaunchSpecification:
     def __init__(
             self,
             security_group_ids:list[str]=none,
-            image_id:Image=none,
+            image_id:str=none,
             monitoring:bool=none,
             key_pair:str=none,
             user_data:str=none):
@@ -145,16 +132,16 @@ class HPC:
 
 # endregion
 
-class HPCClusterCreationRequest:
-    def __init__(self, hpc_cluster):
-        self.hpc_cluster = hpc_cluster
+class LSFClusterCreationRequest:
+    def __init__(self, lsf_cluster):
+        self.lsf_cluster = lsf_cluster
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
 
-class HPCClusterDeletionRequest:
+class LSFClusterDeletionRequest:
     def __init__(self, stateful_deallocation):
         self.stateful_deallocation = stateful_deallocation
 

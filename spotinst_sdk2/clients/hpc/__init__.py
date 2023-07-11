@@ -27,7 +27,7 @@ class HPCAwsClient(Client):
         # Returns
         (Object): HPCCluster API response 
         """
-        cluster = aws_hpc.HPCClusterCreationRequest(cluster)
+        cluster = aws_hpc.LSFClusterCreationRequest(cluster)
 
         excluded_cluster_dict = self.exclude_missing(json.loads(cluster.toJSON()))
 
@@ -48,5 +48,51 @@ class HPCAwsClient(Client):
         ret_val = formatted_response["response"]["items"][0]
 
         return ret_val
+    
+
+    def delete_hpc_cluster(self, cluster_id):
+        """
+        Delete a hpc cluster
+
+        # Arguments
+        group_id (String): Cluster ID
+
+        # Returns
+        (Object): HPC Cluster API response 
+        """
+        delurl = self.__base_hpc_url + "/" + cluster_id
+        response = self.send_delete(url=delurl, entity_name='hpc_cluster')
+        return response
+
+    def get_hpc_cluster(self, cluster_id):
+        """
+        Get an hpc cluster
+
+        # Arguments
+        group_id(String): Cluster ID
+
+        # Returns
+        (Object): HPC Cluster API response 
+        """
+        geturl = self.__base_hpc_url + "/" + cluster_id
+        result = self.send_get(url=geturl, entity_name='hpc_cluster')
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_all_hpc_clusters(self):
+        """
+        Get all hpc cluster
+        # Returns
+        (List): List of Elastigroup API response 
+        """
+        content = self.send_get(
+            url=self.__base_hpc_url,
+            entity_name='hpc_cluster')
+        formatted_response = self.convert_json(
+            content, self.camel_to_underscore)
+        return formatted_response["response"]["items"]
     
     # endregion
