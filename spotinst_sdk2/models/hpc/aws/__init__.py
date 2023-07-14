@@ -1,6 +1,7 @@
 import json
+from typing import List
 
-none = "c6791c1d3bcab7d4179f64f0f4d50f6091bfe7fadaa790ba8e98fc8645e2b576"
+none = "d3043820717d74d9a17694c176d39733"
 
 # region Strategy
 class Strategy:
@@ -39,12 +40,12 @@ class InstanceTypes:
     """
     # Arguments
     ondemand: str
-    spot: list[str]
+    spot: List[str]
     """
     def __init__(
             self,
             onDemand:str=none,
-            spot:list[str]=none):
+            spot:List[str]=none):
 
         self.onDemand = onDemand
         self.spot = spot
@@ -55,7 +56,7 @@ class InstanceTypes:
 class LaunchSpecification:
     """
     # Arguments
-    security_group_ids: list[str]
+    security_group_ids: List[str]
     image_id: Image
     monitoring: bool
     key_pair: str
@@ -63,7 +64,7 @@ class LaunchSpecification:
     """
     def __init__(
             self,
-            security_group_ids:list[str]=none,
+            security_group_ids:List[str]=none,
             image_id:str=none,
             monitoring:bool=none,
             key_pair:str=none,
@@ -85,19 +86,16 @@ class Compute:
     # Arguments
     launch_specification: LaunchSpecification
     instance_types: InstanceTypes
-    product: str
-    subnet_ids: list[str]
+    subnet_ids: List[str]
     """
     def __init__(
             self,
             launch_specification:LaunchSpecification=none,
             instance_types:InstanceTypes=none,
-            product:str=none,
-            subnet_ids:list[str]=none):
+            subnet_ids:List[str]=none):
 
         self.subnet_ids = subnet_ids
         self.instance_types = instance_types
-        self.product = product
         self.launch_specification = launch_specification
 
 # endregion
