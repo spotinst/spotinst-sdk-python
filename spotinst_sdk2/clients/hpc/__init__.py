@@ -16,7 +16,7 @@ class HPCAwsClient(Client):
  # endregion
 
     # region HPCCluster
-    def create_hpc_cluster(self, cluster:aws_hpc.HPC):
+    def create_hpc_cluster(self, cluster:aws_hpc.HPC, async_scale=None):
         """
         Create an hpc cluster
 
@@ -38,7 +38,8 @@ class HPCAwsClient(Client):
         cluster_response = self.send_post_with_params(
             body=body_json,
             url=self.__base_hpc_url,
-            entity_name='hpc_cluster')
+            entity_name='hpc_cluster',
+            user_query_params=dict(asyncScale=async_scale))
 
         formatted_response = self.convert_json(
             cluster_response, self.camel_to_underscore)
@@ -59,8 +60,7 @@ class HPCAwsClient(Client):
         (Object): HPC Cluster API response 
         """
         delurl = self.__base_hpc_url + "/" + cluster_id
-        response = self.send_delete(url=delurl, entity_name='hpc_cluster')
-        return response
+        return self.send_delete(url=delurl, entity_name='hpc_cluster')
 
     def get_hpc_cluster(self, cluster_id):
         """
@@ -82,9 +82,9 @@ class HPCAwsClient(Client):
 
     def get_all_hpc_clusters(self):
         """
-        Get all hpc cluster
+        Get all hpc clusters
         # Returns
-        (List): List of Elastigroup API response 
+        (List): List of HPC Cluster API response
         """
         content = self.send_get(
             url=self.__base_hpc_url,
@@ -92,5 +92,39 @@ class HPCAwsClient(Client):
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
+    
+    def update_hpc_cluster(self, hpc_cluster_update, cluster_id, async_scale=None):
+        """
+        Update hpc cluster
+        # Arguments
+        cluster_id (String): Cluster ID
+        hpc_cluster_update (HPC Cluster): HPC Cluster Object
+
+        # Returns
+        (List): HPC Cluster API response
+        """
+        cluster = aws_hpc.LSFClusterUpdateRequest(hpc_cluster_update)
+
+        excluded_cluster_update_dict = self.exclude_missing(
+            json.loads(cluster.toJSON()))
+
+        formatted_cluster_update_dict = self.convert_json(
+            excluded_cluster_update_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_cluster_update_dict)
+
+        cluster_response = self.send_put_with_params(
+            body=body_json,
+            url=self.__base_hpc_url + "/" + cluster_id,
+            entity_name='hpc_cluster',
+            user_query_params=dict(asyncScale=async_scale)
+        )
+
+        formatted_response = self.convert_json(
+            cluster_response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"][0]
+
+        return ret_val
     
     # endregion
