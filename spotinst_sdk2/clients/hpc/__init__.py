@@ -16,7 +16,7 @@ class HPCAwsClient(Client):
  # endregion
 
     # region HPCCluster
-    def create_hpc_cluster(self, cluster:aws_hpc.HPC, async_scale=None):
+    def create_hpc_cluster(self, cluster:aws_hpc.HPC):
         """
         Create an hpc cluster
 
@@ -35,11 +35,10 @@ class HPCAwsClient(Client):
 
         body_json = json.dumps(formatted_cluster_dict)
 
-        cluster_response = self.send_post_with_params(
+        cluster_response = self.send_post(
             body=body_json,
             url=self.__base_hpc_url,
-            entity_name='hpc_cluster',
-            user_query_params=dict(asyncScale=async_scale))
+            entity_name='hpc_cluster')
 
         formatted_response = self.convert_json(
             cluster_response, self.camel_to_underscore)
@@ -93,7 +92,7 @@ class HPCAwsClient(Client):
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
     
-    def update_hpc_cluster(self, hpc_cluster_update, cluster_id, async_scale=None):
+    def update_hpc_cluster(self, hpc_cluster_update, cluster_id):
         """
         Update hpc cluster
         # Arguments
@@ -113,11 +112,10 @@ class HPCAwsClient(Client):
 
         body_json = json.dumps(formatted_cluster_update_dict)
 
-        cluster_response = self.send_put_with_params(
+        cluster_response = self.send_put(
             body=body_json,
             url=self.__base_hpc_url + "/" + cluster_id,
-            entity_name='hpc_cluster',
-            user_query_params=dict(asyncScale=async_scale)
+            entity_name='hpc_cluster'
         )
 
         formatted_response = self.convert_json(
