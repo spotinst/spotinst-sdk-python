@@ -140,8 +140,8 @@ class LSFClusterCreationRequest:
 
 
 class LSFClusterDeletionRequest:
-    def __init__(self, stateful_deallocation):
-        self.stateful_deallocation = stateful_deallocation
+    def __init__(self, lsf_cluster):
+        self.lsf_cluster = lsf_cluster
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
