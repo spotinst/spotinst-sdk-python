@@ -11,10 +11,9 @@ class Strategy:
     """
     def __init__(
             self,
-            draining_timeout:int=none,
+            draining_timeout:int = none,
             ):
         self.draining_timeout = draining_timeout
-        
 # endregion
 
 # region Capacity
@@ -39,15 +38,15 @@ class Capacity:
 class InstanceTypes:
     """
     # Arguments
-    ondemand: str
+    on_demand: str
     spot: List[str]
     """
     def __init__(
             self,
-            onDemand:str=none,
-            spot:List[str]=none):
+            on_demand: str = none,
+            spot: List[str] = none):
 
-        self.onDemand = onDemand
+        self.on_demand = on_demand
         self.spot = spot
 
 # endregion
@@ -64,11 +63,11 @@ class LaunchSpecification:
     """
     def __init__(
             self,
-            security_group_ids:List[str]=none,
-            image_id:str=none,
-            monitoring:bool=none,
-            key_pair:str=none,
-            user_data:str=none):
+            security_group_ids: List[str] = none,
+            image_id: str = none,
+            monitoring: bool = none,
+            key_pair: str = none,
+            user_data: str = none):
 
         self.security_group_ids = security_group_ids
         self.monitoring = monitoring
@@ -90,9 +89,9 @@ class Compute:
     """
     def __init__(
             self,
-            launch_specification:LaunchSpecification=none,
-            instance_types:InstanceTypes=none,
-            subnet_ids:List[str]=none):
+            launch_specification: LaunchSpecification = none,
+            instance_types: InstanceTypes = none,
+            subnet_ids: List[str] = none):
 
         self.subnet_ids = subnet_ids
         self.instance_types = instance_types
@@ -113,12 +112,12 @@ class HPC:
     """
     def __init__(
             self,
-            name:str=none,
-            description:str=none,
-            region:str=none,
-            capacity:Capacity=none,
-            strategy:Strategy=none,
-            compute:Compute=none,
+            name: str = none,
+            description: str=none,
+            region: str=none,
+            capacity: Capacity = none,
+            strategy: Strategy = none,
+            compute:Compute = none,
             ):
 
         self.name = name
