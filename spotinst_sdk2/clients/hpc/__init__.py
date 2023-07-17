@@ -2,20 +2,11 @@ import json
 
 from spotinst_sdk2.client import Client
 
-# region AWS imports
 import spotinst_sdk2.models.hpc.aws as aws_hpc
-# endregion
-
-
-# region AWS
-
 
 class HPCAwsClient(Client):
     __base_hpc_url = "/hpc/aws/lsf/cluster"
 
- # endregion
-
-    # region HPCCluster
     def create_hpc_cluster(self, cluster:aws_hpc.HPC):
         """
         Create an hpc cluster
@@ -43,12 +34,9 @@ class HPCAwsClient(Client):
         formatted_response = self.convert_json(
             cluster_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"][0]
 
-        return ret_val
-    
-
-    def delete_hpc_cluster(self, cluster_id):
+    def delete_hpc_cluster(self, cluster_id: str):
         """
         Delete a hpc cluster
 
@@ -61,7 +49,7 @@ class HPCAwsClient(Client):
         delurl = self.__base_hpc_url + "/" + cluster_id
         return self.send_delete(url=delurl, entity_name='hpc_cluster')
 
-    def get_hpc_cluster(self, cluster_id):
+    def get_hpc_cluster(self, cluster_id: str):
         """
         Get an hpc cluster
 
@@ -91,8 +79,8 @@ class HPCAwsClient(Client):
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
-    
-    def update_hpc_cluster(self, hpc_cluster_update, cluster_id):
+
+    def update_hpc_cluster(self, hpc_cluster_update: aws_hpc.HPC, cluster_id: str):
         """
         Update hpc cluster
         # Arguments
@@ -100,7 +88,7 @@ class HPCAwsClient(Client):
         hpc_cluster_update (HPC Cluster): HPC Cluster Object
 
         # Returns
-        (List): HPC Cluster API response
+        (Object): HPC Cluster API response
         """
         cluster = aws_hpc.LSFClusterUpdateRequest(hpc_cluster_update)
 
@@ -124,5 +112,3 @@ class HPCAwsClient(Client):
         ret_val = formatted_response["response"]["items"][0]
 
         return ret_val
-    
-    # endregion
