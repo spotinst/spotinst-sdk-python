@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.39] - 2023-07-17
+### Added
+- Add support for HPC Cluster CRUD APIs.
+
 ## [2.1.38] - 2023-07-06
 ### Added
 - Add `on_demand_types` field in `InstanceTypes` model in spotinst_sdk2.models.elastigroup.aws
