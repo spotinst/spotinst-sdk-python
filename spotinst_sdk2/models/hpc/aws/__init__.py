@@ -8,12 +8,21 @@ class Strategy:
     """
     # Arguments
     draining_timeout: int
+    availability_vs_cost: str
+    risk: int
+    fallback_to_od: bool
     """
     def __init__(
             self,
             draining_timeout:int = none,
+            availability_vs_cost:str = none,
+            risk:int = none,
+            fallback_to_od:bool = none
             ):
         self.draining_timeout = draining_timeout
+        self.availability_vs_cost = availability_vs_cost
+        self.risk = risk
+        self.fallback_to_od = fallback_to_od
 # endregion
 
 # region Capacity
@@ -34,20 +43,66 @@ class Capacity:
 
 # endregion
 
+# region Weight
+class Weight:
+    """
+    # Arguments
+    instance_type: str
+    weighted_capacity: int
+    """
+    def __init__(self, instance_type: str=none, weighted_capacity: int=none):
+        self.instance_type = instance_type
+        self.weighted_capacity = weighted_capacity
+
+# endregion
+
 # region Instance Types
 class InstanceTypes:
     """
     # Arguments
     on_demand: str
     spot: List[str]
+    weights: List[Weight]
+    preferred_spot: List[str]
     """
     def __init__(
             self,
             on_demand: str = none,
-            spot: List[str] = none):
+            spot: List[str] = none,
+            weights: List[Weight] = none,
+            preferred_spot: List[str] = none):
 
         self.on_demand = on_demand
         self.spot = spot
+        self.weights = weights
+        self.preferred_spot = preferred_spot
+
+# endregion
+
+# region Image
+class Image:
+    """
+    # Arguments
+    id: str
+    """
+    def __init__(
+        self,
+        id: str=none):
+        self.id = id
+
+# endregion
+
+# region Tag
+class Tag:
+    """
+    # Arguments
+    tag_key: str
+    tag_value: str
+    """
+    def __init__(self, tag_key: str=none, tag_value: str=none):
+
+        self.tag_key = tag_key
+        self.tag_value = tag_value
 
 # endregion
 
@@ -56,10 +111,12 @@ class LaunchSpecification:
     """
     # Arguments
     security_group_ids: List[str]
-    image_id: Image
+    image_id: str
     monitoring: bool
     key_pair: str
     user_data: str
+    images: List[Image]
+    tags: List[Tag]
     """
     def __init__(
             self,
@@ -67,16 +124,19 @@ class LaunchSpecification:
             image_id: str = none,
             monitoring: bool = none,
             key_pair: str = none,
-            user_data: str = none):
+            user_data: str = none,
+            images: List[Image] = none,
+            tags: List[Tag] = none):
 
         self.security_group_ids = security_group_ids
         self.monitoring = monitoring
         self.image_id = image_id
         self.key_pair = key_pair
         self.user_data = user_data
+        self.images =images
+        self.tags = tags
 
 # endregion
-
 
 
 # region Compute
