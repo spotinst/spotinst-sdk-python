@@ -1468,14 +1468,13 @@ class ElastigroupGcpClient(Client):
         """
         group = gcp_elastigroup.ElastigroupCreationRequest(group)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(group.toJSON()))
+        excluded_group_dict = self.exclude_missing(json.loads(group.toJSON()))
 
-        formatted_missing_dict = self.convert_json(
-            excluded_missing_dict, self.underscore_to_camel)
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_missing_dict)
+        body_json = json.dumps(formatted_group_dict)
 
-        self.print_output(body_json)
         group_response = self.send_post(
             body=body_json,
             url=self.__base_elastigroup_url,
@@ -1484,9 +1483,7 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"][0]
-
-        return ret_val
+        return formatted_response["response"]["items"][0]
 
     def update_elastigroup(self, group_update: gcp_elastigroup.Elastigroup, group_id: str):
         """
@@ -1499,17 +1496,15 @@ class ElastigroupGcpClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """
-        group = gcp_elastigroup.ElastigroupCreationRequest(group_update)
+        group = gcp_elastigroup.ElastigroupUpdateRequest(group_update)
 
-        excluded_missing_dict = self.exclude_missing(
+        excluded_group_update_dict = self.exclude_missing(
             json.loads(group.toJSON()))
 
-        formatted_missing_dict = self.convert_json(
-            excluded_missing_dict, self.underscore_to_camel)
+        formatted_group_update_dict = self.convert_json(
+            excluded_group_update_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_missing_dict)
-
-        self.print_output(body_json)
+        body_json = json.dumps(formatted_group_update_dict)
 
         group_response = self.send_put(
             body=body_json,
@@ -1520,9 +1515,7 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"][0]
-
-        return ret_val
+        return formatted_response["response"]["items"][0]
 
     def delete_elastigroup(self, group_id: str):
         """
@@ -1584,7 +1577,7 @@ class ElastigroupGcpClient(Client):
         """
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/scale/up",
+            url=self.__base_elastigroup_url + "/" + group_id + "/scale/up",
             entity_name='elastigroup (scale up)',
             body=None,
             user_query_params=query_params)
@@ -1606,7 +1599,7 @@ class ElastigroupGcpClient(Client):
         """
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/scale/down",
+            url=self.__base_elastigroup_url + "/" + group_id + "/scale/down",
             entity_name='elastigroup (scale down)',
             body=None,
             user_query_params=query_params)
@@ -1630,23 +1623,21 @@ class ElastigroupGcpClient(Client):
         """
         group_roll_request = gcp_elastigroup.ElastigroupRollRequest(group_roll=group_roll)
 
-        excluded_missing_dict = self.exclude_missing(
+        excluded_group_roll_dict = self.exclude_missing(
             json.loads(group_roll_request.toJSON()))
 
-        formatted_missing_dict = self.convert_json(
-            excluded_missing_dict, self.underscore_to_camel)
+        formatted_group_roll_dict = self.convert_json(
+            excluded_group_roll_dict, self.underscore_to_camel)
 
         roll_response = self.send_put(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/roll",
-            body=json.dumps(formatted_missing_dict),
+            url=self.__base_elastigroup_url + "/" + group_id + "/roll",
+            body=json.dumps(formatted_group_roll_dict),
             entity_name='roll')
 
         formatted_response = self.convert_json(
             roll_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]
-
-        return ret_val
+        return formatted_response["response"]
 
     def get_all_group_deployment(self, group_id: str):
         """
@@ -1659,7 +1650,7 @@ class ElastigroupGcpClient(Client):
         (Object): Elastigroup API response 
         """
         content = self.send_get(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/roll",
+            url=self.__base_elastigroup_url + "/" + group_id + "/roll",
             entity_name='roll')
 
         formatted_response = self.convert_json(
@@ -1678,7 +1669,7 @@ class ElastigroupGcpClient(Client):
         (Object): Elastigroup API response 
         """
         content = self.send_get(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/roll/" + str(roll_id),
+            url=self.__base_elastigroup_url + "/" + group_id + "/roll/" + roll_id,
             entity_name='roll')
 
         formatted_response = self.convert_json(
@@ -1698,7 +1689,7 @@ class ElastigroupGcpClient(Client):
         (Object): Elastigroup API response 
         """
         content = self.send_put(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/roll/" + str(roll_id),
+            url=self.__base_elastigroup_url + "/" + group_id + "/roll/" + roll_id,
             body=json.dumps(dict(roll=dict(status="STOPPED"))),
             entity_name='roll')
 
@@ -1721,7 +1712,7 @@ class ElastigroupGcpClient(Client):
         content = self.send_get(
             url=self.__base_elastigroup_url +
                 "/" +
-                str(group_id) +
+                group_id +
                 "/status",
             entity_name='active instances')
         formatted_response = self.convert_json(
@@ -1765,11 +1756,10 @@ class ElastigroupGcpClient(Client):
         # Returns
         (Object) : Elastigroup API response 
         """
-        query_params = self.build_query_params_with_input(
-            {"fromDate": start_date, "toDate": end_date})
+        query_params = dict(fromDate=start_date, toDate=end_date)
 
         content = self.send_get(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/events",
+            url=self.__base_elastigroup_url + "/" + group_id + "/events",
             query_params=query_params,
             entity_name='active events')
 
@@ -1777,7 +1767,7 @@ class ElastigroupGcpClient(Client):
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
-    def import_gke(self, location: str, gke_id: str, node_pool_name: str, gke: gcp_gke.GKE):
+    def import_gke(self, location: str, gke_id: str, node_pool_name: str, eg_config: gcp_gke.GKEImportConfig):
         """
         Import an existing GKE cluster to Elastigroup.
 
@@ -1792,14 +1782,14 @@ class ElastigroupGcpClient(Client):
         """
         query_params = dict(clusterLocation=location, clusterId=gke_id, nodePoolName=node_pool_name)
 
-        gke = gcp_gke.ImportGKERequest(gke)
+        gke = gcp_gke.ImportGKERequest(eg_config)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(gke.toJSON()))
+        excluded_group_dict = self.exclude_missing(json.loads(gke.toJSON()))
 
-        formatted_missing_dict = self.convert_json(
-            excluded_missing_dict, self.underscore_to_camel)
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_missing_dict)
+        body_json = json.dumps(formatted_group_dict)
         print(body_json)
         response = self.send_post(
             body=body_json,
@@ -1810,9 +1800,7 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"][0]
-
-        return ret_val
+        return formatted_response["response"]["items"][0]
 
     def detach_elastigroup_instances(self, group_id: str, detach_configuration: gcp_elastigroup.DetachConfiguration):
         """
@@ -1828,25 +1816,23 @@ class ElastigroupGcpClient(Client):
         group_detach_request = gcp_elastigroup.ElastigroupDetachInstancesRequest(
             detach_configuration=detach_configuration)
 
-        excluded_missing_dict = self.exclude_missing(
+        excluded_group_detach_dict = self.exclude_missing(
             json.loads(group_detach_request.toJSON()))
 
-        formatted_missing_dict = self.convert_json(
-            excluded_missing_dict, self.underscore_to_camel)
+        formatted_group_detach_dict = self.convert_json(
+            excluded_group_detach_dict, self.underscore_to_camel)
 
-        body_json = json.dumps(formatted_missing_dict)
+        body_json = json.dumps(formatted_group_detach_dict)
 
         detach_response = self.send_put(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/detachInstances",
+            url=self.__base_elastigroup_url + "/" + group_id + "/detachInstances",
             body=body_json,
             entity_name='detach')
 
         formatted_response = self.convert_json(
             detach_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["status"]
-
-        return ret_val
+        return formatted_response["response"]["status"]
 
     def get_elastilog(self, group_id: str, start_date: str, end_date: str, limit: int):
         """
@@ -1865,7 +1851,7 @@ class ElastigroupGcpClient(Client):
             {"fromDate": start_date, "toDate": end_date, "limit": limit})
 
         content = self.send_get(
-            url=self.__base_elastigroup_url + "/" + str(group_id) + "/log",
+            url=self.__base_elastigroup_url + "/" + group_id + "/log",
             query_params=query_params,
             entity_name='active events')
 
@@ -1912,7 +1898,7 @@ class ElastigroupGcpClient(Client):
 
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
-        return formatted_response["response"]["items"]
+        return formatted_response["response"]["items"][0]
 
     def lock_instance(self, instance_id: str, ttl_in_minutes: str):
         """
@@ -1927,9 +1913,9 @@ class ElastigroupGcpClient(Client):
         """
         query_params = dict(ttlInMinutes=ttl_in_minutes)
 
-        response = self.send_post(
+        response = self.send_post_with_params(
             url=self.__base_gcp_url + "/instance/" + instance_id + "/lock",
-            query_params=query_params,
+            user_query_params=query_params,
             entity_name="lock instance"
         )
 

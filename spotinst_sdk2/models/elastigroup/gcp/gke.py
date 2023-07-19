@@ -34,7 +34,7 @@ class InstanceTypes:
         self.preemptible = preemptible
 
 
-class GKE:
+class GKEImportConfig:
     """
     # Arguments
     name: str

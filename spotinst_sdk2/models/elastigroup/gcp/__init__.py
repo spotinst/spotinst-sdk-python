@@ -1,4 +1,5 @@
 import json
+from enum import Enum
 from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
@@ -40,6 +41,11 @@ class RevertToPreemptible:
         self.perform_at = perform_at
 
 
+class ProvisioningModel(Enum):
+    spot = 'SPOT'
+    preemptible = 'PREEMPTIBLE'
+
+
 class Strategy:
     """
     # Arguments
@@ -48,7 +54,7 @@ class Strategy:
     draining_timeout: int
     fallback_to_od: bool
     optimization_windows: List[str]
-    provisioning_model: str
+    provisioning_model: ProvisioningModel
     revert_to_preemptible: RevertToPreemptible
     """
 
@@ -59,7 +65,7 @@ class Strategy:
             draining_timeout: int = none,
             fallback_to_od: bool = none,
             optimization_windows: List[str] = none,
-            provisioning_model: str = none,
+            provisioning_model: ProvisioningModel = none,
             revert_to_preemptible: RevertToPreemptible = none):
         self.preemptible_percentage = preemptible_percentage
         self.on_demand_count = on_demand_count
@@ -215,7 +221,6 @@ class AutoScale:
     is_auto_config: bool
     cooldown: int
     headroom: Headroom
-    labels: list[Label]
     down: Down
     """
 
@@ -406,7 +411,6 @@ class LaunchSpecification:
     startup_script: str
     disks: list[Disk]
     network_interfaces: list[NetworkInterface]
-    service_account: str
     ip_forwarding: bool
     shutdown_script: str
     min_cpu_platform: str
@@ -421,7 +425,6 @@ class LaunchSpecification:
             startup_script: str = none,
             disks: list[Disk] = none,
             network_interfaces: list[NetworkInterface] = none,
-            service_account: str = none,
             ip_forwarding: bool = none,
             shutdown_script: str = none,
             min_cpu_platform: str = none,
@@ -432,7 +435,6 @@ class LaunchSpecification:
         self.startup_script = startup_script
         self.disks = disks
         self.network_interfaces = network_interfaces
-        self.service_account = service_account
         self.ip_forwarding = ip_forwarding
         self.shutdown_script = shutdown_script
         self.min_cpu_platform = min_cpu_platform
@@ -647,6 +649,15 @@ class Elastigroup:
 
 
 class ElastigroupCreationRequest:
+    def __init__(self, elastigroup: Elastigroup):
+        self.group = elastigroup
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class ElastigroupUpdateRequest:
     def __init__(self, elastigroup: Elastigroup):
         self.group = elastigroup
 
