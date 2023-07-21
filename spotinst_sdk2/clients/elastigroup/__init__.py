@@ -1913,9 +1913,9 @@ class ElastigroupGcpClient(Client):
         """
         query_params = dict(ttlInMinutes=ttl_in_minutes)
 
-        response = self.send_post_with_params(
+        response = self.send_post(
             url=self.__base_gcp_url + "/instance/" + instance_id + "/lock",
-            user_query_params=query_params,
+            query_params=query_params,
             entity_name="lock instance"
         )
 
