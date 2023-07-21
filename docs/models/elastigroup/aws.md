@@ -34,20 +34,23 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Strategy">Strategy</h2>
 
 ```python
-Strategy(self,
-         availability_vs_cost='d3043820717d74d9a17694c176d39733',
-         risk='d3043820717d74d9a17694c176d39733',
-         utilize_commitments='d3043820717d74d9a17694c176d39733',
-         utilize_reserved_instances='d3043820717d74d9a17694c176d39733',
-         fallback_to_od='d3043820717d74d9a17694c176d39733',
-         on_demand_count='d3043820717d74d9a17694c176d39733',
-         draining_timeout='d3043820717d74d9a17694c176d39733',
-         spin_up_time='d3043820717d74d9a17694c176d39733',
-         lifetime_period='d3043820717d74d9a17694c176d39733',
-         signals='d3043820717d74d9a17694c176d39733',
-         scaling_strategy='d3043820717d74d9a17694c176d39733',
-         persistence='d3043820717d74d9a17694c176d39733',
-         revert_to_spot='d3043820717d74d9a17694c176d39733')
+Strategy(
+  self,
+  availability_vs_cost='d3043820717d74d9a17694c176d39733',
+  risk='d3043820717d74d9a17694c176d39733',
+  utilize_commitments='d3043820717d74d9a17694c176d39733',
+  utilize_reserved_instances='d3043820717d74d9a17694c176d39733',
+  fallback_to_od='d3043820717d74d9a17694c176d39733',
+  on_demand_count='d3043820717d74d9a17694c176d39733',
+  draining_timeout='d3043820717d74d9a17694c176d39733',
+  spin_up_time='d3043820717d74d9a17694c176d39733',
+  lifetime_period='d3043820717d74d9a17694c176d39733',
+  signals='d3043820717d74d9a17694c176d39733',
+  scaling_strategy='d3043820717d74d9a17694c176d39733',
+  persistence='d3043820717d74d9a17694c176d39733',
+  revert_to_spot='d3043820717d74d9a17694c176d39733',
+  immediate_o_d_recover_threshold='d3043820717d74d9a17694c176d39733',
+  restrict_single_az: bool = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -65,6 +68,7 @@ __Arguments__
 - __scaling_strategy__: ScalingStrategy
 - __persistence__: Persistence
 - __revert_to_spot__: RevertToSpot
+- __restrict_single_az__: bool
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Signal">Signal</h2>
 
@@ -1022,6 +1026,7 @@ __Arguments__
 ```python
 InstanceTypes(self,
               ondemand='d3043820717d74d9a17694c176d39733',
+              on_demand_types='d3043820717d74d9a17694c176d39733',
               spot='d3043820717d74d9a17694c176d39733',
               weights='d3043820717d74d9a17694c176d39733',
               preferred_spot='d3043820717d74d9a17694c176d39733')
@@ -1030,6 +1035,7 @@ InstanceTypes(self,
 __Arguments__
 
 - __ondemand__: str
+- __on_demand_types__: list[str]
 - __spot__: list[str]
 - __weights__: list[Weight]
 - __preferred_spot__: list[str]

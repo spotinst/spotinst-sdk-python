@@ -62,6 +62,7 @@ class Strategy:
     scaling_strategy: ScalingStrategy
     persistence: Persistence
     revert_to_spot: RevertToSpot
+    restrict_single_az: bool
     """
     def __init__(
             self,
@@ -78,7 +79,8 @@ class Strategy:
             scaling_strategy=none,
             persistence=none,
             revert_to_spot=none,
-            immediate_o_d_recover_threshold = none):
+            immediate_o_d_recover_threshold = none,
+            restrict_single_az: bool = none):
 
         self.risk = risk
         self.utilize_commitments = utilize_commitments
@@ -95,6 +97,7 @@ class Strategy:
         self.persistence = persistence
         self.revert_to_spot = revert_to_spot
         self.immediate_o_d_recover_threshold = immediate_o_d_recover_threshold
+        self.restrict_single_az = restrict_single_az
 
 
 class Signal:
@@ -1148,6 +1151,7 @@ class InstanceTypes:
     """
     # Arguments
     ondemand: str
+    on_demand_types: list[str]
     spot: list[str]
     weights: list[Weight]
     preferred_spot: list[str]
@@ -1155,11 +1159,13 @@ class InstanceTypes:
     def __init__(
             self,
             ondemand=none,
+            on_demand_types=none,
             spot=none,
             weights=none,
             preferred_spot=none):
 
         self.ondemand = ondemand
+        self.on_demand_types = on_demand_types
         self.spot = spot
         self.weights = weights
         self.preferred_spot = preferred_spot
