@@ -46,11 +46,11 @@ class GKEImportConfig:
 
     def __init__(
             self,
-            name=none,
-            preemptible_percentage=none,
-            capacity=none,
-            instance_types=none,
-            availability_zones=none):
+            name: str = none,
+            preemptible_percentage: int = none,
+            capacity: Capacity = none,
+            instance_types: InstanceTypes = none,
+            availability_zones: list[str] = none):
         self.name = name
         self.preemptible_percentage = preemptible_percentage
         self.capacity = capacity

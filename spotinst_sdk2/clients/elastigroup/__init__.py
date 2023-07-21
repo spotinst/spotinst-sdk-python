@@ -1790,11 +1790,10 @@ class ElastigroupGcpClient(Client):
             excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
-        print(body_json)
-        response = self.send_post(
+        response = self.send_post_with_params(
             body=body_json,
             url=self.__base_elastigroup_url + "/gke/import",
-            query_params=query_params,
+            user_query_params=query_params,
             entity_name='import gke')
 
         formatted_response = self.convert_json(
@@ -1870,8 +1869,7 @@ class ElastigroupGcpClient(Client):
         # Returns
         (Object): Cost per Account Response
         """
-        query_params = self.build_query_params_with_input(
-            {"fromDate": start_date, "toDate": end_date})
+        query_params = dict(fromDate=start_date, toDate=end_date)
 
         content = self.send_get(
             url=self.__base_gcp_url + "/costs/",
@@ -1913,10 +1911,11 @@ class ElastigroupGcpClient(Client):
         """
         query_params = dict(ttlInMinutes=ttl_in_minutes)
 
-        response = self.send_post(
+        response = self.send_post_with_params(
             url=self.__base_gcp_url + "/instance/" + instance_id + "/lock",
-            query_params=query_params,
-            entity_name="lock instance"
+            user_query_params=query_params,
+            entity_name="lock instance",
+            body=None
         )
 
         formatted_response = self.convert_json(
