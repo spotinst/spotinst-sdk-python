@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.1.40] - 2023-07-21
+## [2.1.40] - 2023-07-31
 ### Added
 - Add support for GCP Eastigroup APIs: `get_elastilog`, `get_cost_per_account`, `get_instance_status`,
 - `lock_instance`, `unlock_instance`
