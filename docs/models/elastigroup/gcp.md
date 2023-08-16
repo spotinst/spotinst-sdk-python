@@ -108,7 +108,8 @@ ScalingPolicy(
   self,
   action: ScalingPolicyAction = 'd3043820717d74d9a17694c176d39733',
   cooldown: int = 'd3043820717d74d9a17694c176d39733',
-  dimensions: list = 'd3043820717d74d9a17694c176d39733',
+  dimensions:
+    typing.List[spotinst_sdk2.models.elastigroup.gcp.ScalingPolicyDimension] = 'd3043820717d74d9a17694c176d39733',
   evaluation_periods: int = 'd3043820717d74d9a17694c176d39733',
   metric_name: str = 'd3043820717d74d9a17694c176d39733',
   namespace: str = 'd3043820717d74d9a17694c176d39733',
@@ -125,7 +126,7 @@ __Arguments__
 
 - __action__: ScalingPolicyAction
 - __cooldown__: int
-- __dimensions__: list[ScalingPolicyDimension]
+- __dimensions__: List[ScalingPolicyDimension]
 - __evaluation_periods__: int
 - __metric_name__: str
 - __namespace__: str
@@ -151,8 +152,8 @@ Scaling(
 
 __Arguments__
 
-- __up__:  list[ScalingPolicy]
-- __down__: list[ScalingPolicy]
+- __up__:  List[ScalingPolicy]
+- __down__: List[ScalingPolicy]
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.DockerSwarmConfiguration">DockerSwarmConfiguration</h2>
 
@@ -262,13 +263,13 @@ __Arguments__
 ```python
 NamedPorts(self,
            name: str = 'd3043820717d74d9a17694c176d39733',
-           ports: list = 'd3043820717d74d9a17694c176d39733')
+           ports: typing.List[int] = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __name__: str
-- __ports__: list[int]
+- __ports__: List[int]
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.BackendServices">BackendServices</h2>
 
@@ -292,12 +293,15 @@ __Arguments__
 
 ```python
 BackendServiceConfig(
-  self, backend_services: list = 'd3043820717d74d9a17694c176d39733')
+    self,
+    backend_services:
+    typing.List[spotinst_sdk2.models.elastigroup.gcp.BackendServices] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
 
-- __backend_services__: list[BackendServices]
+- __backend_services__: List[BackendServices]
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.InitializeParams">InitializeParams</h2>
 
@@ -358,13 +362,16 @@ __Arguments__
 ```python
 LaunchSpecification(
   self,
-  metadata: list = 'd3043820717d74d9a17694c176d39733',
+  metadata:
+    typing.List[spotinst_sdk2.models.elastigroup.gcp.Metadata] = 'd3043820717d74d9a17694c176d39733',
   tags: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
   backend_service_config:
     BackendServiceConfig = 'd3043820717d74d9a17694c176d39733',
   startup_script: str = 'd3043820717d74d9a17694c176d39733',
-  disks: list = 'd3043820717d74d9a17694c176d39733',
-  network_interfaces: list = 'd3043820717d74d9a17694c176d39733',
+  disks:
+    typing.List[spotinst_sdk2.models.elastigroup.gcp.Disk] = 'd3043820717d74d9a17694c176d39733',
+  network_interfaces:
+    typing.List[spotinst_sdk2.models.elastigroup.gcp.NetworkInterface] = 'd3043820717d74d9a17694c176d39733',
   ip_forwarding: bool = 'd3043820717d74d9a17694c176d39733',
   shutdown_script: str = 'd3043820717d74d9a17694c176d39733',
   min_cpu_platform: str = 'd3043820717d74d9a17694c176d39733',
@@ -373,12 +380,12 @@ LaunchSpecification(
 
 __Arguments__
 
-- __metadata__: list[Metadata]
+- __metadata__: List[Metadata]
 - __tags__: List[str]
 - __backend_service_config__: BackendServiceConfig
 - __startup_script__: str
-- __disks__: list[Disk]
-- __network_interfaces__: list[NetworkInterface]
+- __disks__: List[Disk]
+- __network_interfaces__: List[NetworkInterface]
 - __ip_forwarding__: bool
 - __shutdown_script__: str
 - __min_cpu_platform__: str
@@ -404,13 +411,13 @@ __Arguments__
 PreferredPreemtible(
   self,
   custom: CustomInstanceTypes = 'd3043820717d74d9a17694c176d39733',
-  preemptible: list = 'd3043820717d74d9a17694c176d39733')
+  preemptible: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __custom__: CustomInstanceTypes
-- __preemptible__: list[str]
+- __preemptible__: List[str]
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.InstanceTypes">InstanceTypes</h2>
 
@@ -418,7 +425,7 @@ __Arguments__
 InstanceTypes(
   self,
   ondemand: str = 'd3043820717d74d9a17694c176d39733',
-  preemptible: list = 'd3043820717d74d9a17694c176d39733',
+  preemptible: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
   custom: CustomInstanceTypes = 'd3043820717d74d9a17694c176d39733',
   preferred: PreferredPreemtible = 'd3043820717d74d9a17694c176d39733')
 ```
@@ -426,7 +433,7 @@ InstanceTypes(
 __Arguments__
 
 - __ondemand__: str
-- __preemptible__: list[str]
+- __preemptible__: List[str]
 - __custom__: CustomInstanceTypes
 - __preferred__: PreferredPreemtible
 
@@ -463,30 +470,32 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.Subnet">Subnet</h2>
 
 ```python
-Subnet(self,
-       region='d3043820717d74d9a17694c176d39733',
-       subnet_names='d3043820717d74d9a17694c176d39733')
+Subnet(
+  self,
+  region: str = 'd3043820717d74d9a17694c176d39733',
+  subnet_names: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __region__: str
-- __subnet_names__: list[str]
+- __subnet_names__: List[str]
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.Compute">Compute</h2>
 
 ```python
 Compute(
-  self,
-  launch_specification:
+    self,
+    launch_specification:
     LaunchSpecification = 'd3043820717d74d9a17694c176d39733',
-  instance_types: InstanceTypes = 'd3043820717d74d9a17694c176d39733',
-  gpu: Gpu = 'd3043820717d74d9a17694c176d39733',
-  health: Health = 'd3043820717d74d9a17694c176d39733',
-  availability_zones: list = 'd3043820717d74d9a17694c176d39733',
-  subnets: list = 'd3043820717d74d9a17694c176d39733',
-  preferred_availability_zones: list = 'd3043820717d74d9a17694c176d39733'
-)
+    instance_types: InstanceTypes = 'd3043820717d74d9a17694c176d39733',
+    gpu: Gpu = 'd3043820717d74d9a17694c176d39733',
+    health: Health = 'd3043820717d74d9a17694c176d39733',
+    availability_zones: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+    subnets:
+    typing.List[spotinst_sdk2.models.elastigroup.gcp.Subnet] = 'd3043820717d74d9a17694c176d39733',
+    preferred_availability_zones:
+    typing.List[str] = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -495,9 +504,9 @@ __Arguments__
 - __instance_types__: InstanceTypes
 - __gpu__: Gpu
 - __health__: Health
-- __availability_zones__: list[str]
-- __subnets__: list[Subnet]
-- __preferred_availability_zones__: list[str]
+- __availability_zones__: List[str]
+- __subnets__: List[Subnet]
+- __preferred_availability_zones__: List[str]
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.Tasks">Tasks</h2>
 
@@ -523,12 +532,16 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.Scheduling">Scheduling</h2>
 
 ```python
-Scheduling(self, tasks: list = 'd3043820717d74d9a17694c176d39733')
+Scheduling(
+    self,
+    tasks:
+    typing.List[spotinst_sdk2.models.elastigroup.gcp.Tasks] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
 
-- __tasks__: list[Tasks]
+- __tasks__: List[Tasks]
 
 <h2 id="spotinst_sdk2.models.elastigroup.gcp.Elastigroup">Elastigroup</h2>
 
@@ -575,7 +588,7 @@ __Arguments__
 ```python
 DetachConfiguration(
     self,
-    instances_to_detach: list = 'd3043820717d74d9a17694c176d39733',
+    instances_to_detach: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
     should_terminate_instances: bool = 'd3043820717d74d9a17694c176d39733',
     draining_timeout: int = 'd3043820717d74d9a17694c176d39733',
     should_decrement_target_capacity: bool = 'd3043820717d74d9a17694c176d39733'
@@ -584,59 +597,8 @@ DetachConfiguration(
 
 __Arguments__
 
-- __instances_to_detach__: list[str]
+- __instances_to_detach__: List[str]
 - __should_terminate_instances__: bool
 - __draining_timeout__: int
 - __should_decrement_target_capacity__: bool
-
-<h1 id="spotinst_sdk2.models.elastigroup.gcp.gke">spotinst_sdk2.models.elastigroup.gcp.gke</h1>
-
-
-<h2 id="spotinst_sdk2.models.elastigroup.gcp.gke.Capacity">Capacity</h2>
-
-```python
-Capacity(self,
-         minimum: int = 'd3043820717d74d9a17694c176d39733',
-         maximum: int = 'd3043820717d74d9a17694c176d39733',
-         target: int = 'd3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __minimum__: int
-- __maximum__: int
-- __target__: int
-
-<h2 id="spotinst_sdk2.models.elastigroup.gcp.gke.InstanceTypes">InstanceTypes</h2>
-
-```python
-InstanceTypes(self,
-              ondemand: str = 'd3043820717d74d9a17694c176d39733',
-              preemptible: list = 'd3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __ondemand__: str
-- __preemptible__: list[str]
-
-<h2 id="spotinst_sdk2.models.elastigroup.gcp.gke.GKEImportConfig">GKEImportConfig</h2>
-
-```python
-GKEImportConfig(
-  self,
-  name: str = 'd3043820717d74d9a17694c176d39733',
-  preemptible_percentage: int = 'd3043820717d74d9a17694c176d39733',
-  capacity: Capacity = 'd3043820717d74d9a17694c176d39733',
-  instance_types: InstanceTypes = 'd3043820717d74d9a17694c176d39733',
-  availability_zones: list = 'd3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __name__: str
-- __preemptible_percentage__: int
-- __capacity__: Capacity
-- __instance_types__: InstanceTypes
-- __availability_zones__: list[str]
 
