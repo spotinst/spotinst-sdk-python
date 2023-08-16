@@ -12,7 +12,6 @@ import spotinst_sdk2.models.elastigroup.aws.asg as aws_asg
 
 # region GCP imports
 import spotinst_sdk2.models.elastigroup.gcp as gcp_elastigroup
-import spotinst_sdk2.models.elastigroup.gcp.gke as gcp_gke
 # endregion
 
 # region Azure imports
@@ -1766,40 +1765,6 @@ class ElastigroupGcpClient(Client):
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
-
-    def import_gke(self, location: str, gke_id: str, node_pool_name: str, eg_config: gcp_gke.GKEImportConfig):
-        """
-        Import an existing GKE cluster to Elastigroup.
-
-        # Arguments
-        location (String): The location of the cluster. Enter the desired zone for zonal GKE clusters or the region for regional GKE clusters.
-        gke_id (String): The GKE Cluster identifier
-        node_pool_name (String): Set the node pool to import
-        gke (GKE): GKE Object
-
-        # Returns
-        (Object): Elastigroup API response 
-        """
-        query_params = dict(clusterLocation=location, clusterId=gke_id, nodePoolName=node_pool_name)
-
-        gke = gcp_gke.ImportGKERequest(eg_config)
-
-        excluded_group_dict = self.exclude_missing(json.loads(gke.toJSON()))
-
-        formatted_group_dict = self.convert_json(
-            excluded_group_dict, self.underscore_to_camel)
-
-        body_json = json.dumps(formatted_group_dict)
-        response = self.send_post_with_params(
-            body=body_json,
-            url=self.__base_elastigroup_url + "/gke/import",
-            user_query_params=query_params,
-            entity_name='import gke')
-
-        formatted_response = self.convert_json(
-            response, self.camel_to_underscore)
-
-        return formatted_response["response"]["items"][0]
 
     def detach_elastigroup_instances(self, group_id: str, detach_configuration: gcp_elastigroup.DetachConfiguration):
         """
