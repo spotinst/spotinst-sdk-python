@@ -234,19 +234,3 @@ class GCPInitTestDeployment(GcpInitTestCase):
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]))
 
 
-
-
-# Test GKE
-class GCPInitTestGKE(GcpInitTestCase):
-	@patch('requests.post')
-	def testImportGKE(self, mock):
-		mock_import_gke_res = self.load_json("../../test_lib/output/elastigroup/import_gke_res.json")
-
-		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
-		self.mock_api_call.content.decode = lambda code: json.dumps(mock_import_gke_res) 
-
-		mock.return_value = self.mock_api_call
-
-		response = self.client.import_gke(location="location", gke_id="test", gke="test")
-
-		self.assertEqual(len(response), len(mock_import_gke_res["response"]["items"][0]))

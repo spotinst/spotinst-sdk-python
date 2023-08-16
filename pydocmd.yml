@@ -45,7 +45,6 @@ generate:
       - spotinst_sdk2.models.elastigroup.aws.stateful++
   - models/elastigroup/gcp.md:
       - spotinst_sdk2.models.elastigroup.gcp++
-      - spotinst_sdk2.models.elastigroup.gcp.gke++
   - models/elastigroup/azure.md:
       - spotinst_sdk2.models.elastigroup.azure++
       - spotinst_sdk2.models.elastigroup.azure.task++

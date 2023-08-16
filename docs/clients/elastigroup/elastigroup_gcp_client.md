@@ -246,27 +246,6 @@ __Returns__
 
 `(Object) `: Elastigroup API response
 
-<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.import_gke">import_gke</h2>
-
-```python
-ElastigroupGcpClient.import_gke(location: str, gke_id: str,
-                                node_pool_name: str,
-                                eg_config: GKEImportConfig)
-```
-
-Import an existing GKE cluster to Elastigroup.
-
-__Arguments__
-
-- __location (String)__: The location of the cluster. Enter the desired zone for zonal GKE clusters or the region for regional GKE clusters.
-- __gke_id (String)__: The GKE Cluster identifier
-- __node_pool_name (String)__: Set the node pool to import
-- __gke (GKE)__: GKE Object
-
-__Returns__
-
-`(Object)`: Elastigroup API response
-
 <h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient.detach_elastigroup_instances">detach_elastigroup_instances</h2>
 
 ```python
