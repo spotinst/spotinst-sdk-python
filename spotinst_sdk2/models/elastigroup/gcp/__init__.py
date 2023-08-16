@@ -111,7 +111,7 @@ class ScalingPolicy:
     # Arguments
     action: ScalingPolicyAction
     cooldown: int
-    dimensions: list[ScalingPolicyDimension]
+    dimensions: List[ScalingPolicyDimension]
     evaluation_periods: int
     metric_name: str
     namespace: str
@@ -128,7 +128,7 @@ class ScalingPolicy:
             self,
             action: ScalingPolicyAction = none,
             cooldown: int = none,
-            dimensions: list[ScalingPolicyDimension] = none,
+            dimensions: List[ScalingPolicyDimension] = none,
             evaluation_periods: int = none,
             metric_name: str = none,
             namespace: str = none,
@@ -157,8 +157,8 @@ class ScalingPolicy:
 class Scaling:
     """
     # Arguments
-    up:  list[ScalingPolicy]
-    down: list[ScalingPolicy]
+    up:  List[ScalingPolicy]
+    down: List[ScalingPolicy]
     """
 
     def __init__(self,
@@ -294,13 +294,13 @@ class NamedPorts:
     """
     # Arguments
     name: str
-    ports: list[int]
+    ports: List[int]
     """
 
     def __init__(
             self,
             name: str = none,
-            ports: list[int] = none):
+            ports: List[int] = none):
         self.name = name
         self.ports = ports
 
@@ -329,10 +329,10 @@ class BackendServices:
 class BackendServiceConfig:
     """
     # Arguments
-    backend_services: list[BackendServices]
+    backend_services: List[BackendServices]
     """
 
-    def __init__(self, backend_services: list[BackendServices] = none):
+    def __init__(self, backend_services: List[BackendServices] = none):
         self.backend_services = backend_services
 
 
@@ -405,12 +405,12 @@ class NetworkInterface:
 class LaunchSpecification:
     """
     # Arguments
-    metadata: list[Metadata]
+    metadata: List[Metadata]
     tags: List[str]
     backend_service_config: BackendServiceConfig
     startup_script: str
-    disks: list[Disk]
-    network_interfaces: list[NetworkInterface]
+    disks: List[Disk]
+    network_interfaces: List[NetworkInterface]
     ip_forwarding: bool
     shutdown_script: str
     min_cpu_platform: str
@@ -419,12 +419,12 @@ class LaunchSpecification:
 
     def __init__(
             self,
-            metadata: list[Metadata] = none,
+            metadata: List[Metadata] = none,
             tags: List[str] = none,
             backend_service_config: BackendServiceConfig = none,
             startup_script: str = none,
-            disks: list[Disk] = none,
-            network_interfaces: list[NetworkInterface] = none,
+            disks: List[Disk] = none,
+            network_interfaces: List[NetworkInterface] = none,
             ip_forwarding: bool = none,
             shutdown_script: str = none,
             min_cpu_platform: str = none,
@@ -460,12 +460,12 @@ class PreferredPreemtible:
     """
     # Arguments
     custom: CustomInstanceTypes
-    preemptible: list[str]
+    preemptible: List[str]
     """
 
     def __init__(self,
                  custom: CustomInstanceTypes = none,
-                 preemptible: list[str] = none):
+                 preemptible: List[str] = none):
         self.custom = custom
         self.preemptible = preemptible
 
@@ -474,7 +474,7 @@ class InstanceTypes:
     """
     # Arguments
     ondemand: str
-    preemptible: list[str]
+    preemptible: List[str]
     custom: CustomInstanceTypes
     preferred: PreferredPreemtible
     """
@@ -482,7 +482,7 @@ class InstanceTypes:
     def __init__(
             self,
             ondemand: str = none,
-            preemptible: list[str] = none,
+            preemptible: List[str] = none,
             custom: CustomInstanceTypes = none,
             preferred: PreferredPreemtible = none):
         self.ondemand = ondemand
@@ -531,13 +531,13 @@ class Subnet:
     """
     # Arguments
     region: str
-    subnet_names: list[str]
+    subnet_names: List[str]
     """
 
     def __init__(
             self,
-            region=none,
-            subnet_names=none):
+            region: str = none,
+            subnet_names: List[str] = none):
         self.region = region
         self.subnet_names = subnet_names
 
@@ -549,9 +549,9 @@ class Compute:
     instance_types: InstanceTypes
     gpu: Gpu
     health: Health
-    availability_zones: list[str]
-    subnets: list[Subnet]
-    preferred_availability_zones: list[str]
+    availability_zones: List[str]
+    subnets: List[Subnet]
+    preferred_availability_zones: List[str]
     """
 
     def __init__(
@@ -560,9 +560,9 @@ class Compute:
             instance_types: InstanceTypes = none,
             gpu: Gpu = none,
             health: Health = none,
-            availability_zones: list[str] = none,
-            subnets: list[Subnet] = none,
-            preferred_availability_zones: list[str] = none):
+            availability_zones: List[str] = none,
+            subnets: List[Subnet] = none,
+            preferred_availability_zones: List[str] = none):
         self.launch_specification = launch_specification
         self.instance_types = instance_types
         self.gpu = gpu
@@ -605,11 +605,11 @@ class Tasks:
 class Scheduling:
     """
     # Arguments
-    tasks: list[Tasks]
+    tasks: List[Tasks]
     """
 
     def __init__(self,
-                 tasks: list[Tasks] = none):
+                 tasks: List[Tasks] = none):
         self.tasks = tasks
 # endregion
 
@@ -700,7 +700,7 @@ class ElastigroupRollRequest:
 class DetachConfiguration:
     """
     # Arguments
-    instances_to_detach: list[str]
+    instances_to_detach: List[str]
     should_terminate_instances: bool
     draining_timeout: int
     should_decrement_target_capacity: bool
@@ -708,7 +708,7 @@ class DetachConfiguration:
 
     def __init__(
             self,
-            instances_to_detach: list[str] = none,
+            instances_to_detach: List[str] = none,
             should_terminate_instances: bool = none,
             draining_timeout: int = none,
             should_decrement_target_capacity: bool = none):

@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
@@ -26,10 +27,10 @@ class InstanceTypes:
     """
     # Arguments
     ondemand: str
-    preemptible: list[str]
+    preemptible: List[str]
     """
 
-    def __init__(self, ondemand: str = none, preemptible: list[str] = none):
+    def __init__(self, ondemand: str = none, preemptible: List[str] = none):
         self.ondemand = ondemand
         self.preemptible = preemptible
 
@@ -41,7 +42,7 @@ class GKEImportConfig:
     preemptible_percentage: int
     capacity: Capacity
     instance_types: InstanceTypes
-    availability_zones: list[str]
+    availability_zones: List[str]
     """
 
     def __init__(
@@ -50,7 +51,7 @@ class GKEImportConfig:
             preemptible_percentage: int = none,
             capacity: Capacity = none,
             instance_types: InstanceTypes = none,
-            availability_zones: list[str] = none):
+            availability_zones: List[str] = none):
         self.name = name
         self.preemptible_percentage = preemptible_percentage
         self.capacity = capacity
