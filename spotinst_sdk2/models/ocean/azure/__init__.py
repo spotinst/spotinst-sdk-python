@@ -170,6 +170,21 @@ class NodeCountLimits:
         self.max_count = max_count
         self.min_count = min_count
 
+class OsType(Enum):
+    linux="Linux"
+    windows="Windows"         
+
+class OsDiskType(Enum):
+    managed="Managed"
+    ephemereal="Ephemereal"        
+
+class OsSKU(Enum):
+    ubuntu="Ubuntu"
+    azure_linux="AzureLinux"
+    cbl_mariner="CBLMariner"
+    windows2019="Windows2019"
+    windows2022="Windows2022"
+
 class NodePoolProperties:
     '''
     # Arguments
@@ -177,9 +192,9 @@ class NodePoolProperties:
     kubernetes_version: str
     max_pods_per_node: int
     os_disk_size_gB: int
-    os_disk_type: str
-    os_sKU: str
-    os_type: str
+    os_disk_type: OsDiskType
+    os_sKU: OsSKU
+    os_type: OsType
     '''
     def __init__(
             self,
@@ -187,9 +202,9 @@ class NodePoolProperties:
             kubernetes_version: str = none,
             max_pods_per_node: int = none,
             os_disk_size_gB: int = none,
-            os_disk_type: str = none,
-            os_sKU: str = none,
-            os_type: str = none):
+            os_disk_type: OsDiskType = none,
+            os_sKU: OsSKU = none,
+            os_type: OsType = none):
         self.enable_node_public_ip = enable_node_public_ip
         self.kubernetes_version = kubernetes_version
         self.max_pods_per_node = max_pods_per_node
@@ -225,49 +240,98 @@ class Tags:
         self.key = key
         self.value = value                  
 
+class Effect(Enum):
+    no_schedule="NoSchedule"
+    prefer_no_schedule="PreferNoSchedule"
+    no_execute="NoExecute"
+    prefer_no_execute="PreferNoExecute"
+
 class Taints:
     '''
     # Arguments
     key: str
     value: str
-    effect: str
+    effect: Effect
     '''
     def __init__(
             self,
             key: str = none,
             value:str = none,
-            effect:str = none):
+            effect:Effect = none):
         self.key = key
         self.value = value
-        self.effect = effect              
+        self.effect = effect
+
+class Architectures(Enum):
+    x86_64="X86_64" 
+    intel64="INTEL64" 
+    amd64="AMD64" 
+    arm64="ARM64"
+
+class AcceleratedNetworking(Enum):
+    enabled="Enabled"
+    disabled="Disabled"
+
+class DiskPerformance(Enum):
+    standard="Standard"
+    premium="Premium"
+
+class VmTypes(Enum):
+    general_purpose="generalPurpose" 
+    memory_optimized="memoryOptimized" 
+    compute_optimized="computeOptimized" 
+    high_performance_compute="highPerformanceCompute" 
+    storage_optimized="storageOptimized"
+    gpu="GPU"                                
 
 class Filters:
     '''
     # Arguments
-    architectures: List[str]
+    accelerated_networking: AcceleratedNetworking
+    disk_performance: DiskPerformance
+    architectures: List[Architectures]
     exclude_series: List[str]
     max_memory_giB: float
-    max_vcpu: int
+    max_vCpu: int
     min_memory_giB: float
-    min_vcpu: int
+    min_vCpu: int
+    min_gpu: int
+    max_gpu: int
+    min_data: int
+    min_nICs: int
     series: List[str]
+    vm_types: List[VmTypes]
     '''
     def __init__(
             self,
-            architectures: List[str] = none,
+            accelerated_networking: AcceleratedNetworking = none,
+            disk_performance: DiskPerformance = none,
+            architectures: List[Architectures] = none,
             exclude_series: List[str] = none,
             max_memory_giB: float = none,
-            max_vcpu: int = none,
+            max_vCpu: int = none,
             min_memory_giB: float = none,
-            min_vcpu: int = none,
-            series: List[str] = none):
+            min_vCpu: int = none,
+            min_gpu: int = none,
+            max_gpu: int = none,
+            min_data: int = none,
+            min_nICs: int = none,
+            series: List[str] = none,
+            vm_types: List[VmTypes] = none):
+        self.accelerated_networking=accelerated_networking
+        self.disk_performance=disk_performance
         self.architectures = architectures
         self.exclude_series = exclude_series
         self.max_memory_giB = max_memory_giB
-        self.max_vcpu = max_vcpu
+        self.max_vCpu = max_vCpu
         self.min_memory_giB = min_memory_giB
-        self.min_vcpu = min_vcpu
+        self.min_vCpu = min_vCpu
+        self.min_gpu = min_gpu
+        self.max_gpu = max_gpu
+        self.min_data=min_data
+        self.min_nICs=min_nICs
         self.series = series
+        self.vm_types = vm_types
 
 class VmSizes:
     '''
