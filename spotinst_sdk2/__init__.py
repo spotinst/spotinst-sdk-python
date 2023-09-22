@@ -58,6 +58,8 @@ class SpotinstSession:
                                               user_agent=user_agent, timeout=timeout),
             "ocean_aws": OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level,
                                         user_agent=user_agent, timeout=timeout),
+            "ocean_azure": OceanAzureClient(session=self.session, print_output=print_output, log_level=log_level,
+                                        user_agent=user_agent, timeout=timeout),                            
             "oceancd": OceanCDClient(session=self.session, print_output=print_output, log_level=log_level,
                                       user_agent=user_agent, timeout=timeout),
             "managed_instance_aws": ManagedInstanceAwsClient(session=self.session, print_output=print_output,

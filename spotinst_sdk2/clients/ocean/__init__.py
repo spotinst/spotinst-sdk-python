@@ -2,6 +2,7 @@ import json
 
 from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.ocean.aws as aws_ocean
+import spotinst_sdk2.models.ocean.azure as azure_ocean
 
 
 class OceanAwsClient(Client):
@@ -457,3 +458,320 @@ class OceanAwsClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+    
+class OceanAzureClient(Client):
+    __base_ocean_cluster_url = "/ocean/azure/np/cluster"
+    __base_ocean_vng_url = "/ocean/azure/np/virtualNodeGroup"
+
+    def create_ocean_cluster(self, ocean: azure_ocean.Ocean):
+        """
+        Create an Ocean Cluster 
+        
+        # Arguments
+        ocean (Ocean): Ocean Object
+
+        # Returns
+        (Object): Ocean API response 
+        """
+        ocean = azure_ocean.OceanRequest(ocean)
+
+        excluded_missing_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_cluster_url,
+            entity_name='ocean_aks')
+
+        formatted_response = self.convert_json(response, 
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+    def get_all_ocean_cluster(self):
+        """
+        List the configurations for all Ocean clusters in the specified account.
+        
+        # Returns
+        (Object): Ocean API response 
+        """
+
+        response = self.send_get(
+            url=self.__base_ocean_cluster_url,
+            entity_name="ocean_aks"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+    
+    def get_ocean_cluster(self, ocean_id: str):
+        """
+        Get an existing Ocean Cluster json
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+        # Returns
+        (Object): Ocean API response 
+        """
+        response = self.send_get(
+            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            entity_name="ocean_aks"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+    def delete_ocean_cluster(self, ocean_id: str):
+        """
+        Delete an Ocean Cluster
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+        # Returns
+        (Object): Ocean API response
+        """
+        return self.send_delete(
+            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            entity_name="ocean_aks"
+        )
+    
+    def update_ocean_cluster(self, ocean_id: str, ocean: azure_ocean.Ocean):
+        """
+        Update an existing Ocean Cluster 
+        
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        ocean (Ocean): Ocean object
+        
+        # Returns
+        (Object): Ocean API response 
+        """
+        ocean = azure_ocean.OceanRequest(ocean)
+
+        excluded_missing_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            entity_name='ocean_aks')
+
+        formatted_response = self.convert_json(
+            response,
+            self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+    def import_cluster_config(self, aks_cluster_name: str, resource_group_name: str):
+        """
+        Import cluster configuration of an AKS cluster to use in create_ocean_cluster api call 
+
+        # Returns
+        (Object): Ocean API response 
+        """
+
+        response = self.send_post(
+            url=self.__base_ocean_cluster_url+"/aks/import",
+            entity_name='ocean_aks',
+            query_params=dict(aksClusterName=aks_cluster_name, resourceGroupName=resource_group_name))
+
+        formatted_response = self.convert_json(response, 
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+    def create_ocean_vng(self, vng: azure_ocean.VirtualNodeGroupTemplate):
+        """
+        Create a VNG inside ocean cluster
+        
+        # Arguments
+        vng (VirtualNodeGroup): VirtualNodeGroup Object
+
+        # Returns
+        (Object): Ocean API response 
+        """
+        ocean = azure_ocean.VNGRequest(vng)
+
+        excluded_missing_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_vng_url,
+            entity_name='ocean_aks_vng')
+
+        formatted_response = self.convert_json(response, 
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+    def update_ocean_vng(self, vng_id: str, vng: azure_ocean.VirtualNodeGroupTemplate):
+        """
+        Update an existing VNG inside an Ocean Cluster 
+        
+        # Arguments
+        vng_id (String): ID of the Ocean Virtual Node Group
+        ocean (Ocean): Ocean object
+        
+        # Returns
+        (Object): Ocean VNG API response 
+        """
+        ocean = azure_ocean.VNGRequest(vng)
+
+        excluded_missing_dict = self.exclude_missing(json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_vng_url + "/" + vng_id,
+            entity_name='ocean_aks_vng')
+
+        formatted_response = self.convert_json(
+            response,
+            self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+    def get_ocean_vng(self, vng_id: str):
+        """
+        Get an existing Ocean Virtual Node Group json
+
+        # Arguments
+        vng_id (String): ID of the Ocean VNG
+
+        # Returns
+        (Object): Ocean VNG API response 
+        """
+        response = self.send_get(
+            url=self.__base_ocean_vng_url + "/" + vng_id,
+            entity_name="ocean_aks_vng"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+    def get_all_ocean_vng(self):
+        """
+        List the configurations for all Ocean VNGs in the specified account.
+        
+        # Returns
+        (Object): Ocean VNG API response 
+        """
+
+        response = self.send_get(
+            url=self.__base_ocean_vng_url,
+            entity_name="ocean_aks_vng"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+    
+    def delete_ocean_vng(self, vng_id: str):
+        """
+        Delete an Ocean Cluster
+
+        # Arguments
+        vng_id (String): ID of the Ocean VNG
+
+        # Returns
+        (Object): Ocean VNG API response
+        """
+        return self.send_delete(
+            url=self.__base_ocean_vng_url + "/" + vng_id,
+            entity_name="ocean_aks_vng"
+        )
+
+    def import_vng_config(self, node_pool_name: str, ocean_id: str):
+        """
+        Import cluster configuration of an AKS cluster to use in create_ocean_cluster api call 
+
+        # Returns
+        (Object): Ocean API response 
+        """
+
+        response = self.send_post(
+            url=self.__base_ocean_vng_url+"/import",
+            entity_name='ocean_aks',
+            query_params=dict(nodePoolName=node_pool_name, oceanId=ocean_id))
+
+        formatted_response = self.convert_json(response, 
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]  
+
+    def launch_new_nodes(self, body: azure_ocean.LaunchNewNodes):
+        """
+        Launch new nodes in a Ocean cluster 
+
+        # Returns
+        (Object): Ocean Launch New Nodes API response 
+        """
+
+        request = azure_ocean.LaunchNewNodesRequest(body)
+
+        excluded_missing_dict = self.exclude_missing(json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_cluster_url+"/launchNewNodes",
+            entity_name='ocean_aks')
+
+        formatted_response = self.convert_json(response, 
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_allowed_vng_vm_sizes(self, vng_id: str):
+        """
+        Get allowed vm sizes for a particular VNG
+
+        # Arguments
+        vng_id (String): ID of the Ocean VNG
+
+        # Returns
+        (Object): Array of allowed vm sizes list 
+        """
+        response = self.send_get(
+            url=self.__base_ocean_vng_url + "/vmSizes",
+            entity_name="ocean_aks_vng",
+            query_params=dict(virtualNodeGroupId=vng_id))
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+    
+
+
+
