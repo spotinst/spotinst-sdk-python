@@ -4,6 +4,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.ocean.aws as aws_ocean
 import spotinst_sdk2.models.ocean.azure as azure_ocean
 
+# region AWS
 
 class OceanAwsClient(Client):
     __base_ocean_cluster_url = "/ocean/aws/k8s/cluster"
@@ -459,6 +460,9 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
     
+    # endregion
+
+# region Azure
 class OceanAzureClient(Client):
     __base_ocean_cluster_url = "/ocean/azure/np/cluster"
     __base_ocean_vng_url = "/ocean/azure/np/virtualNodeGroup"
@@ -492,7 +496,7 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
     
-    def get_all_ocean_cluster(self):
+    def get_all_ocean_clusters(self):
         """
         List the configurations for all Ocean clusters in the specified account.
         
@@ -576,18 +580,23 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
     
-    def import_cluster_config(self, aks_cluster_name: str, resource_group_name: str):
+    def import_cluster_configuration(self, aks_cluster_name: str, resource_group_name: str):
         """
-        Import cluster configuration of an AKS cluster to use in create_ocean_cluster api call 
+        Import cluster configuration of an AKS cluster to use in create_ocean_cluster api call
+
+        # Arguments
+        aks_cluster_name (String): Name of the AKS cluster
+        resource_group_name (String): Resource Group Name 
 
         # Returns
         (Object): Ocean API response 
         """
 
-        response = self.send_post(
+        response = self.send_post_with_params(
+            body=None,
             url=self.__base_ocean_cluster_url+"/aks/import",
             entity_name='ocean_aks',
-            query_params=dict(aksClusterName=aks_cluster_name, resourceGroupName=resource_group_name))
+            user_query_params=dict(aksClusterName=aks_cluster_name, resourceGroupName=resource_group_name))
 
         formatted_response = self.convert_json(response, 
                                                self.camel_to_underscore)
@@ -674,9 +683,9 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
     
-    def get_all_ocean_vng(self):
+    def get_all_ocean_vngs(self, ocean_id: str):
         """
-        List the configurations for all Ocean VNGs in the specified account.
+        List the configurations for all virtual node groups in the account or in a specified cluster.
         
         # Returns
         (Object): Ocean VNG API response 
@@ -684,7 +693,8 @@ class OceanAzureClient(Client):
 
         response = self.send_get(
             url=self.__base_ocean_vng_url,
-            entity_name="ocean_aks_vng"
+            entity_name="ocean_aks_vng",
+            query_params=dict(oceanId=ocean_id)
         )
 
         formatted_response = self.convert_json(
@@ -707,7 +717,7 @@ class OceanAzureClient(Client):
             entity_name="ocean_aks_vng"
         )
 
-    def import_vng_config(self, node_pool_name: str, ocean_id: str):
+    def import_vng_configuration(self, node_pool_name: str, ocean_id: str):
         """
         Import cluster configuration of an AKS cluster to use in create_ocean_cluster api call 
 
@@ -715,25 +725,29 @@ class OceanAzureClient(Client):
         (Object): Ocean API response 
         """
 
-        response = self.send_post(
+        response = self.send_post_with_params(
+            body=None,
             url=self.__base_ocean_vng_url+"/import",
             entity_name='ocean_aks',
-            query_params=dict(nodePoolName=node_pool_name, oceanId=ocean_id))
+            user_query_params=dict(nodePoolName=node_pool_name, oceanId=ocean_id))
 
         formatted_response = self.convert_json(response, 
                                                self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]  
 
-    def launch_new_nodes(self, body: azure_ocean.LaunchNewNodes):
+    def launch_new_nodes(self, node_config: azure_ocean.LaunchNewNodes):
         """
-        Launch new nodes in a Ocean cluster 
+        Launch new nodes for a cluster
+
+        # Arguments
+        node_config (LaunchNewNodes): LaunchNewNodes object
 
         # Returns
         (Object): Ocean Launch New Nodes API response 
         """
 
-        request = azure_ocean.LaunchNewNodesRequest(body)
+        request = azure_ocean.LaunchNewNodesRequest(node_config)
 
         excluded_missing_dict = self.exclude_missing(json.loads(request.toJSON()))
 
@@ -771,6 +785,7 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+    #endregion
     
 
 
