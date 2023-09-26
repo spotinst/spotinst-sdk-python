@@ -23,6 +23,8 @@ generate:
       - spotinst_sdk2.clients.mrscaler.MrScalerAwsClient++
   - clients/ocean/ocean_aws_client.md:
       - spotinst_sdk2.clients.ocean.OceanAwsClient++
+  - clients/ocean/ocean_azure_client.md:
+      - spotinst_sdk2.clients.ocean.OceanAzureClient++
   - clients/ocean_cd/ocean_cd_client.md:
       - spotinst_sdk2.clients.ocean_cd.OceanCDClient++
   - clients/subscription/subscription_client.md:
@@ -54,6 +56,8 @@ generate:
       - spotinst_sdk2.models.mrscaler.aws++
   - models/ocean/aws.md:
       - spotinst_sdk2.models.ocean.aws++
+  - models/ocean/azure.md:
+      - spotinst_sdk2.models.ocean.azure++
   - models/ocean_cd.md:
       - spotinst_sdk2.models.ocean_cd++
       - spotinst_sdk2.models.ocean_cd.rollout_spec++

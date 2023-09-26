@@ -37,8 +37,8 @@ class ResourceLimits:
             self,
             max_memory_gib: int = none,
             max_v_cpu: int = none):
-        self.max_memory_gib=max_memory_gib
-        self.max_v_cpu=max_v_cpu
+        self.max_memory_gib = max_memory_gib
+        self.max_v_cpu = max_v_cpu
 
 class Down:
     """
@@ -58,7 +58,7 @@ class Automatic:
     def __init__(
             self,
             percentage: int = none):
-        self.percentage = percentage 
+        self.percentage = percentage
 
 class AutoScalerHeadroom:
     """
@@ -68,7 +68,7 @@ class AutoScalerHeadroom:
     def __init__(
             self,
             automatic: Automatic = none):
-        self.automatic = automatic      
+        self.automatic = automatic
 
 class AutoScaler:
     """
@@ -88,7 +88,7 @@ class AutoScaler:
         self.headroom = headroom
         self.is_enabled = is_enabled
         self.resource_limits = resource_limits
-#endregion        
+#endregion
 
 # region Scheduling
 class ShutdownHours:
@@ -125,7 +125,7 @@ class Health:
             self,
             grace_period: int = none):
         self.grace_period = grace_period
- #endregion       
+ #endregion
 
 # region VirtualNodeGroupTemplate
 
@@ -147,7 +147,7 @@ class AutoScaleHeadroom:
         self.cpu_per_unit = cpu_per_unit
         self.gpu_per_unit = gpu_per_unit
         self.memory_per_unit = memory_per_unit
-        self.num_of_units = num_of_units           
+        self.num_of_units = num_of_units
 
 class AutoScale:
     """
@@ -158,8 +158,8 @@ class AutoScale:
             self,
             headrooms: List[AutoScaleHeadroom] = none):
         self.headrooms = headrooms
-#endregion 
-               
+#endregion
+
 #region Label
 class Label:
     """
@@ -170,7 +170,7 @@ class Label:
             self,
             key: str = none):
         self.key = key
-#endregion          
+#endregion
 
 # region NodeCountLimits
 class NodeCountLimits:
@@ -186,15 +186,15 @@ class NodeCountLimits:
         self.max_count = max_count
         self.min_count = min_count
 # endregion
-       
+
 # region NodePoolProperties
 class OsType(Enum):
     linux="Linux"
-    windows="Windows"         
+    windows="Windows"
 
 class OsDiskType(Enum):
     managed="Managed"
-    ephemereal="Ephemereal"        
+    ephemereal="Ephemereal"
 
 class OsSKU(Enum):
     ubuntu="Ubuntu"
@@ -231,7 +231,7 @@ class NodePoolProperties:
         self.os_s_k_u = os_s_k_u
         self.os_type = os_type
 # endregion
-  
+
 # region Strategy
 class Strategy:
     """
@@ -245,7 +245,7 @@ class Strategy:
             spot_percentage: int = none):
         self.fallback_to_od = fallback_to_od
         self.spot_percentage = spot_percentage
-# endregion        
+# endregion
 
 # region Tag
 class Tag:
@@ -259,9 +259,9 @@ class Tag:
             key: str = none,
             value:str = none):
         self.key = key
-        self.value = value 
+        self.value = value
 # endregion
-                         
+
 # region Taint
 class Effect(Enum):
     no_schedule="NoSchedule"
@@ -284,13 +284,13 @@ class Taint:
         self.key = key
         self.value = value
         self.effect = effect
-# endregion        
+# endregion
 
 # region VmSizes
 class Architecture(Enum):
-    x86_64="X86_64" 
-    intel64="INTEL64" 
-    amd64="AMD64" 
+    x86_64="X86_64"
+    intel64="INTEL64"
+    amd64="AMD64"
     arm64="ARM64"
 
 class AcceleratedNetworking(Enum):
@@ -302,12 +302,12 @@ class DiskPerformance(Enum):
     premium="Premium"
 
 class VmType(Enum):
-    general_purpose="generalPurpose" 
-    memory_optimized="memoryOptimized" 
-    compute_optimized="computeOptimized" 
-    high_performance_compute="highPerformanceCompute" 
+    general_purpose="generalPurpose"
+    memory_optimized="memoryOptimized"
+    compute_optimized="computeOptimized"
+    high_performance_compute="highPerformanceCompute"
     storage_optimized="storageOptimized"
-    gpu="GPU"                                
+    gpu="GPU"
 
 class Filters:
     """
@@ -367,7 +367,7 @@ class VmSizes:
             self,
             filters: Filters = none):
         self.filters = filters
-# endregion                         
+# endregion
 
 class VirtualNodeGroupTemplate:
     """
@@ -409,9 +409,9 @@ class VirtualNodeGroupTemplate:
         self.taints=taints
         self.vm_sizes=vm_sizes
 
-#endregion                     
+#endregion
 
-# region Ocean       
+# region Ocean
 class Ocean:
     """
     # Arguments 
@@ -423,7 +423,6 @@ class Ocean:
     scheduling: Scheduling
     virtual_node_group_template: VirtualNodeGroupTemplate
     """
-
     def __init__(
             self,
             aks: Aks = none,
@@ -440,7 +439,7 @@ class Ocean:
         self.name=name
         self.scheduling=scheduling
         self.virtual_node_group_template=virtual_node_group_template
-#endregion        
+#endregion
 
 # region OceanRequest
 class OceanRequest:
@@ -450,8 +449,8 @@ class OceanRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-# endregion   
-     
+# endregion
+
 # region VNGRequest
 class VNGRequest:
     def __init__(self, vng: VirtualNodeGroupTemplate):
@@ -589,7 +588,6 @@ class GroupBy(Enum):
     namespace_annotation = "namespace.annotation.${annotationKey}"
     resource_annotation = "resource.annotation.${annotationKey}"
 
-
 class AggregatedClusterCosts:
     """
     # Arguments
@@ -609,7 +607,6 @@ class AggregatedClusterCosts:
         self.group_by = group_by
         self.start_time = start_time
 
-
 class AggregatedClusterCostRequest:
     def __init__(self, aggregated_cluster_costs: AggregatedClusterCosts = none):
         self.end_time = aggregated_cluster_costs.end_time
@@ -619,5 +616,5 @@ class AggregatedClusterCostRequest:
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)  
-# endregion         
+                          sort_keys=True, indent=4)
+# endregion

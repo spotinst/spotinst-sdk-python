@@ -324,7 +324,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Kubernetes AWS Nodes Data response
         """
         query_params = dict(instanceId = instance_id, launchSpecId = launch_spec_id)
-        
+
         response = self.send_get(
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/nodes",
             entity_name="ocean (Cluster Nodes)",
@@ -459,7 +459,7 @@ class OceanAwsClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     # endregion
 
 # region Azure
@@ -495,7 +495,7 @@ class OceanAzureClient(Client):
                                                self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     def get_all_ocean_clusters(self):
         """
         List the configurations for all Ocean clusters in the specified account.
@@ -513,7 +513,7 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
-    
+
     def get_ocean_cluster(self, ocean_id: str):
         """
         Get an existing Ocean Cluster json
@@ -533,7 +533,7 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     def delete_ocean_cluster(self, ocean_id: str):
         """
         Delete an Ocean Cluster
@@ -548,7 +548,7 @@ class OceanAzureClient(Client):
             url=self.__base_ocean_cluster_url + "/" + ocean_id,
             entity_name="ocean_aks"
         )
-    
+
     def update_ocean_cluster(self, ocean_id: str, ocean: azure_ocean.Ocean):
         """
         Update an existing Ocean Cluster 
@@ -556,7 +556,7 @@ class OceanAzureClient(Client):
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
         ocean (Ocean): Ocean object
-        
+
         # Returns
         (Object): Ocean API response 
         """
@@ -579,7 +579,7 @@ class OceanAzureClient(Client):
             self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     def import_cluster_configuration(self, aks_cluster_name: str, resource_group_name: str):
         """
         Import cluster configuration of an AKS cluster to use in create_ocean_cluster api call
@@ -602,7 +602,7 @@ class OceanAzureClient(Client):
                                                self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     def create_ocean_vng(self, vng: azure_ocean.VirtualNodeGroupTemplate):
         """
         Create a VNG inside ocean cluster
@@ -631,7 +631,7 @@ class OceanAzureClient(Client):
                                                self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     def update_ocean_vng(self, vng_id: str, vng: azure_ocean.VirtualNodeGroupTemplate):
         """
         Update an existing VNG inside an Ocean Cluster 
@@ -639,7 +639,7 @@ class OceanAzureClient(Client):
         # Arguments
         vng_id (String): ID of the Ocean Virtual Node Group
         ocean (Ocean): Ocean object
-        
+
         # Returns
         (Object): Ocean VNG API response 
         """
@@ -662,7 +662,7 @@ class OceanAzureClient(Client):
             self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     def get_ocean_vng(self, vng_id: str):
         """
         Get an existing Ocean Virtual Node Group json
@@ -682,11 +682,12 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
-    def get_all_ocean_vngs(self, ocean_id: str):
+
+    def get_all_ocean_vngs(self, ocean_id: str = None):
         """
-        List the configurations for all virtual node groups in the account or in a specified cluster.
-        
+        List the configurations for all virtual node groups in the account
+        or in a specified cluster.
+
         # Returns
         (Object): Ocean VNG API response 
         """
@@ -701,7 +702,7 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
-    
+
     def delete_ocean_vng(self, vng_id: str):
         """
         Delete an Ocean Cluster
@@ -786,7 +787,6 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
     #endregion
-    
 
 
 

@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.42] - 2023-09-26
+### Added
+- Added support for Ocean AKS APIs.
+
+## [2.1.41] - 2023-08-16
+### Fixed
+- Compilation errors in previous version.
+
 ## [2.1.40] - 2023-07-31
 ### Added
 - Add support for GCP Eastigroup APIs: `get_elastilog`, `get_cost_per_account`, `get_instance_status`,

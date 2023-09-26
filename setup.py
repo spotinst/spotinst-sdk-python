@@ -48,6 +48,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
 
     keywords='spotinst spot instances aws azure ec2 cloud infrastructure development elastigroup',
@@ -82,6 +83,7 @@ setup(
                 "spotinst_sdk2.models.mrscaler.aws",
             "spotinst_sdk2.models.ocean",
                 "spotinst_sdk2.models.ocean.aws",
+                "spotinst_sdk2.models.ocean.azure",
             "spotinst_sdk2.models.ocean_cd",
                 "spotinst_sdk2.models.ocean_cd",
             "spotinst_sdk2.models.setup",
