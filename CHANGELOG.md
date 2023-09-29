@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.1.43] - 2023-09-29
 ### Added
-- Added versions for PyPI modules in requirements.txt
+- Added versions for PyPI packages in requirements.txt
 
 ## [2.1.42] - 2023-09-26
 ### Added
