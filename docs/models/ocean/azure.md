@@ -151,16 +151,6 @@ __Arguments__
 
 - __headrooms__: List[AutoScaleHeadroom]
 
-<h2 id="spotinst_sdk2.models.ocean.azure.Label">Label</h2>
-
-```python
-Label(self, key: str = 'd3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __key__: str
-
 <h2 id="spotinst_sdk2.models.ocean.azure.NodeCountLimits">NodeCountLimits</h2>
 
 ```python
@@ -224,24 +214,29 @@ An enumeration.
 ```python
 NodePoolProperties(
   self,
-  enable_node_public_ip: bool = 'd3043820717d74d9a17694c176d39733',
+  enable_node_public_i_p: bool = 'd3043820717d74d9a17694c176d39733',
   kubernetes_version: str = 'd3043820717d74d9a17694c176d39733',
   max_pods_per_node: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_size_g_b: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_type: OsDiskType = 'd3043820717d74d9a17694c176d39733',
   os_s_k_u: OsSKU = 'd3043820717d74d9a17694c176d39733',
-  os_type: OsType = 'd3043820717d74d9a17694c176d39733')
+  os_type: OsType = 'd3043820717d74d9a17694c176d39733',
+  pod_subnet_i_ds: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  vnet_subnet_i_ds: typing.List[str] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
 
-- __enable_node_public_ip__: bool
+- __enable_node_public_i_p__: bool
 - __kubernetes_version__: str
 - __max_pods_per_node__: int
 - __os_disk_size_g_b__: int
 - __os_disk_type__: OsDiskType
 - __os_s_k_u__: OsSKU
 - __os_type__: OsType
+- __pod_subnet_i_ds__: List[str]
+- __vnet_subnet_i_ds__: List[str]
 
 <h2 id="spotinst_sdk2.models.ocean.azure.Strategy">Strategy</h2>
 
@@ -255,19 +250,6 @@ __Arguments__
 
 - __fallback_to_od__: bool
 - __spot_percentage__: int
-
-<h2 id="spotinst_sdk2.models.ocean.azure.Tag">Tag</h2>
-
-```python
-Tag(self,
-    key: str = 'd3043820717d74d9a17694c176d39733',
-    value: str = 'd3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __key__: str
-- __value__: str
 
 <h2 id="spotinst_sdk2.models.ocean.azure.Effect">Effect</h2>
 
@@ -444,14 +426,12 @@ VirtualNodeGroupTemplate(
   auto_scale: AutoScale = 'd3043820717d74d9a17694c176d39733',
   availability_zones:
     typing.List[str] = 'd3043820717d74d9a17694c176d39733',
-  labels:
-    typing.List[spotinst_sdk2.models.ocean.azure.Label] = 'd3043820717d74d9a17694c176d39733',
+  labels: dict = 'd3043820717d74d9a17694c176d39733',
   node_count_limits: NodeCountLimits = 'd3043820717d74d9a17694c176d39733',
   node_pool_properties:
     NodePoolProperties = 'd3043820717d74d9a17694c176d39733',
   strategy: Strategy = 'd3043820717d74d9a17694c176d39733',
-  tags:
-    typing.List[spotinst_sdk2.models.ocean.azure.Tag] = 'd3043820717d74d9a17694c176d39733',
+  tags: dict = 'd3043820717d74d9a17694c176d39733',
   taints:
     typing.List[spotinst_sdk2.models.ocean.azure.Taint] = 'd3043820717d74d9a17694c176d39733',
   vm_sizes: VmSizes = 'd3043820717d74d9a17694c176d39733')
@@ -463,11 +443,11 @@ __Arguments__
 - __ocean_id__: str
 - __auto_scale__: AutoScale
 - __availability_zones__: List[str]
-- __labels__: List[Label]
+- __labels__: dict
 - __node_count_limits__: NodeCountLimits
 - __node_pool_properties__: NodePoolProperties
 - __strategy__: Strategy
-- __tags__: List[Tag]
+- __tags__: dict
 - __taints__: List[Taint]
 - __vm_sizes__: VmSizes
 

@@ -158,19 +158,7 @@ class AutoScale:
             self,
             headrooms: List[AutoScaleHeadroom] = none):
         self.headrooms = headrooms
-#endregion
-
-#region Label
-class Label:
-    """
-    # Arguments
-    key: str
-    """
-    def __init__(
-            self,
-            key: str = none):
-        self.key = key
-#endregion
+#endregion 
 
 # region NodeCountLimits
 class NodeCountLimits:
@@ -206,30 +194,36 @@ class OsSKU(Enum):
 class NodePoolProperties:
     """
     # Arguments
-    enable_node_public_ip: bool
+    enable_node_public_i_p: bool
     kubernetes_version: str
     max_pods_per_node: int
     os_disk_size_g_b: int
     os_disk_type: OsDiskType
     os_s_k_u: OsSKU
     os_type: OsType
+    pod_subnet_i_ds: List[str]
+    vnet_subnet_i_ds: List[str]
     """
     def __init__(
             self,
-            enable_node_public_ip: bool = none,
+            enable_node_public_i_p: bool = none,
             kubernetes_version: str = none,
             max_pods_per_node: int = none,
             os_disk_size_g_b: int = none,
             os_disk_type: OsDiskType = none,
             os_s_k_u: OsSKU = none,
-            os_type: OsType = none):
-        self.enable_node_public_ip = enable_node_public_ip
+            os_type: OsType = none,
+            pod_subnet_i_ds: List[str] = none,
+            vnet_subnet_i_ds: List[str] = none):
+        self.enable_node_public_i_p = enable_node_public_i_p
         self.kubernetes_version = kubernetes_version
         self.max_pods_per_node = max_pods_per_node
         self.os_disk_size_g_b = os_disk_size_g_b
         self.os_disk_type =   os_disk_type
         self.os_s_k_u = os_s_k_u
         self.os_type = os_type
+        self.pod_subnet_i_ds = pod_subnet_i_ds
+        self.vnet_subnet_i_ds = vnet_subnet_i_ds
 # endregion
 
 # region Strategy
@@ -245,23 +239,8 @@ class Strategy:
             spot_percentage: int = none):
         self.fallback_to_od = fallback_to_od
         self.spot_percentage = spot_percentage
-# endregion
-
-# region Tag
-class Tag:
-    """
-    # Arguments
-    key: str
-    value: str
-    """
-    def __init__(
-            self,
-            key: str = none,
-            value:str = none):
-        self.key = key
-        self.value = value
-# endregion
-
+# endregion        
+                         
 # region Taint
 class Effect(Enum):
     no_schedule="NoSchedule"
@@ -376,11 +355,11 @@ class VirtualNodeGroupTemplate:
     ocean_id: str 
     auto_scale: AutoScale
     availability_zones: List[str]
-    labels: List[Label]
+    labels: dict
     node_count_limits: NodeCountLimits
     node_pool_properties: NodePoolProperties
     strategy: Strategy
-    tags: List[Tag]
+    tags: dict
     taints: List[Taint]
     vm_sizes: VmSizes
     """
@@ -390,11 +369,11 @@ class VirtualNodeGroupTemplate:
             ocean_id: str = none,
             auto_scale: AutoScale = none,
             availability_zones: List[str] = none,
-            labels: List[Label] = none,
+            labels: dict = none,
             node_count_limits: NodeCountLimits = none,
             node_pool_properties: NodePoolProperties = none,
             strategy: Strategy = none,
-            tags: List[Tag] = none,
+            tags: dict = none,
             taints: List[Taint] = none,
             vm_sizes: VmSizes = none):
         self.name=name
@@ -612,7 +591,7 @@ class AggregatedClusterCostRequest:
         self.end_time = aggregated_cluster_costs.end_time
         self.start_time = aggregated_cluster_costs.start_time
         self.group_by = aggregated_cluster_costs.group_by
-        self.filter = aggregated_cluster_costs.aggregated_filter
+        self.filter = aggregated_cluster_costs.filter
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

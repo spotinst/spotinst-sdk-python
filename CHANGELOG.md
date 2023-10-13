@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.45] - 2023-10-13
+### Fixed
+- field names in Ocean AKS models.
+
 ## [2.1.44] - 2023-10-04
 ### Fixed
 - Corrected version information
