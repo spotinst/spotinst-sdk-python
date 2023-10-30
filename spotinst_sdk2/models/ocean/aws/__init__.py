@@ -463,11 +463,14 @@ class IamInstanceProfile:
     """
     # Arguments
     name: str
+    arn: str
     """
     def __init__(
             self,
-            name: str = none):
+            name: str = none,
+            arn: str = none):
         self.name = name
+        self.arn = arn
 
 
 class HttpEndpoint(Enum):
@@ -496,6 +499,9 @@ class InstanceMetadataOptions:
         self.http_put_response_hop_limit = http_put_response_hop_limit
         self.http_tokens = http_tokens
 
+class LoadBalancerType(Enum):
+    classic = "CLASSIC"
+    target_group = "TARGET_GROUP"
 
 class LoadBalancer:
     """
@@ -508,7 +514,7 @@ class LoadBalancer:
             self,
             arn: str = none,
             name: str = none,
-            type: str = none):
+            type: LoadBalancerType = none):
         self.arn = arn
         self.name = name
         self.type = type
@@ -528,6 +534,28 @@ class Tags:
         self.tag_value = tag_value
 
 
+class Volumes:
+    """
+    # Arguments
+    should_tag: str
+    """
+    def __init__(
+            self,
+            should_tag: bool = none):
+        self.should_tag = should_tag       
+
+
+class ResourceTagSpecification:
+    """
+    # Arguments
+    volumes: Volumes
+    """
+    def __init__(
+            self,
+            volumes: Volumes = none):
+        self.volumes = volumes      
+
+
 class LaunchSpecifications:
     """
     # Arguments
@@ -541,6 +569,7 @@ class LaunchSpecifications:
     key_pair: str
     load_balancers: List[LoadBalancers]
     monitoring: bool
+    resource_tag_specification: ResourceTagSpecification
     root_volume_size: int
     security_group_ids: List[str]
     tags: List[Tags]
@@ -559,6 +588,7 @@ class LaunchSpecifications:
             key_pair: str = none,
             load_balancers: List[LoadBalancer] = none,
             monitoring: bool = none,
+            resource_tag_specification: ResourceTagSpecification = none,
             root_volume_size: int = none,
             security_group_ids: List[str] = none,
             tags: List[Tags] = none,
@@ -574,6 +604,7 @@ class LaunchSpecifications:
         self.key_pair = key_pair
         self.load_balancers = load_balancers
         self.monitoring = monitoring
+        self.resource_tag_specification = resource_tag_specification
         self.root_volume_size = root_volume_size
         self.security_group_ids = security_group_ids
         self.tags = tags
@@ -848,6 +879,391 @@ class Roll:
         self.launch_spec_ids = launch_spec_ids
         self.respect_pdb = respect_pdb
 
+# region VirtualNodeGroup
+class AutoScaleDown:
+    """
+    # Arguments
+    max_scale_down_percentage: double
+    """
+    def __init__(
+            self,
+            max_scale_down_percentage: float = none):
+        self.max_scale_down_percentage = max_scale_down_percentage         
+
+
+class AutoScale:
+    """
+    # Arguments
+    auto_headroom_percentage: int
+    down: class(AutoScaleDown)
+    headrooms: List[Headroom]
+    """
+    def __init__(
+            self,
+            auto_headroom_percentage: int = none,
+            down: AutoScaleDown = none,
+            headrooms: List[Headroom] = none):
+        self.auto_headroom_percentage = auto_headroom_percentage
+        self.down = down 
+        self.headrooms = headrooms
+
+
+class TagSelector:
+    """
+    # Arguments
+    tag_key: str
+    tag_value: str
+    """
+    def __init__(
+            self,
+            tag_key: str = none,
+            tag_value: str = none):
+        self.tag_key = tag_key
+        self.tag_value = tag_value               
+
+
+class ElasticIpPool:
+    """
+    # Arguments
+    tag_selector: TagSelector
+    """
+    def __init__(
+            self,
+            tag_selector: TagSelector = none):
+        self.tag_selector = tag_selector
+
+
+class ImageId:
+    """
+    # Arguments
+    id: str = none
+    """
+    def __init__(
+            self,
+            id: str = none):
+        self.id = id       
+
+
+class Labels:
+    """
+    # Arguments
+    key: str
+    value: str
+    """
+    def __init__(
+            self,
+            key: str = none,
+            value: str = none):
+        self.key = key
+        self.value = value
+
+
+class VNGResourceLimits:
+    """
+    # Arguments
+    max_instance_count: int
+    min_instance_count: int
+    """
+    def __init__(
+            self,
+            max_instance_count: int = none,
+            min_instance_count: int = none):
+        self.max_instance_count=max_instance_count
+        self.min_instance_count=min_instance_count
+
+
+class Config:
+    """
+    # Arguments
+    headrooms: List[Headroom]
+    """
+    def __init__(
+            self,
+            headrooms: List[Headroom] = none):
+        self.headrooms = headrooms      
+
+
+class VNGSchedulingTaskType(Enum):
+    manual_headroom_update = "manualHeadroomUpdate"        
+
+
+class VNGSchedulingTasks:
+    """
+    # Arguments
+    cron_expression: str
+    is_enabled: bool
+    parameters: Parameters
+    task_type: TaskType
+    """
+    def __init__(
+            self,
+            cron_expression: str = none,
+            is_enabled: bool = none,
+            config: Config = none,
+            task_type: VNGSchedulingTaskType = none):
+        self.cron_expression = cron_expression
+        self.is_enabled = is_enabled
+        self.config = config
+        self.task_type = task_type
+
+
+class VNGSchedulingShutdownHours:
+    """
+    # Arguments
+    is_enabled: bool
+    time_windows: List[str]
+    """
+    def __init__(
+            self,
+            is_enabled: bool = none,
+            time_windows: List[str] = none):
+        self.is_enabled = is_enabled
+        self.time_windows = time_windows
+
+
+class VNGScheduling:
+    """
+    # Arguments
+    tasks: List[VNGSchedulingTasks]
+    shutdown_hours: VNGSchedulingShutdownHours
+    """
+    def __init__(
+            self,
+            tasks: List[VNGSchedulingTasks] = none,
+            shutdown_hours: VNGSchedulingShutdownHours = none):
+        self.tasks = tasks
+        self.shutdown_hours = shutdown_hours
+
+
+class VNGStrategy:
+    """
+    # Arguments
+    spot_percentage: int
+    """
+    def __init__(
+            self,
+            spot_percentage: int = none):
+        self.spot_percentage = spot_percentage
+
+
+class Taints:
+    """
+    # Arguments
+    tag_key: str
+    tag_value: str
+    """
+    def __init__(
+            self,
+            effect: str = none,
+            key: str = none,
+            value: str = none):
+        self.effect = effect
+        self.key = key
+        self.value = value
+
+
+class VirtualNodeGroup:
+    """
+    # Arguments
+    associate_public_ip_address: bool
+    auto_scale: AutoScale
+    block_device_mappings: List[BlockDeviceMappings]
+    elastic_ip_pool: ElasticIpPool
+    iam_instance_profile: IamInstanceProfile
+    image_id: str
+    images: List[ImageId]
+    instance_metadata_options: InstanceMetadataOptions
+    instance_types : List[str]
+    instance_types_filters: InstanceTypesFilters
+    labels: List[Labels]
+    name: str
+    ocean_id: str
+    preferred_spot_types: List[str]
+    resource_limits: VNGResourceLimits
+    restrict_scale_down: bool
+    root_volume_size: int
+    scheduling: VNGScheduling
+    strategy: VNGStrategy
+    security_group_ids: List[str]
+    subnet_ids: List[str]
+    taints: List[Taints]
+    user_data: str
+    """
+    def __init__(
+            self,
+            associate_public_ip_address: bool = none,
+            auto_scale: AutoScale = none,
+            block_device_mappings: List[BlockDeviceMappings] = none,
+            elastic_ip_pool: ElasticIpPool = none,
+            iam_instance_profile: IamInstanceProfile = none,
+            image_id: str = none,
+            images: List[ImageId] = none,
+            instance_metadata_options: InstanceMetadataOptions = none,
+            instance_types : List[str] = none,
+            instance_types_filters: InstanceTypesFilters = none,
+            labels: List[Labels] = none,
+            name: str = none,
+            ocean_id: str = none,
+            preferred_spot_types: List[str] = none,
+            resource_limits: VNGResourceLimits = none,
+            restrict_scale_down: bool = none,
+            root_volume_size: int = none,
+            scheduling: VNGScheduling = none,
+            strategy: VNGStrategy = none,
+            security_group_ids: List[str] = none,
+            subnet_ids: List[str] = none,
+            tags: List[Tags] = none,
+            taints: List[Taints] = none,
+            user_data: str = none):
+        self.associate_public_ip_address = associate_public_ip_address
+        self.auto_scale = auto_scale
+        self.block_device_mappings = block_device_mappings
+        self.elastic_ip_pool = elastic_ip_pool
+        self.iam_instance_profile = iam_instance_profile
+        self.image_id = image_id
+        self.images = images
+        self.instance_metadata_options = instance_metadata_options
+        self.instance_types = instance_types
+        self.instance_types_filters = instance_types_filters
+        self.labels = labels
+        self.name = name
+        self.ocean_id = ocean_id
+        self.preferred_spot_types = preferred_spot_types
+        self.resource_limits = resource_limits
+        self.restrict_scale_down = restrict_scale_down
+        self.root_volume_size = root_volume_size
+        self.scheduling = scheduling
+        self.strategy = strategy
+        self.security_group_ids = security_group_ids
+        self.subnet_ids = subnet_ids
+        self.tags = tags
+        self.taints = taints
+        self.user_data = user_data
+# endregion    
+
+
+# region Migration
+class Migration:
+    """
+    # Arguments
+    batch_size_percentage: int
+    force_pod_eviction_on_pdb_failure: bool
+    instance_ids: List[str]
+    should_evict_stand_alone_pods: bool
+    should_terminate_drained_nodes: bool
+    state: str
+    """
+    def __init__(
+            self,
+            batch_size_percentage: int = none,
+            force_pod_eviction_on_pdb_failure: bool = none,
+            instance_ids: List[str] = none,
+            should_evict_stand_alone_pods: bool = none,
+            should_terminate_drained_nodes: bool = none,
+            state: str = none):
+        self.batch_size_percentage = batch_size_percentage
+        self.force_pod_eviction_on_pdb_failure = force_pod_eviction_on_pdb_failure
+        self.instance_ids = instance_ids
+        self.should_evict_stand_alone_pods = should_evict_stand_alone_pods
+        self.should_terminate_drained_nodes = should_terminate_drained_nodes
+        self.state = state
+#endregion
+
+
+# region DetachInstances
+class DetachInstances:
+    """
+    # Arguments
+    instances_to_detach: List[str]
+    should_decrement_target_capacity: bool
+    should_terminate_instances: bool
+    """
+    def __init__(
+            self,
+            instances_to_detach: List[str] = none,
+            should_decrement_target_capacity: bool = none,
+            should_terminate_instances: bool = none):
+        self.instances_to_detach = instances_to_detach
+        self.should_decrement_target_capacity = should_decrement_target_capacity
+        self.should_terminate_instances = should_terminate_instances
+# endregion
+    
+
+# region DetachInstances
+class ImportLaunchSpec:
+    """
+    # Arguments
+    instance_types: List[str]
+    labels: List[Labels]
+    name: str
+    taints: List[Taints]
+    """
+    def __init__(
+            self,
+            instance_types: List[str] = none,
+            name: str = none,
+            labels: List[Labels] = none,
+            taints: List[Taints] = none):
+        self.instance_types = instance_types
+        self.name = name
+        self.labels = labels
+        self.taints= taints
+# endregion
+
+
+# region ExtendedResourceDefinition
+class ExtendedResourceDefinition:
+    """
+    # Arguments
+    mapping: dict
+    name: str
+    """
+    def __init__(
+            self,
+            mapping: dict = none,
+            name: str = none):
+        self.mapping = mapping
+        self.name = name
+# endregion 
+
+
+class VNGRequest:
+    def __init__(self, vng: VirtualNodeGroup):
+        self.launch_spec = vng
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class ImportToOceanRequest:
+    def __init__(self, launch_spec: ImportLaunchSpec):
+        self.launch_spec = launch_spec
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+    
+
+class DetachInstancesRequest:
+    def __init__(self, detachInstances: DetachInstances):
+        self.instances_to_detach = detachInstances.instances_to_detach
+        self.should_decrement_target_capacity = detachInstances.should_decrement_target_capacity
+        self.should_terminate_instances = detachInstances.should_terminate_instances
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)    
+
+
+class LoadBalancersRequest:
+    def __init__(self, load_balancers: List[LoadBalancer]):
+        self.load_balancers = load_balancers
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)        
+
 
 class ClusterRollInitiateRequest:
     def __init__(self, roll: Roll = none):
@@ -856,7 +1272,7 @@ class ClusterRollInitiateRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-
+    
 
 class ClusterRollUpdateRequest:
     def __init__(self, status: str = none):
@@ -879,6 +1295,31 @@ class InstanceTypesFilterSimulationRequest:
 class LaunchNodesRequest:
     def __init__(self, amount: int = none):
         self.launch_request = dict(amount=amount)
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+    
+class MigrationRequest:
+    def __init__(self, migration: Migration):
+        self.migration = migration
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)    
+    
+class ExtendedResourceDefinitionRequest:
+    def __init__(self, extended_resource_defintion: ExtendedResourceDefinition):
+        self.extended_resource_defintion = extended_resource_defintion
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class InstanceTypesFilterSimulationRequestForVNG:
+    def __init__(self, instance_types_filters: InstanceTypesFilters = none):
+        self.instance_types_filters = instance_types_filters
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
