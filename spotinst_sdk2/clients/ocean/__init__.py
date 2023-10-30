@@ -931,13 +931,10 @@ class OceanAwsClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        query_params = dict(migrationId=migration_id)
-
-        response = self.send_put_with_params(
+        response = self.send_put(
             body=body_json,
-            url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration",
+            url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration/"+migration_id,
             entity_name="ocean_migration",
-            user_query_params=query_params
         )
 
         formatted_response = self.convert_json(
