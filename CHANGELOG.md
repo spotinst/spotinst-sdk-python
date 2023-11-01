@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0] - 2023-11-01
+### Deprecated
+- Removed Multai Load Balancer support.
+
 ## [2.1.45] - 2023-10-13
 ### Fixed
 - field names in Ocean AKS models.
