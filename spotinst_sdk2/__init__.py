@@ -7,7 +7,6 @@ from spotinst_sdk2.clients.ocean import *
 from spotinst_sdk2.clients.admin import *
 from spotinst_sdk2.clients.functions import *
 from spotinst_sdk2.clients.mcs import *
-from spotinst_sdk2.clients.mlb import *
 from spotinst_sdk2.clients.mrscaler import *
 from spotinst_sdk2.clients.subscription import *
 from spotinst_sdk2.clients.setup import *
@@ -51,8 +50,6 @@ class SpotinstSession:
             "functions": FunctionsClient(session=self.session, print_output=print_output, log_level=log_level,
                                          user_agent=user_agent, timeout=timeout),
             "mcs": McsClient(session=self.session, print_output=print_output, log_level=log_level,
-                             user_agent=user_agent, timeout=timeout),
-            "mlb": MlbClient(session=self.session, print_output=print_output, log_level=log_level,
                              user_agent=user_agent, timeout=timeout),
             "mrScaler_aws": MrScalerAwsClient(session=self.session, print_output=print_output, log_level=log_level,
                                               user_agent=user_agent, timeout=timeout),
