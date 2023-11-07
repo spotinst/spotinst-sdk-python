@@ -489,20 +489,21 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def import_asg_to_ocean_cluster(self, auto_scaling_group_name, region, import_asg_to_ocean_launch_spec : aws_ocean.ImportASGToOcean):
+    def import_asg_to_ocean_cluster(self, auto_scaling_group_name, region, import_asg_to_ocean_cluster : aws_ocean.ImportASGToOceanCluster):
         """
         Create an Ocean configuration according to an AWS autoscaling group (ASG) configuration.
 
         # Arguments
         auto_scaling_group_name (String): The ASG name
         region (String): region
+        import_asg_to_ocean_cluster (ImportASGToOceanCluster): ImportASGToOceanCluster Object
 
         # Returns
         (Object): Ocean Import ASG to Ocean Response 
         """
-        import_asg_to_ocean_cluster = aws_ocean.ImportASGToOceanClusterRequest(import_asg_to_ocean_launch_spec)
+        import_asg_to_ocean_cluster_body = aws_ocean.ImportASGToOceanClusterRequest(import_asg_to_ocean_cluster)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(import_asg_to_ocean_cluster.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(import_asg_to_ocean_cluster_body.toJSON()))
 
         formatted_missing_dict = self.convert_json(
             excluded_missing_dict, self.underscore_to_camel)
@@ -516,7 +517,7 @@ class OceanAwsClient(Client):
         result = self.send_post_with_params(
             body=body_json,
             url=geturl, 
-            entity_name='import_config', 
+            entity_name='import_asg_to_ocean_cluster', 
             user_query_params=query_params)
 
         formatted_response = self.convert_json(
@@ -763,21 +764,22 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
     
-    def import_asg_to_ocean_vng(self, auto_scaling_group_name, ocean_id: str, import_asg_to_ocean_launch_spec : aws_ocean.ImportLaunchSpec):
+    def import_asg_to_ocean_vng(self, auto_scaling_group_name, ocean_id: str, import_asg_to_ocean_launch_spec : aws_ocean.ImportASGToOceanVNG):
         """
         Returns an Ocean Virtual Node Group (VNG) configuration in a given AWS autoscaling group (ASG). The returned value ("Imported VNG") can then be used as input to the Create Virtual Node Group API in order to create an actual VNG in your Ocean cluster.
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
         auto_scaling_group_name (String): The ASG name.
-
+        import_asg_to_ocean_launch_spec (ImportASGToOceanVNG): ImportASGToOceanVNG object 
+        
         # Returns
         (Object): Ocean Import ASG to Launch Spec Response
         """
 
-        import_asg_to_ocean_cluster = aws_ocean.ImportToOceanVNGRequest(import_asg_to_ocean_launch_spec)
+        import_asg_to_ocean_launch_spec_body = aws_ocean.ImportASGToOceanVNGRequest(import_asg_to_ocean_launch_spec)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(import_asg_to_ocean_cluster.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(import_asg_to_ocean_launch_spec_body.toJSON()))
 
         formatted_missing_dict = self.convert_json(
             excluded_missing_dict, self.underscore_to_camel)
@@ -818,7 +820,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
     
-    def import_eks_cluster_node_group_to_ocean_vng(self, eks_cluster_name: str, eks_node_group_name: str, import_eks_node_group_to_ocean_launch_spec : aws_ocean.ImportLaunchSpec,  ocean_id : str=None, region: str=None):
+    def import_eks_cluster_node_group_to_ocean_vng(self, eks_cluster_name: str, eks_node_group_name: str, import_eks_node_group_to_ocean_launch_spec : aws_ocean.ImportEKSNodeGroupToOceanVNG,  ocean_id : str=None, region: str=None):
         """
         Returns an Ocean Virtual Node Group (VNG) configuration based on a given AWS EKS Cluster Node Group. 
         The returned value ("Imported VNG") can then be used as input to the Create Virtual Node Group API in order to create an actual VNG in your Ocean cluster.
@@ -828,14 +830,15 @@ class OceanAwsClient(Client):
         eks_cluster_name (String): Cluster name of the EKS cluster.
         eks_node_group_name (String): Node group name to import.
         region (String): Node group name to import.
+        import_eks_node_group_to_ocean_launch_spec (ImportEKSNodeGroupToOceanVNG): ImportEKSNodeGroupToOceanVNG object
 
         # Returns
         (Object): Ocean Import EKS Cluster Node Group to Launch Spec Response
         """
 
-        import_eks_node_group_to_ocean_launch_spec = aws_ocean.ImportToOceanVNGRequest(import_eks_node_group_to_ocean_launch_spec)
+        import_eks_node_group_to_ocean_launch_spec_body = aws_ocean.ImportEKSNodeGroupToOceanVNGRequest(import_eks_node_group_to_ocean_launch_spec)
 
-        excluded_missing_dict = self.exclude_missing(json.loads(import_eks_node_group_to_ocean_launch_spec.toJSON()))
+        excluded_missing_dict = self.exclude_missing(json.loads(import_eks_node_group_to_ocean_launch_spec_body.toJSON()))
 
         formatted_missing_dict = self.convert_json(
             excluded_missing_dict, self.underscore_to_camel)

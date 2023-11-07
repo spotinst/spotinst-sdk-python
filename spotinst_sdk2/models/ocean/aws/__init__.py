@@ -1189,7 +1189,7 @@ class DetachInstances:
 # endregion
     
 # region ImportASGToOcean
-class ImportASGToOcean:
+class ImportASGToOceanCluster:
     """
     # Arguments
     instance_types: List[str]
@@ -1201,25 +1201,38 @@ class ImportASGToOcean:
 # endregion
 
 
-# region ImportLaunchSpec
-class ImportLaunchSpec:
+# region ImportASGToOceanVNG
+class ImportASGToOceanVNG:
     """
     # Arguments
-    instance_types: List[str]
     labels: List[Labels]
     name: str
     taints: List[Taints]
     """
     def __init__(
             self,
-            instance_types: List[str] = none,
             name: str = none,
             labels: List[Labels] = none,
             taints: List[Taints] = none):
-        self.instance_types = instance_types
         self.name = name
         self.labels = labels
         self.taints= taints
+# endregion
+
+
+# region ImportEKSNodeGroupToOceanVNG
+class ImportEKSNodeGroupToOceanVNG:
+    """
+    # Arguments
+    labels: List[Labels]
+    name: str
+    """
+    def __init__(
+            self,
+            name: str = none,
+            labels: List[Labels] = none):
+        self.name = name
+        self.labels = labels
 # endregion
 
 
@@ -1248,22 +1261,29 @@ class VNGRequest:
                           sort_keys=True, indent=4)
 
 class ImportASGToOceanClusterRequest:
-    def __init__(self, cluster: ImportASGToOcean):
+    def __init__(self, cluster: ImportASGToOceanCluster):
         self.cluster = cluster
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
-class ImportToOceanVNGRequest:
-    def __init__(self, launch_spec: ImportLaunchSpec):
+class ImportASGToOceanVNGRequest:
+    def __init__(self, launch_spec: ImportASGToOceanVNG):
         self.launch_spec = launch_spec
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
     
+class ImportEKSNodeGroupToOceanVNGRequest:
+    def __init__(self, launch_spec: ImportEKSNodeGroupToOceanVNG):
+        self.launch_spec = launch_spec
 
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)    
+    
 class DetachInstancesRequest:
     def __init__(self, detachInstances: DetachInstances):
         self.instances_to_detach = detachInstances.instances_to_detach
