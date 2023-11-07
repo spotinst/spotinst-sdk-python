@@ -482,7 +482,7 @@ class OceanAwsClient(Client):
                             resourceId=resource_id, limit=limit)
 
         result = self.send_get(
-            url=geturl, entity_name='ocean_log', query_params=query_params)
+            url=geturl, entity_name='ocean_aws_log', query_params=query_params)
 
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
@@ -646,7 +646,7 @@ class OceanAwsClient(Client):
 
         return self.send_put(
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/loadBalancer/attach",
-            entity_name="ocean_aws_vng",
+            entity_name="ocean_aws_attach_load_balancer",
             body=body_json
         )
 
@@ -672,7 +672,7 @@ class OceanAwsClient(Client):
 
         return self.send_put(
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/loadBalancer/detach",
-            entity_name="ocean_aws_vng",
+            entity_name="ocean_aws_detach_load_balancer",
             body=body_json
         )    
 
@@ -692,7 +692,7 @@ class OceanAwsClient(Client):
         response = self.send_post_with_params(
             body=None,
             url=self.__base_ocean_cluster_url+"/import",
-            entity_name='ocean_aws',
+            entity_name='ocean_aws_update_eg_to_ocean',
             user_query_params=query_params)
 
         formatted_response = self.convert_json(response, 
@@ -715,20 +715,20 @@ class OceanAwsClient(Client):
 
         excluded_missing_dict = self.exclude_missing(json.loads(detach_instances_request.toJSON()))
 
-        formatted_missing_dict = self.convert_json_with_list_of_lists(
+        formatted_missing_dict = self.convert_json(
             excluded_missing_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_missing_dict)
 
-        detach_instances_response = self.send_post(
+        detach_instances_response = self.send_put(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/detachInstances",
-            entity_name='ocean (detach instances)')
+            entity_name='ocean_aws_detach_instances)')
 
         formatted_response = self.convert_json(
             detach_instances_response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]
     
     def instance_types_filter_simulation_for_vng(self, launch_spec_id: str,
                                          instance_types_filters: aws_ocean.InstanceTypesFilters):
@@ -756,7 +756,7 @@ class OceanAwsClient(Client):
         aggregated_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_launchspec_url + "/" + launch_spec_id + "/instanceTypeFiltersSimulation",
-            entity_name='ocean')
+            entity_name='ocean_instance_type_filters_simulation_for_vng')
 
         formatted_response = self.convert_json(
             aggregated_costs_response, self.camel_to_underscore)
@@ -810,7 +810,7 @@ class OceanAwsClient(Client):
         """
         response = self.send_get(
             url=self.__base_ocean_launchspec_url + "/" + launch_spec_id + "/allowedInstanceTypesByFilters",
-            entity_name="ocean_aws"
+            entity_name="ocean_aws_allowed_instance_types_by_filters_for_vng"
         )
 
         formatted_response = self.convert_json(
@@ -818,7 +818,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"][0]
     
-    def import_eks_cluster_node_group_to_ocean_vng(self, eks_cluster_name: str, eks_node_group_name: str, ocean_id : str, region: str, import_eks_node_group_to_ocean_launch_spec : aws_ocean.ImportLaunchSpec):
+    def import_eks_cluster_node_group_to_ocean_vng(self, eks_cluster_name: str, eks_node_group_name: str, import_eks_node_group_to_ocean_launch_spec : aws_ocean.ImportLaunchSpec,  ocean_id : str=None, region: str=None):
         """
         Returns an Ocean Virtual Node Group (VNG) configuration based on a given AWS EKS Cluster Node Group. 
         The returned value ("Imported VNG") can then be used as input to the Create Virtual Node Group API in order to create an actual VNG in your Ocean cluster.
@@ -891,7 +891,7 @@ class OceanAwsClient(Client):
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        should_fetch_pods (bool): should_fetch_pods
+        should_fetch_pods (bool): Should fetch data about running pods for each node.
 
         # Returns
         (Object): Ocean API response 
@@ -900,7 +900,7 @@ class OceanAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration/discovery",
-            entity_name="ocean_migration",
+            entity_name="ocean_aws_migration",
             query_params=query_params
         )
 
@@ -934,7 +934,7 @@ class OceanAwsClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration/"+migration_id,
-            entity_name="ocean_migration",
+            entity_name="ocean_aws_migration",
         )
 
         formatted_response = self.convert_json(
@@ -956,7 +956,7 @@ class OceanAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration/"+migration_id,
-            entity_name="ocean_migration"
+            entity_name="ocean_aws_migration"
         )
 
         formatted_response = self.convert_json(
@@ -974,7 +974,7 @@ class OceanAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration",
-            entity_name="ocean_aws_vng",
+            entity_name="ocean_aws_migration",
         )
 
         formatted_response = self.convert_json(

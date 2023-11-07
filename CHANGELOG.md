@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.1] - 2023-11-07
+### Added
+- Added support for Ocean AWS APIs - VNG, Migration and Extended Resource Definition.
+
 ## [2.2.0] - 2023-11-01
 ### Deprecated
 - Removed Multai Load Balancer support.
