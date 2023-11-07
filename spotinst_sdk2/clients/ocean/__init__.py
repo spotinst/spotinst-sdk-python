@@ -489,7 +489,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def import_asg_to_ocean_cluster(self, auto_scaling_group_name, region, import_asg_to_ocean_launch_spec : aws_ocean.ImportLaunchSpec):
+    def import_asg_to_ocean_cluster(self, auto_scaling_group_name, region, import_asg_to_ocean_launch_spec : aws_ocean.ImportASGToOcean):
         """
         Create an Ocean configuration according to an AWS autoscaling group (ASG) configuration.
 
@@ -500,7 +500,7 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean Import ASG to Ocean Response 
         """
-        import_asg_to_ocean_cluster = aws_ocean.ImportToOceanRequest(import_asg_to_ocean_launch_spec)
+        import_asg_to_ocean_cluster = aws_ocean.ImportASGToOceanClusterRequest(import_asg_to_ocean_launch_spec)
 
         excluded_missing_dict = self.exclude_missing(json.loads(import_asg_to_ocean_cluster.toJSON()))
 
@@ -775,7 +775,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Import ASG to Launch Spec Response
         """
 
-        import_asg_to_ocean_cluster = aws_ocean.ImportToOceanRequest(import_asg_to_ocean_launch_spec)
+        import_asg_to_ocean_cluster = aws_ocean.ImportToOceanVNGRequest(import_asg_to_ocean_launch_spec)
 
         excluded_missing_dict = self.exclude_missing(json.loads(import_asg_to_ocean_cluster.toJSON()))
 
@@ -833,7 +833,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Import EKS Cluster Node Group to Launch Spec Response
         """
 
-        import_eks_node_group_to_ocean_launch_spec = aws_ocean.ImportToOceanRequest(import_eks_node_group_to_ocean_launch_spec)
+        import_eks_node_group_to_ocean_launch_spec = aws_ocean.ImportToOceanVNGRequest(import_eks_node_group_to_ocean_launch_spec)
 
         excluded_missing_dict = self.exclude_missing(json.loads(import_eks_node_group_to_ocean_launch_spec.toJSON()))
 

@@ -1188,8 +1188,20 @@ class DetachInstances:
         self.should_terminate_instances = should_terminate_instances
 # endregion
     
+# region ImportASGToOcean
+class ImportASGToOcean:
+    """
+    # Arguments
+    instance_types: List[str]
+    """
+    def __init__(
+            self,
+            instance_types: List[str] = none):
+        self.instance_types = instance_types
+# endregion
 
-# region DetachInstances
+
+# region ImportLaunchSpec
 class ImportLaunchSpec:
     """
     # Arguments
@@ -1235,8 +1247,15 @@ class VNGRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
+class ImportASGToOceanClusterRequest:
+    def __init__(self, cluster: ImportASGToOcean):
+        self.cluster = cluster
 
-class ImportToOceanRequest:
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+class ImportToOceanVNGRequest:
     def __init__(self, launch_spec: ImportLaunchSpec):
         self.launch_spec = launch_spec
 
