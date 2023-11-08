@@ -308,9 +308,437 @@ Launch nodes in Virtual Node Group.
 __Arguments__
 
 - __ocean_launch_spec_id (String)__: Ocean cluster launch specification identifier.
-- __launch_nodes (LaunchNodes)__: Object specifying the details for the launch request.
+- __amount (int)__: The number of nodes to launch.
 
 __Returns__
 
 `(Object)`: Ocean Virtual Node Group Launch API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.fetch_elastilog">fetch_elastilog</h2>
+
+```python
+OceanAwsClient.fetch_elastilog(ocean_id,
+                               from_date,
+                               to_date,
+                               severity=None,
+                               resource_id=None,
+                               limit=None)
+```
+
+Create an Ocean configuration according to an AWS autoscaling group (ASG) configuration.
+
+__Arguments__
+
+- __to_date (String)__: to date
+- __from_date (String)__: to date
+- __severity(String) (Optional)__: Log level severity
+- __resource_id(String) (Optional)__: Filter log extracted entires related to a
+  specific resource id
+- __limit(String) (Optional)__: Maximum number of lines to extract in a response
+
+__Returns__
+
+`(Object)`: Ocean Get Log API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.import_asg_to_ocean_cluster">import_asg_to_ocean_cluster</h2>
+
+```python
+OceanAwsClient.import_asg_to_ocean_cluster(
+  auto_scaling_group_name, region,
+  import_asg_to_ocean_cluster: ImportASGToOceanCluster)
+```
+
+Create an Ocean configuration according to an AWS autoscaling group (ASG) configuration.
+
+__Arguments__
+
+- __auto_scaling_group_name (String)__: The ASG name
+- __region (String)__: region
+- __import_asg_to_ocean_cluster (ImportASGToOceanCluster)__: ImportASGToOceanCluster Object
+
+__Returns__
+
+`(Object)`: Ocean Import ASG to Ocean Response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.create_virtual_node_group">create_virtual_node_group</h2>
+
+```python
+OceanAwsClient.create_virtual_node_group(vng: VirtualNodeGroup,
+                                         initial_nodes: int = None)
+```
+
+Create a VNG inside ocean cluster
+
+__Arguments__
+
+- __vng (VirtualNodeGroup)__: VirtualNodeGroup Object
+- __initial_nodes__: When set to an integer greater than 0, a corresponding number of nodes will be launched from the virtual node group created.
+
+__Returns__
+
+`(Object)`: Ocean Launch Spec response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.update_virtual_node_group">update_virtual_node_group</h2>
+
+```python
+OceanAwsClient.update_virtual_node_group(vng_id: str,
+                                         vng: VirtualNodeGroup,
+                                         auto_apply_tags: bool = None)
+```
+
+Update an existing VNG inside an Ocean Cluster
+
+__Arguments__
+
+- __vng_id (String)__: ID of the Ocean Virtual Node Group
+- __ocean (Ocean)__: Ocean object
+
+__Returns__
+
+`(Object)`: Ocean Launch Spec response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_all_virtual_node_groups">get_all_virtual_node_groups</h2>
+
+```python
+OceanAwsClient.get_all_virtual_node_groups(ocean_id: str = None)
+```
+
+List the configurations for all virtual node groups in the account
+or in a specified cluster.
+
+__Returns__
+
+`(Object)`: Ocean Launch Spec response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.delete_virtual_node_group">delete_virtual_node_group</h2>
+
+```python
+OceanAwsClient.delete_virtual_node_group(vng_id: str)
+```
+
+Delete an Ocean Cluster
+
+__Arguments__
+
+- __vng_id (String)__: ID of the Ocean VNG
+
+__Returns__
+
+`(Object)`: Ocean Launch Specification Delete response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.attach_load_balancers">attach_load_balancers</h2>
+
+```python
+OceanAwsClient.attach_load_balancers(ocean_id: str, load_balancers)
+```
+
+Add new load balancers to the existing load balancers on the Ocean Cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __load_balancers (List[LoadBalancer])__: Load balancers to add to the Ocean cluster.
+
+__Returns__
+
+`(Object)`: Ocean Attach Load Balancers API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.detach_load_balancers">detach_load_balancers</h2>
+
+```python
+OceanAwsClient.detach_load_balancers(ocean_id, load_balancers)
+```
+
+Delete an Ocean Cluster
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __load_balancers (List[LoadBalancer])__: Load balancers to remove from the Ocean cluster.
+
+__Returns__
+
+`(Object)`: Ocean Detach Load Balancers API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.update_elastigroup_to_ocean">update_elastigroup_to_ocean</h2>
+
+```python
+OceanAwsClient.update_elastigroup_to_ocean(group_id: str)
+```
+
+Upgrade an Elastigroup with Kubernetes integration to Ocean for Kubernetes cluster.
+
+__Arguments__
+
+- __group_id (str)__: Elastigroup identifier
+
+__Returns__
+
+`(Object)`: Ocean API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.detach_instances">detach_instances</h2>
+
+```python
+OceanAwsClient.detach_instances(ocean_id: str,
+                                detach_instances: DetachInstances)
+```
+
+Detach instances from your Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __detach_instances (DetachInstances)__: Detach Instances Request
+
+__Returns__
+
+`(Object)`: Detach Instances API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.instance_types_filter_simulation_for_vng">instance_types_filter_simulation_for_vng</h2>
+
+```python
+OceanAwsClient.instance_types_filter_simulation_for_vng(
+  launch_spec_id: str, instance_types_filters: InstanceTypesFilters)
+```
+
+Returns all instance types that match the given filters. These instance types will be used if the Virtual Node Group is configured with these filters.
+
+__Arguments__
+
+- __launch_spec_id (String)__: Ocean cluster launch specification identifier.
+- __instance_type_filters (InstanceTypesFilters)__: List of instance types filters. The instance types that match with all filters compose the Virtual Node Group's instanceTypes parameter.
+The architectures that come from the Virtual Node Group's images will be taken into account when using this parameter.
+Cannot be configured together with Virtual Node Group's instanceTypes and with the Cluster's whitelist/blacklist/filters.
+
+__Returns__
+
+`(Object)`: Ocean Instance Types Filter Simulation response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.import_asg_to_ocean_vng">import_asg_to_ocean_vng</h2>
+
+```python
+OceanAwsClient.import_asg_to_ocean_vng(
+  auto_scaling_group_name, ocean_id: str,
+  import_asg_to_ocean_launch_spec: ImportASGToOceanVNG)
+```
+
+Returns an Ocean Virtual Node Group (VNG) configuration in a given AWS autoscaling group (ASG). The returned value ("Imported VNG") can then be used as input to the Create Virtual Node Group API in order to create an actual VNG in your Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __auto_scaling_group_name (String)__: The ASG name.
+- __import_asg_to_ocean_launch_spec (ImportASGToOceanVNG)__: ImportASGToOceanVNG object
+
+__Returns__
+
+`(Object)`: Ocean Import ASG to Launch Spec Response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.allowed_instance_types_by_filters_for_vng">allowed_instance_types_by_filters_for_vng</h2>
+
+```python
+OceanAwsClient.allowed_instance_types_by_filters_for_vng(
+  launch_spec_id: str)
+```
+
+Returns the Virtual Node Group's instance types when instance types filters is set.
+
+__Arguments__
+
+- __launch_spec_id (String)__: Ocean Cluster Launch Specification Identifier
+
+__Returns__
+
+`(Object)`: Ocean Allowed Instance Types response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.import_eks_cluster_node_group_to_ocean_vng">import_eks_cluster_node_group_to_ocean_vng</h2>
+
+```python
+OceanAwsClient.import_eks_cluster_node_group_to_ocean_vng(
+  eks_cluster_name: str,
+  eks_node_group_name: str,
+  import_eks_node_group_to_ocean_launch_spec:
+    ImportEKSNodeGroupToOceanVNG,
+  ocean_id: str = None,
+  region: str = None)
+```
+
+Returns an Ocean Virtual Node Group (VNG) configuration based on a given AWS EKS Cluster Node Group.
+The returned value ("Imported VNG") can then be used as input to the Create Virtual Node Group API in order to create an actual VNG in your Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __eks_cluster_name (String)__: Cluster name of the EKS cluster.
+- __eks_node_group_name (String)__: Node group name to import.
+- __region (String)__: Node group name to import.
+- __import_eks_node_group_to_ocean_launch_spec (ImportEKSNodeGroupToOceanVNG)__: ImportEKSNodeGroupToOceanVNG object
+
+__Returns__
+
+`(Object)`: Ocean Import EKS Cluster Node Group to Launch Spec Response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.create_migration">create_migration</h2>
+
+```python
+OceanAwsClient.create_migration(ocean_id: str, migration: Migration)
+```
+
+Create a migration for a given existing instances.
+
+__Arguments__
+
+- __migration (Migration)__: Migration Object
+
+__Returns__
+
+`(Object)`: Migration create response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_migration_discovery">get_migration_discovery</h2>
+
+```python
+OceanAwsClient.get_migration_discovery(ocean_id: str,
+                                       should_fetch_pods: bool)
+```
+
+Get information about nodes which can be migrated into Ocean.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __should_fetch_pods (bool)__: Should fetch data about running pods for each node.
+
+__Returns__
+
+`(Object)`: Ocean API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.stop_migration">stop_migration</h2>
+
+```python
+OceanAwsClient.stop_migration(ocean_id: str, migration_id: str,
+                              migration: Migration)
+```
+
+Stop an ongoing Workload Migration.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __migration_id (bool)__: The migration identifier of a specific migration
+- __migration (Migration)__: Migration Update Configuration
+
+__Returns__
+
+`(Object)`: Ocean Migration response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_migration_status">get_migration_status</h2>
+
+```python
+OceanAwsClient.get_migration_status(ocean_id: str, migration_id: str)
+```
+
+Get Migration full info and status for an Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __migration_id (String)__: The migration identifier of a specific migration.
+
+__Returns__
+
+`(Object)`: Ocean API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_all_migrations_summary">get_all_migrations_summary</h2>
+
+```python
+OceanAwsClient.get_all_migrations_summary(ocean_id: str = None)
+```
+
+Get summary of migrations history for an Ocean cluster.
+
+__Returns__
+
+`(Object)`: Ocean Migrations response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.create_extended_resource_definition">create_extended_resource_definition</h2>
+
+```python
+OceanAwsClient.create_extended_resource_definition(
+  extended_resource_definition: ExtendedResourceDefinition)
+```
+
+Creates an Ocean extended resource definition entity
+
+__Arguments__
+
+- __extended_resource_definition (ExtendedResourceDefinition)__: The Ocean extended resource definition
+
+__Returns__
+
+`(Object)`: Ocean Create Extended Resource Definition response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_extended_resource_definition">get_extended_resource_definition</h2>
+
+```python
+OceanAwsClient.get_extended_resource_definition(
+  ocean_extended_resource_definition_id: str)
+```
+
+Get Migration full info and status for an Ocean cluster.
+
+__Arguments__
+
+- __ocean_extended_resource_definition_id (String)__: Identifier of the Ocean extended resource definition.
+
+__Returns__
+
+`(Object)`: Ocean Extended Resource Definition response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.get_all_extended_resource_definitions">get_all_extended_resource_definitions</h2>
+
+```python
+OceanAwsClient.get_all_extended_resource_definitions()
+```
+
+extended_resource_definition
+
+__Returns__
+
+`(Object)`: Ocean Extended Resource Defintion response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.update_extended_resource_definition">update_extended_resource_definition</h2>
+
+```python
+OceanAwsClient.update_extended_resource_definition(
+  ocean_extended_resource_definition_id: str,
+  extended_resource_definition: ExtendedResourceDefinition)
+```
+
+Only the mapping parameter is updatable for extended resource definition
+
+__Arguments__
+
+- __ocean_extended_resource_definition_id (String)__: Identifier of the Ocean extended resource definition.
+- __extended_resource_definition (ExtendedResourceDefinition)__: The Ocean extended resource definition
+
+__Returns__
+
+`(Object)`: Ocean Extended Resource Definition response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.delete_extended_resource_definition">delete_extended_resource_definition</h2>
+
+```python
+OceanAwsClient.delete_extended_resource_definition(
+  ocean_extended_resource_definition_id: str)
+```
+
+Delete a specified Ocean extended resource definition.
+
+__Arguments__
+
+- __ocean_extended_resource_definition_id (String)__: Identifier of the Ocean extended resource definition.
+
+__Returns__
+
+`(Object)`: Ocean Delete Extended Resource Definition response
 

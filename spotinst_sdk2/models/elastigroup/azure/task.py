@@ -3,6 +3,8 @@ import json
 none = "d3043820717d74d9a17694c176d39733"
 
 # region Task
+
+
 class Task:
     """
     # Arguments
@@ -12,6 +14,7 @@ class Task:
     policies: list[Policy]
     instances: list[Instance]
     """
+
     def __init__(
             self,
             name=none,
@@ -26,12 +29,14 @@ class Task:
         self.policies = policies
         self.instances = instances
 
+
 class Policy:
     """
     # Arguments
     cron: str
     action: str
     """
+
     def __init__(
             self,
             cron=none,
@@ -40,12 +45,14 @@ class Policy:
         self.cron = cron
         self.action = action
 
+
 class Instance:
     """
     # Arguments
     vm_name: str
     resource_group_name: str
     """
+
     def __init__(
             self,
             vm_name=none,
@@ -53,6 +60,7 @@ class Instance:
 
         self.vm_name = vm_name
         self.resource_group_name = resource_group_name
+
 
 class TaskCreationRequest:
     def __init__(self, task):

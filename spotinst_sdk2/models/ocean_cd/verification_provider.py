@@ -70,6 +70,7 @@ class CloudWatch:
     # Arguments
     iam_arn : str
     """
+
     def __init__(
             self,
             iam_arn: str = none):
@@ -112,6 +113,7 @@ class CreateVerificationProviderRequest:
     # Arguments
     verification_provider : VerificationProvider
     """
+
     def __init__(self, verification_provider: VerificationProvider):
         self.verification_provider = verification_provider
 

@@ -15,6 +15,7 @@ class Application:
     # Arguments
     name: str
     """
+
     def __init__(self, name):
         self.name = name
 
@@ -30,6 +31,7 @@ class Environment:
     providers: List[str]
     locations: List[str]
     """
+
     def __init__(self, name, application_id, providers=none, locations=none):
         self.name = name
         self.application_id = application_id
@@ -49,6 +51,7 @@ class Function:
     memory: int
     timeout: int
     """
+
     def __init__(
             self,
             name,
@@ -131,8 +134,8 @@ class FunctionCreationRequest:
                 arcname = absname[len(abs_src) + 1:]
 
                 self.print_output("collecting file {}".format(
-                        os.path.join(
-                            dirname, filename)))
+                    os.path.join(
+                        dirname, filename)))
                 zf.write(absname, arcname)
         zf.close()
 

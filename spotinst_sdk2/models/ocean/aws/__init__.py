@@ -12,12 +12,13 @@ class ResourceLimits:
     max_memory_gib: int
     max_v_cpu: int
     """
+
     def __init__(
             self,
             max_memory_gib: int = none,
             max_v_cpu: int = none):
-        self.max_memory_gib=max_memory_gib
-        self.max_v_cpu=max_v_cpu
+        self.max_memory_gib = max_memory_gib
+        self.max_v_cpu = max_v_cpu
 
 
 class Down:
@@ -25,6 +26,7 @@ class Down:
     # Arguments
     max_scale_down_percentage: int
     """
+
     def __init__(
             self,
             max_scale_down_percentage: int = none):
@@ -39,6 +41,7 @@ class Headroom:
     gpu_per_unit: int
     num_of_units: int
     """
+
     def __init__(
             self,
             cpu_per_unit: int = none,
@@ -64,6 +67,7 @@ class AutoScaler:
     enable_automatic_and_manual_headroom: bool
     extended_resource_definitions: List[str]
     """
+
     def __init__(
             self,
             is_enabled: bool = none,
@@ -95,6 +99,7 @@ class Capacity:
     maximum: int
     target: int
     """
+
     def __init__(
             self,
             minimum: int = none,
@@ -118,6 +123,7 @@ class ClusterOrientation:
     # Arguments
     availability_vs_cost: AvailabilityVsCost
     """
+
     def __init__(
             self,
             availability_vs_cost: AvailabilityVsCost = none):
@@ -141,6 +147,7 @@ class Strategy:
     cluster_orientation: ClusterOrientation
     spread_nodes_by: SpreadNodesBy
     """
+
     def __init__(
             self,
             utilize_reserved_instances: bool = none,
@@ -171,6 +178,7 @@ class ClusterRoll:
     comment: str
     respect_pdb: bool
     """
+
     def __init__(
             self,
             batch_min_healthy_percentage: int = none,
@@ -188,6 +196,7 @@ class Parameters:
     # Arguments
     cluster_roll: ClusterRoll
     """
+
     def __init__(
             self,
             cluster_roll: ClusterRoll = none):
@@ -206,6 +215,7 @@ class Tasks:
     parameters: Parameters
     task_type: TaskType
     """
+
     def __init__(
             self,
             cron_expression: str = none,
@@ -224,6 +234,7 @@ class ShutdownHours:
     is_enabled: bool
     time_windows: List[str]
     """
+
     def __init__(
             self,
             is_enabled: bool = none,
@@ -238,6 +249,7 @@ class Scheduling:
     tasks: List[Tasks]
     shutdown_hours: ShutdownHours
     """
+
     def __init__(
             self,
             tasks: List[Tasks] = none,
@@ -253,6 +265,7 @@ class ContainerImage:
     # Arguments
     approved_images: List[str]
     """
+
     def __init__(
             self,
             approved_images: List[str] = none):
@@ -264,6 +277,7 @@ class Security:
     # Arguments
     container_image: ContainerImage
     """
+
     def __init__(
             self,
             container_image: ContainerImage = none):
@@ -332,6 +346,7 @@ class InstanceTypesFilters:
     root_device_types: List[RootDeviceTypes]
     virtualization_types: List[VirtualizationTypes]
     """
+
     def __init__(
             self,
             architectures: List[Architectures] = none,
@@ -381,6 +396,7 @@ class InstanceTypes:
     whitelist: List[str]
     filters: InstanceTypesFilters
     """
+
     def __init__(
             self,
             blacklist: List[str] = none,
@@ -400,6 +416,7 @@ class DynamicVolumeSize:
     resource: str
     size_per_resource_unit: int
     """
+
     def __init__(
             self,
             base_size: int = none,
@@ -423,6 +440,7 @@ class EBS:
     volume_size: int
     dynamic_volume_size: DynamicVolumeSize
     """
+
     def __init__(
             self,
             throughput: int = none,
@@ -451,6 +469,7 @@ class BlockDeviceMappings:
     device_name: str
     ebs: EBS
     """
+
     def __init__(
             self,
             device_name: str = none,
@@ -465,6 +484,7 @@ class IamInstanceProfile:
     name: str
     arn: str
     """
+
     def __init__(
             self,
             name: str = none,
@@ -490,6 +510,7 @@ class InstanceMetadataOptions:
     http_put_response_hop_limit: int
     http_tokens: HttpTokens
     """
+
     def __init__(
             self,
             http_endpoint: HttpEndpoint = none,
@@ -499,9 +520,11 @@ class InstanceMetadataOptions:
         self.http_put_response_hop_limit = http_put_response_hop_limit
         self.http_tokens = http_tokens
 
+
 class LoadBalancerType(Enum):
     classic = "CLASSIC"
     target_group = "TARGET_GROUP"
+
 
 class LoadBalancer:
     """
@@ -510,6 +533,7 @@ class LoadBalancer:
     name: str
     type: str
     """
+
     def __init__(
             self,
             arn: str = none,
@@ -526,6 +550,7 @@ class Tags:
     tag_key: str
     tag_value: str
     """
+
     def __init__(
             self,
             tag_key: str = none,
@@ -539,10 +564,11 @@ class Volumes:
     # Arguments
     should_tag: str
     """
+
     def __init__(
             self,
             should_tag: bool = none):
-        self.should_tag = should_tag       
+        self.should_tag = should_tag
 
 
 class ResourceTagSpecification:
@@ -550,10 +576,11 @@ class ResourceTagSpecification:
     # Arguments
     volumes: Volumes
     """
+
     def __init__(
             self,
             volumes: Volumes = none):
-        self.volumes = volumes      
+        self.volumes = volumes
 
 
 class LaunchSpecifications:
@@ -576,6 +603,7 @@ class LaunchSpecifications:
     use_as_template_only: bool
     user_data: str
     """
+
     def __init__(
             self,
             associate_ipv6_address: bool = none,
@@ -620,6 +648,7 @@ class Compute:
     instance_types: InstanceTypes
     launch_specification: LaunchSpecification
     """
+
     def __init__(
             self,
             subnet_ids: List[str] = none,
@@ -637,6 +666,7 @@ class S3:
     # Arguments
     id: str
     """
+
     def __init__(
             self,
             id: str = none):
@@ -648,6 +678,7 @@ class Export:
     # Arguments
     s3: S3
     """
+
     def __init__(
             self,
             s3: S3 = none):
@@ -659,6 +690,7 @@ class Logging:
     # Arguments
     export: Export
     """
+
     def __init__(
             self,
             export: Export = none):
@@ -681,6 +713,7 @@ class Ocean:
     compute: Compute
     logging: Logging
     """
+
     def __init__(
             self,
             name: str = none,
@@ -737,6 +770,7 @@ class Attribute:
     operator: Operator
     value: str
     """
+
     def __init__(
             self,
             type: Type = none,
@@ -755,6 +789,7 @@ class RightSizingRecommendationFilter:
     namespaces: List[str]
     attribute: Attribute
     """
+
     def __init__(
             self,
             namespaces: List[str] = none,
@@ -777,6 +812,7 @@ class AllMatch:
     # Arguments
     all_matches:  List[Attribute]
     """
+
     def __init__(
             self,
             all_matches:  List[Attribute] = none):
@@ -788,6 +824,7 @@ class Conditions:
     # Arguments
     any_match: List[AllMatch]
     """
+
     def __init__(
             self,
             any_match: List[AllMatch] = none):
@@ -805,6 +842,7 @@ class Filter:
     conditions: Conditions
     scope: Scope
     """
+
     def __init__(
             self,
             conditions: Conditions = none):
@@ -827,6 +865,7 @@ class AggregatedClusterCosts:
     group_by: GroupBy
     start_time: str
     """
+
     def __init__(
             self,
             end_time: str = none,
@@ -862,6 +901,7 @@ class Roll:
     launch_spec_ids: List[str]
     respect_pdb: bool
     """
+
     def __init__(
             self,
             batch_min_healthy_percentage: int = none,
@@ -880,15 +920,18 @@ class Roll:
         self.respect_pdb = respect_pdb
 
 # region VirtualNodeGroup
+
+
 class AutoScaleDown:
     """
     # Arguments
     max_scale_down_percentage: double
     """
+
     def __init__(
             self,
             max_scale_down_percentage: float = none):
-        self.max_scale_down_percentage = max_scale_down_percentage         
+        self.max_scale_down_percentage = max_scale_down_percentage
 
 
 class AutoScale:
@@ -898,13 +941,14 @@ class AutoScale:
     down: class(AutoScaleDown)
     headrooms: List[Headroom]
     """
+
     def __init__(
             self,
             auto_headroom_percentage: int = none,
             down: AutoScaleDown = none,
             headrooms: List[Headroom] = none):
         self.auto_headroom_percentage = auto_headroom_percentage
-        self.down = down 
+        self.down = down
         self.headrooms = headrooms
 
 
@@ -914,12 +958,13 @@ class TagSelector:
     tag_key: str
     tag_value: str
     """
+
     def __init__(
             self,
             tag_key: str = none,
             tag_value: str = none):
         self.tag_key = tag_key
-        self.tag_value = tag_value               
+        self.tag_value = tag_value
 
 
 class ElasticIpPool:
@@ -927,6 +972,7 @@ class ElasticIpPool:
     # Arguments
     tag_selector: TagSelector
     """
+
     def __init__(
             self,
             tag_selector: TagSelector = none):
@@ -938,10 +984,11 @@ class ImageId:
     # Arguments
     id: str = none
     """
+
     def __init__(
             self,
             id: str = none):
-        self.id = id       
+        self.id = id
 
 
 class Labels:
@@ -950,6 +997,7 @@ class Labels:
     key: str
     value: str
     """
+
     def __init__(
             self,
             key: str = none,
@@ -964,12 +1012,13 @@ class VNGResourceLimits:
     max_instance_count: int
     min_instance_count: int
     """
+
     def __init__(
             self,
             max_instance_count: int = none,
             min_instance_count: int = none):
-        self.max_instance_count=max_instance_count
-        self.min_instance_count=min_instance_count
+        self.max_instance_count = max_instance_count
+        self.min_instance_count = min_instance_count
 
 
 class Config:
@@ -977,14 +1026,15 @@ class Config:
     # Arguments
     headrooms: List[Headroom]
     """
+
     def __init__(
             self,
             headrooms: List[Headroom] = none):
-        self.headrooms = headrooms      
+        self.headrooms = headrooms
 
 
 class VNGSchedulingTaskType(Enum):
-    manual_headroom_update = "manualHeadroomUpdate"        
+    manual_headroom_update = "manualHeadroomUpdate"
 
 
 class VNGSchedulingTasks:
@@ -995,6 +1045,7 @@ class VNGSchedulingTasks:
     parameters: Parameters
     task_type: TaskType
     """
+
     def __init__(
             self,
             cron_expression: str = none,
@@ -1013,6 +1064,7 @@ class VNGSchedulingShutdownHours:
     is_enabled: bool
     time_windows: List[str]
     """
+
     def __init__(
             self,
             is_enabled: bool = none,
@@ -1027,6 +1079,7 @@ class VNGScheduling:
     tasks: List[VNGSchedulingTasks]
     shutdown_hours: VNGSchedulingShutdownHours
     """
+
     def __init__(
             self,
             tasks: List[VNGSchedulingTasks] = none,
@@ -1040,6 +1093,7 @@ class VNGStrategy:
     # Arguments
     spot_percentage: int
     """
+
     def __init__(
             self,
             spot_percentage: int = none):
@@ -1052,6 +1106,7 @@ class Taints:
     tag_key: str
     tag_value: str
     """
+
     def __init__(
             self,
             effect: str = none,
@@ -1089,6 +1144,7 @@ class VirtualNodeGroup:
     taints: List[Taints]
     user_data: str
     """
+
     def __init__(
             self,
             associate_public_ip_address: bool = none,
@@ -1099,7 +1155,7 @@ class VirtualNodeGroup:
             image_id: str = none,
             images: List[ImageId] = none,
             instance_metadata_options: InstanceMetadataOptions = none,
-            instance_types : List[str] = none,
+            instance_types: List[str] = none,
             instance_types_filters: InstanceTypesFilters = none,
             labels: List[Labels] = none,
             name: str = none,
@@ -1139,7 +1195,7 @@ class VirtualNodeGroup:
         self.tags = tags
         self.taints = taints
         self.user_data = user_data
-# endregion    
+# endregion
 
 
 # region Migration
@@ -1153,6 +1209,7 @@ class Migration:
     should_terminate_drained_nodes: bool
     state: str
     """
+
     def __init__(
             self,
             batch_size_percentage: int = none,
@@ -1167,7 +1224,7 @@ class Migration:
         self.should_evict_stand_alone_pods = should_evict_stand_alone_pods
         self.should_terminate_drained_nodes = should_terminate_drained_nodes
         self.state = state
-#endregion
+# endregion
 
 
 # region DetachInstances
@@ -1178,6 +1235,7 @@ class DetachInstances:
     should_decrement_target_capacity: bool
     should_terminate_instances: bool
     """
+
     def __init__(
             self,
             instances_to_detach: List[str] = none,
@@ -1187,13 +1245,16 @@ class DetachInstances:
         self.should_decrement_target_capacity = should_decrement_target_capacity
         self.should_terminate_instances = should_terminate_instances
 # endregion
-    
+
 # region ImportASGToOcean
+
+
 class ImportASGToOceanCluster:
     """
     # Arguments
     instance_types: List[str]
     """
+
     def __init__(
             self,
             instance_types: List[str] = none):
@@ -1209,6 +1270,7 @@ class ImportASGToOceanVNG:
     name: str
     taints: List[Taints]
     """
+
     def __init__(
             self,
             name: str = none,
@@ -1216,7 +1278,7 @@ class ImportASGToOceanVNG:
             taints: List[Taints] = none):
         self.name = name
         self.labels = labels
-        self.taints= taints
+        self.taints = taints
 # endregion
 
 
@@ -1227,6 +1289,7 @@ class ImportEKSNodeGroupToOceanVNG:
     labels: List[Labels]
     name: str
     """
+
     def __init__(
             self,
             name: str = none,
@@ -1243,13 +1306,14 @@ class ExtendedResourceDefinition:
     mapping: dict
     name: str
     """
+
     def __init__(
             self,
             mapping: dict = none,
             name: str = none):
         self.mapping = mapping
         self.name = name
-# endregion 
+# endregion
 
 
 class VNGRequest:
@@ -1260,6 +1324,7 @@ class VNGRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
+
 class ImportASGToOceanClusterRequest:
     def __init__(self, cluster: ImportASGToOceanCluster):
         self.cluster = cluster
@@ -1268,6 +1333,7 @@ class ImportASGToOceanClusterRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
+
 class ImportASGToOceanVNGRequest:
     def __init__(self, launch_spec: ImportASGToOceanVNG):
         self.launch_spec = launch_spec
@@ -1275,15 +1341,17 @@ class ImportASGToOceanVNGRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-    
+
+
 class ImportEKSNodeGroupToOceanVNGRequest:
     def __init__(self, launch_spec: ImportEKSNodeGroupToOceanVNG):
         self.launch_spec = launch_spec
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)    
-    
+                          sort_keys=True, indent=4)
+
+
 class DetachInstancesRequest:
     def __init__(self, detachInstances: DetachInstances):
         self.instances_to_detach = detachInstances.instances_to_detach
@@ -1292,7 +1360,7 @@ class DetachInstancesRequest:
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)    
+                          sort_keys=True, indent=4)
 
 
 class LoadBalancersRequest:
@@ -1301,7 +1369,7 @@ class LoadBalancersRequest:
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)        
+                          sort_keys=True, indent=4)
 
 
 class ClusterRollInitiateRequest:
@@ -1311,7 +1379,7 @@ class ClusterRollInitiateRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-    
+
 
 class ClusterRollUpdateRequest:
     def __init__(self, status: str = none):
@@ -1338,15 +1406,17 @@ class LaunchNodesRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-    
+
+
 class MigrationRequest:
     def __init__(self, migration: Migration):
         self.migration = migration
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)    
-    
+                          sort_keys=True, indent=4)
+
+
 class ExtendedResourceDefinitionRequest:
     def __init__(self, extended_resource_defintion: ExtendedResourceDefinition):
         self.extended_resource_defintion = extended_resource_defintion

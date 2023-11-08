@@ -824,6 +824,7 @@ class DetachConfiguration:
     should_terminate_vms: bool
     instances_to_detach: list[str]
     """
+
     def __init__(
             self,
             draining_timeout=none,
@@ -834,6 +835,7 @@ class DetachConfiguration:
         self.should_decrement_target_capacity = should_decrement_target_capacity
         self.should_terminate_vms = should_terminate_vms
         self.vms_to_detach = vms_to_detach
+
 
 class ElastigroupDetachVMsRequest:
     def __init__(self, detach_configuration):
@@ -848,6 +850,7 @@ class ElastigroupDetachVMsRequest:
             default=lambda o: o.__dict__,
             sort_keys=True,
             indent=4)
+
 
 class DeploymentConfiguration:
     """
@@ -872,6 +875,7 @@ class DeploymentConfiguration:
         self.grace_period = grace_period
         self.health_check_types = health_check_types
 
+
 class ElastigroupDeploymentRequest:
     def __init__(self, deployment_configuration):
         self.deployment = deployment_configuration
@@ -880,18 +884,21 @@ class ElastigroupDeploymentRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
+
 class Process:
     """
     # Arguments
     name: str
     ttl_in_minutes: int
     """
+
     def __init__(
             self,
             name=none,
             ttl_in_minutes=none):
         self.name = name
         self.ttl_in_minutes = ttl_in_minutes
+
 
 class ElastigroupProcessesRequest:
     def __init__(self, processes):
@@ -900,6 +907,7 @@ class ElastigroupProcessesRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
 
 class ElastigroupCreateRequest:
     def __init__(self, elastigroup):

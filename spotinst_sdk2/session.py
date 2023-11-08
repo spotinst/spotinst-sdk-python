@@ -12,6 +12,7 @@ DEFAULT_PROFILE = 'default'
 DEFAULT_CREDENTIALS_FILE = os.path.join(
     os.path.expanduser("~"), '.spotinst', 'credentials')
 
+
 class Session:
     def __init__(self,
                  base_url=None,
@@ -50,7 +51,8 @@ class Session:
                     self.__load_credentials_ini(profile, credentials_file)
 
             if not self.auth_token:
-                raise SpotinstClientException("failed to load credentials", "ERROR")
+                raise SpotinstClientException(
+                    "failed to load credentials", "ERROR")
 
     def __load_credentials_yaml(self, profile, credentials_file):
         try:

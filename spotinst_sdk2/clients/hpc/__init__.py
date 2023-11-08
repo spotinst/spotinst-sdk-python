@@ -4,10 +4,11 @@ from spotinst_sdk2.client import Client
 
 import spotinst_sdk2.models.hpc.aws as aws_hpc
 
+
 class HPCAwsClient(Client):
     __base_hpc_url = "/hpc/aws/lsf/cluster"
 
-    def create_hpc_cluster(self, cluster:aws_hpc.HPC):
+    def create_hpc_cluster(self, cluster: aws_hpc.HPC):
         """
         Create an hpc cluster
 
@@ -19,7 +20,8 @@ class HPCAwsClient(Client):
         """
         cluster = aws_hpc.LSFClusterCreationRequest(cluster)
 
-        excluded_cluster_dict = self.exclude_missing(json.loads(cluster.toJSON()))
+        excluded_cluster_dict = self.exclude_missing(
+            json.loads(cluster.toJSON()))
 
         formatted_cluster_dict = self.convert_json(
             excluded_cluster_dict, self.underscore_to_camel)

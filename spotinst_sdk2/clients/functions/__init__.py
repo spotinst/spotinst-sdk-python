@@ -3,6 +3,7 @@ import json
 from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.functions as spotinst_functions
 
+
 class FunctionsClient(Client):
     __base_functions_url = "/functions"
 
@@ -10,7 +11,7 @@ class FunctionsClient(Client):
     def create_application(self, app):
         """
         Create Spotinst Functions Application
-        
+
         # Arguments
         app (ApplicationCreate): ApplicationCreate Object
         # Returns
@@ -43,7 +44,7 @@ class FunctionsClient(Client):
     def create_environment(self, env):
         """
         Create Spotinst Functions Environment
-        
+
         # Arguments
         env (EnvironmentCreate): EnvironmentCreate Object
         # Returns
@@ -76,13 +77,14 @@ class FunctionsClient(Client):
     def create_function(self, fx):
         """
         Create Spotinst Functions
-        
+
         # Arguments
         fx (FunctionCreate): FunctionCreate Object
         # Returns
         (Object): Functions API response 
         """
-        fx = spotinst_functions.FunctionCreationRequest(fx, self.should_print_output)
+        fx = spotinst_functions.FunctionCreationRequest(
+            fx, self.should_print_output)
 
         excluded_fx_dict = self.exclude_missing(json.loads(fx.toJSON()))
 

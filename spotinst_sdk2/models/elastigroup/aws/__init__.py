@@ -18,6 +18,7 @@ class Elastigroup:
     multai: Multai
     third_parties_integration: ThirdPartyIntegrations
     """
+
     def __init__(
             self,
             name=none,
@@ -64,6 +65,7 @@ class Strategy:
     revert_to_spot: RevertToSpot
     restrict_single_az: bool
     """
+
     def __init__(
             self,
             availability_vs_cost=none,
@@ -79,7 +81,7 @@ class Strategy:
             scaling_strategy=none,
             persistence=none,
             revert_to_spot=none,
-            immediate_o_d_recover_threshold = none,
+            immediate_o_d_recover_threshold=none,
             restrict_single_az: bool = none):
 
         self.risk = risk
@@ -106,6 +108,7 @@ class Signal:
     name: str
     timeout: int
     """
+
     def __init__(self, name=none, timeout=none):
 
         self.name = name
@@ -118,6 +121,7 @@ class ScalingStrategy:
     terminate_at_end_of_billing_hour: bool
     terminationPolicy: str
     """
+
     def __init__(self, terminate_at_end_of_billing_hour=none, terminationPolicy=none):
 
         self.terminate_at_end_of_billing_hour = terminate_at_end_of_billing_hour
@@ -132,6 +136,7 @@ class Persistence:
     should_persist_private_ip: bool
     block_devices_mode: str
     """
+
     def __init__(
             self,
             should_persist_block_devices=none,
@@ -151,6 +156,7 @@ class RevertToSpot:
     perform_at: str
     time_windows: list[str]
     """
+
     def __init__(self, perform_at=none, time_windows=none):
 
         self.perform_at = perform_at
@@ -168,6 +174,7 @@ class Capacity:
     target: int
     unit: str
     """
+
     def __init__(self, minimum=none, maximum=none, target=none, unit=none):
 
         self.minimum = minimum
@@ -187,6 +194,7 @@ class Scaling:
     target: list[TargetTrackingPolicy]
     multiple_metrics: MultipleMetrics
     """
+
     def __init__(self, up=none, down=none, target=none, multiple_metrics=none):
 
         self.up = up
@@ -201,6 +209,7 @@ class ScalingPolicyDimension:
     name: str
     value: str
     """
+
     def __init__(self, name=none, value=none):
 
         self.name = name
@@ -218,6 +227,7 @@ class ScalingPolicyAction:
     minimum: int
     maximum: int
     """
+
     def __init__(self, type=none, adjustment=none, min_target_capacity=none,
                  max_target_capacity=none, target=none,
                  minimum=none,
@@ -238,6 +248,7 @@ class ScalingPolicyStepAdjustment:
     action: ScalingPolicyAction
     threshold: int
     """
+
     def __init__(self, action=none, threshold=none):
 
         self.action = action
@@ -267,6 +278,7 @@ class ScalingPolicy:
     should_resume_stateful: bool
     is_enabled: bool
     """
+
     def __init__(
             self,
             namespace=none,
@@ -323,6 +335,7 @@ class TargetTrackingPolicy:
     policy_name: str
     source: str
     """
+
     def __init__(self, namespace=none, metric_name=none, statistic=none,
                  cooldown=none, target=none, unit=none,
                  dimensions=none, policy_name=none, source=none):
@@ -349,6 +362,7 @@ class ScalingPolicyMetric:
     dimensions: list[ScalingPolicyDimension]
     extended_statistic: str
     """
+
     def __init__(
             self,
             name=none,
@@ -374,6 +388,7 @@ class MetricExpression:
     name: str
     expression: str
     """
+
     def __init__(self, name=none, expression=none):
 
         self.name = name
@@ -386,6 +401,7 @@ class MultipleMetrics:
     metrics: list[ScalingPolicyMetric]
     expressions: list[MetricExpression]
     """
+
     def __init__(self, metrics=none, expressions=none):
 
         self.metrics = metrics
@@ -394,11 +410,14 @@ class MultipleMetrics:
 # endregion
 
 # region Scheduling
+
+
 class Scheduling:
     """
     # Arguments
     tasks: list[ScheduledTask]
     """
+
     def __init__(self, tasks=none):
 
         self.tasks = tasks
@@ -423,6 +442,7 @@ class ScheduledTask:
     cron_expression: str
     start_time: str
     """
+
     def __init__(
             self,
             task_type=none,
@@ -467,6 +487,7 @@ class Multai:
     token: str
     balancers: str
     """
+
     def __init__(self, token=none, balancers=none):
 
         self.token = token
@@ -482,6 +503,7 @@ class MultaiLoadBalancer:
     az_awareness: bool
     auto_weight: bool
     """
+
     def __init__(
             self,
             project_id=none,
@@ -508,6 +530,7 @@ class Rancher:
     master_host: str
     version: str
     """
+
     def __init__(self, access_key=none, secret_key=none, master_host=none, version=none):
 
         self.access_key = access_key
@@ -521,6 +544,7 @@ class Mesosphere:
     # Arguments
     api_server: str
     """
+
     def __init__(self, api_server=none):
 
         self.api_server = api_server
@@ -533,6 +557,7 @@ class ElasticBeanstalk:
     managed_actions: ManagedActions
     deployment_preferences: DeploymentPreferences
     """
+
     def __init__(self, environment_id=none, managed_actions=none, deployment_preferences=none):
 
         self.environment_id = environment_id
@@ -545,6 +570,7 @@ class ManagedActions:
     # Arguments
     platform_update: PlatformUpdate
     """
+
     def __init__(self, platform_update=none):
 
         self.platform_update = platform_update
@@ -557,11 +583,12 @@ class PlatformUpdate:
     time_window: str
     update_level: str
     """
+
     def __init__(
-        self,
-        perform_at=none,
-        time_window=none,
-        update_level=none):
+            self,
+            perform_at=none,
+            time_window=none,
+            update_level=none):
 
         self.perform_at = perform_at
         self.time_window = time_window
@@ -576,6 +603,7 @@ class DeploymentPreferences:
     grace_period: int
     strategy: BeanstalkDeploymentStrategy
     """
+
     def __init__(
             self,
             automatic_roll=none,
@@ -595,6 +623,7 @@ class BeanstalkDeploymentStrategy:
     action: str
     should_drain_instances: bool
     """
+
     def __init__(self, action=none, should_drain_instances=none):
 
         self.action = action
@@ -607,6 +636,7 @@ class EcsConfiguration:
     cluster_name: str
     auto_scale: EcsAutoScaleConfiguration
     """
+
     def __init__(self, cluster_name=none, auto_scale=none):
 
         self.cluster_name = cluster_name
@@ -623,6 +653,7 @@ class EcsAutoScaleConfiguration:
     attributes: list[EcsAutoScalerAttributeConfiguration]
     down: EcsAutoScalerDownConfiguration
     """
+
     def __init__(
             self,
             is_enabled=none,
@@ -647,6 +678,7 @@ class EcsAutoScalerHeadroomConfiguration:
     memory_per_unit: int
     num_of_units: int
     """
+
     def __init__(
             self,
             cpu_per_unit=none,
@@ -664,6 +696,7 @@ class EcsAutoScalerAttributeConfiguration:
     key: str
     value: str
     """
+
     def __init__(self, key=none, value=none):
 
         self.key = key
@@ -675,6 +708,7 @@ class EcsAutoScalerDownConfiguration:
     # Arguments
     evaluation_periods: int
     """
+
     def __init__(self, evaluation_periods=none):
 
         self.evaluation_periods = evaluation_periods
@@ -685,6 +719,7 @@ class MlbRuntimeConfiguration:
     # Arguments
     deployment_id: str
     """
+
     def __init__(self, deployment_id=none):
 
         self.deployment_id = deployment_id
@@ -699,6 +734,7 @@ class KubernetesConfiguration:
     cluster_identifier: str
     auto_scale: KubernetesAutoScalerConfiguration
     """
+
     def __init__(
             self,
             api_server=none,
@@ -724,6 +760,7 @@ class KubernetesAutoScalerConfiguration:
     labels: KubernetesAutoScalerLabelsConfiguration
     down: KubernetesAutoScalerDownConfiguration
     """
+
     def __init__(
             self,
             is_enabled=none,
@@ -748,6 +785,7 @@ class KubernetesAutoScalerHeadroomConfiguration:
     memory_per_unit: int
     num_of_units: int
     """
+
     def __init__(
             self,
             cpu_per_unit=none,
@@ -765,6 +803,7 @@ class KubernetesAutoScalerLabelsConfiguration:
     key: str
     value: str
     """
+
     def __init__(self, key=none, value=none):
 
         self.key = key
@@ -776,6 +815,7 @@ class KubernetesAutoScalerDownConfiguration:
     # Arguments
     evaluation_periods: int
     """
+
     def __init__(self, evaluation_periods=none):
         self.evaluation_periods = evaluation_periods
 
@@ -787,6 +827,7 @@ class RightScaleConfiguration:
     refresh_token: str
     region: str
     """
+
     def __init__(self, account_id=none, refresh_token=none, region=none):
 
         self.account_id = account_id
@@ -800,6 +841,7 @@ class OpsWorksConfiguration:
     layer_id: str
     stack_type: str
     """
+
     def __init__(self, layer_id=none, stack_type=none):
 
         self.layer_id = layer_id
@@ -815,6 +857,7 @@ class ChefConfiguration:
     pem_key: str
     chef_version: str
     """
+
     def __init__(
             self,
             chef_server=none,
@@ -837,6 +880,7 @@ class CodeDeployConfiguration:
     clean_up_on_failure: bool
     terminate_instance_on_failure: bool
     """
+
     def __init__(
             self,
             deployment_groups=none,
@@ -854,6 +898,7 @@ class CodeDeployDeploymentGroupsConfiguration:
     application_name: str
     deployment_group_name: str
     """
+
     def __init__(self, application_name=none, deployment_group_name=none):
 
         self.application_name = application_name
@@ -868,6 +913,7 @@ class NomadConfiguration:
     acl_token: str
     auto_scale: NomadAutoScalerConfiguration
     """
+
     def __init__(
             self,
             master_host=none,
@@ -890,6 +936,7 @@ class NomadAutoScalerConfiguration:
     constraints: list[NomadAutoScalerConstraintsConfiguration]
     down: NomadAutoScalerDownConfiguration
     """
+
     def __init__(
             self,
             is_enabled=none,
@@ -912,6 +959,7 @@ class NomadAutoScalerHeadroomConfiguration:
     memory_per_unit: int
     num_of_units: int
     """
+
     def __init__(
             self,
             cpu_per_unit=none,
@@ -929,6 +977,7 @@ class NomadAutoScalerConstraintsConfiguration:
     key: str
     value: str
     """
+
     def __init__(self, key=none, value=none):
 
         self.key = key
@@ -940,6 +989,7 @@ class NomadAutoScalerDownConfiguration:
     # Arguments
     evaluation_periods: int
     """
+
     def __init__(self, evaluation_periods=none):
 
         self.evaluation_periods = evaluation_periods
@@ -952,6 +1002,7 @@ class DockerSwarmConfiguration:
     master_port: int
     auto_scale: DockerSwarmAutoScalerConfiguration
     """
+
     def __init__(self, master_host=none, master_port=none, auto_scale=none):
 
         self.master_host = master_host
@@ -967,6 +1018,7 @@ class DockerSwarmAutoScalerConfiguration:
     headroom: DockerSwarmAutoScalerHeadroomConfiguration
     down: DockerSwarmAutoScalerDownConfiguration
     """
+
     def __init__(
             self,
             is_enabled=none,
@@ -987,6 +1039,7 @@ class DockerSwarmAutoScalerHeadroomConfiguration:
     memory_per_unit:
     num_of_units: int
     """
+
     def __init__(
             self,
             cpu_per_unit=none,
@@ -1003,6 +1056,7 @@ class DockerSwarmAutoScalerDownConfiguration:
     # Arguments
     evaluation_periods: int
     """
+
     def __init__(self, evaluation_periods=none):
 
         self.evaluation_periods = evaluation_periods
@@ -1013,6 +1067,7 @@ class Route53Configuration:
     # Arguments
     domains: list[Route53DomainsConfiguration]
     """
+
     def __init__(self, domains=none):
 
         self.domains = domains
@@ -1024,6 +1079,7 @@ class Route53DomainsConfiguration:
     hosted_zone_id: str
     record_sets: list[Route53RecordSetsConfiguration]
     """
+
     def __init__(self, hosted_zone_id=none, record_sets=none):
 
         self.hosted_zone_id = hosted_zone_id
@@ -1036,6 +1092,7 @@ class Route53RecordSetsConfiguration:
     name: str
     use_public_ip: bool
     """
+
     def __init__(self, name=none, use_public_ip=none):
 
         self.name = name
@@ -1059,6 +1116,7 @@ class ThirdPartyIntegrations:
     docker_swarm: DockerSwarmConfiguration
     route53: Route53Configuration
     """
+
     def __init__(
             self,
             rancher=none,
@@ -1105,6 +1163,7 @@ class Compute:
     subnet_ids: list[str]
     preferred_availability_zones: list[str]
     """
+
     def __init__(
             self,
             launch_specification=none,
@@ -1134,6 +1193,7 @@ class AvailabilityZone:
     subnet_ids: list
     placement_group_name: str
     """
+
     def __init__(
             self,
             name=none,
@@ -1156,6 +1216,7 @@ class InstanceTypes:
     weights: list[Weight]
     preferred_spot: list[str]
     """
+
     def __init__(
             self,
             ondemand=none,
@@ -1177,6 +1238,7 @@ class Weight:
     instance_type: str
     weighted_capacity: int
     """
+
     def __init__(self, instance_type=none, weighted_capacity=none):
 
         self.instance_type = instance_type
@@ -1188,6 +1250,7 @@ class TagSpecification:
     # Arguments
     should_tag: bool
     """
+
     def __init__(self, should_tag: bool = none):
         self.should_tag = should_tag
 
@@ -1200,6 +1263,7 @@ class ResourceTagSpecification:
     enis: TagSpecification
     amis: TagSpecification
     """
+
     def __init__(self, volumes: TagSpecification = none, snapshots: TagSpecification = none, enis: TagSpecification = none,
                  amis: TagSpecification = none):
         self.volumes = volumes
@@ -1234,6 +1298,7 @@ class LaunchSpecification:
     cpu_options: CpuOptions
     metadata_options: MetadataOptions
     """
+
     def __init__(
             self,
             security_group_ids=none,
@@ -1287,10 +1352,11 @@ class CreditSpecification:
     """
     # Arguments
     cpu_credits: str
-    """ 
+    """
+
     def __init__(
-        self,
-        cpu_credits=none):
+            self,
+            cpu_credits=none):
 
         self.cpu_credits = cpu_credits
 
@@ -1300,9 +1366,10 @@ class Image:
     # Arguments
     id: str
     """
+
     def __init__(
-        self,
-        id=none):
+            self,
+            id=none):
 
         self.id = id
 
@@ -1312,6 +1379,7 @@ class LoadBalancersConfig:
     # Arguments
     load_balancers: list[LoadBalancer]
     """
+
     def __init__(self, load_balancers=none):
 
         self.load_balancers = load_balancers
@@ -1328,6 +1396,7 @@ class LoadBalancer:
     auto_weight: bool
     az_awareness: bool
     """
+
     def __init__(
             self,
             type=none,
@@ -1353,6 +1422,7 @@ class IamRole:
     name: str
     arn: str
     """
+
     def __init__(self, name=none, arn=none):
 
         self.name = name
@@ -1367,6 +1437,7 @@ class BlockDeviceMapping:
     no_device: bool
     virtual_name: str
     """
+
     def __init__(
             self,
             device_name=none,
@@ -1393,6 +1464,7 @@ class EBS:
     dynamic_volume_size: DynamicVolumeSize
     throughput: int
     """
+
     def __init__(
             self,
             delete_on_termination=none,
@@ -1423,15 +1495,16 @@ class DynamicVolumeSize:
     resource: str
     size_per_resource_unit: int
     """
+
     def __init__(
             self,
             base_size=none,
             resource=none,
             size_per_resource_unit=none):
 
-        self.base_size=base_size
-        self.resource=resource
-        self.size_per_resource_unit=size_per_resource_unit
+        self.base_size = base_size
+        self.resource = resource
+        self.size_per_resource_unit = size_per_resource_unit
 
 
 class Tag:
@@ -1440,6 +1513,7 @@ class Tag:
     tag_key: str
     tag_value: str
     """
+
     def __init__(self, tag_key=none, tag_value=none):
 
         self.tag_key = tag_key
@@ -1461,6 +1535,7 @@ class NetworkInterface:
     subnet_id: str
     associate_ipv6_address: str
     """
+
     def __init__(
             self,
             delete_on_termination=none,
@@ -1494,6 +1569,7 @@ class PrivateIpAddress:
     private_ip_address: str
     primary: bool
     """
+
     def __init__(self, private_ip_address=none, primary=none):
 
         self.private_ip_address = private_ip_address
@@ -1505,6 +1581,7 @@ class CpuOptions:
     # Arguments
     threads_per_core: int
     """
+
     def __init__(self, threads_per_core=none):
 
         self.threads_per_core = threads_per_core
@@ -1517,7 +1594,8 @@ class MetadataOptions:
     http_tokens: str
     instance_metadata_tags: str
     """
-    def __init__(self, 
+
+    def __init__(self,
                  http_put_response_hop_limit=none,
                  http_tokens=none,
                  instance_metadata_tags=none):
@@ -1528,6 +1606,7 @@ class MetadataOptions:
 
 # endregion
 
+
 class Roll:
     """
     # Arguments
@@ -1536,6 +1615,7 @@ class Roll:
     health_check_type: str
     strategy: RollStrategy
     """
+
     def __init__(
             self,
             batch_size_percentage=none,
@@ -1556,6 +1636,7 @@ class RollStrategy:
     batch_min_healthy_percentage: int,
     on_failure: OnFailure
     """
+
     def __init__(
             self,
             action=none,
@@ -1577,6 +1658,7 @@ class OnFailure:
     draining_timeout: int
     should_decrement_target_capacity: bool
     """
+
     def __init__(
             self,
             action_type=none,
@@ -1599,6 +1681,7 @@ class DetachConfiguration:
     draining_timeout: int
     should_decrement_target_capacity: bool
     """
+
     def __init__(
             self,
             instances_to_detach=none,
@@ -1619,6 +1702,7 @@ class StatefulDeallocation:
     should_delete_volumes: bool
     should_delete_snapshots: bool
     """
+
     def __init__(
             self,
             should_delete_images=none,
