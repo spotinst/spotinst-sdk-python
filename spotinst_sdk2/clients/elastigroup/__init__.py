@@ -161,9 +161,9 @@ class ElastigroupAwsClient(Client):
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/scale/up",
+            "/" +
+            str(group_id) +
+            "/scale/up",
             entity_name='elastigroup (scale up)',
             body=None,
             user_query_params=query_params)
@@ -186,9 +186,9 @@ class ElastigroupAwsClient(Client):
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/scale/down",
+            "/" +
+            str(group_id) +
+            "/scale/down",
             entity_name='elastigroup (scale down)',
             body=None,
             user_query_params=query_params)
@@ -236,9 +236,9 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/status",
+            "/" +
+            str(group_id) +
+            "/status",
             entity_name='active instances')
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
@@ -260,9 +260,9 @@ class ElastigroupAwsClient(Client):
 
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/events",
+            "/" +
+            str(group_id) +
+            "/events",
             query_params=query_params,
             entity_name='active events')
 
@@ -294,9 +294,9 @@ class ElastigroupAwsClient(Client):
 
         roll_response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll",
+            "/" +
+            str(group_id) +
+            "/roll",
             body=body_json,
             entity_name='roll')
 
@@ -319,9 +319,9 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll",
+            "/" +
+            str(group_id) +
+            "/roll",
             entity_name='roll')
 
         formatted_response = self.convert_json(
@@ -341,11 +341,11 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll/" +
-                str(roll_id) +
-                "/status",
+            "/" +
+            str(group_id) +
+            "/roll/" +
+            str(roll_id) +
+            "/status",
             entity_name='roll')
 
         formatted_response = self.convert_json(
@@ -366,10 +366,10 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll/" +
-                str(roll_id),
+            "/" +
+            str(group_id) +
+            "/roll/" +
+            str(roll_id),
             body=json.dumps(dict(roll=dict(status="STOPPED"))),
             entity_name='roll')
 
@@ -403,10 +403,10 @@ class ElastigroupAwsClient(Client):
 
         detach_response = self.send_post(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll/" +
-                str(roll_id),
+            "/" +
+            str(group_id) +
+            "/roll/" +
+            str(roll_id),
             body=body_json,
             entity_name='roll')
 
@@ -429,8 +429,8 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/instanceHealthiness",
+            "/" + group_id +
+            "/instanceHealthiness",
             entity_name="instance"
         )
 
@@ -455,8 +455,8 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/costs",
+            "/" + group_id +
+            "/costs",
             query_params=query_params,
             entity_name="cost"
         )
@@ -482,8 +482,8 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/costs/detailed",
+            "/" + group_id +
+            "/costs/detailed",
             query_params=query_params,
             entity_name="cost"
         )
@@ -505,8 +505,8 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/scale/suspensions",
+            "/" + group_id +
+            "/scale/suspensions",
             entity_name="scaling policies"
         )
 
@@ -530,8 +530,8 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_post(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/scale/suspendPolicy",
+            "/" + group_id +
+            "/scale/suspendPolicy",
             query_params=query_params,
             entity_name="scaling policies"
         )
@@ -556,8 +556,8 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_post(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/scale/resumePolicy",
+            "/" + group_id +
+            "/scale/resumePolicy",
             query_params=query_params,
             entity_name="scaling policies"
         )
@@ -579,8 +579,8 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/suspension",
+            "/" + group_id +
+            "/suspension",
             entity_name="suspend process"
         )
 
@@ -615,8 +615,8 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_post(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/suspension",
+            "/" + group_id +
+            "/suspension",
             body=body,
             entity_name="suspend process"
         )
@@ -641,8 +641,8 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_delete_with_body(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/suspension",
+            "/" + group_id +
+            "/suspension",
             body=body,
             entity_name="suspend process"
         )
@@ -676,9 +676,9 @@ class ElastigroupAwsClient(Client):
 
         detach_response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/detachInstances",
+            "/" +
+            str(group_id) +
+            "/detachInstances",
             body=body_json,
             entity_name='detach')
 
@@ -702,11 +702,11 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/statefulInstance/" +
-                str(stateful_instance_id +
-                    "/deallocate"),
+            "/" +
+            str(group_id) +
+            "/statefulInstance/" +
+            str(stateful_instance_id +
+                "/deallocate"),
             entity_name='deallocate stateful instance')
 
         formatted_response = self.convert_json(
@@ -726,11 +726,11 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/statefulInstance/" +
-                str(stateful_instance_id +
-                    "/recycle"),
+            "/" +
+            str(group_id) +
+            "/statefulInstance/" +
+            str(stateful_instance_id +
+                "/recycle"),
             entity_name='recycle stateful instance')
 
         formatted_response = self.convert_json(
@@ -750,9 +750,9 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/statefulInstance",
+            "/" +
+            str(group_id) +
+            "/statefulInstance",
             entity_name='get stateful instance')
 
         formatted_response = self.convert_json(
@@ -772,11 +772,11 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/statefulInstance/" +
-                str(stateful_instance_id +
-                    "/resume"),
+            "/" +
+            str(group_id) +
+            "/statefulInstance/" +
+            str(stateful_instance_id +
+                "/resume"),
             entity_name='resume stateful instance')
 
         formatted_response = self.convert_json(
@@ -796,11 +796,11 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/statefulInstance/" +
-                str(stateful_instance_id) +
-                "/pause",
+            "/" +
+            str(group_id) +
+            "/statefulInstance/" +
+            str(stateful_instance_id) +
+            "/pause",
             entity_name='pause stateful instance')
 
         formatted_response = self.convert_json(
@@ -820,9 +820,9 @@ class ElastigroupAwsClient(Client):
         """
         status_response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/beanstalk/maintenance/status",
+            "/" +
+            str(group_id) +
+            "/beanstalk/maintenance/status",
             entity_name="beanstalk maintenance start")
 
         formatted_response = self.convert_json(
@@ -844,9 +844,9 @@ class ElastigroupAwsClient(Client):
         """
         start_response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/beanstalk/maintenance/start",
+            "/" +
+            str(group_id) +
+            "/beanstalk/maintenance/start",
             body={},
             entity_name="beanstalk maintenance start")
 
@@ -869,9 +869,9 @@ class ElastigroupAwsClient(Client):
         """
         finish_response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/beanstalk/maintenance/finish",
+            "/" +
+            str(group_id) +
+            "/beanstalk/maintenance/finish",
             body={},
             entity_name="beanstalk maintenance start")
 
@@ -900,7 +900,7 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/beanstalk/import",
+            "/beanstalk/import",
             query_params=query_params,
             entity_name="beanstalk import"
         )
@@ -924,8 +924,8 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" + str(group_id) +
-                "/beanstalk/reimport",
+            "/" + str(group_id) +
+            "/beanstalk/reimport",
             entity_name="beanstalk reimport"
         )
 
@@ -964,7 +964,7 @@ class ElastigroupAwsClient(Client):
         response = self.send_post(
             body=body_json,
             url=self.__base_elastigroup_url +
-                "/autoScalingGroup/import",
+            "/autoScalingGroup/import",
             query_params=query_params,
             entity_name='import asg')
 
@@ -990,7 +990,7 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" + group_id + "/events",
+            "/" + group_id + "/events",
             query_params=query_params,
             entity_name="activity groups"
         )
@@ -1014,7 +1014,7 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_post(
             url=self.__base_elastigroup_url +
-                "/" + group_id + "/amiBackup",
+            "/" + group_id + "/amiBackup",
             entity_name="ami backup"
         )
 
@@ -1049,7 +1049,7 @@ class ElastigroupAwsClient(Client):
         group_response = self.send_post(
             body=body_json,
             url=self.__base_elastigroup_url + "/" +
-                group_id + "/codeDeploy/blueGreenDeployment",
+            group_id + "/codeDeploy/blueGreenDeployment",
             entity_name='create b/g deployment')
 
         formatted_response = self.convert_json(
@@ -1070,7 +1070,7 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_get(
             url=self.__base_elastigroup_url + "/" +
-                group_id + "/codeDeploy/blueGreenDeployment",
+            group_id + "/codeDeploy/blueGreenDeployment",
             entity_name="get b/g deployment")
 
         formatted_response = self.convert_json(
@@ -1092,7 +1092,7 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_put(
             url=self.__base_elastigroup_url + "/" + group_id +
-                "/codeDeploy/blueGreenDeployment/" + deployment_id + "/stop",
+            "/codeDeploy/blueGreenDeployment/" + deployment_id + "/stop",
             entity_name="stop b/g deployment")
 
         formatted_response = self.convert_json(
@@ -1118,7 +1118,7 @@ class ElastigroupAwsClient(Client):
         query_params = dict(region=region)
         response = self.send_get(
             url=self.__base_aws_url +
-                "/spotType",
+            "/spotType",
             query_params=query_params,
             entity_name="instance"
         )
@@ -1143,9 +1143,9 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_post(
             url=self.__base_aws_url +
-                "/instance/" +
-                instance_id +
-                "/lock",
+            "/instance/" +
+            instance_id +
+            "/lock",
             query_params=query_params,
             entity_name="instance"
         )
@@ -1167,9 +1167,9 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_post(
             url=self.__base_aws_url +
-                "/instance/" +
-                instance_id +
-                "/unlock",
+            "/instance/" +
+            instance_id +
+            "/unlock",
             entity_name="instance"
         )
 
@@ -1190,9 +1190,9 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_post(
             url=self.__base_aws_url +
-                "/instance/" +
-                instance_id +
-                "/standby/enter",
+            "/instance/" +
+            instance_id +
+            "/standby/enter",
             entity_name="instance"
         )
 
@@ -1213,9 +1213,9 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_post(
             url=self.__base_aws_url +
-                "/instance/" +
-                instance_id +
-                "/standby/exit",
+            "/instance/" +
+            instance_id +
+            "/standby/exit",
             entity_name="instance"
         )
 
@@ -1236,8 +1236,8 @@ class ElastigroupAwsClient(Client):
         """
         response = self.send_get(
             url=self.__base_aws_url +
-                "/instance/" +
-                instance_id,
+            "/instance/" +
+            instance_id,
             entity_name="instance"
         )
 
@@ -1261,7 +1261,7 @@ class ElastigroupAwsClient(Client):
 
         response = self.send_post(
             url=self.__base_aws_url +
-                "/instance/signal",
+            "/instance/signal",
             body=body,
             entity_name="instance"
         )
@@ -1416,8 +1416,8 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_get(
             url=self.__base_stateful_url +
-                "/" +
-                str(stateful_migration_id),
+            "/" +
+            str(stateful_migration_id),
             entity_name='get stateful import status')
 
         formatted_response = self.convert_json(
@@ -1437,8 +1437,8 @@ class ElastigroupAwsClient(Client):
         """
         content = self.send_delete(
             url=self.__base_stateful_url +
-                "/" +
-                str(stateful_migration_id),
+            "/" +
+            str(stateful_migration_id),
             entity_name='delete stateful import')
 
         formatted_response = self.convert_json(
@@ -1620,7 +1620,8 @@ class ElastigroupGcpClient(Client):
         # Returns
         (Object): Elastigroup API response 
         """
-        group_roll_request = gcp_elastigroup.ElastigroupRollRequest(group_roll=group_roll)
+        group_roll_request = gcp_elastigroup.ElastigroupRollRequest(
+            group_roll=group_roll)
 
         excluded_group_roll_dict = self.exclude_missing(
             json.loads(group_roll_request.toJSON()))
@@ -1710,9 +1711,9 @@ class ElastigroupGcpClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                group_id +
-                "/status",
+            "/" +
+            group_id +
+            "/status",
             entity_name='active instances')
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
@@ -2053,7 +2054,7 @@ class ElastigroupAzureClient(Client):
 
         roll_response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" + str(group_id) + "/roll",
+            "/" + str(group_id) + "/roll",
             body=json.dumps(formatted_group_roll_dict),
             entity_name='roll')
 
@@ -2076,9 +2077,9 @@ class ElastigroupAzureClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll",
+            "/" +
+            str(group_id) +
+            "/roll",
             entity_name='roll')
 
         formatted_response = self.convert_json(
@@ -2098,10 +2099,10 @@ class ElastigroupAzureClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll/" +
-                str(roll_id),
+            "/" +
+            str(group_id) +
+            "/roll/" +
+            str(roll_id),
             entity_name='roll')
 
         formatted_response = self.convert_json(
@@ -2122,10 +2123,10 @@ class ElastigroupAzureClient(Client):
         """
         content = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/roll/" +
-                str(roll_id),
+            "/" +
+            str(group_id) +
+            "/roll/" +
+            str(roll_id),
             body=json.dumps(dict(roll=dict(status="STOPPED"))),
             entity_name='roll')
 
@@ -2152,9 +2153,9 @@ class ElastigroupAzureClient(Client):
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/scale/up",
+            "/" +
+            str(group_id) +
+            "/scale/up",
             entity_name='elastigroup (scale up)',
             body=None,
             user_query_params=query_params)
@@ -2177,9 +2178,9 @@ class ElastigroupAzureClient(Client):
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/scale/down",
+            "/" +
+            str(group_id) +
+            "/scale/down",
             entity_name='elastigroup (scale down)',
             body=None,
             user_query_params=query_params)
@@ -2317,9 +2318,9 @@ class ElastigroupAzureClient(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/status",
+            "/" +
+            str(group_id) +
+            "/status",
             entity_name='active instances')
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
@@ -2349,9 +2350,9 @@ class ElastigroupAzureClient(Client):
 
         detach_response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/detachInstances",
+            "/" +
+            str(group_id) +
+            "/detachInstances",
             body=body_json,
             entity_name='detach')
 
@@ -2498,7 +2499,7 @@ class ElastigroupAzureV3Client(Client):
         body_json = json.dumps(formatted_update_capacity_dict)
 
         response = self.send_put(url=self.__base_elastigroup_url + "/" +
-                                     str(group_id) + "/capacity",
+                                 str(group_id) + "/capacity",
                                  body=body_json,
                                  entity_name='update capacity')
 
@@ -2521,9 +2522,9 @@ class ElastigroupAzureV3Client(Client):
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/scale/up",
+            "/" +
+            str(group_id) +
+            "/scale/up",
             entity_name='elastigroup (scale up)',
             body=None,
             user_query_params=query_params)
@@ -2546,9 +2547,9 @@ class ElastigroupAzureV3Client(Client):
         query_params = dict({"adjustment": adjustment})
         content = self.send_put_with_params(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/scale/down",
+            "/" +
+            str(group_id) +
+            "/scale/down",
             entity_name='elastigroup (scale down)',
             body=None,
             user_query_params=query_params)
@@ -2581,7 +2582,7 @@ class ElastigroupAzureV3Client(Client):
 
         detach_response = self.send_put(
             url=self.__base_elastigroup_url +
-                "/" + str(group_id) + "/detachVms",
+            "/" + str(group_id) + "/detachVms",
             body=body_json,
             entity_name='detach')
 
@@ -2607,8 +2608,8 @@ class ElastigroupAzureV3Client(Client):
         query_params = dict(ttlInMinutes=ttl_in_minutes)
 
         response = self.send_post(url=self.__base_elastigroup_url +
-                                      "/" + str(group_id) +
-                                      "/vm/" + str(vm_name) + "/protection",
+                                  "/" + str(group_id) +
+                                  "/vm/" + str(vm_name) + "/protection",
                                   query_params=query_params,
                                   entity_name="virtual machine"
                                   )
@@ -2630,8 +2631,8 @@ class ElastigroupAzureV3Client(Client):
         (Object): Spotinst API response
         """
         return self.send_delete(url=self.__base_elastigroup_url +
-                                    "/" + str(group_id) +
-                                    "/vm/" + str(vm_name) + "/protection",
+                                "/" + str(group_id) +
+                                "/vm/" + str(vm_name) + "/protection",
                                 entity_name="virtual machine")
 
     def get_elastigroup_status(self, group_id):
@@ -2662,8 +2663,8 @@ class ElastigroupAzureV3Client(Client):
         """
         response = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" + group_id +
-                "/vmHealthiness",
+            "/" + group_id +
+            "/vmHealthiness",
             entity_name="instance"
         )
 
@@ -2760,7 +2761,7 @@ class ElastigroupAzureV3Client(Client):
         body_json = json.dumps(formatted_start_deployment_dict)
 
         response = self.send_post(url=self.__base_elastigroup_url + "/" +
-                                      str(group_id) + "/deployment",
+                                  str(group_id) + "/deployment",
                                   body=body_json,
                                   entity_name='start deployment')
 
@@ -2786,9 +2787,9 @@ class ElastigroupAzureV3Client(Client):
 
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/deployment",
+            "/" +
+            str(group_id) +
+            "/deployment",
             query_params=query_params,
             entity_name='deployments')
 
@@ -2809,10 +2810,10 @@ class ElastigroupAzureV3Client(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/deployment/" +
-                deployment_id,
+            "/" +
+            str(group_id) +
+            "/deployment/" +
+            deployment_id,
             entity_name='deployment')
 
         formatted_response = self.convert_json(
@@ -2833,11 +2834,11 @@ class ElastigroupAzureV3Client(Client):
         """
         content = self.send_get(
             url=self.__base_elastigroup_url +
-                "/" +
-                str(group_id) +
-                "/deployment/" +
-                deployment_id +
-                "/details",
+            "/" +
+            str(group_id) +
+            "/deployment/" +
+            deployment_id +
+            "/details",
             entity_name='deployment')
 
         formatted_response = self.convert_json(
@@ -2857,7 +2858,7 @@ class ElastigroupAzureV3Client(Client):
         (Object): Elastigroup API response
         """
         geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
-                 + "/scaleSet/" + scale_set_name
+            + "/scaleSet/" + scale_set_name
         result = self.send_get(url=geturl, entity_name='elastigroup')
 
         formatted_response = self.convert_json(
@@ -2878,7 +2879,7 @@ class ElastigroupAzureV3Client(Client):
         (Object): Elastigroup API response
         """
         geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
-                 + "/virtualMachine/" + virtual_machine_name
+            + "/virtualMachine/" + virtual_machine_name
         result = self.send_get(url=geturl, entity_name='elastigroup')
 
         formatted_response = self.convert_json(
@@ -2899,7 +2900,7 @@ class ElastigroupAzureV3Client(Client):
         (Object): Elastigroup API response
         """
         geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
-                 + "/loadBalancer/" + load_balancer_name + "/backendPool/" + backend_pool_name
+            + "/loadBalancer/" + load_balancer_name + "/backendPool/" + backend_pool_name
         result = self.send_get(url=geturl, entity_name='elastigroup')
 
         formatted_response = self.convert_json(
@@ -2921,8 +2922,8 @@ class ElastigroupAzureV3Client(Client):
         (Object): Elastigroup API response
         """
         geturl = self.__base_elastigroup_url + "/import/resourceGroup/" + resource_group_name \
-                 + "/applicationGateway/" + application_gateway_name + \
-                 "/backendPool/" + backend_pool_name
+            + "/applicationGateway/" + application_gateway_name + \
+            "/backendPool/" + backend_pool_name
         result = self.send_get(url=geturl, entity_name='elastigroup')
 
         formatted_response = self.convert_json(

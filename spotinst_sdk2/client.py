@@ -16,12 +16,12 @@ _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
     _SpotinstClient__spotinst_sdk_python_agent_name, version['__version__'])
 
+
 class Client:
     camel_pat = re.compile(r'([A-Z])')
     under_pat = re.compile(r'_([a-z])')
 
     __account_id_key = "accountId"
-
 
     def __init__(self, session=None,
                  print_output=True,
@@ -42,8 +42,7 @@ class Client:
 
         self.timeout = timeout
 
-
-    def send_get(self, url,entity_name,query_params=None):
+    def send_get(self, url, entity_name, query_params=None):
         agent = self.resolve_user_agent()
 
         if query_params is not None:
@@ -62,7 +61,8 @@ class Client:
         self.print_output("Sending get request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
-        result = requests.get(self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
+        result = requests.get(
+            self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -86,7 +86,8 @@ class Client:
         self.print_output("Sending deletion request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
-        result = requests.delete(self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
+        result = requests.delete(
+            self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -131,7 +132,7 @@ class Client:
             query_params = self.build_query_params_with_input(query_params)
         else:
             query_params = self.build_query_params()
-        
+
         headers = dict(
             {
                 'User-Agent': agent,
@@ -150,7 +151,7 @@ class Client:
             data=body,
             headers=headers,
             timeout=self.timeout)
-        
+
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
@@ -163,7 +164,7 @@ class Client:
         agent = self.resolve_user_agent()
 
         query_params = self.build_query_params_with_input(user_query_params)
-        
+
         headers = dict(
             {
                 'User-Agent': agent,
@@ -193,7 +194,7 @@ class Client:
 
     def send_put(self, url, entity_name, query_params=None, body=None):
         agent = self.resolve_user_agent()
-        
+
         if query_params is not None:
             query_params = self.build_query_params_with_input(query_params)
         else:
@@ -267,7 +268,7 @@ class Client:
     def handle_exception(self, action_string, result):
         self.print_output(result.status_code)
 
-        if result.content  == "Bad Request":
+        if result.content == "Bad Request":
             data = dict(response=result.content)
         else:
             data = json.loads(result.content.decode('utf-8'))
@@ -318,7 +319,8 @@ class Client:
                 elif isinstance(v, list):
                     new_v = list()
                     for x in v:
-                        new_v.append(self.convert_json_with_list_of_lists(x, convert))
+                        new_v.append(
+                            self.convert_json_with_list_of_lists(x, convert))
                 new_json[convert(k)] = new_v
         return new_json
 
@@ -388,7 +390,8 @@ class Client:
         logger = logging.getLogger(__name__)
         if not logger.hasHandlers():
             handler = logging.StreamHandler()
-            formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+            formatter = logging.Formatter(
+                '%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
             handler.setFormatter(formatter)
             logger.addHandler(handler)
         return logger
@@ -421,6 +424,7 @@ class Client:
 
     def underscore_to_camel(self, name):
         return self.under_pat.sub(lambda x: x.group(1).upper(), name)
+
 
 class SpotinstClientException(Exception):
     def __init__(self, message, response):

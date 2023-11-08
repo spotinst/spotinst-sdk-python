@@ -509,12 +509,15 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.ocean.aws.IamInstanceProfile">IamInstanceProfile</h2>
 
 ```python
-IamInstanceProfile(self, name: str = 'd3043820717d74d9a17694c176d39733')
+IamInstanceProfile(self,
+                   name: str = 'd3043820717d74d9a17694c176d39733',
+                   arn: str = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __name__: str
+- __arn__: str
 
 <h2 id="spotinst_sdk2.models.ocean.aws.HttpEndpoint">HttpEndpoint</h2>
 
@@ -556,13 +559,33 @@ __Arguments__
 - __http_put_response_hop_limit__: int
 - __http_tokens__: HttpTokens
 
+<h2 id="spotinst_sdk2.models.ocean.aws.LoadBalancerType">LoadBalancerType</h2>
+
+```python
+LoadBalancerType(cls,
+                 value,
+                 names=None,
+                 *,
+                 module,
+                 qualname,
+                 type,
+                 start)
+```
+An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.aws.LoadBalancerType.classic">classic</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.aws.LoadBalancerType.target_group">target_group</h3>
+
+
 <h2 id="spotinst_sdk2.models.ocean.aws.LoadBalancer">LoadBalancer</h2>
 
 ```python
-LoadBalancer(self,
-             arn: str = 'd3043820717d74d9a17694c176d39733',
-             name: str = 'd3043820717d74d9a17694c176d39733',
-             type: str = 'd3043820717d74d9a17694c176d39733')
+LoadBalancer(
+  self,
+  arn: str = 'd3043820717d74d9a17694c176d39733',
+  name: str = 'd3043820717d74d9a17694c176d39733',
+  type: LoadBalancerType = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -584,6 +607,27 @@ __Arguments__
 - __tag_key__: str
 - __tag_value__: str
 
+<h2 id="spotinst_sdk2.models.ocean.aws.Volumes">Volumes</h2>
+
+```python
+Volumes(self, should_tag: bool = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __should_tag__: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.ResourceTagSpecification">ResourceTagSpecification</h2>
+
+```python
+ResourceTagSpecification(
+  self, volumes: Volumes = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __volumes__: Volumes
+
 <h2 id="spotinst_sdk2.models.ocean.aws.LaunchSpecifications">LaunchSpecifications</h2>
 
 ```python
@@ -603,6 +647,8 @@ LaunchSpecifications(
   load_balancers:
     typing.List[spotinst_sdk2.models.ocean.aws.LoadBalancer] = 'd3043820717d74d9a17694c176d39733',
   monitoring: bool = 'd3043820717d74d9a17694c176d39733',
+  resource_tag_specification:
+    ResourceTagSpecification = 'd3043820717d74d9a17694c176d39733',
   root_volume_size: int = 'd3043820717d74d9a17694c176d39733',
   security_group_ids:
     typing.List[str] = 'd3043820717d74d9a17694c176d39733',
@@ -624,6 +670,7 @@ __Arguments__
 - __key_pair__: str
 - __load_balancers__: List[LoadBalancers]
 - __monitoring__: bool
+- __resource_tag_specification__: ResourceTagSpecification
 - __root_volume_size__: int
 - __security_group_ids__: List[str]
 - __tags__: List[Tags]
@@ -882,4 +929,369 @@ __Arguments__
 - __instance_ids__: List[str]
 - __launch_spec_ids__: List[str]
 - __respect_pdb__: bool
+
+<h2 id="spotinst_sdk2.models.ocean.aws.AutoScaleDown">AutoScaleDown</h2>
+
+```python
+AutoScaleDown(
+  self,
+  max_scale_down_percentage: float = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __max_scale_down_percentage__: double
+
+<h2 id="spotinst_sdk2.models.ocean.aws.AutoScale">AutoScale</h2>
+
+```python
+AutoScale(
+    self,
+    auto_headroom_percentage: int = 'd3043820717d74d9a17694c176d39733',
+    down: AutoScaleDown = 'd3043820717d74d9a17694c176d39733',
+    headrooms:
+    typing.List[spotinst_sdk2.models.ocean.aws.Headroom] = 'd3043820717d74d9a17694c176d39733'
+)
+```
+
+__Arguments__
+
+- __auto_headroom_percentage__: int
+- __down__: class(AutoScaleDown)
+- __headrooms__: List[Headroom]
+
+<h2 id="spotinst_sdk2.models.ocean.aws.TagSelector">TagSelector</h2>
+
+```python
+TagSelector(self,
+            tag_key: str = 'd3043820717d74d9a17694c176d39733',
+            tag_value: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __tag_key__: str
+- __tag_value__: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.ElasticIpPool">ElasticIpPool</h2>
+
+```python
+ElasticIpPool(
+  self, tag_selector: TagSelector = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __tag_selector__: TagSelector
+
+<h2 id="spotinst_sdk2.models.ocean.aws.ImageId">ImageId</h2>
+
+```python
+ImageId(self, id: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __id__: str = none
+
+<h2 id="spotinst_sdk2.models.ocean.aws.Labels">Labels</h2>
+
+```python
+Labels(self,
+       key: str = 'd3043820717d74d9a17694c176d39733',
+       value: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __key__: str
+- __value__: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.VNGResourceLimits">VNGResourceLimits</h2>
+
+```python
+VNGResourceLimits(
+  self,
+  max_instance_count: int = 'd3043820717d74d9a17694c176d39733',
+  min_instance_count: int = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __max_instance_count__: int
+- __min_instance_count__: int
+
+<h2 id="spotinst_sdk2.models.ocean.aws.Config">Config</h2>
+
+```python
+Config(
+    self,
+    headrooms:
+    typing.List[spotinst_sdk2.models.ocean.aws.Headroom] = 'd3043820717d74d9a17694c176d39733'
+)
+```
+
+__Arguments__
+
+- __headrooms__: List[Headroom]
+
+<h2 id="spotinst_sdk2.models.ocean.aws.VNGSchedulingTaskType">VNGSchedulingTaskType</h2>
+
+```python
+VNGSchedulingTaskType(cls,
+                      value,
+                      names=None,
+                      *,
+                      module,
+                      qualname,
+                      type,
+                      start)
+```
+An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.aws.VNGSchedulingTaskType.manual_headroom_update">manual_headroom_update</h3>
+
+
+<h2 id="spotinst_sdk2.models.ocean.aws.VNGSchedulingTasks">VNGSchedulingTasks</h2>
+
+```python
+VNGSchedulingTasks(
+  self,
+  cron_expression: str = 'd3043820717d74d9a17694c176d39733',
+  is_enabled: bool = 'd3043820717d74d9a17694c176d39733',
+  config: Config = 'd3043820717d74d9a17694c176d39733',
+  task_type: VNGSchedulingTaskType = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __cron_expression__: str
+- __is_enabled__: bool
+- __parameters__: Parameters
+- __task_type__: TaskType
+
+<h2 id="spotinst_sdk2.models.ocean.aws.VNGSchedulingShutdownHours">VNGSchedulingShutdownHours</h2>
+
+```python
+VNGSchedulingShutdownHours(
+  self,
+  is_enabled: bool = 'd3043820717d74d9a17694c176d39733',
+  time_windows: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __is_enabled__: bool
+- __time_windows__: List[str]
+
+<h2 id="spotinst_sdk2.models.ocean.aws.VNGScheduling">VNGScheduling</h2>
+
+```python
+VNGScheduling(
+    self,
+    tasks:
+    typing.List[spotinst_sdk2.models.ocean.aws.VNGSchedulingTasks] = 'd3043820717d74d9a17694c176d39733',
+    shutdown_hours:
+    VNGSchedulingShutdownHours = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __tasks__: List[VNGSchedulingTasks]
+- __shutdown_hours__: VNGSchedulingShutdownHours
+
+<h2 id="spotinst_sdk2.models.ocean.aws.VNGStrategy">VNGStrategy</h2>
+
+```python
+VNGStrategy(self,
+            spot_percentage: int = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __spot_percentage__: int
+
+<h2 id="spotinst_sdk2.models.ocean.aws.Taints">Taints</h2>
+
+```python
+Taints(self,
+       effect: str = 'd3043820717d74d9a17694c176d39733',
+       key: str = 'd3043820717d74d9a17694c176d39733',
+       value: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __tag_key__: str
+- __tag_value__: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.VirtualNodeGroup">VirtualNodeGroup</h2>
+
+```python
+VirtualNodeGroup(
+  self,
+  associate_public_ip_address: bool = 'd3043820717d74d9a17694c176d39733',
+  auto_scale: AutoScale = 'd3043820717d74d9a17694c176d39733',
+  block_device_mappings:
+    typing.List[spotinst_sdk2.models.ocean.aws.BlockDeviceMappings] = 'd3043820717d74d9a17694c176d39733',
+  elastic_ip_pool: ElasticIpPool = 'd3043820717d74d9a17694c176d39733',
+  iam_instance_profile:
+    IamInstanceProfile = 'd3043820717d74d9a17694c176d39733',
+  image_id: str = 'd3043820717d74d9a17694c176d39733',
+  images:
+    typing.List[spotinst_sdk2.models.ocean.aws.ImageId] = 'd3043820717d74d9a17694c176d39733',
+  instance_metadata_options:
+    InstanceMetadataOptions = 'd3043820717d74d9a17694c176d39733',
+  instance_types: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  instance_types_filters:
+    InstanceTypesFilters = 'd3043820717d74d9a17694c176d39733',
+  labels:
+    typing.List[spotinst_sdk2.models.ocean.aws.Labels] = 'd3043820717d74d9a17694c176d39733',
+  name: str = 'd3043820717d74d9a17694c176d39733',
+  ocean_id: str = 'd3043820717d74d9a17694c176d39733',
+  preferred_spot_types:
+    typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  resource_limits: VNGResourceLimits = 'd3043820717d74d9a17694c176d39733',
+  restrict_scale_down: bool = 'd3043820717d74d9a17694c176d39733',
+  root_volume_size: int = 'd3043820717d74d9a17694c176d39733',
+  scheduling: VNGScheduling = 'd3043820717d74d9a17694c176d39733',
+  strategy: VNGStrategy = 'd3043820717d74d9a17694c176d39733',
+  security_group_ids:
+    typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  subnet_ids: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  tags:
+    typing.List[spotinst_sdk2.models.ocean.aws.Tags] = 'd3043820717d74d9a17694c176d39733',
+  taints:
+    typing.List[spotinst_sdk2.models.ocean.aws.Taints] = 'd3043820717d74d9a17694c176d39733',
+  user_data: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __associate_public_ip_address__: bool
+- __auto_scale__: AutoScale
+- __block_device_mappings__: List[BlockDeviceMappings]
+- __elastic_ip_pool__: ElasticIpPool
+- __iam_instance_profile__: IamInstanceProfile
+- __image_id__: str
+- __images__: List[ImageId]
+- __instance_metadata_options__: InstanceMetadataOptions
+- __instance_types __: List[str]
+- __instance_types_filters__: InstanceTypesFilters
+- __labels__: List[Labels]
+- __name__: str
+- __ocean_id__: str
+- __preferred_spot_types__: List[str]
+- __resource_limits__: VNGResourceLimits
+- __restrict_scale_down__: bool
+- __root_volume_size__: int
+- __scheduling__: VNGScheduling
+- __strategy__: VNGStrategy
+- __security_group_ids__: List[str]
+- __subnet_ids__: List[str]
+- __taints__: List[Taints]
+- __user_data__: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.Migration">Migration</h2>
+
+```python
+Migration(
+  self,
+  batch_size_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  force_pod_eviction_on_pdb_failure:
+    bool = 'd3043820717d74d9a17694c176d39733',
+  instance_ids: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  should_evict_stand_alone_pods:
+    bool = 'd3043820717d74d9a17694c176d39733',
+  should_terminate_drained_nodes:
+    bool = 'd3043820717d74d9a17694c176d39733',
+  state: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __batch_size_percentage__: int
+- __force_pod_eviction_on_pdb_failure__: bool
+- __instance_ids__: List[str]
+- __should_evict_stand_alone_pods__: bool
+- __should_terminate_drained_nodes__: bool
+- __state__: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.DetachInstances">DetachInstances</h2>
+
+```python
+DetachInstances(
+  self,
+  instances_to_detach:
+    typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  should_decrement_target_capacity:
+    bool = 'd3043820717d74d9a17694c176d39733',
+  should_terminate_instances: bool = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __instances_to_detach__: List[str]
+- __should_decrement_target_capacity__: bool
+- __should_terminate_instances__: bool
+
+<h2 id="spotinst_sdk2.models.ocean.aws.ImportASGToOceanCluster">ImportASGToOceanCluster</h2>
+
+```python
+ImportASGToOceanCluster(
+  self,
+  instance_types: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __instance_types__: List[str]
+
+<h2 id="spotinst_sdk2.models.ocean.aws.ImportASGToOceanVNG">ImportASGToOceanVNG</h2>
+
+```python
+ImportASGToOceanVNG(
+    self,
+    name: str = 'd3043820717d74d9a17694c176d39733',
+    labels:
+    typing.List[spotinst_sdk2.models.ocean.aws.Labels] = 'd3043820717d74d9a17694c176d39733',
+    taints:
+    typing.List[spotinst_sdk2.models.ocean.aws.Taints] = 'd3043820717d74d9a17694c176d39733'
+)
+```
+
+__Arguments__
+
+- __labels__: List[Labels]
+- __name__: str
+- __taints__: List[Taints]
+
+<h2 id="spotinst_sdk2.models.ocean.aws.ImportEKSNodeGroupToOceanVNG">ImportEKSNodeGroupToOceanVNG</h2>
+
+```python
+ImportEKSNodeGroupToOceanVNG(
+    self,
+    name: str = 'd3043820717d74d9a17694c176d39733',
+    labels:
+    typing.List[spotinst_sdk2.models.ocean.aws.Labels] = 'd3043820717d74d9a17694c176d39733'
+)
+```
+
+__Arguments__
+
+- __labels__: List[Labels]
+- __name__: str
+
+<h2 id="spotinst_sdk2.models.ocean.aws.ExtendedResourceDefinition">ExtendedResourceDefinition</h2>
+
+```python
+ExtendedResourceDefinition(
+  self,
+  mapping: dict = 'd3043820717d74d9a17694c176d39733',
+  name: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __mapping__: dict
+- __name__: str
 

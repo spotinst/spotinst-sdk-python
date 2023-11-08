@@ -21,7 +21,8 @@ class ManagedInstanceAwsClient(Client):
         # Returns
         (Object): ManagedInstance API response
         """
-        req = aws_managed_instance.ManagedInstanceCreationRequest(managed_instance)
+        req = aws_managed_instance.ManagedInstanceCreationRequest(
+            managed_instance)
 
         req_json_str = req.toJSON()
         req_exclude_missing = self.exclude_missing(json.loads(req_json_str))
@@ -45,7 +46,6 @@ class ManagedInstanceAwsClient(Client):
 
         return ret_val
 
-
     def get_managed_instance(self, managed_instance_id: str):
         """
         Get a Managed Instance
@@ -59,10 +59,10 @@ class ManagedInstanceAwsClient(Client):
         geturl = self.__base_mi_url + "/" + managed_instance_id
         result = self.send_get(url=geturl, entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def get_managed_instances(self):
         """
@@ -78,7 +78,6 @@ class ManagedInstanceAwsClient(Client):
             content, self.camel_to_underscore)
         return formatted_response["response"]["items"]
 
-
     def update_managed_instance(self, managed_instance_id: str,
                                 managed_instance_update: aws_managed_instance.ManagedInstance):
         """
@@ -91,12 +90,14 @@ class ManagedInstanceAwsClient(Client):
         # Returns
         (Object): ManagedInstance API response
         """
-        group = aws_managed_instance.ManagedInstanceUpdateRequest(managed_instance_update)
+        group = aws_managed_instance.ManagedInstanceUpdateRequest(
+            managed_instance_update)
 
         excluded_group_update_dict = self.exclude_missing(
             json.loads(group.toJSON()))
 
-        formatted_group_update_dict = self.convert_json(excluded_group_update_dict, self.underscore_to_camel)
+        formatted_group_update_dict = self.convert_json(
+            excluded_group_update_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_update_dict)
 
@@ -110,12 +111,12 @@ class ManagedInstanceAwsClient(Client):
             entity_name=self.ENTITY_NAME,
         )
 
-        formatted_response = self.convert_json(group_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
 
         ret_val = formatted_response["response"]["items"][0]
 
         return ret_val
-
 
     def delete_managed_instance(self, managed_instance_id: str,
                                 deallocation_config: aws_managed_instance.DeallocationConfig = none,
@@ -133,16 +134,18 @@ class ManagedInstanceAwsClient(Client):
         """
         req_url = self.__base_mi_url + "/" + managed_instance_id
 
-        deletion_request = aws_managed_instance.ManagedInstanceDeletionRequest(deallocation_config, ami_backup)
+        deletion_request = aws_managed_instance.ManagedInstanceDeletionRequest(
+            deallocation_config, ami_backup)
 
-        req_exclude_missing = self.exclude_missing(json.loads(deletion_request.toJSON()))
+        req_exclude_missing = self.exclude_missing(
+            json.loads(deletion_request.toJSON()))
 
-        formatted_deletion_dict = self.convert_json(req_exclude_missing, self.underscore_to_camel)
+        formatted_deletion_dict = self.convert_json(
+            req_exclude_missing, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_deletion_dict)
 
         return self.send_delete_with_body(body=body_json, url=req_url, entity_name=self.ENTITY_NAME)
-
 
     def recycle_managed_instance(self, managed_instance_id: str):
         """
@@ -157,10 +160,10 @@ class ManagedInstanceAwsClient(Client):
         put_url = self.__base_mi_url + "/" + managed_instance_id + "/" + "recycle"
         result = self.send_put(url=put_url, entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]
-
 
     def pause_managed_instance(self, managed_instance_id: str):
         """
@@ -175,10 +178,10 @@ class ManagedInstanceAwsClient(Client):
         put_url = self.__base_mi_url + "/" + managed_instance_id + "/" + "pause"
         result = self.send_put(url=put_url, entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]
-
 
     def resume_managed_instance(self, managed_instance_id: str):
         """
@@ -193,10 +196,10 @@ class ManagedInstanceAwsClient(Client):
         put_url = self.__base_mi_url + "/" + managed_instance_id + "/" + "resume"
         result = self.send_put(url=put_url, entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]
-
 
     def get_managed_instance_status(self, managed_instance_id: str):
         """
@@ -211,12 +214,12 @@ class ManagedInstanceAwsClient(Client):
         geturl = self.__base_mi_url + "/" + managed_instance_id + "/" + "status"
         result = self.send_get(url=geturl, entity_name=self.ENTITY_NAME)
 
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
-
-    def get_managed_instance_costs(self, managed_instance_id: str, from_date: str, to_date: str, aggregation_period: str=None):        
+    def get_managed_instance_costs(self, managed_instance_id: str, from_date: str, to_date: str, aggregation_period: str = None):
         """
         Get Managed Instance Costs
 
@@ -231,14 +234,16 @@ class ManagedInstanceAwsClient(Client):
         """
         geturl = self.__base_mi_url + "/" + managed_instance_id + "/" + "costs"
 
-        query_params = dict(toDate=to_date, fromDate=from_date, aggregrationPeriod=aggregation_period)
+        query_params = dict(toDate=to_date, fromDate=from_date,
+                            aggregrationPeriod=aggregation_period)
 
-        result = self.send_get(url=geturl, entity_name=self.ENTITY_NAME, query_params=query_params)
+        result = self.send_get(
+            url=geturl, entity_name=self.ENTITY_NAME, query_params=query_params)
 
-        formatted_response = self.convert_json(result, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-
 
     def delete_volume_in_managed_instance(self, managed_instance_id: str, volume_id: str):
         """
@@ -251,10 +256,10 @@ class ManagedInstanceAwsClient(Client):
         # Returns
         (Object): ManagedInstance API response
         """
-        req_url = self.__base_mi_url + "/" + managed_instance_id + "/" + "volume" + "/" + volume_id
+        req_url = self.__base_mi_url + "/" + \
+            managed_instance_id + "/" + "volume" + "/" + volume_id
 
         return self.send_delete(url=req_url, entity_name=self.ENTITY_NAME)
-
 
     def update_managed_instance_states(self, update_manage_instance_states_list: list):
         """
@@ -268,11 +273,14 @@ class ManagedInstanceAwsClient(Client):
         """
         put_url = self.__base_mi_url + "/" + "state"
 
-        update_state_request = aws_managed_instance.ManagedInstanceUpdateStatesRequest(update_manage_instance_states_list)
+        update_state_request = aws_managed_instance.ManagedInstanceUpdateStatesRequest(
+            update_manage_instance_states_list)
 
-        excluded_state_update_dict = self.exclude_missing(json.loads(update_state_request.toJSON()))
+        excluded_state_update_dict = self.exclude_missing(
+            json.loads(update_state_request.toJSON()))
 
-        formatted_state_update_dict = self.convert_json(excluded_state_update_dict, self.underscore_to_camel)
+        formatted_state_update_dict = self.convert_json(
+            excluded_state_update_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_state_update_dict)
 
@@ -282,10 +290,10 @@ class ManagedInstanceAwsClient(Client):
             entity_name=self.ENTITY_NAME,
         )
 
-        formatted_response = self.convert_json(group_response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
 
         return formatted_response['response']
-
 
     def import_multiple_instances_from_aws(self, migrations_list: list):
         """
@@ -297,7 +305,8 @@ class ManagedInstanceAwsClient(Client):
         # Returns
         (Object): ManagedInstanceMigrations API response
         """
-        req = aws_managed_instance.ManagedInstanceBulkMigrationRequest(migrations_list)
+        req = aws_managed_instance.ManagedInstanceBulkMigrationRequest(
+            migrations_list)
 
         post_url = self.__base_mi_url + "/" + "migration" + "/" + "bulk"
 
@@ -318,7 +327,6 @@ class ManagedInstanceAwsClient(Client):
 
         return formatted_response["response"]["items"]
 
-
     def get_multiple_instances_migration_status(self, migration_ids: list):
         """
         Import Multiple Instances From AWS
@@ -329,7 +337,8 @@ class ManagedInstanceAwsClient(Client):
         # Returns
         (Object): ManagedInstanceMigrations API response
         """
-        req = aws_managed_instance.ManagedInstanceBulkMigrationStatusRequest(migration_ids)
+        req = aws_managed_instance.ManagedInstanceBulkMigrationStatusRequest(
+            migration_ids)
 
         post_url = self.__base_mi_url + "/" + "migration" + "/" + "search"
 

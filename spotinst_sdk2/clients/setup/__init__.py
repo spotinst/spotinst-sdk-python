@@ -8,6 +8,8 @@ import spotinst_sdk2.models.setup.gcp as gcp_setup
 # endregion
 
 # region AWS
+
+
 class SetupAWSClient(Client):
     __base_setup_url = "/setup"
 
@@ -20,7 +22,7 @@ class SetupAWSClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_post(
-            url= self.__base_setup_url + "/credentials/aws/externalId",
+            url=self.__base_setup_url + "/credentials/aws/externalId",
             entity_name="credentials"
         )
 
@@ -36,17 +38,17 @@ class SetupAWSClient(Client):
         Set aws credentials 
         Please create external id using spot api (see #AdminClient.create_aws_external_id)
         and use it when creating the AWS role
-        
+
         # Arguments
         iam_role (String): IAM Role
-        
+
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         credentials = {"iamRole": iam_role}
 
         response = self.send_post(
-            url= self.__base_setup_url +
+            url=self.__base_setup_url +
             "/credentials/aws",
             body=json.dumps(dict(credentials=credentials)),
             entity_name="credentials"
@@ -68,13 +70,13 @@ class SetupAzureClient(Client):
     def set_credentials(self, credentials):
         """"
         Set azure credentials 
-        
+
         # Arguments
         credentials (AzureCredentials): Azure Credentials Object
-        
+
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         set_credentials_request = azure_setup.AzureSetCredentialsRequest(
             azure_credentials=credentials)
 
@@ -85,7 +87,7 @@ class SetupAzureClient(Client):
             excluded_set_credentials_dict, self.underscore_to_camel)
 
         response = self.send_post(
-            url= self.__base_setup_url + "/credentials",
+            url=self.__base_setup_url + "/credentials",
             body=json.dumps(formatted_set_credentials_dict),
             entity_name='credentials')
 
@@ -99,13 +101,13 @@ class SetupAzureClient(Client):
     def validate_credentials(self, credentials):
         """"
         Validate azure credentials 
-        
+
         # Arguments
         credentials (AzureCredentials): Azure Credentials Object
-        
+
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         set_credentials_request = azure_setup.AzureSetCredentialsRequest(
             azure_credentials=credentials)
 
@@ -116,7 +118,7 @@ class SetupAzureClient(Client):
             excluded_set_credentials_dict, self.underscore_to_camel)
 
         response = self.send_post(
-            url= self.__base_setup_url + "/credentials/validation",
+            url=self.__base_setup_url + "/credentials/validation",
             body=json.dumps(formatted_set_credentials_dict),
             entity_name='credentials')
 
@@ -136,13 +138,13 @@ class SetupGCPClient(Client):
     def set_credentials(self, credentials):
         """
         Set gcp credentials 
-        
+
         # Arguments
         credentials (GcpCredentials): Gcp Credentials Object
-        
+
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         set_credentials_request = gcp_setup.GcpSetCredentialsRequest(
             gcp_credentials=credentials)
 
@@ -150,7 +152,7 @@ class SetupGCPClient(Client):
             json.loads(set_credentials_request.to_json()))
 
         response = self.send_post(
-            url= self.__base_setup_url + "/credentials",
+            url=self.__base_setup_url + "/credentials",
             body=json.dumps(excluded_set_credentials_dict),
             entity_name='credentials')
 
@@ -164,13 +166,13 @@ class SetupGCPClient(Client):
     def validate_credentials(self, credentials):
         """
         Validate gcp credentials 
-        
+
         # Arguments
         credentials (GcpCredentials): Gcp Credentials Object
-        
+
         # Returns
         (Object): Spotinst API response 
-        """ 
+        """
         set_credentials_request = gcp_setup.GcpSetCredentialsRequest(
             gcp_credentials=credentials)
 
@@ -178,7 +180,7 @@ class SetupGCPClient(Client):
             json.loads(set_credentials_request.to_json()))
 
         response = self.send_post(
-            url= self.__base_setup_url + "/credentials/validation",
+            url=self.__base_setup_url + "/credentials/validation",
             body=json.dumps(excluded_set_credentials_dict),
             entity_name='credentials')
 

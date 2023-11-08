@@ -4,6 +4,8 @@ from typing import List
 none = "d3043820717d74d9a17694c176d39733"
 
 # region Strategy
+
+
 class Strategy:
     """
     # Arguments
@@ -12,13 +14,14 @@ class Strategy:
     risk: int
     fallback_to_od: bool
     """
+
     def __init__(
             self,
-            draining_timeout:int = none,
-            availability_vs_cost:str = none,
-            risk:int = none,
-            fallback_to_od:bool = none
-            ):
+            draining_timeout: int = none,
+            availability_vs_cost: str = none,
+            risk: int = none,
+            fallback_to_od: bool = none
+    ):
         self.draining_timeout = draining_timeout
         self.availability_vs_cost = availability_vs_cost
         self.risk = risk
@@ -26,6 +29,8 @@ class Strategy:
 # endregion
 
 # region Capacity
+
+
 class Capacity:
     """
     # Arguments
@@ -34,7 +39,8 @@ class Capacity:
     target: int
     unit: str
     """
-    def __init__(self, minimum:int=none, maximum:int=none, target:int=none, unit:str=none):
+
+    def __init__(self, minimum: int = none, maximum: int = none, target: int = none, unit: str = none):
 
         self.minimum = minimum
         self.maximum = maximum
@@ -44,19 +50,24 @@ class Capacity:
 # endregion
 
 # region Weight
+
+
 class Weight:
     """
     # Arguments
     instance_type: str
     weighted_capacity: int
     """
-    def __init__(self, instance_type: str=none, weighted_capacity: int=none):
+
+    def __init__(self, instance_type: str = none, weighted_capacity: int = none):
         self.instance_type = instance_type
         self.weighted_capacity = weighted_capacity
 
 # endregion
 
 # region Instance Types
+
+
 class InstanceTypes:
     """
     # Arguments
@@ -65,6 +76,7 @@ class InstanceTypes:
     weights: List[Weight]
     preferred_spot: List[str]
     """
+
     def __init__(
             self,
             on_demand: str = none,
@@ -80,26 +92,32 @@ class InstanceTypes:
 # endregion
 
 # region Image
+
+
 class Image:
     """
     # Arguments
     id: str
     """
+
     def __init__(
-        self,
-        id: str=none):
+            self,
+            id: str = none):
         self.id = id
 
 # endregion
 
 # region Tag
+
+
 class Tag:
     """
     # Arguments
     tag_key: str
     tag_value: str
     """
-    def __init__(self, tag_key: str=none, tag_value: str=none):
+
+    def __init__(self, tag_key: str = none, tag_value: str = none):
 
         self.tag_key = tag_key
         self.tag_value = tag_value
@@ -107,6 +125,8 @@ class Tag:
 # endregion
 
 # region Launch Specification
+
+
 class LaunchSpecification:
     """
     # Arguments
@@ -118,6 +138,7 @@ class LaunchSpecification:
     images: List[Image]
     tags: List[Tag]
     """
+
     def __init__(
             self,
             security_group_ids: List[str] = none,
@@ -133,7 +154,7 @@ class LaunchSpecification:
         self.image_id = image_id
         self.key_pair = key_pair
         self.user_data = user_data
-        self.images =images
+        self.images = images
         self.tags = tags
 
 # endregion
@@ -147,6 +168,7 @@ class Compute:
     instance_types: InstanceTypes
     subnet_ids: List[str]
     """
+
     def __init__(
             self,
             launch_specification: LaunchSpecification = none,
@@ -160,6 +182,8 @@ class Compute:
 # endregion
 
 # region HPC
+
+
 class HPC:
     """
     # Arguments
@@ -170,15 +194,16 @@ class HPC:
     strategy: Strategy
     compute: Compute
     """
+
     def __init__(
             self,
             name: str = none,
-            description: str=none,
-            region: str=none,
+            description: str = none,
+            region: str = none,
             capacity: Capacity = none,
             strategy: Strategy = none,
-            compute:Compute = none,
-            ):
+            compute: Compute = none,
+    ):
 
         self.name = name
         self.description = description
@@ -188,6 +213,7 @@ class HPC:
         self.compute = compute
 
 # endregion
+
 
 class LSFClusterCreationRequest:
     def __init__(self, lsf_cluster):
@@ -205,7 +231,8 @@ class LSFClusterDeletionRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-    
+
+
 class LSFClusterUpdateRequest:
     def __init__(self, lsf_cluster):
         self.lsf_cluster = lsf_cluster

@@ -5,6 +5,7 @@ none = "d3043820717d74d9a17694c176d39733"
 
 # region Persistence
 
+
 class Persistence:
     """
     # Arguments
@@ -70,7 +71,8 @@ class SchedulingTask:
         self.is_enabled = is_enabled
         self.cron_expression = cron_expression
         self.type = type
-        
+
+
 class Scheduling:
     """
     # Arguments
@@ -106,6 +108,7 @@ class Signal:
         self.timeout = timeout
         self.type = type
 
+
 class Strategy:
     """
     # Arguments
@@ -125,7 +128,7 @@ class Strategy:
             od_windows: List[str] = none,
             optimization_windows: List[str] = none,
             preferred_lifecycle: str = none,
-            revert_to_spot: RevertToSpot =none,
+            revert_to_spot: RevertToSpot = none,
             signals: List[Signal] = none):
         self.draining_timeout = draining_timeout
         self.fallback_to_od = fallback_to_od
@@ -635,6 +638,7 @@ class Compute:
 
 # region StatefulNode
 
+
 class StatefulNode:
     """
     # Arguments
@@ -651,15 +655,15 @@ class StatefulNode:
 
     def __init__(
             self,
-            compute: Compute =none,
+            compute: Compute = none,
             description: str = none,
-            health: Health =none,
+            health: Health = none,
             name: str = none,
-            persistence: Persistence =none,
+            persistence: Persistence = none,
             region: str = none,
             resource_group_name: str = none,
-            scheduling: Scheduling =none,
-            strategy: Strategy =none):
+            scheduling: Scheduling = none,
+            strategy: Strategy = none):
         self.compute = compute
         self.description = description
         self.health = health

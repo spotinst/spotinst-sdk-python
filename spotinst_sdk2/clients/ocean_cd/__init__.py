@@ -65,7 +65,8 @@ class OceanCDClient(Client):
         # Returns
         (Boolean): Response Status
         """
-        request = oceancd_cluster.UpdateClusterNotification(cluster_notification)
+        request = oceancd_cluster.UpdateClusterNotification(
+            cluster_notification)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -111,7 +112,8 @@ class OceanCDClient(Client):
         # Returns
         (Object) : OceanCD Verification Provider
         """
-        request = oceancd_vp.CreateVerificationProviderRequest(verification_provider)
+        request = oceancd_vp.CreateVerificationProviderRequest(
+            verification_provider)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -224,7 +226,8 @@ class OceanCDClient(Client):
         # Returns
         (Object) : OceanCD Verification Template
         """
-        request = oceancd_vt.CreateVerificationTemplateRequest(verification_template)
+        request = oceancd_vt.CreateVerificationTemplateRequest(
+            verification_template)
 
         excluded_node_update_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -650,7 +653,8 @@ class OceanCDClient(Client):
         # Returns
         (Object): OceanCD Rollout List API response
         """
-        query_params = dict(cluster_id=cluster_id, count=count, namespace=namespace, spot_deployment=spot_deployment)
+        query_params = dict(cluster_id=cluster_id, count=count,
+                            namespace=namespace, spot_deployment=spot_deployment)
 
         response = self.send_get(
             url=self.__base_rollout_url + '/latest',
@@ -785,7 +789,8 @@ class OceanCDClient(Client):
         query_params = dict(cluster_id=cluster_id)
 
         response = self.send_get(
-            url=self.__base_workload_url + '/namespace/'+namespace+'/deployment/'+deployment_name+'/migrate',
+            url=self.__base_workload_url + '/namespace/' +
+            namespace+'/deployment/'+deployment_name+'/migrate',
             entity_name="oceancdWorkloads",
             query_params=query_params)
 
@@ -829,7 +834,8 @@ class OceanCDClient(Client):
 
         query_params = dict(clusterId=cluster_id, kind=kind)
         response = self.send_get(
-            url=self.__base_workload_url + '/'+workload_id+'/namespace/'+namespace+'/revision',
+            url=self.__base_workload_url + '/'+workload_id +
+            '/namespace/'+namespace+'/revision',
             entity_name="oceancdWorkloads",
             query_params=query_params)
 
@@ -918,7 +924,8 @@ class OceanCDClient(Client):
         """
         query_params = dict(rollout_id=rollout_id)
         response = self.send_put(
-            url=self.__base_workload_url + '/'+workload_id+'/revision/'+revision_id+'/rollback',
+            url=self.__base_workload_url + '/'+workload_id +
+            '/revision/'+revision_id+'/rollback',
             entity_name="oceancdWorkloads",
             query_params=query_params)
 
