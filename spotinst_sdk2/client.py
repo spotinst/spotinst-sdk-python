@@ -72,13 +72,9 @@ class Client:
         else:
             self.handle_exception("getting {}".format(entity_name), result)
 
-    def send_delete(self, url, entity_name, query_params=None):
+    def send_delete(self, url, entity_name):
         agent = self.resolve_user_agent()
-
-        if query_params is not None:
-            query_params = self.build_query_params_with_input(query_params)
-        else:
-            query_params = self.build_query_params()
+        query_params = self.build_query_params()
 
         headers = dict(
             {
@@ -101,13 +97,9 @@ class Client:
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
 
-    def send_delete_with_body(self, body, url, entity_name, query_params=None):
+    def send_delete_with_body(self, body, url, entity_name):
         agent = self.resolve_user_agent()
-        
-        if query_params is not None:
-            query_params = self.build_query_params_with_input(query_params)
-        else:
-            query_params = self.build_query_params()
+        query_params = self.build_query_params()
             
         headers = dict(
             {
@@ -133,7 +125,7 @@ class Client:
             self.print_output("Response - " + str(result.json()))
             return True
         else:
-            self.handle_exception("deleting {}".format(entity_name), result)
+            self.handle_exception("deleting {}".format(entity_name), result)     
 
     def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
