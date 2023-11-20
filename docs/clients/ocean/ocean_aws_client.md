@@ -413,7 +413,9 @@ __Returns__
 <h2 id="spotinst_sdk2.clients.ocean.OceanAwsClient.delete_virtual_node_group">delete_virtual_node_group</h2>
 
 ```python
-OceanAwsClient.delete_virtual_node_group(vng_id: str)
+OceanAwsClient.delete_virtual_node_group(vng_id: str,
+                                         delete_nodes: bool = None,
+                                         force_delete: bool = None)
 ```
 
 Delete an Ocean Cluster
@@ -421,6 +423,8 @@ Delete an Ocean Cluster
 __Arguments__
 
 - __vng_id (String)__: ID of the Ocean VNG
+- __delete_nodes (Bool)__: When set to "true", all instances belonging to the deleted launch specification will be drained, detached, and terminated.
+- __force_delete (Bool)__: When set to "true", delete even if it is the only custom launch spec remaining, and default launch spec has useAsTemplateOnly = true.
 
 __Returns__
 

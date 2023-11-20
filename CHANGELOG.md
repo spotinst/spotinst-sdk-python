@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.2] - 2023-11-20
+### Fixed
+- Passing query parameters in `delete_virtual_node_group` API for AWS Ocean.
+
 ## [2.2.1] - 2023-11-07
 ### Added
 - Added support for Ocean AWS APIs - VNG, Migration and Extended Resource Definition.
