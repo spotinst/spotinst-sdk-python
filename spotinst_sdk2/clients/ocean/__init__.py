@@ -642,7 +642,7 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean Launch Specification Delete response
         """
-        return self.send_delete(
+        return self.send_delete_with_query_param(
             url=self.__base_ocean_launchspec_url + "/" + vng_id,
             entity_name="ocean_aws_vng",
             query_params=dict(deleteNodes=delete_nodes, forceDelete=force_delete)

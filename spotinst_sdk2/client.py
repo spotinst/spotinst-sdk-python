@@ -125,6 +125,35 @@ class Client:
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
 
+    def send_delete_with_query_param(self, url, entity_name, query_params=None):
+        agent = self.resolve_user_agent()
+        
+        if query_params is not None:
+            query_params = self.build_query_params_with_input(query_params)
+        else:
+            query_params = self.build_query_params()
+            
+        headers = dict(
+            {
+                'User-Agent': agent,
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + self.auth_token
+            }
+        )
+        self.print_output("Sending deletion request to spotinst API.")
+        self.print_output("Request Query Params - " + str(query_params))
+        result = requests.delete(
+            self.base_url + url,
+            params=query_params,
+            headers=headers,
+            timeout=self.timeout)
+        if result.status_code == requests.codes.ok:
+            self.print_output("Success")
+            self.print_output("Response - " + str(result.json()))
+            return True
+        else:
+            self.handle_exception("deleting {}".format(entity_name), result)        
+
     def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
 
