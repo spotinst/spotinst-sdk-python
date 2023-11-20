@@ -98,7 +98,7 @@ class Client:
 
     def send_delete_with_body(self, body, url, entity_name):
         agent = self.resolve_user_agent()
-        query_params = self.build_query_params()  
+        query_params = self.build_query_params()
         headers = dict(
             {
                 'User-Agent': agent,
