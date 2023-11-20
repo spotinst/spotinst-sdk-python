@@ -123,7 +123,7 @@ class Client:
             self.print_output("Response - " + str(result.json()))
             return True
         else:
-            self.handle_exception("deleting {}".format(entity_name), result)     
+            self.handle_exception("deleting {}".format(entity_name), result)
 
     def send_post(self, url, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
