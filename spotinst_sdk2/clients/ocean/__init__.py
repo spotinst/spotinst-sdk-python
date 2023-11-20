@@ -642,10 +642,10 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean Launch Specification Delete response
         """
-        return self.send_delete_with_query_param(
+        return self.send_delete_with_params(
             url=self.__base_ocean_launchspec_url + "/" + vng_id,
             entity_name="ocean_aws_vng",
-            query_params=dict(deleteNodes=delete_nodes, forceDelete=force_delete)
+            user_query_params=dict(deleteNodes=delete_nodes, forceDelete=force_delete)
         )
 
     def attach_load_balancers(self, ocean_id: str, load_balancers):
