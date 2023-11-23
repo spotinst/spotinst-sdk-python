@@ -3,6 +3,7 @@ from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
+
 # region Persistence
 
 
@@ -24,6 +25,7 @@ class Persistence:
         self.should_persist_data_disks = should_persist_data_disks
         self.should_persist_network = should_persist_network
         self.should_persist_os_disk = should_persist_os_disk
+
 
 # endregion
 
@@ -49,6 +51,7 @@ class Health:
         self.auto_healing = auto_healing
         self.grace_period = grace_period
         self.unhealthy_duration = unhealthy_duration
+
 
 # endregion
 
@@ -81,6 +84,7 @@ class Scheduling:
 
     def __init__(self, tasks: List[SchedulingTask] = none):
         self.tasks = tasks
+
 
 # endregion
 
@@ -137,6 +141,7 @@ class Strategy:
         self.preferred_lifecycle = preferred_lifecycle
         self.revert_to_spot = revert_to_spot
         self.signals = signals
+
 
 # endregion
 
@@ -634,6 +639,7 @@ class Compute:
         self.vm_sizes = vm_sizes
         self.zones = zones
 
+
 # endregion
 
 # region StatefulNode
@@ -673,6 +679,7 @@ class StatefulNode:
         self.resource_group_name = resource_group_name
         self.scheduling = scheduling
         self.strategy = strategy
+
 
 # endregion
 
