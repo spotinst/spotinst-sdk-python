@@ -922,7 +922,7 @@ class AttachDataDiskConfiguration:
             data_disk_resource_group_name: str = none,
             lun: int = none,
             size_g_b: int = none,
-            storage_account_type: str = none,
+            storage_account_type: DataDiskType = none,
             zone: str = none):
         self.data_disk_name = data_disk_name
         self.data_disk_resource_group_name = data_disk_resource_group_name
@@ -977,7 +977,7 @@ class DetachDataDiskFromStatefulNodeRequest:
             indent=4)
 
 
-class SwapOsDiskToStatefulNodeRequest:
+class SwapOsDiskToStatefulNodeConfiguration:
     def __init__(self, os_disk_name: str = none,
                  os_disk_resource_group_name: str = none,
                  retention_time: int = none,
@@ -986,6 +986,14 @@ class SwapOsDiskToStatefulNodeRequest:
         self.os_disk_resource_group_name = os_disk_resource_group_name
         self.retention_time = retention_time
         self.should_terminate = should_terminate
+
+
+class SwapOsDiskToStatefulNodeRequest:
+    def __init__(self, swap_os_disk_to_stateful_node_config: SwapOsDiskToStatefulNodeConfiguration = none):
+        self.os_disk_name = swap_os_disk_to_stateful_node_config.os_disk_name
+        self.os_disk_resource_group_name = swap_os_disk_to_stateful_node_config.os_disk_resource_group_name
+        self.retention_time = swap_os_disk_to_stateful_node_config.retention_time
+        self.should_terminate = swap_os_disk_to_stateful_node_config.should_terminate
 
     def toJSON(self):
         return json.dumps(

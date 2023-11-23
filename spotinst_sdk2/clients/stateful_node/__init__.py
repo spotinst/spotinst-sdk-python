@@ -119,15 +119,18 @@ class StatefulNodeAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_all_stateful_nodes(self):
+    def get_all_stateful_nodes(self, name: str = none, region: str = none):
         """
         Get all Stateful Nodes
 
         # Returns
         (List): List of Stateful Nodes API response
         """
+        query_params = dict(name=name, region=region)
+
         response = self.send_get(
             url=self.__base_stateful_node_url,
+            query_params=query_params,
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -225,7 +228,7 @@ class StatefulNodeAzureClient(Client):
         """
         response = self.send_get(
             url=self.__base_stateful_node_url + "/resourceGroup/" + resource_group_name +
-            "/virtualMachine/" + virtual_machine_name + "/importConfiguration",
+                "/virtualMachine/" + virtual_machine_name + "/importConfiguration",
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -368,6 +371,111 @@ class StatefulNodeAzureClient(Client):
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/" + node_id + "/log",
+            query_params=query_params,
+            entity_name=self.ENTITY_NAME)
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def swap_os_disk_to_stateful_node(self, node_id: str,
+                                      swap_osdisk_configuration: azure_stateful_node.SwapOsDiskToStatefulNodeConfiguration):
+        """
+        Configure a new managed OS disk for an OS persisted paused Stateful Node
+
+        # Arguments
+        node_id (String): Stateful Node  ID
+        swap_osdisk_configuration (SwapOsDiskToStatefulNodeConfiguration): Configuration of OS Disk
+
+        # Returns
+        (Object): StatefulNode API response
+        """
+        request = azure_stateful_node.SwapOsDiskToStatefulNodeRequest(
+            swap_osdisk_configuration)
+
+        excluded_node_update_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_node_update_dict = self.convert_json(
+            excluded_node_update_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_node_update_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_stateful_node_url + "/" + node_id + "/osDisk/swap",
+            entity_name=self.ENTITY_NAME)
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def get_all_stateful_node_costs(self, from_date: str, to_date: str, owner_id: str = none):
+        """
+        Get the total costs of a single stateful node/all stateful nodes and for a specific time period.
+
+        # Arguments
+        to_date (String): On or Before this date
+        from_date (String): On or After this date
+        ownerId(String) (Optional): Log level severity
+
+        # Returns
+        (Object): Stateful Node API response
+        """
+        query_params = dict(toDate=to_date, fromDate=from_date, owner_id=owner_id)
+
+        response = self.send_get(
+            url=self.__base_stateful_node_url + "/cost",
+            query_params=query_params,
+            entity_name=self.ENTITY_NAME)
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_all_stateful_node_aggregated_daily_costs(self, from_date: str, to_date: str, owner_id: str = none):
+        """
+        Get the total costs per day of a single stateful node/all stateful nodes and for a specific time period.
+
+        # Arguments
+        to_date (String): On or Before this date
+        from_date (String): On or After this date
+        ownerId(String) (Optional): Log level severity
+
+        # Returns
+        (Object): Stateful Node API response
+        """
+        query_params = dict(toDate=to_date, fromDate=from_date, owner_id=owner_id)
+
+        response = self.send_get(
+            url=self.__base_stateful_node_url + "/cost/daily",
+            query_params=query_params,
+            entity_name=self.ENTITY_NAME)
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_stateful_node_size_usage(self, from_date: str, to_date: str, owner_id: str = none):
+        """
+        Get the daily costs per VM size of a single stateful node/all stateful nodes and for a specific time period.
+
+        # Arguments
+        to_date (String): On or Before this date
+        from_date (String): On or After this date
+        ownerId(String) (Optional): Log level severity
+
+        # Returns
+        (Object): Stateful Node API response
+        """
+        query_params = dict(toDate=to_date, fromDate=from_date, owner_id=owner_id)
+
+        response = self.send_get(
+            url=self.__base_stateful_node_url + "/sizeUsage/daily",
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 
