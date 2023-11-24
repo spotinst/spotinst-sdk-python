@@ -119,7 +119,7 @@ class StatefulNodeAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_all_stateful_nodes(self, name: str = none, region: str = none):
+    def get_all_stateful_nodes(self, name: str = None, region: str = None):
         """
         Get all Stateful Nodes
 
@@ -412,7 +412,7 @@ class StatefulNodeAzureClient(Client):
 
         return formatted_response["response"]
 
-    def get_all_stateful_node_costs(self, from_date: str, to_date: str, owner_id: str = none):
+    def get_all_stateful_node_costs(self, from_date: str, to_date: str, owner_id: str = None):
         """
         Get the total costs of a single stateful node/all stateful nodes and for a specific time period.
 
@@ -424,7 +424,7 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): Stateful Node API response
         """
-        query_params = dict(toDate=to_date, fromDate=from_date, owner_id=owner_id)
+        query_params = dict(toDate=to_date, fromDate=from_date, ownerId=owner_id)
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/cost",
@@ -436,7 +436,7 @@ class StatefulNodeAzureClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def get_all_stateful_node_aggregated_daily_costs(self, from_date: str, to_date: str, owner_id: str = none):
+    def get_all_stateful_node_aggregated_daily_costs(self, from_date: str, to_date: str, owner_id: str = None):
         """
         Get the total costs per day of a single stateful node/all stateful nodes and for a specific time period.
 
@@ -448,7 +448,7 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): Stateful Node API response
         """
-        query_params = dict(toDate=to_date, fromDate=from_date, owner_id=owner_id)
+        query_params = dict(fromDate=from_date, toDate=to_date, ownerId=owner_id)
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/cost/daily",
@@ -460,7 +460,7 @@ class StatefulNodeAzureClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def get_stateful_node_size_usage(self, from_date: str, to_date: str, owner_id: str = none):
+    def get_stateful_node_size_usage(self, from_date: str, to_date: str, owner_id: str = None):
         """
         Get the daily costs per VM size of a single stateful node/all stateful nodes and for a specific time period.
 
@@ -472,7 +472,7 @@ class StatefulNodeAzureClient(Client):
         # Returns
         (Object): Stateful Node API response
         """
-        query_params = dict(toDate=to_date, fromDate=from_date, owner_id=owner_id)
+        query_params = dict(fromDate=from_date, toDate=to_date, ownerId=owner_id)
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/sizeUsage/daily",

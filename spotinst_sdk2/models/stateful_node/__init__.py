@@ -68,7 +68,7 @@ class Health:
 
 # region Scheduling
 
-class SchedulingTastType(Enum):
+class SchedulingTaskType(Enum):
     pause = "pause"
     resume = "resume"
     recycle = "recycle"
@@ -79,14 +79,14 @@ class SchedulingTask:
     # Arguments
     is_enabled: bool
     cron_expression: str
-    type: SchedulingTastType
+    type: SchedulingTaskType
     """
 
     def __init__(
             self,
             is_enabled: bool = none,
             cron_expression: str = none,
-            type: SchedulingTastType = none):
+            type: SchedulingTaskType = none):
         self.is_enabled = is_enabled
         self.cron_expression = cron_expression
         self.type = type
@@ -144,9 +144,16 @@ class CapacityReservationGroups:
     """
     # Arguments
     name: str
-    resource_group+name: str
+    resource_group_name: str
     should_prioritize: bool
     """
+    def __init__(self,
+                 name: str = none,
+                 resource_group_name: str = none,
+                 should_prioritize: bool = none):
+        self.name = name
+        self.resource_group_name = resource_group_name
+        self.should_prioritize = should_prioritize
 
 
 class UtilizationStrategy(Enum):
@@ -759,11 +766,16 @@ class LaunchSpecification:
         self.vm_name_prefix = vm_name_prefix
 
 
+class OsType(Enum):
+    linux = "Linux"
+    windows = "Windows"
+
+
 class Compute:
     """
     # Arguments
     launch_specification: LaunchSpecification
-    os: str
+    os: OsType
     preferred_zone: str
     vm_sizes: VmSizes
     zones: List[str]
@@ -772,7 +784,7 @@ class Compute:
     def __init__(
             self,
             launch_specification: LaunchSpecification = none,
-            os: str = none,
+            os: OsType = none,
             preferred_zone: str = none,
             vm_sizes: VmSizes = none,
             zones: List[str] = none):
