@@ -83,7 +83,8 @@ __Returns__
 <h2 id="spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient.get_all_stateful_nodes">get_all_stateful_nodes</h2>
 
 ```python
-StatefulNodeAzureClient.get_all_stateful_nodes()
+StatefulNodeAzureClient.get_all_stateful_nodes(name: str = None,
+                                               region: str = None)
 ```
 
 Get all Stateful Nodes
@@ -262,6 +263,81 @@ __Arguments__
 - __severity(String) (Optional)__: Log level severity
 - __resource_id(String) (Optional)__: Filter log extracted entires related to a specific resource id
 - __limit(String) (Optional)__: Maximum number of lines to extract in a response
+
+__Returns__
+
+`(Object)`: Stateful Node API response
+
+<h2 id="spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient.swap_os_disk_to_stateful_node">swap_os_disk_to_stateful_node</h2>
+
+```python
+StatefulNodeAzureClient.swap_os_disk_to_stateful_node(
+  node_id: str, swap_osdisk_configuration: SwapOsDiskConfiguration)
+```
+
+Configure a new managed OS disk for an OS persisted paused Stateful Node
+
+__Arguments__
+
+- __node_id (String)__: Stateful Node  ID
+- __swap_osdisk_configuration (SwapOsDiskConfiguration)__: Configuration of OS Disk
+
+__Returns__
+
+`(Object)`: StatefulNode API response
+
+<h2 id="spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient.get_all_stateful_node_costs">get_all_stateful_node_costs</h2>
+
+```python
+StatefulNodeAzureClient.get_all_stateful_node_costs(
+  from_date: str, to_date: str, owner_id: str = None)
+```
+
+Get the total costs of a single stateful node/all stateful nodes and for a specific time period.
+
+__Arguments__
+
+- __to_date (String)__: On or Before this date
+- __from_date (String)__: On or After this date
+- __ownerId (String) (Optional)__: Log level severity
+
+__Returns__
+
+`(Object)`: Stateful Node API response
+
+<h2 id="spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient.get_all_stateful_node_aggregated_daily_costs">get_all_stateful_node_aggregated_daily_costs</h2>
+
+```python
+StatefulNodeAzureClient.get_all_stateful_node_aggregated_daily_costs(
+  from_date: str, to_date: str, owner_id: str = None)
+```
+
+Get the total costs per day of a single stateful node/all stateful nodes and for a specific time period.
+
+__Arguments__
+
+- __to_date (String)__: On or Before this date
+- __from_date (String)__: On or After this date
+- __ownerId (String) (Optional)__: Log level severity
+
+__Returns__
+
+`(Object)`: Stateful Node API response
+
+<h2 id="spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient.get_stateful_node_size_usage">get_stateful_node_size_usage</h2>
+
+```python
+StatefulNodeAzureClient.get_stateful_node_size_usage(
+  from_date: str, to_date: str, owner_id: str = None)
+```
+
+Get the daily costs per VM size of a single stateful node/all stateful nodes and for a specific time period.
+
+__Arguments__
+
+- __to_date (String)__: On or Before this date
+- __from_date (String)__: On or After this date
+- __ownerId (String) (Optional)__: Log level severity
 
 __Returns__
 
