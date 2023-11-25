@@ -147,6 +147,7 @@ class CapacityReservationGroups:
     resource_group_name: str
     should_prioritize: bool
     """
+
     def __init__(self,
                  name: str = none,
                  resource_group_name: str = none,
@@ -168,6 +169,7 @@ class CapacityReservation:
     should_utilize: bool
     utilization_strategy: UtilizationStrategy
     """
+
     def __init__(
             self,
             capacity_reservation_groups: List[CapacityReservationGroups] = none,
@@ -257,7 +259,7 @@ class DataDisk:
     """
     # Arguments
     lun: int
-    size_gb = int
+    size_g_b = int
     type: DataDiskType
     """
 
@@ -690,6 +692,7 @@ class Security:
     security_type: SecurityType
     v_tpm_enabled: bool
     """
+
     def __init__(
             self,
             secure_boot_enabled: bool = none,
@@ -805,7 +808,7 @@ class StatefulNode:
     # Arguments
     compute: Compute
     description: str
-    health: Health    
+    health: Health
     name: str
     persistence: Persistence
     region: str
@@ -989,7 +992,7 @@ class DetachDataDiskFromStatefulNodeRequest:
             indent=4)
 
 
-class SwapOsDiskToStatefulNodeConfiguration:
+class SwapOsDiskConfiguration:
     def __init__(self, os_disk_name: str = none,
                  os_disk_resource_group_name: str = none,
                  retention_time: int = none,
@@ -1001,11 +1004,11 @@ class SwapOsDiskToStatefulNodeConfiguration:
 
 
 class SwapOsDiskToStatefulNodeRequest:
-    def __init__(self, swap_os_disk_to_stateful_node_config: SwapOsDiskToStatefulNodeConfiguration = none):
-        self.os_disk_name = swap_os_disk_to_stateful_node_config.os_disk_name
-        self.os_disk_resource_group_name = swap_os_disk_to_stateful_node_config.os_disk_resource_group_name
-        self.retention_time = swap_os_disk_to_stateful_node_config.retention_time
-        self.should_terminate = swap_os_disk_to_stateful_node_config.should_terminate
+    def __init__(self, config: SwapOsDiskConfiguration = none):
+        self.os_disk_name = config.os_disk_name
+        self.os_disk_resource_group_name = config.os_disk_resource_group_name
+        self.retention_time = config.retention_time
+        self.should_terminate = config.should_terminate
 
     def toJSON(self):
         return json.dumps(

@@ -228,7 +228,7 @@ class StatefulNodeAzureClient(Client):
         """
         response = self.send_get(
             url=self.__base_stateful_node_url + "/resourceGroup/" + resource_group_name +
-                "/virtualMachine/" + virtual_machine_name + "/importConfiguration",
+            "/virtualMachine/" + virtual_machine_name + "/importConfiguration",
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -380,13 +380,13 @@ class StatefulNodeAzureClient(Client):
         return formatted_response["response"]["items"]
 
     def swap_os_disk_to_stateful_node(self, node_id: str,
-                                      swap_osdisk_configuration: azure_stateful_node.SwapOsDiskToStatefulNodeConfiguration):
+                                      swap_osdisk_configuration: azure_stateful_node.SwapOsDiskConfiguration):
         """
         Configure a new managed OS disk for an OS persisted paused Stateful Node
 
         # Arguments
         node_id (String): Stateful Node  ID
-        swap_osdisk_configuration (SwapOsDiskToStatefulNodeConfiguration): Configuration of OS Disk
+        swap_osdisk_configuration (SwapOsDiskConfiguration): Configuration of OS Disk
 
         # Returns
         (Object): StatefulNode API response
@@ -419,12 +419,13 @@ class StatefulNodeAzureClient(Client):
         # Arguments
         to_date (String): On or Before this date
         from_date (String): On or After this date
-        ownerId(String) (Optional): Log level severity
+        ownerId (String) (Optional): Log level severity
 
         # Returns
         (Object): Stateful Node API response
         """
-        query_params = dict(toDate=to_date, fromDate=from_date, ownerId=owner_id)
+        query_params = dict(
+            toDate=to_date, fromDate=from_date, ownerId=owner_id)
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/cost",
@@ -443,12 +444,13 @@ class StatefulNodeAzureClient(Client):
         # Arguments
         to_date (String): On or Before this date
         from_date (String): On or After this date
-        ownerId(String) (Optional): Log level severity
+        ownerId (String) (Optional): Log level severity
 
         # Returns
         (Object): Stateful Node API response
         """
-        query_params = dict(fromDate=from_date, toDate=to_date, ownerId=owner_id)
+        query_params = dict(fromDate=from_date,
+                            toDate=to_date, ownerId=owner_id)
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/cost/daily",
@@ -467,12 +469,13 @@ class StatefulNodeAzureClient(Client):
         # Arguments
         to_date (String): On or Before this date
         from_date (String): On or After this date
-        ownerId(String) (Optional): Log level severity
+        ownerId (String) (Optional): Log level severity
 
         # Returns
         (Object): Stateful Node API response
         """
-        query_params = dict(fromDate=from_date, toDate=to_date, ownerId=owner_id)
+        query_params = dict(fromDate=from_date,
+                            toDate=to_date, ownerId=owner_id)
 
         response = self.send_get(
             url=self.__base_stateful_node_url + "/sizeUsage/daily",

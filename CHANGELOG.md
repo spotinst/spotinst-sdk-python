@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.0] - 2023-11-25
+### Added
+- Added support for Azure Stateful Node APIs: `swap_os_disk_to_stateful_node`, `get_all_stateful_node_costs`,
+`get_all_stateful_node_aggregated_daily_costs`, `get_stateful_node_size_usage`.
+
+### Fixed
+- Updated fields in all Azure Stateful Node model classes as per latest schema.
+
 ## [2.2.2] - 2023-11-20
 ### Fixed
 - Passing query parameters in `delete_virtual_node_group` API for AWS Ocean.
@@ -37,7 +45,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.1.40] - 2023-07-31
 ### Added
 - Add support for GCP Eastigroup APIs: `get_elastilog`, `get_cost_per_account`, `get_instance_status`,
-- `lock_instance`, `unlock_instance`
+`lock_instance`, `unlock_instance`
 
 ## [2.1.39] - 2023-07-17
 ### Added
