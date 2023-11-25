@@ -1,22 +1,29 @@
 import json
+from enum import Enum
 from typing import List
 
 none = "d3043820717d74d9a17694c176d39733"
 
+
 # region Persistence
+
+
+class PersistenceMode(Enum):
+    reattach = "reattach"
+    on_launch = "onLaunch"
 
 
 class Persistence:
     """
     # Arguments
-    data_disks_persistence_mode: str
-    os_disk_persistence_mode: str
+    data_disks_persistence_mode: PersistenceMode
+    os_disk_persistence_mode: PersistenceMode
     should_persist_data_disks: bool
     should_persist_network: bool
     should_persist_os_disk: bool
     """
 
-    def __init__(self, data_disks_persistence_mode: str = none, os_disk_persistence_mode: str = none,
+    def __init__(self, data_disks_persistence_mode: PersistenceMode = none, os_disk_persistence_mode: PersistenceMode = none,
                  should_persist_data_disks: bool = none, should_persist_network: bool = none,
                  should_persist_os_disk: bool = none):
         self.data_disks_persistence_mode = data_disks_persistence_mode
@@ -25,15 +32,20 @@ class Persistence:
         self.should_persist_network = should_persist_network
         self.should_persist_os_disk = should_persist_os_disk
 
+
 # endregion
 
 
 # region Health
+class HealthCheckTypes(Enum):
+    vm_state = "vmState"
+    application_gateway = "applicationGateway"
+
 
 class Health:
     """
     # Arguments
-    health_check_types: List[str]
+    health_check_types: List[HealthCheckTypes]
     auto_healing: bool
     grace_period: int
     unhealthy_duration: int
@@ -41,7 +53,7 @@ class Health:
 
     def __init__(
             self,
-            health_check_types: List[str] = none,
+            health_check_types: List[HealthCheckTypes] = none,
             auto_healing: bool = none,
             grace_period: int = none,
             unhealthy_duration: int = none):
@@ -50,24 +62,31 @@ class Health:
         self.grace_period = grace_period
         self.unhealthy_duration = unhealthy_duration
 
+
 # endregion
 
 
 # region Scheduling
+
+class SchedulingTaskType(Enum):
+    pause = "pause"
+    resume = "resume"
+    recycle = "recycle"
+
 
 class SchedulingTask:
     """
     # Arguments
     is_enabled: bool
     cron_expression: str
-    type: str
+    type: SchedulingTaskType
     """
 
     def __init__(
             self,
             is_enabled: bool = none,
             cron_expression: str = none,
-            type: str = none):
+            type: SchedulingTaskType = none):
         self.is_enabled = is_enabled
         self.cron_expression = cron_expression
         self.type = type
@@ -82,54 +101,117 @@ class Scheduling:
     def __init__(self, tasks: List[SchedulingTask] = none):
         self.tasks = tasks
 
+
 # endregion
 
 
 # region Strategy
 
+class PerformAt(Enum):
+    time_window = "timeWindow"
+    never = "never"
+    always = "always"
+
+
 class RevertToSpot:
     """
     # Arguments
-    perform_at: str
+    perform_at: PerformAt
     """
 
-    def __init__(self, perform_at: str = none):
+    def __init__(self, perform_at: PerformAt = none):
         self.perform_at = perform_at
+
+
+class SignalType(Enum):
+    vm_ready = "vmReady"
+    vm_ready_to_shutdown = "vmReadyToShutdown"
 
 
 class Signal:
     """
     # Arguments
     timeout: int
-    type: str
+    type: SignalType
     """
 
-    def __init__(self, timeout: int = none, type: str = none):
+    def __init__(self, timeout: int = none, type: SignalType = none):
         self.timeout = timeout
         self.type = type
+
+
+class CapacityReservationGroups:
+    """
+    # Arguments
+    name: str
+    resource_group_name: str
+    should_prioritize: bool
+    """
+
+    def __init__(self,
+                 name: str = none,
+                 resource_group_name: str = none,
+                 should_prioritize: bool = none):
+        self.name = name
+        self.resource_group_name = resource_group_name
+        self.should_prioritize = should_prioritize
+
+
+class UtilizationStrategy(Enum):
+    utilize_over_spot = "utilizeOverSpot"
+    utilize_over_od = "utilizeOverOD"
+
+
+class CapacityReservation:
+    """
+    # Arguments
+    capacity_reservation_groups: List[CapacityReservationGroups]
+    should_utilize: bool
+    utilization_strategy: UtilizationStrategy
+    """
+
+    def __init__(
+            self,
+            capacity_reservation_groups: List[CapacityReservationGroups] = none,
+            should_utilize: bool = none,
+            utilization_strategy: UtilizationStrategy = none):
+        self.capacity_reservation_groups = capacity_reservation_groups
+        self.should_utilize = should_utilize
+        self.utilization_strategy = utilization_strategy
+
+
+class PreferredLifeCycle(Enum):
+    spot = "spot"
+    od = "od"
 
 
 class Strategy:
     """
     # Arguments
+    availability_vs_cost: int
+    capacity_reservation: CapacityReservation
     draining_timeout: int
     fallback_to_od: bool
     od_windows: List[str]
     optimization_windows: List[str]
-    preferred_lifecycle: str
+    preferred_lifecycle: PreferredLifeCycle
     revert_to_spot: RevertToSpot
     signals: List[Signal]
     """
 
     def __init__(
             self,
+            availability_vs_cost: int = none,
+            capacity_reservation: CapacityReservation = none,
             draining_timeout: int = none,
             fallback_to_od: bool = none,
             od_windows: List[str] = none,
             optimization_windows: List[str] = none,
-            preferred_lifecycle: str = none,
+            preferred_lifecycle: PreferredLifeCycle = none,
             revert_to_spot: RevertToSpot = none,
             signals: List[Signal] = none):
+        self.availability_vs_cost = availability_vs_cost
+        self.capacity_reservation = capacity_reservation
         self.draining_timeout = draining_timeout
         self.fallback_to_od = fallback_to_od
         self.od_windows = od_windows
@@ -138,42 +220,54 @@ class Strategy:
         self.revert_to_spot = revert_to_spot
         self.signals = signals
 
+
 # endregion
 
 
 # region Compute
+class StorageType(Enum):
+    managed = "managed"
+    unmanaged = "unmanaged"
+
 
 class BootDiagnostics:
     """
     # Arguments
     is_enabled: bool
     storage_uri = str
-    type: str
+    type: StorageType
     """
 
     def __init__(
             self,
             is_enabled: bool = none,
             storage_uri: str = none,
-            type: str = none):
+            type: StorageType = none):
         self.is_enabled = is_enabled
         self.storage_uri = storage_uri
         self.type = type
+
+
+class DataDiskType(Enum):
+    standard_lrs = "Standard_LRS"
+    premium_lrs = "Premium_LRS"
+    standard_ssd_lrs = "StandardSSD_LRS"
+    ultra_ssd_lrs = "UltraSSD_LRS"
 
 
 class DataDisk:
     """
     # Arguments
     lun: int
-    size_gb = int
-    type: str
+    size_g_b = int
+    type: DataDiskType
     """
 
     def __init__(
             self,
             lun: int = none,
             size_g_b: int = none,
-            type: str = none):
+            type: DataDiskType = none):
         self.lun = lun
         self.size_g_b = size_g_b
         self.type = type
@@ -185,6 +279,8 @@ class Extension:
     api_version: str
     minor_version_auto_upgrade: bool
     name: str
+    protected_settings: ProtectedSettings
+    public_settings: PublicSettings
     publisher: str
     type: str
     """
@@ -277,6 +373,11 @@ class Image:
         self.gallery = gallery
 
 
+class LoadBalancerType(Enum):
+    load_balancer = "loadBalancer"
+    application_gateway = "applicationGateway"
+
+
 class LoadBalancer:
     """
     # Arguments
@@ -284,7 +385,7 @@ class LoadBalancer:
     load_balancer_sku: str
     name: str
     resource_group_name: str
-    type: str
+    type: LoadBalancerType
     """
 
     def __init__(
@@ -293,7 +394,7 @@ class LoadBalancer:
             load_balancer_sku: str = none,
             name: str = none,
             resource_group_name: str = none,
-            type: str = none):
+            type: LoadBalancerType = none):
         self.backend_pool_names = backend_pool_names
         self.load_balancer_sku = load_balancer_sku
         self.name = name
@@ -344,17 +445,22 @@ class ManagedServiceIdentity:
         self.name = name
 
 
+class PrivateIpAddressVersion(Enum):
+    ipv4 = "IPv4"
+    ipv6 = "IPv6"
+
+
 class AdditionalIpConfiguration:
     """
     # Arguments
     name: str
-    private_ip_address_version: str
+    private_ip_address_version: PrivateIpAddressVersion
     """
 
     def __init__(
             self,
             name: str = none,
-            private_ip_address_version: str = none):
+            private_ip_address_version: PrivateIpAddressVersion = none):
         self.name = name
         self.private_ip_address_version = private_ip_address_version
 
@@ -404,6 +510,11 @@ class PublicIp:
         self.resource_group_name = resource_group_name
 
 
+class PublicIpSku(Enum):
+    standard = "Standard"
+    basic = "Basic"
+
+
 class NetworkInterface:
     """
     # Arguments
@@ -426,10 +537,10 @@ class NetworkInterface:
             assign_public_ip: bool = none,
             enable_ip_forwarding: bool = none,
             is_primary: bool = none,
-            network_security_group=none,
+            network_security_group: NetworkSecurityGroup = none,
             private_ip_addresses: List[str] = none,
             public_ips: List[PublicIp] = none,
-            public_ip_sku: str = none,
+            public_ip_sku: PublicIpSku = none,
             subnet_name: str = none):
         self.additional_ip_configurations = additional_ip_configurations
         self.application_security_groups = application_security_groups
@@ -465,13 +576,13 @@ class OsDisk:
     """
     # Arguments
     size_g_b: int
-    type: str
+    type: DataDiskType
     """
 
     def __init__(
             self,
             size_g_b: int = none,
-            type: str = none):
+            type: DataDiskType = none):
         self.size_g_b = size_g_b
         self.type = type
 
@@ -554,6 +665,44 @@ class VmSizes:
         self.spot_sizes = spot_sizes
 
 
+class ProximityPlacementGroups:
+    """
+    # Arguments
+    name: str
+    resource_group_name: str
+    """
+
+    def __init__(
+            self,
+            name: str = none,
+            resource_group_name: str = none):
+        self.name = name
+        self.resource_group_name = resource_group_name
+
+
+class SecurityType(Enum):
+    standard = "Standard"
+    trusted_launch = "TrustedLaunch"
+
+
+class Security:
+    """
+    # Arguments
+    secure_boot_enabled: bool
+    security_type: SecurityType
+    v_tpm_enabled: bool
+    """
+
+    def __init__(
+            self,
+            secure_boot_enabled: bool = none,
+            security_type: SecurityType = none,
+            v_tpm_enabled: bool = none):
+        self.secure_boot_enabled = secure_boot_enabled
+        self.security_type = security_type
+        self.v_tpm_enabled = v_tpm_enabled
+
+
 class LaunchSpecification:
     """
     # Arguments
@@ -568,9 +717,12 @@ class LaunchSpecification:
     managed_service_identities: List[ManagedServiceIdentity]
     network: Network
     os_disk: OsDisk
+    proximity_placement_groups: List[ProximityPlacementGroups]
     secrets: List[Secret]
+    security: Security
     shutdown_script: str
     tags: List[Tag]
+    user_data: str
     vm_name: str
     vm_name_prefix: str
     """
@@ -588,9 +740,12 @@ class LaunchSpecification:
             managed_service_identities: List[ManagedServiceIdentity] = none,
             network: Network = none,
             os_disk: OsDisk = none,
+            proximity_placement_groups: List[ProximityPlacementGroups] = none,
             secrets: List[Secret] = none,
+            security: Security = none,
             shutdown_script: str = none,
             tags: List[Tag] = none,
+            user_data: str = none,
             vm_name: str = none,
             vm_name_prefix: str = none):
         self.boot_diagnostics = boot_diagnostics
@@ -604,18 +759,26 @@ class LaunchSpecification:
         self.managed_service_identities = managed_service_identities
         self.network = network
         self.os_disk = os_disk
+        self.proximity_placement_groups = proximity_placement_groups
         self.secrets = secrets
+        self.security = security
         self.shutdown_script = shutdown_script
         self.tags = tags
+        self.user_data = user_data
         self.vm_name = vm_name
         self.vm_name_prefix = vm_name_prefix
+
+
+class OsType(Enum):
+    linux = "Linux"
+    windows = "Windows"
 
 
 class Compute:
     """
     # Arguments
     launch_specification: LaunchSpecification
-    os: str
+    os: OsType
     preferred_zone: str
     vm_sizes: VmSizes
     zones: List[str]
@@ -624,7 +787,7 @@ class Compute:
     def __init__(
             self,
             launch_specification: LaunchSpecification = none,
-            os: str = none,
+            os: OsType = none,
             preferred_zone: str = none,
             vm_sizes: VmSizes = none,
             zones: List[str] = none):
@@ -633,6 +796,7 @@ class Compute:
         self.preferred_zone = preferred_zone
         self.vm_sizes = vm_sizes
         self.zones = zones
+
 
 # endregion
 
@@ -644,7 +808,7 @@ class StatefulNode:
     # Arguments
     compute: Compute
     description: str
-    health: Health    
+    health: Health
     name: str
     persistence: Persistence
     region: str
@@ -673,6 +837,7 @@ class StatefulNode:
         self.resource_group_name = resource_group_name
         self.scheduling = scheduling
         self.strategy = strategy
+
 
 # endregion
 
@@ -738,11 +903,13 @@ class DeleteStatefulNodeRequest:
 
 class ImportVmConfiguration:
     def __init__(self,
+                 convert_unmanaged_disks: bool = none,
                  draining_timeout: int = none,
                  node: StatefulNode = none,
                  original_vm_name: str = none,
                  resource_group_name: str = none,
                  resource_retention_time: int = none):
+        self.convert_unmanaged_disks = convert_unmanaged_disks
         self.draining_timeout = draining_timeout
         self.node = node
         self.original_vm_name = original_vm_name
@@ -770,7 +937,7 @@ class AttachDataDiskConfiguration:
             data_disk_resource_group_name: str = none,
             lun: int = none,
             size_g_b: int = none,
-            storage_account_type: str = none,
+            storage_account_type: DataDiskType = none,
             zone: str = none):
         self.data_disk_name = data_disk_name
         self.data_disk_resource_group_name = data_disk_resource_group_name
@@ -823,5 +990,32 @@ class DetachDataDiskFromStatefulNodeRequest:
             default=lambda o: o.__dict__,
             sort_keys=True,
             indent=4)
+
+
+class SwapOsDiskConfiguration:
+    def __init__(self, os_disk_name: str = none,
+                 os_disk_resource_group_name: str = none,
+                 retention_time: int = none,
+                 should_terminate: bool = none):
+        self.os_disk_name = os_disk_name
+        self.os_disk_resource_group_name = os_disk_resource_group_name
+        self.retention_time = retention_time
+        self.should_terminate = should_terminate
+
+
+class SwapOsDiskToStatefulNodeRequest:
+    def __init__(self, config: SwapOsDiskConfiguration = none):
+        self.os_disk_name = config.os_disk_name
+        self.os_disk_resource_group_name = config.os_disk_resource_group_name
+        self.retention_time = config.retention_time
+        self.should_terminate = config.should_terminate
+
+    def toJSON(self):
+        return json.dumps(
+            self,
+            default=lambda o: o.__dict__,
+            sort_keys=True,
+            indent=4)
+
 
 # endregion
