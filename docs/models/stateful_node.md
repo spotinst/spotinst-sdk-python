@@ -355,6 +355,8 @@ Extension(
   api_version: str = 'd3043820717d74d9a17694c176d39733',
   minor_version_auto_upgrade: bool = 'd3043820717d74d9a17694c176d39733',
   name: str = 'd3043820717d74d9a17694c176d39733',
+  protected_settings='d3043820717d74d9a17694c176d39733',
+  public_settings='d3043820717d74d9a17694c176d39733',
   publisher: str = 'd3043820717d74d9a17694c176d39733',
   type: str = 'd3043820717d74d9a17694c176d39733')
 ```

@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.1] - 2023-12-18
+### Added
+- Added `public_settings` and `protected_settings` fields in Azure Stateful Node `Extension` model.
+
 ## [2.3.0] - 2023-11-25
 ### Added
 - Added support for Azure Stateful Node APIs: `swap_os_disk_to_stateful_node`, `get_all_stateful_node_costs`,
