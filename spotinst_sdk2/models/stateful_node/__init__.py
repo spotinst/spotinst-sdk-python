@@ -290,11 +290,15 @@ class Extension:
             api_version: str = none,
             minor_version_auto_upgrade: bool = none,
             name: str = none,
+            protected_settings = none,
+            public_settings = none,
             publisher: str = none,
             type: str = none):
         self.api_version = api_version
         self.minor_version_auto_upgrade = minor_version_auto_upgrade
         self.name = name
+        self.protected_settings = protected_settings
+        self.public_settings = public_settings
         self.publisher = publisher
         self.type = type
 
