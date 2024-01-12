@@ -254,24 +254,30 @@ class DataDiskType(Enum):
     standard_ssd_lrs = "StandardSSD_LRS"
     ultra_ssd_lrs = "UltraSSD_LRS"
 
-
+class CachingType(Enum):
+    none = "None"
+    read_only = "ReadOnly"
+    read_write = "ReadWrite"
+       
 class DataDisk:
     """
     # Arguments
     lun: int
     size_g_b = int
     type: DataDiskType
+    caching : CachingType
     """
 
     def __init__(
             self,
             lun: int = none,
             size_g_b: int = none,
-            type: DataDiskType = none):
+            type: DataDiskType = none,
+            caching : CachingType = none):
         self.lun = lun
         self.size_g_b = size_g_b
         self.type = type
-
+        self.caching = caching
 
 class Extension:
     """
@@ -581,15 +587,17 @@ class OsDisk:
     # Arguments
     size_g_b: int
     type: DataDiskType
+    caching : CachingType
     """
 
     def __init__(
             self,
             size_g_b: int = none,
-            type: DataDiskType = none):
+            type: DataDiskType = none,
+            caching : CachingType = none):
         self.size_g_b = size_g_b
         self.type = type
-
+        self.caching = caching
 
 class SourceVault:
     """
