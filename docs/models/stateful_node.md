@@ -332,13 +332,29 @@ An enumeration.
 <h3 id="spotinst_sdk2.models.stateful_node.DataDiskType.ultra_ssd_lrs">ultra_ssd_lrs</h3>
 
 
+<h2 id="spotinst_sdk2.models.stateful_node.CachingType">CachingType</h2>
+
+```python
+CachingType(cls, value, names=None, *, module, qualname, type, start)
+```
+An enumeration.
+<h3 id="spotinst_sdk2.models.stateful_node.CachingType.none">none</h3>
+
+
+<h3 id="spotinst_sdk2.models.stateful_node.CachingType.read_only">read_only</h3>
+
+
+<h3 id="spotinst_sdk2.models.stateful_node.CachingType.read_write">read_write</h3>
+
+
 <h2 id="spotinst_sdk2.models.stateful_node.DataDisk">DataDisk</h2>
 
 ```python
 DataDisk(self,
          lun: int = 'd3043820717d74d9a17694c176d39733',
          size_g_b: int = 'd3043820717d74d9a17694c176d39733',
-         type: DataDiskType = 'd3043820717d74d9a17694c176d39733')
+         type: DataDiskType = 'd3043820717d74d9a17694c176d39733',
+         caching: CachingType = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -346,6 +362,7 @@ __Arguments__
 - __lun__: int
 size_g_b = int
 - __type__: DataDiskType
+- __caching __: CachingType
 
 <h2 id="spotinst_sdk2.models.stateful_node.Extension">Extension</h2>
 
@@ -662,13 +679,15 @@ __Arguments__
 ```python
 OsDisk(self,
        size_g_b: int = 'd3043820717d74d9a17694c176d39733',
-       type: DataDiskType = 'd3043820717d74d9a17694c176d39733')
+       type: DataDiskType = 'd3043820717d74d9a17694c176d39733',
+       caching: CachingType = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __size_g_b__: int
 - __type__: DataDiskType
+- __caching __: CachingType
 
 <h2 id="spotinst_sdk2.models.stateful_node.SourceVault">SourceVault</h2>
 
