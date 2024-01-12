@@ -4,7 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.3.2] - 2024-01-12
 ### Added
-- Added `caching` field in field in Azure Stateful Node `OsDisk` and `DataDisk` model.
+- Added `caching` field in Azure Stateful Node `OsDisk` and `DataDisk` model.
 
 ## [2.3.1] - 2023-12-18
 ### Added
