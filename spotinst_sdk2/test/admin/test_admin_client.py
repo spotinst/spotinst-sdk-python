@@ -132,7 +132,7 @@ class AWSInitTestOrgAndAcct(AwsInitTestCase):
 		self.assertEqual(len(response), len(mock_create_user_res["response"]["items"][0]))
 
 	@patch('requests.post')
-	def testAddexistingUser(self, mock): 
+	def testAddExistingUser(self, mock): 
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
 		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
