@@ -17,11 +17,11 @@ MrScalerAwsClient.create_emr(emr)
 
 Create an EMR
 
-**Arguments**
+__Arguments__
 
-- **emr (EMR)**: EMR Object
+- __emr (EMR)__: EMR Object
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -31,14 +31,14 @@ Create an EMR
 MrScalerAwsClient.update_emr(emr_id, emr)
 ```
 
-Update an existing EMR
+Update an exsisting EMR
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
-- **emr (EMR)**: EMR Object
+- __emr_id (String)__: EMR id
+- __emr (EMR)__: EMR Object
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -50,7 +50,7 @@ MrScalerAwsClient.get_all_emr()
 
 Get all EMR in account
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -60,13 +60,13 @@ Get all EMR in account
 MrScalerAwsClient.get_emr(emr_id)
 ```
 
-Get an existing EMR json
+Get an exsisting EMR json
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
+- __emr_id (String)__: EMR id
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -78,11 +78,11 @@ MrScalerAwsClient.get_emr_instances(emr_id)
 
 Get instances from EMR
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
+- __emr_id (String)__: EMR id
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -94,11 +94,11 @@ MrScalerAwsClient.get_emr_cluster(emr_id)
 
 Get cluster from EMR
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
+- __emr_id (String)__: EMR id
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -110,13 +110,13 @@ MrScalerAwsClient.get_emr_cost(emr_id, from_date=None, to_date=None)
 
 Get cost from EMR
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
-- **from_date (String) (Optional)**: From Date
-- **to_date (String) (Optional)**: to date
+- __emr_id (String)__: EMR id
+- __from_date (String) (Optional)__: From Date
+- __to_date (String) (Optional)__: to date
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -128,11 +128,11 @@ MrScalerAwsClient.delete_emr(emr_id)
 
 Delete an EMR
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
+- __emr_id (String)__: EMR id
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -144,12 +144,12 @@ MrScalerAwsClient.scale_up_emr(emr_id, adjustment)
 
 Scale up an EMR
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
-- **adjustment (Int)**: Ammount to scale
+- __emr_id (String)__: EMR id
+- __adjustment (Int)__: Ammount to scale
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response
 
@@ -161,11 +161,11 @@ MrScalerAwsClient.scale_down_emr(emr_id, adjustment)
 
 Scale down an EMR
 
-**Arguments**
+__Arguments__
 
-- **emr_id (String)**: EMR id
-- **adjustment (Int)**: Ammount to scale
+- __emr_id (String)__: EMR id
+- __adjustment (Int)__: Ammount to scale
 
-**Returns**
+__Returns__
 
 `(Object)`: Elastigroup API response

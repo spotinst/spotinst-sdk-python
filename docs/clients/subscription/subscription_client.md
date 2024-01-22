@@ -17,11 +17,11 @@ SubscriptionClient.create_event_subscription(subscription)
 
 Create an event subscription
 
-**Arguments**
+__Arguments__
 
-- **subscription (Subscription)**: Subscription Object
+- __subscription (Subscription)__: Subscription Object
 
-**Returns**
+__Returns__
 
 `(Object)`: Subscription API response
 
@@ -32,14 +32,14 @@ SubscriptionClient.update_event_subscription(subscription_id,
                                              subscription)
 ```
 
-Update an existing event subscription
+Update an exsisting event subscription
 
-**Arguments**
+__Arguments__
 
-- **subscription_id (String)**: Subscription id
-- **subscription (Subscription)**: Subscription Object
+- __subscription_id (String)__: Subscription id
+- __subscription (Subscription)__: Subscription Object
 
-**Returns**
+__Returns__
 
 `(Object)`: Subscription API response
 
@@ -51,7 +51,7 @@ SubscriptionClient.get_all_event_subscription()
 
 Get all Subscription in account
 
-**Returns**
+__Returns__
 
 `(Object)`: Subscription API response
 
@@ -61,13 +61,13 @@ Get all Subscription in account
 SubscriptionClient.get_event_subscription(subscription_id)
 ```
 
-Get an existing event subscription json
+Get an exsisting event subscription json
 
-**Arguments**
+__Arguments__
 
-- **subscription_id (String)**: Subscription id
+- __subscription_id (String)__: Subscription id
 
-**Returns**
+__Returns__
 
 `(Object)`: Subscription API response
 
@@ -79,10 +79,10 @@ SubscriptionClient.delete_event_subscription(subscription_id)
 
 Delete an event subscription
 
-**Arguments**
+__Arguments__
 
-- **subscription_id (String)**: Subscription id
+- __subscription_id (String)__: Subscription id
 
-**Returns**
+__Returns__
 
 `(Object)`: subscription response
