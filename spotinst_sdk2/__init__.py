@@ -68,4 +68,7 @@ class SpotinstSession:
                                                     log_level=log_level, user_agent=user_agent, timeout=timeout)
         }
 
-        return switcher.get(service, "Invalid Service")
+        client = switcher.get(service)
+        if client is None:
+            raise ValueError(f"Invalid service selected: {service}")
+        return client

@@ -151,7 +151,7 @@ class OceanAwsClient(Client):
 
     def get_ocean_cluster(self, ocean_id: str):
         """
-        Get an exsisting Ocean Cluster json
+        Get an existing Ocean Cluster json
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster

@@ -17,11 +17,11 @@ AdminClient.create_organization(org_name)
 
 Create an organization
 
-__Arguments__
+**Arguments**
 
-- __org_name (String)__: Orgnanization name
+- **org_name (String)**: Orgnanization name
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -33,11 +33,11 @@ AdminClient.delete_organization(org_id)
 
 delete organization
 
-__Arguments__
+**Arguments**
 
-- __org_id (String)__: Organization Id
+- **org_id (String)**: Organization Id
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -52,7 +52,7 @@ Important note: This is deprecated, please use setup_aws client instead(SetupAWS
 Create aws account external id.
 You should use the external id when creating your AWS role for your spot account
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -68,12 +68,12 @@ set cloud credentials
 Please create external id using spot api (see [`AdminClient.create_aws_external_id`](#spotinst_sdk2.clients.admin.AdminClient.set_cloud_credentials.AdminClient.create_aws_external_id))
 and use it when creating the AWS role
 
-__Arguments__
+**Arguments**
 
-- __iam_role (String)__: IAM Role
-- __external_id (String) (Optional)__: External ID
+- **iam_role (String)**: IAM Role
+- **external_id (String) (Optional)**: External ID
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -85,11 +85,11 @@ AdminClient.create_account(account_name)
 
 create an account
 
-__Arguments__
+**Arguments**
 
-- __account_name (String)__: Account Name
+- **account_name (String)**: Account Name
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -101,7 +101,7 @@ AdminClient.get_accounts()
 
 get accounts in organization
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -113,11 +113,11 @@ AdminClient.delete_account(account_name)
 
 delete account
 
-__Arguments__
+**Arguments**
 
-- __account_name (String)__: Account Name
+- **account_name (String)**: Account Name
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -129,32 +129,32 @@ AdminClient.create_user(first_name, last_name, email, password, role)
 
 Create user
 
-__Arguments__
+**Arguments**
 
-- __first_name (String)__: Users first name
-- __last_name (String)__: User last name
-- __email (String)__: Eser email
-- __password (String)__: User email
-- __role (String)__: User role
+- **first_name (String)**: Users first name
+- **last_name (String)**: User last name
+- **email (String)**: Eser email
+- **password (String)**: User email
+- **role (String)**: User role
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk2.clients.admin.AdminClient.add_exsisting_user">add_exsisting_user</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.add_existing_user">add_existing_user</h2>
 
 ```python
-AdminClient.add_exsisting_user(user_email, role)
+AdminClient.add_existing_user(user_email, role)
 ```
 
-Add exsisting user
+Add existing user
 
-__Arguments__
+**Arguments**
 
-- __user_email (String)__: User email
-- __role (String)__: User role
+- **user_email (String)**: User email
+- **role (String)**: User role
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -164,14 +164,14 @@ __Returns__
 AdminClient.update_user_role(user_email, role)
 ```
 
-Update exsisting user
+Update existing user
 
-__Arguments__
+**Arguments**
 
-- __user_email (String)__: User email
-- __role (String)__: User role
+- **user_email (String)**: User email
+- **role (String)**: User role
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -181,13 +181,13 @@ __Returns__
 AdminClient.detach_user(user_email)
 ```
 
-Delete exsisting user
+Delete existing user
 
-__Arguments__
+**Arguments**
 
-- __user_email (String)__: User email
+- **user_email (String)**: User email
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -199,11 +199,11 @@ AdminClient.get_user(user_email)
 
 Get user
 
-__Arguments__
+**Arguments**
 
-- __user_email (String)__: User email
+- **user_email (String)**: User email
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
 
@@ -215,11 +215,10 @@ AdminClient.assign_user_to_account(mappings)
 
 Assign user to account
 
-__Arguments__
+**Arguments**
 
-- __mappings (List)__: List of UserMapping Objects
+- **mappings (List)**: List of UserMapping Objects
 
-__Returns__
+**Returns**
 
 `(Object)`: Spotinst API response
-

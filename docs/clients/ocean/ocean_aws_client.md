@@ -17,11 +17,11 @@ OceanAwsClient.create_ocean_cluster(ocean: Ocean)
 
 Create an Ocean Cluster
 
-__Arguments__
+**Arguments**
 
-- __ocean (Ocean)__: Ocean Object
+- **ocean (Ocean)**: Ocean Object
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -35,13 +35,13 @@ OceanAwsClient.update_ocean_cluster(ocean_id: str,
 
 Update an existing Ocean Cluster
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __auto_apply_tags (String)__: Option to update instance tags on the fly without rolling the cluster.
-- __ocean (Ocean)__: Ocean object
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **auto_apply_tags (String)**: Option to update instance tags on the fly without rolling the cluster.
+- **ocean (Ocean)**: Ocean object
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -53,7 +53,7 @@ OceanAwsClient.get_all_ocean_cluster()
 
 List the configurations for all Ocean clusters in the specified account.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -65,7 +65,7 @@ OceanAwsClient.get_all_ocean_sizing(ocean_id: str, namespace: str)
 
 Get all right sizing recommendations for an Ocean cluster
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -78,12 +78,12 @@ OceanAwsClient.fetch_rightsizing_recommendations(
 
 Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: Id of the Ocean Cluster
-- __filter (RightSizingRecommendationFilter)__: Optional - may be null.
+- **ocean_id (String)**: Id of the Ocean Cluster
+- **filter (RightSizingRecommendationFilter)**: Optional - may be null.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -93,13 +93,13 @@ __Returns__
 OceanAwsClient.get_ocean_cluster(ocean_id: str)
 ```
 
-Get an exsisting Ocean Cluster json
+Get an existing Ocean Cluster json
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
+- **ocean_id (String)**: ID of the Ocean Cluster
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -111,11 +111,11 @@ OceanAwsClient.delete_ocean_cluster(ocean_id: str)
 
 Delete an Ocean Cluster
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
+- **ocean_id (String)**: ID of the Ocean Cluster
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -128,12 +128,12 @@ OceanAwsClient.get_aggregated_cluster_costs(
 
 Get aggregated cluster costs
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __aggregated_cluster_costs (AggregatedClusterCosts)__: Aggregated Cluster Costs request
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **aggregated_cluster_costs (AggregatedClusterCosts)**: Aggregated Cluster Costs request
 
-__Returns__
+**Returns**
 
 `(Object)`: Aggregated Cluster Costs API response
 
@@ -145,12 +145,12 @@ OceanAwsClient.initiate_roll(ocean_id: str, cluster_roll: Roll)
 
 Initiate Cluster Rolls
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __cluster_roll (Roll)__: Cluster Roll / Roll with Instance Ids/ Launch specification Ids
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **cluster_roll (Roll)**: Cluster Roll / Roll with Instance Ids/ Launch specification Ids
 
-__Returns__
+**Returns**
 
 `(Object)`: Cluster Roll API response
 
@@ -162,11 +162,11 @@ OceanAwsClient.list_rolls(ocean_id: str)
 
 Get status for all rolls of an Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
+- **ocean_id (String)**: ID of the Ocean Cluster
 
-__Returns__
+**Returns**
 
 `(Object)`: List of Cluster Roll API response
 
@@ -179,13 +179,13 @@ OceanAwsClient.update_roll(ocean_id: str, roll_id: str, status: str)
 Update a roll of an Ocean cluster.
 Performing the request will stop the next batch in a roll.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __roll_id (String)__: Ocean cluster roll identifier
-- __update_roll (UpdateRoll)__: update roll request
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **roll_id (String)**: Ocean cluster roll identifier
+- **update_roll (UpdateRoll)**: update roll request
 
-__Returns__
+**Returns**
 
 `(Object)`: Cluster Roll API response
 
@@ -197,13 +197,13 @@ OceanAwsClient.get_roll(ocean_id: str, roll_id: str)
 
 Get status for a roll of an Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __account_id (String)__: The ID of the account associated with your token.
-- __roll_id (String)__: Ocean cluster roll identifier
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **account_id (String)**: The ID of the account associated with your token.
+- **roll_id (String)**: Ocean cluster roll identifier
 
-__Returns__
+**Returns**
 
 `(Object)`: Cluster Roll API response
 
@@ -217,13 +217,13 @@ OceanAwsClient.get_cluster_nodes(ocean_id: str,
 
 Get nodes data of an Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __instance_id (String)__: Get a specific node by instance id
-- __launch_spec_id (String)__: Ocean cluster launch specification identifier.
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **instance_id (String)**: Get a specific node by instance id
+- **launch_spec_id (String)**: Ocean cluster launch specification identifier.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Kubernetes AWS Nodes Data response
 
@@ -236,11 +236,11 @@ OceanAwsClient.get_heartbeat_status(ocean_id: str)
 Get the heartbeat status of the Ocean Controller for the cluster.
 The response returns the heartbeat status and the last heartbeat timestamp.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
+- **ocean_id (String)**: ID of the Ocean Cluster
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Get Heartbeat response
 
@@ -254,13 +254,13 @@ OceanAwsClient.instance_types_filter_simulation(
 Returns all instances types that match the given filters.
 These instance types will be used if the cluster is configured with these filters.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __instance_type_filter (InstanceTypesFilters)__: The Instance types that match with all filters compose the
-Ocean's whitelist parameter. Cannot be configured together with whitelist/blacklist.
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **instance_type_filter (InstanceTypesFilters)**: The Instance types that match with all filters compose the
+  Ocean's whitelist parameter. Cannot be configured together with whitelist/blacklist.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Instance Types Filter Simulation response
 
@@ -272,11 +272,11 @@ OceanAwsClient.allowed_instance_types(ocean_id: str)
 
 Return the list of the allowed Ocean cluster instance types.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
+- **ocean_id (String)**: ID of the Ocean Cluster
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Allowed Instance Types response
 
@@ -288,11 +288,11 @@ OceanAwsClient.get_virtual_node_group(ocean_launch_spec_id: str)
 
 Get Virtual Node Group of the cluster
 
-__Arguments__
+**Arguments**
 
-- __ocean_launch_spec_id (String)__: Ocean cluster launch specification identifier
+- **ocean_launch_spec_id (String)**: Ocean cluster launch specification identifier
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Allowed Instance Types response
 
@@ -305,12 +305,12 @@ OceanAwsClient.launch_nodes_in_vng(ocean_launch_spec_id: str,
 
 Launch nodes in Virtual Node Group.
 
-__Arguments__
+**Arguments**
 
-- __ocean_launch_spec_id (String)__: Ocean cluster launch specification identifier.
-- __amount (int)__: The number of nodes to launch.
+- **ocean_launch_spec_id (String)**: Ocean cluster launch specification identifier.
+- **amount (int)**: The number of nodes to launch.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Virtual Node Group Launch API response
 
@@ -327,16 +327,16 @@ OceanAwsClient.fetch_elastilog(ocean_id,
 
 Create an Ocean configuration according to an AWS autoscaling group (ASG) configuration.
 
-__Arguments__
+**Arguments**
 
-- __to_date (String)__: to date
-- __from_date (String)__: to date
-- __severity(String) (Optional)__: Log level severity
-- __resource_id(String) (Optional)__: Filter log extracted entires related to a
+- **to_date (String)**: to date
+- **from_date (String)**: to date
+- **severity(String) (Optional)**: Log level severity
+- **resource_id(String) (Optional)**: Filter log extracted entires related to a
   specific resource id
-- __limit(String) (Optional)__: Maximum number of lines to extract in a response
+- **limit(String) (Optional)**: Maximum number of lines to extract in a response
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Get Log API response
 
@@ -350,13 +350,13 @@ OceanAwsClient.import_asg_to_ocean_cluster(
 
 Create an Ocean configuration according to an AWS autoscaling group (ASG) configuration.
 
-__Arguments__
+**Arguments**
 
-- __auto_scaling_group_name (String)__: The ASG name
-- __region (String)__: region
-- __import_asg_to_ocean_cluster (ImportASGToOceanCluster)__: ImportASGToOceanCluster Object
+- **auto_scaling_group_name (String)**: The ASG name
+- **region (String)**: region
+- **import_asg_to_ocean_cluster (ImportASGToOceanCluster)**: ImportASGToOceanCluster Object
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Import ASG to Ocean Response
 
@@ -369,12 +369,12 @@ OceanAwsClient.create_virtual_node_group(vng: VirtualNodeGroup,
 
 Create a VNG inside ocean cluster
 
-__Arguments__
+**Arguments**
 
-- __vng (VirtualNodeGroup)__: VirtualNodeGroup Object
-- __initial_nodes__: When set to an integer greater than 0, a corresponding number of nodes will be launched from the virtual node group created.
+- **vng (VirtualNodeGroup)**: VirtualNodeGroup Object
+- **initial_nodes**: When set to an integer greater than 0, a corresponding number of nodes will be launched from the virtual node group created.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Launch Spec response
 
@@ -388,12 +388,12 @@ OceanAwsClient.update_virtual_node_group(vng_id: str,
 
 Update an existing VNG inside an Ocean Cluster
 
-__Arguments__
+**Arguments**
 
-- __vng_id (String)__: ID of the Ocean Virtual Node Group
-- __ocean (Ocean)__: Ocean object
+- **vng_id (String)**: ID of the Ocean Virtual Node Group
+- **ocean (Ocean)**: Ocean object
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Launch Spec response
 
@@ -406,7 +406,7 @@ OceanAwsClient.get_all_virtual_node_groups(ocean_id: str = None)
 List the configurations for all virtual node groups in the account
 or in a specified cluster.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Launch Spec response
 
@@ -420,13 +420,13 @@ OceanAwsClient.delete_virtual_node_group(vng_id: str,
 
 Delete an Ocean Cluster
 
-__Arguments__
+**Arguments**
 
-- __vng_id (String)__: ID of the Ocean VNG
-- __delete_nodes (Bool)__: When set to "true", all instances belonging to the deleted launch specification will be drained, detached, and terminated.
-- __force_delete (Bool)__: When set to "true", delete even if it is the only custom launch spec remaining, and default launch spec has useAsTemplateOnly = true.
+- **vng_id (String)**: ID of the Ocean VNG
+- **delete_nodes (Bool)**: When set to "true", all instances belonging to the deleted launch specification will be drained, detached, and terminated.
+- **force_delete (Bool)**: When set to "true", delete even if it is the only custom launch spec remaining, and default launch spec has useAsTemplateOnly = true.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Launch Specification Delete response
 
@@ -438,12 +438,12 @@ OceanAwsClient.attach_load_balancers(ocean_id: str, load_balancers)
 
 Add new load balancers to the existing load balancers on the Ocean Cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __load_balancers (List[LoadBalancer])__: Load balancers to add to the Ocean cluster.
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **load_balancers (List[LoadBalancer])**: Load balancers to add to the Ocean cluster.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Attach Load Balancers API response
 
@@ -455,12 +455,12 @@ OceanAwsClient.detach_load_balancers(ocean_id, load_balancers)
 
 Delete an Ocean Cluster
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __load_balancers (List[LoadBalancer])__: Load balancers to remove from the Ocean cluster.
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **load_balancers (List[LoadBalancer])**: Load balancers to remove from the Ocean cluster.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Detach Load Balancers API response
 
@@ -472,11 +472,11 @@ OceanAwsClient.update_elastigroup_to_ocean(group_id: str)
 
 Upgrade an Elastigroup with Kubernetes integration to Ocean for Kubernetes cluster.
 
-__Arguments__
+**Arguments**
 
-- __group_id (str)__: Elastigroup identifier
+- **group_id (str)**: Elastigroup identifier
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -489,12 +489,12 @@ OceanAwsClient.detach_instances(ocean_id: str,
 
 Detach instances from your Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __detach_instances (DetachInstances)__: Detach Instances Request
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **detach_instances (DetachInstances)**: Detach Instances Request
 
-__Returns__
+**Returns**
 
 `(Object)`: Detach Instances API response
 
@@ -507,14 +507,14 @@ OceanAwsClient.instance_types_filter_simulation_for_vng(
 
 Returns all instance types that match the given filters. These instance types will be used if the Virtual Node Group is configured with these filters.
 
-__Arguments__
+**Arguments**
 
-- __launch_spec_id (String)__: Ocean cluster launch specification identifier.
-- __instance_type_filters (InstanceTypesFilters)__: List of instance types filters. The instance types that match with all filters compose the Virtual Node Group's instanceTypes parameter.
-The architectures that come from the Virtual Node Group's images will be taken into account when using this parameter.
-Cannot be configured together with Virtual Node Group's instanceTypes and with the Cluster's whitelist/blacklist/filters.
+- **launch_spec_id (String)**: Ocean cluster launch specification identifier.
+- **instance_type_filters (InstanceTypesFilters)**: List of instance types filters. The instance types that match with all filters compose the Virtual Node Group's instanceTypes parameter.
+  The architectures that come from the Virtual Node Group's images will be taken into account when using this parameter.
+  Cannot be configured together with Virtual Node Group's instanceTypes and with the Cluster's whitelist/blacklist/filters.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Instance Types Filter Simulation response
 
@@ -528,13 +528,13 @@ OceanAwsClient.import_asg_to_ocean_vng(
 
 Returns an Ocean Virtual Node Group (VNG) configuration in a given AWS autoscaling group (ASG). The returned value ("Imported VNG") can then be used as input to the Create Virtual Node Group API in order to create an actual VNG in your Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __auto_scaling_group_name (String)__: The ASG name.
-- __import_asg_to_ocean_launch_spec (ImportASGToOceanVNG)__: ImportASGToOceanVNG object
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **auto_scaling_group_name (String)**: The ASG name.
+- **import_asg_to_ocean_launch_spec (ImportASGToOceanVNG)**: ImportASGToOceanVNG object
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Import ASG to Launch Spec Response
 
@@ -547,11 +547,11 @@ OceanAwsClient.allowed_instance_types_by_filters_for_vng(
 
 Returns the Virtual Node Group's instance types when instance types filters is set.
 
-__Arguments__
+**Arguments**
 
-- __launch_spec_id (String)__: Ocean Cluster Launch Specification Identifier
+- **launch_spec_id (String)**: Ocean Cluster Launch Specification Identifier
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Allowed Instance Types response
 
@@ -570,15 +570,15 @@ OceanAwsClient.import_eks_cluster_node_group_to_ocean_vng(
 Returns an Ocean Virtual Node Group (VNG) configuration based on a given AWS EKS Cluster Node Group.
 The returned value ("Imported VNG") can then be used as input to the Create Virtual Node Group API in order to create an actual VNG in your Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __eks_cluster_name (String)__: Cluster name of the EKS cluster.
-- __eks_node_group_name (String)__: Node group name to import.
-- __region (String)__: Node group name to import.
-- __import_eks_node_group_to_ocean_launch_spec (ImportEKSNodeGroupToOceanVNG)__: ImportEKSNodeGroupToOceanVNG object
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **eks_cluster_name (String)**: Cluster name of the EKS cluster.
+- **eks_node_group_name (String)**: Node group name to import.
+- **region (String)**: Node group name to import.
+- **import_eks_node_group_to_ocean_launch_spec (ImportEKSNodeGroupToOceanVNG)**: ImportEKSNodeGroupToOceanVNG object
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Import EKS Cluster Node Group to Launch Spec Response
 
@@ -590,11 +590,11 @@ OceanAwsClient.create_migration(ocean_id: str, migration: Migration)
 
 Create a migration for a given existing instances.
 
-__Arguments__
+**Arguments**
 
-- __migration (Migration)__: Migration Object
+- **migration (Migration)**: Migration Object
 
-__Returns__
+**Returns**
 
 `(Object)`: Migration create response
 
@@ -607,12 +607,12 @@ OceanAwsClient.get_migration_discovery(ocean_id: str,
 
 Get information about nodes which can be migrated into Ocean.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __should_fetch_pods (bool)__: Should fetch data about running pods for each node.
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **should_fetch_pods (bool)**: Should fetch data about running pods for each node.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -625,13 +625,13 @@ OceanAwsClient.stop_migration(ocean_id: str, migration_id: str,
 
 Stop an ongoing Workload Migration.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __migration_id (bool)__: The migration identifier of a specific migration
-- __migration (Migration)__: Migration Update Configuration
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **migration_id (bool)**: The migration identifier of a specific migration
+- **migration (Migration)**: Migration Update Configuration
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Migration response
 
@@ -643,12 +643,12 @@ OceanAwsClient.get_migration_status(ocean_id: str, migration_id: str)
 
 Get Migration full info and status for an Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_id (String)__: ID of the Ocean Cluster
-- __migration_id (String)__: The migration identifier of a specific migration.
+- **ocean_id (String)**: ID of the Ocean Cluster
+- **migration_id (String)**: The migration identifier of a specific migration.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean API response
 
@@ -660,7 +660,7 @@ OceanAwsClient.get_all_migrations_summary(ocean_id: str = None)
 
 Get summary of migrations history for an Ocean cluster.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Migrations response
 
@@ -673,11 +673,11 @@ OceanAwsClient.create_extended_resource_definition(
 
 Creates an Ocean extended resource definition entity
 
-__Arguments__
+**Arguments**
 
-- __extended_resource_definition (ExtendedResourceDefinition)__: The Ocean extended resource definition
+- **extended_resource_definition (ExtendedResourceDefinition)**: The Ocean extended resource definition
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Create Extended Resource Definition response
 
@@ -690,11 +690,11 @@ OceanAwsClient.get_extended_resource_definition(
 
 Get Migration full info and status for an Ocean cluster.
 
-__Arguments__
+**Arguments**
 
-- __ocean_extended_resource_definition_id (String)__: Identifier of the Ocean extended resource definition.
+- **ocean_extended_resource_definition_id (String)**: Identifier of the Ocean extended resource definition.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Extended Resource Definition response
 
@@ -706,7 +706,7 @@ OceanAwsClient.get_all_extended_resource_definitions()
 
 extended_resource_definition
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Extended Resource Defintion response
 
@@ -720,12 +720,12 @@ OceanAwsClient.update_extended_resource_definition(
 
 Only the mapping parameter is updatable for extended resource definition
 
-__Arguments__
+**Arguments**
 
-- __ocean_extended_resource_definition_id (String)__: Identifier of the Ocean extended resource definition.
-- __extended_resource_definition (ExtendedResourceDefinition)__: The Ocean extended resource definition
+- **ocean_extended_resource_definition_id (String)**: Identifier of the Ocean extended resource definition.
+- **extended_resource_definition (ExtendedResourceDefinition)**: The Ocean extended resource definition
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Extended Resource Definition response
 
@@ -738,11 +738,10 @@ OceanAwsClient.delete_extended_resource_definition(
 
 Delete a specified Ocean extended resource definition.
 
-__Arguments__
+**Arguments**
 
-- __ocean_extended_resource_definition_id (String)__: Identifier of the Ocean extended resource definition.
+- **ocean_extended_resource_definition_id (String)**: Identifier of the Ocean extended resource definition.
 
-__Returns__
+**Returns**
 
 `(Object)`: Ocean Delete Extended Resource Definition response
-

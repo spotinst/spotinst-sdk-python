@@ -189,9 +189,9 @@ class AdminClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def add_exsisting_user(self, user_email, role):
+    def add_existing_user(self, user_email, role):
         """
-        Add exsisting user
+        Add existing user
 
         # Arguments
         user_email (String): User email
@@ -215,7 +215,7 @@ class AdminClient(Client):
 
     def update_user_role(self, user_email, role):
         """
-        Update exsisting user
+        Update existing user
 
         # Arguments
         user_email (String): User email
@@ -239,7 +239,7 @@ class AdminClient(Client):
 
     def detach_user(self, user_email):
         """
-        Delete exsisting user
+        Delete existing user
 
         # Arguments
         user_email (String): User email
@@ -311,3 +311,45 @@ class AdminClient(Client):
         return formatted_response["response"]["status"]
 
     # endregion
+    def get_users(self):
+        """
+        Get users
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_get(
+            url=self.__base_setup_url + "/organization/user", entity_name="user"
+        )
+
+        formatted_response = self.convert_json(response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_user_details(self, user_id):
+        """
+        Get user details
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_get(
+            url=self.__base_setup_url + "/user/" + user_id, entity_name="user"
+        )
+
+        formatted_response = self.convert_json(response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def delete_user(self, user_id):
+        """
+        Delete user
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_delete(
+            url=self.__base_setup_url + "/user/" + user_id, entity_name="user"
+        )
+
+        return response
