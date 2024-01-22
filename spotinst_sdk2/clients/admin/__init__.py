@@ -313,7 +313,7 @@ class AdminClient(Client):
     # endregion
     def get_users(self):
         """
-        Get users
+        Retrieves all users from an organization.
 
         # Returns
         (Object): Spotinst API response
@@ -328,7 +328,10 @@ class AdminClient(Client):
 
     def get_user_details(self, user_id):
         """
-        Get user details
+        Retrieves an individual user details.
+
+        # Arguments
+        user_id (String): User ID
 
         # Returns
         (Object): Spotinst API response
@@ -343,7 +346,10 @@ class AdminClient(Client):
 
     def delete_user(self, user_id):
         """
-        Delete user
+        Deletes a user from an organization.
+
+        # Arguments
+        user_id (String): User ID
 
         # Returns
         (Object): Spotinst API response
