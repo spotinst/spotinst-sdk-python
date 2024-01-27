@@ -93,7 +93,7 @@ __Returns__
 OceanAwsClient.get_ocean_cluster(ocean_id: str)
 ```
 
-Get an exsisting Ocean Cluster json
+Get an existing Ocean Cluster json
 
 __Arguments__
 
@@ -745,4 +745,3 @@ __Arguments__
 __Returns__
 
 `(Object)`: Ocean Delete Extended Resource Definition response
-

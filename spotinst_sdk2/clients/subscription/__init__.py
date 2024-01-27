@@ -43,7 +43,7 @@ class SubscriptionClient(Client):
 
     def update_event_subscription(self, subscription_id, subscription):
         """
-        Update an exsisting event subscription 
+        Update an existing event subscription 
 
         # Arguments
         subscription_id (String): Subscription id
@@ -97,7 +97,7 @@ class SubscriptionClient(Client):
 
     def get_event_subscription(self, subscription_id):
         """
-        Get an exsisting event subscription json
+        Get an existing event subscription json
 
         # Arguments
         subscription_id (String): Subscription id

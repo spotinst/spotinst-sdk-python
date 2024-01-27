@@ -132,13 +132,13 @@ class AWSInitTestOrgAndAcct(AwsInitTestCase):
 		self.assertEqual(len(response), len(mock_create_user_res["response"]["items"][0]))
 
 	@patch('requests.post')
-	def testAddExsistingUser(self, mock): 
+	def testAddExistingUser(self, mock): 
 		self.mock_api_call.content = SimpleNamespace(**self.mock_api_call.content)
 		self.mock_api_call.content.decode = lambda code: json.dumps(self.mock_ok_res) 
 
 		mock.return_value = self.mock_api_call
 
-		response = self.client.add_exsisting_user(user_email="test", role="test")
+		response = self.client.add_existing_user(user_email="test", role="test")
 
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))
 
@@ -187,5 +187,3 @@ class AWSInitTestOrgAndAcct(AwsInitTestCase):
 		response = self.client.assign_user_to_account(mappings=[])
 
 		self.assertEqual(len(response), len(self.mock_ok_res["response"]["status"]))
-
-

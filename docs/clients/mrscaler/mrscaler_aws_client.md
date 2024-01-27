@@ -31,7 +31,7 @@ __Returns__
 MrScalerAwsClient.update_emr(emr_id, emr)
 ```
 
-Update an exsisting EMR
+Update an existing EMR
 
 __Arguments__
 
@@ -60,7 +60,7 @@ __Returns__
 MrScalerAwsClient.get_emr(emr_id)
 ```
 
-Get an exsisting EMR json
+Get an existing EMR json
 
 __Arguments__
 
@@ -169,4 +169,3 @@ __Arguments__
 __Returns__
 
 `(Object)`: Elastigroup API response
-

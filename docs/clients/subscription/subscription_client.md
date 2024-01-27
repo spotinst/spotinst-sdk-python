@@ -32,7 +32,7 @@ SubscriptionClient.update_event_subscription(subscription_id,
                                              subscription)
 ```
 
-Update an exsisting event subscription
+Update an existing event subscription
 
 __Arguments__
 
@@ -61,7 +61,7 @@ __Returns__
 SubscriptionClient.get_event_subscription(subscription_id)
 ```
 
-Get an exsisting event subscription json
+Get an existing event subscription json
 
 __Arguments__
 
@@ -86,4 +86,3 @@ __Arguments__
 __Returns__
 
 `(Object)`: subscription response
-

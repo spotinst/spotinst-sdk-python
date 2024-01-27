@@ -41,7 +41,7 @@ class MrScalerAwsClient(Client):
 
     def update_emr(self, emr_id, emr):
         """
-        Update an exsisting EMR 
+        Update an existing EMR 
 
         # Arguments
         emr_id (String): EMR id
@@ -93,7 +93,7 @@ class MrScalerAwsClient(Client):
 
     def get_emr(self, emr_id):
         """
-        Get an exsisting EMR json
+        Get an existing EMR json
 
         # Arguments
         emr_id (String): EMR id

@@ -141,13 +141,13 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
-<h2 id="spotinst_sdk2.clients.admin.AdminClient.add_exsisting_user">add_exsisting_user</h2>
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.add_existing_user">add_existing_user</h2>
 
 ```python
-AdminClient.add_exsisting_user(user_email, role)
+AdminClient.add_existing_user(user_email, role)
 ```
 
-Add exsisting user
+Add existing user
 
 __Arguments__
 
@@ -164,7 +164,7 @@ __Returns__
 AdminClient.update_user_role(user_email, role)
 ```
 
-Update exsisting user
+Update existing user
 
 __Arguments__
 
@@ -181,7 +181,7 @@ __Returns__
 AdminClient.detach_user(user_email)
 ```
 
-Delete exsisting user
+Delete existing user
 
 __Arguments__
 
@@ -222,4 +222,3 @@ __Arguments__
 __Returns__
 
 `(Object)`: Spotinst API response
-
