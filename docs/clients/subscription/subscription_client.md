@@ -86,3 +86,4 @@ __Arguments__
 __Returns__
 
 `(Object)`: subscription response
+
