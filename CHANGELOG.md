@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.0] - 2024-01-27
+### Added
+- Added new functions in admin client.
+### Fixed
+- Typos.
+
 ## [2.3.2] - 2024-01-12
 ### Added
 - Added `caching` field in Azure Stateful Node `OsDisk` and `DataDisk` model.

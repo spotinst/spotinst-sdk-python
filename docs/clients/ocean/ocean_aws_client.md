@@ -745,3 +745,4 @@ __Arguments__
 __Returns__
 
 `(Object)`: Ocean Delete Extended Resource Definition response
+

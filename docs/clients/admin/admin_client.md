@@ -222,3 +222,48 @@ __Arguments__
 __Returns__
 
 `(Object)`: Spotinst API response
+
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.get_users">get_users</h2>
+
+```python
+AdminClient.get_users()
+```
+
+Retrieves all users from an organization.
+
+__Returns__
+
+`(Object)`: Spotinst API response
+
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.get_user_details">get_user_details</h2>
+
+```python
+AdminClient.get_user_details(user_id)
+```
+
+Retrieves an individual user details.
+
+__Arguments__
+
+- __user_id (String)__: User ID
+
+__Returns__
+
+`(Object)`: Spotinst API response
+
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.delete_user">delete_user</h2>
+
+```python
+AdminClient.delete_user(user_id)
+```
+
+Deletes a user from an organization.
+
+__Arguments__
+
+- __user_id (String)__: User ID
+
+__Returns__
+
+`(Object)`: Spotinst API response
+
