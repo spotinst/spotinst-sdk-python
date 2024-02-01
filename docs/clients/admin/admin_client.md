@@ -267,3 +267,59 @@ __Returns__
 
 `(Object)`: Spotinst API response
 
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.update_user_to_user_group_mapping">update_user_to_user_group_mapping</h2>
+
+```python
+AdminClient.update_user_to_user_group_mapping(user_id, user_group_ids)
+```
+
+Update the mapping of a given user to user groups
+
+__Arguments__
+
+- __user_id (String)__: Identifier of a user.
+- __user_group_ids (List)__: A list of the user groups to register the given user to
+
+__Returns__
+
+`(Object)`: Spotinst API response
+
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.update_user_to_policy_mapping">update_user_to_policy_mapping</h2>
+
+```python
+AdminClient.update_user_to_policy_mapping(user_id, policies)
+```
+
+Update the mapping of a given user to policies
+
+__Arguments__
+
+- __user_id (String)__: Identifier of a user.
+- __policies (List)__: A list of policies to register under the given user
+
+__Returns__
+
+`(Object)`: Spotinst API response
+
+<h2 id="spotinst_sdk2.clients.admin.AdminClient.create_programmatic_user">create_programmatic_user</h2>
+
+```python
+AdminClient.create_programmatic_user(name,
+                                     description,
+                                     accounts=None,
+                                     policies=None)
+```
+
+Create a programmatic user
+
+__Arguments__
+
+- __name (String)__: Name of the programmatic user
+- __description (String)__: Brief description of the user
+- __accounts (List)__: All the accounts the programmatic user will have access to
+- __policies (List)__: All the policies the programmatic user will have access to
+
+__Returns__
+
+`(Object)`: Spotinst API response
+

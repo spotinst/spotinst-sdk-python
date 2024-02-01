@@ -322,7 +322,8 @@ class AdminClient(Client):
             url=self.__base_setup_url + "/organization/user", entity_name="user"
         )
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -340,7 +341,8 @@ class AdminClient(Client):
             url=self.__base_setup_url + "/user/" + user_id, entity_name="user"
         )
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
@@ -360,8 +362,7 @@ class AdminClient(Client):
 
         return response
 
-
-    def update_user_group_mapping(self, user_id, user_group_ids):
+    def update_user_to_user_group_mapping(self, user_id, user_group_ids):
         """
         Update the mapping of a given user to user groups
 
@@ -378,11 +379,12 @@ class AdminClient(Client):
             entity_name="user",
         )
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
-    def update_user_policy_mapping(self, user_id, policies):
+    def update_user_to_policy_mapping(self, user_id, policies):
         """
         Update the mapping of a given user to policies
 
@@ -399,7 +401,8 @@ class AdminClient(Client):
             entity_name="user",
         )
 
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
 
         return formatted_response["response"]["status"]
 
@@ -435,5 +438,6 @@ class AdminClient(Client):
             body=json.dumps(payload),
             entity_name="programmaticUser",
         )
-        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
         return formatted_response["response"]["items"][0]
