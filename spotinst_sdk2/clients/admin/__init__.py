@@ -359,3 +359,81 @@ class AdminClient(Client):
         )
 
         return response
+
+
+    def update_user_group_mapping(self, user_id, user_group_ids):
+        """
+        Update the mapping of a given user to user groups
+
+        # Arguments
+        user_id (String): Identifier of a user.
+        user_group_ids (List): A list of the user groups to register the given user to
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_put(
+            url=self.__base_setup_url + "/user/" + user_id + "/userGroupMapping",
+            body=json.dumps(dict(userGroupIds=user_group_ids)),
+            entity_name="user",
+        )
+
+        formatted_response = self.convert_json(response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def update_user_policy_mapping(self, user_id, policies):
+        """
+        Update the mapping of a given user to policies
+
+        # Arguments
+        user_id (String): Identifier of a user.
+        policies (List): A list of policies to register under the given user
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_put(
+            url=self.__base_setup_url + "/user/" + user_id + "/policyMapping",
+            body=json.dumps(dict(policies=policies)),
+            entity_name="user",
+        )
+
+        formatted_response = self.convert_json(response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def create_programmatic_user(self, name, description, accounts=None, policies=None):
+        """
+        Create a programmatic user
+
+        # Arguments
+        name (String): Name of the programmatic user
+        description (String): Brief description of the user
+        accounts (List): All the accounts the programmatic user will have access to
+        policies (List): All the policies the programmatic user will have access to
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        if accounts is None and policies is None:
+            raise ValueError(
+                "Either accounts or policies must be provided in create_programmatic_user"
+            )
+
+        payload = {
+            "description": description,
+            "name": name,
+        }
+        if accounts is not None:
+            payload["accounts"] = accounts
+        if policies is not None:
+            payload["policies"] = policies
+
+        response = self.send_post(
+            url=self.__base_setup_url + "/user/programmatic",
+            body=json.dumps(payload),
+            entity_name="programmaticUser",
+        )
+        formatted_response = self.convert_json(response, self.camel_to_underscore)
+        return formatted_response["response"]["items"][0]
