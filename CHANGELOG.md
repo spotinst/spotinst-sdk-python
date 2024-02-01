@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.1] - 2024-02-01
+### Added
+- Added some more functions in admin client.
+
 ## [2.4.0] - 2024-01-27
 ### Added
 - Added new functions in admin client.
