@@ -21,16 +21,31 @@ class ResourceLimits:
         self.max_v_cpu = max_v_cpu
 
 
+class AgressiveScaleDown:
+    """
+    # Arguments
+    is_enabled: bool
+    """
+
+    def __init__(
+            self,
+            is_enabled: bool = none):
+        self.is_enabled = is_enabled       
+
+
 class Down:
     """
     # Arguments
+    aggressive_scale_down: AgressiveScaleDown
     max_scale_down_percentage: int
     """
 
     def __init__(
             self,
-            max_scale_down_percentage: int = none):
+            max_scale_down_percentage: int = none,
+            aggressive_scale_down: AgressiveScaleDown = none):
         self.max_scale_down_percentage = max_scale_down_percentage
+        self.aggressive_scale_down =  aggressive_scale_down
 
 
 class Headroom:
