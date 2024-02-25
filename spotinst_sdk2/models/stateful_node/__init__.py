@@ -254,11 +254,13 @@ class DataDiskType(Enum):
     standard_ssd_lrs = "StandardSSD_LRS"
     ultra_ssd_lrs = "UltraSSD_LRS"
 
+
 class CachingType(Enum):
     none = "None"
     read_only = "ReadOnly"
     read_write = "ReadWrite"
-       
+
+
 class DataDisk:
     """
     # Arguments
@@ -273,11 +275,12 @@ class DataDisk:
             lun: int = none,
             size_g_b: int = none,
             type: DataDiskType = none,
-            caching : CachingType = none):
+            caching: CachingType = none):
         self.lun = lun
         self.size_g_b = size_g_b
         self.type = type
         self.caching = caching
+
 
 class Extension:
     """
@@ -296,8 +299,8 @@ class Extension:
             api_version: str = none,
             minor_version_auto_upgrade: bool = none,
             name: str = none,
-            protected_settings = none,
-            public_settings = none,
+            protected_settings=none,
+            public_settings=none,
             publisher: str = none,
             type: str = none):
         self.api_version = api_version
@@ -594,10 +597,11 @@ class OsDisk:
             self,
             size_g_b: int = none,
             type: DataDiskType = none,
-            caching : CachingType = none):
+            caching: CachingType = none):
         self.size_g_b = size_g_b
         self.type = type
         self.caching = caching
+
 
 class SourceVault:
     """

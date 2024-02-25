@@ -17,6 +17,7 @@ class Elastigroup:
     scheduling: Scheduling
     third_parties_integration: ThirdPartiesIntegration
     """
+
     def __init__(
             self,
             name=none,
@@ -41,6 +42,8 @@ class Elastigroup:
 # endregion
 
 # region Capacity
+
+
 class Capacity:
     """
     # Arguments
@@ -48,6 +51,7 @@ class Capacity:
     maximum: int
     target: int
     """
+
     def __init__(
             self,
             minimum=none,
@@ -68,6 +72,7 @@ class Strategy:
     on_demand_count: int
     draining_timeout: int
     """
+
     def __init__(
             self,
             low_priority_percentage=none,
@@ -80,6 +85,8 @@ class Strategy:
 # endregion
 
 # region Compute
+
+
 class Compute:
     """
     # Arguments
@@ -88,6 +95,7 @@ class Compute:
     health: Health
     launch_specification: LaunchSpecification
     """
+
     def __init__(
             self,
             vm_sizes=none,
@@ -100,12 +108,14 @@ class Compute:
         self.health = health
         self.launch_specification = launch_specification
 
+
 class VmSizes:
     """
     #Arguments
     od_sizes: list[str]
     low_priority_sizes: list[str]
     """
+
     def __init__(
             self,
             od_sizes=none,
@@ -114,6 +124,7 @@ class VmSizes:
         self.od_sizes = od_sizes
         self.low_priority_sizes = low_priority_sizes
 
+
 class Health:
     """
     #Arguments
@@ -121,6 +132,7 @@ class Health:
     auto_healing: bool
     grace_period: int
     """
+
     def __init__(
             self,
             health_check_type=none,
@@ -130,6 +142,7 @@ class Health:
         self.health_check_type = health_check_type
         self.auto_healing = auto_healing
         self.grace_period = grace_period
+
 
 class LaunchSpecification:
     """
@@ -145,6 +158,7 @@ class LaunchSpecification:
     extensions: list[Extension]
     managed_service_identities: list[ManagedServiceIdentity]
     """
+
     def __init__(
             self,
             image=none,
@@ -169,16 +183,19 @@ class LaunchSpecification:
         self.extensions = extensions
         self.managed_service_identities = managed_service_identities
 
+
 class Image:
     """
     # Arguments
     marketplace: Marketplace
     custom: Custom
     """
+
     def __init__(self, marketplace=none, custom=none):
 
         self.marketplace = marketplace
         self.custom = custom
+
 
 class Marketplace:
     """
@@ -188,6 +205,7 @@ class Marketplace:
     sku: str
     version: str
     """
+
     def __init__(
             self,
             publisher=none,
@@ -200,12 +218,14 @@ class Marketplace:
         self.sku = sku
         self.version = version
 
+
 class Custom:
     """
     # Arguments
     resource_group_name: str
     image_name: str
     """
+
     def __init__(
             self,
             resource_group_name=none,
@@ -213,6 +233,7 @@ class Custom:
 
         self.resource_group_name = resource_group_name
         self.image_name = image_name
+
 
 class Network:
     """
@@ -223,6 +244,7 @@ class Network:
     assign_public_ip: bool
     additional_ip_configurations: list[AdditionalIpConfiguration]
     """
+
     def __init__(
             self,
             virtual_network_name=none,
@@ -237,19 +259,22 @@ class Network:
         self.assign_public_ip = assign_public_ip
         self.additional_ip_configurations = additional_ip_configurations
 
+
 class AdditionalIpConfiguration:
     """
     # Arguments
     name: str
     private_ip_address_version: str
     """
+
     def __init__(
             self,
             name=none,
-            private_ip_address_version=none): 
+            private_ip_address_version=none):
 
         self.name = name
         self.private_ip_address_version = private_ip_address_version
+
 
 class Login:
     """
@@ -258,6 +283,7 @@ class Login:
     user_name: str
     password: str
     """
+
     def __init__(
             self,
             ssh_public_key=none,
@@ -268,13 +294,16 @@ class Login:
         self.user_name = user_name
         self.password = password
 
+
 class LoadBalancerConfig:
     """
     # Arguments
     load_balancers: list[LoadBalancer]
     """
+
     def __init__(self, load_balancers=none):
         self.load_balancers = load_balancers
+
 
 class LoadBalancer:
     """
@@ -287,6 +316,7 @@ class LoadBalancer:
     backend_pool_name: str
     balancer_type: str
     """
+
     def __init__(
             self,
             balancer_id=none,
@@ -305,12 +335,14 @@ class LoadBalancer:
         self.backend_pool_name = backend_pool_name
         self.type = balancer_type
 
+
 class Tag:
     """
     # Arguments
     tag_key: str
     tag_value: str
     """
+
     def __init__(
             self,
             tag_key=none,
@@ -318,6 +350,7 @@ class Tag:
 
         self.tag_key = tag_key
         self.tag_value = tag_value
+
 
 class Extension:
     """
@@ -329,6 +362,7 @@ class Extension:
     type_handler_version: str
     protected_settings: ProtectedSettings
     """
+
     def __init__(
             self,
             auto_upgrade_minor_version=none,
@@ -345,13 +379,16 @@ class Extension:
         self.type_handler_version = type_handler_version
         self.protected_settings = protected_settings
 
+
 class ProtectedSettings:
     """
     # Arguments
     command_to_execute: str
     """
+
     def __init__(self, command_to_execute=none):
         self.command_to_execute = command_to_execute
+
 
 class ManagedServiceIdentity:
     """
@@ -359,6 +396,7 @@ class ManagedServiceIdentity:
     resource_group_name: str
     name: str
     """
+
     def __init__(
             self,
             resource_group_name=none,
@@ -377,10 +415,12 @@ class Scaling:
     up:  list[ScalingPolicy]
     down: list[ScalingPolicy]
     """
+
     def __init__(self, up=none, down=none):
 
         self.up = up
         self.down = down
+
 
 class ScalingPolicy:
     """
@@ -400,6 +440,7 @@ class ScalingPolicy:
     action: ScalingPolicyAction
     operator: str
     """
+
     def __init__(
             self,
             policy_name=none,
@@ -432,16 +473,19 @@ class ScalingPolicy:
         self.action = action
         self.operator = operator
 
+
 class ScalingPolicyDimension:
     """
     # Arguments
     name: str
     value: str
     """
+
     def __init__(self, name=none, value=none):
 
         self.name = name
         self.value = value
+
 
 class ScalingPolicyAction:
     """
@@ -453,6 +497,7 @@ class ScalingPolicyAction:
     maximum: int
     minimum: int
     """
+
     def __init__(
             self,
             scaling_type=none,
@@ -477,8 +522,10 @@ class Scheduling:
     # Arguments
     tasks: list[SchedulingTask]
     """
+
     def __init__(self, tasks=none):
         self.tasks = tasks
+
 
 class SchedulingTask:
     """
@@ -494,6 +541,7 @@ class SchedulingTask:
     adjustment: int
     adjustment_percentage: int
     """
+
     def __init__(
             self,
             is_enabled=none,
@@ -529,26 +577,32 @@ class ThirdPartiesIntegration:
     kubernetes: Kubernetes
     hpc_grid_engine: HpcGridEngine
     """
+
     def __init__(self, mlb_runtime=none, kubernetes=none, hpc_grid_engine=none):
         self.mlb_runtime = mlb_runtime
         self.kubernetes = kubernetes
         self.hpc_grid_engine = hpc_grid_engine
+
 
 class MlbRuntime:
     """
     # Arguments
     deployment_id: str
     """
+
     def __init__(self, deployment_id=none):
         self.deployment_id = deployment_id
+
 
 class Kubernetes:
     """
     # Arguments
     cluster_identifier: str
     """
+
     def __init__(self, cluster_identifier=none):
         self.cluster_identifier = cluster_identifier
+
 
 class HpcGridEngine:
     """
@@ -556,9 +610,11 @@ class HpcGridEngine:
     cluster_id: str
     queues: List[str]
     """
+
     def __init__(self, cluster_id=none, queues=none):
         self.cluster_id = cluster_id
         self.queues = queues
+
 
 class ElastigroupCreationRequest:
     def __init__(self, elastigroup):
@@ -578,6 +634,7 @@ class RollGroup:
     grace_period: int
     health_check_type: str
     """
+
     def __init__(
             self,
             batch_size_percentage=none,
@@ -587,6 +644,7 @@ class RollGroup:
         self.batch_size_percentage = batch_size_percentage
         self.grace_period = grace_period
         self.health_check_type = health_check_type
+
 
 class ElastigroupRollRequest:
     def __init__(self, group_roll):
@@ -608,6 +666,7 @@ class DetachConfiguration:
     draining_timeout: int
     should_decrement_target_capacity: bool
     """
+
     def __init__(
             self,
             instances_to_detach=none,
@@ -616,6 +675,7 @@ class DetachConfiguration:
         self.instances_to_detach = instances_to_detach
         self.draining_timeout = draining_timeout
         self.should_decrement_target_capacity = should_decrement_target_capacity
+
 
 class ElastigroupDetachInstancesRequest:
     def __init__(self, detach_configuration):

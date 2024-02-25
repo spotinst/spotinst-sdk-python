@@ -630,7 +630,7 @@ class OceanAwsClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def delete_virtual_node_group(self, vng_id: str, delete_nodes: bool=None, force_delete: bool=None):
+    def delete_virtual_node_group(self, vng_id: str, delete_nodes: bool = None, force_delete: bool = None):
         """
         Delete an Ocean Cluster
 
@@ -638,14 +638,15 @@ class OceanAwsClient(Client):
         vng_id (String): ID of the Ocean VNG
         delete_nodes (Bool): When set to "true", all instances belonging to the deleted launch specification will be drained, detached, and terminated.
         force_delete (Bool): When set to "true", delete even if it is the only custom launch spec remaining, and default launch spec has useAsTemplateOnly = true.
-        
+
         # Returns
         (Object): Ocean Launch Specification Delete response
         """
         return self.send_delete_with_params(
             url=self.__base_ocean_launchspec_url + "/" + vng_id,
             entity_name="ocean_aws_vng",
-            user_query_params=dict(deleteNodes=delete_nodes, forceDelete=force_delete)
+            user_query_params=dict(
+                deleteNodes=delete_nodes, forceDelete=force_delete)
         )
 
     def attach_load_balancers(self, ocean_id: str, load_balancers):
