@@ -14,16 +14,30 @@ __Arguments__
 - __max_memory_gib__: int
 - __max_v_cpu__: int
 
-<h2 id="spotinst_sdk2.models.ocean.aws.Down">Down</h2>
+<h2 id="spotinst_sdk2.models.ocean.aws.AgressiveScaleDown">AgressiveScaleDown</h2>
 
 ```python
-Down(
-  self,
-  max_scale_down_percentage: int = 'd3043820717d74d9a17694c176d39733')
+AgressiveScaleDown(self,
+                   is_enabled: bool = 'd3043820717d74d9a17694c176d39733'
+                   )
 ```
 
 __Arguments__
 
+- __is_enabled__: bool
+
+<h2 id="spotinst_sdk2.models.ocean.aws.Down">Down</h2>
+
+```python
+Down(self,
+     max_scale_down_percentage: int = 'd3043820717d74d9a17694c176d39733',
+     aggressive_scale_down:
+     AgressiveScaleDown = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __aggressive_scale_down__: AgressiveScaleDown
 - __max_scale_down_percentage__: int
 
 <h2 id="spotinst_sdk2.models.ocean.aws.Headroom">Headroom</h2>
