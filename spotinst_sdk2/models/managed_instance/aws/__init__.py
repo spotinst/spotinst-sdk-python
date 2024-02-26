@@ -12,6 +12,7 @@ class Persistence:
     block_devices_mode: str
     persist_private_ip: bool
     """
+
     def __init__(self, persist_root_device: bool = none, persist_block_devices: bool = none,
                  block_devices_mode: str = none, persist_private_ip: bool = none):
         self.persist_root_device = persist_root_device
@@ -28,6 +29,7 @@ class HealthCheck:
     grace_period: int
     unhealthy_duration: int
     """
+
     def __init__(self, type: str = none, auto_healing: bool = none, grace_period: int = none,
                  unhealthy_duration: int = none):
         self.type = type
@@ -45,6 +47,7 @@ class Task:
     is_enabled: bool
     frequency: str
     """
+
     def __init__(self, task_type: str = none, start_time: str = none, cron_expression: str = none,
                  is_enabled: bool = none, frequency: str = none):
         self.is_enabled = is_enabled
@@ -59,6 +62,7 @@ class Scheduling:
     # Arguments
     tasks: list[Task]
     """
+
     def __init__(self, tasks: List[Task] = none):
         self.tasks = tasks
 
@@ -68,6 +72,7 @@ class RevertToSpot:
     # Arguments
     perform_at: str
     """
+
     def __init__(self, perform_at: str = none):
         self.perform_at = perform_at
 
@@ -85,6 +90,7 @@ class Strategy:
     revert_to_spot: RevertToSpot
     minimum_instance_lifetime: int
     """
+
     def __init__(self, life_cycle: str = none, orientation: str = none, draining_timeout: int = none,
                  fallback_to_od: bool = none,
                  utilize_reserved_instances: bool = none, utilize_commitments: bool = none,
@@ -113,6 +119,7 @@ class EBS:
     kms_key_id: str
     snapshot_id: str
     """
+
     def __init__(self, delete_on_termination: bool = none, encrypted: bool = none, iops: int = none,
                  throughput: float = none,
                  kms_key_id: str = none,
@@ -137,6 +144,7 @@ class BlockDeviceMapping:
     no_device: str
     virtual_name: str
     """
+
     def __init__(self, device_name: str = none, ebs: EBS = none, no_device: str = none, virtual_name: str = none):
         self.device_name = device_name
         self.ebs = ebs
@@ -149,6 +157,7 @@ class CreditSpecification:
     # Arguments
     cpu_credits: str
     """
+
     def __init__(self, cpu_credits: str = none):
         self.cpu_credits = cpu_credits
 
@@ -159,6 +168,7 @@ class IamRole:
     name: str
     arn: str
     """
+
     def __init__(self, name: str = none, arn: str = none):
         self.name = name
         self.arn = arn
@@ -170,6 +180,7 @@ class InstanceTypes:
     preferred_type: str
     types: list[str]
     """
+
     def __init__(self, preferred_type: str = none, types: List[str] = none):
         self.preferred_type = preferred_type
         self.types = types
@@ -182,6 +193,7 @@ class NetworkInterface:
     associate_public_ip_address: bool
     associate_ipv6_address: bool
     """
+
     def __init__(self, device_index: int = none, associate_public_ip_address: bool = none,
                  associate_ipv6_address: bool = none):
         self.device_index = device_index
@@ -194,6 +206,7 @@ class TagSpecification:
     # Arguments
     should_tag: bool
     """
+
     def __init__(self, should_tag: bool = none):
         self.should_tag = should_tag
 
@@ -206,6 +219,7 @@ class ResourceTagSpecification:
     enis: TagSpecification
     amis: TagSpecification
     """
+
     def __init__(self, volumes: TagSpecification = none, snapshots: TagSpecification = none, enis: TagSpecification = none,
                  amis: TagSpecification = none):
         self.volumes = volumes
@@ -220,6 +234,7 @@ class Tag:
     tag_key: str
     tag_value: str
     """
+
     def __init__(self, tag_key: str = none, tag_value: str = none):
         self.tag_key = tag_key
         self.tag_value = tag_value
@@ -244,6 +259,7 @@ class LaunchSpecification:
     network_interfaces: list[NetworkInterface]
     block_device_mappings: list[BlockDeviceMapping]
     """
+
     def __init__(self, instance_types: InstanceTypes = none, ebs_optimized: bool = none, monitoring: bool = none,
                  tenancy: str = none,
                  iam_role: IamRole = none, security_group_ids: List[str] = none, image_id: str = none,
@@ -279,6 +295,7 @@ class Compute:
     product: str
     launch_specification: LaunchSpecification
     """
+
     def __init__(self, subnet_ids: List[str] = none, vpc_id: str = none, elastic_ip: str = none, private_ip: str = none,
                  product: str = none,
                  launch_specification: LaunchSpecification = none):
@@ -297,6 +314,7 @@ class Route53RecordSetConfiguration:
     use_public_ip: bool
     use_public_dns: bool
     """
+
     def __init__(self, name: str = none, use_public_ip: bool = none, use_public_dns: bool = none):
         self.name = name
         self.use_public_ip = use_public_ip
@@ -311,6 +329,7 @@ class Route53DomainConfiguration:
     record_set_type: str
     record_sets: list[Route53RecordSetConfiguration]
     """
+
     def __init__(self, hosted_zone_id: str = none, spotinst_account_id: str = none, record_set_type: str = none,
                  record_sets: List[Route53RecordSetConfiguration] = none):
         self.hosted_zone_id = hosted_zone_id
@@ -324,6 +343,7 @@ class Route53Configuration:
     # Arguments
     domains: list[Route53DomainsConfiguration]
     """
+
     def __init__(self, domains: List[Route53DomainConfiguration] = none):
         self.domains = domains
 
@@ -339,6 +359,7 @@ class LoadBalancer:
     az_awareness: bool
     auto_weight: bool
     """
+
     def __init__(self, name: str = none, arn: str = none, type: str = none, balancer_id: str = none,
                  target_set_id: str = none, az_awareness: bool = none,
                  auto_weight: bool = none):
@@ -402,6 +423,8 @@ class ManagedInstance:
         self.integrations = integrations
 
 # region Client Requests
+
+
 class ManagedInstanceCreationRequest:
     def __init__(self, managed_instance: ManagedInstance):
         self.managed_instance = managed_instance
@@ -420,7 +443,6 @@ class DeallocationConfig:
         self.should_delete_snapshots = should_delete_snapshots
         self.should_delete_images = should_delete_images
         self.should_terminate_instance = should_terminate_instance
-        
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -458,7 +480,7 @@ class ManagedInstanceUpdateRequest:
 class ManagedInstanceState:
     def __init__(self, id: str = none, state: str = none):
         self.id = id
-        self.state = state  
+        self.state = state
 
 
 class ManagedInstanceUpdateStatesRequest:
@@ -466,18 +488,20 @@ class ManagedInstanceUpdateStatesRequest:
         self.managed_instance_states = managed_instance_states
 
     def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-                        sort_keys=True, indent=4)
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
 
 class AvailabilityZones:
     def __init__(self, name: str = None, subnet_ids: List[str] = None):
         self.name = name
         self.subnet_ids = subnet_ids
 
+
 class ManagedInstanceMigration:
     def __init__(self, should_keep_private_ip: bool = none, original_instance_id: str = none,
-                region: str = none, should_terminate_instance: bool = none, managed_instance_name: str =none,
-                product: str = none, spot_instances_types: List[str] = none, availability_zones: List[AvailabilityZones] = none):
+                 region: str = none, should_terminate_instance: bool = none, managed_instance_name: str = none,
+                 product: str = none, spot_instances_types: List[str] = none, availability_zones: List[AvailabilityZones] = none):
         self.should_keep_private_ip = should_keep_private_ip
         self.original_instance_id = original_instance_id
         self.region = region
@@ -487,19 +511,21 @@ class ManagedInstanceMigration:
         self.spot_instance_types = spot_instances_types
         self.availability_zones = availability_zones
 
+
 class ManagedInstanceBulkMigrationRequest:
     def __init__(self, migrations: List[ManagedInstanceMigration] = none):
         self.migrations = migrations
-    
+
     def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-                        sort_keys=True, indent=4)
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
 
 class ManagedInstanceBulkMigrationStatusRequest:
     def __init__(self, migration_ids: List[str] = none):
         self.migration_ids = migration_ids
-    
+
     def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-                        sort_keys=True, indent=4)
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 # endregion

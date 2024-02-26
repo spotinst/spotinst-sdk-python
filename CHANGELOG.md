@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.6.0] - 2024-02-26
+### Added
+- Elastigroup AWS EMR: Added missing fields in various models.
+
 ## [2.5.0] - 2024-02-25
 ### Added
 - Ocean AWS: Added support for `aggressive_scale_down` in `Down` model.

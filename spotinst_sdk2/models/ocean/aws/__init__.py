@@ -30,7 +30,7 @@ class AgressiveScaleDown:
     def __init__(
             self,
             is_enabled: bool = none):
-        self.is_enabled = is_enabled       
+        self.is_enabled = is_enabled
 
 
 class Down:
@@ -45,7 +45,7 @@ class Down:
             max_scale_down_percentage: int = none,
             aggressive_scale_down: AgressiveScaleDown = none):
         self.max_scale_down_percentage = max_scale_down_percentage
-        self.aggressive_scale_down =  aggressive_scale_down
+        self.aggressive_scale_down = aggressive_scale_down
 
 
 class Headroom:
