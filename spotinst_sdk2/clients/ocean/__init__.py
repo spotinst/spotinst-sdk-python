@@ -1479,7 +1479,7 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def initiate_roll_aks_np(self, ocean_id: str, cluster_roll: azure_ocean.Roll):
+    def initiate_roll(self, ocean_id: str, cluster_roll: azure_ocean.Roll):
         """
         Initiate Cluster Rolls
 
@@ -1510,7 +1510,7 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_roll_aks_np(self, ocean_id: str, roll_id: str):
+    def get_roll(self, ocean_id: str, roll_id: str):
         """
         Get status for a roll of an Ocean cluster.
 
@@ -1532,7 +1532,7 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def list_rolls_aks_np(self, ocean_id: str):
+    def list_rolls(self, ocean_id: str):
         """
         Get status for all rolls of an Ocean cluster.
 
@@ -1552,7 +1552,7 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def stop_roll_aks_np(self, ocean_id: str, roll_id: str):
+    def stop_roll(self, ocean_id: str, roll_id: str):
         """
         Stop roll of an Ocean cluster.
 
