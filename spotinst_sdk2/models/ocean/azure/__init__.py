@@ -676,3 +676,53 @@ class AggregatedClusterCostRequest:
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 # endregion
+
+
+class Roll:
+    """
+    # Arguments
+    comment: str
+    batch_size_percentage: int
+    batch_min_healthy_percentage: int
+    respect_pdb: bool
+    node_pool_names: List[str]
+    vng_ids: List[str]
+    respect_restrict_scale_down: bool
+    node_names: List[str]
+
+    """
+
+    def __init__(
+            self,
+            comment: str = none,
+            batch_size_percentage: int = none,
+            batch_min_healthy_percentage: int = none,
+            respect_pdb: bool = none,
+            node_pool_names: List[str] = none,
+            vng_ids: List[str] = none,
+            respect_restrict_scale_down: bool = none,
+            node_names: List[str] = none):
+        self.comment = comment
+        self.batch_size_percentage = batch_size_percentage
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.respect_pdb = respect_pdb
+        self.node_pool_names = node_pool_names
+        self.vng_ids = vng_ids
+        self.respect_restrict_scale_down = respect_restrict_scale_down
+        self.node_names = node_names
+
+
+class ClusterRollInitiateRequest:
+    def __init__(self, roll: Roll = none):
+        self.comment = roll.comment
+        self.batch_size_percentage = roll.batch_size_percentage
+        self.batch_min_healthy_percentage = roll.batch_min_healthy_percentage
+        self.respect_pdb = roll.respect_pdb
+        self.node_pool_names = roll.node_pool_names
+        self.vng_ids = roll.vng_ids
+        self.respect_restrict_scale_down = roll.respect_restrict_scale_down
+        self.node_names = roll.node_names
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)

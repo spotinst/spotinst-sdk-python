@@ -228,3 +228,72 @@ __Returns__
 
 `(Object)`: Array of allowed vm sizes list
 
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.initiate_roll">initiate_roll</h2>
+
+```python
+OceanAzureClient.initiate_roll(ocean_id: str, cluster_roll: Roll)
+```
+
+Initiate Cluster Rolls
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __cluster_roll (Roll)__: Cluster Roll / Node Pool names/ VNG Ids
+
+__Returns__
+
+`(Object)`: Cluster Roll API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.get_roll">get_roll</h2>
+
+```python
+OceanAzureClient.get_roll(ocean_id: str, roll_id: str)
+```
+
+Get status for a roll of an Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __account_id (String)__: The ID of the account associated with your token.
+- __roll_id (String)__: Ocean cluster roll identifier
+
+__Returns__
+
+`(Object)`: Cluster Roll API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.list_rolls">list_rolls</h2>
+
+```python
+OceanAzureClient.list_rolls(ocean_id: str)
+```
+
+Get status for all rolls of an Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+
+__Returns__
+
+`(Object)`: List of Cluster Roll API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.stop_roll">stop_roll</h2>
+
+```python
+OceanAzureClient.stop_roll(ocean_id: str, roll_id: str)
+```
+
+Stop roll of an Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __account_id (String)__: The ID of the account associated with your token.
+- __roll_id (String)__: Ocean cluster roll identifier
+
+__Returns__
+
+`(Object)`: Cluster Roll API response
+

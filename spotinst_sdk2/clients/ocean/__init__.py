@@ -1478,4 +1478,101 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+
+    def initiate_roll(self, ocean_id: str, cluster_roll: azure_ocean.Roll):
+        """
+        Initiate Cluster Rolls
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        cluster_roll (Roll): Cluster Roll / Node Pool names/ VNG Ids
+
+        # Returns
+        (Object): Cluster Roll API response
+        """
+        roll_request = azure_ocean.ClusterRollInitiateRequest(cluster_roll)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(roll_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
+            entity_name='ocean (Cluster Roll)')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_roll(self, ocean_id: str, roll_id: str):
+        """
+        Get status for a roll of an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        account_id (String): The ID of the account associated with your token.
+        roll_id (String): Ocean cluster roll identifier
+
+        # Returns
+        (Object): Cluster Roll API response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id,
+            entity_name="ocean (Cluster Roll)"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def list_rolls(self, ocean_id: str):
+        """
+        Get status for all rolls of an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+        # Returns
+        (Object): List of Cluster Roll API response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
+            entity_name="ocean (Cluster Roll)"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def stop_roll(self, ocean_id: str, roll_id: str):
+        """
+        Stop roll of an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        account_id (String): The ID of the account associated with your token.
+        roll_id (String): Ocean cluster roll identifier
+
+        # Returns
+        (Object): Cluster Roll API response
+        """
+        response = self.send_put(
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/roll/" + roll_id + "/stop",
+            entity_name="ocean (Cluster Roll)"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
     # endregion
