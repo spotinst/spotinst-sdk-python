@@ -677,6 +677,7 @@ class AggregatedClusterCostRequest:
                           sort_keys=True, indent=4)
 # endregion
 
+
 class Roll:
     """
     # Arguments
@@ -710,6 +711,7 @@ class Roll:
         self.respect_restrict_scale_down = respect_restrict_scale_down
         self.node_names = node_names
 
+
 class ClusterRollInitiateRequest:
     def __init__(self, roll: Roll = none):
         self.comment = roll.comment
@@ -720,7 +722,6 @@ class ClusterRollInitiateRequest:
         self.vng_ids = roll.vng_ids
         self.respect_restrict_scale_down = roll.respect_restrict_scale_down
         self.node_names = roll.node_names
-
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

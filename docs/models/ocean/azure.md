@@ -662,3 +662,30 @@ __Arguments__
 - __group_by__: GroupBy
 - __start_time__: str
 
+<h2 id="spotinst_sdk2.models.ocean.azure.Roll">Roll</h2>
+
+```python
+Roll(
+  self,
+  comment: str = 'd3043820717d74d9a17694c176d39733',
+  batch_size_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  batch_min_healthy_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  respect_pdb: bool = 'd3043820717d74d9a17694c176d39733',
+  node_pool_names: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  vng_ids: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  respect_restrict_scale_down: bool = 'd3043820717d74d9a17694c176d39733',
+  node_names: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __comment__: str
+- __batch_size_percentage__: int
+- __batch_min_healthy_percentage__: int
+- __respect_pdb__: bool
+- __node_pool_names__: List[str]
+- __vng_ids__: List[str]
+- __respect_restrict_scale_down__: bool
+- __node_names__: List[str]
+
+

@@ -1565,7 +1565,8 @@ class OceanAzureClient(Client):
         (Object): Cluster Roll API response
         """
         response = self.send_put(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id+ "/stop",
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/roll/" + roll_id + "/stop",
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -1573,5 +1574,5 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    
+
     # endregion
