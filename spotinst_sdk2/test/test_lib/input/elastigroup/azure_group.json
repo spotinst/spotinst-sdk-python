@@ -49,8 +49,7 @@
 		"region": "region", 
 		"resourceGroupName": "resource_group_name", 
 		"thirdPartiesIntegration": {
-			"kubernetes": {"clusterIdentifier": "cluster_identifier"}, 
-			"mlbRuntime": {"deploymentId": "deployment_id"}
+			"kubernetes": {"clusterIdentifier": "cluster_identifier"}
 		}, 
 		"strategy": {"drainingTimeout": 0, "onDemandCount": 0, "lowPriorityPercentage": 0}, 
 		"scaling": {

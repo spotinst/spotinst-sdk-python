@@ -166,11 +166,9 @@ class GcpElastigroupTest(GcpElastigroupTestCase):
 
         #################### Third Parties Integrations #####################
 
-        mlb_runtime = MlbRuntime(deployment_id="deployment_id")
-
         kubernetes = Kubernetes(cluster_identifier="cluster_identifier")
 
-        third_parties_integration = ThirdPartiesIntegration(mlb_runtime=mlb_runtime, kubernetes=kubernetes)
+        third_parties_integration = ThirdPartiesIntegration(kubernetes=kubernetes)
 
         ###################### Elastigroup Operations #######################
 
