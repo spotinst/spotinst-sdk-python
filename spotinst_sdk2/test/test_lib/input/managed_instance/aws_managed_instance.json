@@ -111,8 +111,7 @@
         "loadBalancers": [
           {
             "name": "name",
-            "arn": "arn",
-            "type": "MULTAI_TARGET_SET",
+            "arn": "arn"
             "balancerId": "lb-1ee2e3q",
             "targetSetId": "ts-3eq",
             "azAwareness": true,
