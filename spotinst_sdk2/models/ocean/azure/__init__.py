@@ -726,3 +726,55 @@ class ClusterRollInitiateRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
+# region Migration
+class Migration:
+    """
+    # Arguments
+    node_names: List[str]
+    node_pool_names: List[str]
+    batch_size_percentage: int
+    batch_min_healthy_percentage: int
+    comment: str
+    respect_pdb: bool
+    respect_restrict_scale_down: bool
+    should_evict_standalone_pods: bool
+    should_terminate_nodes: bool
+    """
+
+    def __init__(
+            self,
+            node_names: List[str] = none,
+            node_pool_names: List[str] = none,
+            batch_size_percentage: int = none,
+            batch_min_healthy_percentage: int = none,
+            comment: str = none,
+            respect_pdb: bool = none,
+            respect_restrict_scale_down: bool = none,
+            should_evict_standalone_pods: bool = none,
+            should_terminate_nodes: bool = none,
+            ):
+        self.node_names = node_names
+        self.node_pool_names = node_pool_names
+        self.batch_size_percentage = batch_size_percentage
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.comment = comment
+        self.respect_pdb = respect_pdb
+        self.respect_restrict_scale_down = respect_restrict_scale_down
+        self.should_evict_standalone_pods = should_evict_standalone_pods
+        self.should_terminate_nodes = should_terminate_nodes
+
+class MigrationRequest:
+    def __init__(self, migration: Migration):
+        self.batch_size_percentage = migration.batch_size_percentage
+        self.batch_min_healthy_percentage = migration.batch_min_healthy_percentage
+        self.comment = migration.comment
+        self.respect_pdb = migration.respect_pdb
+        self.respect_restrict_scale_down = migration.respect_restrict_scale_down
+        self.should_evict_standalone_pods = migration.should_evict_standalone_pods
+        self.should_terminate_nodes = migration.should_terminate_nodes   
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)         
+# endregion    
