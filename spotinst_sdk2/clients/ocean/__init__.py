@@ -959,7 +959,7 @@ class OceanAwsClient(Client):
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        migration_id (bool): The migration identifier of a specific migration
+        migration_id (String): The migration identifier of a specific migration
         migration (Migration): Migration Update Configuration
 
         # Returns
@@ -1636,7 +1636,7 @@ class OceanAzureClient(Client):
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        migration_id (bool): The migration identifier of a specific migration
+        migration_id (String): The migration identifier of a specific migration
 
         # Returns
         (Object): Ocean Migration response 
@@ -1674,7 +1674,7 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]
 
-    def list_migrations(self, ocean_id: str = None):
+    def list_migrations(self, ocean_id: str):
         """
         Get summary of migrations history for an Ocean cluster.
 

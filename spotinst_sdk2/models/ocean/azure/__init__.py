@@ -766,6 +766,8 @@ class Migration:
 
 class MigrationRequest:
     def __init__(self, migration: Migration):
+        self.node_names = migration.node_names
+        self.node_pool_names = migration.node_pool_names
         self.batch_size_percentage = migration.batch_size_percentage
         self.batch_min_healthy_percentage = migration.batch_min_healthy_percentage
         self.comment = migration.comment
