@@ -689,3 +689,31 @@ __Arguments__
 - __node_names__: List[str]
 
 
+<h2 id="spotinst_sdk2.models.ocean.azure.Migration">Migration</h2>
+
+```python
+Migration(
+  self,
+  node_names: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  node_pool_names: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  batch_size_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  batch_min_healthy_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  comment: str = 'd3043820717d74d9a17694c176d39733',
+  respect_pdb: bool = 'd3043820717d74d9a17694c176d39733',
+  respect_restrict_scale_down: bool = 'd3043820717d74d9a17694c176d39733',
+  should_evict_standalone_pods: bool = 'd3043820717d74d9a17694c176d39733',
+  should_terminate_nodes: bool = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __node_names__: List[str]
+- __node_pool_names__: List[str]
+- __batch_size_percentage__: int
+- __batch_min_healthy_percentage__: int
+- __comment__: str
+- __respect_pdb__: bool
+- __respect_restrict_scale_down__: bool
+- __should_evict_standalone_pods__: bool
+- __should_terminate_nodes__: bool
+

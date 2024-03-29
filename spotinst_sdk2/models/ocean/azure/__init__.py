@@ -728,6 +728,8 @@ class ClusterRollInitiateRequest:
                           sort_keys=True, indent=4)
 
 # region Migration
+
+
 class Migration:
     """
     # Arguments
@@ -753,7 +755,7 @@ class Migration:
             respect_restrict_scale_down: bool = none,
             should_evict_standalone_pods: bool = none,
             should_terminate_nodes: bool = none,
-            ):
+    ):
         self.node_names = node_names
         self.node_pool_names = node_pool_names
         self.batch_size_percentage = batch_size_percentage
@@ -763,6 +765,7 @@ class Migration:
         self.respect_restrict_scale_down = respect_restrict_scale_down
         self.should_evict_standalone_pods = should_evict_standalone_pods
         self.should_terminate_nodes = should_terminate_nodes
+
 
 class MigrationRequest:
     def __init__(self, migration: Migration):
@@ -774,9 +777,9 @@ class MigrationRequest:
         self.respect_pdb = migration.respect_pdb
         self.respect_restrict_scale_down = migration.respect_restrict_scale_down
         self.should_evict_standalone_pods = migration.should_evict_standalone_pods
-        self.should_terminate_nodes = migration.should_terminate_nodes   
+        self.should_terminate_nodes = migration.should_terminate_nodes
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)         
-# endregion    
+                          sort_keys=True, indent=4)
+# endregion

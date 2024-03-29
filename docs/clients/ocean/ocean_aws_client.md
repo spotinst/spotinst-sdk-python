@@ -628,7 +628,7 @@ Stop an ongoing Workload Migration.
 __Arguments__
 
 - __ocean_id (String)__: ID of the Ocean Cluster
-- __migration_id (bool)__: The migration identifier of a specific migration
+- __migration_id (String)__: The migration identifier of a specific migration
 - __migration (Migration)__: Migration Update Configuration
 
 __Returns__

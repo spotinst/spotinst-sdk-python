@@ -1575,7 +1575,6 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    
     def create_migration(self, ocean_id: str, migration: azure_ocean.Migration):
         """
         Create a migration for a given existing instances.
@@ -1598,7 +1597,7 @@ class OceanAzureClient(Client):
 
         response = self.send_post(
             body=body_json,
-            url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration",
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
             entity_name='ocean_azure_migration')
 
         formatted_response = self.convert_json(response,
@@ -1620,7 +1619,7 @@ class OceanAzureClient(Client):
         query_params = dict(shouldFetchPods=should_fetch_pods)
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration/discovery",
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration/discovery",
             entity_name="ocean_azure_migration",
             query_params=query_params
         )
@@ -1643,7 +1642,8 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_put(
-            url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration/"+migration_id+"/stop",
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/migration/" + migration_id + "/stop",
             entity_name="ocean_azure_migration",
         )
 
@@ -1665,7 +1665,8 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration/"+migration_id,
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/migration/" + migration_id,
             entity_name="ocean_azure_migration"
         )
 
@@ -1683,7 +1684,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url+"/"+ocean_id+"/migration",
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
             entity_name="ocean_azure_migration",
         )
 
