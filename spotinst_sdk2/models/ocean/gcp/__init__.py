@@ -48,16 +48,16 @@ class ResourceLimits:
     """
     # Arguments
     max_memory_gib: int
-    max_vcpu: int
+    max_v_cpu: int
     """
 
     def __init__(
             self,
             max_memory_gib: int = none,
-            max_vcpu: int = none
+            max_v_cpu: int = none
     ):
         self.max_memory_gib = max_memory_gib
-        self.max_vcpu = max_vcpu
+        self.max_v_cpu = max_v_cpu
 
 
 class AutoScaler:
@@ -297,15 +297,15 @@ class AliasIpRanges:
 class NetworkInterfaces:
     """
     # Arguments
-    access_configs: AccessConfigs
-    alias_ip_ranges: AliasIpRanges
+    access_configs: List[AccessConfigs]
+    alias_ip_ranges: List[AliasIpRanges]
     network: str
     project_id: str
     """
     def __init__(
             self,
-            access_configs: AccessConfigs = none,
-            alias_ip_ranges: AliasIpRanges = none,
+            access_configs: List[AccessConfigs] = none,
+            alias_ip_ranges: List[AliasIpRanges] = none,
             network: str = none,
             project_id: str = none,
             ):
@@ -322,7 +322,7 @@ class Compute:
     backend_services: BackendServices
     instance_types: InstanceTypes
     launch_specification: LaunchSpecification
-    network_interfaces: NetworkInterfaces
+    network_interfaces: List(NetworkInterfaces)
     subnet_name: str
     """
     def __init__(
@@ -331,7 +331,7 @@ class Compute:
             backend_services: BackendServices = none,
             instance_types: InstanceTypes = none,
             launch_specification: LaunchSpecification = none,
-            network_interfaces: NetworkInterfaces = none,
+            network_interfaces: List[NetworkInterfaces] = none,
             subnet_name: str = none
             ):
         self.availability_zones = availability_zones
@@ -602,13 +602,13 @@ class RightSizingRecommendationRequest:
 class AllMatch:
     """
     # Arguments
-    all_matches:  List[Attribute]
+    all_match:  List[Attribute]
     """
 
     def __init__(
             self,
-            all_matches:  List[Attribute] = none):
-        self.all_matches = all_matches
+            all_match:  List[Attribute] = none):
+        self.all_match = all_match
 
 
 class Conditions:
@@ -711,35 +711,17 @@ class AutoScale:
     # Arguments
     auto_headroom_percentage: int
     headrooms: List[Headroom]
+    down: Down
     """
     def __init__(
             self,
             auto_headroom_percentage: int = none,
-            headrooms: List[Headroom] = none
+            headrooms: List[Headroom] = none,
+            down: Down = none
             ):
         self.auto_headroom_percentage = auto_headroom_percentage
         self.headrooms = headrooms
-
-
-class VNGNetworkInterfaces:
-    """
-    # Arguments
-    access_configs: AccessConfigs
-    alias_ip_ranges: AliasIpRanges
-    network: str
-    project_id: str
-    """
-    def __init__(
-            self,
-            access_configs: List[AccessConfigs] = none,
-            alias_ip_ranges: List[AliasIpRanges] = none,
-            network: str = none,
-            project_id: str = none,
-            ):
-        self.access_configs = access_configs
-        self.alias_ip_ranges = alias_ip_ranges
-        self.network = network
-        self.project_id = project_id
+        self.down = down
 
 
 class VNGResourceLimits:
@@ -785,7 +767,7 @@ class VNGScheduling:
     """
     def __init__(
             self,
-            tasks: VNGTasks):
+            tasks: List[VNGTasks]):
         self.tasks = tasks
 
 
@@ -839,9 +821,9 @@ class VirtualNodeGroup:
     labels: List[Labels]
     metadata: List[Metadata]
     name: str
-    network_interfaces: List[VNGNetworkInterfaces]
+    network_interfaces: List[NetworkInterfaces]
     ocean_id: str
-    resourceLimits: ResourceLimits
+    resource_limits: ResourceLimits
     restrict_scale_down: bool
     root_volume_size: int
     root_volume_type: str
@@ -862,9 +844,9 @@ class VirtualNodeGroup:
             labels: List[Labels] = none,
             metadata: List[Metadata] = none,
             name: str = none,
-            network_interfaces: List[VNGNetworkInterfaces] = none,
+            network_interfaces: List[NetworkInterfaces] = none,
             ocean_id: str = none,
-            resourceLimits: VNGResourceLimits = none,
+            resource_limits: VNGResourceLimits = none,
             restrict_scale_down: bool = none,
             root_volume_size: int = none,
             root_volume_type: str = none,
@@ -885,7 +867,7 @@ class VirtualNodeGroup:
         self.name = name
         self.network_interfaces = network_interfaces
         self.ocean_id = ocean_id
-        self.resourceLimits = resourceLimits
+        self.resource_limits = resource_limits
         self.restrict_scale_down = restrict_scale_down
         self.root_volume_size = root_volume_size
         self.root_volume_type = root_volume_type
@@ -957,7 +939,7 @@ class ClusterRollUpdateRequest:
 class ImportGkeClusterToOcean:
     """
     # Arguments
-    autoScaler: AutoScaler
+    auto_scaler: AutoScaler
     availability_zones: List[str]
     backend_services: List[BackendServices]
     capacity: Capacity
@@ -967,7 +949,7 @@ class ImportGkeClusterToOcean:
     """
     def __init__(
             self,
-            autoScaler: AutoScaler = none,
+            auto_scaler: AutoScaler = none,
             availability_zones: List[str] = none,
             backend_services: List[BackendServices] = none,
             capacity: Capacity = none,
@@ -975,7 +957,7 @@ class ImportGkeClusterToOcean:
             instance_types: InstanceTypes = none,
             name: str = none
             ):
-        self.autoScaler = autoScaler
+        self.auto_scaler = auto_scaler
         self.availability_zones = availability_zones
         self.backend_services = backend_services
         self.capacity = capacity

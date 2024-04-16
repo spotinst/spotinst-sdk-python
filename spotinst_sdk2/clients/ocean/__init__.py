@@ -2279,8 +2279,9 @@ class OceanGCPClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def import_gke_cluster_to_ocean(self, cluster_name: str, include_launchSpecs: bool, location: str,
-                                    node_pool_name: str, import_gke_to_ocean: gcp_ocean.ImportGkeClusterToOcean):
+    def import_gke_cluster_to_ocean(self, cluster_name: str, location: str,
+                                    import_gke_to_ocean: gcp_ocean.ImportGkeClusterToOcean,
+                                    include_launchSpecs: bool = None, node_pool_name: str = None):
         """
         Create an Ocean configuration according to an GKE Cluster configuration.
 
