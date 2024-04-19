@@ -1334,29 +1334,17 @@ class LoadBalancer:
     type: str
     arn: str
     name: str
-    target_set_id: str
-    balancer_id: str
-    auto_weight: bool
-    az_awareness: bool
     """
 
     def __init__(
             self,
             type=none,
             arn=none,
-            name=none,
-            target_set_id=none,
-            balancer_id=none,
-            auto_weight=none,
-            az_awareness=none):
+            name=none):
 
         self.type = type
         self.arn = arn
         self.name = name
-        self.target_set_id = target_set_id
-        self.balancer_id = balancer_id
-        self.auto_weight = auto_weight
-        self.az_awareness = az_awareness
 
 
 class IamRole:

@@ -112,10 +112,6 @@
           {
             "name": "name",
             "arn": "arn"
-            "balancerId": "lb-1ee2e3q",
-            "targetSetId": "ts-3eq",
-            "azAwareness": true,
-            "autoWeight": true
           }
         ]
       }

@@ -444,26 +444,14 @@ __Arguments__
 ```python
 ThirdPartiesIntegration(
   self,
-  mlb_runtime='d3043820717d74d9a17694c176d39733',
   kubernetes='d3043820717d74d9a17694c176d39733',
   hpc_grid_engine='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
-- __mlb_runtime__: MlbRuntime
 - __kubernetes__: Kubernetes
 - __hpc_grid_engine__: HpcGridEngine
-
-<h2 id="spotinst_sdk2.models.elastigroup.azure.MlbRuntime">MlbRuntime</h2>
-
-```python
-MlbRuntime(self, deployment_id='d3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __deployment_id__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.azure.Kubernetes">Kubernetes</h2>
 

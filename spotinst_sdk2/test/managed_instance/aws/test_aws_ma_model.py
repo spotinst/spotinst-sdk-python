@@ -79,8 +79,7 @@ class TestAwsManagedInstanceIntegrationsRoute53DomainsConfiguration(AwsManagedIn
 
 class TestAwsManagedInstanceIntegrationsLoadBalancersConfiguration(AwsManagedInstanceTestCase):
     def runTest(self):
-        lb = LoadBalancer(name="name", arn="arn", balancer_id="lb-1ee2e3q",
-                          target_set_id="ts-3eq", az_awareness=True, auto_weight=True)
+        lb = LoadBalancer(name="name", arn="arn")
         lbs_config = LoadBalancersConfiguration(load_balancers=[lb])
         integrations_config = IntegrationsConfig(load_balancers_config=lbs_config)
         mi_obj = ManagedInstance(integrations=integrations_config)
