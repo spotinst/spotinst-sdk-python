@@ -297,3 +297,83 @@ __Returns__
 
 `(Object)`: Cluster Roll API response
 
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.create_migration">create_migration</h2>
+
+```python
+OceanAzureClient.create_migration(ocean_id: str, migration: Migration)
+```
+
+Create a migration for a given existing instances.
+
+__Arguments__
+
+- __migration (Migration)__: Migration Object
+
+__Returns__
+
+`(Object)`: Migration create response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.get_migration_discovery">get_migration_discovery</h2>
+
+```python
+OceanAzureClient.get_migration_discovery(ocean_id: str,
+                                         should_fetch_pods: bool)
+```
+
+Get information about nodes which can be migrated into Ocean.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __should_fetch_pods (bool)__: Should fetch data about running pods for each node.
+
+__Returns__
+
+`(Object)`: Ocean API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.stop_migration">stop_migration</h2>
+
+```python
+OceanAzureClient.stop_migration(ocean_id: str, migration_id: str)
+```
+
+Stop an ongoing Workload Migration.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __migration_id (String)__: The migration identifier of a specific migration
+
+__Returns__
+
+`(Object)`: Ocean Migration response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.get_migration">get_migration</h2>
+
+```python
+OceanAzureClient.get_migration(ocean_id: str, migration_id: str)
+```
+
+Get Migration full info and status for an Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __migration_id (String)__: The migration identifier of a specific migration.
+
+__Returns__
+
+`(Object)`: Ocean API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.list_migrations">list_migrations</h2>
+
+```python
+OceanAzureClient.list_migrations(ocean_id: str)
+```
+
+Get summary of migrations history for an Ocean cluster.
+
+__Returns__
+
+`(Object)`: Ocean Migrations response
+

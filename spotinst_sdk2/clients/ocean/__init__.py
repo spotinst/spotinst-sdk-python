@@ -237,13 +237,13 @@ class OceanAwsClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        aggregated_costs_response = self.send_post(
+        rolls_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
-            aggregated_costs_response, self.camel_to_underscore)
+            rolls_response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
@@ -951,7 +951,7 @@ class OceanAwsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
     def stop_migration(self, ocean_id: str, migration_id: str, migration: aws_ocean.Migration):
         """
@@ -959,7 +959,7 @@ class OceanAwsClient(Client):
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        migration_id (bool): The migration identifier of a specific migration
+        migration_id (String): The migration identifier of a specific migration
         migration (Migration): Migration Update Configuration
 
         # Returns
@@ -1575,4 +1575,121 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
+    def create_migration(self, ocean_id: str, migration: azure_ocean.Migration):
+        """
+        Create a migration for a given existing instances.
+
+        # Arguments
+        migration (Migration): Migration Object
+
+        # Returns
+        (Object): Migration create response
+        """
+        migration = azure_ocean.MigrationRequest(migration)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(migration.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
+            entity_name='ocean_azure_migration')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def get_migration_discovery(self, ocean_id: str, should_fetch_pods: bool):
+        """
+        Get information about nodes which can be migrated into Ocean.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        should_fetch_pods (bool): Should fetch data about running pods for each node.
+
+        # Returns
+        (Object): Ocean API response
+        """
+        query_params = dict(shouldFetchPods=should_fetch_pods)
+
+        response = self.send_get(
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration/discovery",
+            entity_name="ocean_azure_migration",
+            query_params=query_params
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def stop_migration(self, ocean_id: str, migration_id: str):
+        """
+        Stop an ongoing Workload Migration.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        migration_id (String): The migration identifier of a specific migration
+
+        # Returns
+        (Object): Ocean Migration response 
+        """
+
+        response = self.send_put(
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/migration/" + migration_id + "/stop",
+            entity_name="ocean_azure_migration",
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def get_migration(self, ocean_id: str, migration_id: str):
+        """
+        Get Migration full info and status for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        migration_id (String): The migration identifier of a specific migration.
+
+        # Returns
+        (Object): Ocean API response 
+        """
+
+        response = self.send_get(
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/migration/" + migration_id,
+            entity_name="ocean_azure_migration"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def list_migrations(self, ocean_id: str):
+        """
+        Get summary of migrations history for an Ocean cluster.
+
+        # Returns
+        (Object): Ocean Migrations response 
+        """
+
+        response = self.send_get(
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
+            entity_name="ocean_azure_migration",
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]
     # endregion
