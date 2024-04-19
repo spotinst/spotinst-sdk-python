@@ -573,25 +573,13 @@ class SchedulingTask:
 class ThirdPartiesIntegration:
     """
     # Arguments
-    mlb_runtime: MlbRuntime
     kubernetes: Kubernetes
     hpc_grid_engine: HpcGridEngine
     """
 
-    def __init__(self, mlb_runtime=none, kubernetes=none, hpc_grid_engine=none):
-        self.mlb_runtime = mlb_runtime
+    def __init__(self, kubernetes=none, hpc_grid_engine=none):
         self.kubernetes = kubernetes
         self.hpc_grid_engine = hpc_grid_engine
-
-
-class MlbRuntime:
-    """
-    # Arguments
-    deployment_id: str
-    """
-
-    def __init__(self, deployment_id=none):
-        self.deployment_id = deployment_id
 
 
 class Kubernetes:

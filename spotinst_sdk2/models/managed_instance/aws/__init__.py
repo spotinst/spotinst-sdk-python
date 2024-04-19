@@ -354,22 +354,12 @@ class LoadBalancer:
     name: str
     arn: str
     type: str
-    balancer_id: str
-    target_set_id: str
-    az_awareness: bool
-    auto_weight: bool
     """
 
-    def __init__(self, name: str = none, arn: str = none, type: str = none, balancer_id: str = none,
-                 target_set_id: str = none, az_awareness: bool = none,
-                 auto_weight: bool = none):
+    def __init__(self, name: str = none, arn: str = none, type: str = none):
         self.name = name
         self.arn = arn
         self.type = type
-        self.balancer_id = balancer_id
-        self.target_set_id = target_set_id
-        self.az_awareness = az_awareness
-        self.auto_weight = auto_weight
 
 
 class LoadBalancersConfiguration:

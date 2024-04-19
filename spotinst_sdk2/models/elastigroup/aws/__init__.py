@@ -15,7 +15,6 @@ class Elastigroup:
     compute: Compute
     scaling: Scaling
     scheduling: Scheduling
-    multai: Multai
     third_parties_integration: ThirdPartyIntegrations
     """
 
@@ -29,7 +28,6 @@ class Elastigroup:
             compute=none,
             scaling=none,
             scheduling=none,
-            multai=none,
             third_parties_integration=none):
 
         self.name = name
@@ -39,7 +37,6 @@ class Elastigroup:
         self.strategy = strategy
         self.scaling = scaling
         self.scheduling = scheduling
-        self.multai = multai
         self.third_parties_integration = third_parties_integration
         self.compute = compute
 
@@ -480,46 +477,6 @@ class ScheduledTask:
 
 # endregion
 
-# region Multai
-class Multai:
-    """
-    # Arguments
-    token: str
-    balancers: str
-    """
-
-    def __init__(self, token=none, balancers=none):
-
-        self.token = token
-        self.balancers = balancers
-
-
-class MultaiLoadBalancer:
-    """
-    # Arguments
-    project_id: str
-    balancer_id: str
-    target_set_id: str
-    az_awareness: bool
-    auto_weight: bool
-    """
-
-    def __init__(
-            self,
-            project_id=none,
-            balancer_id=none,
-            target_set_id=none,
-            az_awareness=none,
-            auto_weight=none):
-
-        self.project_id = project_id
-        self.balancer_id = balancer_id
-        self.target_set_id = target_set_id
-        self.az_awareness = az_awareness
-        self.auto_weight = auto_weight
-
-
-# endregion
 
 # region ThirdPartyIntegrations
 class Rancher:
@@ -712,17 +669,6 @@ class EcsAutoScalerDownConfiguration:
     def __init__(self, evaluation_periods=none):
 
         self.evaluation_periods = evaluation_periods
-
-
-class MlbRuntimeConfiguration:
-    """
-    # Arguments
-    deployment_id: str
-    """
-
-    def __init__(self, deployment_id=none):
-
-        self.deployment_id = deployment_id
 
 
 class KubernetesConfiguration:
@@ -1110,7 +1056,6 @@ class ThirdPartyIntegrations:
     right_scale: RightScaleConfiguration
     ops_works: OpsWorksConfiguration
     chef: ChefConfiguration
-    mlb_runtime: MlbRuntimeConfiguration
     code_deploy: CodeDeployConfiguration
     nomad: NomadConfiguration
     docker_swarm: DockerSwarmConfiguration
@@ -1127,7 +1072,6 @@ class ThirdPartyIntegrations:
             right_scale=none,
             ops_works=none,
             chef=none,
-            mlb_runtime=none,
             code_deploy=none,
             nomad=none,
             docker_swarm=none,
@@ -1141,7 +1085,6 @@ class ThirdPartyIntegrations:
         self.right_scale = right_scale
         self.ops_works = ops_works
         self.chef = chef
-        self.mlb_runtime = mlb_runtime
         self.code_deploy = code_deploy
         self.nomad = nomad
         self.docker_swarm = docker_swarm
@@ -1391,29 +1334,17 @@ class LoadBalancer:
     type: str
     arn: str
     name: str
-    target_set_id: str
-    balancer_id: str
-    auto_weight: bool
-    az_awareness: bool
     """
 
     def __init__(
             self,
             type=none,
             arn=none,
-            name=none,
-            target_set_id=none,
-            balancer_id=none,
-            auto_weight=none,
-            az_awareness=none):
+            name=none):
 
         self.type = type
         self.arn = arn
         self.name = name
-        self.target_set_id = target_set_id
-        self.balancer_id = balancer_id
-        self.auto_weight = auto_weight
-        self.az_awareness = az_awareness
 
 
 class IamRole:

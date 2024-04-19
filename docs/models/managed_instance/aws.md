@@ -374,11 +374,7 @@ __Arguments__
 LoadBalancer(self,
              name: str = 'd3043820717d74d9a17694c176d39733',
              arn: str = 'd3043820717d74d9a17694c176d39733',
-             type: str = 'd3043820717d74d9a17694c176d39733',
-             balancer_id: str = 'd3043820717d74d9a17694c176d39733',
-             target_set_id: str = 'd3043820717d74d9a17694c176d39733',
-             az_awareness: bool = 'd3043820717d74d9a17694c176d39733',
-             auto_weight: bool = 'd3043820717d74d9a17694c176d39733')
+             type: str = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -386,10 +382,6 @@ __Arguments__
 - __name__: str
 - __arn__: str
 - __type__: str
-- __balancer_id__: str
-- __target_set_id__: str
-- __az_awareness__: bool
-- __auto_weight__: bool
 
 <h2 id="spotinst_sdk2.models.managed_instance.aws.LoadBalancersConfiguration">LoadBalancersConfiguration</h2>
 

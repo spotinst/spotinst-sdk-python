@@ -181,21 +181,6 @@ class AwsElastigroupTestRoute53Integration(AwsElastigroupTestCase):
         self.assertDictEqual(actual_request_json, expected_request_json)
 
 
-class AwsElastigroupTestMlbRuntimeIntegration(AwsElastigroupTestCase):
-    def runTest(self):
-        mlb_runtime = MlbRuntimeConfiguration(deployment_id='dp-rm0f5b912345')
-        third_party_integrations = ThirdPartyIntegrations(
-            mlb_runtime=mlb_runtime)
-
-        group = Elastigroup(third_parties_integration=third_party_integrations)
-        formatted_group_dict = self.create_formatted_group_request(group)
-
-        actual_request_json = formatted_group_dict['group']['thirdPartiesIntegration']['mlbRuntime']
-        expected_request_json = self.mock_group_json['group']['thirdPartiesIntegration']['mlbRuntime']
-
-        self.assertDictEqual(actual_request_json, expected_request_json)
-
-
 class AwsElastigroupTestElasticBeanstalkIntegration(AwsElastigroupTestCase):
     def runTest(self):
         deployment_strategy = BeanstalkDeploymentStrategy(
