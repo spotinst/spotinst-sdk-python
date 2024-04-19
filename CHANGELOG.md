@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0] - 2024-04-19
+### Fixed
+- Removed support for Azure V2 Scaleset Elastigroup (Deprecated).
+
 ## [2.8.0] - 2024-04-19
 ### Fixed
 - Removed support for deprecated MLB/Multai integration.

@@ -13,8 +13,6 @@ generate:
       - spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient++
   - clients/elastigroup/elastigroup_gcp_client.md:
       - spotinst_sdk2.clients.elastigroup.ElastigroupGcpClient++
-  - clients/elastigroup/elastigroup_azure_client.md:
-      - spotinst_sdk2.clients.elastigroup.ElastigroupAzureClient++
   - clients/elastigroup/elastigroup_azure_v3_client.md:
       - spotinst_sdk2.clients.elastigroup.ElastigroupAzureV3Client++
   - clients/mcs/mcs_client.md:
@@ -47,9 +45,6 @@ generate:
       - spotinst_sdk2.models.elastigroup.aws.stateful++
   - models/elastigroup/gcp.md:
       - spotinst_sdk2.models.elastigroup.gcp++
-  - models/elastigroup/azure.md:
-      - spotinst_sdk2.models.elastigroup.azure++
-      - spotinst_sdk2.models.elastigroup.azure.task++
   - models/elastigroup/azure_v3.md:
       - spotinst_sdk2.models.elastigroup.azure_v3++
   - models/mrscaler/aws.md:
