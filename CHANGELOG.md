@@ -9,6 +9,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Removed support for deprecated MLB/Multai integration.
 
+## [2.9.0] - 2024-04-19
+### Fixed
+- Removed support for deprecated MLB/Multai integration.
+
+## [2.8.0] - 2024-03-29
+### Added
+- Added support for Ocean AKS Migration APIs.
+
 ## [2.7.0] - 2024-03-14
 ### Added
 - Added support for Ocean AKS Roll APIs.
