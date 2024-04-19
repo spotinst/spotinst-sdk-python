@@ -41,11 +41,14 @@ class TestAwsManagedInstancePersistRootDevice(AwsManagedInstanceTestCase):
         mi_obj = ManagedInstance(persistence=persistence_obj)
         formatted_mi_request = self.create_formatted_mi_request(mi_obj)
 
-        actual_request_persist_root = formatted_mi_request['managedInstance']['persistence']['persistRootDevice']
-        expected_request_persist_root = self.mock_mi_json['managedInstance']['persistence']['persistRootDevice']
+        actual_request_persist_root = formatted_mi_request[
+            'managedInstance']['persistence']['persistRootDevice']
+        expected_request_persist_root = self.mock_mi_json[
+            'managedInstance']['persistence']['persistRootDevice']
 
         self.assertEqual(actual_request_persist_root, True)
-        self.assertEqual(actual_request_persist_root, expected_request_persist_root)
+        self.assertEqual(actual_request_persist_root,
+                         expected_request_persist_root)
 
 
 class TestAwsManagedInstancePersistence(AwsManagedInstanceTestCase):
@@ -62,10 +65,12 @@ class TestAwsManagedInstancePersistence(AwsManagedInstanceTestCase):
 
 class TestAwsManagedInstanceIntegrationsRoute53DomainsConfiguration(AwsManagedInstanceTestCase):
     def runTest(self):
-        recordset_config = Route53RecordSetConfiguration(name="someName", use_public_ip=True, use_public_dns=True)
+        recordset_config = Route53RecordSetConfiguration(
+            name="someName", use_public_ip=True, use_public_dns=True)
         route_53_domains_config = Route53DomainConfiguration(hosted_zone_id="123", spotinst_account_id="foo",
                                                              record_set_type="bar", record_sets=[recordset_config])
-        route_53_config = Route53Configuration(domains=[route_53_domains_config])
+        route_53_config = Route53Configuration(
+            domains=[route_53_domains_config])
         integrations_config = IntegrationsConfig(route53=route_53_config)
         mi_obj = ManagedInstance(integrations=integrations_config)
 
@@ -79,9 +84,10 @@ class TestAwsManagedInstanceIntegrationsRoute53DomainsConfiguration(AwsManagedIn
 
 class TestAwsManagedInstanceIntegrationsLoadBalancersConfiguration(AwsManagedInstanceTestCase):
     def runTest(self):
-        lb = LoadBalancer(name="name", arn="arn")
+        lb = LoadBalancer(name="name", arn="arn", type="TARGET_GROUP")
         lbs_config = LoadBalancersConfiguration(load_balancers=[lb])
-        integrations_config = IntegrationsConfig(load_balancers_config=lbs_config)
+        integrations_config = IntegrationsConfig(
+            load_balancers_config=lbs_config)
         mi_obj = ManagedInstance(integrations=integrations_config)
 
         formatted_mi_request = self.create_formatted_mi_request(mi_obj)
@@ -95,8 +101,10 @@ class TestAwsManagedInstanceIntegrationsLoadBalancersConfiguration(AwsManagedIns
 class TestAwsManagedInstanceComputeLaunchSpecification(AwsManagedInstanceTestCase):
     def runTest(self):
         # block_device_mappings
-        ebs = EBS(delete_on_termination=True, iops=0, throughput=125, volume_type="gp2", volume_size=12)
-        block_device_mappings = [BlockDeviceMapping(device_name="/dev/xvdcz", ebs=ebs)]
+        ebs = EBS(delete_on_termination=True, iops=0,
+                  throughput=125, volume_type="gp2", volume_size=12)
+        block_device_mappings = [BlockDeviceMapping(
+            device_name="/dev/xvdcz", ebs=ebs)]
         # network_interfaces
         network_interfaces = [
             NetworkInterface(device_index=0, associate_ipv6_address=True, associate_public_ip_address=True)]
@@ -107,8 +115,10 @@ class TestAwsManagedInstanceComputeLaunchSpecification(AwsManagedInstanceTestCas
         user_data = "dXNlcmJhc2g2NGVuY29kZWQ="
         # resource_tag_specification
         resource_tag_spec = ResourceTagSpecification(volumes=TagSpecification(should_tag=False),
-                                                     snapshots=TagSpecification(should_tag=True),
-                                                     enis=TagSpecification(should_tag=False),
+                                                     snapshots=TagSpecification(
+                                                         should_tag=True),
+                                                     enis=TagSpecification(
+                                                         should_tag=False),
                                                      amis=TagSpecification(should_tag=True))
         # tags
         tags = [Tag(tag_key="Creator", tag_value="test1@spot.io")]
@@ -126,7 +136,8 @@ class TestAwsManagedInstanceComputeLaunchSpecification(AwsManagedInstanceTestCas
         # ebs_optimized
         ebs_optimized = False
         # instance_types
-        instance_types = InstanceTypes(preferred_type="t2.micro", types=["t2.micro"])
+        instance_types = InstanceTypes(
+            preferred_type="t2.micro", types=["t2.micro"])
 
         launch_spec = LaunchSpecification(block_device_mappings=block_device_mappings,
                                           network_interfaces=network_interfaces,
@@ -136,7 +147,8 @@ class TestAwsManagedInstanceComputeLaunchSpecification(AwsManagedInstanceTestCas
                                           iam_role=iam_role, tenancy=tenancy, monitoring=monitoring,
                                           ebs_optimized=ebs_optimized, instance_types=instance_types
                                           )
-        mi_obj = ManagedInstance(compute=Compute(launch_specification=launch_spec))
+        mi_obj = ManagedInstance(compute=Compute(
+            launch_specification=launch_spec))
 
         formatted_mi_request = self.create_formatted_mi_request(mi_obj)
 

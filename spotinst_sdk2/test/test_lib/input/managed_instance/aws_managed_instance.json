@@ -111,7 +111,8 @@
         "loadBalancers": [
           {
             "name": "name",
-            "arn": "arn"
+            "arn": "arn",
+            "type": "TARGET_GROUP"
           }
         ]
       }
