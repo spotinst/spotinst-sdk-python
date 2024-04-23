@@ -1807,8 +1807,7 @@ class OceanGCPClient(Client):
 
     def update_ocean_cluster(self, ocean_id: str, ocean: gcp_ocean.Ocean):
         """
-        All Ocean parameters are updatable, excluding the Name and controllerClusterId.
-        This API supports partial updates, so specific fields can be updated separately.
+        Update an existing Ocean Cluster
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
@@ -1860,17 +1859,17 @@ class OceanGCPClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_elastilog(self, ocean_id, from_date, to_date, severity=None, resource_id=None, limit=None):
+    def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str=None, resource_id: str=None,
+                      limit: int=None):
         """
         Get group’s Elastilog by
 
         # Arguments
-        to_date (String): to date
-        from_date (String): to date
+        to_date (String): end date value
+        from_date (String): beginning date value
         severity(String) (Optional): Log level severity
-        resource_id(String) (Optional): Filter log extracted entires related to a
-          specific resource id
-        limit(String) (Optional): Maximum number of lines to extract in a response
+        resource_id(String) (Optional): specific resource identifier
+        limit(int) (Optional): Maximum number of lines to extract in a response
 
         # Returns
         (Object): Ocean Get Log API response
@@ -1974,13 +1973,13 @@ class OceanGCPClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        aggregated_costs_response = self.send_post(
+        aggregated_summary_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/aggregatedCosts/summary",
-            entity_name='ocean (aggregated cluster costs)')
+            entity_name='ocean (display summary costs)')
 
         formatted_response = self.convert_json(
-            aggregated_costs_response, self.camel_to_underscore)
+            aggregated_summary_costs_response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
@@ -1990,7 +1989,6 @@ class OceanGCPClient(Client):
 
         # Arguments
         vng (VirtualNodeGroup): VirtualNodeGroup Object
-        initial_nodes: When set to an integer greater than 0, a corresponding number of nodes will be launched from the virtual node group created.
 
         # Returns
         (Object): Ocean Launch Spec response
@@ -2015,7 +2013,7 @@ class OceanGCPClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_all_ocean_vngs(self, ocean_id: str):
+    def get_all_virtual_node_groups(self, ocean_id: str):
         """
         List the configurations for all virtual node groups in the account
         or in a specified cluster.
@@ -2035,9 +2033,10 @@ class OceanGCPClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def import_vng_configuration(self, node_pool_name: str, ocean_id: str):
+    def import_gke_nodepool_to_vng_configuration(self, node_pool_name: str, ocean_id: str):
         """
-        Import cluster configuration of an AKS cluster to use in create_ocean_cluster api call
+        Import GKE Nodepool configurations and generate valid Ocean Virtual Node Group (VNG) configuration
+        which can be used to create VNGs
 
         # Returns
         (Object): Ocean API response
@@ -2046,7 +2045,7 @@ class OceanGCPClient(Client):
         response = self.send_post_with_params(
             body=None,
             url=self.__base_ocean_launchspec_url + "/import",
-            entity_name='ocean_gcp',
+            entity_name='ocean_gcp_vng',
             user_query_params=dict(nodePoolName=node_pool_name, oceanId=ocean_id))
 
         formatted_response = self.convert_json(response,
@@ -2095,7 +2094,7 @@ class OceanGCPClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_ocean_launchspec_url + "/" + vng_id,
-            entity_name='ocean_aws_vng')
+            entity_name='ocean_gcp_vng')
 
         formatted_response = self.convert_json(
             response,
@@ -2115,7 +2114,7 @@ class OceanGCPClient(Client):
         """
         response = self.send_get(
             url=self.__base_ocean_launchspec_url + "/" + ocean_launch_spec_id,
-            entity_name="ocean"
+            entity_name="ocean_gcp_vng"
         )
 
         formatted_response = self.convert_json(

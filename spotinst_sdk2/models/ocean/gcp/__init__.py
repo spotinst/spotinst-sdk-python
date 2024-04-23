@@ -322,7 +322,7 @@ class Compute:
     backend_services: BackendServices
     instance_types: InstanceTypes
     launch_specification: LaunchSpecification
-    network_interfaces: List(NetworkInterfaces)
+    network_interfaces: List[NetworkInterfaces]
     subnet_name: str
     """
     def __init__(
