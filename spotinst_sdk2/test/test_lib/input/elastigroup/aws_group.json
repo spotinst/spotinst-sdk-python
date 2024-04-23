@@ -182,13 +182,6 @@
             {
               "name": "MyClassicLB",
               "type": "CLASSIC"
-            },
-            {
-              "targetSetId": "ts-123456789",
-              "balancerId": "lb-123456789",
-              "autoWeight": true,
-              "azAwareness": false,
-              "type": "MULTAI_TARGET_SET"
             }
           ]
         },
@@ -295,9 +288,6 @@
       },
       "mesosphere": {
         "apiServer": "1.2.3.4"
-      },
-      "mlbRuntime": {
-        "deploymentId": "dp-rm0f5b912345"
       },
       "nomad": {
         "masterHost": "https://master.host.com",

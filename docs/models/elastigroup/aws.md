@@ -14,7 +14,6 @@ Elastigroup(
   compute='d3043820717d74d9a17694c176d39733',
   scaling='d3043820717d74d9a17694c176d39733',
   scheduling='d3043820717d74d9a17694c176d39733',
-  multai='d3043820717d74d9a17694c176d39733',
   third_parties_integration='d3043820717d74d9a17694c176d39733')
 ```
 
@@ -28,7 +27,6 @@ __Arguments__
 - __compute__: Compute
 - __scaling__: Scaling
 - __scheduling__: Scheduling
-- __multai__: Multai
 - __third_parties_integration__: ThirdPartyIntegrations
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Strategy">Strategy</h2>
@@ -386,38 +384,6 @@ __Arguments__
 - __cron_expression__: str
 - __start_time__: str
 
-<h2 id="spotinst_sdk2.models.elastigroup.aws.Multai">Multai</h2>
-
-```python
-Multai(self,
-       token='d3043820717d74d9a17694c176d39733',
-       balancers='d3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __token__: str
-- __balancers__: str
-
-<h2 id="spotinst_sdk2.models.elastigroup.aws.MultaiLoadBalancer">MultaiLoadBalancer</h2>
-
-```python
-MultaiLoadBalancer(self,
-                   project_id='d3043820717d74d9a17694c176d39733',
-                   balancer_id='d3043820717d74d9a17694c176d39733',
-                   target_set_id='d3043820717d74d9a17694c176d39733',
-                   az_awareness='d3043820717d74d9a17694c176d39733',
-                   auto_weight='d3043820717d74d9a17694c176d39733')
-```
-
-__Arguments__
-
-- __project_id__: str
-- __balancer_id__: str
-- __target_set_id__: str
-- __az_awareness__: bool
-- __auto_weight__: bool
-
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Rancher">Rancher</h2>
 
 ```python
@@ -593,18 +559,6 @@ EcsAutoScalerDownConfiguration(
 __Arguments__
 
 - __evaluation_periods__: int
-
-<h2 id="spotinst_sdk2.models.elastigroup.aws.MlbRuntimeConfiguration">MlbRuntimeConfiguration</h2>
-
-```python
-MlbRuntimeConfiguration(self,
-                        deployment_id='d3043820717d74d9a17694c176d39733'
-                        )
-```
-
-__Arguments__
-
-- __deployment_id__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.KubernetesConfiguration">KubernetesConfiguration</h2>
 
@@ -955,7 +909,6 @@ ThirdPartyIntegrations(
   right_scale='d3043820717d74d9a17694c176d39733',
   ops_works='d3043820717d74d9a17694c176d39733',
   chef='d3043820717d74d9a17694c176d39733',
-  mlb_runtime='d3043820717d74d9a17694c176d39733',
   code_deploy='d3043820717d74d9a17694c176d39733',
   nomad='d3043820717d74d9a17694c176d39733',
   docker_swarm='d3043820717d74d9a17694c176d39733',
@@ -972,7 +925,6 @@ __Arguments__
 - __right_scale__: RightScaleConfiguration
 - __ops_works__: OpsWorksConfiguration
 - __chef__: ChefConfiguration
-- __mlb_runtime__: MlbRuntimeConfiguration
 - __code_deploy__: CodeDeployConfiguration
 - __nomad__: NomadConfiguration
 - __docker_swarm__: DockerSwarmConfiguration
@@ -1174,11 +1126,7 @@ __Arguments__
 LoadBalancer(self,
              type='d3043820717d74d9a17694c176d39733',
              arn='d3043820717d74d9a17694c176d39733',
-             name='d3043820717d74d9a17694c176d39733',
-             target_set_id='d3043820717d74d9a17694c176d39733',
-             balancer_id='d3043820717d74d9a17694c176d39733',
-             auto_weight='d3043820717d74d9a17694c176d39733',
-             az_awareness='d3043820717d74d9a17694c176d39733')
+             name='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1186,10 +1134,6 @@ __Arguments__
 - __type__: str
 - __arn__: str
 - __name__: str
-- __target_set_id__: str
-- __balancer_id__: str
-- __auto_weight__: bool
-- __az_awareness__: bool
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.IamRole">IamRole</h2>
 

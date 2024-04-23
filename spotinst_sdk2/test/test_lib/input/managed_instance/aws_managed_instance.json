@@ -112,11 +112,7 @@
           {
             "name": "name",
             "arn": "arn",
-            "type": "MULTAI_TARGET_SET",
-            "balancerId": "lb-1ee2e3q",
-            "targetSetId": "ts-3eq",
-            "azAwareness": true,
-            "autoWeight": true
+            "type": "TARGET_GROUP"
           }
         ]
       }
