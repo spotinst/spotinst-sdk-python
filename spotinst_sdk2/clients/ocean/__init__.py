@@ -1752,7 +1752,7 @@ class OceanGCPClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_all_ocean_cluster(self):
+    def get_all_ocean_clusters(self):
         """
         List the configurations for all Ocean clusters in the specified account.
 

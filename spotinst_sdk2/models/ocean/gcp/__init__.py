@@ -685,27 +685,6 @@ class AggregatedClusterCostRequest:
 
 
 # region VirtualNodeGroup
-class Headroom:
-    """
-    # Arguments
-    cpu_per_unit: int
-    gpu_per_unit: int
-    memory_per_unit: int
-    num_of_units: int
-    """
-    def __init(
-            self,
-            cpu_per_unit: int = none,
-            gpu_per_unit: int = none,
-            memory_per_unit: int = none,
-            num_of_units: int = none
-            ):
-        self.cpu_per_unit = cpu_per_unit
-        self.gpu_per_unit = gpu_per_unit
-        self.memory_per_unit = memory_per_unit
-        self.num_of_units = num_of_units
-
-
 class AutoScale:
     """
     # Arguments
@@ -716,7 +695,7 @@ class AutoScale:
     def __init__(
             self,
             auto_headroom_percentage: int = none,
-            headrooms: List[Headroom] = none,
+            headrooms: List[HeadRoom] = none,
             down: Down = none
             ):
         self.auto_headroom_percentage = auto_headroom_percentage
@@ -742,14 +721,14 @@ class VNGResourceLimits:
 class VNGTasks:
     """
     # Arguments
-    config: List[Headroom]
+    config: List[HeadRoom]
     cron_expression: str
     is_enabled: bool
     task_type: str
     """
     def __init__(
             self,
-            config: List[Headroom] = none,
+            config: List[HeadRoom] = none,
             cron_expression: str = none,
             is_enabled: bool = none,
             task_type: str = none
@@ -825,7 +804,7 @@ class VirtualNodeGroup:
     ocean_id: str
     resource_limits: ResourceLimits
     restrict_scale_down: bool
-    root_volume_size: int
+    root_volume_size_in_gb: int
     root_volume_type: str
     scheduling: Scheduling
     service_account: str
@@ -848,7 +827,7 @@ class VirtualNodeGroup:
             ocean_id: str = none,
             resource_limits: VNGResourceLimits = none,
             restrict_scale_down: bool = none,
-            root_volume_size: int = none,
+            root_volume_size_in_gb: int = none,
             root_volume_type: str = none,
             scheduling: VNGScheduling = none,
             service_account: str = none,
@@ -869,7 +848,7 @@ class VirtualNodeGroup:
         self.ocean_id = ocean_id
         self.resource_limits = resource_limits
         self.restrict_scale_down = restrict_scale_down
-        self.root_volume_size = root_volume_size
+        self.root_volume_size_in_gb = root_volume_size_in_gb
         self.root_volume_type = root_volume_type
         self.scheduling = scheduling
         self.service_account = service_account
