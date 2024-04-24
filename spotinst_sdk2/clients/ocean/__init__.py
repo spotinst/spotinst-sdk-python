@@ -1976,7 +1976,7 @@ class OceanGCPClient(Client):
         aggregated_summary_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" + ocean_id + "/aggregatedCosts/summary",
-            entity_name='ocean (display summary costs)')
+            entity_name='ocean (aggregated summary costs)')
 
         formatted_response = self.convert_json(
             aggregated_summary_costs_response, self.camel_to_underscore)
