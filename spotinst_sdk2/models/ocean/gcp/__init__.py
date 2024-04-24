@@ -22,13 +22,13 @@ class Down:
         self.max_scale_down_percentage = max_scale_down_percentage
 
 
-class HeadRoom:
+class Headroom:
     """
     # Arguments
     cpu_per_unit: int
     gpu_per_unit: int
     memory_per_unit: int
-    num_of_unit: int
+    num_of_units: int
     """
 
     def __init__(
@@ -36,12 +36,12 @@ class HeadRoom:
             cpu_per_unit: int = none,
             gpu_per_unit: int = none,
             memory_per_unit: int = none,
-            num_of_unit: int = none
+            num_of_units: int = none
     ):
         self.cpu_per_unit = cpu_per_unit
         self.gpu_per_unit = gpu_per_unit
         self.memory_per_unit = memory_per_unit
-        self.num_of_unit = num_of_unit
+        self.num_of_units = num_of_units
 
 
 class ResourceLimits:
@@ -67,7 +67,7 @@ class AutoScaler:
     cooldown: int
     down: Down
     enable_automatic_and_manual_headroom: bool
-    head_room: HeadRoom
+    headroom: Headroom
     is_auto_config: bool
     is_enabled: bool
     resource_limits: ResourceLimits
@@ -79,7 +79,7 @@ class AutoScaler:
             cooldown: int = none,
             down: Down = none,
             enable_automatic_and_manual_headroom: bool = none,
-            head_room: HeadRoom = none,
+            headroom: Headroom = none,
             is_auto_config: bool = none,
             is_enabled: bool = none,
             resource_limits: ResourceLimits = none
@@ -88,7 +88,7 @@ class AutoScaler:
         self.cooldown = cooldown
         self.down = down
         self.enable_automatic_and_manual_headroom = enable_automatic_and_manual_headroom
-        self.head_room = head_room
+        self.headroom = headroom
         self.is_auto_config = is_auto_config
         self.is_enabled = is_enabled
         self.resource_limits = resource_limits
@@ -695,7 +695,7 @@ class AutoScale:
     def __init__(
             self,
             auto_headroom_percentage: int = none,
-            headrooms: List[HeadRoom] = none,
+            headrooms: List[Headroom] = none,
             down: Down = none
             ):
         self.auto_headroom_percentage = auto_headroom_percentage
@@ -718,17 +718,27 @@ class VNGResourceLimits:
         self.min_instance_count = min_instance_count
 
 
+class Config:
+    """
+    Arguments
+    headrooms: List[Headroom]
+    """
+    def __init__(self,
+                 headrooms: List[Headroom] = none):
+        self.headrooms = headrooms
+
+
 class VNGTasks:
     """
     # Arguments
-    config: List[HeadRoom]
+    config: Config
     cron_expression: str
     is_enabled: bool
     task_type: str
     """
     def __init__(
             self,
-            config: List[HeadRoom] = none,
+            config: Config = none,
             cron_expression: str = none,
             is_enabled: bool = none,
             task_type: str = none
