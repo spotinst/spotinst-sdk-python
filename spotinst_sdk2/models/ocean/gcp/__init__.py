@@ -103,12 +103,13 @@ class Capacity:
     minimum: int
     target: int
     """
+
     def __init__(
             self,
             maximum: int = none,
             minimum: int = none,
             target: int = none
-            ):
+    ):
         self.maximum = maximum
         self.minimum = minimum
         self.target = target
@@ -127,6 +128,7 @@ class NamedPorts:
     name: str
     ports: List[int]
     """
+
     def __init__(
             self,
             name: str = none,
@@ -148,13 +150,14 @@ class BackendServices:
     named_ports: NamedPorts
     scheme: Scheme
     """
+
     def __init__(
             self,
             backend_service_name: str = none,
             location_type: LocationType = none,
             named_ports: NamedPorts = none,
             scheme: Scheme = none
-            ):
+    ):
         self.backend_service_name = backend_service_name
         self.location_type = location_type
         self.named_ports = named_ports
@@ -167,6 +170,7 @@ class InstanceTypes:
     blacklist: List[str]
     whitelist: List[str]
     """
+
     def __init__(
             self,
             blacklist: List[str] = none,
@@ -181,6 +185,7 @@ class Labels:
     key: str
     value: str
     """
+
     def __init__(
             self,
             key: str = none,
@@ -195,6 +200,7 @@ class Metadata:
     key: str
     value: str
     """
+
     def __init__(
             self,
             key: str = none,
@@ -214,6 +220,7 @@ class ShieldedInstanceConfig:
     enable_integrity_monitoring: bool
     enable_secure_boot: bool
     """
+
     def __init__(
             self,
             enable_integrity_monitoring: bool = none,
@@ -237,6 +244,7 @@ class LaunchSpecification:
     tags: List[str]
     use_as_template_only: bool
     """
+
     def __init__(
             self,
             ip_forwarding: bool = none,
@@ -250,7 +258,7 @@ class LaunchSpecification:
             source_image: str = none,
             tags: List[str] = none,
             use_as_template_only: bool = none
-            ):
+    ):
         self.ip_forwarding = ip_forwarding
         self.labels = labels
         self.metadata = metadata
@@ -270,11 +278,12 @@ class AccessConfigs:
     name: str
     type: str
     """
+
     def __init__(
             self,
             name: str = none,
             type: str = none
-            ):
+    ):
         self.name = name
         self.type = type
 
@@ -285,11 +294,12 @@ class AliasIpRanges:
     ip_cidr_range: str
     subnetwork_range_name: str
     """
+
     def __init__(
             self,
             ip_cidr_range: str = none,
             subnetwork_range_name: str = none
-            ):
+    ):
         self.ip_cidr_range = ip_cidr_range
         self.subnetwork_range_name = subnetwork_range_name
 
@@ -302,13 +312,14 @@ class NetworkInterfaces:
     network: str
     project_id: str
     """
+
     def __init__(
             self,
             access_configs: List[AccessConfigs] = none,
             alias_ip_ranges: List[AliasIpRanges] = none,
             network: str = none,
             project_id: str = none,
-            ):
+    ):
         self.access_configs = access_configs
         self.alias_ip_ranges = alias_ip_ranges
         self.network = network
@@ -325,6 +336,7 @@ class Compute:
     network_interfaces: List[NetworkInterfaces]
     subnet_name: str
     """
+
     def __init__(
             self,
             availability_zones: List[str] = none,
@@ -333,7 +345,7 @@ class Compute:
             launch_specification: LaunchSpecification = none,
             network_interfaces: List[NetworkInterfaces] = none,
             subnet_name: str = none
-            ):
+    ):
         self.availability_zones = availability_zones
         self.backend_services = backend_services
         self.instance_types = instance_types
@@ -350,11 +362,12 @@ class GKE:
     cluster_name: str
     master_location: str
     """
+
     def __init__(
             self,
             cluster_name: str = none,
             master_location: str = none
-            ):
+    ):
         self.cluster_name = cluster_name
         self.master_location = master_location
 # endregion
@@ -367,11 +380,12 @@ class ShutdownHours:
     is_enabled: bool
     time_windows: List[str]
     """
+
     def __init__(
             self,
             is_enabled: bool = none,
             time_windows: List[str] = none
-            ):
+    ):
         self.is_enabled = is_enabled
         self.time_windows = time_windows
 
@@ -384,13 +398,14 @@ class ClusterRoll:
     comment: str
     respect_pdb: bool
     """
+
     def __init__(
             self,
             batch_min_healthy_percentage: int = none,
             batch_size_percentage: int = none,
             comment: str = none,
             respect_pdb: bool = none
-            ):
+    ):
         self.batch_min_healthy_percentage = batch_min_healthy_percentage
         self.batch_size_percentage = batch_size_percentage
         self.comment = comment
@@ -402,6 +417,7 @@ class Parameters:
     # Arguments
     cluster_roll: ClusterRoll
     """
+
     def __init__(
             self,
             cluster_roll: ClusterRoll = none):
@@ -416,13 +432,14 @@ class Tasks:
     parameters: Parameters
     task_type: str
     """
+
     def __init__(
             self,
             cron_expression: str = none,
             is_enabled: bool = none,
             parameters: Parameters = none,
             task_type: str = none
-            ):
+    ):
         self.cron_expression = cron_expression
         self.is_enabled = is_enabled
         self.parameters = parameters
@@ -435,6 +452,7 @@ class Scheduling:
     shutdown_hours: ShutdownHours
     tasks: List[Tasks]
     """
+
     def __init__(
             self,
             shutdown_hours: ShutdownHours = none,
@@ -449,10 +467,11 @@ class ContainerImage:
     """
     approved_images: List[str]
     """
+
     def __init__(
             self,
             approved_images: List[str] = none
-            ):
+    ):
         self.approved_images = approved_images
 
 
@@ -461,6 +480,7 @@ class Security:
     # Arguments
     container_image: ContainerImage
     """
+
     def __init__(
             self,
             container_image: ContainerImage = none):
@@ -481,12 +501,13 @@ class Strategy:
     preemptible_percentage: int
     provisioning_model: ProvisioningModel
     """
+
     def __init__(
             self,
             draining_timeout: int = none,
             preemptible_percentage: int = none,
             provisioning_model: ProvisioningModel = none
-            ):
+    ):
         self.draining_timeout = draining_timeout
         self.preemptible_percentage = preemptible_percentage
         self.provisioning_model = provisioning_model
@@ -507,6 +528,7 @@ class Ocean:
     security: Security
     strategy: Strategy
     """
+
     def __init__(
             self,
             auto_scaler: AutoScaler = none,
@@ -518,7 +540,7 @@ class Ocean:
             scheduling: Scheduling = none,
             security: Security = none,
             strategy: Strategy = none
-            ):
+    ):
         self.auto_scaler = auto_scaler
         self.capacity = capacity
         self.compute = compute
@@ -692,12 +714,13 @@ class AutoScale:
     headrooms: List[Headroom]
     down: Down
     """
+
     def __init__(
             self,
             auto_headroom_percentage: int = none,
             headrooms: List[Headroom] = none,
             down: Down = none
-            ):
+    ):
         self.auto_headroom_percentage = auto_headroom_percentage
         self.headrooms = headrooms
         self.down = down
@@ -709,11 +732,12 @@ class VNGResourceLimits:
     max_instance_count: int
     min_instance_count: int
     """
+
     def __init__(
             self,
             max_instance_count: int = none,
             min_instance_count: int = none
-            ):
+    ):
         self.max_instance_count = max_instance_count
         self.min_instance_count = min_instance_count
 
@@ -723,6 +747,7 @@ class Config:
     Arguments
     headrooms: List[Headroom]
     """
+
     def __init__(self,
                  headrooms: List[Headroom] = none):
         self.headrooms = headrooms
@@ -736,13 +761,14 @@ class VNGTasks:
     is_enabled: bool
     task_type: str
     """
+
     def __init__(
             self,
             config: Config = none,
             cron_expression: str = none,
             is_enabled: bool = none,
             task_type: str = none
-            ):
+    ):
         self.config = config
         self.cron_expression = cron_expression
         self.is_enabled = is_enabled
@@ -754,6 +780,7 @@ class VNGScheduling:
     # Arguments
     tasks: List[VNGTasks]
     """
+
     def __init__(
             self,
             tasks: List[VNGTasks]):
@@ -765,6 +792,7 @@ class Storage:
     # Arguments
     local_ssd_count: int
     """
+
     def __init__(
             self,
             local_ssd_count: int = none):
@@ -776,10 +804,11 @@ class VNGStrategy:
     # Arguments
     preemptible_percentage: int
     """
+
     def __init__(
             self,
             preemptible_percentage: int = none
-            ):
+    ):
         self.preemptible_percentage = preemptible_percentage
 
 
@@ -790,12 +819,13 @@ class Taints:
     key: str
     value: str
     """
+
     def __init__(
             self,
             effect: str = none,
             key: str = none,
             value: str = none
-            ):
+    ):
         self.effect = effect
         self.key = key
         self.value = value
@@ -825,6 +855,7 @@ class VirtualNodeGroup:
     tags: List[str]
     taints: List[Taints]
     """
+
     def __init__(
             self,
             auto_scale: AutoScale = none,
@@ -847,7 +878,7 @@ class VirtualNodeGroup:
             strategy: VNGStrategy = none,
             tags: List[str] = none,
             taints: List[Taints] = none
-            ):
+    ):
         self.auto_scale = auto_scale
         self.availability_zones = availability_zones
         self.instance_types = instance_types
@@ -936,6 +967,7 @@ class ImportGkeClusterToOcean:
     instance_types: InstanceTypes
     name: str
     """
+
     def __init__(
             self,
             auto_scaler: AutoScaler = none,
@@ -945,7 +977,7 @@ class ImportGkeClusterToOcean:
             controller_cluster_id: str = none,
             instance_types: InstanceTypes = none,
             name: str = none
-            ):
+    ):
         self.auto_scaler = auto_scaler
         self.availability_zones = availability_zones
         self.backend_services = backend_services

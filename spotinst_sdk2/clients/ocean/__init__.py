@@ -1696,7 +1696,7 @@ class OceanAzureClient(Client):
     # endregion
 
 
-class OceanGCPClient(Client):
+class OceanGcpClient(Client):
     __base_ocean_url = "/ocean/k8s/cluster/"
     __base_ocean_cluster_url = "/ocean/gcp/k8s/cluster"
     __base_ocean_launchspec_url = "/ocean/gcp/k8s/launchSpec"
@@ -1859,8 +1859,8 @@ class OceanGCPClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str=None, resource_id: str=None,
-                      limit: int=None):
+    def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str = None, resource_id: str = None,
+                      limit: int = None):
         """
         Get group’s Elastilog by
 
@@ -1975,7 +1975,8 @@ class OceanGCPClient(Client):
 
         aggregated_summary_costs_response = self.send_post(
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/aggregatedCosts/summary",
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/aggregatedCosts/summary",
             entity_name='ocean (aggregated summary costs)')
 
         formatted_response = self.convert_json(
