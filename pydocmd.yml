@@ -23,6 +23,8 @@ generate:
       - spotinst_sdk2.clients.ocean.OceanAwsClient++
   - clients/ocean/ocean_azure_client.md:
       - spotinst_sdk2.clients.ocean.OceanAzureClient++
+  - clients/ocean/ocean_gcp_client.md:
+      - spotinst_sdk2.clients.ocean.OceanGcpClient++
   - clients/ocean_cd/ocean_cd_client.md:
       - spotinst_sdk2.clients.ocean_cd.OceanCDClient++
   - clients/subscription/subscription_client.md:
@@ -53,6 +55,8 @@ generate:
       - spotinst_sdk2.models.ocean.aws++
   - models/ocean/azure.md:
       - spotinst_sdk2.models.ocean.azure++
+  - models/ocean/gcp.md:
+      - spotinst_sdk2.models.ocean.gcp++
   - models/ocean_cd.md:
       - spotinst_sdk2.models.ocean_cd++
       - spotinst_sdk2.models.ocean_cd.rollout_spec++
