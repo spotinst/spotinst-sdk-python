@@ -364,6 +364,42 @@ An enumeration.
 <h3 id="spotinst_sdk2.models.ocean.azure.VmType.storage_optimized">storage_optimized</h3>
 
 
+<h2 id="spotinst_sdk2.models.ocean.azure.GpuType">GpuType</h2>
+
+```python
+GpuType(cls, value, names=None, *, module, qualname, type, start)
+```
+An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.amd_radeon_instinct_mi25">amd_radeon_instinct_mi25</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_a10">nvidia_a10</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_a100">nvidia_tesla_a100</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_h100">nvidia_tesla_h100</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_k80">nvidia_tesla_k80</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_m60">nvidia_tesla_m60</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_p100">nvidia_tesla_p100</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_p40">nvidia_tesla_p40</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_t4">nvidia_tesla_t4</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_v100">nvidia_tesla_v100</h3>
+
+
 <h2 id="spotinst_sdk2.models.ocean.azure.Filters">Filters</h2>
 
 ```python
@@ -385,7 +421,9 @@ Filters(
     min_n_i_cs: int = 'd3043820717d74d9a17694c176d39733',
     series: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
     vm_types:
-    typing.List[spotinst_sdk2.models.ocean.azure.VmType] = 'd3043820717d74d9a17694c176d39733'
+    typing.List[spotinst_sdk2.models.ocean.azure.VmType] = 'd3043820717d74d9a17694c176d39733',
+    gpu_types:
+    typing.List[spotinst_sdk2.models.ocean.azure.GpuType] = 'd3043820717d74d9a17694c176d39733'
 )
 ```
 
@@ -405,6 +443,7 @@ __Arguments__
 - __min_n_i_cs__: int
 - __series__: List[str]
 - __vm_types__: List[VmType]
+- __gpu_types__: List[GpuType]
 
 <h2 id="spotinst_sdk2.models.ocean.azure.VmSizes">VmSizes</h2>
 

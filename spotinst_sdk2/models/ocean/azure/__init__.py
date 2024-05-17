@@ -335,6 +335,19 @@ class VmType(Enum):
     gpu = "GPU"
 
 
+class GpuType(Enum):
+    nvidia_tesla_v100 = "nvidia-tesla-v100" 
+    amd_radeon_instinct_mi25 = "amd-radeon-instinct-mi25"
+    nvidia_a10 = "nvidia-a10" 
+    nvidia_tesla_a100 = "nvidia-tesla-a100" 
+    nvidia_tesla_k80 = "nvidia-tesla-k80" 
+    nvidia_tesla_m60 = "nvidia-tesla-m60" 
+    nvidia_tesla_p100 = "nvidia-tesla-p100" 
+    nvidia_tesla_p40 = "nvidia-tesla-p40" 
+    nvidia_tesla_t4 = "nvidia-tesla-t4" 
+    nvidia_tesla_h100 = "nvidia-tesla-h100"   
+
+
 class Filters:
     """
     # Arguments
@@ -352,6 +365,7 @@ class Filters:
     min_n_i_cs: int
     series: List[str]
     vm_types: List[VmType]
+    gpu_types: List[GpuType]
     """
 
     def __init__(
@@ -369,7 +383,8 @@ class Filters:
             min_data: int = none,
             min_n_i_cs: int = none,
             series: List[str] = none,
-            vm_types: List[VmType] = none):
+            vm_types: List[VmType] = none,
+            gpu_types: List[GpuType] = none):
         self.accelerated_networking = accelerated_networking
         self.disk_performance = disk_performance
         self.architectures = architectures
@@ -384,6 +399,7 @@ class Filters:
         self.min_n_i_cs = min_n_i_cs
         self.series = series
         self.vm_types = vm_types
+        self.gpu_types = gpu_types
 
 
 class VmSizes:
