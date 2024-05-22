@@ -120,16 +120,83 @@ class ShutdownHours:
         self.time_windows = time_windows
 
 
-class Scheduling:
+class ClusterRoll:
     """
     # Arguments
-    shutdown_hours: ShutdownHours
+    batch_min_healthy_percentage: int
+    batch_size_percentage: int
+    comment: str
+    respect_pdb: bool
+    respect_restrict_scale_down: bool
+    vng_ids: List[str]
     """
 
     def __init__(
             self,
-            shutdown_hours: ShutdownHours = none):
+            batch_min_healthy_percentage: int = none,
+            batch_size_percentage: int = none,
+            comment: str = none,
+            respect_pdb: bool = none,
+            respect_restrict_scale_down: bool = none,
+            vng_ids: List[str] = none):
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.batch_size_percentage = batch_size_percentage
+        self.comment = comment
+        self.respect_pdb = respect_pdb
+        self.respect_restrict_scale_down = respect_restrict_scale_down
+        self.vng_ids = vng_ids
+
+
+class Parameters:
+    """
+    # Arguments
+    cluster_roll: ClusterRoll
+    """
+
+    def __init__(
+            self,
+            cluster_roll: ClusterRoll = none):
+        self.cluster_roll = cluster_roll
+
+
+class TaskType(Enum):
+    cluster_roll = "clusterRoll"
+
+
+class Task:
+    """
+    # Arguments
+    cron_expression: str
+    is_enabled: bool
+    parameters: Parameters
+    task_type: TaskType
+    """
+
+    def __init__(
+            self,
+            cron_expression: str = none,
+            is_enabled: bool = none,
+            parameters: Parameters = none,
+            task_type: TaskType = none):
+        self.cron_expression = cron_expression
+        self.is_enabled = is_enabled
+        self.parameters = parameters
+        self.task_type = task_type
+
+
+class Scheduling:
+    """
+    # Arguments
+    shutdown_hours: ShutdownHours
+    tasks: List[Task]
+    """
+
+    def __init__(
+            self,
+            shutdown_hours: ShutdownHours = none,
+            tasks: List[Task] = none):
         self.shutdown_hours = shutdown_hours
+        self.tasks = tasks
 # endregion
 
 # region Health
@@ -336,16 +403,16 @@ class VmType(Enum):
 
 
 class GpuType(Enum):
-    nvidia_tesla_v100 = "nvidia-tesla-v100" 
+    nvidia_tesla_v100 = "nvidia-tesla-v100"
     amd_radeon_instinct_mi25 = "amd-radeon-instinct-mi25"
-    nvidia_a10 = "nvidia-a10" 
-    nvidia_tesla_a100 = "nvidia-tesla-a100" 
-    nvidia_tesla_k80 = "nvidia-tesla-k80" 
-    nvidia_tesla_m60 = "nvidia-tesla-m60" 
-    nvidia_tesla_p100 = "nvidia-tesla-p100" 
-    nvidia_tesla_p40 = "nvidia-tesla-p40" 
-    nvidia_tesla_t4 = "nvidia-tesla-t4" 
-    nvidia_tesla_h100 = "nvidia-tesla-h100"   
+    nvidia_a10 = "nvidia-a10"
+    nvidia_tesla_a100 = "nvidia-tesla-a100"
+    nvidia_tesla_k80 = "nvidia-tesla-k80"
+    nvidia_tesla_m60 = "nvidia-tesla-m60"
+    nvidia_tesla_p100 = "nvidia-tesla-p100"
+    nvidia_tesla_p40 = "nvidia-tesla-p40"
+    nvidia_tesla_t4 = "nvidia-tesla-t4"
+    nvidia_tesla_h100 = "nvidia-tesla-h100"
 
 
 class Filters:
