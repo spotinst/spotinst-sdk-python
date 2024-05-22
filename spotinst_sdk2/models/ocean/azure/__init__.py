@@ -119,18 +119,83 @@ class ShutdownHours:
         self.is_enabled = is_enabled
         self.time_windows = time_windows
 
+class ClusterRoll:
+    """
+    # Arguments
+    batch_min_healthy_percentage: int
+    batch_size_percentage: int
+    comment: str
+    respect_pdb: bool
+    respect_restrict_scale_down: bool
+    vng_ids: List[str]
+    """
+
+    def __init__(
+            self,
+            batch_min_healthy_percentage: int = none,
+            batch_size_percentage: int = none,
+            comment: str = none,
+            respect_pdb: bool = none,
+            respect_restrict_scale_down: bool = none,
+            vng_ids: List[str] = none):
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.batch_size_percentage = batch_size_percentage
+        self.comment = comment
+        self.respect_pdb = respect_pdb
+        self.respect_restrict_scale_down = respect_restrict_scale_down
+        self.vng_ids = vng_ids
+
+class Parameters:
+    """
+    # Arguments
+    cluster_roll: ClusterRoll
+    """
+
+    def __init__(
+            self,
+            cluster_roll: ClusterRoll = none):
+        self.cluster_roll = cluster_roll
+
+class TaskType(Enum):
+    cluster_roll = "clusterRoll"
+
+
+# region Task
+class Tasks:
+    """
+    # Arguments
+    cron_expression: str
+    is_enabled: bool
+    parameters: Parameters
+    task_type: TaskType
+    """
+
+    def __init__(
+            self,
+            cron_expression: str = none,
+            is_enabled: bool = none,
+            parameters: Parameters = none,
+            task_type: TaskType = none):
+        self.cron_expression = cron_expression
+        self.is_enabled = is_enabled
+        self.parameters = parameters
+        self.task_type = task_type
+
+# endregion
 
 class Scheduling:
     """
     # Arguments
     shutdown_hours: ShutdownHours
+    tasks         : List[Tasks]
     """
 
     def __init__(
             self,
-            shutdown_hours: ShutdownHours = none):
+            shutdown_hours: ShutdownHours = none,
+            tasks: List[Tasks] = none):
         self.shutdown_hours = shutdown_hours
-# endregion
+        self.tasks = tasks
 
 # region Health
 
