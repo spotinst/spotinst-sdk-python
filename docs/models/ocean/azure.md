@@ -97,17 +97,81 @@ __Arguments__
 - __is_enabled__: bool
 - __time_windows__: List[str]
 
+<h2 id="spotinst_sdk2.models.ocean.azure.ClusterRoll">ClusterRoll</h2>
+
+```python
+ClusterRoll(
+  self,
+  batch_min_healthy_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  batch_size_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  comment: str = 'd3043820717d74d9a17694c176d39733',
+  respect_pdb: bool = 'd3043820717d74d9a17694c176d39733',
+  respect_restrict_scale_down: bool = 'd3043820717d74d9a17694c176d39733',
+  vng_ids: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __batch_min_healthy_percentage__: int
+- __batch_size_percentage__: int
+- __comment__: str
+- __respect_pdb__: bool
+- __respect_restrict_scale_down__: bool
+- __vng_ids__: List[str]
+
+<h2 id="spotinst_sdk2.models.ocean.azure.Parameters">Parameters</h2>
+
+```python
+Parameters(self,
+           cluster_roll: ClusterRoll = 'd3043820717d74d9a17694c176d39733'
+           )
+```
+
+__Arguments__
+
+- __cluster_roll__: ClusterRoll
+
+<h2 id="spotinst_sdk2.models.ocean.azure.TaskType">TaskType</h2>
+
+```python
+TaskType(cls, value, names=None, *, module, qualname, type, start)
+```
+An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.azure.TaskType.cluster_roll">cluster_roll</h3>
+
+
+<h2 id="spotinst_sdk2.models.ocean.azure.Task">Task</h2>
+
+```python
+Task(self,
+     cron_expression: str = 'd3043820717d74d9a17694c176d39733',
+     is_enabled: bool = 'd3043820717d74d9a17694c176d39733',
+     parameters: Parameters = 'd3043820717d74d9a17694c176d39733',
+     task_type: TaskType = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __cron_expression__: str
+- __is_enabled__: bool
+- __parameters__: Parameters
+- __task_type__: TaskType
+
 <h2 id="spotinst_sdk2.models.ocean.azure.Scheduling">Scheduling</h2>
 
 ```python
 Scheduling(
-  self,
-  shutdown_hours: ShutdownHours = 'd3043820717d74d9a17694c176d39733')
+    self,
+    shutdown_hours: ShutdownHours = 'd3043820717d74d9a17694c176d39733',
+    tasks:
+    typing.List[spotinst_sdk2.models.ocean.azure.Task] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
 
 - __shutdown_hours__: ShutdownHours
+- __tasks__: List[Task]
 
 <h2 id="spotinst_sdk2.models.ocean.azure.Health">Health</h2>
 

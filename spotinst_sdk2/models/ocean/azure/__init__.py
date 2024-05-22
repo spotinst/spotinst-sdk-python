@@ -119,6 +119,7 @@ class ShutdownHours:
         self.is_enabled = is_enabled
         self.time_windows = time_windows
 
+
 class ClusterRoll:
     """
     # Arguments
@@ -145,6 +146,7 @@ class ClusterRoll:
         self.respect_restrict_scale_down = respect_restrict_scale_down
         self.vng_ids = vng_ids
 
+
 class Parameters:
     """
     # Arguments
@@ -156,12 +158,12 @@ class Parameters:
             cluster_roll: ClusterRoll = none):
         self.cluster_roll = cluster_roll
 
+
 class TaskType(Enum):
     cluster_roll = "clusterRoll"
 
 
-# region Task
-class Tasks:
+class Task:
     """
     # Arguments
     cron_expression: str
@@ -181,21 +183,21 @@ class Tasks:
         self.parameters = parameters
         self.task_type = task_type
 
-# endregion
 
 class Scheduling:
     """
     # Arguments
     shutdown_hours: ShutdownHours
-    tasks         : List[Tasks]
+    tasks: List[Task]
     """
 
     def __init__(
             self,
             shutdown_hours: ShutdownHours = none,
-            tasks: List[Tasks] = none):
+            tasks: List[Task] = none):
         self.shutdown_hours = shutdown_hours
         self.tasks = tasks
+# endregion
 
 # region Health
 
@@ -401,16 +403,16 @@ class VmType(Enum):
 
 
 class GpuType(Enum):
-    nvidia_tesla_v100 = "nvidia-tesla-v100" 
+    nvidia_tesla_v100 = "nvidia-tesla-v100"
     amd_radeon_instinct_mi25 = "amd-radeon-instinct-mi25"
-    nvidia_a10 = "nvidia-a10" 
-    nvidia_tesla_a100 = "nvidia-tesla-a100" 
-    nvidia_tesla_k80 = "nvidia-tesla-k80" 
-    nvidia_tesla_m60 = "nvidia-tesla-m60" 
-    nvidia_tesla_p100 = "nvidia-tesla-p100" 
-    nvidia_tesla_p40 = "nvidia-tesla-p40" 
-    nvidia_tesla_t4 = "nvidia-tesla-t4" 
-    nvidia_tesla_h100 = "nvidia-tesla-h100"   
+    nvidia_a10 = "nvidia-a10"
+    nvidia_tesla_a100 = "nvidia-tesla-a100"
+    nvidia_tesla_k80 = "nvidia-tesla-k80"
+    nvidia_tesla_m60 = "nvidia-tesla-m60"
+    nvidia_tesla_p100 = "nvidia-tesla-p100"
+    nvidia_tesla_p40 = "nvidia-tesla-p40"
+    nvidia_tesla_t4 = "nvidia-tesla-t4"
+    nvidia_tesla_h100 = "nvidia-tesla-h100"
 
 
 class Filters:
