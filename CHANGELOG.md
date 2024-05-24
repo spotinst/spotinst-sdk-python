@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.1.0] - 2024-05-17
+## [3.3.0] - 2024-05-22
+### Added
+- Added support for `Task` in Ocean AKS `Scheduling` model.
+
+## [3.2.0] - 2024-05-17
 ### Added
 - Added support for `GpuType` in Ocean AKS `Filters` model.
 
