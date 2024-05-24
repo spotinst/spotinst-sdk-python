@@ -898,12 +898,12 @@ class DeallocationConfig:
                  snapshot_deallocation_config: Deallocate = none,
                  should_terminate_vm: bool = none,
                  should_deregister_from_lb: bool = none):
-        self.should_deregister_from_lb = should_deregister_from_lb
         self.disk_deallocation_config = disk_deallocation_config
         self.network_deallocation_config = network_deallocation_config
         self.public_ip_deallocation_config = public_ip_deallocation_config
         self.snapshot_deallocation_config = snapshot_deallocation_config
         self.should_terminate_vm = should_terminate_vm
+        self.should_deregister_from_lb = should_deregister_from_lb
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
