@@ -296,6 +296,7 @@ class Sysctls:
     # Arguments
     vm_max_map_count: int
     """
+
     def __init__(
             self,
             vm_max_map_count: int = none):
@@ -304,9 +305,10 @@ class Sysctls:
 
 class LinuxOSConfig:
     """
-    Arguments
+    # Arguments
     sysctls: Sysctls
     """
+
     def __init__(
             self,
             sysctls: Sysctls = none):
