@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.5.0] - 2024-05-26
+### Added
+- Added `linux_o_s_config` field in the `NodePoolProperties` model
+ for Azure AKS Ocean.
+
 ## [3.4.0] - 2024-05-24
 ### Added
 - Added `should_deregister_from_lb` field in the `DeallocationConfig` model

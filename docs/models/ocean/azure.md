@@ -273,6 +273,28 @@ An enumeration.
 <h3 id="spotinst_sdk2.models.ocean.azure.OsSKU.windows2022">windows2022</h3>
 
 
+<h2 id="spotinst_sdk2.models.ocean.azure.Sysctls">Sysctls</h2>
+
+```python
+Sysctls(self,
+        vm_max_map_count: int = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __vm_max_map_count__: int
+
+<h2 id="spotinst_sdk2.models.ocean.azure.LinuxOSConfig">LinuxOSConfig</h2>
+
+```python
+LinuxOSConfig(self,
+              sysctls: Sysctls = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __sysctls__: Sysctls
+
 <h2 id="spotinst_sdk2.models.ocean.azure.NodePoolProperties">NodePoolProperties</h2>
 
 ```python
@@ -280,6 +302,7 @@ NodePoolProperties(
   self,
   enable_node_public_i_p: bool = 'd3043820717d74d9a17694c176d39733',
   kubernetes_version: str = 'd3043820717d74d9a17694c176d39733',
+  linux_o_s_config: LinuxOSConfig = 'd3043820717d74d9a17694c176d39733',
   max_pods_per_node: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_size_g_b: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_type: OsDiskType = 'd3043820717d74d9a17694c176d39733',
@@ -294,6 +317,7 @@ __Arguments__
 
 - __enable_node_public_i_p__: bool
 - __kubernetes_version__: str
+- __linux_o_s_config__: LinuxOSConfig
 - __max_pods_per_node__: int
 - __os_disk_size_g_b__: int
 - __os_disk_type__: OsDiskType

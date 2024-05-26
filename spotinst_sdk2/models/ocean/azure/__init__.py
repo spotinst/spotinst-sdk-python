@@ -291,11 +291,36 @@ class OsSKU(Enum):
     windows2022 = "Windows2022"
 
 
+class Sysctls:
+    """
+    # Arguments
+    vm_max_map_count: int
+    """
+
+    def __init__(
+            self,
+            vm_max_map_count: int = none):
+        self.vm_max_map_count = vm_max_map_count
+
+
+class LinuxOSConfig:
+    """
+    # Arguments
+    sysctls: Sysctls
+    """
+
+    def __init__(
+            self,
+            sysctls: Sysctls = none):
+        self.sysctls = sysctls
+
+
 class NodePoolProperties:
     """
     # Arguments
     enable_node_public_i_p: bool
     kubernetes_version: str
+    linux_o_s_config: LinuxOSConfig
     max_pods_per_node: int
     os_disk_size_g_b: int
     os_disk_type: OsDiskType
@@ -309,6 +334,7 @@ class NodePoolProperties:
             self,
             enable_node_public_i_p: bool = none,
             kubernetes_version: str = none,
+            linux_o_s_config: LinuxOSConfig = none,
             max_pods_per_node: int = none,
             os_disk_size_g_b: int = none,
             os_disk_type: OsDiskType = none,
@@ -318,6 +344,7 @@ class NodePoolProperties:
             vnet_subnet_i_ds: List[str] = none):
         self.enable_node_public_i_p = enable_node_public_i_p
         self.kubernetes_version = kubernetes_version
+        self.linux_o_s_config = linux_o_s_config
         self.max_pods_per_node = max_pods_per_node
         self.os_disk_size_g_b = os_disk_size_g_b
         self.os_disk_type = os_disk_type
