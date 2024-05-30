@@ -205,6 +205,26 @@ class ClusterRoll:
         self.comment = comment
         self.respect_pdb = respect_pdb
 
+class AmiAutoUpdate:
+    """
+    # Arguments
+    patch: bool
+    minor_version: bool
+    apply_roll: bool
+    cluster_roll: ClusterRoll
+    """
+
+    def __init__(
+            self,
+            patch: bool = none,
+            minor_version: bool = none,
+            apply_roll: bool = none,
+            cluster_roll: ClusterRoll = none):
+        self.patch = patch
+        self.minor_version = minor_version
+        self.apply_roll = apply_roll
+        self.cluster_roll = cluster_roll
+
 
 class Parameters:
     """
@@ -214,12 +234,15 @@ class Parameters:
 
     def __init__(
             self,
+            ami_auto_update: AmiAutoUpdate=none,
             cluster_roll: ClusterRoll = none):
         self.cluster_roll = cluster_roll
+        self.ami_auto_update = ami_auto_update
 
 
 class TaskType(Enum):
     cluster_roll = "clusterRoll"
+    ami_auto_update = "amiAutoUpdate"
 
 
 class Tasks:
