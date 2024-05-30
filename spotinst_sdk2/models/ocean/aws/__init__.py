@@ -205,6 +205,7 @@ class ClusterRoll:
         self.comment = comment
         self.respect_pdb = respect_pdb
 
+
 class AmiAutoUpdate:
     """
     # Arguments
@@ -230,11 +231,12 @@ class Parameters:
     """
     # Arguments
     cluster_roll: ClusterRoll
+    ami_auto_update: AmiAutoUpdate
     """
 
     def __init__(
             self,
-            ami_auto_update: AmiAutoUpdate=none,
+            ami_auto_update: AmiAutoUpdate = none,
             cluster_roll: ClusterRoll = none):
         self.cluster_roll = cluster_roll
         self.ami_auto_update = ami_auto_update

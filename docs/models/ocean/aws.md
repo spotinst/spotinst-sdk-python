@@ -194,17 +194,37 @@ __Arguments__
 - __comment__: str
 - __respect_pdb__: bool
 
+<h2 id="spotinst_sdk2.models.ocean.aws.AmiAutoUpdate">AmiAutoUpdate</h2>
+
+```python
+AmiAutoUpdate(
+  self,
+  patch: bool = 'd3043820717d74d9a17694c176d39733',
+  minor_version: bool = 'd3043820717d74d9a17694c176d39733',
+  apply_roll: bool = 'd3043820717d74d9a17694c176d39733',
+  cluster_roll: ClusterRoll = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __patch__: bool
+- __minor_version__: bool
+- __apply_roll__: bool
+- __cluster_roll__: ClusterRoll
+
 <h2 id="spotinst_sdk2.models.ocean.aws.Parameters">Parameters</h2>
 
 ```python
-Parameters(self,
-           cluster_roll: ClusterRoll = 'd3043820717d74d9a17694c176d39733'
-           )
+Parameters(
+  self,
+  ami_auto_update: AmiAutoUpdate = 'd3043820717d74d9a17694c176d39733',
+  cluster_roll: ClusterRoll = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __cluster_roll__: ClusterRoll
+- __ami_auto_update__: AmiAutoUpdate
 
 <h2 id="spotinst_sdk2.models.ocean.aws.TaskType">TaskType</h2>
 
@@ -212,6 +232,9 @@ __Arguments__
 TaskType(cls, value, names=None, *, module, qualname, type, start)
 ```
 An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.aws.TaskType.ami_auto_update">ami_auto_update</h3>
+
+
 <h3 id="spotinst_sdk2.models.ocean.aws.TaskType.cluster_roll">cluster_roll</h3>
 
 
