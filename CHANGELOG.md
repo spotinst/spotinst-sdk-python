@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.6.0] - 2024-05-30
+### Added
+- Added `AmiAutoUpdate` model in Aws Ocean.
+
 ## [3.5.0] - 2024-05-26
 ### Added
 - Added `linux_o_s_config` field in the `NodePoolProperties` model
