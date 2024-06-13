@@ -871,6 +871,20 @@ class ImportFargateToNewOceanCluster:
         self.tags = tags
 
 
+class ImportFargateToNewOceanClusterRequest:
+    def __init__(self, import_fargate_to_cluster: ImportFargateToNewOceanCluster):
+        self.ecs_cluster_name = import_fargate_to_cluster.ecs_cluster_name
+        self.key_pair = import_fargate_to_cluster.key_pair
+        self.ocean_cluster_name = import_fargate_to_cluster.ocean_cluster_name
+        self.region = import_fargate_to_cluster.region
+        self.services = import_fargate_to_cluster.services
+        self.tags = import_fargate_to_cluster.tags
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
 class Operator(Enum):
     equals = "equals"
     not_equals = "notEquals"
