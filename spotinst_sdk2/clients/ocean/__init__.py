@@ -1162,6 +1162,7 @@ class OceanAwsClient(Client):
 class OceanAzureClient(Client):
     __base_ocean_cluster_url = "/ocean/azure/np/cluster"
     __base_ocean_vng_url = "/ocean/azure/np/virtualNodeGroup"
+    __base_ocean_k8s_url = "/ocean/azure/k8s/cluster/"
 
     def create_ocean_cluster(self, ocean: azure_ocean.Ocean):
         """
@@ -1701,6 +1702,159 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]
+
+    def detach_instances(self, ocean_id: str, detach_nodes: azure_ocean.DetachNodes):
+        """
+        Detach instances from your Ocean cluster.
+
+        # Arguments
+        detach_instance (DetachNodes): Detach Nodes Object
+
+        # Returns
+        (Object): Detach Nodes response
+        """
+        request = azure_ocean.DetachNodesRequest(detach_nodes)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_cluster_url + "/detachNodes",
+            entity_name='ocean detach nodes')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def fetch_right_sizing_recommendations(self, ocean_id: str, filter: azure_ocean.RightSizingFilter):
+        """
+        Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
+
+        # Arguments
+        ocean_id (String): Ocean Cluster Identifier
+        filter (RightSizingFilter): RightSizingFilter Object
+
+        # Returns
+        (Object): Migration create response
+        """
+        request = azure_ocean.FetchRightSizingRequest(filter)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/rightSizing/suggestion",
+            entity_name='ocean_azure_rightsizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str = None, resource_id: str = None,
+                      limit: int = None):
+        """
+        Get the log of an Ocean Cluster.
+
+        # Arguments
+        to_date (String): end date value
+        from_date (String): beginning date value
+        severity(String) (Optional): Log level severity
+        resource_id(String) (Optional): specific resource identifier
+        limit(int) (Optional): Maximum number of lines to extract in a response
+
+        # Returns
+        (Object): Ocean Get Log API response
+        """
+        geturl = self.__base_ocean_cluster_url + "/" + ocean_id + "/log"
+        query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
+                            resourceId=resource_id, limit=limit)
+
+        result = self.send_get(
+            url=geturl, entity_name='ocean azure elastilog', query_params=query_params)
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_aggregated_detailed_costs(self, ocean_id: str, aggregated_cluster_costs: azure_ocean.AggregatedClusterCosts):
+        """
+        Provides Kubernetes cluster resource usage and costs over a time interval which can be grouped and/or filtered by label/annotaion
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        aggregated_cluster_costs (AggregatedClusterCosts): Aggregated Cluster Costs request
+
+        # Returns
+        (Object): Aggregated Cluster Costs API response
+        """
+        aggregated_cluster_costs_request = azure_ocean.AggregatedClusterCostRequest(
+            aggregated_cluster_costs)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(aggregated_cluster_costs_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        aggregated_costs_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_k8s_url + ocean_id + "/aggregatedCosts",
+            entity_name='ocean (aggregated cluster costs)')
+
+        formatted_response = self.convert_json(
+            aggregated_costs_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_aggregated_summary_costs(self, ocean_id: str, aggregated_cluster_costs: azure_ocean.AggregatedClusterCosts):
+        """
+        Provides Kubernetes cluster summary usage and costs over a time interval which can be grouped and/or filtered by label/annotaion
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        aggregated_cluster_costs (AggregatedClusterCosts): Aggregated Cluster Costs request
+
+        # Returns
+        (Object): Aggregated Cluster Costs API response
+        """
+        aggregated_cluster_costs_request = gcp_ocean.AggregatedClusterCostRequest(
+            aggregated_cluster_costs)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(aggregated_cluster_costs_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        aggregated_summary_costs_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_k8s_url +
+                ocean_id + "/aggregatedCosts/summary",
+            entity_name='ocean (aggregated summary costs)')
+
+        formatted_response = self.convert_json(
+            aggregated_summary_costs_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
     # endregion
 
 
