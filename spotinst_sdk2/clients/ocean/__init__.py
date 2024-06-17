@@ -2357,15 +2357,12 @@ class OceanGcpClient(Client):
 
 
 class OceanRightSizingClient(Client):
-    __base_ocean_url = "/ocean/k8s/cluster/"
-    __base_ocean_cluster_url = "/ocean/gcp/k8s/cluster"
-    __base_ocean_launchspec_url = "/ocean/gcp/k8s/launchSpec"
 
-    def create_right_sizing_rule(self, ocean_id: str, rule_name: str,
-                                 recommendation_application_intervals: right_sizing_ocean.RecommendationApplicationIntervals,
-                                 recommendation_application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
-                                 recommendation_application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
-                                 recommendation_application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues):
+    def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
+                                 application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
+                                 application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
+                                 application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues):
                                  
         """
         Create a right sizing rule for an Ocean cluster.
@@ -2373,20 +2370,17 @@ class OceanRightSizingClient(Client):
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
         rule_name (String): Name of the Right Sizing Rule
-        recommendation_application_intervals (RecommendationApplicationIntervals): Recommendation Application Intervals
-        recommendation_application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
-        recommendation_application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
-        recommendation_application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+        restart_pods (boolean): Enable to sequentially restart pod batches according to recommendations
+        application_intervals (List[RecommendationApplicationIntervals]): Recommendation Application Intervals
+        application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
+        application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
+        application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
 
         # Returns
         (Object): Ocean Right Sizing Rule API response
 
         """
-        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name, 
-                                                                     recommendation_application_intervals,
-                                                                     recommendation_application_min_threshold,
-                                                                     recommendation_application_boundaries,
-                                                                     recommendation_application_overhead_values)
+        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name, restart_pods, application_intervals, application_min_threshold, application_boundaries, application_overhead_values)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(right_sizing_rule_request.toJSON()))
