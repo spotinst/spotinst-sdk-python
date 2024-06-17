@@ -120,16 +120,83 @@ class ShutdownHours:
         self.time_windows = time_windows
 
 
-class Scheduling:
+class ClusterRoll:
     """
     # Arguments
-    shutdown_hours: ShutdownHours
+    batch_min_healthy_percentage: int
+    batch_size_percentage: int
+    comment: str
+    respect_pdb: bool
+    respect_restrict_scale_down: bool
+    vng_ids: List[str]
     """
 
     def __init__(
             self,
-            shutdown_hours: ShutdownHours = none):
+            batch_min_healthy_percentage: int = none,
+            batch_size_percentage: int = none,
+            comment: str = none,
+            respect_pdb: bool = none,
+            respect_restrict_scale_down: bool = none,
+            vng_ids: List[str] = none):
+        self.batch_min_healthy_percentage = batch_min_healthy_percentage
+        self.batch_size_percentage = batch_size_percentage
+        self.comment = comment
+        self.respect_pdb = respect_pdb
+        self.respect_restrict_scale_down = respect_restrict_scale_down
+        self.vng_ids = vng_ids
+
+
+class Parameters:
+    """
+    # Arguments
+    cluster_roll: ClusterRoll
+    """
+
+    def __init__(
+            self,
+            cluster_roll: ClusterRoll = none):
+        self.cluster_roll = cluster_roll
+
+
+class TaskType(Enum):
+    cluster_roll = "clusterRoll"
+
+
+class Task:
+    """
+    # Arguments
+    cron_expression: str
+    is_enabled: bool
+    parameters: Parameters
+    task_type: TaskType
+    """
+
+    def __init__(
+            self,
+            cron_expression: str = none,
+            is_enabled: bool = none,
+            parameters: Parameters = none,
+            task_type: TaskType = none):
+        self.cron_expression = cron_expression
+        self.is_enabled = is_enabled
+        self.parameters = parameters
+        self.task_type = task_type
+
+
+class Scheduling:
+    """
+    # Arguments
+    shutdown_hours: ShutdownHours
+    tasks: List[Task]
+    """
+
+    def __init__(
+            self,
+            shutdown_hours: ShutdownHours = none,
+            tasks: List[Task] = none):
         self.shutdown_hours = shutdown_hours
+        self.tasks = tasks
 # endregion
 
 # region Health
@@ -224,11 +291,36 @@ class OsSKU(Enum):
     windows2022 = "Windows2022"
 
 
+class Sysctls:
+    """
+    # Arguments
+    vm_max_map_count: int
+    """
+
+    def __init__(
+            self,
+            vm_max_map_count: int = none):
+        self.vm_max_map_count = vm_max_map_count
+
+
+class LinuxOSConfig:
+    """
+    # Arguments
+    sysctls: Sysctls
+    """
+
+    def __init__(
+            self,
+            sysctls: Sysctls = none):
+        self.sysctls = sysctls
+
+
 class NodePoolProperties:
     """
     # Arguments
     enable_node_public_i_p: bool
     kubernetes_version: str
+    linux_o_s_config: LinuxOSConfig
     max_pods_per_node: int
     os_disk_size_g_b: int
     os_disk_type: OsDiskType
@@ -242,6 +334,7 @@ class NodePoolProperties:
             self,
             enable_node_public_i_p: bool = none,
             kubernetes_version: str = none,
+            linux_o_s_config: LinuxOSConfig = none,
             max_pods_per_node: int = none,
             os_disk_size_g_b: int = none,
             os_disk_type: OsDiskType = none,
@@ -251,6 +344,7 @@ class NodePoolProperties:
             vnet_subnet_i_ds: List[str] = none):
         self.enable_node_public_i_p = enable_node_public_i_p
         self.kubernetes_version = kubernetes_version
+        self.linux_o_s_config = linux_o_s_config
         self.max_pods_per_node = max_pods_per_node
         self.os_disk_size_g_b = os_disk_size_g_b
         self.os_disk_type = os_disk_type
@@ -335,6 +429,19 @@ class VmType(Enum):
     gpu = "GPU"
 
 
+class GpuType(Enum):
+    nvidia_tesla_v100 = "nvidia-tesla-v100"
+    amd_radeon_instinct_mi25 = "amd-radeon-instinct-mi25"
+    nvidia_a10 = "nvidia-a10"
+    nvidia_tesla_a100 = "nvidia-tesla-a100"
+    nvidia_tesla_k80 = "nvidia-tesla-k80"
+    nvidia_tesla_m60 = "nvidia-tesla-m60"
+    nvidia_tesla_p100 = "nvidia-tesla-p100"
+    nvidia_tesla_p40 = "nvidia-tesla-p40"
+    nvidia_tesla_t4 = "nvidia-tesla-t4"
+    nvidia_tesla_h100 = "nvidia-tesla-h100"
+
+
 class Filters:
     """
     # Arguments
@@ -352,6 +459,7 @@ class Filters:
     min_n_i_cs: int
     series: List[str]
     vm_types: List[VmType]
+    gpu_types: List[GpuType]
     """
 
     def __init__(
@@ -369,7 +477,8 @@ class Filters:
             min_data: int = none,
             min_n_i_cs: int = none,
             series: List[str] = none,
-            vm_types: List[VmType] = none):
+            vm_types: List[VmType] = none,
+            gpu_types: List[GpuType] = none):
         self.accelerated_networking = accelerated_networking
         self.disk_performance = disk_performance
         self.architectures = architectures
@@ -384,6 +493,7 @@ class Filters:
         self.min_n_i_cs = min_n_i_cs
         self.series = series
         self.vm_types = vm_types
+        self.gpu_types = gpu_types
 
 
 class VmSizes:

@@ -1,19 +1,33 @@
 <h1 id="spotinst_sdk2.models.ocean.gcp">spotinst_sdk2.models.ocean.gcp</h1>
 
 
+<h2 id="spotinst_sdk2.models.ocean.gcp.AggressiveScaleDown">AggressiveScaleDown</h2>
+
+```python
+AggressiveScaleDown(self,
+                    is_enabled: bool = 'd3043820717d74d9a17694c176d39733'
+                    )
+```
+
+__Arguments__
+
+- __is_enabled__: bool
+
 <h2 id="spotinst_sdk2.models.ocean.gcp.Down">Down</h2>
 
 ```python
-Down(
-  self,
-  evaluation_periods: int = 'd3043820717d74d9a17694c176d39733',
-  max_scale_down_percentage: int = 'd3043820717d74d9a17694c176d39733')
+Down(self,
+     evaluation_periods: int = 'd3043820717d74d9a17694c176d39733',
+     max_scale_down_percentage: int = 'd3043820717d74d9a17694c176d39733',
+     aggressive_scale_down:
+     AggressiveScaleDown = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __evaluation_periods__: int
 - __max_scale_down_percentage__: int
+- __aggressive_scale_down__: AggressiveScaleDown
 
 <h2 id="spotinst_sdk2.models.ocean.gcp.Headroom">Headroom</h2>
 

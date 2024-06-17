@@ -97,17 +97,81 @@ __Arguments__
 - __is_enabled__: bool
 - __time_windows__: List[str]
 
+<h2 id="spotinst_sdk2.models.ocean.azure.ClusterRoll">ClusterRoll</h2>
+
+```python
+ClusterRoll(
+  self,
+  batch_min_healthy_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  batch_size_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  comment: str = 'd3043820717d74d9a17694c176d39733',
+  respect_pdb: bool = 'd3043820717d74d9a17694c176d39733',
+  respect_restrict_scale_down: bool = 'd3043820717d74d9a17694c176d39733',
+  vng_ids: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __batch_min_healthy_percentage__: int
+- __batch_size_percentage__: int
+- __comment__: str
+- __respect_pdb__: bool
+- __respect_restrict_scale_down__: bool
+- __vng_ids__: List[str]
+
+<h2 id="spotinst_sdk2.models.ocean.azure.Parameters">Parameters</h2>
+
+```python
+Parameters(self,
+           cluster_roll: ClusterRoll = 'd3043820717d74d9a17694c176d39733'
+           )
+```
+
+__Arguments__
+
+- __cluster_roll__: ClusterRoll
+
+<h2 id="spotinst_sdk2.models.ocean.azure.TaskType">TaskType</h2>
+
+```python
+TaskType(cls, value, names=None, *, module, qualname, type, start)
+```
+An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.azure.TaskType.cluster_roll">cluster_roll</h3>
+
+
+<h2 id="spotinst_sdk2.models.ocean.azure.Task">Task</h2>
+
+```python
+Task(self,
+     cron_expression: str = 'd3043820717d74d9a17694c176d39733',
+     is_enabled: bool = 'd3043820717d74d9a17694c176d39733',
+     parameters: Parameters = 'd3043820717d74d9a17694c176d39733',
+     task_type: TaskType = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __cron_expression__: str
+- __is_enabled__: bool
+- __parameters__: Parameters
+- __task_type__: TaskType
+
 <h2 id="spotinst_sdk2.models.ocean.azure.Scheduling">Scheduling</h2>
 
 ```python
 Scheduling(
-  self,
-  shutdown_hours: ShutdownHours = 'd3043820717d74d9a17694c176d39733')
+    self,
+    shutdown_hours: ShutdownHours = 'd3043820717d74d9a17694c176d39733',
+    tasks:
+    typing.List[spotinst_sdk2.models.ocean.azure.Task] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
 
 - __shutdown_hours__: ShutdownHours
+- __tasks__: List[Task]
 
 <h2 id="spotinst_sdk2.models.ocean.azure.Health">Health</h2>
 
@@ -209,6 +273,28 @@ An enumeration.
 <h3 id="spotinst_sdk2.models.ocean.azure.OsSKU.windows2022">windows2022</h3>
 
 
+<h2 id="spotinst_sdk2.models.ocean.azure.Sysctls">Sysctls</h2>
+
+```python
+Sysctls(self,
+        vm_max_map_count: int = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __vm_max_map_count__: int
+
+<h2 id="spotinst_sdk2.models.ocean.azure.LinuxOSConfig">LinuxOSConfig</h2>
+
+```python
+LinuxOSConfig(self,
+              sysctls: Sysctls = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __sysctls__: Sysctls
+
 <h2 id="spotinst_sdk2.models.ocean.azure.NodePoolProperties">NodePoolProperties</h2>
 
 ```python
@@ -216,6 +302,7 @@ NodePoolProperties(
   self,
   enable_node_public_i_p: bool = 'd3043820717d74d9a17694c176d39733',
   kubernetes_version: str = 'd3043820717d74d9a17694c176d39733',
+  linux_o_s_config: LinuxOSConfig = 'd3043820717d74d9a17694c176d39733',
   max_pods_per_node: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_size_g_b: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_type: OsDiskType = 'd3043820717d74d9a17694c176d39733',
@@ -230,6 +317,7 @@ __Arguments__
 
 - __enable_node_public_i_p__: bool
 - __kubernetes_version__: str
+- __linux_o_s_config__: LinuxOSConfig
 - __max_pods_per_node__: int
 - __os_disk_size_g_b__: int
 - __os_disk_type__: OsDiskType
@@ -364,6 +452,42 @@ An enumeration.
 <h3 id="spotinst_sdk2.models.ocean.azure.VmType.storage_optimized">storage_optimized</h3>
 
 
+<h2 id="spotinst_sdk2.models.ocean.azure.GpuType">GpuType</h2>
+
+```python
+GpuType(cls, value, names=None, *, module, qualname, type, start)
+```
+An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.amd_radeon_instinct_mi25">amd_radeon_instinct_mi25</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_a10">nvidia_a10</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_a100">nvidia_tesla_a100</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_h100">nvidia_tesla_h100</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_k80">nvidia_tesla_k80</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_m60">nvidia_tesla_m60</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_p100">nvidia_tesla_p100</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_p40">nvidia_tesla_p40</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_t4">nvidia_tesla_t4</h3>
+
+
+<h3 id="spotinst_sdk2.models.ocean.azure.GpuType.nvidia_tesla_v100">nvidia_tesla_v100</h3>
+
+
 <h2 id="spotinst_sdk2.models.ocean.azure.Filters">Filters</h2>
 
 ```python
@@ -385,7 +509,9 @@ Filters(
     min_n_i_cs: int = 'd3043820717d74d9a17694c176d39733',
     series: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
     vm_types:
-    typing.List[spotinst_sdk2.models.ocean.azure.VmType] = 'd3043820717d74d9a17694c176d39733'
+    typing.List[spotinst_sdk2.models.ocean.azure.VmType] = 'd3043820717d74d9a17694c176d39733',
+    gpu_types:
+    typing.List[spotinst_sdk2.models.ocean.azure.GpuType] = 'd3043820717d74d9a17694c176d39733'
 )
 ```
 
@@ -405,6 +531,7 @@ __Arguments__
 - __min_n_i_cs__: int
 - __series__: List[str]
 - __vm_types__: List[VmType]
+- __gpu_types__: List[GpuType]
 
 <h2 id="spotinst_sdk2.models.ocean.azure.VmSizes">VmSizes</h2>
 

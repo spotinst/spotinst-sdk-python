@@ -6,20 +6,34 @@ none = "d3043820717d74d9a17694c176d39733"
 
 
 # region AutoScaler
+class AggressiveScaleDown:
+    """
+    # Arguments
+    is_enabled: bool
+    """
+
+    def __init__(self,
+                 is_enabled: bool = none):
+        self.is_enabled = is_enabled
+
+
 class Down:
     """
     # Arguments
     evaluation_periods: int
     max_scale_down_percentage: int
+    aggressive_scale_down: AggressiveScaleDown
     """
 
     def __init__(
             self,
             evaluation_periods: int = none,
-            max_scale_down_percentage: int = none
+            max_scale_down_percentage: int = none,
+            aggressive_scale_down: AggressiveScaleDown = none
     ):
         self.evaluation_periods = evaluation_periods
         self.max_scale_down_percentage = max_scale_down_percentage
+        self.aggressive_scale_down = aggressive_scale_down
 
 
 class Headroom:
