@@ -28,10 +28,12 @@ class Down:
     def __init__(
             self,
             evaluation_periods: int = none,
-            max_scale_down_percentage: int = none
+            max_scale_down_percentage: int = none,
+            aggressive_scale_down: AggressiveScaleDown = none
     ):
         self.evaluation_periods = evaluation_periods
         self.max_scale_down_percentage = max_scale_down_percentage
+        self.aggressive_scale_down = aggressive_scale_down
 
 
 class Headroom:

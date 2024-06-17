@@ -16,10 +16,11 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.ocean.gcp.Down">Down</h2>
 
 ```python
-Down(
-  self,
-  evaluation_periods: int = 'd3043820717d74d9a17694c176d39733',
-  max_scale_down_percentage: int = 'd3043820717d74d9a17694c176d39733')
+Down(self,
+     evaluation_periods: int = 'd3043820717d74d9a17694c176d39733',
+     max_scale_down_percentage: int = 'd3043820717d74d9a17694c176d39733',
+     aggressive_scale_down:
+     AggressiveScaleDown = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
