@@ -38,14 +38,26 @@ class WeeklyRepetitionBasis:
         self.interval_hours = interval_hours
 # endregion
 
-# region MonthlyRepetitionBasis
+# region WeekOfTheMonth
 
+class WeekOfTheMonth(Enum):
+    Monday = "MONDAY"
+    Tuesday = "TUESDAY"
+    Wednesday = "WEDNESDAY"
+    Thursday = "THURSDAY"
+    Friday = "FRIDAY"
+    Saturday = "SATURDAY"
+    Sunday = "SUNDAY"
+
+# endregion
+
+# region MonthlyRepetitionBasis
 
 class MonthlyRepetitionBasis:
     """
     # Arguments
     interval_months: List[int]
-    week_of_the_month: List[str]
+    week_of_the_month: List[WeekOfTheMonth]
     weekly_repetition_basis: WeeklyRepetitionBasis
     interval_hours: IntervalHours
     """
@@ -53,7 +65,7 @@ class MonthlyRepetitionBasis:
     def __init__(
             self,
             interval_months: List[int] = none,
-            week_of_the_month: Enum = none,
+            week_of_the_month: List[WeekOfTheMonth] = none,
             weekly_repetition_basis: WeeklyRepetitionBasis = none,
             interval_hours: IntervalHours = none
     ):
@@ -63,20 +75,35 @@ class MonthlyRepetitionBasis:
         self.interval_hours = interval_hours
 # endregion
 
-# region RecommendationApplicationInterval
 
+
+# region WeekOfTheMonth
+class RepetitionBasis(Enum):
+    Monday = "MONDAY"
+    Tuesday = "TUESDAY"
+    Wednesday = "WEDNESDAY"
+    Thursday = "THURSDAY"
+    Friday = "FRIDAY"
+    Saturday = "SATURDAY"
+    Sunday = "SUNDAY"
+
+# endregion
+
+
+
+# region RecommendationApplicationInterval
 
 class RecommendationApplicationInterval:
     """
     # Arguments
-    repetition_basis: Enum
+    repetition_basis: RepetitionBasis
     monthly_repetition_basis: MonthlyRepetitionBasis
     weekly_repetition_basis: WeeklyRepetitionBasis
     """
 
     def __init__(
             self,
-            repetition_basis: Enum = none,
+            repetition_basis: RepetitionBasis = none,
             monthly_repetition_basis: MonthlyRepetitionBasis = none,
             weekly_repetition_basis: WeeklyRepetitionBasis = none
     ):
