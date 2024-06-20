@@ -41,13 +41,11 @@ class WeeklyRepetitionBasis:
 # region WeekOfTheMonth
 
 class WeekOfTheMonth(Enum):
-    Monday = "MONDAY"
-    Tuesday = "TUESDAY"
-    Wednesday = "WEDNESDAY"
-    Thursday = "THURSDAY"
-    Friday = "FRIDAY"
-    Saturday = "SATURDAY"
-    Sunday = "SUNDAY"
+    First  = "FIRST"
+    Second = "SECOND"
+    Third  = "THIRD"
+    Fourth = "FOURTH"
+    Last   = "LAST"
 
 # endregion
 
