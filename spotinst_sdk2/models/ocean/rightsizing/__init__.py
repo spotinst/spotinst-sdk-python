@@ -44,20 +44,23 @@ class WeeklyRepetitionBasis:
 class MonthlyRepetitionBasis:
     """
     # Arguments
-    interval_months: List[str]
+    interval_months: List[int]
     week_of_the_month: List[str]
     weekly_repetition_basis: WeeklyRepetitionBasis
+    interval_hours: IntervalHours
     """
 
     def __init__(
             self,
-            interval_months: List[str] = none,
-            week_of_the_month: List[str] = none,
-            weekly_repetition_basis: WeeklyRepetitionBasis = none
+            interval_months: List[int] = none,
+            week_of_the_month: Enum = none,
+            weekly_repetition_basis: WeeklyRepetitionBasis = none,
+            interval_hours: IntervalHours = none
     ):
         self.interval_months = interval_months
         self.week_of_the_month = week_of_the_month
         self.weekly_repetition_basis = weekly_repetition_basis
+        self.interval_hours = interval_hours
 # endregion
 
 # region RecommendationApplicationInterval
@@ -66,14 +69,14 @@ class MonthlyRepetitionBasis:
 class RecommendationApplicationInterval:
     """
     # Arguments
-    repetition_basis: str
+    repetition_basis: Enum
     monthly_repetition_basis: MonthlyRepetitionBasis
     weekly_repetition_basis: WeeklyRepetitionBasis
     """
 
     def __init__(
             self,
-            repetition_basis: str = none,
+            repetition_basis: Enum = none,
             monthly_repetition_basis: MonthlyRepetitionBasis = none,
             weekly_repetition_basis: WeeklyRepetitionBasis = none
     ):
@@ -88,14 +91,14 @@ class RecommendationApplicationInterval:
 class RecommendationApplicationMinThreshold:
     """
     # Arguments
-    cpu_percentage: str
-    memory_percentage: str
+    cpu_percentage: float
+    memory_percentage: float
     """
 
     def __init__(
             self,
-            cpu_percentage: str = none,
-            memory_percentage: str = none
+            cpu_percentage: float = none,
+            memory_percentage: float = none
     ):
         self.cpu_percentage = cpu_percentage
         self.memory_percentage = memory_percentage
@@ -107,14 +110,14 @@ class RecommendationApplicationMinThreshold:
 class CPU:
     """
     # Arguments
-    min: str
-    max: str
+    min: int
+    max: int
     """
 
     def __init__(
             self,
-            min: str = none,
-            max: str = none
+            min: int = none,
+            max: int = none
     ):
         self.min = min
         self.max = max
@@ -126,14 +129,14 @@ class CPU:
 class Memory:
     """
     # Arguments
-    min: str
-    max: str
+    min: int
+    max: int
     """
 
     def __init__(
             self,
-            min: str = none,
-            max: str = none
+            min: int = none,
+            max: int = none
     ):
         self.min = min
         self.max = max
@@ -180,14 +183,14 @@ class RecommendationApplicationBoundaries:
 class RecommendationApplicationOverheadValues:
     """
     # Arguments
-    cpu_percentage: str
-    memory_percentage: str
+    cpu_percentage: float
+    memory_percentage: float
     """
 
     def __init__(
             self,
-            cpu_percentage: str = none,
-            memory_percentage: str = none
+            cpu_percentage: float = none,
+            memory_percentage: float = none
     ):
         self.cpu_percentage = cpu_percentage
         self.memory_percentage = memory_percentage
@@ -218,17 +221,21 @@ class Label:
 class Workload:
     """
     # Arguments
-    workload_type: str
     name: str
+    type: str
+    regex_name: str
     """
 
     def __init__(
             self,
+            name: str = none,
             workload_type: str = none,
-            name: str = none
+            regex_name: str = none
+            
     ):
-        self.workload_type = workload_type
         self.name = name
+        self.workload_type = workload_type
+        self.regex_name = regex_name
 
 # endregion
 
@@ -255,20 +262,49 @@ class Namespace:
 # endregion
 
 
+class ClusterResources:
+    """
+    # Arguments
+    data: dict
+    """
+
+    def __init__(
+            self,
+            data: dict
+    ):
+        self.data = data
+
+# endregion
+
+class ClusterLabels:
+    """
+    # Arguments
+    data: dict
+    """
+
+    def __init__(
+            self,
+            data: dict
+    ):
+        self.data = data
+
+# endregion
+
+
 class CreateRightSizingRuleRequest:
     def __init__(self,
                  rule_name: str,
                  restart_pods: bool,
-                 application_intervals: List[RecommendationApplicationInterval],
-                 application_min_threshold: RecommendationApplicationMinThreshold,
-                 application_boundaries: RecommendationApplicationBoundaries,
-                 application_overhead_values: RecommendationApplicationOverheadValues):
+                 recommendation_application_intervals: List[RecommendationApplicationInterval],
+                 recommendation_application_min_threshold: RecommendationApplicationMinThreshold,
+                 recommendation_application_boundaries: RecommendationApplicationBoundaries,
+                 recommendation_application_overhead_values: RecommendationApplicationOverheadValues):
         self.rule_name = rule_name
         self.restart_pods = restart_pods
-        self.recommendation_application_intervals = application_intervals
-        self.recommendation_application_min_threshold = application_min_threshold
-        self.recommendation_application_boundaries = application_boundaries
-        self.recommendation_application_overhead_values = application_overhead_values
+        self.recommendation_application_intervals = recommendation_application_intervals
+        self.recommendation_application_min_threshold = recommendation_application_min_threshold
+        self.recommendation_application_boundaries = recommendation_application_boundaries
+        self.recommendation_application_overhead_values = recommendation_application_overhead_values
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -286,18 +322,16 @@ class DeleteRightSizingRulesRequest:
 
 class UpdateRightSizingRuleRequest:
     def __init__(self,
-                 rule_name: str,
                  restart_pods: bool,
-                 application_intervals: List[RecommendationApplicationInterval],
-                 application_min_threshold: RecommendationApplicationMinThreshold,
-                 application_boundaries: RecommendationApplicationBoundaries,
-                 application_overhead_values: RecommendationApplicationOverheadValues):
-        self.rule_name = rule_name
+                 recommendation_application_intervals: List[RecommendationApplicationInterval],
+                 recommendation_application_threshold: RecommendationApplicationMinThreshold,
+                 recommendation_application_boundaries: RecommendationApplicationBoundaries,
+                 recommendation_application_overhead_values: RecommendationApplicationOverheadValues):
         self.restart_pods = restart_pods
-        self.recommendation_application_intervals = application_intervals
-        self.recommendation_application_min_threshold = application_min_threshold
-        self.recommendation_application_boundaries = application_boundaries
-        self.recommendation_application_overhead_values = application_overhead_values
+        self.recommendation_application_intervals = recommendation_application_intervals
+        self.recommendation_application_threshold = recommendation_application_threshold
+        self.recommendation_application_boundaries = recommendation_application_boundaries
+        self.recommendation_application_overhead_values = recommendation_application_overhead_values
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -320,3 +354,16 @@ class DetachRightSizingRuleRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+    
+class GetOceanRightSizingRecommendationsRequest:
+    def __init__(self, cluster_resources: ClusterResources, cluster_labels: ClusterLabels):
+        if cluster_resources is not None:
+            self.cluster_resources = cluster_resources.data
+        if cluster_labels is not None:
+            self.cluster_labels = cluster_labels.data
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+    
+    
