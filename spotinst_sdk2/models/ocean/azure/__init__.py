@@ -916,25 +916,3 @@ class DetachNodesRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-
-
-class RightSizingFilter:
-    """
-    # Arguments
-    attribute: Attribute
-    namespaces: List[str]
-    """
-    def __init__(self,
-                 attribute: Attribute = none,
-                 namespaces: List[str] = none):
-        self.attribute = attribute
-        self.namespaces = namespaces
-
-
-class FetchRightSizingRequest:
-    def __init__(self, filter: RightSizingFilter):
-        self.filter = filter
-
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)

@@ -1725,37 +1725,6 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def fetch_right_sizing_recommendations(self, ocean_id: str, filter: azure_ocean.RightSizingFilter):
-        """
-        Get right-sizing recommendations for an Ocean cluster and filter them according to namespace or label.
-
-        # Arguments
-        ocean_id (String): Ocean Cluster Identifier
-        filter (RightSizingFilter): RightSizingFilter Object
-
-        # Returns
-        (Object): Migration create response
-        """
-        request = azure_ocean.FetchRightSizingRequest(filter)
-
-        excluded_missing_dict = self.exclude_missing(
-            json.loads(request.toJSON()))
-
-        formatted_missing_dict = self.convert_json(
-            excluded_missing_dict, self.underscore_to_camel)
-
-        body_json = json.dumps(formatted_missing_dict)
-
-        response = self.send_post(
-            body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/rightSizing/suggestion",
-            entity_name='ocean_azure_rightsizing')
-
-        formatted_response = self.convert_json(response,
-                                               self.camel_to_underscore)
-
-        return formatted_response["response"]
-
     def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str = None, resource_id: str = None,
                       limit: int = None):
         """
