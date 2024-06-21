@@ -2554,6 +2554,7 @@ class OceanRightSizingClient(Client):
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
+        
 
         return formatted_response["response"]["items"][0]
     

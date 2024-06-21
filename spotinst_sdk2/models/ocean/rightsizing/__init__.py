@@ -22,16 +22,28 @@ class IntervalHours:
         self.end_time = end_time
 
 
+# region WeekOfTheMonth
+class IntervalDays(Enum):
+    Monday = "MONDAY"
+    Tuesday = "TUESDAY"
+    Wednesday = "WEDNESDAY"
+    Thursday = "THURSDAY"
+    Friday = "FRIDAY"
+    Saturday = "SATURDAY"
+    Sunday = "SUNDAY"
+# endregion
+
+
 class WeeklyRepetitionBasis:
     """
     # Arguments
-    interval_days: List[str]
+    interval_days: List[IntervalDays]
     interval_hours: IntervalHours
     """
 
     def __init__(
             self,
-            interval_days: List[str] = none,
+            interval_days: List[IntervalDays] = none,
             interval_hours: IntervalHours = none
     ):
         self.interval_days = interval_days
@@ -57,33 +69,25 @@ class MonthlyRepetitionBasis:
     interval_months: List[int]
     week_of_the_month: List[WeekOfTheMonth]
     weekly_repetition_basis: WeeklyRepetitionBasis
-    interval_hours: IntervalHours
     """
 
     def __init__(
             self,
             interval_months: List[int] = none,
             week_of_the_month: List[WeekOfTheMonth] = none,
-            weekly_repetition_basis: WeeklyRepetitionBasis = none,
-            interval_hours: IntervalHours = none
+            weekly_repetition_basis: WeeklyRepetitionBasis = none
     ):
         self.interval_months = interval_months
         self.week_of_the_month = week_of_the_month
         self.weekly_repetition_basis = weekly_repetition_basis
-        self.interval_hours = interval_hours
 # endregion
 
 
 
 # region WeekOfTheMonth
 class RepetitionBasis(Enum):
-    Monday = "MONDAY"
-    Tuesday = "TUESDAY"
-    Wednesday = "WEDNESDAY"
-    Thursday = "THURSDAY"
-    Friday = "FRIDAY"
-    Saturday = "SATURDAY"
-    Sunday = "SUNDAY"
+    Weekly = "WEEKLY"
+    Monthly = "MONTHLY"
 
 # endregion
 
@@ -165,22 +169,6 @@ class Memory:
     ):
         self.min = min
         self.max = max
-# endregion
-
-# region RuleName
-
-
-class RuleNames:
-    """
-    # Arguments
-    rule_names: List[str]
-    """
-
-    def __init__(
-            self,
-            rule_names: List[str] = none
-    ):
-        self.rule_names = rule_names
 # endregion
 
 # region RecommendationApplicationBoundaries
