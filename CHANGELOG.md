@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.8.0] - 2024-06-21
+### Added
+- Added detach nodes, get elastilog and cost APIs for Ocean AKS.
+
 ## [3.7.1] - 2024-06-17
 ### Fixed
 - Fixed `AggressiveScaleDown` model in GCP Ocean.

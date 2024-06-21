@@ -377,3 +377,80 @@ __Returns__
 
 `(Object)`: Ocean Migrations response
 
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.detach_nodes">detach_nodes</h2>
+
+```python
+OceanAzureClient.detach_nodes(detach_nodes: DetachNodes)
+```
+
+Detach nodes from your Ocean cluster.
+
+__Arguments__
+
+- __detach_nodes (DetachNodes)__: Detach Nodes Object
+
+__Returns__
+
+`(Object)`: Detach Nodes response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.get_elastilog">get_elastilog</h2>
+
+```python
+OceanAzureClient.get_elastilog(ocean_id: str,
+                               from_date: str,
+                               to_date: str,
+                               severity: str = None,
+                               resource_id: str = None,
+                               limit: int = None)
+```
+
+Get the log of an Ocean Cluster.
+
+__Arguments__
+
+- __to_date (String)__: end date value
+- __from_date (String)__: beginning date value
+- __severity(String) (Optional)__: Log level severity
+- __resource_id(String) (Optional)__: specific resource identifier
+- __limit(int) (Optional)__: Maximum number of lines to extract in a response
+
+__Returns__
+
+`(Object)`: Ocean Get Log API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.get_aggregated_detailed_costs">get_aggregated_detailed_costs</h2>
+
+```python
+OceanAzureClient.get_aggregated_detailed_costs(
+  ocean_id: str, aggregated_cluster_costs: AggregatedClusterCosts)
+```
+
+Provides Kubernetes cluster resource usage and costs over a time interval which can be grouped and/or filtered by label/annotaion
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __aggregated_cluster_costs (AggregatedClusterCosts)__: Aggregated Cluster Costs request
+
+__Returns__
+
+`(Object)`: Aggregated Cluster Costs API response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanAzureClient.get_aggregated_summary_costs">get_aggregated_summary_costs</h2>
+
+```python
+OceanAzureClient.get_aggregated_summary_costs(
+  ocean_id: str, aggregated_cluster_costs: AggregatedClusterCosts)
+```
+
+Provides Kubernetes cluster summary usage and costs over a time interval which can be grouped and/or filtered by label/annotaion
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __aggregated_cluster_costs (AggregatedClusterCosts)__: Aggregated Cluster Costs request
+
+__Returns__
+
+`(Object)`: Aggregated Cluster Costs API response
+

@@ -844,3 +844,17 @@ __Arguments__
 - __should_evict_standalone_pods__: bool
 - __should_terminate_nodes__: bool
 
+<h2 id="spotinst_sdk2.models.ocean.azure.DetachNodes">DetachNodes</h2>
+
+```python
+DetachNodes(self,
+            node_names_to_detach:
+            typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+            ocean_id: str = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __node_names_to_detach__: List[str]
+- __ocean_id__: str
+
