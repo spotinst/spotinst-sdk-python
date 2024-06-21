@@ -1148,7 +1148,7 @@ class OceanAwsClient(Client):
             url=self.__base_ocean_extended_resource_definition_url +
             "/" + ocean_extended_resource_definition_id,
             entity_name='ocean_extended_resource_defintion')
-    # endregion
+# endregion
 
 
 # region Azure
@@ -1817,9 +1817,9 @@ class OceanAzureClient(Client):
             aggregated_summary_costs_response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    # endregion
+# endregion
 
-
+# region GCP
 class OceanGcpClient(Client):
     __base_ocean_url = "/ocean/k8s/cluster/"
     __base_ocean_cluster_url = "/ocean/gcp/k8s/cluster"
@@ -2477,8 +2477,9 @@ class OceanGcpClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+# endRegion
 
-
+# region RightSizing
 class OceanRightSizingClient(Client):
 
     def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
@@ -2738,3 +2739,5 @@ class OceanRightSizingClient(Client):
                                                self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
+
+# endRegion
