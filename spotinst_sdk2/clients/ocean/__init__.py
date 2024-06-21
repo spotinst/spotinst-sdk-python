@@ -1695,12 +1695,12 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]
 
-    def detach_instances(self, ocean_id: str, detach_nodes: azure_ocean.DetachNodes):
+    def detach_nodes(self, detach_nodes: azure_ocean.DetachNodes):
         """
-        Detach instances from your Ocean cluster.
+        Detach nodes from your Ocean cluster.
 
         # Arguments
-        detach_instance (DetachNodes): Detach Nodes Object
+        detach_nodes (DetachNodes): Detach Nodes Object
 
         # Returns
         (Object): Detach Nodes response
@@ -1809,7 +1809,7 @@ class OceanAzureClient(Client):
         aggregated_summary_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_k8s_url +
-                ocean_id + "/aggregatedCosts/summary",
+            ocean_id + "/aggregatedCosts/summary",
             entity_name='ocean (aggregated summary costs)')
 
         formatted_response = self.convert_json(
@@ -1817,8 +1817,6 @@ class OceanAzureClient(Client):
 
         return formatted_response["response"]["items"][0]
     # endregion
-
-
 
 
 class OceanGcpClient(Client):
