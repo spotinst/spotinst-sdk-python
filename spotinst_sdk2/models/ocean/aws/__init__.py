@@ -965,7 +965,7 @@ class Roll:
 class AutoScaleDown:
     """
     # Arguments
-    max_scale_down_percentage: double
+    max_scale_down_percentage: float
     """
 
     def __init__(

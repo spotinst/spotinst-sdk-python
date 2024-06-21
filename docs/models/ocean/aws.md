@@ -977,7 +977,7 @@ AutoScaleDown(
 
 __Arguments__
 
-- __max_scale_down_percentage__: double
+- __max_scale_down_percentage__: float
 
 <h2 id="spotinst_sdk2.models.ocean.aws.AutoScale">AutoScale</h2>
 

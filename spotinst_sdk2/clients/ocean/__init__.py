@@ -5,6 +5,7 @@ from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.ocean.aws as aws_ocean
 import spotinst_sdk2.models.ocean.azure as azure_ocean
 import spotinst_sdk2.models.ocean.gcp as gcp_ocean
+import spotinst_sdk2.models.ocean.rightsizing as right_sizing_ocean
 
 # region AWS
 
@@ -1147,7 +1148,7 @@ class OceanAwsClient(Client):
             url=self.__base_ocean_extended_resource_definition_url +
             "/" + ocean_extended_resource_definition_id,
             entity_name='ocean_extended_resource_defintion')
-    # endregion
+# endregion
 
 
 # region Azure
@@ -1816,9 +1817,9 @@ class OceanAzureClient(Client):
             aggregated_summary_costs_response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-    # endregion
+# endregion
 
-
+# region GCP
 class OceanGcpClient(Client):
     __base_ocean_url = "/ocean/k8s/cluster/"
     __base_ocean_cluster_url = "/ocean/gcp/k8s/cluster"
@@ -2476,3 +2477,267 @@ class OceanGcpClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+# endRegion
+
+# region RightSizing
+class OceanRightSizingClient(Client):
+
+    def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
+                                 application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
+                                 application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
+                                 application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues):
+        """
+        Create a right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Name of the Right Sizing Rule
+        restart_pods (boolean): Enable to sequentially restart pod batches according to recommendations
+        application_intervals (List[RecommendationApplicationIntervals]): Recommendation Application Intervals
+        application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
+        application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
+        application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+
+        """
+        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name=rule_name, restart_pods=restart_pods, recommendation_application_intervals=application_intervals,
+                                                                                    recommendation_application_min_threshold=application_min_threshold, recommendation_application_boundaries=application_boundaries, recommendation_application_overhead_values=application_overhead_values)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def delete_right_sizing_rule(self, ocean_id: str, rule_names: List[str]):
+        """
+        Delete a right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_names (List[String]): List of Right Sizing Rule Names
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+
+        right_sizing_rule_request = right_sizing_ocean.DeleteRightSizingRulesRequest(
+            rule_names)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        return self.send_delete_with_body(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule",
+            entity_name='right_sizing')
+
+    def update_right_sizing_rule(self, ocean_id: str,
+                                 rule_name: str,
+                                 restart_pods: bool,
+                                 application_intervals: right_sizing_ocean.RecommendationApplicationInterval,
+                                 application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
+                                 application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues):
+        """
+        Update a right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Rightsizing Rule name
+        restart_pods (Bool): Whether existing pods should be restarted or not.
+        recommendation_application_intervals (RecommendationApplicationIntervals): Recommendation Application Intervals
+        recommendation_application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
+        recommendation_application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
+        recommendation_application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        right_sizing_rule_request = right_sizing_ocean.UpdateRightSizingRuleRequest(
+            restart_pods,
+            application_intervals,
+            application_min_threshold,
+            application_boundaries,
+            application_overhead_values)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule/" + rule_name,
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def attach_right_sizing_rule(self, ocean_id: str, rule_name: str, namespaces: List[right_sizing_ocean.Namespace]):
+        """
+        Attach right sizing rule to an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Ocean right sizing rule
+        namespaces (List[Namespace]): List of namespaces to attach the right sizing rule to
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        attach_right_sizing_rule_request = right_sizing_ocean.AttachRightSizingRuleRequest(
+            namespaces)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(attach_right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name+"/attachment",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def detach_right_sizing_rule(self, ocean_id: str, rule_name: str, namespaces: List[right_sizing_ocean.Namespace]):
+        """
+        Detach right sizing rule from an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Ocean right sizing rule
+        namespaces (List[Namespace]): List of namespaces to detach the right sizing rule from
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        detach_right_sizing_rule_request = right_sizing_ocean.DetachRightSizingRuleRequest(
+            namespaces)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(detach_right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name+"/detachment",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_right_sizing_rule(self, ocean_id: str, rule_name: str):
+        """
+        Get right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Name of the Right Sizing Rule
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        response = self.send_get(
+            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name,
+            entity_name="right_sizing"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def list_right_sizing_rules(self, ocean_id: str):
+        """
+        Get right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+
+        # Returns
+        (Object): Ocean Right Sizing Rules API response
+        """
+        response = self.send_get(
+            url="/ocean/"+ocean_id+"/rightSizing/rule/",
+            entity_name="right_sizing"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_ocean_right_sizing_recommendations(self, ocean_id: str, cluster_resources: right_sizing_ocean.ClusterResources = None, cluster_labels: right_sizing_ocean.ClusterLabels = None):
+        """
+        Attach right sizing rule to an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Ocean right sizing rule
+        namespaces (List[Namespace]): List of namespaces to attach the right sizing rule to
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        get_ocean_right_sizing_recommendations_request = right_sizing_ocean.GetOceanRightSizingRecommendationsRequest(
+            cluster_resources=cluster_resources, cluster_labels=cluster_labels)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(get_ocean_right_sizing_recommendations_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/recommendations",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+# endRegion

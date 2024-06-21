@@ -82,6 +82,7 @@ setup(
                 "spotinst_sdk2.models.ocean.aws",
                 "spotinst_sdk2.models.ocean.azure",
                 "spotinst_sdk2.models.ocean.gcp",
+                "spotinst_sdk2.models.ocean.rightsizing",
             "spotinst_sdk2.models.ocean_cd",
                 "spotinst_sdk2.models.ocean_cd",
             "spotinst_sdk2.models.setup",
