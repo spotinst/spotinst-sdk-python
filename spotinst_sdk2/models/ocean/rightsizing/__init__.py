@@ -22,7 +22,6 @@ class IntervalHours:
         self.end_time = end_time
 
 
-# region WeekOfTheMonth
 class IntervalDays(Enum):
     Monday = "MONDAY"
     Tuesday = "TUESDAY"
@@ -31,7 +30,6 @@ class IntervalDays(Enum):
     Friday = "FRIDAY"
     Saturday = "SATURDAY"
     Sunday = "SUNDAY"
-# endregion
 
 
 class WeeklyRepetitionBasis:
@@ -50,18 +48,16 @@ class WeeklyRepetitionBasis:
         self.interval_hours = interval_hours
 # endregion
 
-# region WeekOfTheMonth
+# region MonthlyRepetitionBasis
+
 
 class WeekOfTheMonth(Enum):
-    First  = "FIRST"
+    First = "FIRST"
     Second = "SECOND"
-    Third  = "THIRD"
+    Third = "THIRD"
     Fourth = "FOURTH"
-    Last   = "LAST"
+    Last = "LAST"
 
-# endregion
-
-# region MonthlyRepetitionBasis
 
 class MonthlyRepetitionBasis:
     """
@@ -83,17 +79,11 @@ class MonthlyRepetitionBasis:
 # endregion
 
 
-
-# region WeekOfTheMonth
+# region RecommendationApplicationInterval
 class RepetitionBasis(Enum):
     Weekly = "WEEKLY"
     Monthly = "MONTHLY"
 
-# endregion
-
-
-
-# region RecommendationApplicationInterval
 
 class RecommendationApplicationInterval:
     """
@@ -133,7 +123,7 @@ class RecommendationApplicationMinThreshold:
         self.memory_percentage = memory_percentage
 # endregion
 
-# region CPU
+# region RecommendationApplicationBoundaries
 
 
 class CPU:
@@ -150,9 +140,6 @@ class CPU:
     ):
         self.min = min
         self.max = max
-# endregion
-
-# region Memory
 
 
 class Memory:
@@ -169,9 +156,6 @@ class Memory:
     ):
         self.min = min
         self.max = max
-# endregion
-
-# region RecommendationApplicationBoundaries
 
 
 class RecommendationApplicationBoundaries:
@@ -235,7 +219,7 @@ class Workload:
     """
     # Arguments
     name: str
-    type: str
+    workload_type: str
     regex_name: str
     """
 
@@ -244,7 +228,7 @@ class Workload:
             name: str = none,
             workload_type: str = none,
             regex_name: str = none
-            
+
     ):
         self.name = name
         self.workload_type = workload_type
@@ -288,6 +272,7 @@ class ClusterResources:
         self.data = data
 
 # endregion
+
 
 class ClusterLabels:
     """
@@ -367,7 +352,8 @@ class DetachRightSizingRuleRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-    
+
+
 class GetOceanRightSizingRecommendationsRequest:
     def __init__(self, cluster_resources: ClusterResources, cluster_labels: ClusterLabels):
         if cluster_resources is not None:
@@ -378,5 +364,3 @@ class GetOceanRightSizingRecommendationsRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-    
-    

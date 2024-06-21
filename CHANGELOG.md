@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.9.0] - 2024-06-21
+### Added
+- Added support for ocean Automatic Rightsizing APIs (beta release. For internal use only).
+
 ## [3.8.0] - 2024-06-21
 ### Added
 - Added detach nodes, get elastilog and cost APIs for Ocean AKS.
