@@ -315,9 +315,12 @@ class CreateRightSizingRuleRequest:
         self.rule_name = rule_name
         self.restart_pods = restart_pods
         self.recommendation_application_intervals = recommendation_application_intervals
-        self.recommendation_application_min_threshold = recommendation_application_min_threshold
-        self.recommendation_application_boundaries = recommendation_application_boundaries
-        self.recommendation_application_overhead_values = recommendation_application_overhead_values
+        if recommendation_application_min_threshold is not None:
+            self.recommendation_application_min_threshold = recommendation_application_min_threshold
+        if recommendation_application_boundaries is not None:
+            self.recommendation_application_boundaries = recommendation_application_boundaries
+        if recommendation_application_overhead_values is not None:
+            self.recommendation_application_overhead_values = recommendation_application_overhead_values
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
