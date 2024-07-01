@@ -25,6 +25,8 @@ generate:
       - spotinst_sdk2.clients.ocean.OceanAzureClient++
   - clients/ocean/ocean_gcp_client.md:
       - spotinst_sdk2.clients.ocean.OceanGcpClient++
+#   - clients/ocean/ocean_rightsizing_client.md:
+#       - spotinst_sdk2.clients.ocean.OceanRightSizingClient++
   - clients/ocean_cd/ocean_cd_client.md:
       - spotinst_sdk2.clients.ocean_cd.OceanCDClient++
   - clients/subscription/subscription_client.md:
@@ -57,6 +59,8 @@ generate:
       - spotinst_sdk2.models.ocean.azure++
   - models/ocean/gcp.md:
       - spotinst_sdk2.models.ocean.gcp++
+#   - models/ocean/rightsizing.md:
+#       - spotinst_sdk2.models.ocean.rightsizing++
   - models/ocean_cd.md:
       - spotinst_sdk2.models.ocean_cd++
       - spotinst_sdk2.models.ocean_cd.rollout_spec++

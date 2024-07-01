@@ -909,9 +909,9 @@ class DetachNodes:
 
 
 class DetachNodesRequest:
-    def __init__(self, detachNodes: DetachNodes):
-        self.node_names_to_detach = detachNodes.node_names_to_detach
-        self.ocean_id = detachNodes.ocean_id
+    def __init__(self, detach_nodes_obj: DetachNodes):
+        self.node_names_to_detach = detach_nodes_obj.node_names_to_detach
+        self.ocean_id = detach_nodes_obj.ocean_id
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

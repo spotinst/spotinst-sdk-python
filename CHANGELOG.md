@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.9.1] - 2024-06-28
+### Fixed
+- Made few parameter objects in `create_right_sizing_rule` to optional (For internal use only).
+
+## [3.9.0] - 2024-06-21
+### Added
+- Added support for ocean Automatic Rightsizing APIs (beta release. For internal use only).
+
+## [3.8.0] - 2024-06-21
+### Added
+- Added detach nodes, get elastilog and cost APIs for Ocean AKS.
+
+## [3.7.1] - 2024-06-17
+### Fixed
+- Fixed `AggressiveScaleDown` model in GCP Ocean.
+
+## [3.7.0] - 2024-06-14
+### Added
+- Added `AggressiveScaleDown` model in GCP Ocean.
+
 ## [3.6.0] - 2024-05-30
 ### Added
 - Added `AmiAutoUpdate` model in Aws Ocean.

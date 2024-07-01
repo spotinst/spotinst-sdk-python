@@ -6,7 +6,7 @@ import spotinst_sdk2.models.ocean.aws as aws_ocean
 import spotinst_sdk2.models.ocean.azure as azure_ocean
 import spotinst_sdk2.models.ocean.gcp as gcp_ocean
 import spotinst_sdk2.models.ocean.ecs as ecs_ocean
-
+import spotinst_sdk2.models.ocean.rightsizing as right_sizing_ocean
 
 # region AWS
 
@@ -1155,7 +1155,7 @@ class OceanAwsClient(Client):
             url=self.__base_ocean_extended_resource_definition_url +
                 "/" + ocean_extended_resource_definition_id,
             entity_name='ocean_extended_resource_defintion')
-    # endregion
+# endregion
 
 
 # region Azure
@@ -1702,9 +1702,131 @@ class OceanAzureClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]
-    # endregion
 
+    def detach_nodes(self, detach_nodes: azure_ocean.DetachNodes):
+        """
+        Detach nodes from your Ocean cluster.
 
+        # Arguments
+        detach_nodes (DetachNodes): Detach Nodes Object
+
+        # Returns
+        (Object): Detach Nodes response
+        """
+        request = azure_ocean.DetachNodesRequest(detach_nodes)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_cluster_url + "/detachNodes",
+            entity_name='ocean detach nodes')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str = None, resource_id: str = None,
+                      limit: int = None):
+        """
+        Get the log of an Ocean Cluster.
+
+        # Arguments
+        to_date (String): end date value
+        from_date (String): beginning date value
+        severity(String) (Optional): Log level severity
+        resource_id(String) (Optional): specific resource identifier
+        limit(int) (Optional): Maximum number of lines to extract in a response
+
+        # Returns
+        (Object): Ocean Get Log API response
+        """
+        geturl = self.__base_ocean_cluster_url + "/" + ocean_id + "/log"
+        query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
+                            resourceId=resource_id, limit=limit)
+
+        result = self.send_get(
+            url=geturl, entity_name='ocean azure elastilog', query_params=query_params)
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_aggregated_detailed_costs(self, ocean_id: str, aggregated_cluster_costs: azure_ocean.AggregatedClusterCosts):
+        """
+        Provides Kubernetes cluster resource usage and costs over a time interval which can be grouped and/or filtered by label/annotaion
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        aggregated_cluster_costs (AggregatedClusterCosts): Aggregated Cluster Costs request
+
+        # Returns
+        (Object): Aggregated Cluster Costs API response
+        """
+        aggregated_cluster_costs_request = azure_ocean.AggregatedClusterCostRequest(
+            aggregated_cluster_costs)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(aggregated_cluster_costs_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        aggregated_costs_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_k8s_url + ocean_id + "/aggregatedCosts",
+            entity_name='ocean (aggregated cluster costs)')
+
+        formatted_response = self.convert_json(
+            aggregated_costs_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_aggregated_summary_costs(self, ocean_id: str, aggregated_cluster_costs: azure_ocean.AggregatedClusterCosts):
+        """
+        Provides Kubernetes cluster summary usage and costs over a time interval which can be grouped and/or filtered by label/annotaion
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        aggregated_cluster_costs (AggregatedClusterCosts): Aggregated Cluster Costs request
+
+        # Returns
+        (Object): Aggregated Cluster Costs API response
+        """
+        aggregated_cluster_costs_request = azure_ocean.AggregatedClusterCostRequest(
+            aggregated_cluster_costs)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(aggregated_cluster_costs_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        aggregated_summary_costs_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_k8s_url +
+            ocean_id + "/aggregatedCosts/summary",
+            entity_name='ocean (aggregated summary costs)')
+
+        formatted_response = self.convert_json(
+            aggregated_summary_costs_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+# endregion
+
+# region GCP
 class OceanGcpClient(Client):
     __base_ocean_url = "/ocean/k8s/cluster/"
     __base_ocean_cluster_url = "/ocean/gcp/k8s/cluster"
@@ -2363,4 +2485,982 @@ class OceanGcpClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+# endRegion
 
+# region RightSizing
+class OceanRightSizingClient(Client):
+
+    def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
+                                 application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
+                                 application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold = None,
+                                 application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries = None,
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues = None):
+        """
+        Create a right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Name of the Right Sizing Rule
+        restart_pods (boolean): Enable to sequentially restart pod batches according to recommendations
+        application_intervals (List[RecommendationApplicationIntervals]): Recommendation Application Intervals
+        application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
+        application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
+        application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+
+        """
+        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name=rule_name, restart_pods=restart_pods, recommendation_application_intervals=application_intervals,
+                                                                                    recommendation_application_min_threshold=application_min_threshold, recommendation_application_boundaries=application_boundaries, recommendation_application_overhead_values=application_overhead_values)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def delete_right_sizing_rule(self, ocean_id: str, rule_names: List[str]):
+        """
+        Delete a right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_names (List[String]): List of Right Sizing Rule Names
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+
+        right_sizing_rule_request = right_sizing_ocean.DeleteRightSizingRulesRequest(
+            rule_names)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        return self.send_delete_with_body(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule",
+            entity_name='right_sizing')
+
+    def update_right_sizing_rule(self, ocean_id: str,
+                                 rule_name: str,
+                                 restart_pods: bool,
+                                 application_intervals: right_sizing_ocean.RecommendationApplicationInterval,
+                                 application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
+                                 application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues):
+        """
+        Update a right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Rightsizing Rule name
+        restart_pods (Bool): Whether existing pods should be restarted or not.
+        recommendation_application_intervals (RecommendationApplicationIntervals): Recommendation Application Intervals
+        recommendation_application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
+        recommendation_application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
+        recommendation_application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        right_sizing_rule_request = right_sizing_ocean.UpdateRightSizingRuleRequest(
+            restart_pods,
+            application_intervals,
+            application_min_threshold,
+            application_boundaries,
+            application_overhead_values)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule/" + rule_name,
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def attach_right_sizing_rule(self, ocean_id: str, rule_name: str, namespaces: List[right_sizing_ocean.Namespace]):
+        """
+        Attach right sizing rule to an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Ocean right sizing rule
+        namespaces (List[Namespace]): List of namespaces to attach the right sizing rule to
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        attach_right_sizing_rule_request = right_sizing_ocean.AttachRightSizingRuleRequest(
+            namespaces)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(attach_right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name+"/attachment",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def detach_right_sizing_rule(self, ocean_id: str, rule_name: str, namespaces: List[right_sizing_ocean.Namespace]):
+        """
+        Detach right sizing rule from an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Ocean right sizing rule
+        namespaces (List[Namespace]): List of namespaces to detach the right sizing rule from
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        detach_right_sizing_rule_request = right_sizing_ocean.DetachRightSizingRuleRequest(
+            namespaces)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(detach_right_sizing_rule_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name+"/detachment",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_right_sizing_rule(self, ocean_id: str, rule_name: str):
+        """
+        Get right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Name of the Right Sizing Rule
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        response = self.send_get(
+            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name,
+            entity_name="right_sizing"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def list_right_sizing_rules(self, ocean_id: str):
+        """
+        Get right sizing rule for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+
+        # Returns
+        (Object): Ocean Right Sizing Rules API response
+        """
+        response = self.send_get(
+            url="/ocean/"+ocean_id+"/rightSizing/rule/",
+            entity_name="right_sizing"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_ocean_right_sizing_recommendations(self, ocean_id: str, cluster_resources: right_sizing_ocean.ClusterResources = None, cluster_labels: right_sizing_ocean.ClusterLabels = None):
+        """
+        Attach right sizing rule to an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        rule_name (String): Ocean right sizing rule
+        namespaces (List[Namespace]): List of namespaces to attach the right sizing rule to
+
+        # Returns
+        (Object): Ocean Right Sizing Rule API response
+        """
+        get_ocean_right_sizing_recommendations_request = right_sizing_ocean.GetOceanRightSizingRecommendationsRequest(
+            cluster_resources=cluster_resources, cluster_labels=cluster_labels)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(get_ocean_right_sizing_recommendations_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url="/ocean/"+ocean_id+"/rightSizing/recommendations",
+            entity_name='right_sizing')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+# endRegion
+
+# region OceanECS
+class OceanECSClient(Client):
+    __base_ocean_url = "/ocean/aws/ecs/cluster/"
+    __base_launch_spec_url = "/ocean/aws/ecs/launchSpec"
+
+    def get_all_ocean_clusters(self):
+        """
+        Get the configurations for all Ocean clusters in the specified account.
+
+        # Returns
+        (Object): Ocean ECS Api response
+        """
+
+        response = self.send_get(
+            url=self.__base_ocean_url,
+            entity_name="ocean ecs"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def create_ocean_cluster(self, ocean: ecs_ocean.Ocean):
+        """
+        Create an Ocean ECS Cluster
+
+        # Arguments
+        ocean (Ocean): Ocean ECS Object
+
+        # Returns
+        (Object): Ocean ECS API response
+        """
+        ocean = ecs_ocean.OceanRequest(ocean)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url,
+            entity_name='ocean ecs')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_ocean_cluster(self, ocean_id: str):
+        """
+        Get the configuration for a specified Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+        # Returns
+        (Object): Ocean API response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_url + "/" + ocean_id,
+            entity_name="ocean ecs"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def update_ocean_cluster(self, ocean_id: str, ocean: ecs_ocean.Ocean):
+        """
+        Update an existing Ocean Cluster
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        ocean (Ocean): Ocean object
+
+        # Returns
+        (Object): Ocean API response
+        """
+        ocean = ecs_ocean.OceanRequest(ocean)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_url + "/" + ocean_id,
+            entity_name='ocean ecs')
+
+        formatted_response = self.convert_json(
+            response,
+            self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def delete_ocean_cluster(self, ocean_id: str):
+        """
+        Delete a specified Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+        # Returns
+        (Object): Ocean API response
+        """
+        return self.send_delete(
+            url=self.__base_ocean_url + "/" + ocean_id,
+            entity_name="ocean ecs"
+        )
+
+    def import_ocean_cluster(self, ecs_cluster_nameocean: str, import_cluster: ecs_ocean.ImportCluster):
+        """
+        Create an Ocean ECS Cluster
+
+        # Arguments
+        ocean (Ocean): Ocean ECS Object
+
+        # Returns
+        (Object): Ocean ECS API response
+        """
+        ocean = ecs_ocean.ImportClusterRequest(import_cluster)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url + "/" + ecs_cluster_nameocean,
+            entity_name='ocean ecs')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str = None, resource_id: str = None,
+                      limit: int = None):
+        """
+        Get the log of an Ocean Cluster.
+
+        # Arguments
+        to_date (String): end date value
+        from_date (String): beginning date value
+        severity(String) (Optional): Log level severity
+        resource_id(String) (Optional): specific resource identifier
+        limit(int) (Optional): Maximum number of lines to extract in a response
+
+        # Returns
+        (Object): Ocean Get Log API response
+        """
+        geturl = self.__base_ocean_url + "/" + ocean_id + "/log"
+        query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
+                            resourceId=resource_id, limit=limit)
+
+        result = self.send_get(
+            url=geturl, entity_name='ocean_ecs_log', query_params=query_params)
+
+        formatted_response = self.convert_json(
+            result, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_rightsizing_recommendations(self, ocean_id: str):
+        """
+        Get right-sizing recommendations for an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): Id of the Ocean Cluster
+
+        # Returns
+        (Object): Ocean API response
+        """
+
+        group_response = self.send_get(
+            url=self.__base_ocean_url +
+                "/" + ocean_id + "/rightSizing/suggestion",
+            entity_name='ocean ecs')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def instance_types_filters_simulation(self, ocean_id: str, filters: ecs_ocean.InstanceTypesFilters):
+        """
+        Returns all instances types that match the given filters.
+        These instance types will be used if the cluster is configured with these filters.
+
+        # Arguments
+        ocean_id (String): Id of the Ocean Cluster
+        filters (InstanceTypesFilters): List of filters
+
+        # Returns
+        (Object): Ocean Instance Type Simultion response
+        """
+        request = ecs_ocean.InstanceTypesFilterRequest(filters)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        group_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url +
+                "/" + ocean_id + "/instanceTypeFiltersSimulation",
+            entity_name='ocean ecs instance type filter')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_allowed_instance_types(self, ocean_id: str):
+        """
+        Return the list of the allowed Ocean cluster instance types.
+
+        # Arguments
+        ocean_id (String): Ocean cluster identifier
+
+        # Returns
+        (Object): Ocean Allowed Instance Types response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_url + "/" + ocean_id + "/allowedInstanceTypes",
+            entity_name="ocean ecs allowed instance types"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def upgrade_elastigroup_to_ocean(self, group_id: str):
+        """
+        Upgrade an Elastigroup with ECS integration into Ocean for ECS cluster.
+
+        # Arguments
+        group_id (String): Elastigroup ID
+
+        # Returns
+        (Object): Ocean ECS API response
+        """
+        response = self.send_post(
+            url=self.__base_ocean_url + "/import",
+            entity_name='ocean ecs')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def initiate_roll(self, ocean_id: str, cluster_roll: ecs_ocean.Roll):
+        """
+        Initiate Cluster Rolls
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        cluster_roll (Roll): Cluster Roll / Roll with Instance Ids/ Launch specification Ids
+
+        # Returns
+        (Object): Cluster Roll API response
+        """
+        roll_request = ecs_ocean.ClusterRollInitiateRequest(cluster_roll)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(roll_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        rolls_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url + "/" + ocean_id + "/roll",
+            entity_name='ocean ecs (Cluster Roll)')
+
+        formatted_response = self.convert_json(
+            rolls_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def list_rolls(self, ocean_id: str):
+        """
+        List rolls of an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+
+        # Returns
+        (Object): List of Cluster Roll API response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_url + "/" + ocean_id + "/roll",
+            entity_name="ocean ecs (Cluster Roll)"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def update_roll(self, ocean_id: str, roll_id: str, status: str):
+        """
+        Update a roll of an Ocean cluster.
+        Performing the request will stop the next batch in a roll.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        roll_id (String): Ocean cluster roll identifier
+        status (String): update roll status request
+
+        # Returns
+        (Object): Cluster Roll API response
+        """
+        update_roll_request = ecs_ocean.ClusterRollUpdateRequest(status)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(update_roll_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_url + "/" + ocean_id + "/roll/" + roll_id,
+            entity_name='ocean ecs (Cluster Roll)')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_roll(self, ocean_id: str, roll_id: str):
+        """
+        Get status for a roll of an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        roll_id (String): Ocean cluster roll identifier
+
+        # Returns
+        (Object): Cluster Roll API response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_url + "/" + ocean_id + "/roll/" + roll_id,
+            entity_name="ocean ecs (Cluster Roll)"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_cluster_container_instances(self, ocean_id: str, instance_id: str, launch_spec_id: str):
+        """
+        Get container instances data of an Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        instance_id (String): Instance identifier
+        launch_spec_id (String): Ocean launch spec identifier
+
+        # Returns
+        (Object): Ocean Aws Container Instances Data Response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_url + "/" + ocean_id + "/containerInstances",
+            entity_name="ocean ecs instances"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def detach_instances(self, ocean_id: str, detach_instance: ecs_ocean.DetachInstances):
+        """
+        Detach instances from your Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        detach_instance (DetachInstances): Detach instances request
+
+        # Returns
+        (Object): Detach Instance response
+        """
+        request = ecs_ocean.DetachInstancesRequest(detach_instance)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_url + "/" + ocean_id + "/detachInstances",
+            entity_name='ocean ecs detach instances')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def create_virtual_node_group(self, vng: ecs_ocean.VirtualNodeGroup):
+        """
+        Create a new Ocean ECS virtual node group in the specified account.
+
+        # Arguments
+        vng (VirtualNodeGroup): VirtualNodeGroup Object
+
+        # Returns
+        (Object): Ocean Launch Spec response
+        """
+        ocean = ecs_ocean.VNGRequest(vng)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_launch_spec_url,
+            entity_name='ocean ecs vng')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_all_virtual_node_groups(self, ocean_id: str):
+        """
+        Get all the custom VNGs for all Ocean clusters in the specified account.
+
+        # Returns
+        (Object): Ocean VNG API response
+        """
+
+        response = self.send_get(
+            url=self.__base_launch_spec_url,
+            entity_name="ocean_gcp_vng",
+            query_params=dict(oceanId=ocean_id)
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def delete_virtual_node_group(self, vng_id: str, delete_container_instances: bool = None):
+        """
+        Delete a specified virtual node group in an Ocean cluster.
+
+        # Arguments
+        vng_id (String): Ocean cluster Virtual Node Group identifier.
+        delete_container_instances (Bool): When set to "true", all instances belonging to the deleted launch specification will be drained, detached, and terminated.
+
+        # Returns
+        (Object): Ocean Launch Specification Delete response
+        """
+        return self.send_delete_with_params(
+            url=self.__base_launch_spec_url + "/" + vng_id,
+            entity_name="ocean ecs vng",
+            user_query_params=dict(deleteContainerInstances=delete_container_instances)
+        )
+
+    def update_virtual_node_group(self, vng_id: str, vng: ecs_ocean.VirtualNodeGroup):
+        """
+        Get a specific custom launch configuration for an Ocean cluster in the specified account.
+
+        # Arguments
+        vng_id (String): ID of the Ocean Virtual Node Group
+        ocean (Ocean): Ocean object
+
+        # Returns
+        (Object): Ocean Launch Spec response
+        """
+        ocean = ecs_ocean.VNGRequest(vng)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_launch_spec_url + "/" + vng_id,
+            entity_name='ocean ecs vng')
+
+        formatted_response = self.convert_json(
+            response,
+            self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_virtual_node_group(self, ocean_launch_spec_id: str):
+        """
+        Get a specific custom launch configuration for an Ocean cluster in the specified account.
+
+        # Arguments
+        ocean_launch_spec_id (String): Ocean cluster launch specification identifier
+
+        # Returns
+        (Object): Ocean Allowed Instance Types response
+        """
+        response = self.send_get(
+            url=self.__base_launch_spec_url + "/" + ocean_launch_spec_id,
+            entity_name="ocean ecs vng"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def import_fargate_to_existing_ocean_cluster(self, ocean_id: str,
+                                                 import_fargate_existing: ecs_ocean.ImportFargateToExistingOceanCluster):
+        """
+        Import a Fargate service into an existing Ocean ECS cluster.
+
+        # Arguments
+        ocean_id(String): Ocean cluster Identifier
+        import_fargate_existing(Object): ImportFargateToExistingOceanCluster Object
+
+        # Returns
+        (Object): Ocean ECS Fargate Response
+        """
+        ocean = ecs_ocean.ImportFargateToExistingOceanClusterRequest(import_fargate_existing)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url + ocean_id + "/fargateMigration",
+            entity_name='ocean ecs fargate')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def get_fargate_services_discovery(self, ocean_id: str):
+        """
+        Get existing Fargate services in the ECS cluster.
+
+        # Arguments
+        ocean_id (String): Ocean cluster identifier
+
+        # Returns
+        (Object): Ocean ECS Fargate Response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_url + ocean_id + "/fargateMigration/serviceDiscovery",
+            entity_name="ocean ecs fargate"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_fargate_migration_status(self, ocean_id: str):
+        """
+        Get the status of a Fargate service import.
+
+        # Arguments
+        ocean_id (String): Ocean cluster identifier
+
+        # Returns
+        (Object): Ocean ECS Fargate Response
+        """
+        response = self.send_get(
+            url=self.__base_ocean_url + ocean_id + "/fargateMigration/status",
+            entity_name="ocean ecs fargate"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def import_fargate_to_new_ocean_cluster(self, ocean_id: str,
+                                            import_fargate_new: ecs_ocean.ImportFargateToNewOceanCluster):
+        """
+        Import a Fargate service into a new Ocean ECS cluster.
+
+        # Arguments
+        ocean_id(String): Ocean cluster Identifier
+        import_fargate_new(Object): ImportFargateToNewOceanCluster Object
+
+        # Returns
+        (Object): Ocean ECS Fargate Response
+        """
+        ocean = ecs_ocean.ImportFargateToNewOceanClusterRequest(import_fargate_new)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(ocean.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url + "/fargate/import",
+            entity_name='ocean ecs fargate')
+
+        formatted_response = self.convert_json(response,
+                                               self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_ecs_cluster_aggregated_costs(self, ocean_id: str,
+                                         aggregated_cluster_costs: ecs_ocean.AggregatedClusterCosts):
+        """
+        Provides Ecs cluster resource usage and costs over a time interval which can be grouped and/or filtered by AWS tag
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        aggregated_cluster_costs (AggregatedClusterCosts): Aggregated Cluster Costs request
+
+        # Returns
+        (Object): Aggregated Cluster Costs API response
+        """
+        aggregated_cluster_costs_request = ecs_ocean.AggregatedClusterCostRequest(
+            aggregated_cluster_costs)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(aggregated_cluster_costs_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json_with_list_of_lists(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        aggregated_costs_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_url + "/" + ocean_id + "/aggregatedCosts",
+            entity_name='ocean ecs(aggregated cluster costs)')
+
+        formatted_response = self.convert_json(
+            aggregated_costs_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def launch_instances_in_vng(self, ocean_launch_spec_id: str, amount: int):
+        """
+        Launch container instances in virtual node group.
+
+        # Arguments
+        ocean_launch_spec_id (String): Ocean cluster launch specification identifier.
+        amount (int): The number of nodes to launch.
+
+        # Returns
+        (Object): Ocean Virtual Node Group Launch API response
+        """
+        launch_node_request = ecs_ocean.LaunchInstancesRequest(amount)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(launch_node_request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_launch_spec_url + "/" + ocean_launch_spec_id + "/launchContainerInstances",
+            entity_name='ocean vng launch instances')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+# endregion
