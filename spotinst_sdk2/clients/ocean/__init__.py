@@ -1820,6 +1820,8 @@ class OceanAzureClient(Client):
 # endregion
 
 # region GCP
+
+
 class OceanGcpClient(Client):
     __base_ocean_url = "/ocean/k8s/cluster/"
     __base_ocean_cluster_url = "/ocean/gcp/k8s/cluster"
@@ -2108,12 +2110,13 @@ class OceanGcpClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def create_virtual_node_group(self, vng: gcp_ocean.VirtualNodeGroup):
+    def create_virtual_node_group(self, vng: gcp_ocean.VirtualNodeGroup, initial_nodes: int = None):
         """
         Create a virtual node group.
 
         # Arguments
         vng (VirtualNodeGroup): VirtualNodeGroup Object
+        initial_nodes: When set to an integer greater than 0, a corresponding number of nodes will be launched from the virtual node group created.
 
         # Returns
         (Object): Ocean Launch Spec response
@@ -2128,10 +2131,13 @@ class OceanGcpClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        response = self.send_post(
+        query_params = dict(initialNodes=initial_nodes)
+
+        response = self.send_post_with_params(
             body=body_json,
             url=self.__base_ocean_launchspec_url,
-            entity_name='ocean_gcp_vng')
+            entity_name='ocean_gcp_vng',
+            user_query_params=query_params)
 
         formatted_response = self.convert_json(response,
                                                self.camel_to_underscore)
@@ -2480,6 +2486,8 @@ class OceanGcpClient(Client):
 # endRegion
 
 # region RightSizing
+
+
 class OceanRightSizingClient(Client):
 
     def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
