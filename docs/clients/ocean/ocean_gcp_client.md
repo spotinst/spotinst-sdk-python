@@ -131,7 +131,7 @@ OceanGcpClient.get_elastilog(ocean_id: str,
                              limit: int = None)
 ```
 
-Get group’s Elastilog by
+Get group's Elastilog by
 
 __Arguments__
 

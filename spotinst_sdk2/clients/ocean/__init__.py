@@ -1988,7 +1988,7 @@ class OceanGcpClient(Client):
     def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str = None, resource_id: str = None,
                       limit: int = None):
         """
-        Get group’s Elastilog by
+        Get group's Elastilog by
 
         # Arguments
         to_date (String): end date value
@@ -2490,7 +2490,7 @@ class OceanGcpClient(Client):
 
 class OceanRightSizingClient(Client):
 
-    def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool, 
+    def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
                                  restart_replicas: right_sizing_ocean.RestartReplicas,
                                  exclude_preliminary_recommendations: bool,
                                  application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
@@ -2723,8 +2723,8 @@ class OceanRightSizingClient(Client):
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        rule_name (String): Ocean right sizing rule
-        namespaces (List[Namespace]): List of namespaces to attach the right sizing rule to
+        cluster_resources (ClusterResources): Cluster Resources
+        cluster_labels (ClusterLabels): Cluster Labels
 
         # Returns
         (Object): Ocean Right Sizing Rule API response
