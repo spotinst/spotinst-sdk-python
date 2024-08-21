@@ -2504,6 +2504,8 @@ class OceanRightSizingClient(Client):
         ocean_id (String): ID of the Ocean Cluster
         rule_name (String): Name of the Right Sizing Rule
         restart_pods (boolean): Enable to sequentially restart pod batches according to recommendations
+        restart_replicas (RestartReplicas): Restart Replicas
+        exclude_preliminary_recommendations (boolean): Exclude preliminary recommendations
         application_intervals (List[RecommendationApplicationIntervals]): Recommendation Application Intervals
         application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
         application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
@@ -2565,6 +2567,8 @@ class OceanRightSizingClient(Client):
     def update_right_sizing_rule(self, ocean_id: str,
                                  rule_name: str,
                                  restart_pods: bool,
+                                 restart_replicas: right_sizing_ocean.RestartReplicas,
+                                 exclude_preliminary_recommendations: bool,
                                  application_intervals: right_sizing_ocean.RecommendationApplicationInterval,
                                  application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
                                  application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
@@ -2586,6 +2590,8 @@ class OceanRightSizingClient(Client):
         """
         right_sizing_rule_request = right_sizing_ocean.UpdateRightSizingRuleRequest(
             restart_pods,
+            restart_replicas,
+            exclude_preliminary_recommendations,
             application_intervals,
             application_min_threshold,
             application_boundaries,
