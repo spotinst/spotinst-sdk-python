@@ -1988,7 +1988,7 @@ class OceanGcpClient(Client):
     def get_elastilog(self, ocean_id: str, from_date: str, to_date: str, severity: str = None, resource_id: str = None,
                       limit: int = None):
         """
-        Get group’s Elastilog by
+        Get group's Elastilog by
 
         # Arguments
         to_date (String): end date value
@@ -2491,6 +2491,8 @@ class OceanGcpClient(Client):
 class OceanRightSizingClient(Client):
 
     def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
+                                 restart_replicas: right_sizing_ocean.RestartReplicas,
+                                 exclude_preliminary_recommendations: bool,
                                  application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
                                  application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold = None,
                                  application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries = None,
@@ -2502,6 +2504,8 @@ class OceanRightSizingClient(Client):
         ocean_id (String): ID of the Ocean Cluster
         rule_name (String): Name of the Right Sizing Rule
         restart_pods (boolean): Enable to sequentially restart pod batches according to recommendations
+        restart_replicas (RestartReplicas): Restart Replicas
+        exclude_preliminary_recommendations (boolean): Exclude preliminary recommendations
         application_intervals (List[RecommendationApplicationIntervals]): Recommendation Application Intervals
         application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
         application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
@@ -2511,7 +2515,7 @@ class OceanRightSizingClient(Client):
         (Object): Ocean Right Sizing Rule API response
 
         """
-        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name=rule_name, restart_pods=restart_pods, recommendation_application_intervals=application_intervals,
+        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name=rule_name, restart_pods=restart_pods, restart_replicas=restart_replicas, exclude_preliminary_recommendations=exclude_preliminary_recommendations, recommendation_application_intervals=application_intervals,
                                                                                     recommendation_application_min_threshold=application_min_threshold, recommendation_application_boundaries=application_boundaries, recommendation_application_overhead_values=application_overhead_values)
 
         excluded_missing_dict = self.exclude_missing(
@@ -2563,6 +2567,8 @@ class OceanRightSizingClient(Client):
     def update_right_sizing_rule(self, ocean_id: str,
                                  rule_name: str,
                                  restart_pods: bool,
+                                 restart_replicas: right_sizing_ocean.RestartReplicas,
+                                 exclude_preliminary_recommendations: bool,
                                  application_intervals: right_sizing_ocean.RecommendationApplicationInterval,
                                  application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
                                  application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
@@ -2584,6 +2590,8 @@ class OceanRightSizingClient(Client):
         """
         right_sizing_rule_request = right_sizing_ocean.UpdateRightSizingRuleRequest(
             restart_pods,
+            restart_replicas,
+            exclude_preliminary_recommendations,
             application_intervals,
             application_min_threshold,
             application_boundaries,
@@ -2721,8 +2729,8 @@ class OceanRightSizingClient(Client):
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        rule_name (String): Ocean right sizing rule
-        namespaces (List[Namespace]): List of namespaces to attach the right sizing rule to
+        cluster_resources (ClusterResources): Cluster Resources
+        cluster_labels (ClusterLabels): Cluster Labels
 
         # Returns
         (Object): Ocean Right Sizing Rule API response

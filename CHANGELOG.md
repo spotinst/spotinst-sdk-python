@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.11.0] - 2024-08-21
+### Fixed
+- Updated new fields for ocean Automatic Rightsizing APIs (beta release. For internal use only).
+
 ## [3.10.0] - 2024-07-04
 ### Added
 - Added `initialNodes` query parameter for Ocean GKE `create_virtual_node_group` API.
