@@ -2,9 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.10.1] - 2024-08-20
+## [3.11.0] - 2024-08-21
 ### Fixed
-- Updated new fields Added support for ocean Automatic Rightsizing APIs (beta release. For internal use only).
+- Updated new fields for ocean Automatic Rightsizing APIs (beta release. For internal use only).
 
 ## [3.10.0] - 2024-07-04
 ### Added
