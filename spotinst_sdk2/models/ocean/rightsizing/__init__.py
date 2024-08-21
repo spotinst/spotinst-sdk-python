@@ -193,8 +193,24 @@ class RecommendationApplicationOverheadValues:
         self.memory_percentage = memory_percentage
 # endregion
 
-# region Label
 
+# region RecommendationApplicationHPA
+class RecommendationApplicationHPA:
+    """
+    # Arguments
+    allow_h_p_a_recommendations: bool
+    """
+
+    def __init__(
+            self,
+            allow_h_p_a_recommendations: bool = none,
+    ):
+        self.allow_h_p_a_recommendations = allow_h_p_a_recommendations
+
+# endregion
+
+
+# region Label
 
 class Label:
     """
@@ -235,6 +251,7 @@ class Workload:
         self.regex_name = regex_name
 
 # endregion
+
 
 # region Namespace
 
@@ -298,21 +315,21 @@ class RestartReplicas(Enum):
 class CreateRightSizingRuleRequest:
     def __init__(self,
                  rule_name: str,
-                 restart_pods: bool,
                  restart_replicas: RestartReplicas,
                  exclude_preliminary_recommendations: bool,
                  recommendation_application_intervals: List[RecommendationApplicationInterval],
                  recommendation_application_min_threshold: RecommendationApplicationMinThreshold,
                  recommendation_application_boundaries: RecommendationApplicationBoundaries,
-                 recommendation_application_overhead_values: RecommendationApplicationOverheadValues):
+                 recommendation_application_overhead_values: RecommendationApplicationOverheadValues,
+                 recommendation_application_hpa: RecommendationApplicationHPA):
         self.rule_name = rule_name
-        self.restart_pods = restart_pods
         self.restart_replicas = restart_replicas
         self.exclude_preliminary_recommendations = exclude_preliminary_recommendations
         self.recommendation_application_intervals = recommendation_application_intervals
         self.recommendation_application_min_threshold = recommendation_application_min_threshold
         self.recommendation_application_boundaries = recommendation_application_boundaries
         self.recommendation_application_overhead_values = recommendation_application_overhead_values
+        self.recommendation_application_h_p_a = recommendation_application_hpa
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -330,20 +347,20 @@ class DeleteRightSizingRulesRequest:
 
 class UpdateRightSizingRuleRequest:
     def __init__(self,
-                 restart_pods: bool,
                  restart_replicas: RestartReplicas,
                  exclude_preliminary_recommendations: bool,
                  recommendation_application_intervals: List[RecommendationApplicationInterval],
-                 recommendation_application_threshold: RecommendationApplicationMinThreshold,
+                 recommendation_application_min_threshold: RecommendationApplicationMinThreshold,
                  recommendation_application_boundaries: RecommendationApplicationBoundaries,
-                 recommendation_application_overhead_values: RecommendationApplicationOverheadValues):
-        self.restart_pods = restart_pods
+                 recommendation_application_overhead_values: RecommendationApplicationOverheadValues,
+                 recommendation_application_hpa: RecommendationApplicationHPA):
         self.restart_replicas = restart_replicas
         self.exclude_preliminary_recommendations = exclude_preliminary_recommendations
         self.recommendation_application_intervals = recommendation_application_intervals
-        self.recommendation_application_threshold = recommendation_application_threshold
+        self.recommendation_application_min_threshold = recommendation_application_min_threshold
         self.recommendation_application_boundaries = recommendation_application_boundaries
         self.recommendation_application_overhead_values = recommendation_application_overhead_values
+        self.recommendation_application_h_p_a = recommendation_application_hpa
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

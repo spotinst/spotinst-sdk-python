@@ -2490,33 +2490,40 @@ class OceanGcpClient(Client):
 
 class OceanRightSizingClient(Client):
 
-    def create_right_sizing_rule(self, ocean_id: str, rule_name: str, restart_pods: bool,
+    def create_right_sizing_rule(self, ocean_id: str, rule_name: str,
                                  restart_replicas: right_sizing_ocean.RestartReplicas,
                                  exclude_preliminary_recommendations: bool,
                                  application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
                                  application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold = None,
                                  application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries = None,
-                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues = None):
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues = None,
+                                 application_hpa: right_sizing_ocean.RecommendationApplicationHPA = None):
         """
         Create a right sizing rule for an Ocean cluster.
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
         rule_name (String): Name of the Right Sizing Rule
-        restart_pods (boolean): Enable to sequentially restart pod batches according to recommendations
         restart_replicas (RestartReplicas): Restart Replicas
         exclude_preliminary_recommendations (boolean): Exclude preliminary recommendations
         application_intervals (List[RecommendationApplicationIntervals]): Recommendation Application Intervals
         application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
         application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
         application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+        application_hpa (RecommendationApplicationHPA): Recommendation Application HPA
 
         # Returns
         (Object): Ocean Right Sizing Rule API response
 
         """
-        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name=rule_name, restart_pods=restart_pods, restart_replicas=restart_replicas, exclude_preliminary_recommendations=exclude_preliminary_recommendations, recommendation_application_intervals=application_intervals,
-                                                                                    recommendation_application_min_threshold=application_min_threshold, recommendation_application_boundaries=application_boundaries, recommendation_application_overhead_values=application_overhead_values)
+        right_sizing_rule_request = right_sizing_ocean.CreateRightSizingRuleRequest(rule_name=rule_name,
+                                                                                    restart_replicas=restart_replicas,
+                                                                                    exclude_preliminary_recommendations=exclude_preliminary_recommendations,
+                                                                                    recommendation_application_intervals=application_intervals,
+                                                                                    recommendation_application_min_threshold=application_min_threshold,
+                                                                                    recommendation_application_boundaries=application_boundaries,
+                                                                                    recommendation_application_overhead_values=application_overhead_values,
+                                                                                    recommendation_application_hpa=application_hpa)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(right_sizing_rule_request.toJSON()))
@@ -2566,36 +2573,37 @@ class OceanRightSizingClient(Client):
 
     def update_right_sizing_rule(self, ocean_id: str,
                                  rule_name: str,
-                                 restart_pods: bool,
                                  restart_replicas: right_sizing_ocean.RestartReplicas,
                                  exclude_preliminary_recommendations: bool,
-                                 application_intervals: right_sizing_ocean.RecommendationApplicationInterval,
+                                 application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
                                  application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
                                  application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
-                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues):
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues,
+                                 application_hpa: right_sizing_ocean.RecommendationApplicationHPA = None):
         """
         Update a right sizing rule for an Ocean cluster.
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
         rule_name (String): Rightsizing Rule name
-        restart_pods (Bool): Whether existing pods should be restarted or not.
-        recommendation_application_intervals (RecommendationApplicationIntervals): Recommendation Application Intervals
-        recommendation_application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
-        recommendation_application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
-        recommendation_application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+        restart_replicas (RestartReplicas): Restart Replicas
+        exclude_preliminary_recommendations (boolean): Exclude preliminary recommendations
+        application_intervals (RecommendationApplicationIntervals): Recommendation Application Intervals
+        application_min_threshold (RecommendationApplicationMinThreshold): Recommendation Application Min Threshold
+        application_boundaries (RecommendationApplicationBoundaries): Recommendation Application Boundaries
+        application_overhead_values (RecommendationApplicationOverheadValues): Recommendation Application Overhead Values
+        application_hpa (RecommendationApplicationHPA): Recommendation Application HPA
 
         # Returns
         (Object): Ocean Right Sizing Rule API response
         """
-        right_sizing_rule_request = right_sizing_ocean.UpdateRightSizingRuleRequest(
-            restart_pods,
-            restart_replicas,
-            exclude_preliminary_recommendations,
-            application_intervals,
-            application_min_threshold,
-            application_boundaries,
-            application_overhead_values)
+        right_sizing_rule_request = right_sizing_ocean.UpdateRightSizingRuleRequest(restart_replicas=restart_replicas,
+                                                                                    exclude_preliminary_recommendations=exclude_preliminary_recommendations,
+                                                                                    recommendation_application_intervals=application_intervals,
+                                                                                    recommendation_application_min_threshold=application_min_threshold,
+                                                                                    recommendation_application_boundaries=application_boundaries,
+                                                                                    recommendation_application_overhead_values=application_overhead_values,
+                                                                                    recommendation_application_hpa=application_hpa)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(right_sizing_rule_request.toJSON()))
