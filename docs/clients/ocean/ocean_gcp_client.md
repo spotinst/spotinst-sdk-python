@@ -131,7 +131,7 @@ OceanGcpClient.get_elastilog(ocean_id: str,
                              limit: int = None)
 ```
 
-Get group’s Elastilog by
+Get group's Elastilog by
 
 __Arguments__
 
@@ -202,7 +202,8 @@ __Returns__
 <h2 id="spotinst_sdk2.clients.ocean.OceanGcpClient.create_virtual_node_group">create_virtual_node_group</h2>
 
 ```python
-OceanGcpClient.create_virtual_node_group(vng: VirtualNodeGroup)
+OceanGcpClient.create_virtual_node_group(vng: VirtualNodeGroup,
+                                         initial_nodes: int = None)
 ```
 
 Create a virtual node group.
@@ -210,6 +211,7 @@ Create a virtual node group.
 __Arguments__
 
 - __vng (VirtualNodeGroup)__: VirtualNodeGroup Object
+- __initial_nodes__: When set to an integer greater than 0, a corresponding number of nodes will be launched from the virtual node group created.
 
 __Returns__
 
