@@ -119,6 +119,20 @@ class ShutdownHours:
         self.is_enabled = is_enabled
         self.time_windows = time_windows
 
+class SuspensionHours:
+    """
+    # Arguments
+    is_enabled: bool
+    time_windows: List[str]
+    """
+
+    def __init__(
+            self,
+            is_enabled: bool = none,
+            time_windows: List[str] = none):
+        self.is_enabled = is_enabled
+        self.time_windows = time_windows        
+
 
 class ClusterRoll:
     """
@@ -194,8 +208,10 @@ class Scheduling:
     def __init__(
             self,
             shutdown_hours: ShutdownHours = none,
+            suspension_hours : SuspensionHours = none,
             tasks: List[Task] = none):
         self.shutdown_hours = shutdown_hours
+        self.suspension_hours = suspension_hours
         self.tasks = tasks
 # endregion
 

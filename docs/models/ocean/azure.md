@@ -97,6 +97,20 @@ __Arguments__
 - __is_enabled__: bool
 - __time_windows__: List[str]
 
+<h2 id="spotinst_sdk2.models.ocean.azure.SuspensionHours">SuspensionHours</h2>
+
+```python
+SuspensionHours(
+  self,
+  is_enabled: bool = 'd3043820717d74d9a17694c176d39733',
+  time_windows: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __is_enabled__: bool
+- __time_windows__: List[str]
+
 <h2 id="spotinst_sdk2.models.ocean.azure.ClusterRoll">ClusterRoll</h2>
 
 ```python
@@ -163,6 +177,7 @@ __Arguments__
 Scheduling(
     self,
     shutdown_hours: ShutdownHours = 'd3043820717d74d9a17694c176d39733',
+    suspension_hours: SuspensionHours = 'd3043820717d74d9a17694c176d39733',
     tasks:
     typing.List[spotinst_sdk2.models.ocean.azure.Task] = 'd3043820717d74d9a17694c176d39733'
 )
