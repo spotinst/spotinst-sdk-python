@@ -873,3 +873,17 @@ __Arguments__
 - __node_names_to_detach__: List[str]
 - __ocean_id__: str
 
+<h2 id="spotinst_sdk2.models.ocean.azure.RightSizingFilter">RightSizingFilter</h2>
+
+```python
+RightSizingFilter(
+  self,
+  attribute: Attribute = 'd3043820717d74d9a17694c176d39733',
+  namespaces: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __attribute__: Attribute
+- __namespaces__: List[str]
+

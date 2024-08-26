@@ -9,13 +9,14 @@ class Down:
     """
     # Arguments
     evaluation_periods: int
-    maxScale_down_percentage: int
+    max_scale_down_percentage: int
     """
+
     def __init__(self,
                  evaluation_periods: int = none,
-                 maxScale_down_percentage: int = none):
+                 max_scale_down_percentage: int = none):
         self.evaluation_periods = evaluation_periods
-        self.maxScale_down_percentage = maxScale_down_percentage
+        self.max_scale_down_percentage = max_scale_down_percentage
 
 
 class Headroom:
@@ -25,6 +26,7 @@ class Headroom:
     memory_per_unit: int
     num_of_units: int
     """
+
     def __init__(self,
                  cpu_per_unit: int = none,
                  memory_per_unit: int = none,
@@ -38,13 +40,14 @@ class ResourceLimits:
     """
     # Arguments
     max_memory_gib: int
-    max_vcpu: int
+    max_v_cpu: int
     """
+
     def __init__(self,
                  max_memory_gib: int = none,
-                 max_vcpu: int = none):
+                 max_v_cpu: int = none):
         self.max_memory_gib = max_memory_gib
-        self.max_vcpu = max_vcpu
+        self.max_v_cpu = max_v_cpu
 
 
 class AutoScaler:
@@ -60,6 +63,7 @@ class AutoScaler:
     resource_limits: ResourceLimits
     should_scale_down_non_service_tasks: bool
     """
+
     def __init__(self,
                  auto_headroom_percentage: int = none,
                  cooldown: int = none,
@@ -81,37 +85,30 @@ class AutoScaler:
         self.should_scale_down_non_service_tasks = should_scale_down_non_service_tasks
 
 
-class Unit(Enum):
-    weight = "weight"
-    instance = "instance"
-
-
 class Capacity:
     """
     # Arguments
     maximum: int
     minimum: int
     target: int
-    unit: Unit
     """
+
     def __init__(self,
                  maximum: int = none,
                  minimum: int = none,
-                 target: int = none,
-                 unit: Unit = none):
+                 target: int = none):
         self.maximum = maximum
         self.minimum = minimum
         self.target = target
-        self.unit = unit
 
 
-class Architectures(Enum):
+class Architecture(Enum):
     i386 = "i386"
     x86_64 = "x86_64"
     arm64 = "arm64"
 
 
-class Categories(Enum):
+class Category(Enum):
     accelerated_computing = "Accelerated_computing"
     compute_optimized = "Compute_optimized"
     general_purpose = "General_purpose"
@@ -119,7 +116,7 @@ class Categories(Enum):
     storage_optimized = "Storage_optimized"
 
 
-class DiskTypes(Enum):
+class DiskType(Enum):
     nvme = "NVMe"
     ebs = "EBS"
     ssd = "SSD"
@@ -131,67 +128,79 @@ class Hypervisor(Enum):
     xen = "xen"
 
 
-class RootDeviceTypes(Enum):
+class RootDeviceType(Enum):
     ebs = "ebs"
     instance_store = "instance-store"
 
 
-class VirtualizationTypes(Enum):
+class VirtualizationType(Enum):
     hvm = "hvm"
     paravirtual = "paravirtual"
 
 
 class InstanceTypesFilters:
     """
-    architectures: List[Architectures]
-    categories: List[Categories]
-    disk_types: List[DiskTypes]
+    # Arguments
+    min_vcpu: int
+    max_vcpu: int
+    min_memory_gi_b: float
+    max_memory_gi_b: float
+    min_gpu: int
+    max_gpu: int
+    include_families: List[str]
     exclude_families: List[str]
     exclude_metal: bool
-    hypervisor: List[Hypervisor]
-    include_families: List[str]
     is_ena_supported: bool
-    max_gpu: int
-    max_memory_gi_b: float
-    max_network_performance: int
-    max_vcpu: int
+    architectures: List[Architecture]
+    virtualization_types: List[VirtualizationType]
+    categories: List[Category]
     min_enis: int
-    min_gpu: int
-    min_memory_gi_b: float
+    disk_types: List[DiskType]
+    hypervisor: List[Hypervisor]
+    root_device_types: List[RootDeviceType]
     min_network_performance: int
-    min_vcpu: int
-    root_device_types: List[RootDeviceTypes]
-    virtualization_types: List[VirtualizationTypes]
+    max_network_performance: int
     """
+
     def __init__(self,
-                 architectures: List[Architectures] = none,
-                 categories: List[Categories] = none,
-                 disk_types: List[DiskTypes] = none,
+                 min_vcpu: int = none,
+                 max_vcpu: int = none,
+                 min_memory_gi_b: float = none,
+                 max_memory_gi_b: float = none,
+                 min_gpu: int = none,
+                 max_gpu: int = none,
+                 include_families: List[str] = none,
                  exclude_families: List[str] = none,
                  exclude_metal: bool = none,
-                 hypervisor: List[Hypervisor] = none,
-                 include_families: List[str] = none,
                  is_ena_supported: bool = none,
-                 max_gpu: int = none,
-                 min_memory_gi_b: float = none,
+                 architectures: List[Architecture] = none,
+                 virtualization_types: List[VirtualizationType] = none,
+                 categories: List[Category] = none,
+                 min_enis: int = none,
+                 disk_types: List[DiskType] = none,
+                 hypervisor: List[Hypervisor] = none,
+                 root_device_types: List[RootDeviceType] = none,
                  min_network_performance: int = none,
-                 min_vcpu: int = none,
-                 root_device_types: List[RootDeviceTypes] = none,
-                 virtualization_types: List[VirtualizationTypes] = none):
-        self.architectures = architectures
-        self.categories = categories
-        self.disk_types = disk_types
+                 max_network_performance: int = none):
+        self.min_vcpu = min_vcpu
+        self.max_vcpu = max_vcpu
+        self.min_memory_gi_b = min_memory_gi_b
+        self.max_memory_gi_b = max_memory_gi_b
+        self.min_gpu = min_gpu
+        self.max_gpu = max_gpu
+        self.include_families = include_families
         self.exclude_families = exclude_families
         self.exclude_metal = exclude_metal
-        self.hypervisor = hypervisor
-        self.include_families = include_families
         self.is_ena_supported = is_ena_supported
-        self.max_gpu= max_gpu
-        self.min_memory_gi_b = min_memory_gi_b
-        self.min_network_performance = min_network_performance
-        self.min_vcpu = min_vcpu
-        self.root_device_types = root_device_types
+        self.architectures = architectures
         self.virtualization_types = virtualization_types
+        self.categories = categories
+        self.min_enis = min_enis
+        self.disk_types = disk_types
+        self.hypervisor = hypervisor
+        self.root_device_types = root_device_types
+        self.min_network_performance = min_network_performance
+        self.max_network_performance = max_network_performance
 
 
 class InstanceTypes:
@@ -201,6 +210,7 @@ class InstanceTypes:
     filters: InstanceTypesFilters
     whitelist: List[str]
     """
+
     def __init__(self,
                  blacklist: List[str] = none,
                  filters: InstanceTypesFilters = none,
@@ -217,6 +227,7 @@ class DynamicVolumeSize:
     resource: str
     size_per_resource_unit: int
     """
+
     def __init__(self,
                  base_size: int = none,
                  resource: str = none,
@@ -239,6 +250,7 @@ class EBS:
     volume_size: int
     volume_type: str
     """
+
     def __init__(self,
                  delete_on_termination: bool = none,
                  dynamic_volume_size: DynamicVolumeSize = none,
@@ -260,12 +272,13 @@ class EBS:
         self.volume_type = volume_type
 
 
-class BlockDeviceMappings:
+class BlockDeviceMapping:
     """
     # Arguments
     device_name: str
     ebs: EBS
     """
+
     def __init__(self,
                  device_name: str = none,
                  ebs: EBS = none):
@@ -278,6 +291,7 @@ class IamInstanceProfile:
     # Arguments
     arn: str
     """
+
     def __init__(self,
                  arn: str = none):
         self.arn = arn
@@ -300,6 +314,7 @@ class InstanceMetadataOptions:
     http_put_response_hop_limit: int
     http_tokens: HttpTokens
     """
+
     def __init__(self,
                  http_endpoint: HttpEndpoint = none,
                  http_put_response_hop_limit: int = none,
@@ -309,12 +324,13 @@ class InstanceMetadataOptions:
         self.http_tokens = http_tokens
 
 
-class Tags:
+class Tag:
     """
     # Arguments
     tag_key: str
     tag_value: str
     """
+
     def __init__(self,
                  tag_key: str = none,
                  tag_value: str = none):
@@ -327,30 +343,33 @@ class LaunchSpecification:
     # Arguments
     associate_ipv6_address: bool
     associate_public_ip_address: bool
-    block_device_mappings: List[BlockDeviceMappings]
+    block_device_mappings: List[BlockDeviceMapping]
     ebs_optimized: bool
     iam_instance_profile: IamInstanceProfile
     image_id: str
     instance_metadata_options: InstanceMetadataOptions
     monitoring: bool
     security_group_ids: List[str]
-    tags: List[Tags]
+    tags: List[Tag]
     use_as_template_only: bool
     user_data: str
+    key_pair: str
     """
+
     def __init__(self,
                  associate_ipv6_address: bool = none,
                  associate_public_ip_address: bool = none,
-                 block_device_mappings: List[BlockDeviceMappings] = none,
+                 block_device_mappings: List[BlockDeviceMapping] = none,
                  ebs_optimized: bool = none,
                  iam_instance_profile: IamInstanceProfile = none,
                  image_id: str = none,
                  instance_metadata_options: InstanceMetadataOptions = none,
                  monitoring: bool = none,
                  security_group_ids: List[str] = none,
-                 tags: List[Tags] = none,
+                 tags: List[Tag] = none,
                  use_as_template_only: bool = none,
-                 user_data: str = none):
+                 user_data: str = none,
+                 key_pair: str = none):
         self.associate_ipv6_address = associate_ipv6_address
         self.associate_public_ip_address = associate_public_ip_address
         self.block_device_mappings = block_device_mappings
@@ -363,6 +382,7 @@ class LaunchSpecification:
         self.tags = tags
         self.use_as_template_only = use_as_template_only
         self.user_data = user_data
+        self.key_pair = key_pair
 
 
 class OptimizeImages:
@@ -372,6 +392,7 @@ class OptimizeImages:
     should_optimize_ecs_ami: bool
     time_windows: List[str]
     """
+
     def __init__(self,
                  perform_at: str = none,
                  should_optimize_ecs_ami: bool = none,
@@ -389,6 +410,7 @@ class Compute:
     optimize_images: OptimizeImages
     subnet_ids: List[str]
     """
+
     def __init__(self,
                  instance_types: InstanceTypes = none,
                  launch_specification: LaunchSpecification = none,
@@ -400,33 +422,36 @@ class Compute:
         self.subnet_ids = subnet_ids
 
 
-class S3:
+class S3Bucket:
     """
     # Arguments
     id: str
     """
+
     def __init__(self,
                  id: str = none):
         self.id = id
 
 
-class Export:
+class LoggingConfiguration:
     """
     # Arguments
-    s3: S3
+    s3: S3Bucket
     """
+
     def __init__(self,
-                 s3: S3 = none):
+                 s3: S3Bucket = none):
         self.s3 = s3
 
 
 class Logging:
     """
     # Arguments
-    export: Export
+    export: LoggingConfiguration
     """
+
     def __init__(self,
-                 export: Export = none):
+                 export: LoggingConfiguration = none):
         self.export = export
 
 
@@ -436,6 +461,7 @@ class ShutdownHours:
     is_enabled: bool
     time_windows: List[str]
     """
+
     def __init__(self,
                  is_enabled: bool = none,
                  time_windows: List[str] = none):
@@ -450,6 +476,7 @@ class ClusterRoll:
     batch_size_percentage: int
     comment: str
     """
+
     def __init__(self,
                  batch_min_healthy_percentage: int = none,
                  batch_size_percentage: int = none,
@@ -464,12 +491,13 @@ class Parameters:
     # Arguments
     cluster_roll: ClusterRoll
     """
+
     def __init__(self,
                  cluster_roll: ClusterRoll = none):
         self.cluster_roll = cluster_roll
 
 
-class Tasks:
+class SchedulingTask:
     """
     # Arguments
     cron_expression: str
@@ -477,6 +505,7 @@ class Tasks:
     parameters: Parameters
     task_type: str
     """
+
     def __init__(self,
                  cron_expression: str = none,
                  is_enabled: bool = none,
@@ -492,18 +521,20 @@ class Scheduling:
     """
     # Arguments
     shutdown_hours: ShutdownHours
-    tasks: List[Tasks]
+    tasks: List[SchedulingTask]
     """
+
     def __init__(self,
                  shutdown_hours: ShutdownHours = none,
-                 tasks: List[Tasks] = none):
+                 tasks: List[SchedulingTask] = none):
         self.shutdown_hours = shutdown_hours
         self.tasks = tasks
 
 
 class AvailabilityVsCost(Enum):
-    cost_oriented = "CostOriented"
+    cost_oriented = "costOriented"
     balanced = "balanced"
+    cheapest = "cheapest"
 
 
 class ClusterOrientation:
@@ -511,6 +542,7 @@ class ClusterOrientation:
     # Arguments
     availability_vs_cost: AvailabilityVsCost
     """
+
     def __init__(self,
                  availability_vs_cost: AvailabilityVsCost = none):
         self.availability_vs_cost = availability_vs_cost
@@ -526,6 +558,7 @@ class Strategy:
     utilize_commitments: bool
     utilize_reserved_instances: bool
     """
+
     def __init__(self,
                  cluster_orientation: ClusterOrientation = none,
                  draining_timeout: int = none,
@@ -554,6 +587,7 @@ class Ocean:
     scheduling: Scheduling
     strategy: Strategy
     """
+
     def __init__(self,
                  auto_scaler: AutoScaler = none,
                  capacity: Capacity = none,
@@ -584,13 +618,14 @@ class OceanRequest:
                           sort_keys=True, indent=4)
 
 
-class ImportCluster:
+class ImportClusterConfig:
     """
     # Arguments
     instance_id: str
     name: str
     region: str
     """
+
     def __init__(self,
                  instance_id: str = none,
                  name: str = none,
@@ -601,10 +636,10 @@ class ImportCluster:
 
 
 class ImportClusterRequest:
-    def __init__(self, import_cluster: ImportCluster):
-        self.region = import_cluster.region
-        self.name = import_cluster.name
-        self.instance_id = import_cluster.instance_id
+    def __init__(self, import_cluster_config: ImportClusterConfig):
+        self.region = import_cluster_config.region
+        self.name = import_cluster_config.name
+        self.instance_id = import_cluster_config.instance_id
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -620,7 +655,7 @@ class InstanceTypesFilterRequest:
                           sort_keys=True, indent=4)
 
 
-class Roll:
+class RollConfig:
     """
     # Arguments
     batch_min_healthy_percentage: int
@@ -645,8 +680,8 @@ class Roll:
 
 
 class ClusterRollInitiateRequest:
-    def __init__(self, roll: Roll = none):
-        self.roll = roll
+    def __init__(self, roll_config: RollConfig = none):
+        self.roll = roll_config
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -662,7 +697,7 @@ class ClusterRollUpdateRequest:
                           sort_keys=True, indent=4)
 
 
-class DetachInstances:
+class DetachInstancesConfig:
     """
     # Arguments
     instances_to_detach: List[str]
@@ -681,22 +716,23 @@ class DetachInstances:
 
 
 class DetachInstancesRequest:
-    def __init__(self, detachInstances: DetachInstances):
-        self.instances_to_detach = detachInstances.instances_to_detach
-        self.should_decrement_target_capacity = detachInstances.should_decrement_target_capacity
-        self.should_terminate_instances = detachInstances.should_terminate_instances
+    def __init__(self, detach_config: DetachInstancesConfig):
+        self.instances_to_detach = detach_config.instances_to_detach
+        self.should_decrement_target_capacity = detach_config.should_decrement_target_capacity
+        self.should_terminate_instances = detach_config.should_terminate_instances
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
 
 
-class Attributes:
+class Attribute:
     """
     # Arguments
     key: str
     value: str
     """
+
     def __init__(self,
                  key: str = none,
                  value: str = none):
@@ -709,22 +745,24 @@ class AutoScale:
     # Arguments
     headrooms: List[Headrooms]
     """
+
     def __init__(self,
                  headrooms: List[Headroom] = none):
         self.headrooms = headrooms
 
 
-class Images:
+class Image:
     """
     # Arguments
     id: str
     """
+
     def __init__(self,
                  id: str = none):
         self.id = id
 
 
-class VngTasks:
+class VngTask:
     """
     # Arguments
     config: List[Headroom]
@@ -732,6 +770,7 @@ class VngTasks:
     is_enabled: bool
     task_type: str
     """
+
     def __init__(self,
                  config: List[Headroom] = none,
                  cron_expression: str = none,
@@ -746,22 +785,23 @@ class VngTasks:
 class VngScheduling:
     """
     # Arguments
-    tasks: List[VngTasks]
+    tasks: List[VngTask]
     """
+
     def __init__(self,
-                 tasks: List[VngTasks]):
+                 tasks: List[VngTask]):
         self.tasks = tasks
 
 
 class VirtualNodeGroup:
     """
     # Arguments
-    attributes: List[Attributes]
+    attributes: List[Attribute]
     auto_scale: AutoScale
-    block_device_mappings: List[BlockDeviceMappings]
-    iam_instance_profile: List[str]
+    block_device_mappings: List[BlockDeviceMapping]
+    iam_instance_profile: IamInstanceProfile
     image_id: str
-    images: List[Images]
+    images: List[Image]
     instance_metadata_options: InstanceMetadataOptions
     instance_types: List[str]
     name: str
@@ -772,16 +812,17 @@ class VirtualNodeGroup:
     security_group_ids: List[str]
     strategy: Strategy
     subnet_ids: List[str]
-    tags: List[Tags]
+    tags: List[Tag]
     user_data: str
     """
+
     def __init__(self,
-                 attributes: List[Attributes] = none,
+                 attributes: List[Attribute] = none,
                  auto_scale: AutoScale = none,
-                 block_device_mappings: List[BlockDeviceMappings] = none,
-                 iam_instance_profile: List[str] = none,
+                 block_device_mappings: List[BlockDeviceMapping] = none,
+                 iam_instance_profile: IamInstanceProfile = none,
                  image_id: str = none,
-                 images: List[Images] = none,
+                 images: List[Image] = none,
                  instance_metadata_options: InstanceMetadataOptions = none,
                  instance_types: List[str] = none,
                  name: str = none,
@@ -792,7 +833,7 @@ class VirtualNodeGroup:
                  security_group_ids: List[str] = none,
                  strategy: Strategy = none,
                  subnet_ids: List[str] = none,
-                 tags: List[Tags] = none,
+                 tags: List[Tag] = none,
                  user_data: str = none):
         self.attributes = attributes
         self.auto_scale = auto_scale
@@ -829,6 +870,7 @@ class ImportFargateToExistingOceanCluster:
     services: List[str]
     simple_new_service_names: bool
     """
+
     def __init__(self,
                  services: List[str] = none,
                  simple_new_service_names: bool = none):
@@ -837,9 +879,9 @@ class ImportFargateToExistingOceanCluster:
 
 
 class ImportFargateToExistingOceanClusterRequest:
-    def __init__(self, import_fargate_to_cluster: ImportFargateToExistingOceanCluster):
-        self.services = import_fargate_to_cluster.services
-        self.simple_new_service_names = import_fargate_to_cluster.simple_new_service_names
+    def __init__(self, import_config: ImportFargateToExistingOceanCluster):
+        self.services = import_config.services
+        self.simple_new_service_names = import_config.simple_new_service_names
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -854,15 +896,16 @@ class ImportFargateToNewOceanCluster:
     ocean_cluster_name: str
     region: str
     services: List[str]
-    tags: List[Tags]
+    tags: List[Tag]
     """
-    def __int__(self,
-                ecs_cluster_name: str = none,
-                key_pair: str = none,
-                ocean_cluster_name: str = none,
-                region: str = none,
-                services: List[str] = none,
-                tags: List[Tags] = none):
+
+    def __init__(self,
+                 ecs_cluster_name: str = none,
+                 key_pair: str = none,
+                 ocean_cluster_name: str = none,
+                 region: str = none,
+                 services: List[str] = none,
+                 tags: List[Tag] = none):
         self.ecs_cluster_name = ecs_cluster_name
         self.key_pair = key_pair
         self.ocean_cluster_name = ocean_cluster_name
@@ -872,115 +915,13 @@ class ImportFargateToNewOceanCluster:
 
 
 class ImportFargateToNewOceanClusterRequest:
-    def __init__(self, import_fargate_to_cluster: ImportFargateToNewOceanCluster):
-        self.ecs_cluster_name = import_fargate_to_cluster.ecs_cluster_name
-        self.key_pair = import_fargate_to_cluster.key_pair
-        self.ocean_cluster_name = import_fargate_to_cluster.ocean_cluster_name
-        self.region = import_fargate_to_cluster.region
-        self.services = import_fargate_to_cluster.services
-        self.tags = import_fargate_to_cluster.tags
-
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__,
-                          sort_keys=True, indent=4)
-
-
-class Operator(Enum):
-    equals = "equals"
-    not_equals = "notEquals"
-    exists = "exists"
-    does_not_exist = "doesNotExist"
-
-
-class Attribute:
-    """
-    # Arguments
-    key: str
-    operator: Operator
-    value: str
-    """
-
-    def __init__(
-            self,
-            key: str = none,
-            operator: Operator = none,
-            value: str = none):
-        self.key = key
-        self.operator = operator
-        self.value = value
-
-
-class AllMatch:
-    """
-    # Arguments
-    all_matches:  List[Attribute]
-    """
-
-    def __init__(
-            self,
-            all_matches:  List[Attribute] = none):
-        self.all_matches = all_matches
-
-
-class Conditions:
-    """
-    # Arguments
-    any_match: List[AllMatch]
-    """
-
-    def __init__(
-            self,
-            any_match: List[AllMatch] = none):
-        self.any_match = any_match
-
-
-class Filter:
-    """
-    # Arguments
-    conditions: Conditions
-    """
-
-    def __init__(
-            self,
-            conditions: Conditions = none):
-        self.conditions = conditions
-
-
-class GroupBy(Enum):
-    namespace = "namespace"
-    namespace_label = "namespace.label.${labelKey}"
-    resource_label = "resource.label.${labelKey}"
-    namespace_annotation = "namespace.annotation.${annotationKey}"
-    resource_annotation = "resource.annotation.${annotationKey}"
-
-
-class AggregatedClusterCosts:
-    """
-    # Arguments
-    end_time: str
-    aggregated_filter: Filter
-    group_by: GroupBy
-    start_time: str
-    """
-
-    def __init__(
-            self,
-            end_time: str = none,
-            aggregated_filter: Filter = none,
-            group_by: GroupBy = GroupBy.namespace.value,
-            start_time: str = none):
-        self.end_time = end_time
-        self.aggregated_filter = aggregated_filter
-        self.group_by = group_by
-        self.start_time = start_time
-
-
-class AggregatedClusterCostRequest:
-    def __init__(self, aggregated_cluster_costs: AggregatedClusterCosts = none):
-        self.end_time = aggregated_cluster_costs.end_time
-        self.start_time = aggregated_cluster_costs.start_time
-        self.group_by = aggregated_cluster_costs.group_by
-        self.filter = aggregated_cluster_costs.aggregated_filter
+    def __init__(self, import_config: ImportFargateToNewOceanCluster):
+        self.ecs_cluster_name = import_config.ecs_cluster_name
+        self.key_pair = import_config.key_pair
+        self.ocean_cluster_name = import_config.ocean_cluster_name
+        self.region = import_config.region
+        self.services = import_config.services
+        self.tags = import_config.tags
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

@@ -145,7 +145,7 @@ class OceanAwsClient(Client):
         group_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url +
-                "/" + ocean_id + "/rightSizing/suggestion",
+            "/" + ocean_id + "/rightSizing/suggestion",
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -401,7 +401,7 @@ class OceanAwsClient(Client):
         aggregated_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" +
-                ocean_id + "/instanceTypeFiltersSimulation",
+            ocean_id + "/instanceTypeFiltersSimulation",
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -473,7 +473,7 @@ class OceanAwsClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_ocean_launchspec_url + "/" +
-                ocean_launch_spec_id + "/launchNodes",
+            ocean_launch_spec_id + "/launchNodes",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -794,7 +794,7 @@ class OceanAwsClient(Client):
         aggregated_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_launchspec_url + "/" +
-                launch_spec_id + "/instanceTypeFiltersSimulation",
+            launch_spec_id + "/instanceTypeFiltersSimulation",
             entity_name='ocean_instance_type_filters_simulation_for_vng')
 
         formatted_response = self.convert_json(
@@ -854,7 +854,7 @@ class OceanAwsClient(Client):
         """
         response = self.send_get(
             url=self.__base_ocean_launchspec_url + "/" +
-                launch_spec_id + "/allowedInstanceTypesByFilters",
+            launch_spec_id + "/allowedInstanceTypesByFilters",
             entity_name="ocean_aws_allowed_instance_types_by_filters_for_vng"
         )
 
@@ -986,7 +986,8 @@ class OceanAwsClient(Client):
 
         response = self.send_put(
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration/" + migration_id,
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/migration/" + migration_id,
             entity_name="ocean_aws_migration",
         )
 
@@ -1008,7 +1009,8 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration/" + migration_id,
+            url=self.__base_ocean_cluster_url + "/" +
+            ocean_id + "/migration/" + migration_id,
             entity_name="ocean_aws_migration"
         )
 
@@ -1079,7 +1081,7 @@ class OceanAwsClient(Client):
 
         response = self.send_get(
             url=self.__base_ocean_extended_resource_definition_url +
-                "/" + ocean_extended_resource_definition_id,
+            "/" + ocean_extended_resource_definition_id,
             entity_name='ocean_aws_extended_resource_defintion'
         )
 
@@ -1132,7 +1134,7 @@ class OceanAwsClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_ocean_extended_resource_definition_url +
-                "/" + ocean_extended_resource_definition_id,
+            "/" + ocean_extended_resource_definition_id,
             entity_name='ocean_extended_resource_defintion')
 
         formatted_response = self.convert_json(
@@ -1153,7 +1155,7 @@ class OceanAwsClient(Client):
         """
         return self.send_delete(
             url=self.__base_ocean_extended_resource_definition_url +
-                "/" + ocean_extended_resource_definition_id,
+            "/" + ocean_extended_resource_definition_id,
             entity_name='ocean_extended_resource_defintion')
 # endregion
 
@@ -1576,7 +1578,7 @@ class OceanAzureClient(Client):
         """
         response = self.send_put(
             url=self.__base_ocean_cluster_url + "/" +
-                ocean_id + "/roll/" + roll_id + "/stop",
+            ocean_id + "/roll/" + roll_id + "/stop",
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -1653,7 +1655,7 @@ class OceanAzureClient(Client):
 
         response = self.send_put(
             url=self.__base_ocean_cluster_url + "/" +
-                ocean_id + "/migration/" + migration_id + "/stop",
+            ocean_id + "/migration/" + migration_id + "/stop",
             entity_name="ocean_azure_migration",
         )
 
@@ -1676,7 +1678,7 @@ class OceanAzureClient(Client):
 
         response = self.send_get(
             url=self.__base_ocean_cluster_url + "/" +
-                ocean_id + "/migration/" + migration_id,
+            ocean_id + "/migration/" + migration_id,
             entity_name="ocean_azure_migration"
         )
 
@@ -2044,7 +2046,7 @@ class OceanGcpClient(Client):
         group_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url +
-                "/" + ocean_id + "/rightSizing/suggestion",
+            "/" + ocean_id + "/rightSizing/suggestion",
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -2109,7 +2111,7 @@ class OceanGcpClient(Client):
         aggregated_summary_costs_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_cluster_url + "/" +
-                ocean_id + "/aggregatedCosts/summary",
+            ocean_id + "/aggregatedCosts/summary",
             entity_name='ocean (aggregated summary costs)')
 
         formatted_response = self.convert_json(
@@ -2484,7 +2486,7 @@ class OceanGcpClient(Client):
         response = self.send_put(
             body=body_json,
             url=self.__base_ocean_launchspec_url + "/" +
-                ocean_launch_spec_id + "/launchNodes",
+            ocean_launch_spec_id + "/launchNodes",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -2774,17 +2776,19 @@ class OceanRightSizingClient(Client):
 
 # endRegion
 
-# region OceanECS
-class OceanECSClient(Client):
-    __base_ocean_url = "/ocean/aws/ecs/cluster/"
+# region OceanEcs
+
+
+class OceanEcsClient(Client):
+    __base_ocean_url = "/ocean/aws/ecs/cluster"
     __base_launch_spec_url = "/ocean/aws/ecs/launchSpec"
 
     def get_all_ocean_clusters(self):
         """
-        Get the configurations for all Ocean clusters in the specified account.
+        Get the configurations for all Ocean ECS clusters in the specified account.
 
         # Returns
-        (Object): Ocean ECS Api response
+        (Object): Ocean ECS API response
         """
 
         response = self.send_get(
@@ -2894,17 +2898,19 @@ class OceanECSClient(Client):
             entity_name="ocean ecs"
         )
 
-    def import_ocean_cluster(self, ecs_cluster_nameocean: str, import_cluster: ecs_ocean.ImportCluster):
+    def import_ocean_cluster(self, ecs_cluster_name: str, import_cluster_config: ecs_ocean.ImportClusterConfig):
         """
         Create an Ocean ECS Cluster
 
         # Arguments
-        ocean (Ocean): Ocean ECS Object
+        ecs_cluster_name (String): Name of the existing ECS Cluster to import 
+        import_cluster_config (ImportClusterConfig): Import Cluster Object
 
         # Returns
         (Object): Ocean ECS API response
         """
-        ocean = ecs_ocean.ImportClusterRequest(import_cluster)
+        ocean = ecs_ocean.ImportClusterRequest(
+            import_cluster_config=import_cluster_config)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(ocean.toJSON()))
@@ -2916,7 +2922,7 @@ class OceanECSClient(Client):
 
         response = self.send_post(
             body=body_json,
-            url=self.__base_ocean_url + "/" + ecs_cluster_nameocean,
+            url=self.__base_ocean_url + "/" + ecs_cluster_name + "/import",
             entity_name='ocean ecs')
 
         formatted_response = self.convert_json(response,
@@ -2930,10 +2936,11 @@ class OceanECSClient(Client):
         Get the log of an Ocean Cluster.
 
         # Arguments
+        ocean_id (String): Ocean cluster identifier
         to_date (String): end date value
         from_date (String): beginning date value
-        severity(String) (Optional): Log level severity
-        resource_id(String) (Optional): specific resource identifier
+        severity (String) (Optional): Log level severity
+        resource_id (String) (Optional): specific resource identifier
         limit(int) (Optional): Maximum number of lines to extract in a response
 
         # Returns
@@ -2944,31 +2951,10 @@ class OceanECSClient(Client):
                             resourceId=resource_id, limit=limit)
 
         result = self.send_get(
-            url=geturl, entity_name='ocean_ecs_log', query_params=query_params)
+            url=geturl, entity_name='ocean ecs', query_params=query_params)
 
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
-
-        return formatted_response["response"]["items"]
-
-    def get_rightsizing_recommendations(self, ocean_id: str):
-        """
-        Get right-sizing recommendations for an Ocean cluster.
-
-        # Arguments
-        ocean_id (String): Id of the Ocean Cluster
-
-        # Returns
-        (Object): Ocean API response
-        """
-
-        group_response = self.send_get(
-            url=self.__base_ocean_url +
-                "/" + ocean_id + "/rightSizing/suggestion",
-            entity_name='ocean ecs')
-
-        formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"]
 
@@ -2997,8 +2983,8 @@ class OceanECSClient(Client):
         group_response = self.send_post(
             body=body_json,
             url=self.__base_ocean_url +
-                "/" + ocean_id + "/instanceTypeFiltersSimulation",
-            entity_name='ocean ecs instance type filter')
+            "/" + ocean_id + "/instanceTypeFiltersSimulation",
+            entity_name='ocean ecs')
 
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
@@ -3017,7 +3003,7 @@ class OceanECSClient(Client):
         """
         response = self.send_get(
             url=self.__base_ocean_url + "/" + ocean_id + "/allowedInstanceTypes",
-            entity_name="ocean ecs allowed instance types"
+            entity_name="ocean ecs"
         )
 
         formatted_response = self.convert_json(
@@ -3035,27 +3021,31 @@ class OceanECSClient(Client):
         # Returns
         (Object): Ocean ECS API response
         """
-        response = self.send_post(
+        query_params = dict(groupId=group_id)
+
+        response = self.send_post_with_params(
             url=self.__base_ocean_url + "/import",
-            entity_name='ocean ecs')
+            entity_name='ocean ecs',
+            body=None,
+            user_query_params=query_params)
 
         formatted_response = self.convert_json(response,
                                                self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
 
-    def initiate_roll(self, ocean_id: str, cluster_roll: ecs_ocean.Roll):
+    def initiate_roll(self, ocean_id: str, roll_config: ecs_ocean.RollConfig):
         """
         Initiate Cluster Rolls
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        cluster_roll (Roll): Cluster Roll / Roll with Instance Ids/ Launch specification Ids
+        roll_config (RollConfig): Cluster Roll / Roll with Instance Ids/ Roll with VNG Ids
 
         # Returns
         (Object): Cluster Roll API response
         """
-        roll_request = ecs_ocean.ClusterRollInitiateRequest(cluster_roll)
+        roll_request = ecs_ocean.ClusterRollInitiateRequest(roll_config)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(roll_request.toJSON()))
@@ -3149,40 +3139,45 @@ class OceanECSClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_cluster_container_instances(self, ocean_id: str, instance_id: str, launch_spec_id: str):
+    def get_cluster_container_instances(self, ocean_id: str, instance_id: str = None, launch_spec_id: str = None):
         """
         Get container instances data of an Ocean cluster.
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
         instance_id (String): Instance identifier
-        launch_spec_id (String): Ocean launch spec identifier
+        launch_spec_id (String): Ocean cluster VNG identifier.
 
         # Returns
         (Object): Ocean Aws Container Instances Data Response
         """
+        query_params = dict(instanceId=instance_id,
+                            launchSpecId=launch_spec_id)
+
         response = self.send_get(
             url=self.__base_ocean_url + "/" + ocean_id + "/containerInstances",
+            query_params=query_params,
             entity_name="ocean ecs instances"
         )
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]["items"]
 
-    def detach_instances(self, ocean_id: str, detach_instance: ecs_ocean.DetachInstances):
+    def detach_instances(self, ocean_id: str, detach_configuration: ecs_ocean.DetachInstancesConfig):
         """
         Detach instances from your Ocean cluster.
 
         # Arguments
         ocean_id (String): ID of the Ocean Cluster
-        detach_instance (DetachInstances): Detach instances request
+        detach_configuration (DetachInstancesConfig): Detach instances request
 
         # Returns
         (Object): Detach Instance response
         """
-        request = ecs_ocean.DetachInstancesRequest(detach_instance)
+        request = ecs_ocean.DetachInstancesRequest(
+            detach_config=detach_configuration)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(request.toJSON()))
@@ -3210,7 +3205,7 @@ class OceanECSClient(Client):
         vng (VirtualNodeGroup): VirtualNodeGroup Object
 
         # Returns
-        (Object): Ocean Launch Spec response
+        (Object): Ocean Virtual Node Group API response
         """
         ocean = ecs_ocean.VNGRequest(vng)
 
@@ -3234,15 +3229,15 @@ class OceanECSClient(Client):
 
     def get_all_virtual_node_groups(self, ocean_id: str):
         """
-        Get all the custom VNGs for all Ocean clusters in the specified account.
+        Get all VNGs for the specified Ocean cluster.
 
         # Returns
-        (Object): Ocean VNG API response
+        (Object): Ocean Virtual Node Group API response
         """
 
         response = self.send_get(
             url=self.__base_launch_spec_url,
-            entity_name="ocean_gcp_vng",
+            entity_name="ocean ecs vng",
             query_params=dict(oceanId=ocean_id)
         )
 
@@ -3257,27 +3252,28 @@ class OceanECSClient(Client):
 
         # Arguments
         vng_id (String): Ocean cluster Virtual Node Group identifier.
-        delete_container_instances (Bool): When set to "true", all instances belonging to the deleted launch specification will be drained, detached, and terminated.
+        delete_container_instances (Bool): When set to "true", all instances belonging to the deleted VNG will be drained, detached, and terminated.
 
         # Returns
-        (Object): Ocean Launch Specification Delete response
+        (Object): Ocean Virtual Node Group Delete response
         """
         return self.send_delete_with_params(
             url=self.__base_launch_spec_url + "/" + vng_id,
             entity_name="ocean ecs vng",
-            user_query_params=dict(deleteContainerInstances=delete_container_instances)
+            user_query_params=dict(
+                deleteContainerInstances=delete_container_instances)
         )
 
     def update_virtual_node_group(self, vng_id: str, vng: ecs_ocean.VirtualNodeGroup):
         """
-        Get a specific custom launch configuration for an Ocean cluster in the specified account.
+        Update specified VNG for an Ocean cluster.
 
         # Arguments
         vng_id (String): ID of the Ocean Virtual Node Group
-        ocean (Ocean): Ocean object
+        vng (VirtualNodeGroup): VirtualNodeGroup Object
 
         # Returns
-        (Object): Ocean Launch Spec response
+        (Object): Ocean Virtual Node Group API response
         """
         ocean = ecs_ocean.VNGRequest(vng)
 
@@ -3300,18 +3296,18 @@ class OceanECSClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def get_virtual_node_group(self, ocean_launch_spec_id: str):
+    def get_virtual_node_group(self, vng_id: str):
         """
-        Get a specific custom launch configuration for an Ocean cluster in the specified account.
+        Get a specified VNG for an Ocean cluster.
 
         # Arguments
-        ocean_launch_spec_id (String): Ocean cluster launch specification identifier
+        vng_id (String): Ocean cluster Virtual Node Group identifier.
 
         # Returns
-        (Object): Ocean Allowed Instance Types response
+        (Object): Ocean Virtual Node Group API response
         """
         response = self.send_get(
-            url=self.__base_launch_spec_url + "/" + ocean_launch_spec_id,
+            url=self.__base_launch_spec_url + "/" + vng_id,
             entity_name="ocean ecs vng"
         )
 
@@ -3326,13 +3322,14 @@ class OceanECSClient(Client):
         Import a Fargate service into an existing Ocean ECS cluster.
 
         # Arguments
-        ocean_id(String): Ocean cluster Identifier
-        import_fargate_existing(Object): ImportFargateToExistingOceanCluster Object
+        ocean_id (String): Ocean cluster Identifier
+        import_fargate_existing (Object): ImportFargateToExistingOceanCluster Object
 
         # Returns
         (Object): Ocean ECS Fargate Response
         """
-        ocean = ecs_ocean.ImportFargateToExistingOceanClusterRequest(import_fargate_existing)
+        ocean = ecs_ocean.ImportFargateToExistingOceanClusterRequest(
+            import_config=import_fargate_existing)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(ocean.toJSON()))
@@ -3363,7 +3360,8 @@ class OceanECSClient(Client):
         (Object): Ocean ECS Fargate Response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + ocean_id + "/fargateMigration/serviceDiscovery",
+            url=self.__base_ocean_url + "/" + ocean_id +
+            "/fargateMigration/serviceDiscovery",
             entity_name="ocean ecs fargate"
         )
 
@@ -3383,7 +3381,7 @@ class OceanECSClient(Client):
         (Object): Ocean ECS Fargate Response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + ocean_id + "/fargateMigration/status",
+            url=self.__base_ocean_url + "/" + ocean_id + "/fargateMigration/status",
             entity_name="ocean ecs fargate"
         )
 
@@ -3392,19 +3390,19 @@ class OceanECSClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def import_fargate_to_new_ocean_cluster(self, ocean_id: str,
-                                            import_fargate_new: ecs_ocean.ImportFargateToNewOceanCluster):
+    def import_fargate_to_new_ocean_cluster(self, import_fargate_new: ecs_ocean.ImportFargateToNewOceanCluster):
         """
         Import a Fargate service into a new Ocean ECS cluster.
 
         # Arguments
-        ocean_id(String): Ocean cluster Identifier
-        import_fargate_new(Object): ImportFargateToNewOceanCluster Object
+        ocean_id (String): Ocean cluster Identifier
+        import_fargate_new (Object): ImportFargateToNewOceanCluster Object
 
         # Returns
         (Object): Ocean ECS Fargate Response
         """
-        ocean = ecs_ocean.ImportFargateToNewOceanClusterRequest(import_fargate_new)
+        ocean = ecs_ocean.ImportFargateToNewOceanClusterRequest(
+            import_config=import_fargate_new)
 
         excluded_missing_dict = self.exclude_missing(
             json.loads(ocean.toJSON()))
@@ -3424,45 +3422,12 @@ class OceanECSClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def get_ecs_cluster_aggregated_costs(self, ocean_id: str,
-                                         aggregated_cluster_costs: ecs_ocean.AggregatedClusterCosts):
-        """
-        Provides Ecs cluster resource usage and costs over a time interval which can be grouped and/or filtered by AWS tag
-
-        # Arguments
-        ocean_id (String): ID of the Ocean Cluster
-        aggregated_cluster_costs (AggregatedClusterCosts): Aggregated Cluster Costs request
-
-        # Returns
-        (Object): Aggregated Cluster Costs API response
-        """
-        aggregated_cluster_costs_request = ecs_ocean.AggregatedClusterCostRequest(
-            aggregated_cluster_costs)
-
-        excluded_missing_dict = self.exclude_missing(
-            json.loads(aggregated_cluster_costs_request.toJSON()))
-
-        formatted_missing_dict = self.convert_json_with_list_of_lists(
-            excluded_missing_dict, self.underscore_to_camel)
-
-        body_json = json.dumps(formatted_missing_dict)
-
-        aggregated_costs_response = self.send_post(
-            body=body_json,
-            url=self.__base_ocean_url + "/" + ocean_id + "/aggregatedCosts",
-            entity_name='ocean ecs(aggregated cluster costs)')
-
-        formatted_response = self.convert_json(
-            aggregated_costs_response, self.camel_to_underscore)
-
-        return formatted_response["response"]["items"][0]
-
-    def launch_instances_in_vng(self, ocean_launch_spec_id: str, amount: int):
+    def launch_instances_in_vng(self, vng_id: str, amount: int):
         """
         Launch container instances in virtual node group.
 
         # Arguments
-        ocean_launch_spec_id (String): Ocean cluster launch specification identifier.
+        vng_id (String): Ocean cluster Virtual Node Group identifier.
         amount (int): The number of nodes to launch.
 
         # Returns
@@ -3480,11 +3445,13 @@ class OceanECSClient(Client):
 
         response = self.send_put(
             body=body_json,
-            url=self.__base_launch_spec_url + "/" + ocean_launch_spec_id + "/launchContainerInstances",
-            entity_name='ocean vng launch instances')
+            url=self.__base_launch_spec_url + "/" +
+            vng_id + "/launchContainerInstances",
+            entity_name='ocean ecs vng')
 
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
+
 # endregion

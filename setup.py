@@ -23,8 +23,8 @@ setup(
     name='spotinst-sdk2',
 
     version=version['__version__'],
-    # start from Python 3.6
-    python_requires='>=3.6.0',
+    # start from Python 3.7
+    python_requires='>=3.7.0',
     description='A Python SDK for Spotinst',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -44,11 +44,11 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
 
     keywords='spotinst spot instances aws azure ec2 cloud infrastructure development elastigroup',
@@ -82,6 +82,7 @@ setup(
                 "spotinst_sdk2.models.ocean.aws",
                 "spotinst_sdk2.models.ocean.azure",
                 "spotinst_sdk2.models.ocean.gcp",
+                "spotinst_sdk2.models.ocean.ecs",
                 "spotinst_sdk2.models.ocean.rightsizing",
             "spotinst_sdk2.models.ocean_cd",
                 "spotinst_sdk2.models.ocean_cd",
