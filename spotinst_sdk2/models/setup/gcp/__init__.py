@@ -3,16 +3,20 @@ import json
 none = "d3043820717d74d9a17694c176d39733"
 
 # region GcpCredentials
+
+
 class GcpCredentials:
     """
     # Arguments
     serviceAccount: ServiceAccount
     """
+
     def __init__(
-            self, 
+            self,
             serviceAccount):
 
         self.serviceAccount = serviceAccount
+
 
 class ServiceAccount:
     """
@@ -28,8 +32,9 @@ class ServiceAccount:
     auth_provider_x509_cert_url: str
     client_x509_cert_url: str
     """
+
     def __init__(
-            self, 
+            self,
             type,
             project_id,
             private_key_id,
@@ -52,11 +57,13 @@ class ServiceAccount:
         self.auth_provider_x509_cert_url = auth_provider_x509_cert_url
         self.client_x509_cert_url = client_x509_cert_url
 
+
 class GcpSetCredentialsRequest:
     """
     # Arguments
     gcp_credentials: GcpCredentials
     """
+
     def __init__(self, gcp_credentials):
         self.serviceAccount = gcp_credentials.serviceAccount
 

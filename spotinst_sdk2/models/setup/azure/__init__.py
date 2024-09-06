@@ -3,6 +3,8 @@ import json
 none = "d3043820717d74d9a17694c176d39733"
 
 # region AzureCredentials
+
+
 class AzureCredentials:
     """
     # Arguments
@@ -11,11 +13,12 @@ class AzureCredentials:
     tenant_id: str
     subscription_id: str
     """
+
     def __init__(
-            self, 
-            client_id, 
-            client_secret, 
-            tenant_id, 
+            self,
+            client_id,
+            client_secret,
+            tenant_id,
             subscription_id):
 
         self.client_id = client_id
@@ -23,11 +26,13 @@ class AzureCredentials:
         self.tenant_id = tenant_id
         self.subscription_id = subscription_id
 
+
 class AzureSetCredentialsRequest:
     """
     # Arguments
     azure_credentials: AzureCredentials
     """
+
     def __init__(self, azure_credentials):
         self.client_id = azure_credentials.client_id
         self.client_secret = azure_credentials.client_secret
