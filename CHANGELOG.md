@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.15.0] - 2024-08-26
+## [3.15.0] - 2024-09-06
 ### Added
 - Updated documentation for Ocean rightsizing APIs.
 
