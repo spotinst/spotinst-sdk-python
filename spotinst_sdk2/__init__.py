@@ -13,6 +13,7 @@ from spotinst_sdk2.clients.setup import *
 from spotinst_sdk2.clients.ocean_cd import *
 from spotinst_sdk2.clients.hpc import *
 
+
 class SpotinstSession:
     def __init__(self,
                  base_url=None,
@@ -54,22 +55,22 @@ class SpotinstSession:
             "ocean_aws": OceanAwsClient(session=self.session, print_output=print_output, log_level=log_level,
                                         user_agent=user_agent, timeout=timeout),
             "ocean_azure": OceanAzureClient(session=self.session, print_output=print_output, log_level=log_level,
-                                        user_agent=user_agent, timeout=timeout),
-            "ocean_gcp": OceanGcpClient(session=self.session, print_output=print_output, log_level=log_level,
                                             user_agent=user_agent, timeout=timeout),
+            "ocean_gcp": OceanGcpClient(session=self.session, print_output=print_output, log_level=log_level,
+                                        user_agent=user_agent, timeout=timeout),
             "ocean_ecs": OceanEcsClient(session=self.session, print_output=print_output, log_level=log_level,
                                         user_agent=user_agent, timeout=timeout),
             "ocean_rightsizing": OceanRightSizingClient(session=self.session, print_output=print_output, log_level=log_level,
-                                        user_agent=user_agent, timeout=timeout),
+                                                        user_agent=user_agent, timeout=timeout),
             "oceancd": OceanCDClient(session=self.session, print_output=print_output, log_level=log_level,
-                                      user_agent=user_agent, timeout=timeout),
+                                     user_agent=user_agent, timeout=timeout),
             "managed_instance_aws": ManagedInstanceAwsClient(session=self.session, print_output=print_output,
                                                              log_level=log_level, user_agent=user_agent,
                                                              timeout=timeout),
             "subscription": SubscriptionClient(session=self.session, print_output=print_output, log_level=log_level,
                                                user_agent=user_agent, timeout=timeout),
             "hpc": HPCAwsClient(session=self.session, print_output=print_output,
-                                                    log_level=log_level, user_agent=user_agent, timeout=timeout)
+                                log_level=log_level, user_agent=user_agent, timeout=timeout)
         }
 
         client = switcher.get(service)
