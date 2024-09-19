@@ -15,10 +15,10 @@ OceanRightSizingClient(self,
 OceanRightSizingClient.create_right_sizing_rule(
   ocean_id: str,
   rule_name: str,
-  restart_replicas: RestartReplicas,
-  exclude_preliminary_recommendations: bool,
   application_intervals:
     typing.List[spotinst_sdk2.models.ocean.rightsizing.RecommendationApplicationInterval],
+  restart_replicas: RestartReplicas = None,
+  exclude_preliminary_recommendations: bool = None,
   application_min_threshold: RecommendationApplicationMinThreshold = None,
   application_boundaries: RecommendationApplicationBoundaries = None,
   application_overhead_values:
@@ -69,13 +69,14 @@ __Returns__
 OceanRightSizingClient.update_right_sizing_rule(
   ocean_id: str,
   rule_name: str,
-  restart_replicas: RestartReplicas,
-  exclude_preliminary_recommendations: bool,
   application_intervals:
     typing.List[spotinst_sdk2.models.ocean.rightsizing.RecommendationApplicationInterval],
-  application_min_threshold: RecommendationApplicationMinThreshold,
-  application_boundaries: RecommendationApplicationBoundaries,
-  application_overhead_values: RecommendationApplicationOverheadValues,
+  restart_replicas: RestartReplicas = None,
+  exclude_preliminary_recommendations: bool = None,
+  application_min_threshold: RecommendationApplicationMinThreshold = None,
+  application_boundaries: RecommendationApplicationBoundaries = None,
+  application_overhead_values:
+    RecommendationApplicationOverheadValues = None,
   application_hpa: RecommendationApplicationHPA = None)
 ```
 
