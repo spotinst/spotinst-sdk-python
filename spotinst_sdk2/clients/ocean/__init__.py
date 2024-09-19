@@ -2501,9 +2501,9 @@ class OceanGcpClient(Client):
 class OceanRightSizingClient(Client):
 
     def create_right_sizing_rule(self, ocean_id: str, rule_name: str,
-                                 restart_replicas: right_sizing_ocean.RestartReplicas,
-                                 exclude_preliminary_recommendations: bool,
                                  application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
+                                 restart_replicas: right_sizing_ocean.RestartReplicas = None,
+                                 exclude_preliminary_recommendations: bool = None,
                                  application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold = None,
                                  application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries = None,
                                  application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues = None,
@@ -2583,12 +2583,12 @@ class OceanRightSizingClient(Client):
 
     def update_right_sizing_rule(self, ocean_id: str,
                                  rule_name: str,
-                                 restart_replicas: right_sizing_ocean.RestartReplicas,
-                                 exclude_preliminary_recommendations: bool,
                                  application_intervals: List[right_sizing_ocean.RecommendationApplicationInterval],
-                                 application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold,
-                                 application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries,
-                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues,
+                                 restart_replicas: right_sizing_ocean.RestartReplicas = None,
+                                 exclude_preliminary_recommendations: bool = None,
+                                 application_min_threshold: right_sizing_ocean.RecommendationApplicationMinThreshold = None,
+                                 application_boundaries: right_sizing_ocean.RecommendationApplicationBoundaries = None,
+                                 application_overhead_values: right_sizing_ocean.RecommendationApplicationOverheadValues = None,
                                  application_hpa: right_sizing_ocean.RecommendationApplicationHPA = None):
         """
         Update a right sizing rule for an Ocean cluster.
