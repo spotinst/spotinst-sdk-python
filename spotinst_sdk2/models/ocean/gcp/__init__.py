@@ -183,14 +183,17 @@ class InstanceTypes:
     # Arguments
     blacklist: List[str]
     whitelist: List[str]
+    preferred_types: List[str]
     """
 
     def __init__(
             self,
             blacklist: List[str] = none,
-            whitelist: List[str] = none):
+            whitelist: List[str] = none,
+            preferred_types: List[str] = none):
         self.blacklist = blacklist
         self.whitelist = whitelist
+        self.preferred_types = preferred_types
 
 
 class Labels:
@@ -851,6 +854,7 @@ class VirtualNodeGroup:
     auto_scale: AutoScale
     availability_zones: List[str]
     instance_types: List[str]
+    preferred_types: List[str]
     labels: List[Labels]
     metadata: List[Metadata]
     name: str
@@ -875,6 +879,7 @@ class VirtualNodeGroup:
             auto_scale: AutoScale = none,
             availability_zones: List[str] = none,
             instance_types: List[str] = none,
+            preferred_types: List[str] = none,
             labels: List[Labels] = none,
             metadata: List[Metadata] = none,
             name: str = none,
@@ -896,6 +901,7 @@ class VirtualNodeGroup:
         self.auto_scale = auto_scale
         self.availability_zones = availability_zones
         self.instance_types = instance_types
+        self.preferred_types = preferred_types
         self.labels = labels
         self.metadata = metadata
         self.name = name
