@@ -178,7 +178,7 @@ class BackendServices:
         self.scheme = scheme
 
 
-class Filters:
+class InstanceTypesFilters:
     """
     # Arguments
     exclude_families: List[str]
@@ -209,7 +209,7 @@ class InstanceTypes:
     # Arguments
     blacklist: List[str]
     whitelist: List[str]
-    filters: Filters
+    filters: InstanceTypesFilters
     preferred_types: List[str]
     """
 
@@ -217,7 +217,7 @@ class InstanceTypes:
             self,
             blacklist: List[str] = none,
             whitelist: List[str] = none,
-            filters: Filters = none,
+            filters: InstanceTypesFilters = none,
             preferred_types: List[str] = none):
         self.blacklist = blacklist
         self.whitelist = whitelist
@@ -890,7 +890,7 @@ class VirtualNodeGroup:
     # Arguments
     auto_scale: AutoScale
     availability_zones: List[str]
-    filters: Filters
+    filters: InstanceTypesFilters
     instance_types: List[str]
     preferred_types: List[str]
     labels: List[Labels]
@@ -917,7 +917,7 @@ class VirtualNodeGroup:
             auto_scale: AutoScale = none,
             availability_zones: List[str] = none,
             instance_types: List[str] = none,
-            filters: Filters = none,
+            filters: InstanceTypesFilters = none,
             preferred_types: List[str] = none,
             labels: List[Labels] = none,
             metadata: List[Metadata] = none,
@@ -1059,6 +1059,48 @@ class ImportGkeClusterToOceanRequest:
 class LaunchNodesRequest:
     def __init__(self, amount: int = none):
         self.launch_request = dict(amount=amount)
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class DetachInstancesConfig:
+    """
+    # Arguments
+    instances_to_detach: List[str]
+    should_decrement_target_capacity: bool
+    should_terminate_instances: bool
+    draining_timeout: int
+    """
+
+    def __init__(
+            self,
+            instances_to_detach: List[str] = none,
+            should_decrement_target_capacity: bool = none,
+            should_terminate_instances: bool = none,
+            draining_timeout: int = none):
+        self.instances_to_detach = instances_to_detach
+        self.should_decrement_target_capacity = should_decrement_target_capacity
+        self.should_terminate_instances = should_terminate_instances
+        self.draining_timeout = draining_timeout
+
+
+class DetachInstancesRequest:
+    def __init__(self, detach_config: DetachInstancesConfig):
+        self.instances_to_detach = detach_config.instances_to_detach
+        self.should_decrement_target_capacity = detach_config.should_decrement_target_capacity
+        self.should_terminate_instances = detach_config.should_terminate_instances
+        self.draining_timeout = detach_config.draining_timeout
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class InstanceTypesFilterRequest:
+    def __init__(self, filters: InstanceTypesFilters):
+        self.filters = filters
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
