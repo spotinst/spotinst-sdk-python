@@ -2493,7 +2493,73 @@ class OceanGcpClient(Client):
             response, self.camel_to_underscore)
 
         return formatted_response["response"]["items"][0]
-# endRegion
+
+    def detach_instances(self, ocean_id: str, detach_configuration: gcp_ocean.DetachInstancesConfig):
+        """
+        Detach instances from your Ocean cluster.
+
+        # Arguments
+        ocean_id (String): ID of the Ocean Cluster
+        detach_configuration (DetachInstancesConfig): Detach instances request
+
+        # Returns
+        (Object): Detach Instance response
+        """
+        request = gcp_ocean.DetachInstancesRequest(
+            detach_config=detach_configuration)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        response = self.send_put(
+            body=body_json,
+            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/detachInstances",
+            entity_name='ocean gcp detach instances')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]
+
+    def instance_types_filters_simulation(self, ocean_id: str, filters: gcp_ocean.InstanceTypesFilters):
+        """
+        Returns all instances types that match the given filters.
+        These instance types will be used if the cluster is configured with these filters.
+
+        # Arguments
+        ocean_id (String): Id of the Ocean Cluster
+        filters (InstanceTypesFilters): List of filters
+
+        # Returns
+        (Object): Ocean Instance Type Simultion response
+        """
+        request = gcp_ocean.InstanceTypesFilterRequest(filters)
+
+        excluded_missing_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_missing_dict = self.convert_json(
+            excluded_missing_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_missing_dict)
+
+        group_response = self.send_post(
+            body=body_json,
+            url=self.__base_ocean_cluster_url +
+            "/" + ocean_id + "/instanceTypeFiltersSimulation",
+            entity_name='ocean gcp')
+
+        formatted_response = self.convert_json(
+            group_response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+# endregion
 
 # region RightSizing
 
@@ -2774,7 +2840,7 @@ class OceanRightSizingClient(Client):
 
         return formatted_response["response"]["items"]
 
-# endRegion
+# endregion
 
 # region OceanEcs
 
@@ -3195,7 +3261,7 @@ class OceanEcsClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
 
-        return formatted_response["response"]["items"][0]
+        return formatted_response["response"]
 
     def create_virtual_node_group(self, vng: ecs_ocean.VirtualNodeGroup):
         """
