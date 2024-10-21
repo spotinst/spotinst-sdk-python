@@ -48,10 +48,12 @@ class Strategy:
     """
     # Arguments
     availability_vs_cost: str
+    consider_o_d_pricing: bool
     risk: int
     utilize_commitments: bool
     utilize_reserved_instances: bool
     fallback_to_od: bool
+    max_replacements_percentage: int
     on_demand_count: int
     draining_timeout: int
     spin_up_time: int
@@ -61,15 +63,18 @@ class Strategy:
     persistence: Persistence
     revert_to_spot: RevertToSpot
     restrict_single_az: bool
+    immediate_o_d_recover_threshold: int
     """
 
     def __init__(
             self,
             availability_vs_cost=none,
+            consider_o_d_pricing=none,
             risk=none,
             utilize_commitments=none,
             utilize_reserved_instances=none,
             fallback_to_od=none,
+            max_replacements_percentage=none,
             on_demand_count=none,
             draining_timeout=none,
             spin_up_time=none,
@@ -82,9 +87,11 @@ class Strategy:
             restrict_single_az: bool = none):
 
         self.risk = risk
+        self.consider_o_d_pricing = consider_o_d_pricing
         self.utilize_commitments = utilize_commitments
         self.utilize_reserved_instances = utilize_reserved_instances
         self.fallback_to_od = fallback_to_od
+        self.max_replacements_percentage = max_replacements_percentage
         self.on_demand_count = on_demand_count
         self.availability_vs_cost = availability_vs_cost
         self.draining_timeout = draining_timeout
@@ -1105,6 +1112,7 @@ class Compute:
     private_ips: list[str]
     subnet_ids: list[str]
     preferred_availability_zones: list[str]
+    volume_attachments: VolumeAttachments
     """
 
     def __init__(
@@ -1116,7 +1124,8 @@ class Compute:
             elastic_ips=none,
             private_ips=none,
             subnet_ids=none,
-            preferred_availability_zones=none):
+            preferred_availability_zones=none,
+            volume_attachments=none):
 
         self.elastic_ips = elastic_ips
         self.private_ips = private_ips
@@ -1126,6 +1135,7 @@ class Compute:
         self.product = product
         self.launch_specification = launch_specification
         self.preferred_availability_zones = preferred_availability_zones
+        self.volume_attachments = volume_attachments
 
 
 class AvailabilityZone:
@@ -1158,6 +1168,7 @@ class InstanceTypes:
     spot: list[str]
     weights: list[Weight]
     preferred_spot: list[str]
+    resource_requirements: ResourceRequirements
     """
 
     def __init__(
@@ -1166,13 +1177,43 @@ class InstanceTypes:
             on_demand_types=none,
             spot=none,
             weights=none,
-            preferred_spot=none):
+            preferred_spot=none,
+            resource_requirements=none):
 
         self.ondemand = ondemand
         self.on_demand_types = on_demand_types
         self.spot = spot
         self.weights = weights
         self.preferred_spot = preferred_spot
+        self.resource_requirements = resource_requirements
+
+
+class ResourceRequirements:
+    """
+    # Arguments
+    excluded_instance_families: list[str]
+    excluded_instance_generations: list[str]
+    excluded_instance_types: list[str]
+    required_v_cpu: RequiredMemoryVcpuGpu
+    required_memory: RequiredMemoryVcpuGpu
+    required_gpu: RequiredMemoryVcpuGpu
+    """
+
+    def __init__(
+            self,
+            excluded_instance_families=none,
+            excluded_instance_generations=none,
+            excluded_instance_types=none,
+            required_v_cpu=none,
+            required_memory=none,
+            required_gpu=none):
+
+        self.excluded_instance_families = excluded_instance_families
+        self.excluded_instance_generations = excluded_instance_generations
+        self.excluded_instance_types = excluded_instance_types
+        self.required_v_cpu = required_v_cpu
+        self.required_memory = required_memory
+        self.required_gpu = required_gpu
 
 
 class Weight:
@@ -1186,6 +1227,19 @@ class Weight:
 
         self.instance_type = instance_type
         self.weighted_capacity = weighted_capacity
+
+
+class RequiredMemoryVcpuGpu:
+    """
+    # Arguments
+    minimum: int
+    maximum: int
+    """
+
+    def __init__(self, minimum=none, maximum=none):
+
+        self.minimum = minimum
+        self.maximum = maximum
 
 
 class TagSpecification:
@@ -1534,6 +1588,33 @@ class MetadataOptions:
         self.http_put_response_hop_limit = http_put_response_hop_limit
         self.http_tokens = http_tokens
         self.instance_metadata_tags = instance_metadata_tags
+
+
+class VolumeAttachments:
+    """
+    # Arguments
+    volumes: list[Volume]
+    """
+
+    def __init__(self,
+                 volumes=none):
+
+        self.volumes = volumes
+
+
+class Volume:
+    """
+    # Arguments
+    device_name: str
+    volume_id: str
+    """
+
+    def __init__(self,
+                 device_name=none,
+                 volume_id=none):
+
+        self.device_name = device_name
+        self.volume_id = volume_id
 
 # endregion
 

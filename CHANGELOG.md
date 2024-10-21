@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.16.0] - 2024-10-21
+### Added
+- Import EC2 instance API support added in the AWS Elastigroup Client.
+- Added `VolumeAttachments` and `ResourceRequirements` models for AWS Elastigroup.
+
 ## [3.15.1] - 2024-09-19
 ### Fixed
 - Create/Update rightsizing rule APIs fixed for optional parameters.
