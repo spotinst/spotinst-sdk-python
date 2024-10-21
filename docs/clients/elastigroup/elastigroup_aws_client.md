@@ -580,7 +580,8 @@ ElastigroupAwsClient.beanstalk_import(region,
                                       env_name=None)
 ```
 
-Import beanstalk attributes into JSON. Either env_id or env_name is required, both cannot be null
+Import beanstalk attributes into JSON. Either env_id or env_name is
+required, both cannot be null
 
 __Arguments__
 
@@ -608,13 +609,35 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient.import_instance">import_instance</h2>
+
+```python
+ElastigroupAwsClient.import_instance(region, instance_id,
+                                     instance: ImportInstanceConfig)
+```
+
+Import an EC2 instance into a new Elastigroup
+
+__Arguments__
+
+- __region (String)__: Instance Region
+- __instance_id (String)__: Instance ID
+- __instance (ImportInstanceConfig)__: Import Configuration
+
+__Returns__
+
+`(Object)`: Elastigroup API response
+
 <h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient.import_asg">import_asg</h2>
 
 ```python
-ElastigroupAwsClient.import_asg(region, asg_name, asg, dry_run=None)
+ElastigroupAwsClient.import_asg(region,
+                                asg_name,
+                                asg: ASG,
+                                dry_run=None)
 ```
 
-import asg attributes as JSON
+Create a new Elastigroup using the configuration of an existing Autoscaling group
 
 __Arguments__
 
@@ -886,8 +909,9 @@ __Arguments__
 - __group_id(String)__: Elastigroup ID
 - __to_date (String)__: to date
 - __from_date (String)__: to date
-- __severity(String) (Optional)__: Log level severity
-- __resource_id(String) (Optional)__: Filter log extracted entires related to a specific resource id
+- __severity (String) (Optional)__: Log level severity
+- __resource_id (String) (Optional)__: Filter log extracted entires related to a
+  specific resource id
 - __limit(String) (Optional)__: Maximum number of lines to extract in a response
 
 __Returns__
