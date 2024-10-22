@@ -524,6 +524,25 @@ __Returns__
 
 `(Object)`: Elastigroup API response
 
+<h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient.delete_volume_in_stateful_instance">delete_volume_in_stateful_instance</h2>
+
+```python
+ElastigroupAwsClient.delete_volume_in_stateful_instance(
+  group_id, stateful_instance_id, volume_id)
+```
+
+Delete stateful instance
+
+__Arguments__
+
+- __group_id (String)__: Elastigroup ID
+- __stateful_instance_id (String)__: Stateful Instance ID
+- __volume_id (String)__: Volume ID
+
+__Returns__
+
+`(Object)`: Elastigroup API response
+
 <h2 id="spotinst_sdk2.clients.elastigroup.ElastigroupAwsClient.beanstalk_maintenance_status">beanstalk_maintenance_status</h2>
 
 ```python

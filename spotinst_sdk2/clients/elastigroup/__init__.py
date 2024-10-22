@@ -803,6 +803,28 @@ class ElastigroupAwsClient(Client):
 
         return formatted_response["response"]
 
+    def delete_volume_in_stateful_instance(self, group_id, stateful_instance_id, volume_id):
+        """
+        Delete stateful instance 
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
+        volume_id (String): Volume ID
+
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        return self.send_delete(
+            url=self.__base_elastigroup_url +
+            "/" +
+            str(group_id) +
+            "/statefulInstance/" +
+            str(stateful_instance_id) +
+            "/volume/" +
+            str(volume_id),
+            entity_name='delete volume in stateful instance')
+
     def beanstalk_maintenance_status(self, group_id):
         """
         Beanstalk maintenance status
@@ -1478,6 +1500,7 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response
+
     # endregion
 
 

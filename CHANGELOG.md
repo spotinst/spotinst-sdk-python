@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.16.1] - 2024-10-22
+### Added
+- "Delete Volume in a Stateful Instance" API support added in the AWS Elastigroup Client.
+- Added `DynamicIops` model for AWS Elastigroup.
+
 ## [3.16.0] - 2024-10-21
 ### Added
 - Import EC2 instance API support added in the AWS Elastigroup Client.
