@@ -1221,6 +1221,7 @@ EBS(self,
     volume_type='d3043820717d74d9a17694c176d39733',
     kms_key_id='d3043820717d74d9a17694c176d39733',
     dynamic_volume_size='d3043820717d74d9a17694c176d39733',
+    dynamic_iops='d3043820717d74d9a17694c176d39733',
     throughput='d3043820717d74d9a17694c176d39733')
 ```
 
@@ -1234,6 +1235,7 @@ __Arguments__
 - __volume_type__: str
 - __kms_key_id__: str
 - __dynamic_volume_size__: DynamicVolumeSize
+- __dynamic_iops__: DynamicIops
 - __throughput__: int
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.DynamicVolumeSize">DynamicVolumeSize</h2>
@@ -1244,6 +1246,21 @@ DynamicVolumeSize(
   base_size='d3043820717d74d9a17694c176d39733',
   resource='d3043820717d74d9a17694c176d39733',
   size_per_resource_unit='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __base_size__: int
+- __resource__: str
+- __size_per_resource_unit__: int
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.DynamicIops">DynamicIops</h2>
+
+```python
+DynamicIops(self,
+            base_size='d3043820717d74d9a17694c176d39733',
+            resource='d3043820717d74d9a17694c176d39733',
+            size_per_resource_unit='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__

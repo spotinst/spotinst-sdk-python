@@ -1447,6 +1447,7 @@ class EBS:
     volume_type: str
     kms_key_id: str
     dynamic_volume_size: DynamicVolumeSize
+    dynamic_iops: DynamicIops
     throughput: int
     """
 
@@ -1460,6 +1461,7 @@ class EBS:
             volume_type=none,
             kms_key_id=none,
             dynamic_volume_size=none,
+            dynamic_iops=none,
             throughput=none):
 
         self.delete_on_termination = delete_on_termination
@@ -1470,10 +1472,30 @@ class EBS:
         self.volume_type = volume_type
         self.kms_key_id = kms_key_id
         self.dynamic_volume_size = dynamic_volume_size
+        self.dynamic_iops = dynamic_iops
         self.throughput = throughput
 
 
 class DynamicVolumeSize:
+    """
+    # Arguments
+    base_size: int
+    resource: str
+    size_per_resource_unit: int
+    """
+
+    def __init__(
+            self,
+            base_size=none,
+            resource=none,
+            size_per_resource_unit=none):
+
+        self.base_size = base_size
+        self.resource = resource
+        self.size_per_resource_unit = size_per_resource_unit
+
+
+class DynamicIops:
     """
     # Arguments
     base_size: int
