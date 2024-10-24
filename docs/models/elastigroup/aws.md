@@ -35,10 +35,12 @@ __Arguments__
 Strategy(
   self,
   availability_vs_cost='d3043820717d74d9a17694c176d39733',
+  consider_o_d_pricing='d3043820717d74d9a17694c176d39733',
   risk='d3043820717d74d9a17694c176d39733',
   utilize_commitments='d3043820717d74d9a17694c176d39733',
   utilize_reserved_instances='d3043820717d74d9a17694c176d39733',
   fallback_to_od='d3043820717d74d9a17694c176d39733',
+  max_replacements_percentage='d3043820717d74d9a17694c176d39733',
   on_demand_count='d3043820717d74d9a17694c176d39733',
   draining_timeout='d3043820717d74d9a17694c176d39733',
   spin_up_time='d3043820717d74d9a17694c176d39733',
@@ -54,10 +56,12 @@ Strategy(
 __Arguments__
 
 - __availability_vs_cost__: str
+- __consider_o_d_pricing__: bool
 - __risk__: int
 - __utilize_commitments__: bool
 - __utilize_reserved_instances__: bool
 - __fallback_to_od__: bool
+- __max_replacements_percentage__: int
 - __on_demand_count__: int
 - __draining_timeout__: int
 - __spin_up_time__: int
@@ -67,6 +71,7 @@ __Arguments__
 - __persistence__: Persistence
 - __revert_to_spot__: RevertToSpot
 - __restrict_single_az__: bool
+- __immediate_o_d_recover_threshold__: int
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Signal">Signal</h2>
 
@@ -941,7 +946,8 @@ Compute(self,
         elastic_ips='d3043820717d74d9a17694c176d39733',
         private_ips='d3043820717d74d9a17694c176d39733',
         subnet_ids='d3043820717d74d9a17694c176d39733',
-        preferred_availability_zones='d3043820717d74d9a17694c176d39733')
+        preferred_availability_zones='d3043820717d74d9a17694c176d39733',
+        volume_attachments='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -954,6 +960,7 @@ __Arguments__
 - __private_ips__: list[str]
 - __subnet_ids__: list[str]
 - __preferred_availability_zones__: list[str]
+- __volume_attachments__: VolumeAttachments
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.AvailabilityZone">AvailabilityZone</h2>
 
@@ -981,7 +988,8 @@ InstanceTypes(self,
               on_demand_types='d3043820717d74d9a17694c176d39733',
               spot='d3043820717d74d9a17694c176d39733',
               weights='d3043820717d74d9a17694c176d39733',
-              preferred_spot='d3043820717d74d9a17694c176d39733')
+              preferred_spot='d3043820717d74d9a17694c176d39733',
+              resource_requirements='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -991,6 +999,29 @@ __Arguments__
 - __spot__: list[str]
 - __weights__: list[Weight]
 - __preferred_spot__: list[str]
+- __resource_requirements__: ResourceRequirements
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.ResourceRequirements">ResourceRequirements</h2>
+
+```python
+ResourceRequirements(
+  self,
+  excluded_instance_families='d3043820717d74d9a17694c176d39733',
+  excluded_instance_generations='d3043820717d74d9a17694c176d39733',
+  excluded_instance_types='d3043820717d74d9a17694c176d39733',
+  required_v_cpu='d3043820717d74d9a17694c176d39733',
+  required_memory='d3043820717d74d9a17694c176d39733',
+  required_gpu='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __excluded_instance_families__: list[str]
+- __excluded_instance_generations__: list[str]
+- __excluded_instance_types__: list[str]
+- __required_v_cpu__: RequiredMemoryVcpuGpu
+- __required_memory__: RequiredMemoryVcpuGpu
+- __required_gpu__: RequiredMemoryVcpuGpu
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Weight">Weight</h2>
 
@@ -1004,6 +1035,19 @@ __Arguments__
 
 - __instance_type__: str
 - __weighted_capacity__: int
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.RequiredMemoryVcpuGpu">RequiredMemoryVcpuGpu</h2>
+
+```python
+RequiredMemoryVcpuGpu(self,
+                      minimum='d3043820717d74d9a17694c176d39733',
+                      maximum='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __minimum__: int
+- __maximum__: int
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.TagSpecification">TagSpecification</h2>
 
@@ -1177,6 +1221,7 @@ EBS(self,
     volume_type='d3043820717d74d9a17694c176d39733',
     kms_key_id='d3043820717d74d9a17694c176d39733',
     dynamic_volume_size='d3043820717d74d9a17694c176d39733',
+    dynamic_iops='d3043820717d74d9a17694c176d39733',
     throughput='d3043820717d74d9a17694c176d39733')
 ```
 
@@ -1190,6 +1235,7 @@ __Arguments__
 - __volume_type__: str
 - __kms_key_id__: str
 - __dynamic_volume_size__: DynamicVolumeSize
+- __dynamic_iops__: DynamicIops
 - __throughput__: int
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.DynamicVolumeSize">DynamicVolumeSize</h2>
@@ -1200,6 +1246,21 @@ DynamicVolumeSize(
   base_size='d3043820717d74d9a17694c176d39733',
   resource='d3043820717d74d9a17694c176d39733',
   size_per_resource_unit='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __base_size__: int
+- __resource__: str
+- __size_per_resource_unit__: int
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.DynamicIops">DynamicIops</h2>
+
+```python
+DynamicIops(self,
+            base_size='d3043820717d74d9a17694c176d39733',
+            resource='d3043820717d74d9a17694c176d39733',
+            size_per_resource_unit='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -1291,6 +1352,29 @@ __Arguments__
 - __http_put_response_hop_limit__: int
 - __http_tokens__: str
 - __instance_metadata_tags__: str
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.VolumeAttachments">VolumeAttachments</h2>
+
+```python
+VolumeAttachments(self, volumes='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __volumes__: list[Volume]
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.Volume">Volume</h2>
+
+```python
+Volume(self,
+       device_name='d3043820717d74d9a17694c176d39733',
+       volume_id='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __device_name__: str
+- __volume_id__: str
 
 <h2 id="spotinst_sdk2.models.elastigroup.aws.Roll">Roll</h2>
 
@@ -1392,12 +1476,28 @@ __Arguments__
 ASG(self,
     product='d3043820717d74d9a17694c176d39733',
     spot_instance_types='d3043820717d74d9a17694c176d39733',
-    name='d3043820717d74d9a17694c176d39733')
+    name='d3043820717d74d9a17694c176d39733',
+    availability_vs_cost='d3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __product__: str
+- __spot_instance_types__: List[str]
+- __name__: str
+- __availability_vs_cost__: str
+
+<h2 id="spotinst_sdk2.models.elastigroup.aws.asg.ImportInstanceConfig">ImportInstanceConfig</h2>
+
+```python
+ImportInstanceConfig(
+  self,
+  spot_instance_types='d3043820717d74d9a17694c176d39733',
+  name='d3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
 - __spot_instance_types__: List[str]
 - __name__: str
 

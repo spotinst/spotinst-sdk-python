@@ -7,7 +7,7 @@ import spotinst_sdk2.models.elastigroup.aws as aws_elastigroup
 import spotinst_sdk2.models.elastigroup.aws.stateful as aws_stateful
 import spotinst_sdk2.models.elastigroup.aws.deployment as aws_deployment
 import spotinst_sdk2.models.elastigroup.aws.deployment_action as aws_deployment_action
-import spotinst_sdk2.models.elastigroup.aws.asg as aws_asg
+import spotinst_sdk2.models.elastigroup.aws.asg as aws_import
 # endregion
 
 # region GCP imports
@@ -803,6 +803,28 @@ class ElastigroupAwsClient(Client):
 
         return formatted_response["response"]
 
+    def delete_volume_in_stateful_instance(self, group_id, stateful_instance_id, volume_id):
+        """
+        Delete stateful instance 
+
+        # Arguments
+        group_id (String): Elastigroup ID
+        stateful_instance_id (String): Stateful Instance ID
+        volume_id (String): Volume ID
+
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        return self.send_delete(
+            url=self.__base_elastigroup_url +
+            "/" +
+            str(group_id) +
+            "/statefulInstance/" +
+            str(stateful_instance_id) +
+            "/volume/" +
+            str(volume_id),
+            entity_name='delete volume in stateful instance')
+
     def beanstalk_maintenance_status(self, group_id):
         """
         Beanstalk maintenance status
@@ -931,9 +953,48 @@ class ElastigroupAwsClient(Client):
 
         return ret_val
 
-    def import_asg(self, region, asg_name, asg, dry_run=None):
+    def import_instance(self, region, instance_id, instance: aws_import.ImportInstanceConfig):
         """
-        import asg attributes as JSON
+        Import an EC2 instance into a new Elastigroup
+
+        # Arguments
+        region (String): Instance Region
+        instance_id (String): Instance ID
+        instance (ImportInstanceConfig): Import Configuration
+
+        # Returns
+        (Object): Elastigroup API response 
+        """
+        query_params = dict(
+            region=region, instanceId=instance_id)
+
+        request = aws_import.ImportInstanceRequest(instance)
+
+        excluded_group_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        response = self.send_post(
+            body=body_json,
+            url=self.__base_elastigroup_url +
+            "/instance/import",
+            query_params=query_params,
+            entity_name='import instance')
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"][0]
+
+        return ret_val
+
+    def import_asg(self, region, asg_name, asg: aws_import.ASG, dry_run=None):
+        """
+        Create a new Elastigroup using the configuration of an existing Autoscaling group
 
         # Arguments
         region (String): ASG region
@@ -947,7 +1008,7 @@ class ElastigroupAwsClient(Client):
         query_params = dict(
             region=region, autoScalingGroupName=asg_name, dryRun=dry_run)
 
-        asg = aws_asg.ImportASGRequest(asg)
+        asg = aws_import.ImportASGRequest(asg)
 
         excluded_group_dict = self.exclude_missing(json.loads(asg.toJSON()))
 
@@ -1343,8 +1404,8 @@ class ElastigroupAwsClient(Client):
         group_id(String): Elastigroup ID
         to_date (String): to date
         from_date (String): to date
-        severity(String) (Optional): Log level severity
-        resource_id(String) (Optional): Filter log extracted entires related to a
+        severity (String) (Optional): Log level severity
+        resource_id (String) (Optional): Filter log extracted entires related to a
           specific resource id
         limit(String) (Optional): Maximum number of lines to extract in a response
 
@@ -1439,6 +1500,7 @@ class ElastigroupAwsClient(Client):
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)
         return formatted_response
+
     # endregion
 
 
