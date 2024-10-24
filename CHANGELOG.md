@@ -2,9 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.16.2] - 2024-10-24
+## [3.17.0] - 2024-10-24
 ### Added
-- "Detach Instances", "Instance Types Filters Simulation"
+- "Detach Instances", "Instance Types Filters Simulation" API support added in the GCP Ocean Client
 - Added Create/Update Cluster 'Preferred Instance Type' model added in the GCP Ocean Client
 
 ## [3.16.1] - 2024-10-22
