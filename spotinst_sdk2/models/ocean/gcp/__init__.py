@@ -178,19 +178,51 @@ class BackendServices:
         self.scheme = scheme
 
 
+class InstanceTypesFilters:
+    """
+    # Arguments
+    exclude_families: List[str]
+    include_families: List[str]
+    max_memory_gi_b: float
+    max_vcpu: int
+    min_memory_gi_b: float
+    min_vcpu: int
+    """
+
+    def __init__(self,
+                 exclude_families: List[str] = none,
+                 include_families: List[str] = none,
+                 max_memory_gi_b: float = none,
+                 max_vcpu: int = none,
+                 min_memory_gi_b: float = none,
+                 min_vcpu: int = none):
+        self.exclude_families = exclude_families
+        self.include_families = include_families
+        self.max_memory_gi_b = max_memory_gi_b
+        self.max_vcpu = max_vcpu
+        self.min_memory_gi_b = min_memory_gi_b
+        self.min_vcpu = min_vcpu
+
+
 class InstanceTypes:
     """
     # Arguments
     blacklist: List[str]
     whitelist: List[str]
+    filters: InstanceTypesFilters
+    preferred_types: List[str]
     """
 
     def __init__(
             self,
             blacklist: List[str] = none,
-            whitelist: List[str] = none):
+            whitelist: List[str] = none,
+            filters: InstanceTypesFilters = none,
+            preferred_types: List[str] = none):
         self.blacklist = blacklist
         self.whitelist = whitelist
+        self.filters = filters
+        self.preferred_types = preferred_types
 
 
 class Labels:
@@ -226,6 +258,7 @@ class Metadata:
 class RootVolumeType(Enum):
     pd_standard = "pd-standard"
     pd_ssd = "pd-ssd"
+    pd_balanced = "pd-balanced"
 
 
 class ShieldedInstanceConfig:
@@ -514,17 +547,20 @@ class Strategy:
     draining_timeout: int
     preemptible_percentage: int
     provisioning_model: ProvisioningModel
+    should_utilize_commitments: bool
     """
 
     def __init__(
             self,
             draining_timeout: int = none,
             preemptible_percentage: int = none,
-            provisioning_model: ProvisioningModel = none
+            provisioning_model: ProvisioningModel = none,
+            should_utilize_commitments: bool = none
     ):
         self.draining_timeout = draining_timeout
         self.preemptible_percentage = preemptible_percentage
         self.provisioning_model = provisioning_model
+        self.should_utilize_commitments = should_utilize_commitments
 # endregion
 
 
@@ -578,6 +614,7 @@ class OceanRequest:
 # endregion
 
 
+# RightSizingRecommendationFilter
 class Type(Enum):
     label = "label"
     annotation = "annotation"
@@ -633,8 +670,10 @@ class RightSizingRecommendationRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+# endregion
 
 
+# region AggregatedClusterCosts
 class AllMatch:
     """
     # Arguments
@@ -718,6 +757,7 @@ class AggregatedClusterCostRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+# endregion
 
 
 # region VirtualNodeGroup
@@ -850,7 +890,9 @@ class VirtualNodeGroup:
     # Arguments
     auto_scale: AutoScale
     availability_zones: List[str]
+    filters: InstanceTypesFilters
     instance_types: List[str]
+    preferred_types: List[str]
     labels: List[Labels]
     metadata: List[Metadata]
     name: str
@@ -859,7 +901,7 @@ class VirtualNodeGroup:
     resource_limits: ResourceLimits
     restrict_scale_down: bool
     root_volume_size_in_gb: int
-    root_volume_type: str
+    root_volume_type: RootVolumeType
     scheduling: Scheduling
     service_account: str
     shielded_instance_config: ShieldedInstanceConfig
@@ -875,6 +917,8 @@ class VirtualNodeGroup:
             auto_scale: AutoScale = none,
             availability_zones: List[str] = none,
             instance_types: List[str] = none,
+            filters: InstanceTypesFilters = none,
+            preferred_types: List[str] = none,
             labels: List[Labels] = none,
             metadata: List[Metadata] = none,
             name: str = none,
@@ -883,7 +927,7 @@ class VirtualNodeGroup:
             resource_limits: VNGResourceLimits = none,
             restrict_scale_down: bool = none,
             root_volume_size_in_gb: int = none,
-            root_volume_type: str = none,
+            root_volume_type: RootVolumeType = none,
             scheduling: VNGScheduling = none,
             service_account: str = none,
             shielded_instance_config: ShieldedInstanceConfig = none,
@@ -896,6 +940,8 @@ class VirtualNodeGroup:
         self.auto_scale = auto_scale
         self.availability_zones = availability_zones
         self.instance_types = instance_types
+        self.filters = filters
+        self.preferred_types = preferred_types
         self.labels = labels
         self.metadata = metadata
         self.name = name
@@ -1013,6 +1059,48 @@ class ImportGkeClusterToOceanRequest:
 class LaunchNodesRequest:
     def __init__(self, amount: int = none):
         self.launch_request = dict(amount=amount)
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class DetachInstancesConfig:
+    """
+    # Arguments
+    instances_to_detach: List[str]
+    should_decrement_target_capacity: bool
+    should_terminate_instances: bool
+    draining_timeout: int
+    """
+
+    def __init__(
+            self,
+            instances_to_detach: List[str] = none,
+            should_decrement_target_capacity: bool = none,
+            should_terminate_instances: bool = none,
+            draining_timeout: int = none):
+        self.instances_to_detach = instances_to_detach
+        self.should_decrement_target_capacity = should_decrement_target_capacity
+        self.should_terminate_instances = should_terminate_instances
+        self.draining_timeout = draining_timeout
+
+
+class DetachInstancesRequest:
+    def __init__(self, detach_config: DetachInstancesConfig):
+        self.instances_to_detach = detach_config.instances_to_detach
+        self.should_decrement_target_capacity = detach_config.should_decrement_target_capacity
+        self.should_terminate_instances = detach_config.should_terminate_instances
+        self.draining_timeout = detach_config.draining_timeout
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
+class InstanceTypesFilterRequest:
+    def __init__(self, filters: InstanceTypesFilters):
+        self.filters = filters
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

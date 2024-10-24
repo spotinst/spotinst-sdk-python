@@ -445,3 +445,40 @@ __Returns__
 
 `(Object)`: Ocean Virtual Node Group Launch API response
 
+<h2 id="spotinst_sdk2.clients.ocean.OceanGcpClient.detach_instances">detach_instances</h2>
+
+```python
+OceanGcpClient.detach_instances(
+  ocean_id: str, detach_configuration: DetachInstancesConfig)
+```
+
+Detach instances from your Ocean cluster.
+
+__Arguments__
+
+- __ocean_id (String)__: ID of the Ocean Cluster
+- __detach_configuration (DetachInstancesConfig)__: Detach instances request
+
+__Returns__
+
+`(Object)`: Detach Instance response
+
+<h2 id="spotinst_sdk2.clients.ocean.OceanGcpClient.instance_types_filters_simulation">instance_types_filters_simulation</h2>
+
+```python
+OceanGcpClient.instance_types_filters_simulation(
+  ocean_id: str, filters: InstanceTypesFilters)
+```
+
+Returns all instances types that match the given filters.
+These instance types will be used if the cluster is configured with these filters.
+
+__Arguments__
+
+- __ocean_id (String)__: Id of the Ocean Cluster
+- __filters (InstanceTypesFilters)__: List of filters
+
+__Returns__
+
+`(Object)`: Ocean Instance Type Simultion response
+
