@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.16.2] - 2024-10-24
+### Added
+- "Detach Instances", "Instance Types Filters Simulation"
+- Added Create/Update Cluster 'Preferred Instance Type' model added in the GCP Ocean Client
+
 ## [3.16.1] - 2024-10-22
 ### Added
 - "Delete Volume in a Stateful Instance" API support added in the AWS Elastigroup Client.
