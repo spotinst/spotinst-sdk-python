@@ -153,19 +153,46 @@ __Arguments__
 - __named_ports__: NamedPorts
 - __scheme__: Scheme
 
+<h2 id="spotinst_sdk2.models.ocean.gcp.InstanceTypesFilters">InstanceTypesFilters</h2>
+
+```python
+InstanceTypesFilters(
+  self,
+  exclude_families: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  include_families: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  max_memory_gi_b: float = 'd3043820717d74d9a17694c176d39733',
+  max_vcpu: int = 'd3043820717d74d9a17694c176d39733',
+  min_memory_gi_b: float = 'd3043820717d74d9a17694c176d39733',
+  min_vcpu: int = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __exclude_families__: List[str]
+- __include_families__: List[str]
+- __max_memory_gi_b__: float
+- __max_vcpu__: int
+- __min_memory_gi_b__: float
+- __min_vcpu__: int
+
 <h2 id="spotinst_sdk2.models.ocean.gcp.InstanceTypes">InstanceTypes</h2>
 
 ```python
 InstanceTypes(
   self,
   blacklist: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
-  whitelist: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+  whitelist: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  filters: InstanceTypesFilters = 'd3043820717d74d9a17694c176d39733',
+  preferred_types: typing.List[str] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
 
 - __blacklist__: List[str]
 - __whitelist__: List[str]
+- __filters__: InstanceTypesFilters
+- __preferred_types__: List[str]
 
 <h2 id="spotinst_sdk2.models.ocean.gcp.Labels">Labels</h2>
 
@@ -199,6 +226,9 @@ __Arguments__
 RootVolumeType(cls, value, names=None, *, module, qualname, type, start)
 ```
 An enumeration.
+<h3 id="spotinst_sdk2.models.ocean.gcp.RootVolumeType.pd_balanced">pd_balanced</h3>
+
+
 <h3 id="spotinst_sdk2.models.ocean.gcp.RootVolumeType.pd_ssd">pd_ssd</h3>
 
 
@@ -462,11 +492,12 @@ An enumeration.
 
 ```python
 Strategy(
-    self,
-    draining_timeout: int = 'd3043820717d74d9a17694c176d39733',
-    preemptible_percentage: int = 'd3043820717d74d9a17694c176d39733',
-    provisioning_model: ProvisioningModel = 'd3043820717d74d9a17694c176d39733'
-)
+  self,
+  draining_timeout: int = 'd3043820717d74d9a17694c176d39733',
+  preemptible_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  provisioning_model:
+    ProvisioningModel = 'd3043820717d74d9a17694c176d39733',
+  should_utilize_commitments: bool = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -474,6 +505,7 @@ __Arguments__
 - __draining_timeout__: int
 - __preemptible_percentage__: int
 - __provisioning_model__: ProvisioningModel
+- __should_utilize_commitments__: bool
 
 <h2 id="spotinst_sdk2.models.ocean.gcp.Ocean">Ocean</h2>
 
@@ -772,6 +804,8 @@ VirtualNodeGroup(
     auto_scale: AutoScale = 'd3043820717d74d9a17694c176d39733',
     availability_zones: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
     instance_types: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+    filters: InstanceTypesFilters = 'd3043820717d74d9a17694c176d39733',
+    preferred_types: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
     labels:
     typing.List[spotinst_sdk2.models.ocean.gcp.Labels] = 'd3043820717d74d9a17694c176d39733',
     metadata:
@@ -783,7 +817,7 @@ VirtualNodeGroup(
     resource_limits: VNGResourceLimits = 'd3043820717d74d9a17694c176d39733',
     restrict_scale_down: bool = 'd3043820717d74d9a17694c176d39733',
     root_volume_size_in_gb: int = 'd3043820717d74d9a17694c176d39733',
-    root_volume_type: str = 'd3043820717d74d9a17694c176d39733',
+    root_volume_type: RootVolumeType = 'd3043820717d74d9a17694c176d39733',
     scheduling: VNGScheduling = 'd3043820717d74d9a17694c176d39733',
     service_account: str = 'd3043820717d74d9a17694c176d39733',
     shielded_instance_config:
@@ -801,7 +835,9 @@ __Arguments__
 
 - __auto_scale__: AutoScale
 - __availability_zones__: List[str]
+- __filters__: InstanceTypesFilters
 - __instance_types__: List[str]
+- __preferred_types__: List[str]
 - __labels__: List[Labels]
 - __metadata__: List[Metadata]
 - __name__: str
@@ -810,7 +846,7 @@ __Arguments__
 - __resource_limits__: ResourceLimits
 - __restrict_scale_down__: bool
 - __root_volume_size_in_gb__: int
-- __root_volume_type__: str
+- __root_volume_type__: RootVolumeType
 - __scheduling__: Scheduling
 - __service_account__: str
 - __shielded_instance_config__: ShieldedInstanceConfig
@@ -867,4 +903,24 @@ __Arguments__
 - __controller_cluster_id__: str
 - __instance_types__: InstanceTypes
 - __name__: str
+
+<h2 id="spotinst_sdk2.models.ocean.gcp.DetachInstancesConfig">DetachInstancesConfig</h2>
+
+```python
+DetachInstancesConfig(
+  self,
+  instances_to_detach:
+    typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  should_decrement_target_capacity:
+    bool = 'd3043820717d74d9a17694c176d39733',
+  should_terminate_instances: bool = 'd3043820717d74d9a17694c176d39733',
+  draining_timeout: int = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __instances_to_detach__: List[str]
+- __should_decrement_target_capacity__: bool
+- __should_terminate_instances__: bool
+- __draining_timeout__: int
 
