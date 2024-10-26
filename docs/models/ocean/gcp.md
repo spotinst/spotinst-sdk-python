@@ -865,7 +865,7 @@ Roll(
   batch_size_percentage: int = 'd3043820717d74d9a17694c176d39733',
   comment: str = 'd3043820717d74d9a17694c176d39733',
   launch_spec_ids: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
-  instance_ids: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+  instance_names: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
   respect_pdb: bool = 'd3043820717d74d9a17694c176d39733')
 ```
 

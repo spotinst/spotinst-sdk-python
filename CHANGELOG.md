@@ -2,14 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.17.1] - 2024-10-26
+### Fixed
+- `instance_name` field in the `Roll` model for Ocean GCP
+
 ## [3.17.0] - 2024-10-24
 ### Added
-- "Detach Instances", "Instance Types Filters Simulation" API support added in the GCP Ocean Client
-- Added Create/Update Cluster 'Preferred Instance Type' model for the GCP Ocean
+- `Detach Instances` ans `Instance Types Filters Simulation` APIs support added in the GCP Ocean Client
+- Added Create/Update Cluster `Preferred Instance Type` model for the GCP Ocean
 
 ## [3.16.1] - 2024-10-22
 ### Added
-- "Delete Volume in a Stateful Instance" API support added in the AWS Elastigroup Client.
+- `Delete Volume in a Stateful Instance` API support added in the AWS Elastigroup Client.
 - Added `DynamicIops` model for AWS Elastigroup.
 
 ## [3.16.0] - 2024-10-21
