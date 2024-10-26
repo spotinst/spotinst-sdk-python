@@ -988,12 +988,12 @@ class Roll:
             batch_size_percentage: int = none,
             comment: str = none,
             launch_spec_ids: List[str] = none,
-            instance_ids: List[str] = none,
+            instance_names: List[str] = none,
             respect_pdb: bool = none):
         self.batch_min_healthy_percentage = batch_min_healthy_percentage
         self.batch_size_percentage = batch_size_percentage
         self.comment = comment
-        self.instance_ids = instance_ids
+        self.instance_names = instance_names
         self.launch_spec_ids = launch_spec_ids
         self.respect_pdb = respect_pdb
 
