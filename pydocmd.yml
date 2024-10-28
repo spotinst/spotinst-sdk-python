@@ -39,6 +39,7 @@ generate:
       - spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient++
   - models/admin.md:
       - spotinst_sdk2.models.admin.user_mapping++
+      - spotinst_sdk2.models.admin.organization++
   - models/setup/azure.md:
       - spotinst_sdk2.models.setup.azure++
   - models/setup/gcp.md:
