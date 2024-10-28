@@ -1,14 +1,16 @@
 import json
+from typing import List
 
 from spotinst_sdk2.client import Client
 import spotinst_sdk2.models.admin.user_mapping as spotinst_user_mapping
+import spotinst_sdk2.models.admin.organization as admin_org
 
 
 class AdminClient(Client):
     __base_setup_url = "/setup"
 
     # region Organization and Account
-    def create_organization(self, org_name):
+    def create_organization(self, org_name: str):
         """
         Create an organization 
 
@@ -30,7 +32,7 @@ class AdminClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def delete_organization(self, org_id):
+    def delete_organization(self, org_id: str):
         """
         delete organization 
 
@@ -68,7 +70,7 @@ class AdminClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def set_cloud_credentials(self, iam_role, external_id=None):
+    def set_cloud_credentials(self, iam_role: str, external_id: str = None):
         """
         Important note: This is deprecated, please use setup_aws client instead(SetupAWSClient#set_credentials)
 
@@ -100,7 +102,7 @@ class AdminClient(Client):
 
         return formatted_response["response"]["status"]
 
-    def create_account(self, account_name):
+    def create_account(self, account_name: str):
         """
         create an account 
 
@@ -122,6 +124,31 @@ class AdminClient(Client):
 
         return formatted_response["response"]["items"][0]
 
+    def update_account(self, account_id: str, new_account_name: str, slack_notification_channels: List[str] = None):
+        """
+        create an account 
+
+        # Arguments
+        account_id (String): Account Id
+        new_account_name (String): New Account Name
+        slack_notification_channels List(str): List of slack notification channels
+
+        # Returns
+        (Object): Spotinst API response 
+        """
+        response = self.send_put(
+            url=self.__base_setup_url +
+            "/account/" + account_id,
+            body=json.dumps(dict(account=dict(
+                name=new_account_name, slackNotificationChannels=slack_notification_channels))),
+            entity_name="account"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
     def get_accounts(self):
         """
         get accounts in organization
@@ -140,7 +167,7 @@ class AdminClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def delete_account(self, account_name):
+    def delete_account(self, account_name: str):
         """
         delete account
 
@@ -158,7 +185,7 @@ class AdminClient(Client):
 
         return response
 
-    def create_user(self, first_name, last_name, email, password, role):
+    def create_user(self, first_name: str, last_name: str, email: str, password: str, role: str):
         """
         Create user
 
@@ -237,7 +264,7 @@ class AdminClient(Client):
 
         return formatted_response["response"]["status"]
 
-    def detach_user(self, user_email):
+    def detach_user(self, user_email: str):
         """
         Delete existing user
 
@@ -257,7 +284,7 @@ class AdminClient(Client):
 
         return response
 
-    def get_user(self, user_email):
+    def get_user(self, user_email: str):
         """
         Get user
 
@@ -311,6 +338,7 @@ class AdminClient(Client):
         return formatted_response["response"]["status"]
 
     # endregion
+
     def get_users(self):
         """
         Retrieves all users from an organization.
@@ -327,7 +355,23 @@ class AdminClient(Client):
 
         return formatted_response["response"]["items"]
 
-    def get_user_details(self, user_id):
+    def get_policies(self):
+        """
+        Retrieves all policies from an organization.
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_get(
+            url=self.__base_setup_url + "/organization/policy", entity_name="policy"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def get_user_details(self, user_id: str):
         """
         Retrieves an individual user details.
 
@@ -346,9 +390,9 @@ class AdminClient(Client):
 
         return formatted_response["response"]["items"][0]
 
-    def delete_user(self, user_id):
+    def delete_user(self, user_id: str):
         """
-        Deletes a user from an organization.
+        Deletes a user (console or programmatic) from an organization.
 
         # Arguments
         user_id (String): User ID
@@ -362,7 +406,7 @@ class AdminClient(Client):
 
         return response
 
-    def update_user_to_user_group_mapping(self, user_id, user_group_ids):
+    def update_user_to_user_group_mapping(self, user_id: str, user_group_ids: List[str]):
         """
         Update the mapping of a given user to user groups
 
@@ -384,7 +428,7 @@ class AdminClient(Client):
 
         return formatted_response["response"]["status"]
 
-    def update_user_to_policy_mapping(self, user_id, policies):
+    def update_user_to_policy_mapping(self, user_id: str, policies):
         """
         Update the mapping of a given user to policies
 
@@ -406,7 +450,26 @@ class AdminClient(Client):
 
         return formatted_response["response"]["status"]
 
-    def create_programmatic_user(self, name, description, accounts=None, policies=None):
+    def get_user(self, user_email: str):
+        """
+        Get user's account mapping.
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        query_params = dict(userEmail=user_email)
+
+        response = self.send_get(
+            url=self.__base_setup_url + "/accountUserMapping", entity_name="user",
+            query_params=query_params
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def create_programmatic_user(self, name: str, description: str, accounts=None, policies=None):
         """
         Create a programmatic user
 
@@ -441,3 +504,217 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             response, self.camel_to_underscore)
         return formatted_response["response"]["items"][0]
+
+    def get_access_policy_actions(self, category: str = None, name: str = None, resource_pattern: str = None, scope: str = None, service: str = None):
+        """
+        Get actions for access policies.
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        query_params = dict(category=category, name=name,
+                            resourcePattern=resource_pattern, scope=scope, service=service)
+
+        response = self.send_get(
+            url=self.__base_setup_url + "/access/policyAction", entity_name="user",
+            query_params=query_params
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def create_access_policy(self, policy: admin_org.AccessPolicy):
+        """
+        Create an access policy
+
+        # Arguments
+        policy (AccessPolicy): AccessPolicy Object
+
+        # Returns
+        (Object): Spotinst API response 
+        """
+        request = admin_org.AccessPolicyCreationRequest(policy)
+
+        excluded_policy_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_policy_dict = self.convert_json(
+            excluded_policy_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_policy_dict)
+
+        policy_response = self.send_post(
+            body=body_json,
+            url=self.__base_setup_url + "/access/policy", entity_name="policy")
+
+        formatted_response = self.convert_json(
+            policy_response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"][0]
+
+        return ret_val
+
+    def update_access_policy(self, policy_id: str, policy_name: str):
+        """
+        Updates an access policy settings.
+
+        # Arguments
+        policy_id (String): Policy ID
+        policy_name (String): Name to be set for the policy
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_put(
+            url=self.__base_setup_url + "/access/policy/" + policy_id,
+            body=json.dumps(dict(policy=dict(name=policy_name))),
+            entity_name="policy")
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def delete_access_policy(self, policy_id: str):
+        """
+        Deletes an access policy.
+
+        # Arguments
+        policy_id (String): Policy ID
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_delete(
+            url=self.__base_setup_url + "/access/policy/" + policy_id, entity_name="policy"
+        )
+
+        return response
+
+    def get_user_groups(self):
+        """
+        Retrieves all user-groups from an organization.
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_get(
+            url=self.__base_setup_url + "/access/userGroup", entity_name="usergroup"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"]
+
+    def create_user_group(self, user_group: admin_org.UserGroup):
+        """
+        Create a new User Group
+
+        # Arguments
+        group (UserGroup): UserGroup Object
+
+        # Returns
+        (Object): Spotinst API response 
+        """
+        request = admin_org.UserGroupCreationRequest(user_group)
+
+        excluded_group_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_group_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_group_dict)
+
+        policy_response = self.send_post(
+            body=body_json,
+            url=self.__base_setup_url + "/access/userGroup", entity_name="usergroup")
+
+        formatted_response = self.convert_json(
+            policy_response, self.camel_to_underscore)
+
+        ret_val = formatted_response["response"]["items"][0]
+
+        return ret_val
+
+    def get_user_group_details(self, user_group_id: str):
+        """
+        Get the details of a user Group
+
+        # Arguments
+        user_group_id (String): User Group ID
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_get(
+            url=self.__base_setup_url + "/access/userGroup/" + user_group_id, entity_name="usergroup"
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["items"][0]
+
+    def delete_user_group(self, user_group_id: str):
+        """
+        Delete a user group.
+
+        # Arguments
+        user_group_id (String): User Group ID
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        return self.send_delete(
+            url=self.__base_setup_url + "/access/userGroup/" + user_group_id, entity_name="usergroup"
+        )
+
+    def update_user_group_to_user_mapping(self, user_group_id: str, user_ids: List[str]):
+        """
+        Update the mapping of a given user group to users
+
+        # Arguments
+        user_group_id (String): Identifier of a usergroup.
+        user_ids (List): The users to register under the given user group (should be existing users only)
+
+        # Returns
+        (Object): Spotinst API response
+        """
+        response = self.send_put(
+            url=self.__base_setup_url + "/access/userGroup/" + user_group_id + "/userMapping",
+            body=json.dumps(dict(userIds=user_ids)),
+            entity_name="usergroup",
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]
+
+    def update_user_group_to_policy_mapping(self, user_group_id: str, policies):
+        """
+        Update the mapping of a given user group to policies
+
+        # Arguments
+        user_group_id (String): Identifier of a user group.
+        policies (List): The policies to register under the given user group (should be existing policies only)
+
+        # Returns
+        (Object): Spotinst API response
+        """
+
+        response = self.send_put(
+            url=self.__base_setup_url + "/access/userGroup/" +
+            user_group_id + "/policyMapping",
+            body=json.dumps(dict(policies=policies)),
+            entity_name="usergroup",
+        )
+
+        formatted_response = self.convert_json(
+            response, self.camel_to_underscore)
+
+        return formatted_response["response"]["status"]

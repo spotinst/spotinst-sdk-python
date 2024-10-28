@@ -2,7 +2,7 @@ import json
 
 none = "d3043820717d74d9a17694c176d39733"
 
-# region EMR
+# region UserMapping
 class UserMapping:
 	"""
 	# Arguments
@@ -19,7 +19,7 @@ class UserMapping:
 		self.user_email = user_email
 		self.account_id = account_id
 		self.role = role
-
+# endregion
 
 class UserMappingRequest:
     def __init__(self, mappings):

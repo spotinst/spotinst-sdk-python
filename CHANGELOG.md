@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.18.0] - 2024-10-28
+### Added
+- Added support for organization user, usergroup and access policy APIs
+
 ## [3.17.1] - 2024-10-26
 ### Fixed
 - `instance_name` field in the `Roll` model for Ocean GCP
