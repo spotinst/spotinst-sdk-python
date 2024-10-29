@@ -55,6 +55,7 @@ AccessPolicy(
   self,
   description: str = 'd3043820717d74d9a17694c176d39733',
   name: str = 'd3043820717d74d9a17694c176d39733',
+  type: str = 'd3043820717d74d9a17694c176d39733',
   policy_content: PolicyContent = 'd3043820717d74d9a17694c176d39733')
 ```
 
@@ -62,6 +63,7 @@ __Arguments__
 
 - __description__: str
 - __name__: str
+- __type__: str
 - __policy_content__: PolicyContent
 
 <h2 id="spotinst_sdk2.models.admin.organization.PolicyMapping">PolicyMapping</h2>

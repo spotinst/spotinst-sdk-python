@@ -43,6 +43,7 @@ class AccessPolicy:
         # Arguments
         description: str
         name: str
+        type: str
         policy_content: PolicyContent
         """
 
@@ -50,10 +51,12 @@ class AccessPolicy:
             self,
             description: str = none,
             name: str = none,
+            type: str = none,
             policy_content: PolicyContent = none):
 
         self.description = description
         self.name = name
+        self.type = type
         self.policy_content = policy_content
 
 
