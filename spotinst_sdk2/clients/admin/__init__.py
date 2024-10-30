@@ -584,9 +584,7 @@ class AdminClient(Client):
         formatted_response = self.convert_json(
             policy_response, self.camel_to_underscore)
 
-        ret_val = formatted_response["response"]["items"][0]
-
-        return ret_val
+        return formatted_response["response"]["status"]
 
     def delete_access_policy(self, policy_id: str):
         """
