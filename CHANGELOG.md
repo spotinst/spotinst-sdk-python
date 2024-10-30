@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.18.2] - 2024-10-30
+### Fixed
+- Fixed implementation of `update_access_policy()` API
+
 ## [3.18.1] - 2024-10-29
 ### Fixed
 - Updated `AccessPolicy` model for Admin Organization

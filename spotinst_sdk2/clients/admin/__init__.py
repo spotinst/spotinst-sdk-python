@@ -556,26 +556,37 @@ class AdminClient(Client):
 
         return ret_val
 
-    def update_access_policy(self, policy_id: str, policy_name: str):
+    def update_access_policy(self, policy_id: str, policy: admin_org.AccessPolicy):
         """
         Updates an access policy settings.
 
         # Arguments
         policy_id (String): Policy ID
-        policy_name (String): Name to be set for the policy
+        policy (AccessPolicy): AccessPolicy Object
 
         # Returns
         (Object): Spotinst API response
         """
-        response = self.send_put(
-            url=self.__base_setup_url + "/access/policy/" + policy_id,
-            body=json.dumps(dict(policy=dict(name=policy_name))),
-            entity_name="policy")
+        request = admin_org.AccessPolicyUpdationRequest(policy)
+
+        excluded_policy_dict = self.exclude_missing(
+            json.loads(request.toJSON()))
+
+        formatted_policy_dict = self.convert_json(
+            excluded_policy_dict, self.underscore_to_camel)
+
+        body_json = json.dumps(formatted_policy_dict)
+
+        policy_response = self.send_put(
+            body=body_json,
+            url=self.__base_setup_url + "/access/policy/" + policy_id, entity_name="policy")
 
         formatted_response = self.convert_json(
-            response, self.camel_to_underscore)
+            policy_response, self.camel_to_underscore)
 
-        return formatted_response["response"]["status"]
+        ret_val = formatted_response["response"]["items"][0]
+
+        return ret_val
 
     def delete_access_policy(self, policy_id: str):
         """

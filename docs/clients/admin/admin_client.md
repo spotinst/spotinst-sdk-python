@@ -390,7 +390,7 @@ __Returns__
 <h2 id="spotinst_sdk2.clients.admin.AdminClient.update_access_policy">update_access_policy</h2>
 
 ```python
-AdminClient.update_access_policy(policy_id: str, policy_name: str)
+AdminClient.update_access_policy(policy_id: str, policy: AccessPolicy)
 ```
 
 Updates an access policy settings.
@@ -398,7 +398,7 @@ Updates an access policy settings.
 __Arguments__
 
 - __policy_id (String)__: Policy ID
-- __policy_name (String)__: Name to be set for the policy
+- __policy (AccessPolicy)__: AccessPolicy Object
 
 __Returns__
 
