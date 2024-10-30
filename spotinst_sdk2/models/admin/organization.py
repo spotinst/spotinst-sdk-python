@@ -109,6 +109,15 @@ class AccessPolicyCreationRequest:
                           sort_keys=True, indent=4)
 
 
+class AccessPolicyUpdationRequest:
+    def __init__(self, policy: AccessPolicy):
+        self.policy = policy
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
+
 class UserGroupCreationRequest:
     def __init__(self, group: UserGroup):
         self.description = group.description
