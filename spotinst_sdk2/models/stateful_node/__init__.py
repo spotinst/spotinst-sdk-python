@@ -662,6 +662,31 @@ class Tag:
         self.tag_key = tag_key
         self.tag_value = tag_value
 
+class SpotSizeAttributes:
+    """
+    # Arguments
+    max_cpu: int
+    min_cpu: int
+    max_memory: int
+    min_memory: int
+    max_storage: int
+    min_storage: int
+    """
+
+    def __init__(
+            self,
+            max_cpu: str = none,
+            min_cpu: str = none,
+            max_memory: str = none,
+            min_memory: str = none,
+            max_storage: str = none,
+            min_storage: str = none):
+        self.max_cpu = max_cpu
+        self.min_cpu = min_cpu
+        self.max_memory = max_memory
+        self.min_memory = min_memory
+        self.max_storage = max_storage
+        self.min_storage = min_storage
 
 class VmSizes:
     """
@@ -669,16 +694,19 @@ class VmSizes:
     od_sizes: List[str]
     preferred_spot_sizes: List[str]
     spot_sizes: List[str]
+    spot_size_attributes: SpotSizeAttributes
     """
 
     def __init__(
             self,
             od_sizes: List[str] = none,
             preferred_spot_sizes: List[str] = none,
-            spot_sizes: List[str] = none):
+            spot_sizes: List[str] = none,
+            spot_size_attributes: SpotSizeAttributes = none):
         self.od_sizes = od_sizes
         self.preferred_spot_sizes = preferred_spot_sizes
         self.spot_sizes = spot_sizes
+        self.spot_size_attributes = spot_size_attributes
 
 
 class ProximityPlacementGroups:
