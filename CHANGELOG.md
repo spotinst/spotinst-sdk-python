@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.19.0] - 2024-11-06
+### Added
+- Added `SpotSizeAttributes` model for Azure Stateful Nodes
+
 ## [3.18.2] - 2024-10-30
 ### Fixed
 - Fixed implementation of `update_access_policy()` API
