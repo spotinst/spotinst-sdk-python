@@ -675,12 +675,12 @@ class SpotSizeAttributes:
 
     def __init__(
             self,
-            max_cpu: str = none,
-            min_cpu: str = none,
-            max_memory: str = none,
-            min_memory: str = none,
-            max_storage: str = none,
-            min_storage: str = none):
+            max_cpu: int = none,
+            min_cpu: int = none,
+            max_memory: int = none,
+            min_memory: int = none,
+            max_storage: int = none,
+            min_storage: int = none):
         self.max_cpu = max_cpu
         self.min_cpu = min_cpu
         self.max_memory = max_memory
