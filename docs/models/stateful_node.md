@@ -746,15 +746,38 @@ __Arguments__
 - __tag_key__: str
 - __tag_value__: str
 
+<h2 id="spotinst_sdk2.models.stateful_node.SpotSizeAttributes">SpotSizeAttributes</h2>
+
+```python
+SpotSizeAttributes(
+  self,
+  max_cpu: int = 'd3043820717d74d9a17694c176d39733',
+  min_cpu: int = 'd3043820717d74d9a17694c176d39733',
+  max_memory: int = 'd3043820717d74d9a17694c176d39733',
+  min_memory: int = 'd3043820717d74d9a17694c176d39733',
+  max_storage: int = 'd3043820717d74d9a17694c176d39733',
+  min_storage: int = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __max_cpu__: int
+- __min_cpu__: int
+- __max_memory__: int
+- __min_memory__: int
+- __max_storage__: int
+- __min_storage__: int
+
 <h2 id="spotinst_sdk2.models.stateful_node.VmSizes">VmSizes</h2>
 
 ```python
 VmSizes(
-  self,
-  od_sizes: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
-  preferred_spot_sizes:
-    typing.List[str] = 'd3043820717d74d9a17694c176d39733',
-  spot_sizes: typing.List[str] = 'd3043820717d74d9a17694c176d39733')
+    self,
+    od_sizes: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+    preferred_spot_sizes: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+    spot_sizes: typing.List[str] = 'd3043820717d74d9a17694c176d39733',
+    spot_size_attributes:
+    SpotSizeAttributes = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
@@ -762,6 +785,7 @@ __Arguments__
 - __od_sizes__: List[str]
 - __preferred_spot_sizes__: List[str]
 - __spot_sizes__: List[str]
+- __spot_size_attributes__: SpotSizeAttributes
 
 <h2 id="spotinst_sdk2.models.stateful_node.ProximityPlacementGroups">ProximityPlacementGroups</h2>
 
