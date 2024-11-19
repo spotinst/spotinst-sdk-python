@@ -59,7 +59,6 @@ class Client:
 
         self.print_output("Sending get request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
-        self.print_output("Request Headers - " + str(headers))
 
         result = requests.get(
             self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
