@@ -4,13 +4,12 @@ import re
 
 import logging
 import requests
-
+from .version import __version__
 
 VAR_SPOTINST_LOG_LEVEL = 'SPOTINST_LOG_LEVEL'
 
-version = {}
-with open(os.path.join(os.path.dirname(__file__), "./version.py")) as fp:
-    exec(fp.read(), version)
+
+version = {'__version__': __version__}
 
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
@@ -60,6 +59,7 @@ class Client:
 
         self.print_output("Sending get request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
+        self.print_output("Request Headers - " + str(headers))
 
         result = requests.get(
             self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
@@ -406,7 +406,7 @@ class Client:
             if level == "info":
                 self.logger.info(output)
             if level == "warn":
-                self.logger.warn(output)
+                self.logger.warning(output)
             if level == "error":
                 self.logger.error(output)
             if level == "critical":
