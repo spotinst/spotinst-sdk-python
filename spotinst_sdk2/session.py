@@ -45,7 +45,7 @@ class Session:
                     VAR_SPOTINST_SHARED_CREDENTIALS_FILE,
                     DEFAULT_CREDENTIALS_FILE)
 
-            with open(credentials_file, 'r') as credentials_file:
+            with open(credentials_file, 'r', encoding='utf-8') as credentials_file:
                 self.__load_credentials_yaml(profile, credentials_file)
                 if not self.auth_token:
                     self.__load_credentials_ini(profile, credentials_file)
@@ -60,7 +60,7 @@ class Session:
             if config:
                 self.account_id = config.get(profile, {}).get("account", None)
                 self.auth_token = config.get(profile, {}).get("token", None)
-        except:
+        except (yaml.YAMLError, KeyError):
             return
 
     def __load_credentials_ini(self, profile, credentials_file):
@@ -70,5 +70,5 @@ class Session:
             if config[profile]:
                 self.account_id = config[profile]["account"]
                 self.auth_token = config[profile]["token"]
-        except:
+        except (configparser.NoSectionError, configparser.NoOptionError):
             return

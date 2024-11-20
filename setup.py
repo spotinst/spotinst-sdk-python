@@ -1,5 +1,5 @@
 # Always prefer setuptools over distutils
-from codecs import open
+from codecs import open as codecs_open
 from os import path
 
 import sys
@@ -12,12 +12,16 @@ pytest_runner = ['pytest-runner'] if needs_pytest else []
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README.md file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with codecs_open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 version = {}
-with open("spotinst_sdk2/version.py") as fp:
-    exec(fp.read(), version)
+with codecs_open("spotinst_sdk2/version.py", encoding='utf-8') as fp:
+    for line in fp:
+        if line.startswith("__version__"):
+            delim = '"' if '"' in line else "'"
+            version['__version__'] = line.split(delim)[1]
+            break
 
 setup(
     name='spotinst-sdk2',
@@ -53,46 +57,46 @@ setup(
 
     keywords='spotinst spot instances aws azure ec2 cloud infrastructure development elastigroup',
     packages=[
-    "spotinst_sdk2", 
-        "spotinst_sdk2.clients", 
-            "spotinst_sdk2.clients.admin",
-            "spotinst_sdk2.clients.elastigroup",
-            "spotinst_sdk2.clients.functions",
-            "spotinst_sdk2.clients.hpc",
-            "spotinst_sdk2.clients.mcs",
-            "spotinst_sdk2.clients.mrscaler",
-            "spotinst_sdk2.clients.ocean",
-            "spotinst_sdk2.clients.ocean_cd",
-            "spotinst_sdk2.clients.subscription",
-            "spotinst_sdk2.clients.setup",
-            "spotinst_sdk2.clients.managed_instance",
-            "spotinst_sdk2.clients.stateful_node",
+        "spotinst_sdk2",
+        "spotinst_sdk2.clients",
+        "spotinst_sdk2.clients.admin",
+        "spotinst_sdk2.clients.elastigroup",
+        "spotinst_sdk2.clients.functions",
+        "spotinst_sdk2.clients.hpc",
+        "spotinst_sdk2.clients.mcs",
+        "spotinst_sdk2.clients.mrscaler",
+        "spotinst_sdk2.clients.ocean",
+        "spotinst_sdk2.clients.ocean_cd",
+        "spotinst_sdk2.clients.subscription",
+        "spotinst_sdk2.clients.setup",
+        "spotinst_sdk2.clients.managed_instance",
+        "spotinst_sdk2.clients.stateful_node",
         "spotinst_sdk2.models",
-            "spotinst_sdk2.models.admin",
-            "spotinst_sdk2.models.elastigroup",
-                "spotinst_sdk2.models.elastigroup.aws",
-                "spotinst_sdk2.models.elastigroup.azure_v3",
-                "spotinst_sdk2.models.elastigroup.gcp",
-            "spotinst_sdk2.models.functions",
-            "spotinst_sdk2.models.hpc",
-                "spotinst_sdk2.models.hpc.aws",
-            "spotinst_sdk2.models.mrscaler",
-                "spotinst_sdk2.models.mrscaler.aws",
-            "spotinst_sdk2.models.ocean",
-                "spotinst_sdk2.models.ocean.aws",
-                "spotinst_sdk2.models.ocean.azure",
-                "spotinst_sdk2.models.ocean.gcp",
-                "spotinst_sdk2.models.ocean.ecs",
-                "spotinst_sdk2.models.ocean.rightsizing",
-            "spotinst_sdk2.models.ocean_cd",
-                "spotinst_sdk2.models.ocean_cd",
-            "spotinst_sdk2.models.setup",
-                "spotinst_sdk2.models.setup.azure",
-                "spotinst_sdk2.models.setup.gcp",
-            "spotinst_sdk2.models.subscription",
-            "spotinst_sdk2.models.managed_instance",
-                "spotinst_sdk2.models.managed_instance.aws",
-            "spotinst_sdk2.models.stateful_node"
+        "spotinst_sdk2.models.admin",
+        "spotinst_sdk2.models.elastigroup",
+        "spotinst_sdk2.models.elastigroup.aws",
+        "spotinst_sdk2.models.elastigroup.azure_v3",
+        "spotinst_sdk2.models.elastigroup.gcp",
+        "spotinst_sdk2.models.functions",
+        "spotinst_sdk2.models.hpc",
+        "spotinst_sdk2.models.hpc.aws",
+        "spotinst_sdk2.models.mrscaler",
+        "spotinst_sdk2.models.mrscaler.aws",
+        "spotinst_sdk2.models.ocean",
+        "spotinst_sdk2.models.ocean.aws",
+        "spotinst_sdk2.models.ocean.azure",
+        "spotinst_sdk2.models.ocean.gcp",
+        "spotinst_sdk2.models.ocean.ecs",
+        "spotinst_sdk2.models.ocean.rightsizing",
+        "spotinst_sdk2.models.ocean_cd",
+        "spotinst_sdk2.models.ocean_cd",
+        "spotinst_sdk2.models.setup",
+        "spotinst_sdk2.models.setup.azure",
+        "spotinst_sdk2.models.setup.gcp",
+        "spotinst_sdk2.models.subscription",
+        "spotinst_sdk2.models.managed_instance",
+        "spotinst_sdk2.models.managed_instance.aws",
+        "spotinst_sdk2.models.stateful_node"
     ],
     install_requires=['requests', 'PyYaml'],
 
