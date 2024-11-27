@@ -626,10 +626,6 @@ class AdminClient(Client):
             excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
-
-        policy_response = self.send_post(
-            body=body_json,
-            url=self.__base_setup_url + "/access/userGroup", entity_name="usergroup")
         
         policy_response = self.send_post(
             [self.__base_setup_url, "access/userGroup"],

@@ -9,12 +9,20 @@ from .version import __version__
 
 VAR_SPOTINST_LOG_LEVEL = 'SPOTINST_LOG_LEVEL'
 
-
 version = {'__version__': __version__}
 
 _SpotinstClient__spotinst_sdk_python_agent_name = 'spotinst-sdk-python'
 _SpotinstClient__spotinst_sdk_user_agent = '{}/{}'.format(
     _SpotinstClient__spotinst_sdk_python_agent_name, version['__version__'])
+
+
+def is_safe_path(base_path, user_input_path):
+    # Normalize the base path and user input path
+    base_path = os.path.abspath(base_path)
+    user_input_path = os.path.abspath(os.path.join(base_path, user_input_path))
+
+    # Check if the user input path is within the base path
+    return os.path.commonpath([base_path]) == os.path.commonpath([base_path, user_input_path])
 
 
 class Client:
@@ -42,15 +50,6 @@ class Client:
 
         self.timeout = timeout
 
-    def is_safe_path(self, base_path, user_input_path):
-        # Normalize the base path and user input path
-        base_path = os.path.abspath(base_path)
-        user_input_path = os.path.abspath(os.path.join(base_path, user_input_path))
-
-        # Check if the user input path is within the base path
-        return os.path.commonpath([base_path]) == os.path.commonpath([base_path, user_input_path])
-    
-
     def send_get(self, url_components, entity_name, query_params=None):
         agent = self.resolve_user_agent()
 
@@ -72,13 +71,14 @@ class Client:
 
         path = urllib.parse.urlparse(url_components[1]).path
 
+        url = ""
         geturl = ""
         for url_component in url_components:
             geturl += url_component
             geturl += "/"
 
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + geturl
         self.print_output("Request URL - " + str(url))
 
@@ -116,7 +116,7 @@ class Client:
 
         url = ""
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + delurl
         self.print_output("Request URL - " + str(url))
 
@@ -154,7 +154,7 @@ class Client:
 
         url = ""
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + delurl
         self.print_output("Request URL - " + str(url))
 
@@ -196,7 +196,7 @@ class Client:
 
         url = ""
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + delurl
         self.print_output("Request URL - " + str(url))
 
@@ -242,7 +242,7 @@ class Client:
 
         url = ""
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + posturl
         self.print_output("Request URL - " + str(url))
 
@@ -287,7 +287,7 @@ class Client:
 
         url = ""
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + posturl
         self.print_output("Request URL - " + str(url))
 
@@ -335,7 +335,7 @@ class Client:
 
         url = ""
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + puturl
         self.print_output("Request URL - " + str(url))
 
@@ -379,7 +379,7 @@ class Client:
 
         url = ""
         # Check if the path is safe
-        if self.is_safe_path(url_components[0], path):
+        if is_safe_path(url_components[0], path):
             url = self.base_url + puturl
         self.print_output("Request URL - " + str(url))
 

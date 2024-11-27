@@ -31,7 +31,7 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_dict)
 
         response = self.send_post(
-            self.__base_stateful_node_url,
+            [self.__base_stateful_node_url],
             body=body_json,
             entity_name=self.ENTITY_NAME)
 
@@ -129,7 +129,7 @@ class StatefulNodeAzureClient(Client):
         query_params = dict(name=name, region=region)
 
         response = self.send_get(
-            self.__base_stateful_node_url,
+            [self.__base_stateful_node_url],
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 

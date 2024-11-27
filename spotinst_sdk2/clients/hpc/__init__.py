@@ -29,7 +29,7 @@ class HPCAwsClient(Client):
         body_json = json.dumps(formatted_cluster_dict)
 
         cluster_response = self.send_post(
-            self.__base_hpc_url,
+            [self.__base_hpc_url],
             body=body_json,
             entity_name='hpc_cluster')
 
@@ -74,7 +74,7 @@ class HPCAwsClient(Client):
         (List): List of HPC Cluster API response
         """
         content = self.send_get(
-            url=self.__base_hpc_url,
+            [self.__base_hpc_url],
             entity_name='hpc_cluster')
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)

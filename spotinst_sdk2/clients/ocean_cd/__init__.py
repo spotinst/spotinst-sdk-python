@@ -45,7 +45,7 @@ class OceanCDClient(Client):
         (List): List of Ocean CD CLuster API response
         """
         response = self.send_get(
-            self.__base_oceancd_cluster_url,
+            [self.__base_oceancd_cluster_url],
             entity_name="oceancdCluster")
 
         formatted_response = self.convert_json(
@@ -124,7 +124,7 @@ class OceanCDClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_post(
-            self.__base_oceancd_vp_url,
+            [self.__base_oceancd_vp_url],
             body=body_json,
             entity_name="oceancdVerificationProvider")
 
@@ -141,7 +141,7 @@ class OceanCDClient(Client):
         (List): List of Ocean CD Verification Provider API response
         """
         response = self.send_get(
-            self.__base_oceancd_vp_url,
+            [self.__base_oceancd_vp_url],
             entity_name="oceancdVerificationProvider")
 
         formatted_response = self.convert_json(
@@ -238,7 +238,7 @@ class OceanCDClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_post(
-            self.__base_oceancd_vt_url,
+            [self.__base_oceancd_vt_url],
             body=body_json,
             entity_name="oceancdVerificationTemplate")
 
@@ -255,7 +255,7 @@ class OceanCDClient(Client):
         (List): List of Ocean CD Verification Template API response
         """
         response = self.send_get(
-            self.__base_oceancd_vt_url,
+            [self.__base_oceancd_vt_url],
             entity_name="oceancdVerificationTemplate")
 
         formatted_response = self.convert_json(
@@ -349,7 +349,7 @@ class OceanCDClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_post(
-            self.__base_strategy_url,
+            [self.__base_strategy_url],
             body=body_json,
             entity_name="oceancdStrategy")
 
@@ -366,7 +366,7 @@ class OceanCDClient(Client):
         (List): List of Ocean CD Strategy API response
         """
         response = self.send_get(
-            self.__base_strategy_url,
+            [self.__base_strategy_url],
             entity_name="oceancdStrategy")
 
         formatted_response = self.convert_json(
@@ -460,7 +460,7 @@ class OceanCDClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_post(
-            self.__base_rollout_spec_url,
+            [self.__base_rollout_spec_url],
             body=body_json,
             entity_name="oceancdRolloutSpec")
 
@@ -477,7 +477,7 @@ class OceanCDClient(Client):
         (List): List of Ocean CD Rollout Spec API response
         """
         response = self.send_get(
-            self.__base_rollout_spec_url,
+            [self.__base_rollout_spec_url],
             entity_name="oceancdRolloutSpec")
 
         formatted_response = self.convert_json(
@@ -612,7 +612,7 @@ class OceanCDClient(Client):
         query_params = dict(fromDate=from_date)
 
         response = self.send_get(
-            self.__base_rollout_url,
+            [self.__base_rollout_url],
             entity_name="oceancdRollout",
             query_params=query_params)
 
@@ -766,7 +766,7 @@ class OceanCDClient(Client):
         (Object): OceanCD Workloads API response
         """
         response = self.send_get(
-            self.__base_workload_url,
+            [self.__base_workload_url],
             entity_name="oceancdWorkloads")
 
         formatted_response = self.convert_json(

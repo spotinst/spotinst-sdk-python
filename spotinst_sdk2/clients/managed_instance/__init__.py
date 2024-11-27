@@ -35,7 +35,7 @@ class ManagedInstanceAwsClient(Client):
         self.print_output(body_json)
 
         mi_response = self.send_post(
-            self.__base_mi_url,
+            [self.__base_mi_url],
             body=body_json,
             entity_name=self.ENTITY_NAME)
 
@@ -71,7 +71,7 @@ class ManagedInstanceAwsClient(Client):
         List: List of ManagedInstance API response
         """
         content = self.send_get(
-            self.__base_mi_url,
+            [self.__base_mi_url],
             entity_name=self.ENTITY_NAME)
         formatted_response = self.convert_json(
             content, self.camel_to_underscore)

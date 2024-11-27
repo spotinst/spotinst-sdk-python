@@ -28,7 +28,7 @@ class MrScalerAwsClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         group_response = self.send_post(
-            self.__base_emr_url,
+            [self.__base_emr_url],
             body=body_json,
             entity_name='emr')
 
@@ -75,7 +75,7 @@ class MrScalerAwsClient(Client):
         (Object): Elastigroup API response 
         """
         response = self.send_get(
-            self.__base_emr_url,
+            [self.__base_emr_url],
             entity_name="emr"
         )
 

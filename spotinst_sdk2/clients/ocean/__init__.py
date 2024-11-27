@@ -38,7 +38,7 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
-            self.__base_ocean_cluster_url,
+            [self.__base_ocean_cluster_url],
             body=body_json,
             entity_name='ocean')
 
@@ -90,7 +90,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_cluster_url,
+            [self.__base_ocean_cluster_url],
             entity_name="ocean"
         )
 
@@ -564,7 +564,7 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post_with_params(
-            self.__base_ocean_launchspec_url,
+            [self.__base_ocean_launchspec_url],
             body=body_json,
             entity_name='ocean_aws_vng',
             user_query_params=query_params)
@@ -617,7 +617,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_launchspec_url,
+            [self.__base_ocean_launchspec_url],
             entity_name="ocean_aws_vng",
             query_params=dict(oceanId=ocean_id)
         )
@@ -1047,7 +1047,7 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
-            self.__base_ocean_extended_resource_definition_url,
+            [self.__base_ocean_extended_resource_definition_url],
             body=body_json,
             entity_name='ocean_aws_extended_resource_defintion')
 
@@ -1086,7 +1086,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_extended_resource_definition_url,
+            [self.__base_ocean_extended_resource_definition_url],
             entity_name="ocean_extended_resource_definition",
         )
 
@@ -1172,7 +1172,7 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
-            self.__base_ocean_cluster_url,
+            [self.__base_ocean_cluster_url],
             body=body_json,
             entity_name='ocean_aks')
 
@@ -1190,7 +1190,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_cluster_url,
+            [self.__base_ocean_cluster_url],
             entity_name="ocean_aks"
         )
 
@@ -1310,7 +1310,7 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
-            self.__base_ocean_vng_url,
+            [self.__base_ocean_vng_url],
             body=body_json,
             entity_name='ocean_aks_vng')
 
@@ -1381,7 +1381,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_vng_url,
+            [self.__base_ocean_vng_url],
             entity_name="ocean_aks_vng",
             query_params=dict(oceanId=ocean_id)
         )
@@ -1859,7 +1859,7 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
-            self.__base_ocean_cluster_url,
+            [self.__base_ocean_cluster_url],
             body=body_json,
             entity_name='ocean')
 
@@ -1877,7 +1877,7 @@ class OceanGcpClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_cluster_url,
+            [self.__base_ocean_cluster_url],
             entity_name="ocean"
         )
 
@@ -2122,7 +2122,7 @@ class OceanGcpClient(Client):
         query_params = dict(initialNodes=initial_nodes)
 
         response = self.send_post_with_params(
-            self.__base_ocean_launchspec_url,
+            [self.__base_ocean_launchspec_url],
             body=body_json,
             entity_name='ocean_gcp_vng',
             user_query_params=query_params)
@@ -2142,7 +2142,7 @@ class OceanGcpClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_launchspec_url,
+            [self.__base_ocean_launchspec_url],
             entity_name="ocean_gcp_vng",
             query_params=dict(oceanId=ocean_id)
         )
@@ -2833,7 +2833,7 @@ class OceanEcsClient(Client):
         """
 
         response = self.send_get(
-            self.__base_ocean_url,
+            [self.__base_ocean_url],
             entity_name="ocean ecs"
         )
 
@@ -2863,7 +2863,7 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
-            self.__base_ocean_url,
+            [self.__base_ocean_url],
             body=body_json,
             entity_name='ocean ecs')
 
@@ -3257,7 +3257,7 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
-            self.__base_launch_spec_url,
+            [self.__base_launch_spec_url],
             body=body_json,
             entity_name='ocean ecs vng')
 
@@ -3275,7 +3275,7 @@ class OceanEcsClient(Client):
         """
 
         response = self.send_get(
-            self.__base_launch_spec_url,
+            [self.__base_launch_spec_url],
             entity_name="ocean ecs vng",
             query_params=dict(oceanId=ocean_id)
         )

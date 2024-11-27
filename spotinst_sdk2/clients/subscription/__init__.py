@@ -30,7 +30,7 @@ class SubscriptionClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         group_response = self.send_post(
-            self.__base_event_subscription_url,
+            [self.__base_event_subscription_url],
             body=body_json,
             entity_name='subscription')
 
@@ -83,7 +83,7 @@ class SubscriptionClient(Client):
         (Object): Subscription API response 
         """
         response = self.send_get(
-            self.__base_event_subscription_url,
+            [self.__base_event_subscription_url],
             entity_name="subscription"
         )
 
