@@ -80,6 +80,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + geturl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.get(
             url, params=query_params, headers=headers, timeout=self.timeout)
@@ -117,6 +118,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + delurl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.delete(
             url, params=query_params, headers=headers, timeout=self.timeout)
@@ -154,6 +156,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + delurl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.delete(
             url,
@@ -195,6 +198,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + delurl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.delete(
             url,
@@ -240,6 +244,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + posturl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.post(
             url,
@@ -284,6 +289,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + posturl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.post(
             url,
@@ -331,6 +337,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + puturl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.put(
             url,
@@ -374,6 +381,7 @@ class Client:
         # Check if the path is safe
         if self.is_safe_path(url_components[0], path):
             url = self.base_url + puturl
+        self.print_output("Request URL - " + str(url))
 
         result = requests.put(
             url,
