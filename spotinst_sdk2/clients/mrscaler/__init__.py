@@ -28,8 +28,8 @@ class MrScalerAwsClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         group_response = self.send_post(
+            self.__base_emr_url,
             body=body_json,
-            url=self.__base_emr_url,
             entity_name='emr')
 
         formatted_response = self.convert_json(
@@ -58,9 +58,8 @@ class MrScalerAwsClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         group_response = self.send_put(
+            [self.__base_emr_url, emr_id],
             body=body_json,
-            url=self.__base_emr_url +
-            "/" + emr_id,
             entity_name='emr')
 
         formatted_response = self.convert_json(
@@ -76,7 +75,7 @@ class MrScalerAwsClient(Client):
         (Object): Elastigroup API response 
         """
         response = self.send_get(
-            url=self.__base_emr_url,
+            self.__base_emr_url,
             entity_name="emr"
         )
 
@@ -96,8 +95,7 @@ class MrScalerAwsClient(Client):
         (Object): Elastigroup API response 
         """
         response = self.send_get(
-            url=self.__base_emr_url +
-            "/" + emr_id,
+            [self.__base_emr_url, emr_id],
             entity_name="emr"
         )
 
@@ -117,9 +115,7 @@ class MrScalerAwsClient(Client):
         (Object): Elastigroup API response 
         """
         response = self.send_get(
-            url=self.__base_emr_url +
-            "/" + emr_id +
-            "/instance",
+            [self.__base_emr_url, emr_id, "instance"],
             entity_name="emr"
         )
 
@@ -139,9 +135,7 @@ class MrScalerAwsClient(Client):
         (Object): Elastigroup API response 
         """
         response = self.send_get(
-            url=self.__base_emr_url +
-            "/" + emr_id +
-            "/cluster",
+            [self.__base_emr_url, emr_id, "cluster"],
             entity_name="emr"
         )
 
@@ -165,9 +159,7 @@ class MrScalerAwsClient(Client):
         query_params = dict(fromDate=from_date, toDate=to_date)
 
         response = self.send_get(
-            url=self.__base_emr_url +
-            "/" + emr_id +
-            "/costs",
+            [self.__base_emr_url, emr_id, "costs"],
             query_params=query_params,
             entity_name="emr"
         )
@@ -188,8 +180,7 @@ class MrScalerAwsClient(Client):
         (Object): Elastigroup API response 
         """
         response = self.send_delete(
-            url=self.__base_emr_url +
-            "/" + emr_id,
+            [self.__base_emr_url, emr_id],
             entity_name="emr"
         )
 
@@ -209,9 +200,7 @@ class MrScalerAwsClient(Client):
         query_params = dict(adjustment=adjustment)
 
         response = self.send_put(
-            url=self.__base_emr_url +
-            "/" + emr_id +
-            "/scale/up",
+            [self.__base_emr_url, emr_id, "scale/up"],
             query_params=query_params,
             entity_name="emr"
         )
@@ -235,9 +224,7 @@ class MrScalerAwsClient(Client):
         query_params = dict(adjustment=adjustment)
 
         response = self.send_put(
-            url=self.__base_emr_url +
-            "/" + emr_id +
-            "/scale/down",
+            [self.__base_emr_url, emr_id, "scale/down"],
             query_params=query_params,
             entity_name="emr"
         )

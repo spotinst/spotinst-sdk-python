@@ -31,8 +31,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_dict)
 
         response = self.send_post(
+            self.__base_stateful_node_url,
             body=body_json,
-            url=self.__base_stateful_node_url,
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -62,8 +62,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_put(
+            [self.__base_stateful_node_url, node_id],
             body=body_json,
-            url=self.__base_stateful_node_url + "/" + node_id,
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -94,8 +94,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_delete_dict)
 
         response = self.send_delete_with_body(
+            [self.__base_stateful_node_url, node_id],
             body=body_json,
-            url=self.__base_stateful_node_url + "/" + node_id,
             entity_name=self.ENTITY_NAME)
 
         return response
@@ -111,7 +111,7 @@ class StatefulNodeAzureClient(Client):
         (Object): Stateful Node API response
         """
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/" + node_id,
+            [self.__base_stateful_node_url, node_id],
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -129,7 +129,7 @@ class StatefulNodeAzureClient(Client):
         query_params = dict(name=name, region=region)
 
         response = self.send_get(
-            url=self.__base_stateful_node_url,
+            self.__base_stateful_node_url,
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 
@@ -149,7 +149,7 @@ class StatefulNodeAzureClient(Client):
         (Object): Stateful Node API response
         """
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/" + node_id + "/resources",
+            [self.__base_stateful_node_url, node_id, "resources"],
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -168,7 +168,7 @@ class StatefulNodeAzureClient(Client):
         (Object): Stateful Node API response
         """
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/" + node_id + "/status",
+            [self.__base_stateful_node_url, node_id, "status"],
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -184,7 +184,7 @@ class StatefulNodeAzureClient(Client):
         (Object): List of Stateful Node Statuses
         """
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/status",
+            [self.__base_stateful_node_url, "status"],
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -206,8 +206,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(dict(state=state))
 
         response = self.send_put(
+            [self.__base_stateful_node_url, node_id, "state"],
             body=body_json,
-            url=self.__base_stateful_node_url + "/" + node_id + "/state",
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -227,8 +227,7 @@ class StatefulNodeAzureClient(Client):
         (Object): Stateful Node API response
         """
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/resourceGroup/" + resource_group_name +
-            "/virtualMachine/" + virtual_machine_name + "/importConfiguration",
+            [self.__base_stateful_node_url, "resourceGroup", resource_group_name, "virtualMachine", virtual_machine_name, "importConfiguration"],
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -257,8 +256,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_dict)
 
         response = self.send_post(
+            [self.__base_stateful_node_url, "import"],
             body=body_json,
-            url=self.__base_stateful_node_url + "/import",
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -277,7 +276,7 @@ class StatefulNodeAzureClient(Client):
         (Object) : Stateful Node API response
         """
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/import/" + import_id + "/status",
+            [self.__base_stateful_node_url, "import", import_id, "status"],
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -309,8 +308,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_put(
+            [self.__base_stateful_node_url, node_id, "dataDisk/attach"],
             body=body_json,
-            url=self.__base_stateful_node_url + "/" + node_id + "/dataDisk/attach",
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -342,8 +341,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_put(
+            [self.__base_stateful_node_url, node_id, "dataDisk/detach"],
             body=body_json,
-            url=self.__base_stateful_node_url + "/" + node_id + "/dataDisk/detach",
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -370,7 +369,7 @@ class StatefulNodeAzureClient(Client):
                             resourceId=resource_id, limit=limit)
 
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/" + node_id + "/log",
+            [self.__base_stateful_node_url, node_id, "log"],
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 
@@ -403,8 +402,8 @@ class StatefulNodeAzureClient(Client):
         body_json = json.dumps(formatted_node_update_dict)
 
         response = self.send_put(
+            [self.__base_stateful_node_url, node_id, "osDisk/swap"],
             body=body_json,
-            url=self.__base_stateful_node_url + "/" + node_id + "/osDisk/swap",
             entity_name=self.ENTITY_NAME)
 
         formatted_response = self.convert_json(
@@ -428,7 +427,7 @@ class StatefulNodeAzureClient(Client):
             toDate=to_date, fromDate=from_date, ownerId=owner_id)
 
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/cost",
+            [self.__base_stateful_node_url, "cost"],
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 
@@ -453,7 +452,7 @@ class StatefulNodeAzureClient(Client):
                             toDate=to_date, ownerId=owner_id)
 
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/cost/daily",
+            [self.__base_stateful_node_url, "cost/daily"],
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 
@@ -478,7 +477,7 @@ class StatefulNodeAzureClient(Client):
                             toDate=to_date, ownerId=owner_id)
 
         response = self.send_get(
-            url=self.__base_stateful_node_url + "/sizeUsage/daily",
+            [self.__base_stateful_node_url, "sizeUsage/daily"],
             query_params=query_params,
             entity_name=self.ENTITY_NAME)
 

@@ -30,8 +30,8 @@ class SubscriptionClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         group_response = self.send_post(
+            self.__base_event_subscription_url,
             body=body_json,
-            url=self.__base_event_subscription_url,
             entity_name='subscription')
 
         formatted_response = self.convert_json(
@@ -64,9 +64,8 @@ class SubscriptionClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         group_response = self.send_put(
+            [self.__base_event_subscription_url, subscription_id],
             body=body_json,
-            url=self.__base_event_subscription_url +
-            "/" + subscription_id,
             entity_name='subscription')
 
         formatted_response = self.convert_json(
@@ -84,7 +83,7 @@ class SubscriptionClient(Client):
         (Object): Subscription API response 
         """
         response = self.send_get(
-            url=self.__base_event_subscription_url,
+            self.__base_event_subscription_url,
             entity_name="subscription"
         )
 
@@ -106,8 +105,7 @@ class SubscriptionClient(Client):
         (Object): Subscription API response 
         """
         response = self.send_get(
-            url=self.__base_event_subscription_url +
-            "/" + subscription_id,
+            [self.__base_event_subscription_url, subscription_id],
             entity_name="subscription"
         )
 
@@ -129,8 +127,7 @@ class SubscriptionClient(Client):
         (Object): subscription response 
         """
         response = self.send_delete(
-            url=self.__base_event_subscription_url +
-            "/" + subscription_id,
+            [self.__base_event_subscription_url, subscription_id],
             entity_name="subscription"
         )
 

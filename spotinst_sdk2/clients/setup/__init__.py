@@ -22,7 +22,7 @@ class SetupAWSClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_post(
-            url=self.__base_setup_url + "/credentials/aws/externalId",
+            [self.__base_setup_url, "credentials/aws/externalId"],
             entity_name="credentials"
         )
 
@@ -48,8 +48,7 @@ class SetupAWSClient(Client):
         credentials = {"iamRole": iam_role}
 
         response = self.send_post(
-            url=self.__base_setup_url +
-            "/credentials/aws",
+            [self.__base_setup_url, "credentials/aws"],
             body=json.dumps(dict(credentials=credentials)),
             entity_name="credentials"
         )
@@ -87,7 +86,7 @@ class SetupAzureClient(Client):
             excluded_set_credentials_dict, self.underscore_to_camel)
 
         response = self.send_post(
-            url=self.__base_setup_url + "/credentials",
+            [self.__base_setup_url, "credentials"],
             body=json.dumps(formatted_set_credentials_dict),
             entity_name='credentials')
 
@@ -118,7 +117,7 @@ class SetupAzureClient(Client):
             excluded_set_credentials_dict, self.underscore_to_camel)
 
         response = self.send_post(
-            url=self.__base_setup_url + "/credentials/validation",
+            [self.__base_setup_url, "credentials/validation"],
             body=json.dumps(formatted_set_credentials_dict),
             entity_name='credentials')
 
@@ -152,7 +151,7 @@ class SetupGCPClient(Client):
             json.loads(set_credentials_request.to_json()))
 
         response = self.send_post(
-            url=self.__base_setup_url + "/credentials",
+            [self.__base_setup_url, "credentials"],
             body=json.dumps(excluded_set_credentials_dict),
             entity_name='credentials')
 
@@ -180,7 +179,7 @@ class SetupGCPClient(Client):
             json.loads(set_credentials_request.to_json()))
 
         response = self.send_post(
-            url=self.__base_setup_url + "/credentials/validation",
+            [self.__base_setup_url, "credentials/validation"],
             body=json.dumps(excluded_set_credentials_dict),
             entity_name='credentials')
 

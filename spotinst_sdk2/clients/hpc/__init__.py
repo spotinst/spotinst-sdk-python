@@ -29,8 +29,8 @@ class HPCAwsClient(Client):
         body_json = json.dumps(formatted_cluster_dict)
 
         cluster_response = self.send_post(
+            self.__base_hpc_url,
             body=body_json,
-            url=self.__base_hpc_url,
             entity_name='hpc_cluster')
 
         formatted_response = self.convert_json(
@@ -48,8 +48,7 @@ class HPCAwsClient(Client):
         # Returns
         (Object): HPC Cluster API response 
         """
-        delurl = self.__base_hpc_url + "/" + cluster_id
-        return self.send_delete(url=delurl, entity_name='hpc_cluster')
+        return self.send_delete([self.__base_hpc_url,  cluster_id], entity_name='hpc_cluster')
 
     def get_hpc_cluster(self, cluster_id: str):
         """
@@ -61,8 +60,7 @@ class HPCAwsClient(Client):
         # Returns
         (Object): HPC Cluster API response 
         """
-        geturl = self.__base_hpc_url + "/" + cluster_id
-        result = self.send_get(url=geturl, entity_name='hpc_cluster')
+        result = self.send_get([self.__base_hpc_url,  cluster_id], entity_name='hpc_cluster')
 
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
@@ -103,8 +101,8 @@ class HPCAwsClient(Client):
         body_json = json.dumps(formatted_cluster_update_dict)
 
         cluster_response = self.send_put(
+            [self.__base_hpc_url,  cluster_id],
             body=body_json,
-            url=self.__base_hpc_url + "/" + cluster_id,
             entity_name='hpc_cluster'
         )
 

@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import urllib.parse
 
 import logging
 import requests
@@ -41,7 +42,16 @@ class Client:
 
         self.timeout = timeout
 
-    def send_get(self, url, entity_name, query_params=None):
+    def is_safe_path(self, base_path, user_input_path):
+        # Normalize the base path and user input path
+        base_path = os.path.abspath(base_path)
+        user_input_path = os.path.abspath(os.path.join(base_path, user_input_path))
+
+        # Check if the user input path is within the base path
+        return os.path.commonpath([base_path]) == os.path.commonpath([base_path, user_input_path])
+    
+
+    def send_get(self, url_components, entity_name, query_params=None):
         agent = self.resolve_user_agent()
 
         if query_params is not None:
@@ -60,8 +70,19 @@ class Client:
         self.print_output("Sending get request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        geturl = ""
+        for url_component in url_components:
+            geturl += url_component
+            geturl += "/"
+
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + geturl
+
         result = requests.get(
-            self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
+            url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -71,7 +92,7 @@ class Client:
         else:
             self.handle_exception("getting {}".format(entity_name), result)
 
-    def send_delete(self, url, entity_name):
+    def send_delete(self, url_components, entity_name):
         agent = self.resolve_user_agent()
         query_params = self.build_query_params()
         headers = dict(
@@ -85,8 +106,20 @@ class Client:
         self.print_output("Sending deletion request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        delurl = ""
+        for url_component in url_components:
+            delurl += url_component
+            delurl += "/"
+
+        url = ""
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + delurl
+
         result = requests.delete(
-            self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
+            url, params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -95,7 +128,7 @@ class Client:
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
 
-    def send_delete_with_body(self, body, url, entity_name):
+    def send_delete_with_body(self, url_components, body, entity_name):
         agent = self.resolve_user_agent()
         query_params = self.build_query_params()
         headers = dict(
@@ -110,8 +143,20 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
         self.print_output("Request Body - " + str(body))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        delurl = ""
+        for url_component in url_components:
+            delurl += url_component
+            delurl += "/"
+
+        url = ""
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + delurl
+
         result = requests.delete(
-            self.base_url + url,
+            url,
             params=query_params,
             headers=headers,
             data=body,
@@ -124,7 +169,7 @@ class Client:
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
 
-    def send_delete_with_params(self, url, entity_name, user_query_params):
+    def send_delete_with_params(self, url_components, entity_name, user_query_params):
         agent = self.resolve_user_agent()
 
         query_params = self.build_query_params_with_input(user_query_params)
@@ -139,8 +184,20 @@ class Client:
         self.print_output("Sending deletion request to spotinst API.")
         self.print_output("Request Query Params - " + str(query_params))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        delurl = ""
+        for url_component in url_components:
+            delurl += url_component
+            delurl += "/"
+
+        url = ""
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + delurl
+
         result = requests.delete(
-            self.base_url + url,
+            url,
             params=query_params,
             headers=headers,
             timeout=self.timeout)
@@ -152,7 +209,7 @@ class Client:
         else:
             self.handle_exception("deleting {}".format(entity_name), result)
 
-    def send_post(self, url, entity_name, body=None, query_params=None):
+    def send_post(self, url_components, entity_name, body=None, query_params=None):
         agent = self.resolve_user_agent()
 
         if query_params is not None:
@@ -172,8 +229,20 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
         self.print_output("Request Body - " + str(body))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        posturl = ""
+        for url_component in url_components:
+            posturl += url_component
+            posturl += "/"
+
+        url = ""
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + posturl
+
         result = requests.post(
-            self.base_url + url,
+            url,
             params=query_params,
             data=body,
             headers=headers,
@@ -187,7 +256,7 @@ class Client:
         else:
             self.handle_exception("creating {}".format(entity_name), result)
 
-    def send_post_with_params(self, url, entity_name, body, user_query_params):
+    def send_post_with_params(self, url_components, entity_name, body, user_query_params):
         agent = self.resolve_user_agent()
 
         query_params = self.build_query_params_with_input(user_query_params)
@@ -204,8 +273,20 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
         self.print_output("Request Body - " + str(body))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        posturl = ""
+        for url_component in url_components:
+            posturl += url_component
+            posturl += "/"
+
+        url = ""
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + posturl
+
         result = requests.post(
-            self.base_url + url,
+            url,
             params=query_params,
             data=body,
             headers=headers,
@@ -219,7 +300,7 @@ class Client:
         else:
             self.handle_exception("creating {}".format(entity_name), result)
 
-    def send_put(self, url, entity_name, query_params=None, body=None):
+    def send_put(self, url_components, entity_name, query_params=None, body=None):
         agent = self.resolve_user_agent()
 
         if query_params is not None:
@@ -239,8 +320,20 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
         self.print_output("Request Body - " + str(body))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        puturl = ""
+        for url_component in url_components:
+            puturl += url_component
+            puturl += "/"
+
+        url = ""
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + puturl
+
         result = requests.put(
-            self.base_url + url,
+            url,
             params=query_params,
             data=body,
             headers=headers,
@@ -254,7 +347,7 @@ class Client:
         else:
             self.handle_exception("updating {}".format(entity_name), result)
 
-    def send_put_with_params(self, body, url, entity_name, user_query_params):
+    def send_put_with_params(self, url_components, body, entity_name, user_query_params):
         agent = self.resolve_user_agent()
         query_params = self.build_query_params_with_input(user_query_params)
 
@@ -270,8 +363,20 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
         self.print_output("Request Body - " + str(body))
 
+        path = urllib.parse.urlparse(url_components[1]).path
+
+        puturl = ""
+        for url_component in url_components:
+            puturl += url_component
+            puturl += "/"
+
+        url = ""
+        # Check if the path is safe
+        if self.is_safe_path(url_components[0], path):
+            url = self.base_url + puturl
+
         result = requests.put(
-            self.base_url + url,
+            url,
             params=query_params,
             data=body,
             headers=headers,

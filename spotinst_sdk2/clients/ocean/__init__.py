@@ -38,8 +38,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            self.__base_ocean_cluster_url,
             body=body_json,
-            url=self.__base_ocean_cluster_url,
             entity_name='ocean')
 
         formatted_response = self.convert_json(response,
@@ -70,8 +70,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put_with_params(
+            [self.__base_ocean_cluster_url, ocean_id],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
             entity_name='ocean',
             user_query_params=dict(autoApplyTags=auto_apply_tags))
 
@@ -90,7 +90,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url,
+            self.__base_ocean_cluster_url,
             entity_name="ocean"
         )
 
@@ -107,10 +107,7 @@ class OceanAwsClient(Client):
         (Object): Ocean API response
         """
         response = self.send_get(
-            url=(self.__base_ocean_cluster_url +
-                 "/" + ocean_id +
-                 "/rightSizing/suggestion?namespace={}"
-                 ).format(namespace),
+            [self.__base_ocean_cluster_url, ocean_id, "rightSizing/suggestion?namespace={}".format(namespace)],
             entity_name="ocean"
         )
 
@@ -143,9 +140,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "rightSizing/suggestion"],
             body=body_json,
-            url=self.__base_ocean_cluster_url +
-            "/" + ocean_id + "/rightSizing/suggestion",
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -164,7 +160,7 @@ class OceanAwsClient(Client):
         (Object): Ocean API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            [self.__base_ocean_cluster_url, ocean_id],
             entity_name="ocean"
         )
 
@@ -184,7 +180,7 @@ class OceanAwsClient(Client):
         (Object): Ocean API response
         """
         return self.send_delete(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            [self.__base_ocean_cluster_url, ocean_id],
             entity_name="ocean"
         )
 
@@ -211,8 +207,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "aggregatedCosts"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/aggregatedCosts",
             entity_name='ocean (aggregated cluster costs)')
 
         formatted_response = self.convert_json(
@@ -242,8 +238,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         rolls_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "roll"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -262,7 +258,7 @@ class OceanAwsClient(Client):
         (Object): List of Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
+            [self.__base_ocean_cluster_url, ocean_id, "roll"],
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -295,8 +291,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, ocean_id, "roll", roll_id],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id,
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -317,7 +313,7 @@ class OceanAwsClient(Client):
         (Object): Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id,
+            [self.__base_ocean_cluster_url, ocean_id, "roll", roll_id],
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -342,7 +338,7 @@ class OceanAwsClient(Client):
                             launchSpecId=launch_spec_id)
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/nodes",
+            [self.__base_ocean_cluster_url, ocean_id, "nodes"],
             entity_name="ocean (Cluster Nodes)",
             query_params=query_params
         )
@@ -364,7 +360,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Get Heartbeat response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + ocean_id + "/controllerHeartbeat",
+            [self.__base_ocean_url, ocean_id, "controllerHeartbeat"],
             entity_name="ocean (Cluster Heartbeat)"
         )
 
@@ -399,9 +395,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "instanceTypeFiltersSimulation"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" +
-            ocean_id + "/instanceTypeFiltersSimulation",
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -420,7 +415,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Allowed Instance Types response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/allowedInstanceTypes",
+            [self.__base_ocean_cluster_url, ocean_id, "allowedInstanceTypes"],
             entity_name="ocean"
         )
 
@@ -440,7 +435,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Allowed Instance Types response
         """
         response = self.send_get(
-            url=self.__base_ocean_launchspec_url + "/" + ocean_launch_spec_id,
+            [self.__base_ocean_launchspec_url, ocean_launch_spec_id],
             entity_name="ocean"
         )
 
@@ -471,9 +466,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_launchspec_url, ocean_launch_spec_id, "launchNodes"],
             body=body_json,
-            url=self.__base_ocean_launchspec_url + "/" +
-            ocean_launch_spec_id + "/launchNodes",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -496,12 +490,12 @@ class OceanAwsClient(Client):
         # Returns
         (Object): Ocean Get Log API response
         """
-        geturl = self.__base_ocean_cluster_url + "/" + ocean_id + "/log"
         query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
                             resourceId=resource_id, limit=limit)
 
         result = self.send_get(
-            url=geturl, entity_name='ocean_aws_log', query_params=query_params)
+            [self.__base_ocean_cluster_url, ocean_id, "log"],
+            entity_name='ocean_aws_log', query_params=query_params)
 
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
@@ -532,14 +526,12 @@ class OceanAwsClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        geturl = self.__base_ocean_cluster_url + "/autoScalingGroup/import"
-
         query_params = dict(
             autoScalingGroupName=auto_scaling_group_name, region=region)
 
         result = self.send_post_with_params(
+            [self.__base_ocean_cluster_url, "autoScalingGroup/import"],
             body=body_json,
-            url=geturl,
             entity_name='import_asg_to_ocean_cluster',
             user_query_params=query_params)
 
@@ -572,8 +564,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post_with_params(
+            self.__base_ocean_launchspec_url,
             body=body_json,
-            url=self.__base_ocean_launchspec_url,
             entity_name='ocean_aws_vng',
             user_query_params=query_params)
 
@@ -604,8 +596,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put_with_params(
+            [self.__base_ocean_launchspec_url, vng_id],
             body=body_json,
-            url=self.__base_ocean_launchspec_url + "/" + vng_id,
             entity_name='ocean_aws_vng',
             user_query_params=dict(autoApplyTags=auto_apply_tags))
 
@@ -625,7 +617,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_launchspec_url,
+            self.__base_ocean_launchspec_url,
             entity_name="ocean_aws_vng",
             query_params=dict(oceanId=ocean_id)
         )
@@ -648,7 +640,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Launch Specification Delete response
         """
         return self.send_delete_with_params(
-            url=self.__base_ocean_launchspec_url + "/" + vng_id,
+            [self.__base_ocean_launchspec_url, vng_id],
             entity_name="ocean_aws_vng",
             user_query_params=dict(
                 deleteNodes=delete_nodes, forceDelete=force_delete)
@@ -677,7 +669,7 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         return self.send_put(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/loadBalancer/attach",
+            [self.__base_ocean_cluster_url, ocean_id, "loadBalancer/attach"],
             entity_name="ocean_aws_attach_load_balancer",
             body=body_json
         )
@@ -705,7 +697,7 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         return self.send_put(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/loadBalancer/detach",
+            [self.__base_ocean_cluster_url, ocean_id, "loadBalancer/detach"],
             entity_name="ocean_aws_detach_load_balancer",
             body=body_json
         )
@@ -724,8 +716,8 @@ class OceanAwsClient(Client):
         query_params = dict(groupId=group_id)
 
         response = self.send_post_with_params(
+            [self.__base_ocean_cluster_url, "import"],
             body=None,
-            url=self.__base_ocean_cluster_url + "/import",
             entity_name='ocean_aws_update_eg_to_ocean',
             user_query_params=query_params)
 
@@ -757,8 +749,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         detach_instances_response = self.send_put(
+            [self.__base_ocean_cluster_url, ocean_id, "detachInstances"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/detachInstances",
             entity_name='ocean_aws_detach_instances)')
 
         formatted_response = self.convert_json(
@@ -792,9 +784,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
+            [self.__base_ocean_launchspec_url, launch_spec_id, "instanceTypeFiltersSimulation"],
             body=body_json,
-            url=self.__base_ocean_launchspec_url + "/" +
-            launch_spec_id + "/instanceTypeFiltersSimulation",
             entity_name='ocean_instance_type_filters_simulation_for_vng')
 
         formatted_response = self.convert_json(
@@ -831,8 +822,8 @@ class OceanAwsClient(Client):
             autoScalingGroupName=auto_scaling_group_name, oceanId=ocean_id)
 
         response = self.send_post_with_params(
+            [self.__base_ocean_launchspec_url, "autoScalingGroup/import"],
             body=body_json,
-            url=self.__base_ocean_launchspec_url + "/autoScalingGroup/import",
             entity_name="ocean_aws_asg_ocean_vng_import",
             user_query_params=query_params
         )
@@ -853,8 +844,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Allowed Instance Types response
         """
         response = self.send_get(
-            url=self.__base_ocean_launchspec_url + "/" +
-            launch_spec_id + "/allowedInstanceTypesByFilters",
+            [self.__base_ocean_launchspec_url, launch_spec_id, "allowedInstanceTypesByFilters"],
             entity_name="ocean_aws_allowed_instance_types_by_filters_for_vng"
         )
 
@@ -896,8 +886,8 @@ class OceanAwsClient(Client):
                             eksNodeGroupName=eks_node_group_name, region=region, oceanId=ocean_id)
 
         response = self.send_post_with_params(
+            [self.__base_ocean_launchspec_url, "eksNodeGroup/import"],
             body=body_json,
-            url=self.__base_ocean_launchspec_url + "/eksNodeGroup/import",
             entity_name="ocean_aws_eks_ocean_vng_import",
             user_query_params=query_params
         )
@@ -928,8 +918,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "migration"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
             entity_name='ocean_aws_migration')
 
         formatted_response = self.convert_json(response,
@@ -951,7 +941,7 @@ class OceanAwsClient(Client):
         query_params = dict(shouldFetchPods=should_fetch_pods)
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration/discovery",
+            [self.__base_ocean_cluster_url, ocean_id, "migration/discovery"],
             entity_name="ocean_aws_migration",
             query_params=query_params
         )
@@ -985,9 +975,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, ocean_id, "migration", migration_id],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" +
-            ocean_id + "/migration/" + migration_id,
             entity_name="ocean_aws_migration",
         )
 
@@ -1009,8 +998,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" +
-            ocean_id + "/migration/" + migration_id,
+            [self.__base_ocean_cluster_url, ocean_id, "migration", migration_id],
             entity_name="ocean_aws_migration"
         )
 
@@ -1028,7 +1016,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
+            [self.__base_ocean_cluster_url, ocean_id, "migration"],
             entity_name="ocean_aws_migration",
         )
 
@@ -1059,8 +1047,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            self.__base_ocean_extended_resource_definition_url,
             body=body_json,
-            url=self.__base_ocean_extended_resource_definition_url,
             entity_name='ocean_aws_extended_resource_defintion')
 
         formatted_response = self.convert_json(response,
@@ -1080,8 +1068,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_extended_resource_definition_url +
-            "/" + ocean_extended_resource_definition_id,
+            [self.__base_ocean_extended_resource_definition_url, ocean_extended_resource_definition_id],
             entity_name='ocean_aws_extended_resource_defintion'
         )
 
@@ -1099,7 +1086,7 @@ class OceanAwsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_extended_resource_definition_url,
+            self.__base_ocean_extended_resource_definition_url,
             entity_name="ocean_extended_resource_definition",
         )
 
@@ -1132,9 +1119,8 @@ class OceanAwsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_extended_resource_definition_url, ocean_extended_resource_definition_id],
             body=body_json,
-            url=self.__base_ocean_extended_resource_definition_url +
-            "/" + ocean_extended_resource_definition_id,
             entity_name='ocean_extended_resource_defintion')
 
         formatted_response = self.convert_json(
@@ -1154,8 +1140,7 @@ class OceanAwsClient(Client):
         (Object): Ocean Delete Extended Resource Definition response
         """
         return self.send_delete(
-            url=self.__base_ocean_extended_resource_definition_url +
-            "/" + ocean_extended_resource_definition_id,
+            [self.__base_ocean_extended_resource_definition_url, ocean_extended_resource_definition_id],
             entity_name='ocean_extended_resource_defintion')
 # endregion
 
@@ -1187,8 +1172,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            self.__base_ocean_cluster_url,
             body=body_json,
-            url=self.__base_ocean_cluster_url,
             entity_name='ocean_aks')
 
         formatted_response = self.convert_json(response,
@@ -1205,7 +1190,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url,
+            self.__base_ocean_cluster_url,
             entity_name="ocean_aks"
         )
 
@@ -1225,7 +1210,7 @@ class OceanAzureClient(Client):
         (Object): Ocean API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            [self.__base_ocean_cluster_url, ocean_id],
             entity_name="ocean_aks"
         )
 
@@ -1245,7 +1230,7 @@ class OceanAzureClient(Client):
         (Object): Ocean API response
         """
         return self.send_delete(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            [self.__base_ocean_cluster_url, ocean_id],
             entity_name="ocean_aks"
         )
 
@@ -1271,8 +1256,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, ocean_id],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
             entity_name='ocean_aks')
 
         formatted_response = self.convert_json(
@@ -1294,8 +1279,8 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_post_with_params(
+            [self.__base_ocean_cluster_url, "aks/import"],
             body=None,
-            url=self.__base_ocean_cluster_url + "/aks/import",
             entity_name='ocean_aks',
             user_query_params=dict(aksClusterName=aks_cluster_name, resourceGroupName=resource_group_name))
 
@@ -1325,8 +1310,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            self.__base_ocean_vng_url,
             body=body_json,
-            url=self.__base_ocean_vng_url,
             entity_name='ocean_aks_vng')
 
         formatted_response = self.convert_json(response,
@@ -1356,8 +1341,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_vng_url, vng_id],
             body=body_json,
-            url=self.__base_ocean_vng_url + "/" + vng_id,
             entity_name='ocean_aks_vng')
 
         formatted_response = self.convert_json(
@@ -1377,7 +1362,7 @@ class OceanAzureClient(Client):
         (Object): Ocean VNG API response
         """
         response = self.send_get(
-            url=self.__base_ocean_vng_url + "/" + vng_id,
+            [self.__base_ocean_vng_url, vng_id],
             entity_name="ocean_aks_vng"
         )
 
@@ -1396,7 +1381,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_vng_url,
+            self.__base_ocean_vng_url,
             entity_name="ocean_aks_vng",
             query_params=dict(oceanId=ocean_id)
         )
@@ -1417,7 +1402,7 @@ class OceanAzureClient(Client):
         (Object): Ocean VNG API response
         """
         return self.send_delete(
-            url=self.__base_ocean_vng_url + "/" + vng_id,
+            [self.__base_ocean_vng_url, vng_id],
             entity_name="ocean_aks_vng"
         )
 
@@ -1430,8 +1415,8 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_post_with_params(
+            [self.__base_ocean_vng_url, "import"],
             body=None,
-            url=self.__base_ocean_vng_url + "/import",
             entity_name='ocean_aks',
             user_query_params=dict(nodePoolName=node_pool_name, oceanId=ocean_id))
 
@@ -1462,8 +1447,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, "launchNewNodes"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/launchNewNodes",
             entity_name='ocean_aks')
 
         formatted_response = self.convert_json(response,
@@ -1482,7 +1467,7 @@ class OceanAzureClient(Client):
         (Object): Array of allowed vm sizes list 
         """
         response = self.send_get(
-            url=self.__base_ocean_vng_url + "/vmSizes",
+            [self.__base_ocean_vng_url, "vmSizes"],
             entity_name="ocean_aks_vng",
             query_params=dict(virtualNodeGroupId=vng_id))
 
@@ -1513,8 +1498,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "roll"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -1535,7 +1520,7 @@ class OceanAzureClient(Client):
         (Object): Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id,
+            [self.__base_ocean_cluster_url, ocean_id, "roll", roll_id],
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -1555,7 +1540,7 @@ class OceanAzureClient(Client):
         (Object): List of Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
+            [self.__base_ocean_cluster_url, ocean_id, "roll"],
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -1577,8 +1562,7 @@ class OceanAzureClient(Client):
         (Object): Cluster Roll API response
         """
         response = self.send_put(
-            url=self.__base_ocean_cluster_url + "/" +
-            ocean_id + "/roll/" + roll_id + "/stop",
+            [self.__base_ocean_cluster_url, ocean_id, "roll", roll_id, "stop"],
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -1608,8 +1592,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "migration"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
             entity_name='ocean_azure_migration')
 
         formatted_response = self.convert_json(response,
@@ -1631,7 +1615,7 @@ class OceanAzureClient(Client):
         query_params = dict(shouldFetchPods=should_fetch_pods)
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration/discovery",
+            [self.__base_ocean_cluster_url, ocean_id, "migration/discovery"],
             entity_name="ocean_azure_migration",
             query_params=query_params
         )
@@ -1654,8 +1638,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_put(
-            url=self.__base_ocean_cluster_url + "/" +
-            ocean_id + "/migration/" + migration_id + "/stop",
+            [self.__base_ocean_cluster_url, ocean_id, "migration", migration_id, "stop"],
             entity_name="ocean_azure_migration",
         )
 
@@ -1677,8 +1660,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" +
-            ocean_id + "/migration/" + migration_id,
+            [self.__base_ocean_cluster_url, ocean_id, "migration", migration_id],
             entity_name="ocean_azure_migration"
         )
 
@@ -1696,7 +1678,7 @@ class OceanAzureClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/migration",
+            [self.__base_ocean_cluster_url, ocean_id, "migration"],
             entity_name="ocean_azure_migration",
         )
 
@@ -1726,8 +1708,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, "detachNodes"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/detachNodes",
             entity_name='ocean detach nodes')
 
         formatted_response = self.convert_json(
@@ -1750,12 +1732,12 @@ class OceanAzureClient(Client):
         # Returns
         (Object): Ocean Get Log API response
         """
-        geturl = self.__base_ocean_cluster_url + "/" + ocean_id + "/log"
         query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
                             resourceId=resource_id, limit=limit)
 
         result = self.send_get(
-            url=geturl, entity_name='ocean azure elastilog', query_params=query_params)
+            [self.__base_ocean_cluster_url, ocean_id, "log"], 
+            entity_name='ocean azure elastilog', query_params=query_params)
 
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
@@ -1785,8 +1767,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
+            [self.__base_ocean_k8s_url, ocean_id, "aggregatedCosts"], 
             body=body_json,
-            url=self.__base_ocean_k8s_url + ocean_id + "/aggregatedCosts",
             entity_name='ocean (aggregated cluster costs)')
 
         formatted_response = self.convert_json(
@@ -1817,9 +1799,8 @@ class OceanAzureClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         aggregated_summary_costs_response = self.send_post(
+            [self.__base_ocean_k8s_url, ocean_id, "aggregatedCosts/summary"], 
             body=body_json,
-            url=self.__base_ocean_k8s_url +
-            ocean_id + "/aggregatedCosts/summary",
             entity_name='ocean (aggregated summary costs)')
 
         formatted_response = self.convert_json(
@@ -1848,7 +1829,7 @@ class OceanGcpClient(Client):
         (Object): Ocean Get Heartbeat response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + ocean_id + "/controllerHeartbeat",
+            [self.__base_ocean_url, ocean_id, "controllerHeartbeat"], 
             entity_name="ocean (Cluster Heartbeat)"
         )
 
@@ -1878,8 +1859,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            self.__base_ocean_cluster_url,
             body=body_json,
-            url=self.__base_ocean_cluster_url,
             entity_name='ocean')
 
         formatted_response = self.convert_json(response,
@@ -1896,7 +1877,7 @@ class OceanGcpClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url,
+            self.__base_ocean_cluster_url,
             entity_name="ocean"
         )
 
@@ -1916,7 +1897,7 @@ class OceanGcpClient(Client):
         (Object): Ocean API response
         """
         return self.send_delete(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            [self.__base_ocean_cluster_url, ocean_id], 
             entity_name="ocean"
         )
 
@@ -1931,7 +1912,7 @@ class OceanGcpClient(Client):
         (Object): Ocean API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
+            [self.__base_ocean_cluster_url, ocean_id], 
             entity_name="ocean"
         )
 
@@ -1962,8 +1943,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, ocean_id], 
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id,
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -1985,7 +1966,7 @@ class OceanGcpClient(Client):
         """
 
         response = self.send_put(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + '/reImport',
+            [self.__base_ocean_cluster_url, ocean_id, "reImport"], 
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -2009,12 +1990,12 @@ class OceanGcpClient(Client):
         # Returns
         (Object): Ocean Get Log API response
         """
-        geturl = self.__base_ocean_cluster_url + "/" + ocean_id + "/log"
         query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
                             resourceId=resource_id, limit=limit)
 
         result = self.send_get(
-            url=geturl, entity_name='ocean_gcp_log', query_params=query_params)
+            [self.__base_ocean_cluster_url, ocean_id, "log"], 
+            entity_name='ocean_gcp_log', query_params=query_params)
 
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
@@ -2044,9 +2025,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "rightSizing/suggestion"], 
             body=body_json,
-            url=self.__base_ocean_cluster_url +
-            "/" + ocean_id + "/rightSizing/suggestion",
             entity_name='ocean')
 
         formatted_response = self.convert_json(
@@ -2077,8 +2057,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         aggregated_costs_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "aggregatedCosts"], 
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/aggregatedCosts",
             entity_name='ocean (aggregated cluster costs)')
 
         formatted_response = self.convert_json(
@@ -2109,9 +2089,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         aggregated_summary_costs_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "aggregatedCosts/summary"], 
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" +
-            ocean_id + "/aggregatedCosts/summary",
             entity_name='ocean (aggregated summary costs)')
 
         formatted_response = self.convert_json(
@@ -2143,8 +2122,8 @@ class OceanGcpClient(Client):
         query_params = dict(initialNodes=initial_nodes)
 
         response = self.send_post_with_params(
+            self.__base_ocean_launchspec_url,
             body=body_json,
-            url=self.__base_ocean_launchspec_url,
             entity_name='ocean_gcp_vng',
             user_query_params=query_params)
 
@@ -2163,7 +2142,7 @@ class OceanGcpClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_launchspec_url,
+            self.__base_ocean_launchspec_url,
             entity_name="ocean_gcp_vng",
             query_params=dict(oceanId=ocean_id)
         )
@@ -2183,8 +2162,8 @@ class OceanGcpClient(Client):
         """
 
         response = self.send_post_with_params(
+            [self.__base_ocean_launchspec_url, "import"],
             body=None,
-            url=self.__base_ocean_launchspec_url + "/import",
             entity_name='ocean_gcp_vng',
             user_query_params=dict(nodePoolName=node_pool_name, oceanId=ocean_id))
 
@@ -2205,7 +2184,7 @@ class OceanGcpClient(Client):
         (Object): Ocean Launch Specification Delete response
         """
         return self.send_delete_with_params(
-            url=self.__base_ocean_launchspec_url + "/" + vng_id,
+            [self.__base_ocean_launchspec_url, vng_id],
             entity_name="ocean_gcp_vng",
             user_query_params=dict(deleteNodes=delete_nodes)
         )
@@ -2232,8 +2211,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_launchspec_url, vng_id],
             body=body_json,
-            url=self.__base_ocean_launchspec_url + "/" + vng_id,
             entity_name='ocean_gcp_vng')
 
         formatted_response = self.convert_json(
@@ -2253,7 +2232,7 @@ class OceanGcpClient(Client):
         (Object): Ocean Allowed Instance Types response
         """
         response = self.send_get(
-            url=self.__base_ocean_launchspec_url + "/" + ocean_launch_spec_id,
+            [self.__base_ocean_launchspec_url, ocean_launch_spec_id],
             entity_name="ocean_gcp_vng"
         )
 
@@ -2284,8 +2263,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         rolls_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "roll"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -2304,7 +2283,7 @@ class OceanGcpClient(Client):
         (Object): List of Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll",
+            [self.__base_ocean_cluster_url, ocean_id, "roll"],
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -2337,8 +2316,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, ocean_id, "roll", roll_id],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id,
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -2359,7 +2338,7 @@ class OceanGcpClient(Client):
         (Object): Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/roll/" + roll_id,
+            [self.__base_ocean_cluster_url, ocean_id, "roll", roll_id],
             entity_name="ocean (Cluster Roll)"
         )
 
@@ -2384,7 +2363,7 @@ class OceanGcpClient(Client):
                             launchSpecId=launch_spec_id)
 
         response = self.send_get(
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/nodes",
+            [self.__base_ocean_cluster_url, ocean_id, "nodes"],
             entity_name="ocean (Cluster Nodes)",
             query_params=query_params
         )
@@ -2408,8 +2387,8 @@ class OceanGcpClient(Client):
         query_params = dict(groupId=group_id)
 
         response = self.send_post_with_params(
+            [self.__base_ocean_cluster_url, "import"],
             body=None,
-            url=self.__base_ocean_cluster_url + "/import",
             entity_name='ocean_gcp_update_eg_to_ocean',
             user_query_params=query_params)
 
@@ -2445,15 +2424,13 @@ class OceanGcpClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        geturl = self.__base_ocean_cluster_url + "/gke/import"
-
         query_params = dict(
             clusterName=cluster_name, includeLaunchSpecs=include_launchSpecs, location=location,
             nodePoolName=node_pool_name)
 
         result = self.send_post_with_params(
+            [self.__base_ocean_cluster_url, "gke/import"],
             body=body_json,
-            url=geturl,
             entity_name='import_gke_cluster_to_ocean',
             user_query_params=query_params)
 
@@ -2484,9 +2461,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_launchspec_url, ocean_launch_spec_id, "launchNodes"],
             body=body_json,
-            url=self.__base_ocean_launchspec_url + "/" +
-            ocean_launch_spec_id + "/launchNodes",
             entity_name='ocean (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -2517,8 +2493,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_cluster_url, ocean_id, "detachInstances"],
             body=body_json,
-            url=self.__base_ocean_cluster_url + "/" + ocean_id + "/detachInstances",
             entity_name='ocean gcp detach instances')
 
         formatted_response = self.convert_json(
@@ -2549,9 +2525,8 @@ class OceanGcpClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_post(
+            [self.__base_ocean_cluster_url, ocean_id, "instanceTypeFiltersSimulation"],
             body=body_json,
-            url=self.__base_ocean_cluster_url +
-            "/" + ocean_id + "/instanceTypeFiltersSimulation",
             entity_name='ocean gcp')
 
         formatted_response = self.convert_json(
@@ -2610,8 +2585,8 @@ class OceanRightSizingClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            ["ocean", ocean_id, "rightSizing/rule"],
             body=body_json,
-            url="/ocean/"+ocean_id+"/rightSizing/rule",
             entity_name='right_sizing')
 
         formatted_response = self.convert_json(response,
@@ -2643,8 +2618,8 @@ class OceanRightSizingClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         return self.send_delete_with_body(
+            ["ocean", ocean_id, "rightSizing/rule"],
             body=body_json,
-            url="/ocean/"+ocean_id+"/rightSizing/rule",
             entity_name='right_sizing')
 
     def update_right_sizing_rule(self, ocean_id: str,
@@ -2690,8 +2665,8 @@ class OceanRightSizingClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            ["ocean", ocean_id, "rightSizing/rule", rule_name],
             body=body_json,
-            url="/ocean/"+ocean_id+"/rightSizing/rule/" + rule_name,
             entity_name='right_sizing')
 
         formatted_response = self.convert_json(response,
@@ -2723,8 +2698,8 @@ class OceanRightSizingClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            ["ocean", ocean_id, "rightSizing/rule", rule_name, "attachment"],
             body=body_json,
-            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name+"/attachment",
             entity_name='right_sizing')
 
         formatted_response = self.convert_json(response,
@@ -2756,8 +2731,8 @@ class OceanRightSizingClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            ["ocean", ocean_id, "rightSizing/rule", rule_name, "detachment"],
             body=body_json,
-            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name+"/detachment",
             entity_name='right_sizing')
 
         formatted_response = self.convert_json(response,
@@ -2777,7 +2752,7 @@ class OceanRightSizingClient(Client):
         (Object): Ocean Right Sizing Rule API response
         """
         response = self.send_get(
-            url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name,
+            ["ocean", ocean_id, "rightSizing/rule", rule_name],
             entity_name="right_sizing"
         )
 
@@ -2798,7 +2773,7 @@ class OceanRightSizingClient(Client):
         (Object): Ocean Right Sizing Rules API response
         """
         response = self.send_get(
-            url="/ocean/"+ocean_id+"/rightSizing/rule/",
+            ["ocean", ocean_id, "rightSizing/rule"],
             entity_name="right_sizing"
         )
 
@@ -2831,8 +2806,8 @@ class OceanRightSizingClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            ["ocean", ocean_id, "rightSizing/recommendations"],
             body=body_json,
-            url="/ocean/"+ocean_id+"/rightSizing/recommendations",
             entity_name='right_sizing')
 
         formatted_response = self.convert_json(response,
@@ -2858,7 +2833,7 @@ class OceanEcsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_ocean_url,
+            self.__base_ocean_url,
             entity_name="ocean ecs"
         )
 
@@ -2888,8 +2863,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            self.__base_ocean_url,
             body=body_json,
-            url=self.__base_ocean_url,
             entity_name='ocean ecs')
 
         formatted_response = self.convert_json(response,
@@ -2908,7 +2883,7 @@ class OceanEcsClient(Client):
         (Object): Ocean API response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id,
+            [self.__base_ocean_url, ocean_id],
             entity_name="ocean ecs"
         )
 
@@ -2939,8 +2914,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_url, ocean_id],
             body=body_json,
-            url=self.__base_ocean_url + "/" + ocean_id,
             entity_name='ocean ecs')
 
         formatted_response = self.convert_json(
@@ -2960,7 +2935,7 @@ class OceanEcsClient(Client):
         (Object): Ocean API response
         """
         return self.send_delete(
-            url=self.__base_ocean_url + "/" + ocean_id,
+            [self.__base_ocean_url, ocean_id],
             entity_name="ocean ecs"
         )
 
@@ -2987,8 +2962,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            [self.__base_ocean_url, ecs_cluster_name, "import"],
             body=body_json,
-            url=self.__base_ocean_url + "/" + ecs_cluster_name + "/import",
             entity_name='ocean ecs')
 
         formatted_response = self.convert_json(response,
@@ -3012,12 +2987,11 @@ class OceanEcsClient(Client):
         # Returns
         (Object): Ocean Get Log API response
         """
-        geturl = self.__base_ocean_url + "/" + ocean_id + "/log"
         query_params = dict(toDate=to_date, fromDate=from_date, severity=severity,
                             resourceId=resource_id, limit=limit)
 
         result = self.send_get(
-            url=geturl, entity_name='ocean ecs', query_params=query_params)
+            [self.__base_ocean_url, ocean_id, "log"], entity_name='ocean ecs', query_params=query_params)
 
         formatted_response = self.convert_json(
             result, self.camel_to_underscore)
@@ -3047,9 +3021,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         group_response = self.send_post(
+            [self.__base_ocean_url, ocean_id, "instanceTypeFiltersSimulation"],
             body=body_json,
-            url=self.__base_ocean_url +
-            "/" + ocean_id + "/instanceTypeFiltersSimulation",
             entity_name='ocean ecs')
 
         formatted_response = self.convert_json(
@@ -3068,7 +3041,7 @@ class OceanEcsClient(Client):
         (Object): Ocean Allowed Instance Types response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id + "/allowedInstanceTypes",
+            [self.__base_ocean_url, ocean_id, "allowedInstanceTypes"],
             entity_name="ocean ecs"
         )
 
@@ -3090,7 +3063,7 @@ class OceanEcsClient(Client):
         query_params = dict(groupId=group_id)
 
         response = self.send_post_with_params(
-            url=self.__base_ocean_url + "/import",
+            [self.__base_ocean_url, "import"],
             entity_name='ocean ecs',
             body=None,
             user_query_params=query_params)
@@ -3122,8 +3095,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         rolls_response = self.send_post(
+            [self.__base_ocean_url, ocean_id, "roll"],
             body=body_json,
-            url=self.__base_ocean_url + "/" + ocean_id + "/roll",
             entity_name='ocean ecs (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -3142,7 +3115,7 @@ class OceanEcsClient(Client):
         (Object): List of Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id + "/roll",
+            [self.__base_ocean_url, ocean_id, "roll"],
             entity_name="ocean ecs (Cluster Roll)"
         )
 
@@ -3175,8 +3148,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_url, ocean_id, "roll", roll_id],
             body=body_json,
-            url=self.__base_ocean_url + "/" + ocean_id + "/roll/" + roll_id,
             entity_name='ocean ecs (Cluster Roll)')
 
         formatted_response = self.convert_json(
@@ -3196,7 +3169,7 @@ class OceanEcsClient(Client):
         (Object): Cluster Roll API response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id + "/roll/" + roll_id,
+            [self.__base_ocean_url, ocean_id, "roll", roll_id],
             entity_name="ocean ecs (Cluster Roll)"
         )
 
@@ -3221,7 +3194,7 @@ class OceanEcsClient(Client):
                             launchSpecId=launch_spec_id)
 
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id + "/containerInstances",
+            [self.__base_ocean_url, ocean_id, "containerInstances"],
             query_params=query_params,
             entity_name="ocean ecs instances"
         )
@@ -3254,8 +3227,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_ocean_url, ocean_id, "detachInstances"],
             body=body_json,
-            url=self.__base_ocean_url + "/" + ocean_id + "/detachInstances",
             entity_name='ocean ecs detach instances')
 
         formatted_response = self.convert_json(
@@ -3284,8 +3257,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            self.__base_launch_spec_url,
             body=body_json,
-            url=self.__base_launch_spec_url,
             entity_name='ocean ecs vng')
 
         formatted_response = self.convert_json(response,
@@ -3302,7 +3275,7 @@ class OceanEcsClient(Client):
         """
 
         response = self.send_get(
-            url=self.__base_launch_spec_url,
+            self.__base_launch_spec_url,
             entity_name="ocean ecs vng",
             query_params=dict(oceanId=ocean_id)
         )
@@ -3324,7 +3297,7 @@ class OceanEcsClient(Client):
         (Object): Ocean Virtual Node Group Delete response
         """
         return self.send_delete_with_params(
-            url=self.__base_launch_spec_url + "/" + vng_id,
+            [self.__base_launch_spec_url, vng_id],
             entity_name="ocean ecs vng",
             user_query_params=dict(
                 deleteContainerInstances=delete_container_instances)
@@ -3352,8 +3325,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_launch_spec_url, vng_id],
             body=body_json,
-            url=self.__base_launch_spec_url + "/" + vng_id,
             entity_name='ocean ecs vng')
 
         formatted_response = self.convert_json(
@@ -3373,7 +3346,7 @@ class OceanEcsClient(Client):
         (Object): Ocean Virtual Node Group API response
         """
         response = self.send_get(
-            url=self.__base_launch_spec_url + "/" + vng_id,
+            [self.__base_launch_spec_url, vng_id],
             entity_name="ocean ecs vng"
         )
 
@@ -3406,8 +3379,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            [self.__base_ocean_url, ocean_id, "fargateMigration"],
             body=body_json,
-            url=self.__base_ocean_url + ocean_id + "/fargateMigration",
             entity_name='ocean ecs fargate')
 
         formatted_response = self.convert_json(response,
@@ -3426,8 +3399,7 @@ class OceanEcsClient(Client):
         (Object): Ocean ECS Fargate Response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id +
-            "/fargateMigration/serviceDiscovery",
+            [self.__base_ocean_url, ocean_id, "fargateMigration/serviceDiscovery"],
             entity_name="ocean ecs fargate"
         )
 
@@ -3447,7 +3419,7 @@ class OceanEcsClient(Client):
         (Object): Ocean ECS Fargate Response
         """
         response = self.send_get(
-            url=self.__base_ocean_url + "/" + ocean_id + "/fargateMigration/status",
+            [self.__base_ocean_url, ocean_id, "fargateMigration/status"],
             entity_name="ocean ecs fargate"
         )
 
@@ -3479,8 +3451,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_post(
+            [self.__base_ocean_url, "fargate/import"],
             body=body_json,
-            url=self.__base_ocean_url + "/fargate/import",
             entity_name='ocean ecs fargate')
 
         formatted_response = self.convert_json(response,
@@ -3510,9 +3482,8 @@ class OceanEcsClient(Client):
         body_json = json.dumps(formatted_missing_dict)
 
         response = self.send_put(
+            [self.__base_launch_spec_url, vng_id, "launchContainerInstances"],
             body=body_json,
-            url=self.__base_launch_spec_url + "/" +
-            vng_id + "/launchContainerInstances",
             entity_name='ocean ecs vng')
 
         formatted_response = self.convert_json(

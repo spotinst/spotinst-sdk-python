@@ -21,8 +21,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_post(
-            url=self.__base_setup_url +
-            "/organization",
+           [self.__base_setup_url, "organization"],
             body=json.dumps(dict(organization=dict(name=org_name))),
             entity_name="organization"
         )
@@ -43,8 +42,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_delete(
-            url=self.__base_setup_url +
-            "/organization/" + str(org_id),
+           [self.__base_setup_url, "organization", org_id],
             entity_name="organization"
         )
 
@@ -61,7 +59,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_post(
-            url=self.__base_setup_url + "/credentials/aws/externalId",
+            [self.__base_setup_url, "credentials/aws/externalId"],
             entity_name="credentials"
         )
 
@@ -91,8 +89,7 @@ class AdminClient(Client):
             credentials['externalId'] = external_id
 
         response = self.send_post(
-            url=self.__base_setup_url +
-            "/credentials/aws",
+            [self.__base_setup_url, "credentials/aws"],
             body=json.dumps(dict(credentials=credentials)),
             entity_name="credentials"
         )
@@ -113,8 +110,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_post(
-            url=self.__base_setup_url +
-            "/account",
+            [self.__base_setup_url, "account"],
             body=json.dumps(dict(account=dict(name=account_name))),
             entity_name="account"
         )
@@ -137,8 +133,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_put(
-            url=self.__base_setup_url +
-            "/account/" + account_id,
+            [self.__base_setup_url, "account", account_id],
             body=json.dumps(dict(account=dict(
                 name=new_account_name, slackNotificationChannels=slack_notification_channels))),
             entity_name="account"
@@ -157,8 +152,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_get(
-            url=self.__base_setup_url +
-            "/account",
+            [self.__base_setup_url, "account"],
             entity_name="account"
         )
 
@@ -178,8 +172,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_delete(
-            url=self.__base_setup_url +
-            "/account/" + account_name,
+            [self.__base_setup_url, "account", account_name],
             entity_name="account"
         )
 
@@ -200,8 +193,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_post(
-            url=self.__base_setup_url +
-            "/user",
+            [self.__base_setup_url, "user"],
             body=json.dumps(dict(
                 firstName=first_name,
                 lastName=last_name,
@@ -228,9 +220,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_post(
-            url=self.__base_setup_url +
-            "/account/" + self.account_id +
-            "/user",
+            [self.__base_setup_url, "account", self.account_id, "user"],
             body=json.dumps(dict(userEmail=user_email, role=role)),
             entity_name="user"
         )
@@ -252,9 +242,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_put(
-            url=self.__base_setup_url +
-            "/account/" + self.account_id +
-            "/user",
+            [self.__base_setup_url, "account", self.account_id, "user"],
             body=json.dumps(dict(userEmail=user_email, role=role)),
             entity_name="user"
         )
@@ -275,9 +263,7 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         response = self.send_delete_with_body(
-            url=self.__base_setup_url +
-            "/account/" + self.account_id +
-            "/user",
+            [self.__base_setup_url, "account", self.account_id, "user"],
             body=json.dumps(dict(userEmail=user_email)),
             entity_name="user"
         )
@@ -295,8 +281,9 @@ class AdminClient(Client):
         (Object): Spotinst API response 
         """
         query_params = dict(userEmail=user_email)
+
         response = self.send_get(
-            url=self.__base_setup_url + "/accountUserMapping",
+            [self.__base_setup_url, "accountUserMapping"],
             query_params=query_params,
             entity_name="user"
         )
@@ -327,7 +314,7 @@ class AdminClient(Client):
         body_json = json.dumps(formatted_group_dict)
 
         response = self.send_post(
-            url=self.__base_setup_url + "/accountUserMapping",
+            [self.__base_setup_url, "accountUserMapping"],
             body=body_json,
             entity_name="user"
         )
@@ -347,7 +334,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_get(
-            url=self.__base_setup_url + "/organization/user", entity_name="user"
+            [self.__base_setup_url, "organization/user"], entity_name="user"
         )
 
         formatted_response = self.convert_json(
@@ -363,7 +350,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_get(
-            url=self.__base_setup_url + "/organization/policy", entity_name="policy"
+            [self.__base_setup_url, "organization/policy"], entity_name="policy"
         )
 
         formatted_response = self.convert_json(
@@ -382,7 +369,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_get(
-            url=self.__base_setup_url + "/user/" + user_id, entity_name="user"
+            [self.__base_setup_url, "user", user_id], entity_name="user"
         )
 
         formatted_response = self.convert_json(
@@ -401,7 +388,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_delete(
-            url=self.__base_setup_url + "/user/" + user_id, entity_name="user"
+            [self.__base_setup_url, "user", user_id], entity_name="user"
         )
 
         return response
@@ -418,7 +405,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_put(
-            url=self.__base_setup_url + "/user/" + user_id + "/userGroupMapping",
+            [self.__base_setup_url, "user", user_id, "userGroupMapping"],
             body=json.dumps(dict(userGroupIds=user_group_ids)),
             entity_name="user",
         )
@@ -440,7 +427,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_put(
-            url=self.__base_setup_url + "/user/" + user_id + "/policyMapping",
+            [self.__base_setup_url, "user", user_id, "policyMapping"],
             body=json.dumps(dict(policies=policies)),
             entity_name="user",
         )
@@ -460,7 +447,7 @@ class AdminClient(Client):
         query_params = dict(userEmail=user_email)
 
         response = self.send_get(
-            url=self.__base_setup_url + "/accountUserMapping", entity_name="user",
+            [self.__base_setup_url, "accountUserMapping"], entity_name="user",
             query_params=query_params
         )
 
@@ -497,7 +484,7 @@ class AdminClient(Client):
             payload["policies"] = policies
 
         response = self.send_post(
-            url=self.__base_setup_url + "/user/programmatic",
+            [self.__base_setup_url, "user/programmatic"],
             body=json.dumps(payload),
             entity_name="programmaticUser",
         )
@@ -516,7 +503,7 @@ class AdminClient(Client):
                             resourcePattern=resource_pattern, scope=scope, service=service)
 
         response = self.send_get(
-            url=self.__base_setup_url + "/access/policyAction", entity_name="user",
+            [self.__base_setup_url, "access/policyAction"], entity_name="user",
             query_params=query_params
         )
 
@@ -544,10 +531,11 @@ class AdminClient(Client):
             excluded_policy_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_policy_dict)
-
+        
         policy_response = self.send_post(
+            [self.__base_setup_url, "access/policy"],
             body=body_json,
-            url=self.__base_setup_url + "/access/policy", entity_name="policy")
+            entity_name="policy")
 
         formatted_response = self.convert_json(
             policy_response, self.camel_to_underscore)
@@ -576,10 +564,11 @@ class AdminClient(Client):
             excluded_policy_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_policy_dict)
-
+        
         policy_response = self.send_put(
+            [self.__base_setup_url, "access/policy", policy_id],
             body=body_json,
-            url=self.__base_setup_url + "/access/policy/" + policy_id, entity_name="policy")
+            entity_name="policy")
 
         formatted_response = self.convert_json(
             policy_response, self.camel_to_underscore)
@@ -597,7 +586,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_delete(
-            url=self.__base_setup_url + "/access/policy/" + policy_id, entity_name="policy"
+            [self.__base_setup_url, "access/policy", policy_id], entity_name="policy"
         )
 
         return response
@@ -610,7 +599,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_get(
-            url=self.__base_setup_url + "/access/userGroup", entity_name="usergroup"
+            [self.__base_setup_url, "access/userGroup"], entity_name="usergroup"
         )
 
         formatted_response = self.convert_json(
@@ -641,6 +630,11 @@ class AdminClient(Client):
         policy_response = self.send_post(
             body=body_json,
             url=self.__base_setup_url + "/access/userGroup", entity_name="usergroup")
+        
+        policy_response = self.send_post(
+            [self.__base_setup_url, "access/userGroup"],
+            body=body_json,
+            entity_name="usergroup")
 
         formatted_response = self.convert_json(
             policy_response, self.camel_to_underscore)
@@ -659,8 +653,9 @@ class AdminClient(Client):
         # Returns
         (Object): Spotinst API response
         """
+
         response = self.send_get(
-            url=self.__base_setup_url + "/access/userGroup/" + user_group_id, entity_name="usergroup"
+            [self.__base_setup_url, "access/userGroup", user_group_id], entity_name="usergroup"
         )
 
         formatted_response = self.convert_json(
@@ -679,7 +674,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         return self.send_delete(
-            url=self.__base_setup_url + "/access/userGroup/" + user_group_id, entity_name="usergroup"
+            [self.__base_setup_url, "access/userGroup", user_group_id], entity_name="usergroup"
         )
 
     def update_user_group_to_user_mapping(self, user_group_id: str, user_ids: List[str]):
@@ -694,7 +689,7 @@ class AdminClient(Client):
         (Object): Spotinst API response
         """
         response = self.send_put(
-            url=self.__base_setup_url + "/access/userGroup/" + user_group_id + "/userMapping",
+            [self.__base_setup_url, "access/userGroup", user_group_id, "userMapping"],
             body=json.dumps(dict(userIds=user_ids)),
             entity_name="usergroup",
         )
@@ -715,10 +710,8 @@ class AdminClient(Client):
         # Returns
         (Object): Spotinst API response
         """
-
         response = self.send_put(
-            url=self.__base_setup_url + "/access/userGroup/" +
-            user_group_id + "/policyMapping",
+            [self.__base_setup_url, "access/userGroup", user_group_id, "policyMapping"],
             body=json.dumps(dict(policies=policies)),
             entity_name="usergroup",
         )

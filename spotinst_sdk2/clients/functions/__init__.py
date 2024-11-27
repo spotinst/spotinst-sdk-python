@@ -27,11 +27,10 @@ class FunctionsClient(Client):
         body_json = json.dumps(formatted_app_dict)
 
         self.print_output(body_json)
-
+        
         app_response = self.send_post(
+            [self.__base_functions_url, 'application'],
             body=body_json,
-            url=self.__base_functions_url +
-            '/application',
             entity_name='application')
 
         formatted_response = self.convert_json(
@@ -60,11 +59,10 @@ class FunctionsClient(Client):
         body_json = json.dumps(formatted_env_dict)
 
         self.print_output(body_json)
-
+        
         env_response = self.send_post(
+            [self.__base_functions_url, 'environment'],
             body=body_json,
-            url=self.__base_functions_url +
-            '/environment',
             entity_name='environment')
 
         formatted_response = self.convert_json(
@@ -95,11 +93,10 @@ class FunctionsClient(Client):
 
         formatted_fx_dict['function']['code']['source'] = 'INLINE_BASE64_SOURCE_CODE'
         self.print_output(json.dumps(formatted_fx_dict))
-
+        
         fx_response = self.send_post(
+            [self.__base_functions_url, 'function'],
             body=body_json,
-            url=self.__base_functions_url +
-            '/function',
             entity_name='function')
 
         formatted_response = self.convert_json(
