@@ -4,6 +4,9 @@ import re
 
 import logging
 import requests
+
+import urllib3.util
+
 from .version import __version__
 
 VAR_SPOTINST_LOG_LEVEL = 'SPOTINST_LOG_LEVEL'
@@ -41,6 +44,14 @@ class Client:
 
         self.timeout = timeout
 
+    def validate_url(self, url):
+        self.print_output("input url - " + str(self.base_url + url))
+        self.print_output("parsed_url - " + str(urllib3.util.parse_url(self.base_url + url)))
+        if str(urllib3.util.parse_url(self.base_url + url)) == self.base_url + url:
+            return self.base_url + url
+        else:
+            return "Url is not safe"
+
     def send_get(self, url, entity_name, query_params=None):
         agent = self.resolve_user_agent()
 
@@ -61,7 +72,7 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
 
         result = requests.get(
-            self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
+            self.validate_url(url), params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -86,7 +97,7 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
 
         result = requests.delete(
-            self.base_url + url, params=query_params, headers=headers, timeout=self.timeout)
+            self.validate_url(url), params=query_params, headers=headers, timeout=self.timeout)
 
         if result.status_code == requests.codes.ok:
             self.print_output("Success")
@@ -111,7 +122,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.delete(
-            self.base_url + url,
+            self.validate_url(url),
             params=query_params,
             headers=headers,
             data=body,
@@ -140,7 +151,7 @@ class Client:
         self.print_output("Request Query Params - " + str(query_params))
 
         result = requests.delete(
-            self.base_url + url,
+            self.validate_url(url),
             params=query_params,
             headers=headers,
             timeout=self.timeout)
@@ -173,7 +184,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.post(
-            self.base_url + url,
+            self.validate_url(url),
             params=query_params,
             data=body,
             headers=headers,
@@ -205,7 +216,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.post(
-            self.base_url + url,
+            self.validate_url(url),
             params=query_params,
             data=body,
             headers=headers,
@@ -240,7 +251,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.put(
-            self.base_url + url,
+            self.validate_url(url),
             params=query_params,
             data=body,
             headers=headers,
@@ -271,7 +282,7 @@ class Client:
         self.print_output("Request Body - " + str(body))
 
         result = requests.put(
-            self.base_url + url,
+            self.validate_url(url),
             params=query_params,
             data=body,
             headers=headers,
