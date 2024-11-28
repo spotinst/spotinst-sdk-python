@@ -2,4 +2,4 @@ PyYaml==6.0.2
 requests==2.32.3
 pydoc-markdown==4.8.2
 mock==5.1.0
-pytest==8.3.2
+pytest==8.3.3

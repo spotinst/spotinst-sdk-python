@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.21.0] - 2024-11-28
+### Fixed
+- Fixed `[NA-SPOT-SDK-03] URL Path Traversal in Python SDK` from pentesting report
+
+## [3.20.0] - 2024-11-20
+### Fixed
+- Fixed static analysis issues reported by semgrep tool
+
 ## [3.19.0] - 2024-11-06
 ### Added
 - Added `SpotSizeAttributes` model for Azure Stateful Nodes
