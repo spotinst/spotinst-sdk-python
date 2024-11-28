@@ -46,7 +46,8 @@ class Client:
 
     def validate_url(self, url):
         self.print_output("Input Url - " + self.base_url + url)
-        self.print_output("Parsed Url - " + urllib3.util.parse_url(self.base_url + url).url)
+        self.print_output("Parsed Url - " +
+                          urllib3.util.parse_url(self.base_url + url).url)
         if urllib3.util.parse_url(self.base_url + url).url == self.base_url + url:
             return self.base_url + url
         else:
@@ -74,7 +75,7 @@ class Client:
         result = requests.get(
             self.validate_url(url), params=query_params, headers=headers, timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
@@ -99,7 +100,7 @@ class Client:
         result = requests.delete(
             self.validate_url(url), params=query_params, headers=headers, timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             return True
@@ -128,7 +129,7 @@ class Client:
             data=body,
             timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             return True
@@ -156,7 +157,7 @@ class Client:
             headers=headers,
             timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             return True
@@ -190,7 +191,7 @@ class Client:
             headers=headers,
             timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
@@ -222,7 +223,7 @@ class Client:
             headers=headers,
             timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
@@ -257,7 +258,7 @@ class Client:
             headers=headers,
             timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
@@ -288,7 +289,7 @@ class Client:
             headers=headers,
             timeout=self.timeout)
 
-        if result.status_code == requests.codes.ok:
+        if result.status_code == requests.codes['ok']:
             self.print_output("Success")
             self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
