@@ -45,12 +45,12 @@ class Client:
         self.timeout = timeout
 
     def validate_url(self, url):
-        self.print_output("input url - " + str(self.base_url + url))
-        self.print_output("parsed_url - " + str(urllib3.util.parse_url(self.base_url + url)))
-        if str(urllib3.util.parse_url(self.base_url + url)) == self.base_url + url:
+        self.print_output("Input Url - " + self.base_url + url)
+        self.print_output("Parsed Url - " + urllib3.util.parse_url(self.base_url + url).url)
+        if urllib3.util.parse_url(self.base_url + url).url == self.base_url + url:
             return self.base_url + url
         else:
-            return "Url is not safe"
+            raise Exception("UNSAFE_URL")
 
     def send_get(self, url, entity_name, query_params=None):
         agent = self.resolve_user_agent()
