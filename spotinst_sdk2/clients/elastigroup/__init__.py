@@ -1,4 +1,5 @@
 import json
+import logging
 
 from spotinst_sdk2.client import Client
 
@@ -47,6 +48,7 @@ class ElastigroupAwsClient(Client):
             excluded_group_dict, self.underscore_to_camel)
 
         body_json = json.dumps(formatted_group_dict)
+        logging.info(body_json)
 
         group_response = self.send_post_with_params(
             body=body_json,
