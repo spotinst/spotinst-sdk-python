@@ -2798,7 +2798,7 @@ class OceanRightSizingClient(Client):
         (Object): Ocean Right Sizing Rules API response
         """
         response = self.send_get(
-            url="/ocean/"+ocean_id+"/rightSizing/rule/",
+            url="/ocean/"+ocean_id+"/rightSizing/rule",
             entity_name="right_sizing"
         )
 
