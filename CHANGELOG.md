@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.21.1] - 2024-12-17
+### Fixed
+- Fixed implementation of `list_right_sizing_rules()` API
+
 ## [3.21.0] - 2024-11-28
 ### Fixed
 - Fixed `[NA-SPOT-SDK-03] URL Path Traversal in Python SDK` from pentesting report
