@@ -2756,17 +2756,18 @@ class OceanRightSizingClient(Client):
 
         body_json = json.dumps(formatted_missing_dict)
 
-        logging.info(body_json)
+        # logging.info(body_json)
 
         response = self.send_post(
             body=body_json,
             url="/ocean/"+ocean_id+"/rightSizing/rule/"+rule_name+"/detachment",
             entity_name='right_sizing')
-        
-        logging.info(response)
+    
 
         formatted_response = self.convert_json(response,
                                                self.camel_to_underscore)
+        
+        logging.info(formatted_response["response"]["items"][0])
 
         return formatted_response["response"]["items"][0]
 
