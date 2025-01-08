@@ -48,6 +48,8 @@ class ElastigroupAwsClient(Client):
 
         body_json = json.dumps(formatted_group_dict)
 
+        print(body_json)
+
         group_response = self.send_post_with_params(
             body=body_json,
             url=self.__base_elastigroup_url,
