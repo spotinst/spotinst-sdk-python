@@ -228,8 +228,12 @@ class Client:
             self.print_output("Response - " + str(result.json()))
             data = json.loads(result.content.decode('utf-8'))
             return data
-        else:
-            self.handle_exception("creating {}".format(entity_name), result)
+        
+        print(result.status_code)
+        print(result.content)
+        print(url)
+        # else:
+        #     self.handle_exception("creating {}".format(entity_name), result)
 
     def send_put(self, url, entity_name, query_params=None, body=None):
         agent = self.resolve_user_agent()
