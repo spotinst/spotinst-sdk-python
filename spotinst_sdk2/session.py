@@ -22,7 +22,7 @@ class Session:
                  credentials_file=None):
 
         if base_url is None:
-            self.base_url = "https://api.spotinst.io"
+            self.base_url = "http://api-private.dev.spotinst.com"
         else:
             self.base_url = base_url
 
