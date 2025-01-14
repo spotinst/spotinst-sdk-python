@@ -50,14 +50,20 @@ class ElastigroupAwsClient(Client):
 
         print(body_json)
 
+        print(self.__base_elastigroup_url)
+
         group_response = self.send_post_with_params(
             body=body_json,
             url=self.__base_elastigroup_url,
             entity_name='elastigroup',
             user_query_params=dict(asyncScale=async_scale))
+        
+        print(group_response)
 
         formatted_response = self.convert_json(
             group_response, self.camel_to_underscore)
+        
+        print(formatted_response)
 
         ret_val = formatted_response["response"]["items"][0]
 
