@@ -1132,12 +1132,36 @@ class VNGStrategy:
     """
     # Arguments
     spot_percentage: int
+    utilizeReservedInstances : int
+    fallbackToOd: bool
+    spotInstancePools: int
+    gracePeriod: int
+    drainingTimeout: int
+    utilizeCommitments: bool
+    clusterOrientation: ClusterOrientation
+    spreadNodesBy: SpreadNodesBy
     """
 
     def __init__(
             self,
-            spot_percentage: int = none):
+            spot_percentage: int = none,
+            utilize_reserved_instances: bool = none,
+            fallback_to_od: bool = none,
+            spot_instance_pools: int = none,
+            grace_period: int = none,
+            draining_timeout: int = none,
+            utilize_commitments: bool = none,
+            cluster_orientation: ClusterOrientation = none,
+            spread_nodes_by: SpreadNodesBy = none):
         self.spot_percentage = spot_percentage
+        self.utilize_reserved_instances = utilize_reserved_instances
+        self.fallback_to_od = fallback_to_od
+        self.spot_instance_pools = spot_instance_pools
+        self.grace_period = grace_period
+        self.draining_timeout = draining_timeout
+        self.utilize_commitments = utilize_commitments
+        self.cluster_orientation = cluster_orientation
+        self.spread_nodes_by = spread_nodes_by
 
 
 class Taints:
