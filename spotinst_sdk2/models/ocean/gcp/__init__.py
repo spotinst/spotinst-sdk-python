@@ -106,6 +106,22 @@ class AutoScaler:
         self.is_auto_config = is_auto_config
         self.is_enabled = is_enabled
         self.resource_limits = resource_limits
+
+
+# endregion
+
+# region AutoUpdate
+class AutoUpdate:
+    """
+    # Arguments
+    is_enabled: bool
+    """
+
+    def __init__(self,
+                 is_enabled: bool = none):
+        self.is_enabled = is_enabled
+
+
 # endregion
 
 
@@ -127,6 +143,8 @@ class Capacity:
         self.maximum = maximum
         self.minimum = minimum
         self.target = target
+
+
 # endregion
 
 
@@ -399,6 +417,8 @@ class Compute:
         self.launch_specification = launch_specification
         self.network_interfaces = network_interfaces
         self.subnet_name = subnet_name
+
+
 # endregion
 
 
@@ -417,6 +437,8 @@ class GKE:
     ):
         self.cluster_name = cluster_name
         self.master_location = master_location
+
+
 # endregion
 
 
@@ -506,6 +528,8 @@ class Scheduling:
             tasks: List[Tasks] = none):
         self.shutdown_hours = shutdown_hours
         self.tasks = tasks
+
+
 # endregion
 
 
@@ -532,6 +556,8 @@ class Security:
             self,
             container_image: ContainerImage = none):
         self.container_image = container_image
+
+
 # endregion
 
 
@@ -561,6 +587,8 @@ class Strategy:
         self.preemptible_percentage = preemptible_percentage
         self.provisioning_model = provisioning_model
         self.should_utilize_commitments = should_utilize_commitments
+
+
 # endregion
 
 
@@ -569,6 +597,7 @@ class Ocean:
     """
     # Arguments
     auto_scaler: AutoScaler
+    auto_update: AutoUpdate
     capacity: Capacity
     compute: Compute
     controller_cluster_id: str
@@ -582,6 +611,7 @@ class Ocean:
     def __init__(
             self,
             auto_scaler: AutoScaler = none,
+            auto_update: AutoUpdate = none,
             capacity: Capacity = none,
             compute: Compute = none,
             controller_cluster_id: str = none,
@@ -592,6 +622,7 @@ class Ocean:
             strategy: Strategy = none
     ):
         self.auto_scaler = auto_scaler
+        self.auto_update = auto_update
         self.capacity = capacity
         self.compute = compute
         self.controller_cluster_id = controller_cluster_id
@@ -600,6 +631,8 @@ class Ocean:
         self.scheduling = scheduling
         self.security = security
         self.strategy = strategy
+
+
 # endregion
 
 
@@ -611,6 +644,8 @@ class OceanRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
+
 # endregion
 
 
@@ -670,6 +705,8 @@ class RightSizingRecommendationRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
+
 # endregion
 
 
@@ -682,7 +719,7 @@ class AllMatch:
 
     def __init__(
             self,
-            all_match:  List[Attribute] = none):
+            all_match: List[Attribute] = none):
         self.all_match = all_match
 
 
@@ -757,6 +794,8 @@ class AggregatedClusterCostRequest:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+
+
 # endregion
 
 
@@ -959,6 +998,8 @@ class VirtualNodeGroup:
         self.strategy = strategy
         self.tags = tags
         self.taints = taints
+
+
 # endregion
 
 
