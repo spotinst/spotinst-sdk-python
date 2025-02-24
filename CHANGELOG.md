@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.21.3] - 2025-02-24
+### Added
+- Added new fields in `Strategy` model for Ocean AWS
+
 ## [3.21.2] - 2025-02-20
 ### Added
 - Added `AutoUpdate` model for Ocean GKE
