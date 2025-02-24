@@ -116,10 +116,10 @@ class AutoUpdate:
     # Arguments
     is_enabled: bool
     """
+
     def __init__(self,
                  is_enabled: bool = none):
         self.is_enabled = is_enabled
-
 
 
 # endregion
