@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.21.2] - 2025-02-20
+### Added
+- Added `AutoUpdate` model for Ocean GKE
+
 ## [3.21.1] - 2024-12-17
 ### Fixed
 - Fixed implementation of `list_right_sizing_rules()` API
