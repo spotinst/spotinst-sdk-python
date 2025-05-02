@@ -48,18 +48,20 @@ class ElastigroupAwsClient(Client):
 
         body_json = json.dumps(formatted_group_dict)
 
-        group_response = self.send_post_with_params(
-            body=body_json,
-            url=self.__base_elastigroup_url,
-            entity_name='elastigroup',
-            user_query_params=dict(asyncScale=async_scale))
+        print(body_json)
 
-        formatted_response = self.convert_json(
-            group_response, self.camel_to_underscore)
+        # group_response = self.send_post_with_params(
+        #     body=body_json,
+        #     url=self.__base_elastigroup_url,
+        #     entity_name='elastigroup',
+        #     user_query_params=dict(asyncScale=async_scale))
 
-        ret_val = formatted_response["response"]["items"][0]
+        # formatted_response = self.convert_json(
+        #     group_response, self.camel_to_underscore)
 
-        return ret_val
+        # ret_val = formatted_response["response"]["items"][0]
+
+        # return ret_val
 
     def update_elastigroup(self, group_update, group_id, auto_apply_tags=None):
         """
