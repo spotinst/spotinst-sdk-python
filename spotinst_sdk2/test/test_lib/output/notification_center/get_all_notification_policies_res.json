@@ -1,0 +1,59 @@
+{
+  "request": {
+      "id": "6a1cb8b7-6e62-4016-9db9-be22ac2f018f",
+      "url": "/notificationCenter/policy?accountId=act-7c46c6df",
+      "method": "GET",
+      "timestamp": "2025-05-05T04:06:36.992Z"
+  },
+  "response": {
+      "status": {
+          "code": 200,
+          "message": "OK"
+      },
+      "kind": "spotinst:notification:userNotificationPolicy",
+      "items": [
+          {
+              "policyId": "snp-0044f0a6",
+              "name": "Test_for_email",
+              "type": "compute",
+              "description": "",
+              "policyType": "public",
+              "owner": "anurag4@netapp.com",
+              "registeredUsersCount": 0,
+              "isActive": true,
+              "isRegistered": false,
+              "accountId": "act-7c46c6df"
+          },
+          {
+              "policyId": "snp-6262c4ac",
+              "name": "Test_QA_Manual",
+              "type": "compute",
+              "description": "",
+              "policyType": "public",
+              "owner": "anurag4@netapp.com",
+              "registeredUsersCount": 0,
+              "isActive": true,
+              "isRegistered": false,
+              "accountId": "act-7c46c6df"
+          },
+          {
+              "policyId": "snp-b34bfd3c",
+              "name": "Manual_Slack_Policy",
+              "type": "compute",
+              "description": "",
+              "policyType": "public",
+              "subscriptionTypes": [
+                  "sns",
+                  "slack"
+              ],
+              "owner": "Automation@spotinst.com",
+              "registeredUsersCount": 1,
+              "isActive": true,
+              "isRegistered": false,
+              "accountId": "act-7c46c6df"
+          }
+
+      ],
+      "count": 3
+  }
+}

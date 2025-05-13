@@ -1,0 +1,33 @@
+{
+  "request": {
+      "id": "d6b4de80-b48f-44bd-ab32-acaaa7eafb3b",
+      "url": "/notificationCenter/compute/resource?accountId=act-7c46c6df",
+      "method": "GET",
+      "timestamp": "2025-05-04T09:06:47.675Z"
+  },
+  "response": {
+      "status": {
+          "code": 200,
+          "message": "OK"
+      },
+      "kind": "spotinst:notification:compute:accountResource",
+      "items": [
+          {
+              "id": "o-52ba93aa",
+              "name": "Right_Sizing_Local_Testing",
+              "type": "ocean"
+          },
+          {
+              "id": "smi-aee29d67",
+              "name": "Automation_MI_DO_NOT_DELETE_7",
+              "type": "managedInstance"
+          },
+          {
+              "id": "o-402568bb",
+              "name": "AWS_Automation_Ocean_ECS_DO_NOT_DELETE",
+              "type": "ocean"
+          }
+      ],
+      "count": 3
+  }
+}

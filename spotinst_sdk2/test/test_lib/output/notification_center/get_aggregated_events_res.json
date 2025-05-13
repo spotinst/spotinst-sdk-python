@@ -1,0 +1,30 @@
+{
+  "request": {
+      "id": "ef7ab0db-b49c-4859-bb3f-5a29e9d880e6",
+      "url": "/notificationCenter/compute/event?accountId=act-7c46c6df",
+      "method": "GET",
+      "timestamp": "2025-05-04T09:07:30.790Z"
+  },
+  "response": {
+      "status": {
+          "code": 200,
+          "message": "OK"
+      },
+      "kind": "spotinst:notification:compute:event",
+      "items": [
+          {
+              "eventSubCategory": "Launch instances failures",
+              "severity": "ERROR"
+          },
+          {
+              "eventSubCategory": "Ocean Rightsizing Recommendation NotApplied Due To Threshold Not Met",
+              "severity": "INFO"
+          },
+          {
+              "eventSubCategory": "Stateful recycle started",
+              "severity": "INFO"
+          }
+      ],
+      "count": 3
+  }
+}

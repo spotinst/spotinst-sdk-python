@@ -19,6 +19,7 @@
   * [ElasticBeanstalk](#elasticbeanstalk)
 * [MrScaler](#mrscaler)
 * [Ocean](#Ocean)
+* [Notification Center](#notification-center)
 <!--te-->
 
 ## AWS Elastigroup
@@ -555,3 +556,25 @@ ocean = Ocean(name="Ocean SDK Test", controller_cluster_id="ocean.k8s",
 
 client.create_ocean_cluster(ocean=ocean)
 ```
+
+## Notification Center
+
+```python
+from spotinst_sdk2 import SpotinstSession
+from spotinst_sdk2.clients.notification_center import NotificationCenterClient
+
+session = SpotinstSession()
+client = session.client("notification_center")
+
+# Example: Get account resources
+account_id = "example_account_id"
+resources = client.get_account_resources(account_id)
+print(resources)
+
+# Example: Get aggregated events
+events = client.get_aggregated_events(account_id)
+print(events)
+
+# Example: Get all notification policies
+policies = client.get_all_notification_policies()
+print(policies)
