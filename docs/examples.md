@@ -564,17 +564,33 @@ from spotinst_sdk2 import SpotinstSession
 from spotinst_sdk2.clients.notification_center import NotificationCenterClient
 
 session = SpotinstSession()
-client = session.client("notification_center")
+client = session.client("notification_center", account_id)
 
 # Example: Get account resources
-account_id = "example_account_id"
-resources = client.get_account_resources(account_id)
+resources = client.get_account_resources()
 print(resources)
 
 # Example: Get aggregated events
-events = client.get_aggregated_events(account_id)
+events = client.get_aggregated_events()
 print(events)
 
 # Example: Get all notification policies
 policies = client.get_all_notification_policies()
 print(policies)
+
+# Example: Get specific notification policy
+policy = client.get_specific_notification_policy(policy_id)
+print(policy)
+
+# Example: Create notification policy
+registeredUsers = RegisteredUsers(userEmail="TestAutomation_Admin_DO_NOT_DELETE@spot.io", subscriptionTypes = ["email","console"] )
+
+events = Events(event="Launch instances failures", type="ERROR")
+computePolicyConfig = ComputePolicyConfig(events=[events], shouldIncludeAllResources=True, resourceIds=[], dynamicRules=[])
+request = Policy(name = "AutomationTestPolicy12345", description = "AutomationTestPolicy12345", privacyLevel = "public", isActive = True, registeredUsers = [registeredUsers], computePolicyConfig = computePolicyConfig)
+response = notificationCenter.create_notification_policy(request)
+print(response)
+
+# Example: Delete a notification policy
+response = client.delete_notification_policy(policy_id)
+print(response)
