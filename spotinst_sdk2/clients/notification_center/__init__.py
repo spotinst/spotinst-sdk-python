@@ -69,7 +69,7 @@ class NotificationCenterClient(Client):
         get specific notification policy
 
         # Arguments
-        policy (Policy): Policy object 
+        policy_id: str
 
         # Returns
         (Object): Spotinst API response 
@@ -117,6 +117,36 @@ class NotificationCenterClient(Client):
 
         ret_val = formatted_response["response"]["items"][0]
         return ret_val
+    
+    # update notification policy
+    def update_notification_policy(self, policy_id: str, policy: notification_center.Policy):
+        
+        """
+        update notification policy
+
+        # Arguments
+        policy_id : str
+        policy (Policy): Policy object
+
+        # Returns
+        (Object): Spotinst API response 
+        """
+        request = notification_center.PolicyUpdateRequest(policy)
+        
+        excluded_group_dict = self.exclude_missing(json.loads(request.toJSON()))
+
+        formatted_policy_dict = self.convert_json(
+            excluded_group_dict, self.underscore_to_camel)
+        
+        body_json = json.dumps(formatted_policy_dict)
+
+        response = self.send_put(
+            body = body_json,
+            url=self.__base_url + "/policy/" + policy_id,
+            entity_name="policy"
+        )
+
+        return response
     
     # delete notification policy
     def delete_notification_policy(self, policy_id: str):
