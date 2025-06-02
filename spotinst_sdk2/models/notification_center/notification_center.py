@@ -49,7 +49,7 @@ class Events:
     def __init__(
             self,
             event: str = none,
-            type: str = None):
+            type: str = none):
 
         self.event = event
         self.type = type
@@ -91,6 +91,20 @@ class RegisteredUsers:
         self.userEmail = userEmail
         self.subscriptionTypes = subscriptionTypes
 
+class Subscriptions:
+    """
+    # Arguments
+    type: str
+    endpoint: str
+    """
+
+    def __init__(
+            self,
+            type: str = none,
+            endpoint: str = none):
+
+        self.type = type
+        self.endpoint = endpoint
 
 class Policy:
     """
@@ -100,6 +114,7 @@ class Policy:
         privacyLevel: str
         isActive: bool
         registeredUsers: List[RegisteredUsers]
+        subscriptions: List[Subscriptions]
         computePolicyConfig: List[ComputePolicyConfig]
         """
 
@@ -110,6 +125,7 @@ class Policy:
             privacyLevel: str = none,
             isActive: bool = none,
             registeredUsers: List[RegisteredUsers] = none,
+            subscriptions: List[Subscriptions] = none,
             computePolicyConfig: List[ComputePolicyConfig] = none):
 
         self.description = description
@@ -117,6 +133,7 @@ class Policy:
         self.privacyLevel = privacyLevel
         self.isActive = isActive
         self.registeredUsers = registeredUsers
+        self.subscriptions = subscriptions
         self.computePolicyConfig = computePolicyConfig
 
 
@@ -129,6 +146,7 @@ class PolicyCreationRequest:
             self.privacyLevel = policy.privacyLevel
             self.isActive = policy.isActive
             self.registeredUsers = policy.registeredUsers
+            self.subscriptions = policy.subscriptions
             self.computePolicyConfig = policy.computePolicyConfig
 
     def toJSON(self):
