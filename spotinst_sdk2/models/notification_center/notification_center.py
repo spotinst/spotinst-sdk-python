@@ -108,15 +108,15 @@ class Subscriptions:
 
 class Policy:
     """
-        # Arguments
-        name: str
-        description: str
-        privacyLevel: str
-        isActive: bool
-        registeredUsers: List[RegisteredUsers]
-        subscriptions: List[Subscriptions]
-        computePolicyConfig: List[ComputePolicyConfig]
-        """
+    # Arguments
+    name: str
+    description: str
+    privacyLevel: str
+    isActive: bool
+    registeredUsers: List[RegisteredUsers]
+    subscriptions: List[Subscriptions]
+    computePolicyConfig: List[ComputePolicyConfig]
+    """
 
     def __init__(
             self,

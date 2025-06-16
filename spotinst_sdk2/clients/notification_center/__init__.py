@@ -160,9 +160,7 @@ class NotificationCenterClient(Client):
         # Returns
         (Object): Spotinst API response 
         """
-        response = self.send_delete(
+        return self.send_delete(
             url=self.__base_url + "/policy/" + policy_id,
             entity_name="policy"
         )
-
-        return response

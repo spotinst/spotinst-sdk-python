@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.22.0] - 2025-06-16
+### Added
+- Added support for notification center APIs
+
 ## [3.21.3] - 2025-02-24
 ### Added
 - Added new fields in `Strategy` model for Ocean AWS

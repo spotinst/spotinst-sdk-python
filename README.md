@@ -179,6 +179,7 @@ Take note you can create more than one client with the session. The currently su
 - `session.client("managed_instance_aws")`
 - `session.client("stateful_node_azure")`
 - `session.client("functions")`
+- `session.client("notification_center")`
 
 A full list of endpoints and clients can be found in the documentation [here](./docs/clients/).
 
