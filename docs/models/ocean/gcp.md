@@ -86,6 +86,16 @@ __Arguments__
 - __is_enabled__: bool
 - __resource_limits__: ResourceLimits
 
+<h2 id="spotinst_sdk2.models.ocean.gcp.AutoUpdate">AutoUpdate</h2>
+
+```python
+AutoUpdate(self, is_enabled: bool = 'd3043820717d74d9a17694c176d39733')
+```
+
+__Arguments__
+
+- __is_enabled__: bool
+
 <h2 id="spotinst_sdk2.models.ocean.gcp.Capacity">Capacity</h2>
 
 ```python
@@ -101,15 +111,6 @@ __Arguments__
 - __minimum__: int
 - __target__: int
 
-<h2 id="spotinst_sdk2.models.ocean.gcp.LocationType">LocationType</h2>
-
-```python
-LocationType(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.LocationType.regional">regional</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.gcp.NamedPorts">NamedPorts</h2>
 
 ```python
@@ -122,18 +123,6 @@ __Arguments__
 
 - __name__: str
 - __ports__: List[int]
-
-<h2 id="spotinst_sdk2.models.ocean.gcp.Scheme">Scheme</h2>
-
-```python
-Scheme(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.Scheme.external">external</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.Scheme.internal">internal</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.gcp.BackendServices">BackendServices</h2>
 
@@ -219,21 +208,6 @@ __Arguments__
 
 - __key__: str
 - __value__: str
-
-<h2 id="spotinst_sdk2.models.ocean.gcp.RootVolumeType">RootVolumeType</h2>
-
-```python
-RootVolumeType(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.RootVolumeType.pd_balanced">pd_balanced</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.RootVolumeType.pd_ssd">pd_ssd</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.RootVolumeType.pd_standard">pd_standard</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.gcp.ShieldedInstanceConfig">ShieldedInstanceConfig</h2>
 
@@ -469,25 +443,6 @@ __Arguments__
 
 - __container_image__: ContainerImage
 
-<h2 id="spotinst_sdk2.models.ocean.gcp.ProvisioningModel">ProvisioningModel</h2>
-
-```python
-ProvisioningModel(cls,
-                  value,
-                  names=None,
-                  *,
-                  module,
-                  qualname,
-                  type,
-                  start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.ProvisioningModel.preemptible">preemptible</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.ProvisioningModel.spot">spot</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.gcp.Strategy">Strategy</h2>
 
 ```python
@@ -512,6 +467,7 @@ __Arguments__
 ```python
 Ocean(self,
       auto_scaler: AutoScaler = 'd3043820717d74d9a17694c176d39733',
+      auto_update: AutoUpdate = 'd3043820717d74d9a17694c176d39733',
       capacity: Capacity = 'd3043820717d74d9a17694c176d39733',
       compute: Compute = 'd3043820717d74d9a17694c176d39733',
       controller_cluster_id: str = 'd3043820717d74d9a17694c176d39733',
@@ -525,6 +481,7 @@ Ocean(self,
 __Arguments__
 
 - __auto_scaler__: AutoScaler
+- __auto_update__: AutoUpdate
 - __capacity__: Capacity
 - __compute__: Compute
 - __controller_cluster_id__: str
@@ -533,36 +490,6 @@ __Arguments__
 - __scheduling__: Scheduling
 - __security__: Security
 - __strategy__: Strategy
-
-<h2 id="spotinst_sdk2.models.ocean.gcp.Type">Type</h2>
-
-```python
-Type(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.Type.annotation">annotation</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.Type.label">label</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.gcp.Operator">Operator</h2>
-
-```python
-Operator(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.Operator.does_not_exist">does_not_exist</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.Operator.equals">equals</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.Operator.exists">exists</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.Operator.not_equals">not_equals</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.gcp.Attribute">Attribute</h2>
 
@@ -623,18 +550,6 @@ __Arguments__
 
 - __any_match__: List[AllMatch]
 
-<h2 id="spotinst_sdk2.models.ocean.gcp.Scope">Scope</h2>
-
-```python
-Scope(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.Scope.namespace">namespace</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.Scope.resource">resource</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.gcp.Filter">Filter</h2>
 
 ```python
@@ -647,27 +562,6 @@ __Arguments__
 
 - __conditions__: Conditions
 - __scope__: Scope
-
-<h2 id="spotinst_sdk2.models.ocean.gcp.GroupBy">GroupBy</h2>
-
-```python
-GroupBy(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.gcp.GroupBy.namespace">namespace</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.GroupBy.namespace_annotation">namespace_annotation</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.GroupBy.namespace_label">namespace_label</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.GroupBy.resource_annotation">resource_annotation</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.gcp.GroupBy.resource_label">resource_label</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.gcp.AggregatedClusterCosts">AggregatedClusterCosts</h2>
 

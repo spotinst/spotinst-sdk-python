@@ -12,6 +12,7 @@ from spotinst_sdk2.clients.subscription import *
 from spotinst_sdk2.clients.setup import *
 from spotinst_sdk2.clients.ocean_cd import *
 from spotinst_sdk2.clients.hpc import *
+from spotinst_sdk2.clients.notification_center import NotificationCenterClient
 
 
 class SpotinstSession:
@@ -70,7 +71,10 @@ class SpotinstSession:
             "subscription": SubscriptionClient(session=self.session, print_output=print_output, log_level=log_level,
                                                user_agent=user_agent, timeout=timeout),
             "hpc": HPCAwsClient(session=self.session, print_output=print_output,
-                                log_level=log_level, user_agent=user_agent, timeout=timeout)
+                                log_level=log_level, user_agent=user_agent, timeout=timeout),
+            "notification_center": NotificationCenterClient(session=self.session, print_output=print_output,
+                                                             log_level=log_level, user_agent=user_agent,
+                                                             timeout=timeout),
         }
 
         client = switcher.get(service)

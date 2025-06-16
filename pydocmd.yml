@@ -37,6 +37,8 @@ generate:
       - spotinst_sdk2.clients.managed_instance.ManagedInstanceAwsClient++
   - clients/stateful_node/stateful_node_azure_client.md:
       - spotinst_sdk2.clients.stateful_node.StatefulNodeAzureClient++
+  - clients/notification_center/notification_center_client.md:
+      - spotinst_sdk2.clients.notification_center.NotificationCenterClient++
   - models/admin.md:
       - spotinst_sdk2.models.admin.user_mapping++
       - spotinst_sdk2.models.admin.organization++
@@ -79,7 +81,8 @@ generate:
       - spotinst_sdk2.models.managed_instance.aws++
   - models/stateful_node.md:
       - spotinst_sdk2.models.stateful_node++
-
+  - models/notification_center.md:
+      - spotinst_sdk2.models.notification_center.notification_center++
 
 pages:
   - Home: README.md << README.md

@@ -102,28 +102,6 @@ __Arguments__
 - __maximum__: int
 - __target__: int
 
-<h2 id="spotinst_sdk2.models.ocean.aws.AvailabilityVsCost">AvailabilityVsCost</h2>
-
-```python
-AvailabilityVsCost(cls,
-                   value,
-                   names=None,
-                   *,
-                   module,
-                   qualname,
-                   type,
-                   start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.AvailabilityVsCost.balanced">balanced</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.AvailabilityVsCost.cheapest">cheapest</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.AvailabilityVsCost.cost_oriented">cost_oriented</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.aws.ClusterOrientation">ClusterOrientation</h2>
 
 ```python
@@ -136,18 +114,6 @@ ClusterOrientation(
 __Arguments__
 
 - __availability_vs_cost__: AvailabilityVsCost
-
-<h2 id="spotinst_sdk2.models.ocean.aws.SpreadNodesBy">SpreadNodesBy</h2>
-
-```python
-SpreadNodesBy(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.SpreadNodesBy.count">count</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.SpreadNodesBy.vcpu">vcpu</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.aws.Strategy">Strategy</h2>
 
@@ -226,18 +192,6 @@ __Arguments__
 - __cluster_roll__: ClusterRoll
 - __ami_auto_update__: AmiAutoUpdate
 
-<h2 id="spotinst_sdk2.models.ocean.aws.TaskType">TaskType</h2>
-
-```python
-TaskType(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.TaskType.ami_auto_update">ami_auto_update</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.TaskType.cluster_roll">cluster_roll</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.aws.Tasks">Tasks</h2>
 
 ```python
@@ -308,110 +262,6 @@ Security(
 __Arguments__
 
 - __container_image__: ContainerImage
-
-<h2 id="spotinst_sdk2.models.ocean.aws.Architectures">Architectures</h2>
-
-```python
-Architectures(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.Architectures.arm64">arm64</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Architectures.i386">i386</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Architectures.x86_64">x86_64</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.aws.Categories">Categories</h2>
-
-```python
-Categories(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.Categories.accelerated_computing">accelerated_computing</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Categories.compute_optimized">compute_optimized</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Categories.general_purpose">general_purpose</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Categories.memory_optimized">memory_optimized</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Categories.storage_optimized">storage_optimized</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.aws.DiskTypes">DiskTypes</h2>
-
-```python
-DiskTypes(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.DiskTypes.ebs">ebs</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.DiskTypes.hdd">hdd</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.DiskTypes.nvme">nvme</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.DiskTypes.ssd">ssd</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.aws.Hypervisor">Hypervisor</h2>
-
-```python
-Hypervisor(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.Hypervisor.nitro">nitro</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Hypervisor.xen">xen</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.aws.RootDeviceTypes">RootDeviceTypes</h2>
-
-```python
-RootDeviceTypes(cls,
-                value,
-                names=None,
-                *,
-                module,
-                qualname,
-                type,
-                start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.RootDeviceTypes.ebs">ebs</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.RootDeviceTypes.instance_store">instance_store</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.aws.VirtualizationTypes">VirtualizationTypes</h2>
-
-```python
-VirtualizationTypes(cls,
-                    value,
-                    names=None,
-                    *,
-                    module,
-                    qualname,
-                    type,
-                    start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.VirtualizationTypes.hvm">hvm</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.VirtualizationTypes.paravirtual">paravirtual</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.aws.InstanceTypesFilters">InstanceTypesFilters</h2>
 
@@ -556,30 +406,6 @@ __Arguments__
 - __name__: str
 - __arn__: str
 
-<h2 id="spotinst_sdk2.models.ocean.aws.HttpEndpoint">HttpEndpoint</h2>
-
-```python
-HttpEndpoint(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.HttpEndpoint.disabled">disabled</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.HttpEndpoint.enabled">enabled</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.aws.HttpTokens">HttpTokens</h2>
-
-```python
-HttpTokens(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.HttpTokens.optional">optional</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.HttpTokens.required">required</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.aws.InstanceMetadataOptions">InstanceMetadataOptions</h2>
 
 ```python
@@ -595,25 +421,6 @@ __Arguments__
 - __http_endpoint__: HttpEndpoint
 - __http_put_response_hop_limit__: int
 - __http_tokens__: HttpTokens
-
-<h2 id="spotinst_sdk2.models.ocean.aws.LoadBalancerType">LoadBalancerType</h2>
-
-```python
-LoadBalancerType(cls,
-                 value,
-                 names=None,
-                 *,
-                 module,
-                 qualname,
-                 type,
-                 start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.LoadBalancerType.classic">classic</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.LoadBalancerType.target_group">target_group</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.aws.LoadBalancer">LoadBalancer</h2>
 
@@ -790,36 +597,6 @@ __Arguments__
 - __compute__: Compute
 - __logging__: Logging
 
-<h2 id="spotinst_sdk2.models.ocean.aws.Type">Type</h2>
-
-```python
-Type(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.Type.annotation">annotation</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Type.label">label</h3>
-
-
-<h2 id="spotinst_sdk2.models.ocean.aws.Operator">Operator</h2>
-
-```python
-Operator(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.Operator.does_not_exist">does_not_exist</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Operator.equals">equals</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Operator.exists">exists</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Operator.not_equals">not_equals</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.aws.Attribute">Attribute</h2>
 
 ```python
@@ -879,18 +656,6 @@ __Arguments__
 
 - __any_match__: List[AllMatch]
 
-<h2 id="spotinst_sdk2.models.ocean.aws.Scope">Scope</h2>
-
-```python
-Scope(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.Scope.namespace">namespace</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.Scope.resource">resource</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.aws.Filter">Filter</h2>
 
 ```python
@@ -902,27 +667,6 @@ __Arguments__
 
 - __conditions__: Conditions
 - __scope__: Scope
-
-<h2 id="spotinst_sdk2.models.ocean.aws.GroupBy">GroupBy</h2>
-
-```python
-GroupBy(cls, value, names=None, *, module, qualname, type, start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.GroupBy.namespace">namespace</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.GroupBy.namespace_annotation">namespace_annotation</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.GroupBy.namespace_label">namespace_label</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.GroupBy.resource_annotation">resource_annotation</h3>
-
-
-<h3 id="spotinst_sdk2.models.ocean.aws.GroupBy.resource_label">resource_label</h3>
-
 
 <h2 id="spotinst_sdk2.models.ocean.aws.AggregatedClusterCosts">AggregatedClusterCosts</h2>
 
@@ -1072,22 +816,6 @@ __Arguments__
 
 - __headrooms__: List[Headroom]
 
-<h2 id="spotinst_sdk2.models.ocean.aws.VNGSchedulingTaskType">VNGSchedulingTaskType</h2>
-
-```python
-VNGSchedulingTaskType(cls,
-                      value,
-                      names=None,
-                      *,
-                      module,
-                      qualname,
-                      type,
-                      start)
-```
-An enumeration.
-<h3 id="spotinst_sdk2.models.ocean.aws.VNGSchedulingTaskType.manual_headroom_update">manual_headroom_update</h3>
-
-
 <h2 id="spotinst_sdk2.models.ocean.aws.VNGSchedulingTasks">VNGSchedulingTasks</h2>
 
 ```python
@@ -1139,13 +867,31 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.ocean.aws.VNGStrategy">VNGStrategy</h2>
 
 ```python
-VNGStrategy(self,
-            spot_percentage: int = 'd3043820717d74d9a17694c176d39733')
+VNGStrategy(
+  self,
+  spot_percentage: int = 'd3043820717d74d9a17694c176d39733',
+  utilize_reserved_instances: bool = 'd3043820717d74d9a17694c176d39733',
+  fallback_to_od: bool = 'd3043820717d74d9a17694c176d39733',
+  spot_instance_pools: int = 'd3043820717d74d9a17694c176d39733',
+  grace_period: int = 'd3043820717d74d9a17694c176d39733',
+  draining_timeout: int = 'd3043820717d74d9a17694c176d39733',
+  utilize_commitments: bool = 'd3043820717d74d9a17694c176d39733',
+  cluster_orientation:
+    ClusterOrientation = 'd3043820717d74d9a17694c176d39733',
+  spread_nodes_by: SpreadNodesBy = 'd3043820717d74d9a17694c176d39733')
 ```
 
 __Arguments__
 
 - __spot_percentage__: int
+- __utilizeReservedInstances __: int
+- __fallbackToOd__: bool
+- __spotInstancePools__: int
+- __gracePeriod__: int
+- __drainingTimeout__: int
+- __utilizeCommitments__: bool
+- __clusterOrientation__: ClusterOrientation
+- __spreadNodesBy__: SpreadNodesBy
 
 <h2 id="spotinst_sdk2.models.ocean.aws.Taints">Taints</h2>
 
