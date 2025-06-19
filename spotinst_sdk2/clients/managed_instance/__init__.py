@@ -1,4 +1,5 @@
 import json
+import logging
 
 from spotinst_sdk2.client import Client
 
@@ -259,7 +260,9 @@ class ManagedInstanceAwsClient(Client):
         req_url = self.__base_mi_url + "/" + \
             managed_instance_id + "/" + "volume" + "/" + volume_id
 
-        return self.send_delete(url=req_url, entity_name=self.ENTITY_NAME)
+        logging.info(req_url)
+
+        # return self.send_delete(url=req_url, entity_name=self.ENTITY_NAME)
 
     def update_managed_instance_states(self, update_manage_instance_states_list: list):
         """
