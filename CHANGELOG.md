@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.22.1] - 2026-08-18
+### Added
+- Added `encryption_at_host` field in the `NodePoolProperties` model for Ocean Azure VNG
+- Added `preferred_vm_sizes` field in the `VmSizes` model for Ocean Azure VNG
+- Added `local_dns_profile` field (`LocalDnsProfile` model) in `NodePoolProperties` for Ocean Azure VNG
+- Added `scheduling` field in `VirtualNodeGroupTemplate` for Ocean Azure VNG
+- Added `restrict_scale_down` field in `VirtualNodeGroupTemplate` for Ocean Azure VNG
+
 ## [3.22.0] - 2025-06-16
 ### Added
 - Added support for notification center APIs

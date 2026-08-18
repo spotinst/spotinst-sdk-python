@@ -331,12 +331,32 @@ class LinuxOSConfig:
         self.sysctls = sysctls
 
 
+class LocalDnsProfile:
+    """
+    # Arguments
+    mode: str
+    vnet_d_n_s_overrides: dict
+    kube_d_n_s_overrides: dict
+    """
+
+    def __init__(
+            self,
+            mode: str = none,
+            vnet_d_n_s_overrides: dict = none,
+            kube_d_n_s_overrides: dict = none):
+        self.mode = mode
+        self.vnet_d_n_s_overrides = vnet_d_n_s_overrides
+        self.kube_d_n_s_overrides = kube_d_n_s_overrides
+
+
 class NodePoolProperties:
     """
     # Arguments
     enable_node_public_i_p: bool
+    encryption_at_host: bool
     kubernetes_version: str
     linux_o_s_config: LinuxOSConfig
+    local_dns_profile: LocalDnsProfile
     max_pods_per_node: int
     os_disk_size_g_b: int
     os_disk_type: OsDiskType
@@ -349,8 +369,10 @@ class NodePoolProperties:
     def __init__(
             self,
             enable_node_public_i_p: bool = none,
+            encryption_at_host: bool = none,
             kubernetes_version: str = none,
             linux_o_s_config: LinuxOSConfig = none,
+            local_dns_profile: LocalDnsProfile = none,
             max_pods_per_node: int = none,
             os_disk_size_g_b: int = none,
             os_disk_type: OsDiskType = none,
@@ -359,8 +381,10 @@ class NodePoolProperties:
             pod_subnet_i_ds: List[str] = none,
             vnet_subnet_i_ds: List[str] = none):
         self.enable_node_public_i_p = enable_node_public_i_p
+        self.encryption_at_host = encryption_at_host
         self.kubernetes_version = kubernetes_version
         self.linux_o_s_config = linux_o_s_config
+        self.local_dns_profile = local_dns_profile
         self.max_pods_per_node = max_pods_per_node
         self.os_disk_size_g_b = os_disk_size_g_b
         self.os_disk_type = os_disk_type
@@ -516,12 +540,15 @@ class VmSizes:
     """
     # Arguments
     filters: Filters
+    preferred_vm_sizes: List[str]
     """
 
     def __init__(
             self,
-            filters: Filters = none):
+            filters: Filters = none,
+            preferred_vm_sizes: List[str] = none):
         self.filters = filters
+        self.preferred_vm_sizes = preferred_vm_sizes
 # endregion
 
 
@@ -535,6 +562,8 @@ class VirtualNodeGroupTemplate:
     labels: dict
     node_count_limits: NodeCountLimits
     node_pool_properties: NodePoolProperties
+    restrict_scale_down: bool
+    scheduling: Scheduling
     strategy: Strategy
     tags: dict
     taints: List[Taint]
@@ -550,6 +579,8 @@ class VirtualNodeGroupTemplate:
             labels: dict = none,
             node_count_limits: NodeCountLimits = none,
             node_pool_properties: NodePoolProperties = none,
+            restrict_scale_down: bool = none,
+            scheduling: Scheduling = none,
             strategy: Strategy = none,
             tags: dict = none,
             taints: List[Taint] = none,
@@ -561,6 +592,8 @@ class VirtualNodeGroupTemplate:
         self.labels = labels
         self.node_count_limits = node_count_limits
         self.node_pool_properties = node_pool_properties
+        self.restrict_scale_down = restrict_scale_down
+        self.scheduling = scheduling
         self.strategy = strategy
         self.tags = tags
         self.taints = taints
