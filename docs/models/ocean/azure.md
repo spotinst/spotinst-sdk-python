@@ -310,14 +310,33 @@ __Arguments__
 
 - __sysctls__: Sysctls
 
+<h2 id="spotinst_sdk2.models.ocean.azure.LocalDnsProfile">LocalDnsProfile</h2>
+
+```python
+LocalDnsProfile(
+  self,
+  mode: str = 'd3043820717d74d9a17694c176d39733',
+  vnet_d_n_s_overrides: dict = 'd3043820717d74d9a17694c176d39733',
+  kube_d_n_s_overrides: dict = 'd3043820717d74d9a17694c176d39733'
+)
+```
+
+__Arguments__
+
+- __mode__: str
+- __vnet_d_n_s_overrides__: dict
+- __kube_d_n_s_overrides__: dict
+
 <h2 id="spotinst_sdk2.models.ocean.azure.NodePoolProperties">NodePoolProperties</h2>
 
 ```python
 NodePoolProperties(
   self,
   enable_node_public_i_p: bool = 'd3043820717d74d9a17694c176d39733',
+  encryption_at_host: bool = 'd3043820717d74d9a17694c176d39733',
   kubernetes_version: str = 'd3043820717d74d9a17694c176d39733',
   linux_o_s_config: LinuxOSConfig = 'd3043820717d74d9a17694c176d39733',
+  local_dns_profile: LocalDnsProfile = 'd3043820717d74d9a17694c176d39733',
   max_pods_per_node: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_size_g_b: int = 'd3043820717d74d9a17694c176d39733',
   os_disk_type: OsDiskType = 'd3043820717d74d9a17694c176d39733',
@@ -331,8 +350,10 @@ NodePoolProperties(
 __Arguments__
 
 - __enable_node_public_i_p__: bool
+- __encryption_at_host__: bool
 - __kubernetes_version__: str
 - __linux_o_s_config__: LinuxOSConfig
+- __local_dns_profile__: LocalDnsProfile
 - __max_pods_per_node__: int
 - __os_disk_size_g_b__: int
 - __os_disk_type__: OsDiskType
@@ -551,12 +572,17 @@ __Arguments__
 <h2 id="spotinst_sdk2.models.ocean.azure.VmSizes">VmSizes</h2>
 
 ```python
-VmSizes(self, filters: Filters = 'd3043820717d74d9a17694c176d39733')
+VmSizes(
+  self,
+  filters: Filters = 'd3043820717d74d9a17694c176d39733',
+  preferred_vm_sizes: typing.List[str] = 'd3043820717d74d9a17694c176d39733'
+)
 ```
 
 __Arguments__
 
 - __filters__: Filters
+- __preferred_vm_sizes__: List[str]
 
 <h2 id="spotinst_sdk2.models.ocean.azure.VirtualNodeGroupTemplate">VirtualNodeGroupTemplate</h2>
 
@@ -572,6 +598,8 @@ VirtualNodeGroupTemplate(
   node_count_limits: NodeCountLimits = 'd3043820717d74d9a17694c176d39733',
   node_pool_properties:
     NodePoolProperties = 'd3043820717d74d9a17694c176d39733',
+  restrict_scale_down: bool = 'd3043820717d74d9a17694c176d39733',
+  scheduling: Scheduling = 'd3043820717d74d9a17694c176d39733',
   strategy: Strategy = 'd3043820717d74d9a17694c176d39733',
   tags: dict = 'd3043820717d74d9a17694c176d39733',
   taints:
@@ -588,6 +616,8 @@ __Arguments__
 - __labels__: dict
 - __node_count_limits__: NodeCountLimits
 - __node_pool_properties__: NodePoolProperties
+- __restrict_scale_down__: bool
+- __scheduling__: Scheduling
 - __strategy__: Strategy
 - __tags__: dict
 - __taints__: List[Taint]
