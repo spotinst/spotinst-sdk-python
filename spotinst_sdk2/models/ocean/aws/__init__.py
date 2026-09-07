@@ -1482,8 +1482,8 @@ class MigrationRequest:
 
 
 class ExtendedResourceDefinitionRequest:
-    def __init__(self, extended_resource_defintion: ExtendedResourceDefinition):
-        self.extended_resource_defintion = extended_resource_defintion
+    def __init__(self, extended_resource_definition: ExtendedResourceDefinition):
+        self.extended_resource_definition = extended_resource_definition
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__,

@@ -1061,7 +1061,7 @@ class OceanAwsClient(Client):
         response = self.send_post(
             body=body_json,
             url=self.__base_ocean_extended_resource_definition_url,
-            entity_name='ocean_aws_extended_resource_defintion')
+            entity_name='ocean_aws_extended_resource_definition')
 
         formatted_response = self.convert_json(response,
                                                self.camel_to_underscore)
@@ -1082,7 +1082,7 @@ class OceanAwsClient(Client):
         response = self.send_get(
             url=self.__base_ocean_extended_resource_definition_url +
             "/" + ocean_extended_resource_definition_id,
-            entity_name='ocean_aws_extended_resource_defintion'
+            entity_name='ocean_aws_extended_resource_definition'
         )
 
         formatted_response = self.convert_json(
@@ -1135,7 +1135,7 @@ class OceanAwsClient(Client):
             body=body_json,
             url=self.__base_ocean_extended_resource_definition_url +
             "/" + ocean_extended_resource_definition_id,
-            entity_name='ocean_extended_resource_defintion')
+            entity_name='ocean_extended_resource_definition')
 
         formatted_response = self.convert_json(
             response,
@@ -1156,7 +1156,7 @@ class OceanAwsClient(Client):
         return self.send_delete(
             url=self.__base_ocean_extended_resource_definition_url +
             "/" + ocean_extended_resource_definition_id,
-            entity_name='ocean_extended_resource_defintion')
+            entity_name='ocean_extended_resource_definition')
 # endregion
 
 
